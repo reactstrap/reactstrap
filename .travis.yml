@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+  - 0.12
+  - 4.3
+  - 5
+
+addons:
+  firefox: "latest"
+
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
