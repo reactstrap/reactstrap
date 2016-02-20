@@ -2,6 +2,12 @@
 
 A work in progress react component library for Bootstrap 4. Don't use this just yet.
 
+#### Project Goals
+
+- Provide a simple interface for integrating bootstrap components
+- When appropriate, extend/reuse standard DOM attributes like `disabled`, `type`, `title`
+- Don't require dependency on jQuery or Bootstrap's JavaScript
+
 ## Installation
 
 Add `reactstrap` as a dependency via npm:
