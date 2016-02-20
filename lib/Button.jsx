@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-const btnColors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'link'];
-const btnOutlineColors = btnColors.map(c => c !== 'link' ? c + '-outline' : null);
-
 const propTypes = {
-  el: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  color: PropTypes.oneOf([...btnColors, ...btnOutlineColors])
+  active: PropTypes.bool,
+  color: PropTypes.string,
+  disabled: PropTypes.bool,
+  El: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  onClick: PropTypes.func,
+  size: PropTypes.string
 };
 
 const defaultProps = {
@@ -16,26 +17,52 @@ const defaultProps = {
 class Button extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(e) {
+    if (this.props.disabled) {
+      e.preventDefault();
+    } else {
+      this.props.onClick(e);
+    }
   }
 
   render() {
-    const CustomEl = this.props.el;
+    const {
+      active,
+      children,
+      className,
+      color,
+      El,
+      size,
+      ...attributes
+    } = this.props;
+
     const classes = classNames(
-      this.props.className,
+      className,
       'btn',
-      'btn-' + this.props.color
+      'btn-' + color,
+      size ? 'btn-' + size : false,
+      { active }
     );
 
-    if (CustomEl) {
+    if (El) {
       return (
-        <CustomEl {...this.props} className={classes}>
-          {this.props.children}
-        </CustomEl>
+        <El {...attributes}
+          className={classes}
+          onClick={this.onClick}>
+          {children}
+        </El>
       );
     }
+
     return (
-      <button {...this.props} className={classes}>
-        {this.props.children}
+      <button {...attributes}
+        className={classes}
+        onClick={this.onClick}>
+        {children}
       </button>
     );
   }

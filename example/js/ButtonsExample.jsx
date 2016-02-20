@@ -28,7 +28,18 @@ class ButtonsExample extends React.Component {
           <Button color="warning-outline">warning-outline</Button>&nbsp;
           <Button color="danger-outline">danger-outline</Button>
         </p>
-        <p><Button el={Link} href="https://github.com" target="_blank" color="link">Custom Element (Link)</Button></p>
+        <p><Button El={Link} href="https://github.com" target="_blank" color="link">Custom Element (Link)</Button></p>
+        <p>Active state</p>
+        <p><Button active>active</Button></p>
+        <p>Disabeld state</p>
+        <p><Button disabled>disabled</Button></p>
+        <p>Sizes</p>
+        <p>
+          <Button size="sm">Small (sm)</Button>
+        </p>
+        <p>
+          <Button size="lg">Large (lg)</Button>
+        </p>
       </div>
     );
   }
