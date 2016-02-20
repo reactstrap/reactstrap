@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Button } from 'lib/index';
+import { Button, ButtonGroup, ButtonToolbar } from 'lib/index';
 
 const Link = (props) => <a {...props}>{props.children}</a>;
 
@@ -39,6 +39,29 @@ class ButtonsExample extends React.Component {
         </p>
         <p>
           <Button size="lg">Large (lg)</Button>
+        </p>
+        <p>Button Group</p>
+        <p>
+          <ButtonGroup>
+            <Button>Left</Button>
+            <Button>Middle</Button>
+            <Button>Right</Button>
+          </ButtonGroup>
+        </p>
+        <p>Button Toolbar</p>
+        <p>
+          <ButtonToolbar>
+            <ButtonGroup>
+              <Button>Left</Button>
+              <Button>Middle</Button>
+              <Button>Right</Button>
+            </ButtonGroup>
+            <ButtonGroup>
+              <Button>Left</Button>
+              <Button>Middle</Button>
+              <Button>Right</Button>
+            </ButtonGroup>
+          </ButtonToolbar>
         </p>
       </div>
     );
