@@ -9,6 +9,7 @@ var ecmaFeatures = {
   'objectLiteralComputedProperties': true,
   'objectLiteralShorthandMethods': true,
   'objectLiteralShorthandProperties': true,
+  'experimentalObjectRestSpread': true,
   'restParams': true,
   'spread': true,
   'templateStrings': true,
