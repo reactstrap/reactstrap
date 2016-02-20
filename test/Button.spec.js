@@ -38,6 +38,12 @@ describe('Button', () => {
     expect(large.hasClass('btn-lg')).toBe(true);
   });
 
+  it('should render block level buttons', () => {
+    const block = shallow(<Button block>Block Level Button</Button>);
+
+    expect(block.hasClass('btn-block')).toBe(true);
+  });
+
   describe('onClick', () => {
     it('is called when passed as property', () => {
       const onClick = jasmine.createSpy('onClick');

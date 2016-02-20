@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 const propTypes = {
   active: PropTypes.bool,
+  block: PropTypes.bool,
   color: PropTypes.string,
   disabled: PropTypes.bool,
   El: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -32,6 +33,7 @@ class Button extends React.Component {
   render() {
     const {
       active,
+      block,
       children,
       className,
       color,
@@ -45,6 +47,7 @@ class Button extends React.Component {
       'btn',
       'btn-' + color,
       size ? 'btn-' + size : false,
+      block ? 'btn-block' : false,
       { active }
     );
 
