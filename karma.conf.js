@@ -23,6 +23,7 @@ module.exports = function (config) {
     },
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
+      'node_modules/phantomjs-polyfill/bind-polyfill.js',
       './test/**/*.spec.js'
     ],
     preprocessors: {
