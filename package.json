@@ -28,6 +28,7 @@
   "homepage": "https://github.com/eddywashere/reactstrap#readme",
   "dependencies": {
     "classnames": "^2.2.3",
+    "lodash.omit": "^4.1.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   },
