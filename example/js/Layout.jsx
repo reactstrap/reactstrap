@@ -1,5 +1,6 @@
 import React from 'react';
 import ButtonsExample from './ButtonsExample';
+import DropdownsExample from './DropdownsExample';
 
 class Layout extends React.Component {
   render() {
@@ -11,6 +12,7 @@ class Layout extends React.Component {
               <h1>React Bootstrap Components</h1>
             </div>
             <ButtonsExample/>
+            <DropdownsExample/>
           </div>
         </div>
       </div>
