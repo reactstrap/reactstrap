@@ -24,8 +24,10 @@ class Button extends React.Component {
 
   onClick(e) {
     if (this.props.disabled) {
-      e.preventDefault();
-    } else {
+      return e.preventDefault();
+    }
+
+    if (this.props.onClick) {
       this.props.onClick(e);
     }
   }

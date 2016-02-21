@@ -45,7 +45,7 @@ describe('Button', () => {
   });
 
   describe('onClick', () => {
-    it('is called when passed as property', () => {
+    it('calls props.onClick if it exists', () => {
       const onClick = jasmine.createSpy('onClick');
       const wrapper = mount(<Button onClick={onClick}>Testing Click</Button>);
 
@@ -55,11 +55,13 @@ describe('Button', () => {
 
     it('is not called when disabled', () => {
       const e = jasmine.createSpyObj('e', ['preventDefault']);
-      const onClick = jasmine.createSpy('onClick');
-      const wrapper = mount(<Button onClick={onClick} disabled>Testing Click</Button>);
+      const wrapper = mount(<Button>Testing Click</Button>);
 
       wrapper.instance().onClick(e);
-      expect(onClick).not.toHaveBeenCalled();
+      expect(e.preventDefault).not.toHaveBeenCalled();
+
+      wrapper.setProps({ disabled: true });
+      wrapper.instance().onClick(e);
       expect(e.preventDefault).toHaveBeenCalled();
     });
   });
