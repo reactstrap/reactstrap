@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../lib';
 
 

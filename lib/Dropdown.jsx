@@ -4,6 +4,8 @@ import omit from 'lodash.omit';
 
 const propTypes = {
   disabled: PropTypes.bool,
+  dropup: PropTypes.bool,
+  group: PropTypes.bool,
   open: PropTypes.bool,
   tag: PropTypes.string
 };
@@ -93,14 +95,19 @@ class Dropdown extends React.Component {
   render() {
     const {
       className,
+      dropup,
+      group,
       'tag': TagName,
       ...attributes
     } = omit(this.props, ['children', 'open']);
 
     const classes = classNames(
       className,
-      'dropdown',
-      { 'open': this.state.open }
+      group ? 'btn-group' : 'dropdown',
+      {
+        open: this.state.open,
+        dropup: dropup
+      }
     );
 
     return (

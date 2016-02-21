@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'lib/index';
+import { Button, ButtonDropdown, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'lib/index';
 
 class DropdownsExample extends React.Component {
   render() {
@@ -46,6 +46,31 @@ class DropdownsExample extends React.Component {
             <DropdownItem>Another Action</DropdownItem>
           </DropdownMenu>
         </Dropdown>
+        <p>Button Dropdown</p>
+        <ButtonDropdown className="m-r-1">
+          <DropdownToggle caret>
+            <Button color="primary">Button Dropdown</Button>
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem divider/>
+            <DropdownItem>Another Action</DropdownItem>
+          </DropdownMenu>
+        </ButtonDropdown>
+        <ButtonDropdown>
+          <DropdownToggle caret>
+            <Button color="primary">Button Dropdown</Button>
+          </DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem divider/>
+            <DropdownItem>Another Action</DropdownItem>
+          </DropdownMenu>
+        </ButtonDropdown>
       </div>
     );
   }
