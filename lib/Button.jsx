@@ -50,7 +50,7 @@ class Button extends React.Component {
       'btn-' + color,
       size ? 'btn-' + size : false,
       block ? 'btn-block' : false,
-      { active }
+      { active, disabled: this.props.disabled }
     );
 
     if (El) {
