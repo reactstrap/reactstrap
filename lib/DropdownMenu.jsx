@@ -4,9 +4,11 @@ import omit from 'lodash.omit';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  closeDropdown: PropTypes.func,
   handleContainerClick: PropTypes.func,
   isDropdownOpen: PropTypes.bool,
   onClick: PropTypes.func,
+  openDropdown: PropTypes.func,
   right: PropTypes.bool,
   toggleDropdown: PropTypes.func
 };
@@ -28,8 +30,26 @@ class DropdownMenu extends React.Component {
     }
   }
 
+  renderChildren() {
+    return React.Children.map(React.Children.toArray(this.props.children), (child) => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(
+          child,
+          {
+            closeDropdown: this.props.closeDropdown,
+            handleContainerClick: this.props.handleContainerClick,
+            isDropdownOpen: this.props.isDropdownOpen,
+            openDropdown: this.props.openDropdown,
+            toggleDropdown: this.props.toggleDropdown
+          }
+        );
+      }
+      return child;
+    });
+  }
+
   render() {
-    const { className, children, right, ...props } = omit(this.props, 'onClick');
+    const { className, right, ...props } = omit(this.props, 'onClick', 'children');
     const classes = classNames(
       className,
       'dropdown-menu',
@@ -38,7 +58,7 @@ class DropdownMenu extends React.Component {
 
     return (
       <div {...props} className={classes} onClick={this.onClick}>
-        {children}
+        {this.renderChildren()}
       </div>
     );
   }

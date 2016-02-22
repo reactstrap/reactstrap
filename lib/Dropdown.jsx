@@ -23,26 +23,26 @@ class Dropdown extends React.Component {
       open: props.open
     };
 
+    this.openDropdown = this.openDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.handleContainerClick = this.handleContainerClick.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
-  componentWillUnmount() {
-    this.removeDocumentEventListener();
+  componentDidMount() {
+    if (this.state.open) {
+      this.openDropdown();
+    }
   }
 
-  removeDocumentEventListener() {
-    document.removeEventListener('click', this.handleDocumentClick);
+  componentWillUnmount() {
+    this.closeDropdown();
   }
 
   handleDocumentClick() {
     if (this.state.open) {
-      this.removeDocumentEventListener();
-      this.setState({
-        open: !this.state.open
-      });
+      this.closeDropdown();
     }
   }
 
@@ -58,22 +58,24 @@ class Dropdown extends React.Component {
     }
 
     if (this.state.open) {
-      document.removeEventListener('click', this.handleDocumentClick);
+      this.closeDropdown();
     } else {
-      document.addEventListener('click', this.handleDocumentClick);
+      this.openDropdown();
     }
-
-    this.setState({
-      open: !this.state.open
-    });
   }
 
   closeDropdown() {
-    if (this.state.open) {
-      this.setState({
-        open: false
-      });
-    }
+    this.setState({
+      open: false
+    });
+    document.removeEventListener('click', this.handleDocumentClick);
+  }
+
+  openDropdown() {
+    this.setState({
+      open: true
+    });
+    document.addEventListener('click', this.handleDocumentClick);
   }
 
   renderChildren() {
@@ -82,9 +84,11 @@ class Dropdown extends React.Component {
         return React.cloneElement(
           child,
           {
-            isDropdownOpen: this.state.open,
+            closeDropdown: this.closeDropdown,
             handleContainerClick: this.handleContainerClick,
-            toggleDropdown: this.toggleDropdown
+            isDropdownOpen: this.state.open,
+            openDropdown: this.openDropdown,
+            toggleDropdown: this.toggleDropdown,
           }
         );
       }

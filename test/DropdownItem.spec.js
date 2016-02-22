@@ -38,4 +38,72 @@ describe('DropdownItem', () => {
       expect(wrapper.find('.dropdown-divider').length).toBe(1);
     });
   });
+
+  describe('onClick', () => {
+    it('should not be called when disabled', () => {
+      const e = { preventDefault: jasmine.createSpy('preventDefault') };
+      const wrapper = mount(<DropdownItem disabled>Item</DropdownItem>);
+      const instance = wrapper.instance();
+
+      instance.onClick(e);
+      expect(e.preventDefault).toHaveBeenCalled();
+    });
+
+    it('should not be called when divider is set', () => {
+      const e = { preventDefault: jasmine.createSpy('preventDefault') };
+      const wrapper = mount(<DropdownItem divider/>);
+      const instance = wrapper.instance();
+
+      instance.onClick(e);
+      expect(e.preventDefault).toHaveBeenCalled();
+    });
+
+    it('should not be called when header item', () => {
+      const e = { preventDefault: jasmine.createSpy('preventDefault') };
+      const wrapper = mount(<DropdownItem header>Header</DropdownItem>);
+      const instance = wrapper.instance();
+
+      instance.onClick(e);
+      expect(e.preventDefault).toHaveBeenCalled();
+    });
+
+    it('should be called not disabled, heading, or divider', () => {
+      const e = { preventDefault: jasmine.createSpy('preventDefault') };
+      const onClick = jasmine.createSpy('onClick');
+      const wrapper = mount(<DropdownItem onClick={onClick.bind(this)}>Click me</DropdownItem>);
+      const instance = wrapper.instance();
+
+      instance.onClick(e);
+      expect(onClick).toHaveBeenCalled();
+    });
+
+    it('should call onClose', () => {
+      const wrapper = mount(<DropdownItem>Click me</DropdownItem>);
+      const instance = wrapper.instance();
+      spyOn(instance, 'onClose');
+
+      instance.onClick({});
+      expect(instance.onClose).toHaveBeenCalled();
+    });
+  });
+
+  describe('onClose', () => {
+    it('should call props.onClose', () => {
+      const onClose = jasmine.createSpy('onClose');
+      const wrapper = mount(<DropdownItem onClose={onClose.bind(this)}>Click me</DropdownItem>);
+      const instance = wrapper.instance();
+
+      instance.onClose({});
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('should call props.closeDropdown', () => {
+      const closeDropdown = jasmine.createSpy('closeDropdown');
+      const wrapper = mount(<DropdownItem closeDropdown={closeDropdown.bind(this)}>Click me</DropdownItem>);
+      const instance = wrapper.instance();
+
+      instance.onClose({});
+      expect(closeDropdown).toHaveBeenCalled();
+    });
+  });
 });

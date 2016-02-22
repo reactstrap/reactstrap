@@ -93,7 +93,7 @@ describe('Dropdown', () => {
   });
 
   describe('componentWillUnmount', () => {
-    it('should removeDocumentEventListener', () => {
+    it('should call closeDropdown', () => {
       const wrapper = mount(
         <Dropdown>
           <DropdownToggle>Toggle</DropdownToggle>
@@ -102,44 +102,30 @@ describe('Dropdown', () => {
       const instance = wrapper.instance();
 
       spyOn(instance, 'componentWillUnmount').and.callThrough();
-      spyOn(instance, 'removeDocumentEventListener').and.callThrough();
+      spyOn(instance, 'closeDropdown').and.callThrough();
 
       expect(instance.componentWillUnmount).not.toHaveBeenCalled();
-      expect(instance.removeDocumentEventListener).not.toHaveBeenCalled();
+      expect(instance.closeDropdown).not.toHaveBeenCalled();
 
       wrapper.unmount();
 
       expect(instance.componentWillUnmount).toHaveBeenCalled();
-      expect(instance.removeDocumentEventListener).toHaveBeenCalled();
+      expect(instance.closeDropdown).toHaveBeenCalled();
     });
   });
 
   describe('handleDocumentClick', () => {
-    it('should call removeEventListener when open', () => {
+    it('should call closeDropdown', () => {
       const wrapper = mount(
         <Dropdown open>
           <DropdownToggle>Toggle</DropdownToggle>
         </Dropdown>
       );
       const instance = wrapper.instance();
-      spyOn(instance, 'removeDocumentEventListener').and.callThrough();
+      spyOn(instance, 'closeDropdown').and.callThrough();
       instance.handleDocumentClick();
 
-      expect(instance.removeDocumentEventListener).toHaveBeenCalled();
-      expect(wrapper.state('open')).toBe(false);
-    });
-
-    it('should not call removeEventListener when closed', () => {
-      const wrapper = mount(
-        <Dropdown>
-          <DropdownToggle>Toggle</DropdownToggle>
-        </Dropdown>
-      );
-      const instance = wrapper.instance();
-      spyOn(instance, 'removeDocumentEventListener');
-      instance.handleDocumentClick();
-
-      expect(instance.removeDocumentEventListener).not.toHaveBeenCalled();
+      expect(instance.closeDropdown).toHaveBeenCalled();
       expect(wrapper.state('open')).toBe(false);
     });
   });
