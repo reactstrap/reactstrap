@@ -41,9 +41,7 @@ class Dropdown extends React.Component {
   }
 
   handleDocumentClick() {
-    if (this.state.open) {
-      this.closeDropdown();
-    }
+    this.closeDropdown();
   }
 
   handleContainerClick(e) {
