@@ -4,7 +4,7 @@
   "description": "React Bootstrap 4 components",
   "main": "lib/index.js",
   "scripts": {
-    "coverage": "karma start --single-run --reporters dots,coverage",
+    "coverage": "codeclimate-test-reporter < ./test/coverage/lcov/lcov.info",
     "test": "karma start --single-run --reporters spec,coverage",
     "test-watch": "karma start --reporters dots,coverage",
     "start": "webpack-dev-server --watch"
@@ -40,6 +40,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "cheerio": "^0.20.0",
+    "codeclimate-test-reporter": "^0.3.1",
     "enzyme": "^2.0.0",
     "eslint": "^2.0.0",
     "eslint-plugin-react": "^3.16.1",

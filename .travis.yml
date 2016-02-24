@@ -12,3 +12,11 @@ before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+
+after_script:
+  - npm run coverage
+
+addons:
+  code_climate:
+    repo_token:
+      secure: "JKoQf0QzR+0etC+8oW3jrq6DiZfwntq8q5dlic3TNnjrj93sKoIEEZHRpA78tdKr30BicdPVgnE2VTemHZSp346aB/Tw/iEa6Y5XASd1VGN8up8K+DjxysL6DYgBnMQ1vsk/nobDQAjMl4G1Wb3ZS55ftg0jIRNk+q+x9lgP1Y7/eIiN22kBF9280YBZR/hPExc7V9iEQ29KuLDEFuL7EWW7All66PcRGUoSmTELXl02VzLJgMnans6cKk/v4ONbNaFF9MP186azHSU6K57jNY3x6oxfYV125zJLTh+AaA3x6EUrTwuSH94ZR136CYb3sLh17Pyq4nOBSYX3CBwhzU1naQugDaFbj/boAX54TNeBnGMCrzZdz2/Y9mR97zx8y3obRosUUVoiwhx1QjFHWTbwWVA8QQIjnH19IKzNYgDxTPzZWIqOSVBYmeRtr9kBMvb9VmWDkTMnTELgFobKBB9M71p4dhhIFexj49iQVu48TrndAMnhHIcO86BuvvipV1oh4I+0tdlhapMPl1qlUj9vY7fEjbTt4D8J9KeGYgHnFe2VjsyyATibph3zozk7nwCCRYDwKti90qK193fFjyTZTgOJU7xp8kmxXw83T5pT7tbtfVahX7OTNiHDBjtwYtn+QGz+RQVrlmtLuxjgQZLPNLEpZX0zH6iTogJTTTo="
