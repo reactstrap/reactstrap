@@ -1,4 +1,4 @@
-# reactstrap [![Build Status](https://travis-ci.org/eddywashere/reactstrap.svg?branch=master)](https://travis-ci.org/eddywashere/reactstrap)
+# reactstrap [![Build Status](https://travis-ci.org/eddywashere/reactstrap.svg?branch=master)](https://travis-ci.org/eddywashere/reactstrap) [![Test Coverage](https://codeclimate.com/github/eddywashere/reactstrap/badges/coverage.svg)](https://codeclimate.com/github/eddywashere/reactstrap/coverage)
 
 A work in progress react component library for Bootstrap 4. Don't use this just yet.
 
