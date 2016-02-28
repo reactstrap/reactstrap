@@ -5,16 +5,25 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../l
 
 
 describe('ButtonDropdown', () => {
+  let isOpen;
+  let toggle;
+
+  beforeEach(() => {
+    isOpen = false;
+    toggle = () => isOpen = !isOpen;
+  });
+
   it('should render a single child', () => {
-    const wrapper = mount(<ButtonDropdown>Ello world</ButtonDropdown>);
+    const wrapper = mount(<ButtonDropdown isOpen={isOpen} toggle={toggle}>Ello world</ButtonDropdown>);
 
     expect(wrapper.text()).toBe('Ello world');
     expect(wrapper.find('.btn-group').length).toBe(1);
   });
 
-  it('should render multiple children', () => {
+  it('should render multiple children when isOpen', () => {
+    isOpen = true;
     const wrapper = mount(
-      <ButtonDropdown>
+      <ButtonDropdown isOpen={isOpen} toggle={toggle}>
         <DropdownToggle>Toggle</DropdownToggle>
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>

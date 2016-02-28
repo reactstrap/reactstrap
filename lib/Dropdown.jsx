@@ -1,18 +1,33 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
+import TetherContent from './TetherContent';
+import DropdownMenu from './DropdownMenu';
+import DropdownToggle from './DropdownToggle';
 
 const propTypes = {
   disabled: PropTypes.bool,
   dropup: PropTypes.bool,
   group: PropTypes.bool,
-  open: PropTypes.bool,
-  tag: PropTypes.string
+  isOpen: PropTypes.bool,
+  tag: PropTypes.string,
+  tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  toggle: PropTypes.func
 };
 
 const defaultProps = {
   open: false,
   tag: 'div'
+};
+
+const defaultTetherConfig = {
+  classPrefix: 'bs-tether',
+  classes: { element: 'dropdown', enabled: 'open' },
+  constraints: [
+    { to: 'scrollParent', attachment: 'together none' },
+    { to: 'window', attachment: 'together none' }
+  ]
 };
 
 class Dropdown extends React.Component {
@@ -23,72 +38,113 @@ class Dropdown extends React.Component {
       open: props.open
     };
 
-    this.openDropdown = this.openDropdown.bind(this);
-    this.closeDropdown = this.closeDropdown.bind(this);
+    this.addEvents = this.addEvents.bind(this);
+    this.getTetherConfig = this.getTetherConfig.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
-    this.handleContainerClick = this.handleContainerClick.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.removeEvents = this.removeEvents.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
-    if (this.state.open) {
-      this.openDropdown();
+    this.handleProps();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpen !== prevProps.isOpen) {
+      this.handleProps();
     }
   }
 
   componentWillUnmount() {
-    this.closeDropdown();
+    this.removeEvents();
   }
 
-  handleDocumentClick() {
-    this.closeDropdown();
-  }
+  getTetherConfig(childProps) {
+    const target = () => this._target;
+    let vElementAttach = 'top';
+    let hElementAttach = 'left';
+    let vTargetAttach = 'bottom';
+    let hTargetAttach = 'left';
 
-  handleContainerClick(e) {
-    if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) {
-      e.nativeEvent.stopImmediatePropagation();
-    }
-  }
-
-  toggleDropdown(e) {
-    if (this.props.disabled) {
-      return e.preventDefault();
+    if (childProps.right) {
+      hElementAttach = 'right';
+      hTargetAttach = 'right';
     }
 
-    if (this.state.open) {
-      this.closeDropdown();
-    } else {
-      this.openDropdown();
+    if (childProps.dropup) {
+      vElementAttach = 'bottom';
+      vTargetAttach = 'top';
     }
+
+    return {
+      ...defaultTetherConfig,
+      attachment: vElementAttach + ' ' + hElementAttach,
+      targetAttachment: vTargetAttach + ' ' + hTargetAttach,
+      target,
+      ...this.props.tether
+    };
   }
 
-  closeDropdown() {
-    this.setState({
-      open: false
-    });
-    document.removeEventListener('click', this.handleDocumentClick);
-  }
-
-  openDropdown() {
-    this.setState({
-      open: true
-    });
+  addEvents() {
     document.addEventListener('click', this.handleDocumentClick);
   }
 
+  removeEvents() {
+    document.removeEventListener('click', this.handleDocumentClick);
+  }
+
+  handleDocumentClick(e) {
+    const container = ReactDOM.findDOMNode(this);
+
+    if (container.contains(e.target) && container !== e.target) {
+      return;
+    }
+
+    this.toggle();
+  }
+
+  handleProps() {
+    if (this.props.tether) {
+      return;
+    }
+
+    if (this.props.isOpen) {
+      this.addEvents();
+    } else {
+      this.removeEvents();
+    }
+  }
+
+  toggle(e) {
+    if (this.props.disabled) {
+      return e && e.preventDefault();
+    }
+
+    this.props.toggle();
+  }
+
   renderChildren() {
+    let props = omit(this.props, ['children', 'className', 'id']);
+    props.toggle = this.toggle;
+
     return React.Children.map(React.Children.toArray(this.props.children), (child) => {
       if (React.isValidElement(child)) {
-        return React.cloneElement(
-          child,
-          {
-            closeDropdown: this.closeDropdown,
-            handleContainerClick: this.handleContainerClick,
-            isDropdownOpen: this.state.open,
-            openDropdown: this.openDropdown,
-            toggleDropdown: this.toggleDropdown,
-          }
-        );
+        if (child.type === DropdownToggle) {
+          return React.cloneElement(child, {
+            ...props,
+            ref: (c) => this._target = c
+          });
+        } else if (child.type === DropdownMenu && !props.isOpen) {
+          // don't bother with hidden content
+          return null;
+        } else if (child.type === DropdownMenu && props.tether) {
+          let tetherConfig = this.getTetherConfig(child.props);
+
+          return (
+            <TetherContent {...props} tether={tetherConfig}>{child}</TetherContent>
+          );
+        }
+        return React.cloneElement(child, props);
       }
       return child;
     });
@@ -101,13 +157,14 @@ class Dropdown extends React.Component {
       group,
       'tag': TagName,
       ...attributes
-    } = omit(this.props, ['children', 'open']);
+    } = omit(this.props, ['children', 'isOpen']);
 
     const classes = classNames(
       className,
-      group ? 'btn-group' : 'dropdown',
       {
-        open: this.state.open,
+        'btn-group': group,
+        dropdown: !group,
+        open: this.props.isOpen,
         dropup: dropup
       }
     );

@@ -4,27 +4,31 @@ import { mount } from 'enzyme';
 import { DropdownMenu } from '../lib';
 
 describe('DropdownMenu', () => {
-  it('should renders children', () => {
-    const wrapper = mount(<DropdownMenu>Ello world</DropdownMenu>);
+  let isOpen;
+  let toggle;
 
-    expect(wrapper.text()).toBe('Ello world');
+  beforeEach(() => {
+    isOpen = false;
+    toggle = () => isOpen = !isOpen;
+  });
+
+  it('should renders children', () => {
+    isOpen = true;
+    const wrapper = mount(<DropdownMenu isOpen={isOpen} toggle={toggle}><p>Content</p></DropdownMenu>);
+
+    expect(wrapper.text()).toBe('Content');
     expect(wrapper.find('.dropdown-menu').length).toBe(1);
   });
 
   it('should renders right aligned menus', () => {
-    const wrapper = mount(<DropdownMenu right>Ello world</DropdownMenu>);
+    isOpen = true;
+    const wrapper = mount(<DropdownMenu isOpen={isOpen} toggle={toggle} right>Ello world</DropdownMenu>);
 
     expect(wrapper.find('.dropdown-menu').hasClass('dropdown-menu-right')).toBe(true);
   });
 
-  describe('onClick', () => {
-    it('should call props.onClick if it exists', () => {
-      const onClick = jasmine.createSpy('onClick');
-      const wrapper = mount(<DropdownMenu onClick={onClick.bind(this)}>Ello world</DropdownMenu>);
-      const instance = wrapper.instance();
-
-      instance.onClick({});
-      expect(onClick).toHaveBeenCalled();
-    });
+  it('should not render multiple children when isOpen is false', () => {
+    const wrapper = mount(<DropdownMenu isOpen={isOpen} toggle={toggle} right>Ello world</DropdownMenu>);
+    expect(wrapper.children().length).toBe(0);
   });
 });

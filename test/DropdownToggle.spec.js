@@ -33,6 +33,15 @@ describe('DropdownToggle', () => {
       instance.onClick({});
       expect(onClick).toHaveBeenCalled();
     });
+
+    it('should call props.toggle when present ', () => {
+      let props = jasmine.createSpyObj('props', ['toggle']);
+      const wrapper = mount(<DropdownToggle toggle={props.toggle}>Ello world</DropdownToggle>);
+      const instance = wrapper.instance();
+
+      instance.onClick({ preventDefault: () => { } });
+      expect(props.toggle).toHaveBeenCalled();
+    });
   });
 
   describe('disabled', () => {

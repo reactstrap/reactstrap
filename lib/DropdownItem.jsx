@@ -4,14 +4,12 @@ import omit from 'lodash.omit';
 
 const propTypes = {
   children: PropTypes.node,
-  closeDropdown: PropTypes.func,
   disabled: PropTypes.bool,
   divider: PropTypes.bool,
   El: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  handleContainerClick: PropTypes.func,
   header: PropTypes.bool,
-  isDropdownOpen: PropTypes.bool,
-  toggleDropdown: PropTypes.func
+  isOpen: PropTypes.bool,
+  toggle: PropTypes.func
 };
 
 class DropdownItem extends React.Component {
@@ -19,7 +17,7 @@ class DropdownItem extends React.Component {
     super(props);
 
     this.onClick = this.onClick.bind(this);
-    this.onClose = this.onClose.bind(this);
+    this.getTabIndex = this.getTabIndex.bind(this);
   }
 
   onClick(e) {
@@ -31,21 +29,20 @@ class DropdownItem extends React.Component {
       this.props.onClick(e);
     }
 
-    this.onClose();
+    this.props.toggle();
   }
 
-  onClose(e) {
-    if (this.props.onClose) {
-      this.props.onClose(e);
+  getTabIndex() {
+    if (this.props.disabled || this.props.header || this.props.divider) {
+      return '-1';
     }
 
-    if(this.props.closeDropdown) {
-      this.props.closeDropdown();  
-    }
+    return '0';
   }
 
   render() {
     let Tagname = 'button';
+    const tabIndex = this.getTabIndex();
     const {
       className,
       children,
@@ -67,8 +64,8 @@ class DropdownItem extends React.Component {
     if (El) {
       return (
         <El {...props}
+          tabIndex={tabIndex}
           className={classes}
-          onClose={this.onClose}
           onClick={this.onClick}>
           {children}
         </El>
@@ -83,8 +80,8 @@ class DropdownItem extends React.Component {
 
     return (
       <Tagname {...props}
+        tabIndex={tabIndex}
         className={classes}
-        onClose={this.onClose}
         onClick={this.onClick}>
         {children}
       </Tagname>

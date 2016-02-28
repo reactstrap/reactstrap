@@ -4,31 +4,21 @@ import omit from 'lodash.omit';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  closeDropdown: PropTypes.func,
-  handleContainerClick: PropTypes.func,
-  isDropdownOpen: PropTypes.bool,
-  onClick: PropTypes.func,
-  openDropdown: PropTypes.func,
+  isOpen: PropTypes.bool,
   right: PropTypes.bool,
-  toggleDropdown: PropTypes.func
+  toggle: PropTypes.func
 };
 
 class DropdownMenu extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onClick = this.onClick.bind(this);
   }
 
-  onClick(e) {
-    if (this.props.handleContainerClick) {
-      this.props.handleContainerClick(e);
-    }
-
-    if (this.props.onClick) {
-      this.props.onClick(e);
-    }
-  }
+  // onClick(e) {
+  //   if (this.props.onClick) {
+  //     this.props.onClick(e);
+  //   }
+  // }
 
   renderChildren() {
     return React.Children.map(React.Children.toArray(this.props.children), (child) => {
@@ -36,11 +26,8 @@ class DropdownMenu extends React.Component {
         return React.cloneElement(
           child,
           {
-            closeDropdown: this.props.closeDropdown,
-            handleContainerClick: this.props.handleContainerClick,
-            isDropdownOpen: this.props.isDropdownOpen,
-            openDropdown: this.props.openDropdown,
-            toggleDropdown: this.props.toggleDropdown
+            isOpen: this.props.isOpen,
+            toggle: this.props.toggle
           }
         );
       }
@@ -49,15 +36,19 @@ class DropdownMenu extends React.Component {
   }
 
   render() {
-    const { className, right, ...props } = omit(this.props, 'onClick', 'children');
+    const { className, right, ...props } = omit(this.props, 'children');
     const classes = classNames(
       className,
       'dropdown-menu',
       { 'dropdown-menu-right': right }
     );
 
+    if (!this.props.isOpen) {
+      return null;
+    }
+
     return (
-      <div {...props} className={classes} onClick={this.onClick}>
+      <div {...props} tabIndex="-1" aria-hidden="false" role="menu" className={classes}>
         {this.renderChildren()}
       </div>
     );

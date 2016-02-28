@@ -6,10 +6,9 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
   disabled: PropTypes.bool,
-  handleContainerClick: PropTypes.func,
-  isDropdownOpen: PropTypes.bool,
+  isOpen: PropTypes.bool,
   onClick: PropTypes.func,
-  toggleDropdown: PropTypes.func
+  toggle: PropTypes.func
 };
 
 const defaultProps = {
@@ -34,8 +33,8 @@ class DropdownToggle extends React.Component {
       this.props.onClick(e);
     }
 
-    if (this.props.toggleDropdown) {
-      this.props.toggleDropdown(e);
+    if (this.props.toggle) {
+      this.props.toggle(e);
     }
   }
 
@@ -43,7 +42,10 @@ class DropdownToggle extends React.Component {
     const { className, children, caret, color, ...props } = this.props;
     const classes = classNames(
       className,
-      { 'dropdown-toggle': caret }
+      {
+        'dropdown-toggle': caret,
+        'active': props.isOpen
+      }
     );
     const buttonClasses = classNames(
       classes,
@@ -56,7 +58,8 @@ class DropdownToggle extends React.Component {
         ...props,
         className: classes,
         onClick: this.onClick,
-        'aria-expanded': props.isDropdownOpen
+        'aria-haspopup': true,
+        'aria-expanded': props.isOpen
       });
     }
 
@@ -64,7 +67,8 @@ class DropdownToggle extends React.Component {
       <button {...props}
         className={buttonClasses}
         onClick={this.onClick}
-        aria-expanded={props.isDropdownOpen}>
+        aria-haspopup="true"
+        aria-expanded={props.isOpen}>
         {children}
       </button>
     );
