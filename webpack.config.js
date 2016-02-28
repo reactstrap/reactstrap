@@ -29,7 +29,6 @@ module.exports = {
     loaders: [
       {
         test: /\.(json)$/,
-        exclude: /node_modules/,
         loaders: [
           'json-loader?cacheDirectory'
         ]
@@ -44,7 +43,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.json'],
     root: [
       path.resolve('./')
     ]

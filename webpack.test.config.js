@@ -12,7 +12,6 @@ webpackConfig.webpackServer = {
   noInfo: true
 };
 webpackConfig.externals = webpackConfig.externals || {};
-webpackConfig.externals.cheerio = 'window';
 webpackConfig.externals['react/lib/ExecutionEnvironment'] = true;
 webpackConfig.externals['react/lib/ReactContext'] = true;
 
