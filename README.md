@@ -24,7 +24,7 @@ import { Button } from 'lib/index';
 
 ## Documentation
 
-Until a documentation site exists, checkout the example sections for usage: https://github.com/eddywashere/reactstrap/tree/master/example/js
+Until a documentation site exists, checkout this [jsbin live demo](http://jsbin.com/dimive/latest/edit?js,output) or the example sections for usage: https://github.com/eddywashere/reactstrap/tree/master/example/js
 
 Currently this library contains basic support for the following components:
 
