@@ -22,46 +22,18 @@ Import the components you need, example:
 import { Button } from 'lib/index';
 ```
 
-### Buttons
+## Documentation
 
-Basic Button Styles
+Until a documentation site exists, checkout the example sections for usage: https://github.com/eddywashere/reactstrap/tree/master/example/js
 
-```js
-import React from 'react';
-import { Button } from 'lib/index';
+Currently this library contains basic support for the following components:
 
-const Example = (props) => {
-  return (
-    <div>
-      <Button color="primary">primary</Button>
-      <Button color="secondary">secondary</Button>
-      <Button color="success">success</Button>
-      <Button color="info">info</Button>
-      <Button color="warning">warning</Button>
-      <Button color="danger">danger</Button>
-      <Button color="link">link</Button>
-    </div>
-  );
-};
-```
-
-Support for using custom components
-
-```jsx
-import React from 'react';
-import { Link } from 'react-router'
-import { Button } from 'lib/index';
-
-const Example = (props) => {
-  return (
-    <div>
-      <Button el={Link} to="/home" color="link">Home Link</Button>
-    </div>
-  );
-};
-```
-
-### more coming soon
+- Buttons
+- Button Dropdowns
+- Button Groups
+- Button Tools
+- Dropdowns
+- Tooltips
 
 ## Development
 
