@@ -11,8 +11,8 @@ class TetherExample extends React.Component {
       open: false,
       tether: {
         target: '#tether',
-        attachment: 'top center',
-        targetAttachment: 'bottom center',
+        attachment: 'middle left',
+        targetAttachment: 'middle right',
         classPrefix: 'bs-tether',
         classes: { element: 'popover', enabled: 'open' },
         constraints: [
