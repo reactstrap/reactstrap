@@ -5,6 +5,7 @@ var env = process.env.WEBPACK_BUILD || 'development';
 
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpackDevConfig = require('./webpack.base.config')('development');
 var webpackProdConfig = require('./webpack.base.config')('production');
 
@@ -45,7 +46,8 @@ var config = [{
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new StaticSiteGeneratorPlugin('main', paths, {}),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin("/assets/style.css")
   ],
   module: {
     loaders: [
@@ -62,11 +64,16 @@ var config = [{
           'babel-loader?cacheDirectory'
         ]
       },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+      },
     ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
     alias: {
+      'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css'),
       reactstrap: path.resolve('./lib')
     }
   }

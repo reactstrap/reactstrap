@@ -1,3 +1,5 @@
+import 'bootstrap-css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
@@ -33,8 +35,8 @@ export default (locals, callback) => {
         <head>
           <title>reactstrap - React Bootstrap 4 components</title>
           <link rel=icon href=/assets/favicon.ico>
-          <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
           <link rel="stylesheet" href="/assets/docs.css"/>
+          <link rel="stylesheet" href="/assets/style.css"/>
         </head>
         <body>
           <div id="app">${body}</div>

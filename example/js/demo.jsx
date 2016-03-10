@@ -1,3 +1,5 @@
+import 'bootstrap-css';
+
 const {
   Button,
   ButtonDropdown,
