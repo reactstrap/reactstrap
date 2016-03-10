@@ -4,6 +4,7 @@ import DropdownsExample from './DropdownsExample';
 import TetherExample from './TetherExample';
 import TooltipExample from './TooltipExample';
 import LabelsExample from './LabelsExample';
+import PopoverExample from './PopoverExample';
 
 class Layout extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class Layout extends React.Component {
             <DropdownsExample/>
             <TetherExample/>
             <TooltipExample/>
+            <PopoverExample/>
             <LabelsExample/>
           </div>
         </div>
