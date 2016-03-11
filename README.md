@@ -1,4 +1,5 @@
-# reactstrap [![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Test Coverage](https://codeclimate.com/github/reactstrap/reactstrap/badges/coverage.svg)](https://codeclimate.com/github/reactstrap/reactstrap/coverage)
+# reactstrap [![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap)[![Test Coverage](https://codecov.io/github/reactstrap/reactstrap/coverage.svg?branch=master)](https://codecov.io/github/reactstrap/reactstrap?branch=master)
+
 
 A work in progress react component library for Bootstrap 4. Don't use this just yet.
 
