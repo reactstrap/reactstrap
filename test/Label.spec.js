@@ -21,4 +21,10 @@ describe('Label', () => {
 
     expect(wrapper.hasClass('label-danger')).toBe(true);
   });
+
+  it('should render Labels as pills', () => {
+    const wrapper = shallow(<Label pill>Pill Label</Label>);
+
+    expect(wrapper.hasClass('label-pill')).toBe(true);
+  });
 });
