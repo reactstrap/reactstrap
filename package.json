@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/eddywashere/reactstrap.git"
+    "url": "git+ssh://git@github.com/reactstrap/reactstrap.git"
   },
   "keywords": [
     "bootstrap",
@@ -20,12 +20,15 @@
     "components",
     "ui"
   ],
-  "author": "Eddy Hernandez <edward.d.hernandez@gmail.com> (http://eddywashere.com)",
+  "contributors": [
+    "Eddy Hernandez <edward.d.hernandez@gmail.com> (http://eddywashere.com)",
+    "Chris Burrell <chrisburrell@gmail.com> (https://github.com/cbfx)"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eddywashere/reactstrap/issues"
+    "url": "https://github.com/reactstrap/reactstrap/issues"
   },
-  "homepage": "https://github.com/eddywashere/reactstrap#readme",
+  "homepage": "https://github.com/reactstrap/reactstrap#readme",
   "dependencies": {
     "classnames": "^2.2.3",
     "lodash.isfunction": "^3.0.8",

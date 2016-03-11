@@ -1,4 +1,4 @@
-# reactstrap [![Build Status](https://travis-ci.org/eddywashere/reactstrap.svg?branch=master)](https://travis-ci.org/eddywashere/reactstrap) [![Test Coverage](https://codeclimate.com/github/eddywashere/reactstrap/badges/coverage.svg)](https://codeclimate.com/github/eddywashere/reactstrap/coverage)
+# reactstrap [![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Test Coverage](https://codeclimate.com/github/reactstrap/reactstrap/badges/coverage.svg)](https://codeclimate.com/github/reactstrap/reactstrap/coverage)
 
 A work in progress react component library for Bootstrap 4. Don't use this just yet.
 
@@ -24,7 +24,7 @@ import { Button } from 'lib/index';
 
 ## Documentation
 
-Until a documentation site exists, checkout this [jsbin live demo](http://jsbin.com/dimive/latest/edit?js,output) or the example sections for usage: https://github.com/eddywashere/reactstrap/tree/master/example/js
+Until a documentation site exists, checkout this [jsbin live demo](http://jsbin.com/dimive/latest/edit?js,output) or the example sections for usage: https://github.com/reactstrap/reactstrap/tree/master/example/js
 
 Currently this library contains basic support for the following components:
 
