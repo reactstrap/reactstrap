@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonsExample from './ButtonsExample';
 import DropdownsExample from './DropdownsExample';
+import ModalExample from './ModalExample';
 import TetherExample from './TetherExample';
 import TooltipExample from './TooltipExample';
 import LabelsExample from './LabelsExample';
@@ -19,6 +20,7 @@ class Layout extends React.Component {
             <DropdownsExample/>
             <TetherExample/>
             <TooltipExample/>
+            <ModalExample/>
             <PopoverExample/>
             <LabelsExample/>
           </div>
