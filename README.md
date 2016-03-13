@@ -1,6 +1,6 @@
 # reactstrap [![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master)
 
-A work in progress react component library for Bootstrap 4. Don't use this just yet.
+React Bootstrap 4 components compatible with React 0.14.x & 15.
 
 #### Project Goals
 
@@ -26,14 +26,25 @@ import { Button } from 'lib/index';
 
 Until a documentation site exists, checkout this [jsbin live demo](http://jsbin.com/dimive/latest/edit?js,output) or the example sections for usage: https://github.com/reactstrap/reactstrap/tree/master/example/js
 
-Currently this library contains basic support for the following components:
+This library contains the following components:
 
-- Buttons
-- Button Dropdowns
-- Button Groups
-- Button Tools
-- Dropdowns
-- Tooltips
+ - Button,
+ - ButtonDropdown,
+ - ButtonGroup,
+ - ButtonToolbar,
+ - Dropdown,
+ - DropdownItem,
+ - DropdownMenu,
+ - DropdownToggle,
+ - Label,
+ - Popover,
+ - PopoverContent,
+ - PopoverTitle,
+ - Modal,
+ - ModalHeader,
+ - ModalBody,
+ - ModalFooter,
+ - Tooltip
 
 ## Development
 
