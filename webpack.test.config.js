@@ -1,7 +1,7 @@
 var webpackConfig = require('./webpack.config.js');
 
 delete webpackConfig.entry.example;
-webpackConfig.devtool = 'inline-source-map';
+webpackConfig.devtool = 'cheap-module-source-map';
 webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || [];
 webpackConfig.module.preLoaders.push({
   test: /\.jsx?$/,

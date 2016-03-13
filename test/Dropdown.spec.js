@@ -159,7 +159,7 @@ describe('Dropdown', () => {
     it('should be called when tether is enabled', () => {
       isOpen = true;
       spyOn(Dropdown.prototype, 'getTetherConfig').and.callThrough();
-      mount(
+      const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle} tether>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right dropup>
@@ -169,6 +169,7 @@ describe('Dropdown', () => {
       );
 
       expect(Dropdown.prototype.getTetherConfig).toHaveBeenCalled();
+      wrapper.unmount();
     });
   });
 
