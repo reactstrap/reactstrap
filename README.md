@@ -1,6 +1,6 @@
 # reactstrap [![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master)
 
-React Bootstrap 4 components compatible with React 0.14.x & 15.
+React Bootstrap 4 components compatible with React 0.14.x and 15.
 
 #### Project Goals
 

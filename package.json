@@ -1,7 +1,7 @@
 {
   "name": "reactstrap",
   "version": "0.5.0",
-  "description": "React Bootstrap 4 components compatible with React 0.14.x & 15",
+  "description": "React Bootstrap 4 components compatible with React 0.14.x and 15.x",
   "main": "lib/index.js",
   "scripts": {
     "coverage": "coveralls < ./test/coverage/lcov/lcov.info",
