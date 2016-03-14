@@ -17,7 +17,8 @@
   "files": [
     "LICENSE",
     "README.md",
-    "lib"
+    "lib",
+    "dist"
   ],
   "keywords": [
     "bootstrap",
