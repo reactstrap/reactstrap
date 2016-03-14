@@ -1,6 +1,5 @@
 var webpackConfig = require('./webpack.config.js');
 
-delete webpackConfig.entry.example;
 webpackConfig.devtool = 'cheap-module-source-map';
 webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || [];
 webpackConfig.module.preLoaders.push({
@@ -11,7 +10,7 @@ webpackConfig.module.preLoaders.push({
 webpackConfig.webpackServer = {
   noInfo: true
 };
-webpackConfig.externals = webpackConfig.externals || {};
+webpackConfig.externals = {};
 webpackConfig.externals['react/lib/ExecutionEnvironment'] = true;
 webpackConfig.externals['react/lib/ReactContext'] = true;
 

@@ -7,7 +7,8 @@
     "coverage": "coveralls < ./test/coverage/lcov/lcov.info",
     "test": "karma start --single-run --reporters spec,coverage",
     "test-watch": "karma start --reporters dots,coverage",
-    "start": "webpack-dev-server --watch"
+    "start": "webpack-dev-server --config ./webpack.dev.config.js --watch",
+    "build": "WEBPACK_BUILD=production webpack --progress --colors && webpack --progress --colors"
   },
   "repository": {
     "type": "git",
