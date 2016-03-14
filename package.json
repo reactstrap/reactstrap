@@ -53,6 +53,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "cheerio": "^0.20.0",
+    "conventional-changelog-cli": "^1.1.1",
+    "conventional-recommended-bump": "^0.1.2",
     "coveralls": "^2.11.8",
     "enzyme": "^2.1.0",
     "eslint": "^2.0.0",
