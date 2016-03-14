@@ -1,3 +1,13 @@
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/reactstrap/reactstrap/compare/0.5.1...v0.5.2) (2016-03-14)
+
+
+### Bug Fixes
+
+* **examples:** remove .min from example script ([b051dc1](https://github.com/reactstrap/reactstrap/commit/b051dc1))
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/reactstrap/reactstrap/compare/0.5.0...0.5.1) (2016-03-13)
 
