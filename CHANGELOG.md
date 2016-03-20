@@ -1,3 +1,9 @@
+<a name="0.5.4"></a>
+## [0.5.4](https://github.com/reactstrap/reactstrap/compare/0.5.3...v0.5.4) (2016-03-20)
+
+
+
+
 <a name="0.5.3"></a>
 ## [0.5.3](https://github.com/reactstrap/reactstrap/compare/0.5.2...v0.5.3) (2016-03-14)
 
