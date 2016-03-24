@@ -159,7 +159,6 @@ pre[class*="language-"] {
 	padding: 1em;
 	margin: 1.5em 0;
 	overflow: auto;
-	border-radius: 2px;
 }
 
 :not(pre) > code[class*="language-"],
