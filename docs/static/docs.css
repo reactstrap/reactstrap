@@ -123,6 +123,24 @@ pre, code {
   float: left;
 }
 
+.docs-sidebar .nav-item {
+  padding: .2rem 0 .2rem 0;
+}
+
+.docs-sidebar .nav-link {
+  color: #888;
+  padding: .3rem .5rem .3rem 1rem;
+  border-left: 2px solid transparent;
+}
+
+.docs-sidebar .nav-link:hover {
+  color: #777
+}
+
+.docs-sidebar .nav-link.active {
+  color: #666;
+  border-left: 2px solid #d9534f;
+}
 
 
 /* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+jsx */
