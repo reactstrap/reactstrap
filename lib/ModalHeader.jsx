@@ -24,7 +24,7 @@ class ModalHeader extends React.Component {
     if (toggle) {
       closeButton = (
         <button type="button" onClick={toggle} className="close" dataDismiss="modal" ariaLabel="Close">
-          <span ariaHidden="true">&times;</span>
+          <span ariaHidden="true">{String.fromCharCode(215)}</span>
         </button>
       );
     }

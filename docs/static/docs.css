@@ -1,0 +1,247 @@
+.container-fluid {
+  max-width: 1200px;
+}
+
+.jumbotron, .jumbotron p:last-child, .navbar {
+  margin-bottom: 0
+}
+
+.content {
+  margin-top: 2rem;
+}
+
+.header .navbar-nav .nav-link.active {
+  color: #333;
+}
+
+.footer {
+  margin-top: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid #e7e7e7;
+}
+.navbar-collapse .container-fluid {
+  padding: 2rem 2.5rem;
+  border-bottom: 1px solid #55595c
+}
+.navbar-collapse .text-muted, .navbar-collapse h4 {
+  color: #818a91
+}
+.about {
+  float: left;
+  max-width: 30rem;
+  margin-right: 3rem
+}
+.social a {
+  font-weight: 500;
+  color: #eceeef
+}
+.social a:hover {
+  color: #fff
+}
+.jumbotron {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #fff
+}
+.jumbotron-heading {
+  font-weight: 300
+}
+.container {
+  max-width: 40rem
+}
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem
+}
+footer p {
+  margin-bottom: .25rem
+}
+
+h1,h2,h3,h4,h5,h6,strong,b {
+  font-weight: 300;
+}
+
+h1,h2,h3 {
+  margin-bottom: 1rem;
+}
+
+.docs-example {
+  position: relative;
+  padding: 3em 1em 1em;
+  border: 1px solid #d8d8d8;
+  margin: 1.5rem 0 0;
+}
+
+.docs-example::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 1em;
+  color: #aaa;
+  font-size: smaller;
+  font-weight: 500;
+  content: 'EXAMPLE';
+}
+
+.docs-example::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+.docs-example .btn+.btn {
+  margin-left: 5px;
+}
+
+.docs-example .btn-block+.btn-block {
+  margin-left: 0;
+}
+
+pre, code {
+  background: #f5f5f5;
+  border-radius: 0;
+  border-color: #d8d8d8;
+  margin: 0;
+}
+
+.docs-example + pre {
+  border: 1px solid #d8d8d8;
+  border-top: none;
+  padding: 1em;
+  margin-top: 0 !important;
+  clear: both;
+}
+
+.docs-example > .dropdown > .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 5px;
+  clear: left;
+}
+
+.docs-example > .dropdown > .dropdown-toggle {
+  float: left;
+}
+
+
+
+/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+jsx */
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: 1.5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
