@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+BRANCH='master'
+BUILD_DIR='build/'
+GITHUB_REPO='reactstrap/reactstrap.github.io'
+
+success() {
+  echo -e "\033[32;1m$1"
+}
+
+error() {
+  echo -e "\033[31;1m$1"
+}
+
+if [ "$TRAVIS_BRANCH" != "master" ]; then
+  success "Not building master branch. Skipping deploy."
+  exit 0
+fi
+
+if [ -z "$GITHUB_TOKEN" ]; then
+  error "Environment variable GITHUB_TOKEN does not exist. Stopping deploy."
+  exit 1
+fi
+
+if [ ! -d $BUILD_DIR ]; then
+  error "Build directory does not exist. Stopping deploy."
+  exit 1
+fi
+
+cd $BUILD_DIR
+git init
+git config user.name "Travis-CI"
+git config user.email "edward.d.hernandez@gmail.com"
+git add .
+git commit -m "docs(travis): publish documentation for $TRAVIS_COMMIT"
+git push --force --quiet "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git" master:master > /dev/null 2>&1
+
+success "Successfully published documentation for $TRAVIS_COMMIT!"
