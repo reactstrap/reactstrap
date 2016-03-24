@@ -37,7 +37,7 @@ export default () => {
             <h3>NPM</h3>
             <p>Install reactstrap via NPM</p>
             <pre>
-              <PrismCode className="language-bash">npm install --save-dev reactstrap</PrismCode>
+              <PrismCode className="language-bash">npm install --save reactstrap</PrismCode>
             </pre>
             <p>ES6 - import the components you need</p>
             <div className="docs-example">
