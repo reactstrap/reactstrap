@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Button, TetherContent } from 'lib/index';
+import { Button, TetherContent } from 'reactstrap';
 
 
 class TetherExample extends React.Component {

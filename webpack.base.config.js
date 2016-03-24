@@ -77,6 +77,9 @@ module.exports = function (env) {
       ]
     },
     resolve: {
+      alias: {
+        reactstrap: 'lib/index'
+      },
       extensions: ['', '.js', '.jsx', '.json'],
       root: [
         path.resolve('./lib')
