@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import Home from './Home';
 import ButtonsPage from './Components/ButtonsPage';
 import NotFound from './NotFound';
@@ -9,7 +9,7 @@ const routes = (
   <Route path="/">
     <IndexRoute component={ Home } />
     <Route path="/components" component={Components}>
-      <IndexRoute component={ ButtonsPage } />
+      <IndexRedirect to="buttons" />
       <Route path="buttons" component={ ButtonsPage } />
     </Route>
     <Route path="*" component={NotFound} />

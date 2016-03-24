@@ -16,7 +16,17 @@ export default (locals, callback) => {
   const location = history.createLocation(locals.path);
 
   match({ routes, location }, (error, redirectLocation, renderProps) => {
-    console.log(error, redirectLocation, renderProps.location.pathname);
+    var url;
+    if (redirectLocation && redirectLocation.pathname) {
+      url = redirectLocation.pathname;
+      callback(null, `<!DOCTYPE html>
+      <html>
+      <head><link rel="canonical" href="${url}"/>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta http-equiv="refresh" content="0;url=${url}" />
+      </head>
+      </html>`)
+    }
     const body = ReactDOMServer.renderToString(<RouterContext {...renderProps} />);
     callback(null, `<!DOCTYPE html>
       <html>
