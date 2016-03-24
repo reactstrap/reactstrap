@@ -5,7 +5,8 @@ import { getTetherAttachments, tetherAttachements } from './utils';
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  tether: PropTypes.object
 };
 
 const defaultProps = {
