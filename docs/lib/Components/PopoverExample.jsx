@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Button, Popover, PopoverTitle, PopoverContent } from 'lib/index';
+import { Button, Popover, PopoverTitle, PopoverContent } from 'reactstrap';
 
 class PopoverItem extends React.Component {
   constructor(props) {

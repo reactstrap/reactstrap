@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Label } from 'lib/index';
+import { Label } from 'reactstrap';
 
 class LabelsExample extends React.Component {
   render() {

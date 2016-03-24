@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Button, Tooltip } from 'lib/index';
+import { Button, Tooltip } from 'reactstrap';
 
 class TooltipExample extends React.Component {
   constructor(props) {

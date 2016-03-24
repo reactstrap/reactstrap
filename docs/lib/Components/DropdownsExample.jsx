@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Button, ButtonDropdown, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'lib/index';
+import { Button, ButtonDropdown, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 class DropdownsExample extends React.Component {
   constructor(props) {

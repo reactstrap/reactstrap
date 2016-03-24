@@ -17,7 +17,7 @@ npm install reactstrap --save
 Import the components you need, example:
 
 ```js
-import { Button } from 'lib/index';
+import { Button } from 'reactstrap';
 ```
 
 

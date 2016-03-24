@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
 import React from 'react';
-import { Button, ButtonGroup, ButtonToolbar } from 'lib/index';
+import { Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
 
 const Link = (props) => <a {...props}>{props.children}</a>;
 
