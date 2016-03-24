@@ -24,6 +24,24 @@ export default class ButtonsPage extends React.Component {
             {ButtonExampleSource}
           </PrismCode>
         </pre>
+        <h4>Properties</h4>
+        <pre>
+          <PrismCode className="language-jsx">
+{`Button.propTypes = {
+  active: PropTypes.bool,
+  block: PropTypes.bool,
+  color: PropTypes.string,
+  disabled: PropTypes.bool,
+
+  // Pass in a Component to override default button element
+  // example: react-router Link
+  El: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+  onClick: PropTypes.func,
+  size: PropTypes.string
+}`}
+          </PrismCode>
+        </pre>
         <h3>Outline Buttons</h3>
         <div className="docs-example">
           <ButtonOutline/>
