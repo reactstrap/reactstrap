@@ -1,3 +1,13 @@
+<a name="0.5.5"></a>
+## [0.5.5](https://github.com/reactstrap/reactstrap/compare/0.5.4...v0.5.5) (2016-03-24)
+
+
+### Bug Fixes
+
+* **ModalHeader:** update close character ([7128e78](https://github.com/reactstrap/reactstrap/commit/7128e78))
+
+
+
 <a name="0.5.4"></a>
 ## [0.5.4](https://github.com/reactstrap/reactstrap/compare/0.5.3...v0.5.4) (2016-03-20)
 
