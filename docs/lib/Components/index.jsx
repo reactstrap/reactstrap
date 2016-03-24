@@ -2,8 +2,34 @@ import React from 'react';
 import { Link } from 'react-router';
 import UI from '../UI';
 
+const NavItem = (props) => {
+  return (
+    <li className="nav-item">
+      <Link className="nav-link" to={props.item.to} activeClassName="active">
+        {props.item.name}
+      </Link>
+    </li>
+  );
+};
+
 
 class Components extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      navItems: [
+        {
+          name: 'Buttons',
+          to: '/components/buttons'
+        },
+        {
+          name: 'Popovers',
+          to: '/components/popovers'
+        }
+      ]
+    };
+  }
   render() {
     return (
       <div>
@@ -13,9 +39,9 @@ class Components extends React.Component {
             <div className="col-md-3 col-md-push-9">
               <div className="docs-sidebar">
                 <ul className="nav">
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/components/buttons" activeClassName="active">Buttons</Link>
-                  </li>
+                  { this.state.navItems.map((item, i) => {
+                    return <NavItem key={i} item={item} />;
+                  })}
                 </ul>
               </div>
             </div>
