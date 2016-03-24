@@ -12,6 +12,7 @@ var paths = [
   '/',
   '/components',
   '/components/buttons',
+  '/components/popovers',
   '/404.html'
 ];
 
