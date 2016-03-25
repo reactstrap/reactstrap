@@ -17,7 +17,7 @@ npm install reactstrap --save
 Import the components you need, example:
 
 ```js
-import { Button } from 'reactstrap';
+import { Button, Popover, Tooltip } from 'reactstrap';
 ```
 
 
@@ -25,27 +25,25 @@ import { Button } from 'reactstrap';
 
 https://reactstrap.github.io
 
-Checkout the examples section for additional usage: https://github.com/reactstrap/reactstrap/tree/master/example/js
-
 This library contains the following components:
 
- - Button
- - ButtonDropdown
- - ButtonGroup
- - ButtonToolbar
+ - [Button](https://reactstrap.github.io/components/buttons)
+ - [ButtonDropdown](https://reactstrap.github.io/components/button-dropdown)
+ - [ButtonGroup](https://reactstrap.github.io/components/button-group)
+ - [ButtonToolbar](https://reactstrap.github.io/components/button-group)
  - Dropdown
  - DropdownItem
  - DropdownMenu
  - DropdownToggle
- - Label
- - Popover
- - PopoverContent
- - PopoverTitle
+ - [Label](https://reactstrap.github.io/components/labels)
+ - [Popover](https://reactstrap.github.io/components/popovers)
+ - [PopoverContent](https://reactstrap.github.io/components/popovers)
+ - [PopoverTitle](https://reactstrap.github.io/components/popovers)
  - Modal
  - ModalHeader
  - ModalBody
  - ModalFooter
- - Tooltip
+ - [Tooltip](https://reactstrap.github.io/components/tooltips)
 
 ## Development
 
