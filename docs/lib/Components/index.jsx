@@ -24,6 +24,22 @@ class Components extends React.Component {
           to: '/components/buttons'
         },
         {
+          name: 'Button Group',
+          to: '/components/button-group'
+        },
+        {
+          name: 'Button Dropdown',
+          to: '/components/button-dropdown'
+        },
+        {
+          name: 'Labels',
+          to: '/components/labels'
+        },
+        {
+          name: 'Tooltips',
+          to: '/components/tooltips'
+        },
+        {
           name: 'Popovers',
           to: '/components/popovers'
         }

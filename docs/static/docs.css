@@ -102,8 +102,15 @@ h1,h2,h3 {
   display: table;
 }
 
-.docs-example .btn+.btn {
+.docs-example > div > .btn + .btn,
+.docs-example > .btn + .btn,
+.docs-example > div > .label + .label,
+.docs-example > div > .btn-group + .btn-group {
   margin-left: 5px;
+}
+
+.docs-example .btn-group-vertical .btn + .btn {
+  margin-left: 0 !important;
 }
 
 .docs-example .btn-block+.btn-block {

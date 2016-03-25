@@ -1,33 +1,34 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import PopoverExample from '../examples/Popover';
-const PopoverExampleSource = require('!!raw!../examples/Popover.jsx');
-import PopoverExampleMulti from '../examples/PopoverMulti';
-const PopoverExampleMultiSource = require('!!raw!../examples/PopoverMulti.jsx');
+
+import TooltipExample from '../examples/Tooltip';
+const TooltipExampleSource = require('!!raw!../examples/Tooltip.jsx');
+import TooltipExampleMulti from '../examples/TooltipMulti';
+const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti.jsx');
 
 export default class ButtonsPage extends React.Component {
   render() {
     return (
       <div>
-        <h3>Popovers</h3>
-        <p>Popovers are built with <a href="http://tether.io/">http://tether.io</a>.</p>
+        <h3>Tooltips</h3>
+        <p>Tooltips are built with <a href="http://tether.io/">http://tether.io</a>.</p>
         <div className="docs-example">
-          <PopoverExample/>
+          <TooltipExample/>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {PopoverExampleSource}
+            {TooltipExampleSource}
           </PrismCode>
         </pre>
         <h4>Properties</h4>
         <pre>
           <PrismCode className="language-jsx">
-{`Popover.propTypes = {
+{`Tooltip.propTypes = {
   target:  PropTypes.string.isRequired,
   // target div ID, popover is attached to this element
   isOpen:  PropTypes.bool,
-  // boolean to control the state of the popover
+  // boolean to control the state of the tooltip
   tether: PropTypes.object,
   // optionally overide tether config http://tether.io/#options
   placement: PropTypes.oneOf([
@@ -53,13 +54,13 @@ export default class ButtonsPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>Popovers List</h3>
+        <h3>Tooltips List</h3>
         <div className="docs-example">
-          <PopoverExampleMulti/>
+          <TooltipExampleMulti/>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {PopoverExampleMultiSource}
+            {TooltipExampleMultiSource}
           </PrismCode>
         </pre>
       </div>

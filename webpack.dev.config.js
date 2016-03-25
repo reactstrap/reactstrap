@@ -12,7 +12,14 @@ var paths = [
   '/',
   '/components',
   '/components/buttons',
+  '/components/button-group',
+  '/components/button-toolbar',
+  '/components/button-dropdown',
+  '/components/dropdowns',
   '/components/popovers',
+  '/components/tooltips',
+  '/components/modals',
+  '/components/labels',
   '/404.html'
 ];
 
