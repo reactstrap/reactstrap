@@ -29,9 +29,8 @@ class ButtonGroup extends React.Component {
 
     const classes = classNames(
       className,
-      'btn-group',
-      size ? 'btn-' + size : false,
-      vertical ? 'btn-group-vertical' : false
+      size ? 'btn-group-' + size : false,
+      vertical ? 'btn-group-vertical' : 'btn-group'
     );
 
     return (
