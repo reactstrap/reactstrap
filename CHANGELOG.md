@@ -1,3 +1,14 @@
+<a name="0.5.7"></a>
+## [0.5.7](https://github.com/reactstrap/reactstrap/compare/0.5.6...v0.5.7) (2016-03-25)
+
+
+### Bug Fixes
+
+* **ButtonGroup:** remove btn-group when vertical ([9b70e37](https://github.com/reactstrap/reactstrap/commit/9b70e37))
+* **docs:** add and use reactstrap alias ([fcfe88d](https://github.com/reactstrap/reactstrap/commit/fcfe88d))
+
+
+
 <a name="0.5.6"></a>
 ## [0.5.6](https://github.com/reactstrap/reactstrap/compare/0.5.5...v0.5.6) (2016-03-24)
 
