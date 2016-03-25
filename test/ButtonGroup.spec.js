@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { ButtonGroup } from '../lib';
 
 describe('ButtonGroup', () => {
@@ -15,11 +15,11 @@ describe('ButtonGroup', () => {
     const small = shallow(<ButtonGroup size="sm">Small Button</ButtonGroup>);
     const large = shallow(<ButtonGroup size="lg">Large Button</ButtonGroup>);
 
-    expect(small.hasClass('btn-sm')).toBe(true);
-    expect(large.hasClass('btn-lg')).toBe(true);
+    expect(small.hasClass('btn-group-sm')).toBe(true);
+    expect(large.hasClass('btn-group-lg')).toBe(true);
   });
 
-  it('should render vetical class', () => {
+  it('should render vertical class', () => {
     const wrapper = shallow(<ButtonGroup vertical>Vertical Group</ButtonGroup>);
 
     expect(wrapper.hasClass('btn-group-vertical')).toBe(true);
