@@ -8,7 +8,9 @@ const propTypes = {
   disabled: PropTypes.bool,
   isOpen: PropTypes.bool,
   onClick: PropTypes.func,
-  toggle: PropTypes.func
+  toggle: PropTypes.func,
+  'data-toggle': PropTypes.string,
+  'aria-haspopup': PropTypes.bool
 };
 
 const defaultProps = {
