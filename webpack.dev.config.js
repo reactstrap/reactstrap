@@ -5,7 +5,7 @@ var env = process.env.WEBPACK_BUILD || 'development';
 
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpackDevConfig = require('./webpack.base.config')('development');
 var webpackProdConfig = require('./webpack.base.config')('production');
 
