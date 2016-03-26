@@ -32,7 +32,7 @@ export default () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-xs-12 col-sm-8 col-sm-offset-2">
-            <h2>Getting Started</h2>
+            <h2>Installation</h2>
             <hr/>
             <h3>NPM</h3>
             <p>Install reactstrap via NPM</p>
@@ -55,6 +55,44 @@ export default () => {
               </PrismCode>
             </pre>
             <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>
+            <h2 className="m-t-3">About the Project</h2>
+            <hr/>
+            <p>This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, <a href="http://tether.io/" target="_blank">Tether</a> is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.</p>
+            <p>There are a few core concepts to understand in order to make the most out of this library.</p>
+            <p>1) Your content is expected to be composed via props.children rather than using named props to pass in Components.</p>
+            <pre>
+              <PrismCode className="language-jsx">
+{`// Content passed in via props
+const Example = (props) => {
+  return (
+    <p>This is a tooltip <TooltipTrigger tooltip={TooltipContent}>example</TooltipTrigger>!</p>
+  );
+}
+
+// Content passed in as children (Preferred)
+const PreferredExample = (props) => {
+  return (
+    <p>
+      This is a <a href="#" id="TooltipExample">tooltip</a> example.
+      <Tooltip target="TooltipExample">
+        <TooltipContent/>
+      </Tooltip>
+    </p>
+  );
+}`}
+              </PrismCode>
+            </pre>
+            <p>
+              2) Attributes in this library are used to pass in state, conveniently apply modifier classes, enable advanced functionality (like tether), or automatically include non-content based elements.
+            </p>
+            <p>Examples:</p>
+            <ul>
+              <li><code>isOpen</code> - current state for items like dropdown, popover, tooltip</li>
+              <li><code>toggle</code> - callback for toggling isOpen in the controlling component</li>
+              <li><code>color</code> - applies color classes, ex: <code>{'<Button color="danger"/>'}</code></li>
+              <li><code>size</code> for controlling size classes. ex: <code>{'<Button size="sm"/>'}</code></li>
+              <li>boolean based props (attributes) when possible for alternative style classes or sr-only content</li>
+            </ul>
           </div>
         </div>
       </div>
