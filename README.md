@@ -71,10 +71,7 @@ This library contains the following components:
  - [ButtonDropdown](https://reactstrap.github.io/components/button-dropdown)
  - [ButtonGroup](https://reactstrap.github.io/components/button-group)
  - [ButtonToolbar](https://reactstrap.github.io/components/button-group)
- - Dropdown
- - DropdownItem
- - DropdownMenu
- - DropdownToggle
+ - [Dropdown](https://reactstrap.github.io/components/dropdowns)
  - [Label](https://reactstrap.github.io/components/labels)
  - [Popover](https://reactstrap.github.io/components/popovers)
  - [Modal](https://reactstrap.github.io/components/modals)
