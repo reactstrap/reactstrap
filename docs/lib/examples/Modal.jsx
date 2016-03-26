@@ -22,11 +22,7 @@ class ModalExample extends React.Component {
   render() {
     return (
       <div>
-        <h3>Modals</h3>
-        <hr/>
-        <p>
-          <Button color="danger" onClick={this.toggle}>Launch Modal</Button>
-        </p>
+        <Button color="danger" onClick={this.toggle}>Launch Modal</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>

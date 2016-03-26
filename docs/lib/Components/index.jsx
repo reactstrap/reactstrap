@@ -42,6 +42,10 @@ class Components extends React.Component {
         {
           name: 'Popovers',
           to: '/components/popovers'
+        },
+        {
+          name: 'Modals',
+          to: '/components/modals'
         }
       ]
     };
