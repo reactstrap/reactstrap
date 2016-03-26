@@ -1,3 +1,13 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/reactstrap/reactstrap/compare/0.6.1...v0.7.0) (2016-03-26)
+
+
+### Features
+
+* **Button:** render anchor tag if href prop exists ([61f4a11](https://github.com/reactstrap/reactstrap/commit/61f4a11))
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/reactstrap/reactstrap/compare/0.6.0...v0.6.1) (2016-03-26)
 
