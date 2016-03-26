@@ -1,3 +1,9 @@
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/reactstrap/reactstrap/compare/0.6.0...v0.6.1) (2016-03-26)
+
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/reactstrap/reactstrap/compare/0.5.7...v0.6.0) (2016-03-26)
 
