@@ -36,8 +36,8 @@ export default (locals, callback) => {
           <title>reactstrap - React Bootstrap 4 components</title>
           <base href="/">
           <link rel=icon href=/assets/favicon.ico>
-          <link rel="stylesheet" href="/assets/docs.css"/>
           <link rel="stylesheet" href="/assets/style.css"/>
+          <link rel="stylesheet" href="/assets/docs.css"/>
         </head>
         <body>
           <div id="app">${body}</div>
