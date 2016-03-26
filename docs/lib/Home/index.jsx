@@ -23,7 +23,8 @@ export default () => {
                 Easy to use React Bootstrap 4 components
               </p>
               <p>
-                <Button color="danger" El={Link} to="/components">View Components</Button>
+                <Button color="danger-outline" href="https://github.com/reactstrap/reactstrap">View on Github</Button>
+                <Button color="danger" El={Link} to="/components" className="m-l-1">View Components</Button>
               </p>
             </div>
           </div>

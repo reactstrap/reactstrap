@@ -32,6 +32,10 @@ class Components extends React.Component {
           to: '/components/button-dropdown'
         },
         {
+          name: 'Dropdowns',
+          to: '/components/dropdowns'
+        },
+        {
           name: 'Labels',
           to: '/components/labels'
         },

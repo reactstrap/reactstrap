@@ -132,17 +132,6 @@ pre, code {
   clear: both;
 }
 
-.docs-example > .dropdown > .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 5px;
-  clear: left;
-}
-
-.docs-example > .dropdown > .dropdown-toggle {
-  float: left;
-}
-
 .docs-sidebar .nav-item {
   padding: .2rem 0 .2rem 0;
 }

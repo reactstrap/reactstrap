@@ -4,6 +4,7 @@ import Home from './Home';
 import ButtonsPage from './Components/ButtonsPage';
 import ButtonGroupPage from './Components/ButtonGroupPage';
 import ButtonDropdownPage from './Components/ButtonDropdownPage';
+import DropdownsPage from './Components/DropdownsPage';
 import PopoversPage from './Components/PopoversPage';
 import TooltipsPage from './Components/TooltipsPage';
 import LabelsPage from './Components/LabelsPage';
@@ -19,6 +20,7 @@ const routes = (
       <Route path="buttons" component={ ButtonsPage } />
       <Route path="button-group" component={ ButtonGroupPage } />
       <Route path="button-dropdown" component={ ButtonDropdownPage } />
+      <Route path="dropdowns" component={ DropdownsPage } />
       <Route path="popovers" component={ PopoversPage } />
       <Route path="tooltips" component={ TooltipsPage } />
       <Route path="labels" component={ LabelsPage } />
