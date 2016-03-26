@@ -77,12 +77,7 @@ This library contains the following components:
  - DropdownToggle
  - [Label](https://reactstrap.github.io/components/labels)
  - [Popover](https://reactstrap.github.io/components/popovers)
- - [PopoverContent](https://reactstrap.github.io/components/popovers)
- - [PopoverTitle](https://reactstrap.github.io/components/popovers)
- - Modal
- - ModalHeader
- - ModalBody
- - ModalFooter
+ - [Modal](https://reactstrap.github.io/components/modals)
  - [Tooltip](https://reactstrap.github.io/components/tooltips)
 
 ## Development
