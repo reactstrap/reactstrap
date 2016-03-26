@@ -2,13 +2,10 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import {
-  Button,
   Dropdown,
   DropdownToggle,
   DropdownItem,
   DropdownMenu } from 'reactstrap';
-import Example from '../examples/DropdownMulti';
-import ExampleSplit from '../examples/DropdownMultiSplit';
 import DropdownExample from '../examples/Dropdown';
 const DropdownExampleSource = require('!!raw!../examples/Dropdown.jsx');
 
