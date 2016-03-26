@@ -1,3 +1,13 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/reactstrap/reactstrap/compare/0.5.7...v0.6.0) (2016-03-26)
+
+
+### Features
+
+* **package:** add bootstrap@4.0.0-alpha.2 and css loaders ([046079b](https://github.com/reactstrap/reactstrap/commit/046079b))
+
+
+
 <a name="0.5.7"></a>
 ## [0.5.7](https://github.com/reactstrap/reactstrap/compare/0.5.6...v0.5.7) (2016-03-25)
 
