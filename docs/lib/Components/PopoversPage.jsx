@@ -6,7 +6,7 @@ const PopoverExampleSource = require('!!raw!../examples/Popover.jsx');
 import PopoverExampleMulti from '../examples/PopoverMulti';
 const PopoverExampleMultiSource = require('!!raw!../examples/PopoverMulti.jsx');
 
-export default class ButtonsPage extends React.Component {
+export default class PopoversPage extends React.Component {
   render() {
     return (
       <div>
@@ -24,10 +24,12 @@ export default class ButtonsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Popover.propTypes = {
-  target:  PropTypes.string.isRequired,
-  // target div ID, popover is attached to this element
   isOpen:  PropTypes.bool,
   // boolean to control the state of the popover
+  toggle:  PropTypes.func,
+  // callback for toggling isOpen in the controlling component
+  target:  PropTypes.string.isRequired,
+  // target div ID, popover is attached to this element
   tether: PropTypes.object,
   // optionally overide tether config http://tether.io/#options
   placement: PropTypes.oneOf([

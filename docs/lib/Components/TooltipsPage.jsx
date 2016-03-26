@@ -7,7 +7,7 @@ const TooltipExampleSource = require('!!raw!../examples/Tooltip.jsx');
 import TooltipExampleMulti from '../examples/TooltipMulti';
 const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti.jsx');
 
-export default class ButtonsPage extends React.Component {
+export default class TooltipsPage extends React.Component {
   render() {
     return (
       <div>
@@ -25,10 +25,12 @@ export default class ButtonsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Tooltip.propTypes = {
-  target:  PropTypes.string.isRequired,
-  // target div ID, popover is attached to this element
   isOpen:  PropTypes.bool,
   // boolean to control the state of the tooltip
+  toggle:  PropTypes.func,
+  // callback for toggling isOpen in the controlling component
+  target:  PropTypes.string.isRequired,
+  // target div ID, popover is attached to this element
   tether: PropTypes.object,
   // optionally overide tether config http://tether.io/#options
   placement: PropTypes.oneOf([
