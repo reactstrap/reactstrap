@@ -18,6 +18,13 @@ describe('Button', () => {
     expect(wrapper.text()).toBe('Home');
   });
 
+  it('should render an anchor element if href exists', () => {
+    const wrapper = mount(<Button href="/home">Home</Button>);
+
+    expect(wrapper.find('a').length).toBe(1);
+    expect(wrapper.text()).toBe('Home');
+  });
+
   it('should render buttons with default color', () => {
     const wrapper = shallow(<Button>Default Button</Button>);
 

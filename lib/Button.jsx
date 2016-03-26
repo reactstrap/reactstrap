@@ -43,6 +43,7 @@ class Button extends React.Component {
       size,
       ...attributes
     } = this.props;
+    let Tag = 'button';
 
     const classes = classNames(
       className,
@@ -54,21 +55,17 @@ class Button extends React.Component {
     );
 
     if (El) {
-      return (
-        <El {...attributes}
-          className={classes}
-          onClick={this.onClick}>
-          {children}
-        </El>
-      );
+      Tag = El;
+    } else if (attributes.href) {
+      Tag = 'a';
     }
 
     return (
-      <button {...attributes}
+      <Tag {...attributes}
         className={classes}
         onClick={this.onClick}>
         {children}
-      </button>
+      </Tag>
     );
   }
 }
