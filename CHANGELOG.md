@@ -1,3 +1,19 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/reactstrap/reactstrap/compare/0.8.0...v1.0.0) (2016-03-27)
+
+
+### Code Refactoring
+
+* **components:** standardize custom tag names ([494e4ec](https://github.com/reactstrap/reactstrap/commit/494e4ec))
+
+
+### BREAKING CHANGES
+
+* components: `El` prop is now `tag`. This standardizes the way
+custom elements should render their html “tags”.
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/reactstrap/reactstrap/compare/0.7.2...v0.8.0) (2016-03-27)
 
