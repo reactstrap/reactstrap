@@ -1,6 +1,43 @@
-var webpackConfig = require('./webpack.config.js');
+var path = require('path');
+var webpack = require('webpack');
 
-webpackConfig.devtool = 'cheap-module-source-map';
+var webpackConfig = {
+  context: path.join(__dirname, './lib'),
+  devtool: 'eval',
+  entry: {
+    reactstrap: ['./index.js']
+  },
+  node: {
+    fs: 'empty'
+  },
+  plugins: [
+    new webpack.NoErrorsPlugin()
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.(json)$/,
+        loaders: [
+          'json-loader?cacheDirectory'
+        ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loaders: [
+          'babel-loader?cacheDirectory'
+        ]
+      },
+    ]
+  },
+  resolve: {
+    alias: {
+      reactstrap: path.resolve('./lib/index.js')
+    },
+    extensions: ['', '.js', '.jsx', '.json']
+  },
+};
+
 webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || [];
 webpackConfig.module.preLoaders.push({
   test: /\.jsx?$/,

@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
-import { Modal } from '../lib';
+import { Modal } from 'reactstrap';;
 
 describe('Modal', () => {
   let isOpen;

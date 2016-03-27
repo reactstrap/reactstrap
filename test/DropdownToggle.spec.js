@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
-import { DropdownToggle, Button } from '../lib';
+import { DropdownToggle, Button } from 'reactstrap';;
 
 describe('DropdownToggle', () => {
   it('should wrap text', () => {

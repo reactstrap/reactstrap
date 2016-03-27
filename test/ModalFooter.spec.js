@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ModalFooter } from '../lib';
+import { ModalFooter } from 'reactstrap';;
 
 describe('ModalFooter', () => {
   it('should render with "modal-footer" class', () => {

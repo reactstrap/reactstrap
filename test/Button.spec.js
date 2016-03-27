@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Button } from '../lib';
+import { Button } from 'reactstrap';
 
 describe('Button', () => {
   it('should render children', () => {

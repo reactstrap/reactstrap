@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ButtonGroup } from '../lib';
+import { ButtonGroup } from 'reactstrap';;
 
 describe('ButtonGroup', () => {
   it('should render children', () => {

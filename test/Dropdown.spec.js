@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../lib';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';;
 
 
 describe('Dropdown', () => {

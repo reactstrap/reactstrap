@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
-import { TetherContent } from '../lib';
+import { TetherContent } from 'reactstrap';;
 
 describe('TetherContent', () => {
   let state;

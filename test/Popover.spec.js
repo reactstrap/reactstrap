@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
-import { Popover, PopoverTitle, PopoverContent, TetherContent } from '../lib';
+import { Popover, PopoverTitle, PopoverContent, TetherContent } from 'reactstrap';;
 
 describe('Popover', () => {
   let element;
