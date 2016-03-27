@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 
@@ -8,9 +8,9 @@ export default () => {
     <div>
       <Helmet title="404 Page Not Found"/>
       <section className="jumbotron text-xs-center m-b-3">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xs-12">
+        <Container fluid>
+          <Row>
+            <Col>
               <p className="lead">
                 <img src="/assets/logo.png" alt="" width="150px" />
               </p>
@@ -22,9 +22,9 @@ export default () => {
                 <Button color="danger-outline" className="m-r-1" El={Link} to="/">Get Started</Button>
                 <Button color="danger" El={Link} to="/components">View Components</Button>
               </p>
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Container>
       </section>
     </div>
   );

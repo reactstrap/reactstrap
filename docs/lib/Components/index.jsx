@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Container, Row, Col } from 'reactstrap';
 
 const NavItem = (props) => {
   return (
@@ -49,29 +50,31 @@ class Components extends React.Component {
         {
           name: 'Modals',
           to: '/components/modals/'
+        },
+        {
+          name: 'Layout',
+          to: '/components/layout/'
         }
       ]
     };
   }
   render() {
     return (
-      <div>
-        <div className="content container-fluid">
-          <div className="row">
-            <div className="col-md-3 col-md-push-9">
-              <div className="docs-sidebar m-b-3">
-                <h5>Components</h5>
-                <ul className="nav">
-                  { this.state.navItems.map((item, i) => {
-                    return <NavItem key={i} item={item} />;
-                  })}
-                </ul>
-              </div>
+      <Container fluid className="content">
+        <Row>
+          <Col md={{ size: 3, push: 9 }}>
+            <div className="docs-sidebar m-b-3">
+              <h5>Components</h5>
+              <ul className="nav">
+                { this.state.navItems.map((item, i) => {
+                  return <NavItem key={i} item={item} />;
+                })}
+              </ul>
             </div>
-            <div className="col-md-9 col-md-pull-3" {...this.props}/>
-          </div>
-        </div>
-      </div>
+          </Col>
+          <Col md={{ size: 9, pull: 3 }} {...this.props}/>
+        </Row>
+      </Container>
     );
   }
 }
