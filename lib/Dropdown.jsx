@@ -155,7 +155,7 @@ class Dropdown extends React.Component {
       className,
       dropup,
       group,
-      'tag': TagName,
+      'tag': Tag,
       ...attributes
     } = omit(this.props, ['children', 'isOpen']);
 
@@ -170,10 +170,10 @@ class Dropdown extends React.Component {
     );
 
     return (
-      <TagName {...attributes}
+      <Tag {...attributes}
         className={classes}>
         {this.renderChildren()}
-      </TagName>
+      </Tag>
     );
   }
 }

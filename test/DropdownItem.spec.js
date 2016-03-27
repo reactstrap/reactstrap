@@ -22,7 +22,7 @@ describe('DropdownItem', () => {
 
   it('should render custom element', () => {
     const Link = (props) => <a href="/home" {...props}>{props.children}</a>;
-    const wrapper = mount(<DropdownItem isOpen={isOpen} toggle={toggle} El={Link}>Home</DropdownItem>);
+    const wrapper = mount(<DropdownItem isOpen={isOpen} toggle={toggle} tag={Link}>Home</DropdownItem>);
 
     expect(wrapper.find('a').length).toBe(1);
     expect(wrapper.find('a').hasClass('dropdown-item')).toBe(true);

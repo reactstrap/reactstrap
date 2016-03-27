@@ -34,7 +34,7 @@ export default class ButtonsPage extends React.Component {
 
   // Pass in a Component to override default button element
   // example: react-router Link
-  El: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
   onClick: PropTypes.func,
   size: PropTypes.string
