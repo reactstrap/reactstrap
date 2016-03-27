@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import { Button } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router';
 import Example from '../examples/import-basic';
 
@@ -10,9 +10,9 @@ export default () => {
   return (
     <div>
       <section className="jumbotron text-xs-center m-b-3">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xs-12">
+        <Container fluid>
+          <Row>
+            <Col>
               <p className="lead">
                 <img src="/assets/logo.png" alt="" width="150px" />
               </p>
@@ -24,13 +24,13 @@ export default () => {
                 <Button color="danger-outline" href="https://github.com/reactstrap/reactstrap">View on Github</Button>
                 <Button color="danger" El={Link} to="/components/" className="m-l-1">View Components</Button>
               </p>
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Container>
       </section>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-xs-12 col-sm-8 col-sm-offset-2">
+      <Container fluid>
+        <Row>
+          <Col sm={{ size: 8, offset: 2 }}>
             <h2>Installation</h2>
             <hr/>
             <h3>NPM</h3>
@@ -92,9 +92,9 @@ const PreferredExample = (props) => {
               <li><code>size</code> for controlling size classes. ex: <code>{'<Button size="sm"/>'}</code></li>
               <li>boolean based props (attributes) when possible for alternative style classes or sr-only content</li>
             </ul>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

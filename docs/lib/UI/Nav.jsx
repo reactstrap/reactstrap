@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Container } from 'reactstrap';
 
 export default () => {
   return (
     <nav className="header navbar navbar-light bg-faded">
-      <div className="container-fluid">
+      <Container fluid>
         <Link className="navbar-brand" to="/">reactstrap</Link>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
@@ -14,7 +15,7 @@ export default () => {
             <a className="nav-link" href="https://github.com/reactstrap/reactstrap">Github</a>
           </li>
         </ul>
-      </div>
+      </Container>
     </nav>
   );
 };
