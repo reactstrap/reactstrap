@@ -1,3 +1,13 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/reactstrap/reactstrap/compare/0.7.2...v0.8.0) (2016-03-27)
+
+
+### Features
+
+* **Layout:** Add Container, Row, Col components ([69ada73](https://github.com/reactstrap/reactstrap/commit/69ada73))
+
+
+
 <a name="0.7.2"></a>
 ## [0.7.2](https://github.com/reactstrap/reactstrap/compare/0.7.1...v0.7.2) (2016-03-26)
 
