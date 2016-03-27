@@ -67,15 +67,15 @@ https://reactstrap.github.io
 
 This library contains the following components:
 
- - [Button](https://reactstrap.github.io/components/buttons)
- - [ButtonDropdown](https://reactstrap.github.io/components/button-dropdown)
- - [ButtonGroup](https://reactstrap.github.io/components/button-group)
- - [ButtonToolbar](https://reactstrap.github.io/components/button-group)
- - [Dropdown](https://reactstrap.github.io/components/dropdowns)
- - [Label](https://reactstrap.github.io/components/labels)
- - [Popover](https://reactstrap.github.io/components/popovers)
- - [Modal](https://reactstrap.github.io/components/modals)
- - [Tooltip](https://reactstrap.github.io/components/tooltips)
+ - [Button](https://reactstrap.github.io/components/buttons/)
+ - [ButtonDropdown](https://reactstrap.github.io/components/button-dropdown/)
+ - [ButtonGroup](https://reactstrap.github.io/components/button-group/)
+ - [ButtonToolbar](https://reactstrap.github.io/components/button-group/)
+ - [Dropdown](https://reactstrap.github.io/components/dropdowns/)
+ - [Label](https://reactstrap.github.io/components/labels/)
+ - [Popover](https://reactstrap.github.io/components/popovers/)
+ - [Modal](https://reactstrap.github.io/components/modals/)
+ - [Tooltip](https://reactstrap.github.io/components/tooltips/)
 
 ## Development
 

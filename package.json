@@ -89,6 +89,7 @@
     "react-addons-pure-render-mixin": "^0.14.7",
     "react-addons-test-utils": ">=15.0.0-rc.1",
     "react-dom": "^15.0.0-rc.1",
+    "react-helmet": "^3.0.0",
     "react-highlight": "^0.7.0",
     "react-prism": "^3.1.1",
     "react-router": "^2.0.1",

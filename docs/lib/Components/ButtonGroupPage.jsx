@@ -1,6 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
+import Helmet from 'react-helmet';
 import {
   Button,
   ButtonGroup,
@@ -37,6 +38,7 @@ export default class ButtonGroupPage extends React.Component {
   render() {
     return (
       <div>
+        <Helmet title="Button Group"/>
         <h3>Button Group</h3>
         <div className="docs-example">
           <div>

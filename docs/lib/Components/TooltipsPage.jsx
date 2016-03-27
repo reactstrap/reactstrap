@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-
+import Helmet from 'react-helmet';
 import TooltipExample from '../examples/Tooltip';
 const TooltipExampleSource = require('!!raw!../examples/Tooltip.jsx');
 import TooltipExampleMulti from '../examples/TooltipMulti';
@@ -11,6 +11,7 @@ export default class TooltipsPage extends React.Component {
   render() {
     return (
       <div>
+        <Helmet title="Tooltips"/>
         <h3>Tooltips</h3>
         <p>Tooltips are built with <a href="http://tether.io/">http://tether.io</a>.</p>
         <div className="docs-example">

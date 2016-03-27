@@ -2,9 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import { Button } from 'reactstrap';
-import { Link } from 'react-router';
-import UI from '../UI';
-
+import Helmet from 'react-helmet';
 import ButtonExample from '../examples/Button';
 const ButtonExampleSource = require('!!raw!../examples/Button.jsx');
 
@@ -15,6 +13,7 @@ export default class ButtonsPage extends React.Component {
   render() {
     return (
       <div>
+        <Helmet title="Buttons"/>
         <h3>Buttons</h3>
         <div className="docs-example">
           <ButtonExample/>

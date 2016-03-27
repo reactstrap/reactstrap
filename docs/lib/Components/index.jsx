@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import UI from '../UI';
 
 const NavItem = (props) => {
   return (
@@ -21,35 +20,35 @@ class Components extends React.Component {
       navItems: [
         {
           name: 'Buttons',
-          to: '/components/buttons'
+          to: '/components/buttons/'
         },
         {
           name: 'Button Group',
-          to: '/components/button-group'
+          to: '/components/button-group/'
         },
         {
           name: 'Button Dropdown',
-          to: '/components/button-dropdown'
+          to: '/components/button-dropdown/'
         },
         {
           name: 'Dropdowns',
-          to: '/components/dropdowns'
+          to: '/components/dropdowns/'
         },
         {
           name: 'Labels',
-          to: '/components/labels'
+          to: '/components/labels/'
         },
         {
           name: 'Tooltips',
-          to: '/components/tooltips'
+          to: '/components/tooltips/'
         },
         {
           name: 'Popovers',
-          to: '/components/popovers'
+          to: '/components/popovers/'
         },
         {
           name: 'Modals',
-          to: '/components/modals'
+          to: '/components/modals/'
         }
       ]
     };
@@ -57,11 +56,11 @@ class Components extends React.Component {
   render() {
     return (
       <div>
-        <UI.Nav/>
         <div className="content container-fluid">
           <div className="row">
             <div className="col-md-3 col-md-push-9">
-              <div className="docs-sidebar">
+              <div className="docs-sidebar m-b-3">
+                <h5>Components</h5>
                 <ul className="nav">
                   { this.state.navItems.map((item, i) => {
                     return <NavItem key={i} item={item} />;
@@ -72,7 +71,6 @@ class Components extends React.Component {
             <div className="col-md-9 col-md-pull-3" {...this.props}/>
           </div>
         </div>
-        <UI.Footer/>
       </div>
     );
   }

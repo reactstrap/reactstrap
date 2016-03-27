@@ -11,20 +11,21 @@ import LabelsPage from './Components/LabelsPage';
 import ModalsPage from './Components/ModalsPage';
 import NotFound from './NotFound';
 import Components from './Components';
+import UI from './UI';
 
 const routes = (
-  <Route path="/">
+  <Route path="/" component={ UI.Layout }>
     <IndexRoute component={ Home } />
-    <Route path="/components" component={Components}>
-      <IndexRedirect to="buttons" />
-      <Route path="buttons" component={ ButtonsPage } />
-      <Route path="button-group" component={ ButtonGroupPage } />
-      <Route path="button-dropdown" component={ ButtonDropdownPage } />
-      <Route path="dropdowns" component={ DropdownsPage } />
-      <Route path="popovers" component={ PopoversPage } />
-      <Route path="tooltips" component={ TooltipsPage } />
-      <Route path="labels" component={ LabelsPage } />
-      <Route path="modals" component={ ModalsPage } />
+    <Route path="/components/" component={Components}>
+      <IndexRedirect to="buttons/" />
+      <Route path="buttons/" component={ ButtonsPage } />
+      <Route path="button-group/" component={ ButtonGroupPage } />
+      <Route path="button-dropdown/" component={ ButtonDropdownPage } />
+      <Route path="dropdowns/" component={ DropdownsPage } />
+      <Route path="popovers/" component={ PopoversPage } />
+      <Route path="tooltips/" component={ TooltipsPage } />
+      <Route path="labels/" component={ LabelsPage } />
+      <Route path="modals/" component={ ModalsPage } />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>

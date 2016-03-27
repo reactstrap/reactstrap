@@ -14,6 +14,11 @@
   color: #333;
 }
 
+.header.navbar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .footer {
   margin-top: 2rem;
   padding: 2rem 0;

@@ -1,6 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
+import Helmet from 'react-helmet';
 import PopoverExample from '../examples/Popover';
 const PopoverExampleSource = require('!!raw!../examples/Popover.jsx');
 import PopoverExampleMulti from '../examples/PopoverMulti';
@@ -10,6 +11,7 @@ export default class PopoversPage extends React.Component {
   render() {
     return (
       <div>
+        <Helmet title="Popovers"/>
         <h3>Popovers</h3>
         <p>Popovers are built with <a href="http://tether.io/">http://tether.io</a>.</p>
         <div className="docs-example">

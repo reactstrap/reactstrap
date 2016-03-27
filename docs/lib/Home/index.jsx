@@ -2,7 +2,6 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router';
-import UI from '../UI';
 import Example from '../examples/import-basic';
 
 const importBasic = require('!!raw!../examples/import-basic.jsx');
@@ -10,7 +9,6 @@ const importBasic = require('!!raw!../examples/import-basic.jsx');
 export default () => {
   return (
     <div>
-      <UI.Nav/>
       <section className="jumbotron text-xs-center m-b-3">
         <div className="container-fluid">
           <div className="row">
@@ -24,7 +22,7 @@ export default () => {
               </p>
               <p>
                 <Button color="danger-outline" href="https://github.com/reactstrap/reactstrap">View on Github</Button>
-                <Button color="danger" El={Link} to="/components" className="m-l-1">View Components</Button>
+                <Button color="danger" El={Link} to="/components/" className="m-l-1">View Components</Button>
               </p>
             </div>
           </div>
@@ -97,7 +95,6 @@ const PreferredExample = (props) => {
           </div>
         </div>
       </div>
-      <UI.Footer/>
     </div>
   );
 };
