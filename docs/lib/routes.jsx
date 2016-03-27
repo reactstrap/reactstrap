@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import Home from './Home';
+import LayoutPage from './Components/LayoutPage';
 import ButtonsPage from './Components/ButtonsPage';
 import ButtonGroupPage from './Components/ButtonGroupPage';
 import ButtonDropdownPage from './Components/ButtonDropdownPage';
@@ -26,6 +27,7 @@ const routes = (
       <Route path="tooltips/" component={ TooltipsPage } />
       <Route path="labels/" component={ LabelsPage } />
       <Route path="modals/" component={ ModalsPage } />
+      <Route path="layout/" component={ LayoutPage } />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>

@@ -156,6 +156,18 @@ pre, code {
   border-left: 2px solid #d9534f;
 }
 
+.docs-example .row {
+  margin-bottom: 1rem;
+}
+
+.docs-example .row > [class^="col-"] {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: #E5EDF5;
+  border: 1px solid #C9C1D5;
+  color: #5F5F5F;
+}
+
 
 /* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+jsx */
 /**

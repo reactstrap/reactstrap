@@ -12,6 +12,7 @@ var webpackProdConfig = require('./webpack.base.config')('production');
 var paths = [
   '/',
   '/components/',
+  '/components/layout/',
   '/components/buttons/',
   '/components/button-group/',
   '/components/button-toolbar/',

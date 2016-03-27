@@ -50,6 +50,10 @@ class Components extends React.Component {
         {
           name: 'Modals',
           to: '/components/modals/'
+        },
+        {
+          name: 'Layout',
+          to: '/components/layout/'
         }
       ]
     };
