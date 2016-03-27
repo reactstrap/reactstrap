@@ -12,7 +12,7 @@ describe('Button', () => {
 
   it('should render custom element', () => {
     const Link = (props) => <a href="/home" {...props}>{props.children}</a>;
-    const wrapper = mount(<Button El={Link}>Home</Button>);
+    const wrapper = mount(<Button tag={Link}>Home</Button>);
 
     expect(wrapper.find('a').length).toBe(1);
     expect(wrapper.text()).toBe('Home');

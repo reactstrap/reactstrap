@@ -6,13 +6,14 @@ const propTypes = {
   block: PropTypes.bool,
   color: PropTypes.string,
   disabled: PropTypes.bool,
-  El: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
   size: PropTypes.string
 };
 
 const defaultProps = {
-  color: 'primary'
+  color: 'primary',
+  tag: 'button'
 };
 
 class Button extends React.Component {
@@ -33,17 +34,15 @@ class Button extends React.Component {
   }
 
   render() {
-    const {
+    let {
       active,
       block,
-      children,
       className,
       color,
-      El,
       size,
+      tag: Tag,
       ...attributes
     } = this.props;
-    let Tag = 'button';
 
     const classes = classNames(
       className,
@@ -54,18 +53,12 @@ class Button extends React.Component {
       { active, disabled: this.props.disabled }
     );
 
-    if (El) {
-      Tag = El;
-    } else if (attributes.href) {
+    if (attributes.href && Tag === 'button') {
       Tag = 'a';
     }
 
     return (
-      <Tag {...attributes}
-        className={classes}
-        onClick={this.onClick}>
-        {children}
-      </Tag>
+      <Tag {...attributes} className={classes} onClick={this.onClick}/>
     );
   }
 }

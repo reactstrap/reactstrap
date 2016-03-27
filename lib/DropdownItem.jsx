@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import omit from 'lodash.omit';
 
 const propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
   divider: PropTypes.bool,
-  El: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   header: PropTypes.bool,
   isOpen: PropTypes.bool,
   toggle: PropTypes.func
+};
+
+const defaultProps = {
+  tag: 'button'
 };
 
 class DropdownItem extends React.Component {
@@ -41,13 +44,11 @@ class DropdownItem extends React.Component {
   }
 
   render() {
-    let Tagname = 'button';
     const tabIndex = this.getTabIndex();
-    const {
+    let {
       className,
-      children,
       divider,
-      El,
+      tag: Tag,
       header,
       ...props } = this.props;
 
@@ -61,34 +62,24 @@ class DropdownItem extends React.Component {
       }
     );
 
-    if (El) {
-      return (
-        <El {...props}
-          tabIndex={tabIndex}
-          className={classes}
-          onClick={this.onClick}>
-          {children}
-        </El>
-      );
-    }
-
-    if (header) {
-      Tagname = 'h6';
-    } else if (divider) {
-      Tagname = 'div';
+    if (Tag === 'button') {
+      if (header) {
+        Tag = 'h6';
+      } else if (divider) {
+        Tag = 'div';
+      }
     }
 
     return (
-      <Tagname {...props}
+      <Tag {...props}
         tabIndex={tabIndex}
         className={classes}
-        onClick={this.onClick}>
-        {children}
-      </Tagname>
+        onClick={this.onClick}/>
     );
   }
 }
 
 DropdownItem.propTypes = propTypes;
+DropdownItem.defaultProps = defaultProps;
 
 export default DropdownItem;
