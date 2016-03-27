@@ -13,6 +13,8 @@ var paths = [
   '/',
   '/components/',
   '/components/layout/',
+  '/components/navs/',
+  '/components/navbar/',
   '/components/buttons/',
   '/components/button-group/',
   '/components/button-toolbar/',

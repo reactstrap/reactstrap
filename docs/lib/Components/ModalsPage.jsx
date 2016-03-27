@@ -9,7 +9,7 @@ export default class ModalsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Modals"/>
+        <Helmet title="Layout"/>
         <h3>Modals</h3>
         <div className="docs-example">
           <ModalExample/>

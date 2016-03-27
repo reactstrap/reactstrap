@@ -9,7 +9,7 @@ export default class LayoutsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Layouts"/>
+        <Helmet title="Layout Components (Container, Row, Col)"/>
         <h3>Layout</h3>
         <div className="docs-example">
           <LayoutExample/>

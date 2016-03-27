@@ -10,13 +10,15 @@ const propTypes = {
   onClick: PropTypes.func,
   toggle: PropTypes.func,
   'data-toggle': PropTypes.string,
-  'aria-haspopup': PropTypes.bool
+  'aria-haspopup': PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
 
 const defaultProps = {
   'data-toggle': 'dropdown',
   'aria-haspopup': true,
-  color: 'secondary'
+  color: 'secondary',
+  tag: 'button'
 };
 
 class DropdownToggle extends React.Component {
@@ -41,7 +43,7 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, children, caret, color, ...props } = this.props;
+    const { className, children, caret, color, 'tag': Tag, ...props } = this.props;
     const classes = classNames(
       className,
       {
@@ -66,13 +68,13 @@ class DropdownToggle extends React.Component {
     }
 
     return (
-      <button {...props}
+      <Tag {...props}
         className={buttonClasses}
         onClick={this.onClick}
         aria-haspopup="true"
         aria-expanded={props.isOpen}>
         {children}
-      </button>
+      </Tag>
     );
   }
 }
