@@ -1,3 +1,13 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/reactstrap/reactstrap/compare/1.0.0...v1.1.0) (2016-03-27)
+
+
+### Features
+
+* **Navs:** Add nav components ([5e2ba03](https://github.com/reactstrap/reactstrap/commit/5e2ba03))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/reactstrap/reactstrap/compare/0.8.0...v1.0.0) (2016-03-27)
 
