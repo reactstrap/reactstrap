@@ -124,7 +124,7 @@ class Dropdown extends React.Component {
   }
 
   renderChildren() {
-    let props = omit(this.props, ['children', 'className', 'id']);
+    let props = omit(this.props, ['children', 'className', 'id', 'tag']);
     props.toggle = this.toggle;
 
     return React.Children.map(React.Children.toArray(this.props.children), (child) => {
