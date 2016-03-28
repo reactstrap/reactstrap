@@ -32,7 +32,7 @@ module.exports = function (env) {
 
   config = {
     devtool: 'source-map',
-    entry: [__dirname + '/lib/index.js'],
+    entry: [__dirname + '/src/index.js'],
     devtool: 'source-map',
     output: {
       path: __dirname + '/dist',
@@ -78,7 +78,7 @@ module.exports = function (env) {
     },
     resolve: {
       alias: {
-        reactstrap: 'lib/index'
+        reactstrap: 'src/index'
       },
       extensions: ['', '.js', '.jsx', '.json'],
       root: [
