@@ -9,7 +9,8 @@
     "test-watch": "karma start --reporters dots,coverage",
     "start": "webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
-    "build": "WEBPACK_BUILD=production webpack --progress --colors && webpack --progress --colors"
+    "build": "WEBPACK_BUILD=production webpack --progress --colors && webpack --progress --colors",
+    "pre-build": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "CHANGELOG.md",
     "lib",
     "dist"
   ],
