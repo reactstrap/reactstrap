@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Nav } from 'reactstrap';;
+import { Nav } from 'reactstrap';
 
 describe('Nav', () => {
   it('should render .nav markup', () => {

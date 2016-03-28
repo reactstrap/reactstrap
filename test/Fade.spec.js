@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
-import { Fade } from 'reactstrap';;
+import { Fade } from 'reactstrap';
 
 describe('Fade', () => {
   it('should render with "fade" class', () => {

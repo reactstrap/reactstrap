@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NavbarBrand } from 'reactstrap';;
+import { NavbarBrand } from 'reactstrap';
 
 describe('NavbarBrand', () => {
   it('should render .navbar-brand markup', () => {

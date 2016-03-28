@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Row } from 'reactstrap';;
+import { Row } from 'reactstrap';
 
 describe('Row', () => {
   it('should render .row markup', () => {

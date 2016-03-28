@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Container } from 'reactstrap';;
+import { Container } from 'reactstrap';
 
 describe('Container', () => {
   it('should render .container markup', () => {

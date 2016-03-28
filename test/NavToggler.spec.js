@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NavbarToggler } from 'reactstrap';;
+import { NavbarToggler } from 'reactstrap';
 
 describe('NavbarToggler', () => {
   it('should render .navbar-toggler markup', () => {
