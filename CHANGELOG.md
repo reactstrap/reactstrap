@@ -1,3 +1,13 @@
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/reactstrap/reactstrap/compare/1.2.2...v1.2.3) (2016-03-28)
+
+
+### Bug Fixes
+
+* **build:** update scripts ([051e805](https://github.com/reactstrap/reactstrap/commit/051e805))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/reactstrap/reactstrap/compare/1.2.1...v1.2.2) (2016-03-28)
 
