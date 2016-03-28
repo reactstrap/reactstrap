@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 var webpackConfig = {
-  context: path.join(__dirname, './lib'),
+  context: path.join(__dirname, './src'),
   devtool: 'eval',
   entry: {
     reactstrap: ['./index.js']

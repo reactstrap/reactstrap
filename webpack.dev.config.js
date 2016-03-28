@@ -28,7 +28,6 @@ var paths = [
 ];
 
 var config = [{
-  // context: path.join(__dirname, './lib'),
   devtool: 'source-map',
   devServer: {
     contentBase: './build',
@@ -84,7 +83,7 @@ var config = [{
     extensions: ['', '.js', '.jsx', '.json'],
     alias: {
       'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css'),
-      reactstrap: path.resolve('./lib')
+      reactstrap: path.resolve('./src')
     }
   }
 }];

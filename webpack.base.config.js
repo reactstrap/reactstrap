@@ -82,7 +82,7 @@ module.exports = function (env) {
       },
       extensions: ['', '.js', '.jsx', '.json'],
       root: [
-        path.resolve('./lib')
+        path.resolve('./src')
       ]
     },
     plugins: plugins
