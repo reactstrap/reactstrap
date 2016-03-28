@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/reactstrap/reactstrap/compare/1.1.0...v1.2.0) (2016-03-28)
+
+
+### Features
+
+* **Navbar:** add Navbar components ([91ad2b4](https://github.com/reactstrap/reactstrap/commit/91ad2b4))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/reactstrap/reactstrap/compare/1.0.0...v1.1.0) (2016-03-27)
 
