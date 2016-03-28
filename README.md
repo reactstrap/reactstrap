@@ -76,6 +76,10 @@ This library contains the following components:
  - [Popover](https://reactstrap.github.io/components/popovers/)
  - [Modal](https://reactstrap.github.io/components/modals/)
  - [Tooltip](https://reactstrap.github.io/components/tooltips/)
+ - [Layout (Container, Row, Col)](https://reactstrap.github.io/components/layout/)
+ - [Nav](https://reactstrap.github.io/components/navs/)
+ - [Navbar](https://reactstrap.github.io/components/navbar/)
+ - [Layout](https://reactstrap.github.io/components/layout/)
 
 ## Development
 

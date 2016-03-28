@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Container } from 'reactstrap';
+import { Container, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 export default () => {
   return (
-    <nav className="header navbar navbar-light bg-faded">
+    <Navbar className="header" color="faded" light>
       <Container fluid>
-        <Link className="navbar-brand" to="/">reactstrap</Link>
-        <ul className="nav navbar-nav pull-xs-right">
-          <li className="nav-item">
-            <Link className="nav-link" to="/components/" activeClassName="active">Components</Link>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="https://github.com/reactstrap/reactstrap">Github</a>
-          </li>
-        </ul>
+        <NavbarBrand tag={Link} to="/">reactstrap</NavbarBrand>
+        <Nav className="nav navbar-nav pull-xs-right">
+          <NavItem>
+            <NavLink tag={Link} className="nav-link" to="/components/" activeClassName="active">Components</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+          </NavItem>
+        </Nav>
       </Container>
-    </nav>
+    </Navbar>
   );
 };

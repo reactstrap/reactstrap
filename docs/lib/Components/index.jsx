@@ -44,6 +44,10 @@ class Components extends React.Component {
           to: '/components/navs/'
         },
         {
+          name: 'Navbar',
+          to: '/components/navbar/'
+        },
+        {
           name: 'Tooltips',
           to: '/components/tooltips/'
         },

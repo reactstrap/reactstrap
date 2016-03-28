@@ -3,6 +3,7 @@ import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import Home from './Home';
 import LayoutPage from './Components/LayoutPage';
 import NavsPage from './Components/NavsPage';
+import NavbarPage from './Components/NavbarPage';
 import ButtonsPage from './Components/ButtonsPage';
 import ButtonGroupPage from './Components/ButtonGroupPage';
 import ButtonDropdownPage from './Components/ButtonDropdownPage';
@@ -30,6 +31,7 @@ const routes = (
       <Route path="modals/" component={ ModalsPage } />
       <Route path="layout/" component={ LayoutPage } />
       <Route path="navs/" component={ NavsPage } />
+      <Route path="navbar/" component={ NavbarPage } />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>
