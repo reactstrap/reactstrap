@@ -38,6 +38,7 @@ echo "==> Cleaning Build directory"
 rm -rf ./dist
 
 echo "==> Creating build files"
+npm run pre-build
 npm run build
 
 echo "==> Committing changes"

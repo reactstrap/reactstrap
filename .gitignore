@@ -2,3 +2,4 @@ test/coverage
 node_modules
 dist
 build
+lib
