@@ -1,3 +1,13 @@
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/reactstrap/reactstrap/compare/1.2.3...v1.2.4) (2016-03-28)
+
+
+### Bug Fixes
+
+* **src:** update paths to src ([c61c466](https://github.com/reactstrap/reactstrap/commit/c61c466))
+
+
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/reactstrap/reactstrap/compare/1.2.2...v1.2.3) (2016-03-28)
 
