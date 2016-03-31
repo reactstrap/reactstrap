@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import Fade from './Fade';
+import TransitionGroup from 'react-addons-transition-group';
 
 const propTypes = {
   isOpen: PropTypes.bool,
@@ -40,11 +41,10 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
-    this.hide();
+    this.onExit();
   }
 
   onEnter() {
-    this._modal.fadeIn();
     if (this.props.onEnter) {
       this.props.onEnter();
     }
@@ -98,14 +98,8 @@ class Modal extends React.Component {
   }
 
   hide() {
+    this.renderIntoSubtree();
     this.removeEvents();
-
-    if (this._modal) {
-      this._modal.fadeOut();
-    }
-    if (this._backdrop) {
-      this._backdrop.fadeOut(this.onExit, 250);
-    }
   }
 
   show() {
@@ -122,28 +116,48 @@ class Modal extends React.Component {
       'modal-open'
     );
 
+    this.renderIntoSubtree();
+    this._element.focus();
+  }
+
+  renderIntoSubtree() {
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       this.renderChildren(),
       this._element
     );
-
-    this._element.focus();
-    this._backdrop.fadeIn(this.onEnter, 100);
   }
 
   renderChildren() {
     return (
-      <div>
-        <Fade className="modal" style={{ display: 'block' }} tabIndex="-1" ref={(c) => this._modal = c }>
-          <div className="modal-dialog" role="document" ref={(c) => this._dialog = c }>
-            <div className="modal-content">
-              { this.props.children }
+      <TransitionGroup component="div">
+        { this.props.isOpen && (
+          <Fade
+            key={Math.random()}
+            onEnter={this.onEnter}
+            onLeave={this.onExit}
+            transitionAppearTimeout={300}
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
+            className="modal"
+            style={{ display: 'block' }}
+            tabIndex="-1">
+            <div className="modal-dialog" role="document" ref={(c) => this._dialog = c }>
+              <div className="modal-content">
+                { this.props.children }
+              </div>
             </div>
-          </div>
-        </Fade>
-        <Fade className="modal-backdrop" ref={(c) => this._backdrop = c }/>
-      </div>
+          </Fade>
+        )}
+        { this.props.isOpen && (
+          <Fade
+            key={Math.random()}
+            transitionAppearTimeout={150}
+            transitionEnterTimeout={150}
+            transitionLeaveTimeout={150}
+            className="modal-backdrop"/>
+        )}
+      </TransitionGroup>
     );
   }
 
