@@ -1,3 +1,13 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/reactstrap/reactstrap/compare/1.2.4...v1.3.0) (2016-03-31)
+
+
+### Bug Fixes
+
+* **.gitignore:** add root directories to ignore ([8952445](https://github.com/reactstrap/reactstrap/commit/8952445))
+
+
+
 <a name="1.2.4"></a>
 ## [1.2.4](https://github.com/reactstrap/reactstrap/compare/1.2.3...v1.2.4) (2016-03-28)
 
