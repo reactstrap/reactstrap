@@ -14,7 +14,7 @@ error() {
 }
 
 if [ -z "$CURRENT_BRANCH" ]; then
-  error "Not in a branch. Stopping deploy."
+  error "Not in a branch. Stopping release."
   exit 1
 fi
 
@@ -44,7 +44,3 @@ echo "==> Committing changes"
 
 git add --all
 git commit --message "chore(release): adding $VERSION"
-git tag -a $VERSION -m "release $VERSION"
-git push --set-upstream origin $CURRENT_BRANCH
-git push --tags
-npm publish

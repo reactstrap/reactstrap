@@ -10,7 +10,9 @@
     "start": "webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
     "build": "WEBPACK_BUILD=production webpack --progress --colors && webpack --progress --colors",
-    "prebuild": "babel src --out-dir lib"
+    "prebuild": "babel src --out-dir lib",
+    "release": "sh ./scripts/release",
+    "prerelease": "npm test"
   },
   "repository": {
     "type": "git",
