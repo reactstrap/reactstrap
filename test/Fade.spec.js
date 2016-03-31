@@ -1,64 +1,92 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { Fade } from 'reactstrap';
+import TransitionGroup from 'react-addons-transition-group';
+
+class Helper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      showItem: props.showItem
+    };
+  }
+
+  toggle() {
+    this.setState({
+      showItem: !this.state.showItem
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="trigger" onClick={this.toggle}>Toggle</div>
+        <TransitionGroup component="div">
+          { this.state.showItem ? this.props.children : null }
+        </TransitionGroup>
+      </div>
+    );
+  }
+}
 
 describe('Fade', () => {
-  it('should render with "fade" class', () => {
-    const wrapper = shallow(<Fade>Yo!</Fade>);
-
-    expect(wrapper.hasClass('fade')).toBe(true);
-    expect(wrapper.hasClass('in')).toBe(false);
-    expect(wrapper.text()).toBe('Yo!');
-  });
-
-  it('should render additional classes', () => {
-    const wrapper = shallow(<Fade className="other">Yo!</Fade>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('fade')).toBe(true);
-    expect(wrapper.hasClass('in')).toBe(false);
-  });
-
-  it('should toggle "in" class with fadeIn & fadeOut', () => {
-    const wrapper = mount(<Fade>Yo!</Fade>);
-    const instance = wrapper.instance();
-
-    expect(wrapper.hasClass('in')).toBe(false);
-
-    instance.fadeIn();
-    // hasClass does not pick up updates
-    // maybe related https://github.com/airbnb/enzyme/issues/134
-    expect(ReactDOM.findDOMNode(instance).className).toBe('fade in');
-
-    instance.fadeOut();
-
-    expect(ReactDOM.findDOMNode(instance).className).toBe('fade');
-  });
-
-  it('should call fadeIn & fadeOut with delayed callbacks', () => {
+  beforeEach(() => {
     jasmine.clock().install();
+  });
 
-    const fadeInCallback = jasmine.createSpy('spy');
-    const fadeOutCallback = jasmine.createSpy('spy');
-    const wrapper = mount(<Fade>Yo!</Fade>);
-    const instance = wrapper.instance();
-
-    expect(wrapper.hasClass('in')).toBe(false);
-
-    instance.fadeIn(fadeInCallback, 250);
-    expect(fadeInCallback).not.toHaveBeenCalled();
-
-    jasmine.clock().tick(250);
-    expect(fadeInCallback).toHaveBeenCalled();
-
-    instance.fadeOut(fadeOutCallback, 250);
-    expect(fadeOutCallback).not.toHaveBeenCalled();
-
-    jasmine.clock().tick(250);
-    expect(fadeOutCallback).toHaveBeenCalled();
-
+  afterEach(() => {
     jasmine.clock().uninstall();
+  });
+
+  it('should transition classes from "fade" to "fade in" on appear', () => {
+    let isOpen = true;
+    const wrapper = mount(
+      <Helper showItem={isOpen} >
+        <Fade key={Math.random()}>Yo!</Fade>
+        <Fade transitionAppear={false} transitionEnter={false} transitionLeave={false} key={Math.random()}>Yo 2!</Fade>
+      </Helper>
+    );
+
+    expect(wrapper.find('div.fade').length).toBe(2);
+    expect(wrapper.find('div.fade.in').length).toBe(1);
+
+    jasmine.clock().tick(300);
+
+    expect(wrapper.find('div.fade.in').length).toBe(2);
+
+    wrapper.find('.trigger').simulate('click');
+    expect(wrapper.find('div.fade.in').length).toBe(0);
+  });
+
+  it('should transition classes from "fade" to "fade in" on enter', () => {
+    const onEnter = jasmine.createSpy('spy');
+    const onLeave = jasmine.createSpy('spy');
+    let isOpen = false;
+    const wrapper = mount(
+      <Helper showItem={isOpen} >
+        <Fade onEnter={onEnter} onLeave={onLeave} key={Math.random()}>Yo!</Fade>
+        <Fade transitionAppear={false} transitionEnter={false} transitionLeave={false} key={Math.random()}>Yo 2!</Fade>
+      </Helper>
+    );
+
+    expect(wrapper.find('div.fade').length).toBe(0);
+    expect(wrapper.find('div.fade.in').length).toBe(0);
+
+    wrapper.find('.trigger').simulate('click');
+
+    expect(wrapper.find('div.fade').length).toBe(2);
+    expect(wrapper.find('div.fade.in').length).toBe(1);
+    expect(onEnter).not.toHaveBeenCalled();
+
+    jasmine.clock().tick(300);
+
+    expect(onEnter).toHaveBeenCalled();
+    expect(onLeave).not.toHaveBeenCalled();
+    expect(wrapper.find('div.fade.in').length).toBe(2);
+
+    wrapper.find('.trigger').simulate('click');
+    expect(wrapper.find('div.fade.in').length).toBe(0);
   });
 });
