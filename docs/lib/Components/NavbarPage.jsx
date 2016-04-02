@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 import NavbarExample from '../examples/Navbar';
 const NavbarExampleSource = require('!!raw!../examples/Navbar.jsx');
 
-export default class NavssPage extends React.Component {
+export default class NavsPage extends React.Component {
   render() {
     return (
       <div>
