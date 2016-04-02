@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 
-const NavItem = (props) => {
+const ComponentLink = (props) => {
   return (
-    <li className="nav-item">
-      <Link className="nav-link" to={props.item.to} activeClassName="active">
+    <NavItem>
+      <NavLink tag={Link} to={props.item.to} activeClassName="active">
         {props.item.name}
-      </Link>
-    </li>
+      </NavLink>
+    </NavItem>
   );
 };
 
@@ -73,11 +73,14 @@ class Components extends React.Component {
           <Col md={{ size: 3, push: 9 }}>
             <div className="docs-sidebar m-b-3">
               <h5>Components</h5>
-              <ul className="nav">
+              <Nav>
                 { this.state.navItems.map((item, i) => {
-                  return <NavItem key={i} item={item} />;
+                  return <ComponentLink key={i} item={item} />;
                 })}
-              </ul>
+                <NavItem>
+                  <NavLink href="https://github.com/reactstrap/reactstrap/issues/13"><small>Additional Components</small></NavLink>
+                </NavItem>
+              </Nav>
             </div>
           </Col>
           <Col md={{ size: 9, pull: 3 }} {...this.props}/>
