@@ -3,6 +3,10 @@
 set -e
 
 BUMP_TYPE=$1
+
+git checkout master
+git pull
+
 CURRENT_BRANCH="$(git symbolic-ref --short -q HEAD)"
 
 success() {
@@ -42,5 +46,9 @@ npm run build
 
 echo "==> Committing changes"
 
+git checkout -b "release-$VERSION"
 git add --all
 git commit --message "chore(release): adding $VERSION"
+git push --set-upstream origin "release-$VERSION"
+
+success "release-$VERSION branch has been pushed"
