@@ -50,5 +50,6 @@ webpackConfig.webpackServer = {
 webpackConfig.externals = {};
 webpackConfig.externals['react/lib/ExecutionEnvironment'] = true;
 webpackConfig.externals['react/lib/ReactContext'] = true;
+webpackConfig.externals['react/addons'] = true;
 
 module.exports = webpackConfig;
