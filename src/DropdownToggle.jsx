@@ -6,9 +6,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
   disabled: PropTypes.bool,
-  isOpen: PropTypes.bool,
   onClick: PropTypes.func,
-  toggle: PropTypes.func,
   'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
@@ -19,6 +17,11 @@ const defaultProps = {
   'aria-haspopup': true,
   color: 'secondary',
   tag: 'button'
+};
+
+const contextTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired
 };
 
 class DropdownToggle extends React.Component {
@@ -37,9 +40,7 @@ class DropdownToggle extends React.Component {
       this.props.onClick(e);
     }
 
-    if (this.props.toggle) {
-      this.props.toggle(e);
-    }
+    this.context.toggle();
   }
 
   render() {
@@ -48,7 +49,7 @@ class DropdownToggle extends React.Component {
       className,
       {
         'dropdown-toggle': caret,
-        'active': props.isOpen
+        'active': this.context.isOpen
       }
     );
     const buttonClasses = classNames(
@@ -63,23 +64,23 @@ class DropdownToggle extends React.Component {
         className: classes,
         onClick: this.onClick,
         'aria-haspopup': true,
-        'aria-expanded': props.isOpen
+        'aria-expanded': this.context.isOpen
       });
     }
 
     return (
       <Tag {...props}
+        children={children}
         className={buttonClasses}
         onClick={this.onClick}
         aria-haspopup="true"
-        aria-expanded={props.isOpen}>
-        {children}
-      </Tag>
+        aria-expanded={this.context.isOpen} />
     );
   }
 }
 
 DropdownToggle.propTypes = propTypes;
 DropdownToggle.defaultProps = defaultProps;
+DropdownToggle.contextTypes = contextTypes;
 
 export default DropdownToggle;

@@ -4,22 +4,54 @@ import { mount } from 'enzyme';
 import { DropdownToggle, Button } from 'reactstrap';
 
 describe('DropdownToggle', () => {
+  let isOpen;
+  let toggle;
+
+  beforeEach(() => {
+    isOpen = false;
+    toggle = () => isOpen = !isOpen;
+  });
+
   it('should wrap text', () => {
-    const wrapper = mount(<DropdownToggle>Ello world</DropdownToggle>);
+    const wrapper = mount(
+      <DropdownToggle>Ello world</DropdownToggle>,
+      {
+        context: {
+          isOpen: isOpen,
+          toggle: toggle
+        }
+      }
+    );
 
     expect(wrapper.text()).toBe('Ello world');
     expect(wrapper.find('[data-toggle="dropdown"]').length).toBe(1);
   });
 
   it('should render elements', () => {
-    const wrapper = mount(<DropdownToggle><Button>Click Me</Button></DropdownToggle>);
+    const wrapper = mount(
+      <DropdownToggle><Button>Click Me</Button></DropdownToggle>,
+      {
+        context: {
+          isOpen: isOpen,
+          toggle: toggle
+        }
+      }
+    );
 
     expect(wrapper.text()).toBe('Click Me');
     expect(wrapper.find('button').length).toBe(1);
   });
 
   it('should render a caret', () => {
-    const wrapper = mount(<DropdownToggle caret>Ello world</DropdownToggle>);
+    const wrapper = mount(
+      <DropdownToggle caret>Ello world</DropdownToggle>,
+      {
+        context: {
+          isOpen: isOpen,
+          toggle: toggle
+        }
+      }
+    );
 
     expect(wrapper.find('[data-toggle="dropdown"]').hasClass('dropdown-toggle')).toBe(true);
   });
@@ -27,27 +59,51 @@ describe('DropdownToggle', () => {
   describe('onClick', () => {
     it('should call props.onClick if it exists', () => {
       const onClick = jasmine.createSpy('onClick');
-      const wrapper = mount(<DropdownToggle onClick={onClick.bind(this)}>Ello world</DropdownToggle>);
+      const wrapper = mount(
+        <DropdownToggle onClick={onClick.bind(this)}>Ello world</DropdownToggle>,
+        {
+          context: {
+            isOpen: isOpen,
+            toggle: toggle
+          }
+        }
+      );
       const instance = wrapper.instance();
 
       instance.onClick({});
       expect(onClick).toHaveBeenCalled();
     });
 
-    it('should call props.toggle when present ', () => {
-      let props = jasmine.createSpyObj('props', ['toggle']);
-      const wrapper = mount(<DropdownToggle toggle={props.toggle}>Ello world</DropdownToggle>);
+    it('should call context.toggle when present ', () => {
+      toggle = jasmine.createSpy('toggle');
+      const wrapper = mount(
+        <DropdownToggle>Ello world</DropdownToggle>,
+        {
+          context: {
+            isOpen: isOpen,
+            toggle: toggle
+          }
+        }
+      );
       const instance = wrapper.instance();
 
       instance.onClick({ preventDefault: () => { } });
-      expect(props.toggle).toHaveBeenCalled();
+      expect(toggle).toHaveBeenCalled();
     });
   });
 
   describe('disabled', () => {
     it('should preventDefault when disabled', () => {
       const e = { preventDefault: jasmine.createSpy('preventDefault') };
-      const wrapper = mount(<DropdownToggle disabled>Ello world</DropdownToggle>);
+      const wrapper = mount(
+        <DropdownToggle disabled>Ello world</DropdownToggle>,
+        {
+          context: {
+            isOpen: isOpen,
+            toggle: toggle
+          }
+        }
+      );
       const instance = wrapper.instance();
 
       instance.onClick(e);

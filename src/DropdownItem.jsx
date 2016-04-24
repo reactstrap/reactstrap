@@ -6,8 +6,10 @@ const propTypes = {
   disabled: PropTypes.bool,
   divider: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  header: PropTypes.bool,
-  isOpen: PropTypes.bool,
+  header: PropTypes.bool
+};
+
+const contextTypes = {
   toggle: PropTypes.func
 };
 
@@ -32,7 +34,7 @@ class DropdownItem extends React.Component {
       this.props.onClick(e);
     }
 
-    this.props.toggle();
+    this.context.toggle();
   }
 
   getTabIndex() {
@@ -81,5 +83,6 @@ class DropdownItem extends React.Component {
 
 DropdownItem.propTypes = propTypes;
 DropdownItem.defaultProps = defaultProps;
+DropdownItem.contextTypes = contextTypes;
 
 export default DropdownItem;

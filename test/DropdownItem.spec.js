@@ -78,7 +78,14 @@ describe('DropdownItem', () => {
     it('should be called when not disabled, heading, or divider', () => {
       const e = { preventDefault: jasmine.createSpy('preventDefault') };
       const onClick = jasmine.createSpy('onClick');
-      const wrapper = mount(<DropdownItem isOpen={isOpen} toggle={toggle} onClick={onClick.bind(this)}>Click me</DropdownItem>);
+      const wrapper = mount(
+        <DropdownItem isOpen={isOpen} toggle={toggle} onClick={onClick.bind(this)}>Click me</DropdownItem>,
+        {
+          context: {
+            toggle: toggle
+          }
+        }
+      );
       const instance = wrapper.instance();
 
       instance.onClick(e);
@@ -86,12 +93,18 @@ describe('DropdownItem', () => {
     });
 
     it('should call toggle', () => {
-      isOpen = true;
-      let props = jasmine.createSpyObj('props', ['toggle']);
-      const wrapper = mount(<DropdownItem isOpen={isOpen} toggle={props.toggle}>Click me</DropdownItem>);
+      toggle = jasmine.createSpy('toggle');
+      const wrapper = mount(
+        <DropdownItem>Click me</DropdownItem>,
+        {
+          context: {
+            toggle: toggle
+          }
+        }
+      );
 
       wrapper.simulate('click');
-      expect(props.toggle).toHaveBeenCalled();
+      expect(toggle).toHaveBeenCalled();
     });
   });
 });
