@@ -16,7 +16,7 @@ describe('NavDropdown', () => {
   it('should render a single child', () => {
     const wrapper = mount(<NavDropdown isOpen={isOpen} toggle={toggle}>Ello world</NavDropdown>);
 
-    expect(wrapper.text()).toBe('Ello world');
+    expect(wrapper.find('.nav-item').text()).toBe('Ello world');
     expect(wrapper.find('.nav-item').length).toBe(1);
   });
 

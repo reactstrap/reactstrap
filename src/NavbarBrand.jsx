@@ -9,23 +9,21 @@ const defaultProps = {
   tag: 'a'
 };
 
-class NavbarBrand extends React.Component {
-  render() {
-    const {
-      className,
-      tag: Tag,
-      ...attributes
-    } = this.props;
+const NavbarBrand = (props) => {
+  const {
+    className,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-    const classes = classNames(
-      className,
-      'navbar-brand'
-    );
+  const classes = classNames(
+    className,
+    'navbar-brand'
+  );
 
-    return (
-      <Tag {...attributes} className={classes}/>
-    );
-  }
+  return (
+    <Tag {...attributes} className={classes}/>
+  );
 }
 
 NavbarBrand.propTypes = propTypes;

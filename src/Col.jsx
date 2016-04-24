@@ -27,50 +27,40 @@ const defaultProps = {
   xs: 12
 };
 
-class Col extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Col = (props) => {
+  let colClasses = [];
 
-  getColumnClasses() {
-    let classes = [];
+  colSizes.forEach(colSize => {
+    let columnProp = props[colSize];
 
-    colSizes.forEach(colSize => {
-      let columnProp = this.props[colSize];
+    if (!columnProp) {
+      return;
+    } else if (columnProp.size) {
+      colClasses.push(classNames({
+        [`col-${colSize}-${columnProp.size}`]: columnProp.size,
+        [`col-${colSize}-push-${columnProp.push}`]: columnProp.push,
+        [`col-${colSize}-pull-${columnProp.pull}`]: columnProp.pull,
+        [`col-${colSize}-offset-${columnProp.offset}`]: columnProp.offset
+      }));
+    } else {
+      colClasses.push(`col-${colSize}-${columnProp}`);
+    }
+  });
 
-      if (!columnProp) {
-        return;
-      } else if (columnProp.size) {
-        classes.push(classNames({
-          [`col-${colSize}-${columnProp.size}`]: columnProp.size,
-          [`col-${colSize}-push-${columnProp.push}`]: columnProp.push,
-          [`col-${colSize}-pull-${columnProp.pull}`]: columnProp.pull,
-          [`col-${colSize}-offset-${columnProp.offset}`]: columnProp.offset
-        }));
-      } else {
-        classes.push(`col-${colSize}-${columnProp}`);
-      }
-    });
+  const {
+    className,
+    ...attributes
+  } = props;
 
-    return classes;
-  }
+  const classes = classNames(
+    className,
+    colClasses
+  );
 
-  render() {
-    const {
-      className,
-      ...attributes
-    } = this.props;
-
-    const classes = classNames(
-      className,
-      this.getColumnClasses()
-    );
-
-    return (
-      <div {...attributes} className={classes}/>
-    );
-  }
-}
+  return (
+    <div {...attributes} className={classes}/>
+  );
+};
 
 Col.propTypes = propTypes;
 Col.defaultProps = defaultProps;

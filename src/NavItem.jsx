@@ -9,24 +9,22 @@ const defaultProps = {
   tag: 'li'
 };
 
-class NavItem extends React.Component {
-  render() {
-    const {
-      className,
-      tag: Tag,
-      ...attributes
-    } = this.props;
+const NavItem = (props) => {
+  const {
+    className,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-    const classes = classNames(
-      className,
-      'nav-item'
-    );
+  const classes = classNames(
+    className,
+    'nav-item'
+  );
 
-    return (
-      <Tag {...attributes} className={classes}/>
-    );
-  }
-}
+  return (
+    <Tag {...attributes} className={classes}/>
+  );
+};
 
 NavItem.propTypes = propTypes;
 NavItem.defaultProps = defaultProps;

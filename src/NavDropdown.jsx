@@ -11,28 +11,22 @@ const defaultProps = {
   tag: 'li'
 };
 
-class NavDropdown extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const NavDropdown = (props) => {
+  const {
+    className,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-  render() {
-    const {
-      className,
-      tag: Tag,
-      ...attributes
-    } = this.props;
+  const classes = classNames(
+    className,
+    'nav-item'
+  );
 
-    const classes = classNames(
-      className,
-      'nav-item'
-    );
-
-    return (
-      <Dropdown {...attributes} tag={Tag} className={classes} />
-    );
-  }
-}
+  return (
+    <Dropdown {...attributes} tag={Tag} className={classes} />
+  );
+};
 
 NavDropdown.propTypes = propTypes;
 NavDropdown.defaultProps = defaultProps;

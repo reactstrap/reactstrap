@@ -1,35 +1,30 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-const propTypes = {};
+const propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+};
 
-const defaultProps = {};
+const defaultProps = {
+  tag: 'h3'
+};
 
-class PopoverTitle extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const PopoverTitle = (props) => {
+  const {
+    className,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-  render() {
-    const {
-      children,
-      className,
-      ...attributes
-    } = this.props;
+  const classes = classNames(
+    className,
+    'popover-title'
+  );
 
-    const classes = classNames(
-      className,
-      'popover-title'
-    );
-
-    return (
-      <h3 {...attributes}
-        className={classes}>
-        {children}
-      </h3>
-    );
-  }
-}
+  return (
+    <Tag {...attributes} className={classes} />
+  );
+};
 
 PopoverTitle.propTypes = propTypes;
 PopoverTitle.defaultProps = defaultProps;
