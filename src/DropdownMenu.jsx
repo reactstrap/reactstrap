@@ -1,60 +1,29 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import omit from 'lodash.omit';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  isOpen: PropTypes.bool,
   right: PropTypes.bool,
-  toggle: PropTypes.func
 };
 
-class DropdownMenu extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const contextTypes = {
+  isOpen: PropTypes.bool.isRequired
+};
 
-  // onClick(e) {
-  //   if (this.props.onClick) {
-  //     this.props.onClick(e);
-  //   }
-  // }
+const DropdownMenu = (props, context) => {
+  const { className, right, ...attributes } = props;
+  const classes = classNames(
+    className,
+    'dropdown-menu',
+    { 'dropdown-menu-right': right }
+  );
 
-  renderChildren() {
-    return React.Children.map(React.Children.toArray(this.props.children), (child) => {
-      if (React.isValidElement(child)) {
-        return React.cloneElement(
-          child,
-          {
-            isOpen: this.props.isOpen,
-            toggle: this.props.toggle
-          }
-        );
-      }
-      return child;
-    });
-  }
-
-  render() {
-    const { className, right, ...props } = omit(this.props, 'children');
-    const classes = classNames(
-      className,
-      'dropdown-menu',
-      { 'dropdown-menu-right': right }
-    );
-
-    if (!this.props.isOpen) {
-      return null;
-    }
-
-    return (
-      <div {...props} tabIndex="-1" aria-hidden="false" role="menu" className={classes}>
-        {this.renderChildren()}
-      </div>
-    );
-  }
-}
+  return (
+    <div {...attributes} tabIndex="-1" aria-hidden={!context.isOpen} role="menu" className={classes}/>
+  );
+};
 
 DropdownMenu.propTypes = propTypes;
+DropdownMenu.contextTypes = contextTypes;
 
 export default DropdownMenu;

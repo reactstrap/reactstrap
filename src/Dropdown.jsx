@@ -17,8 +17,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-  open: false,
+  isOpen: false,
   tag: 'div'
+};
+
+const childContextTypes = {
+  toggle: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 const defaultTetherConfig = {
@@ -34,15 +39,18 @@ class Dropdown extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      open: props.open
-    };
-
     this.addEvents = this.addEvents.bind(this);
     this.getTetherConfig = this.getTetherConfig.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
+  }
+
+  getChildContext() {
+    return {
+      toggle: this.props.toggle,
+      isOpen: this.props.isOpen
+    };
   }
 
   componentDidMount() {
@@ -59,8 +67,14 @@ class Dropdown extends React.Component {
     this.removeEvents();
   }
 
+  getTetherTarget() {
+    const container = ReactDOM.findDOMNode(this);
+
+    return container.querySelector('[data-toggle="dropdown"]');
+  }
+
   getTetherConfig(childProps) {
-    const target = () => this._target;
+    const target = () => this.getTetherTarget();
     let vElementAttach = 'top';
     let hElementAttach = 'left';
     let vTargetAttach = 'bottom';
@@ -128,24 +142,14 @@ class Dropdown extends React.Component {
     props.toggle = this.toggle;
 
     return React.Children.map(React.Children.toArray(this.props.children), (child) => {
-      if (React.isValidElement(child)) {
-        if (child.type === DropdownToggle) {
-          return React.cloneElement(child, {
-            ...props,
-            ref: (c) => this._target = c
-          });
-        } else if (child.type === DropdownMenu && !props.isOpen) {
-          // don't bother with hidden content
-          return null;
-        } else if (child.type === DropdownMenu && props.tether) {
-          let tetherConfig = this.getTetherConfig(child.props);
+      if (props.tether && child.type === DropdownMenu) {
+        let tetherConfig = this.getTetherConfig(child.props);
 
-          return (
-            <TetherContent {...props} tether={tetherConfig}>{child}</TetherContent>
-          );
-        }
-        return React.cloneElement(child, props);
+        return (
+          <TetherContent {...props} tether={tetherConfig}>{child}</TetherContent>
+        );
       }
+
       return child;
     });
   }
@@ -180,5 +184,6 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
+Dropdown.childContextTypes = childContextTypes;
 
 export default Dropdown;

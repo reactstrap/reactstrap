@@ -1,6 +1,5 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
@@ -44,22 +43,6 @@ describe('Dropdown', () => {
     expect(wrapper.find('.dropdown').length).toBe(1);
     expect(wrapper.find('.dropdown-item').length).toBe(1);
     expect(wrapper.children().length).toBe(2);
-  });
-
-  it('should not render multiple children when isOpen is false', () => {
-    const wrapper = mount(
-      <Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>Test</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    );
-
-    expect(wrapper.find('.btn').text()).toBe('Toggle');
-    expect(wrapper.find('.dropdown').length).toBe(1);
-    expect(wrapper.find('.dropdown-item').length).toBe(0);
-    expect(wrapper.children().length).toBe(1);
   });
 
   it('should not call props.toggle when disabled ', () => {
