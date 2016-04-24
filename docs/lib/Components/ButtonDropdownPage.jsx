@@ -107,9 +107,10 @@ DropdownToggle.propTypes = {
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<ButtonDropdown color="primary" isOpen={isOpen} toggle={toggle}>
+{`<ButtonDropdown isOpen={isOpen} toggle={toggle}>
+  <Button id="caret" color="primary">{this.props.text}</Button>
   <DropdownToggle caret>
-    Text
+    <Button color="primary"><span className="sr-only">Toggle Dropdown</span></Button>
   </DropdownToggle>
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>

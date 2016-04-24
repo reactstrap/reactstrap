@@ -19,8 +19,8 @@ export default class Example extends React.Component {
 
   render() {
     return (
-      <ButtonDropdown color={this.props.color} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
+      <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle color={this.props.color} caret>
           {this.props.text}
         </DropdownToggle>
         <DropdownMenu>
