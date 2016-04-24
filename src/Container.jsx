@@ -7,28 +7,22 @@ const propTypes = {
 
 const defaultProps = {};
 
-class Container extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Container = (props) => {
+  const {
+    className,
+    fluid,
+    ...attributes
+  } = props;
 
-  render() {
-    const {
-      className,
-      fluid,
-      ...attributes
-    } = this.props;
+  const classes = classNames(
+    className,
+    fluid ? 'container-fluid' : 'container'
+  );
 
-    const classes = classNames(
-      className,
-      fluid ? 'container-fluid' : 'container'
-    );
-
-    return (
-      <div {...attributes} className={classes}/>
-    );
-  }
-}
+  return (
+    <div {...attributes} className={classes}/>
+  );
+};
 
 Container.propTypes = propTypes;
 Container.defaultProps = defaultProps;

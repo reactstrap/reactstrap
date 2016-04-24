@@ -3,43 +3,36 @@ import classNames from 'classnames';
 
 const propTypes = {
   color: PropTypes.string,
-  pill: PropTypes.bool
+  pill: PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
 
 const defaultProps = {
   color: 'default',
-  pill: false
+  pill: false,
+  tag: 'span'
 };
 
-class Label extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Label = (props) => {
+  const {
+    className,
+    color,
+    pill,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-  render() {
-    const {
-      children,
-      className,
-      color,
-      pill,
-      ...attributes
-    } = this.props;
+  const classes = classNames(
+    className,
+    'label',
+    'label-' + color,
+    pill ? 'label-pill' : false
+  );
 
-    const classes = classNames(
-      className,
-      'label',
-      'label-' + color,
-      pill ? 'label-pill' : false
-    );
-
-    return (
-      <span {...attributes}
-        className={classes}>
-        {children}
-      </span>
-    );
-  }
-}
+  return (
+    <Tag {...attributes} className={classes} />
+  );
+};
 
 Label.propTypes = propTypes;
 Label.defaultProps = defaultProps;

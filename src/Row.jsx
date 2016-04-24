@@ -1,31 +1,30 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-const propTypes = {};
+const propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+};
 
-const defaultProps = {};
+const defaultProps = {
+  tag: 'div'
+};
 
-class Row extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Row = (props) => {
+  const {
+    className,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-  render() {
-    const {
-      className,
-      ...attributes
-    } = this.props;
+  const classes = classNames(
+    className,
+    'row'
+  );
 
-    const classes = classNames(
-      className,
-      'row'
-    );
-
-    return (
-      <div {...attributes} className={classes}/>
-    );
-  }
-}
+  return (
+    <Tag {...attributes} className={classes}/>
+  );
+};
 
 Row.propTypes = propTypes;
 Row.defaultProps = defaultProps;

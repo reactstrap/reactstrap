@@ -16,7 +16,7 @@ describe('ButtonDropdown', () => {
   it('should render a single child', () => {
     const wrapper = mount(<ButtonDropdown isOpen={isOpen} toggle={toggle}>Ello world</ButtonDropdown>);
 
-    expect(wrapper.text()).toBe('Ello world');
+    expect(wrapper.find('.btn-group').text()).toBe('Ello world');
     expect(wrapper.find('.btn-group').length).toBe(1);
   });
 

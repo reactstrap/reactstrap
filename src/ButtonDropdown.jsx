@@ -5,24 +5,11 @@ const propTypes = {
   children: PropTypes.node
 };
 
-class ButtonDropdown extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {
-      children,
-      ...attributes
-    } = this.props;
-
-    return (
-      <Dropdown {...attributes} group>
-        {children}
-      </Dropdown>
-    );
-  }
-}
+const ButtonDropdown = (props) => {
+  return (
+    <Dropdown {...props} group />
+  );
+};
 
 ButtonDropdown.propTypes = propTypes;
 

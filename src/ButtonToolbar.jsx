@@ -11,31 +11,21 @@ const defaultProps = {
   role: 'toolbar'
 };
 
-class ButtonToolbar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const ButtonToolbar = (props) => {
+  const {
+    className,
+    ...attributes
+  } = props;
 
-  render() {
-    const {
-      children,
-      className,
-      ...attributes
-    } = this.props;
+  const classes = classNames(
+    className,
+    'btn-toolbar'
+  );
 
-    const classes = classNames(
-      className,
-      'btn-toolbar'
-    );
-
-    return (
-      <div {...attributes}
-        className={classes}>
-        {children}
-      </div>
-    );
-  }
-}
+  return (
+    <div {...attributes} className={classes} />
+  );
+};
 
 ButtonToolbar.propTypes = propTypes;
 ButtonToolbar.defaultProps = defaultProps;

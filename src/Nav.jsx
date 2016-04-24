@@ -15,41 +15,35 @@ const defaultProps = {
   tag: 'ul'
 };
 
-class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Nav = (props) => {
+  const {
+    className,
+    tabs,
+    pills,
+    inline,
+    stacked,
+    navbar,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-  render() {
-    const {
-      className,
-      tabs,
-      pills,
-      inline,
-      stacked,
-      navbar,
-      tag: Tag,
-      ...attributes
-    } = this.props;
+  const classes = classNames(
+    className,
+    'nav',
+    {
+      'navbar-nav': navbar,
+      'nav-tabs': tabs,
+      'nav-pills': pills,
+      'nav-inline': inline,
+      'nav-stacked': stacked,
+      'disabled': attributes.disabled
+    }
+  );
 
-    const classes = classNames(
-      className,
-      'nav',
-      {
-        'navbar-nav': navbar,
-        'nav-tabs': tabs,
-        'nav-pills': pills,
-        'nav-inline': inline,
-        'nav-stacked': stacked,
-        'disabled': attributes.disabled
-      }
-    );
-
-    return (
-      <Tag {...attributes} className={classes}/>
-    );
-  }
-}
+  return (
+    <Tag {...attributes} className={classes}/>
+  );
+};
 
 Nav.propTypes = propTypes;
 Nav.defaultProps = defaultProps;
