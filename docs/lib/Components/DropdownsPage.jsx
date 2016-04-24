@@ -56,10 +56,8 @@ DropdownToggle.propTypes = {
   caret: PropTypes.bool,
   color: PropTypes.string,
   disabled: PropTypes.bool,
-  isOpen: PropTypes.bool,
   onClick: PropTypes.func,
-  toggle: PropTypes.func,
-  dataToggle: PropTypes.string,
+  'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool
 };`}
           </PrismCode>
