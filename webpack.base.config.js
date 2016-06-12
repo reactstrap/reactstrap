@@ -1,12 +1,11 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var libraryName = 'Reactstrap';
+const libraryName = 'Reactstrap';
 
 module.exports = function (env) {
-  var config;
-  var outputFile;
-  var plugins = [
+  let outputFile;
+  const plugins = [
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
@@ -30,10 +29,9 @@ module.exports = function (env) {
     outputFile = libraryName.toLowerCase() + '.js';
   }
 
-  config = {
+  const config = {
     devtool: 'source-map',
     entry: [__dirname + '/src/index.js'],
-    devtool: 'source-map',
     output: {
       path: __dirname + '/dist',
       filename: outputFile,
@@ -43,7 +41,7 @@ module.exports = function (env) {
     },
     externals: [
       {
-        'react': {
+        react: {
           root: 'React',
           commonjs2: 'react',
           commonjs: 'react',
@@ -56,6 +54,14 @@ module.exports = function (env) {
           commonjs2: 'react-dom',
           commonjs: 'react-dom',
           amd: 'react-dom'
+        }
+      },
+      {
+        'react-addons-css-transition-group': {
+          commonjs: 'react-addons-css-transition-group',
+          commonjs2: 'react-addons-css-transition-group',
+          amd: 'react-addons-css-transition-group',
+          root: ['React', 'addons', 'CSSTransitionGroup']
         }
       }
     ],
