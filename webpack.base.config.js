@@ -57,11 +57,11 @@ module.exports = function (env) {
         }
       },
       {
-        'react-addons-css-transition-group': {
-          commonjs: 'react-addons-css-transition-group',
-          commonjs2: 'react-addons-css-transition-group',
-          amd: 'react-addons-css-transition-group',
-          root: ['React', 'addons', 'CSSTransitionGroup']
+        'react-addons-transition-group': {
+          commonjs: 'react-addons-transition-group',
+          commonjs2: 'react-addons-transition-group',
+          amd: 'react-addons-transition-group',
+          root: ['React', 'addons', 'TransitionGroup']
         }
       }
     ],
