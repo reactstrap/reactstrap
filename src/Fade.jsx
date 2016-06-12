@@ -34,6 +34,9 @@ class Fade extends React.Component {
     this.state = {
       mounted: !props.transitionAppear,
     };
+
+    this.onLeave = this.onLeave.bind(this);
+    this.onEnter = this.onEnter.bind(this);
   }
 
   onEnter(cb) {
