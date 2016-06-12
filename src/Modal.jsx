@@ -20,7 +20,7 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleProps = this.handleProps.bind(this);
+    this.togglePortal = this.togglePortal.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
     this.destroy = this.destroy.bind(this);
@@ -36,7 +36,11 @@ class Modal extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.isOpen !== prevProps.isOpen) {
-      this.handleProps();
+      // handle portal events/dom updates
+      this.togglePortal();
+    } else if (this._element) {
+      // rerender portal
+      this.renderIntoSubtree();
     }
   }
 
@@ -71,16 +75,17 @@ class Modal extends React.Component {
     }
   }
 
-  handleProps() {
+  togglePortal() {
     if (this.props.isOpen) {
       this.show();
+      this._focus = true;
     } else {
       this.hide();
     }
   }
 
   destroy() {
-    let classes = document.body.className.replace('modal-open', '');
+    const classes = document.body.className.replace('modal-open', '');
     this.removeEvents();
 
     if (this._element) {
@@ -117,7 +122,6 @@ class Modal extends React.Component {
     );
 
     this.renderIntoSubtree();
-    this._element.focus();
   }
 
   renderIntoSubtree() {
@@ -126,14 +130,20 @@ class Modal extends React.Component {
       this.renderChildren(),
       this._element
     );
+
+    // check if modal should receive focus
+    if (this._focus) {
+      this._element.focus();
+      this._focus = false;
+    }
   }
 
   renderChildren() {
     return (
       <TransitionGroup component="div">
-        { this.props.isOpen && (
+        {this.props.isOpen && (
           <Fade
-            key={Math.random()}
+            key="modal-dialog"
             onEnter={this.onEnter}
             onLeave={this.onExit}
             transitionAppearTimeout={300}
@@ -141,21 +151,23 @@ class Modal extends React.Component {
             transitionLeaveTimeout={300}
             className="modal"
             style={{ display: 'block' }}
-            tabIndex="-1">
+            tabIndex="-1"
+          >
             <div className="modal-dialog" role="document" ref={(c) => this._dialog = c }>
               <div className="modal-content">
-                { this.props.children }
+                {this.props.children}
               </div>
             </div>
           </Fade>
         )}
-        { this.props.isOpen && (
+        {this.props.isOpen && (
           <Fade
-            key={Math.random()}
+            key="modal-backdrop"
             transitionAppearTimeout={150}
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
-            className="modal-backdrop"/>
+            className="modal-backdrop"
+          />
         )}
       </TransitionGroup>
     );
