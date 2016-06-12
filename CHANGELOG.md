@@ -1,3 +1,13 @@
+<a name="1.3.4"></a>
+## [1.3.4](https://github.com/reactstrap/reactstrap/compare/1.3.3...v1.3.4) (2016-06-12)
+
+
+### Bug Fixes
+
+* **Modal:** handle prop updates ([#35](https://github.com/reactstrap/reactstrap/issues/35)) ([#40](https://github.com/reactstrap/reactstrap/issues/40))([23a3561](https://github.com/reactstrap/reactstrap/commit/23a3561))
+
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/reactstrap/reactstrap/compare/1.3.2...v1.3.3) (2016-06-12)
 
