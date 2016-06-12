@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "React Bootstrap 4 components compatible with React 0.14.x and 15.x",
   "main": "lib/index.js",
   "scripts": {
