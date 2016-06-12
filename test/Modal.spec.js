@@ -116,8 +116,8 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should not call handleProps when isOpen does not change', () => {
-    spyOn(Modal.prototype, 'handleProps').and.callThrough();
+  it('should not call togglePortal when isOpen does not change', () => {
+    spyOn(Modal.prototype, 'togglePortal').and.callThrough();
     spyOn(Modal.prototype, 'componentDidUpdate').and.callThrough();
     const wrapper = mount(
       <Modal isOpen={isOpen} toggle={toggle}>
@@ -127,7 +127,7 @@ describe('Modal', () => {
 
     jasmine.clock().tick(300);
     expect(isOpen).toBe(false);
-    expect(Modal.prototype.handleProps).not.toHaveBeenCalled();
+    expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
     expect(Modal.prototype.componentDidUpdate).not.toHaveBeenCalled();
 
     wrapper.setProps({
@@ -136,8 +136,35 @@ describe('Modal', () => {
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(false);
-    expect(Modal.prototype.handleProps).not.toHaveBeenCalled();
+    expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
     expect(Modal.prototype.componentDidUpdate).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
+  it('should renderIntoSubtree when props updated', () => {
+    isOpen = true;
+    spyOn(Modal.prototype, 'togglePortal').and.callThrough();
+    spyOn(Modal.prototype, 'renderIntoSubtree').and.callThrough();
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(true);
+    expect(Modal.prototype.togglePortal.calls.count()).toEqual(0);
+    expect(Modal.prototype.renderIntoSubtree.calls.count()).toEqual(1);
+
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+    expect(Modal.prototype.togglePortal.calls.count()).toEqual(0);
+    expect(Modal.prototype.renderIntoSubtree.calls.count()).toEqual(2);
 
     wrapper.unmount();
   });
