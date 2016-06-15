@@ -92,7 +92,7 @@ export default class ButtonsPage extends React.Component {
 <Button color="secondary" size="lg" active>Link</Button>`}
           </PrismCode>
         </pre>
-        <h3>Active State</h3>
+        <h3>Disabled State</h3>
         <div className="docs-example">
           <Button size="lg" disabled>Primary button</Button>
           <Button color="secondary" size="lg" disabled>Button</Button>

@@ -167,7 +167,7 @@ export default class ButtonGroupPage extends React.Component {
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<ButtonGroup>
+{`<ButtonGroup vertical>
   <Button>1</Button>
   <Button>2</Button>
   <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
