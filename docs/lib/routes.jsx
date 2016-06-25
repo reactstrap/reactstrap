@@ -12,6 +12,7 @@ import PopoversPage from './Components/PopoversPage';
 import TooltipsPage from './Components/TooltipsPage';
 import LabelsPage from './Components/LabelsPage';
 import ModalsPage from './Components/ModalsPage';
+import CardPage from './Components/CardPage';
 import NotFound from './NotFound';
 import Components from './Components';
 import UI from './UI';
@@ -28,6 +29,7 @@ const routes = (
       <Route path="popovers/" component={ PopoversPage } />
       <Route path="tooltips/" component={ TooltipsPage } />
       <Route path="labels/" component={ LabelsPage } />
+      <Route path="card/" component={ CardPage } />
       <Route path="modals/" component={ ModalsPage } />
       <Route path="layout/" component={ LayoutPage } />
       <Route path="navs/" component={ NavsPage } />

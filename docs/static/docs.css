@@ -122,6 +122,10 @@ h1,h2,h3 {
   margin-left: 0;
 }
 
+.docs-example .card {
+  max-width: 320px;
+}
+
 pre, code {
   background: #f5f5f5;
   border-radius: 0;
@@ -156,11 +160,11 @@ pre, code {
   border-left: 2px solid #d9534f;
 }
 
-.docs-example .row {
+.docs-example > .container .row {
   margin-bottom: 1rem;
 }
 
-.docs-example .row > [class^="col-"] {
+.docs-example > .container .row > [class^="col-"] {
   padding-top: .75rem;
   padding-bottom: .75rem;
   background-color: #E5EDF5;
