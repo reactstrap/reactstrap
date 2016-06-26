@@ -40,6 +40,7 @@ import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 import TetherContent from './TetherContent';
 import Tooltip from './Tooltip';
+import Table from './Table';
 
 export {
   Container,
@@ -83,5 +84,6 @@ export {
   ModalBody,
   ModalFooter,
   TetherContent,
-  Tooltip
+  Tooltip,
+  Table
 };
