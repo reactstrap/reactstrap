@@ -66,7 +66,11 @@ class Components extends React.Component {
         {
           name: 'Layout',
           to: '/components/layout/'
-        }
+        },
+        {
+          name: 'Tables',
+          to: '/components/tables/'
+        },
       ]
     };
   }

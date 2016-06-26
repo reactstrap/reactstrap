@@ -13,6 +13,7 @@ import TooltipsPage from './Components/TooltipsPage';
 import LabelsPage from './Components/LabelsPage';
 import ModalsPage from './Components/ModalsPage';
 import CardPage from './Components/CardPage';
+import TablesPage from './Components/TablesPage';
 import NotFound from './NotFound';
 import Components from './Components';
 import UI from './UI';
@@ -30,6 +31,7 @@ const routes = (
       <Route path="tooltips/" component={ TooltipsPage } />
       <Route path="labels/" component={ LabelsPage } />
       <Route path="card/" component={ CardPage } />
+      <Route path="tables/" component={ TablesPage } />
       <Route path="modals/" component={ ModalsPage } />
       <Route path="layout/" component={ LayoutPage } />
       <Route path="navs/" component={ NavsPage } />
