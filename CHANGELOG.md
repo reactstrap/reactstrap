@@ -1,3 +1,18 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/reactstrap/reactstrap/compare/1.4.0...v1.5.0) (2016-06-26)
+
+
+### Bug Fixes
+
+* **docs:** make buttons display block on xs views ([#46](https://github.com/reactstrap/reactstrap/issues/46))([fd14292](https://github.com/reactstrap/reactstrap/commit/fd14292))
+
+
+### Features
+
+* **Tables:** Add Table component ([#47](https://github.com/reactstrap/reactstrap/issues/47))([c935487](https://github.com/reactstrap/reactstrap/commit/c935487))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/reactstrap/reactstrap/compare/1.3.4...v1.4.0) (2016-06-26)
 
