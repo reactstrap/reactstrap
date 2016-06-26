@@ -90,6 +90,7 @@ const PreferredExample = (props) => {
               <li><code>toggle</code> - callback for toggling isOpen in the controlling component</li>
               <li><code>color</code> - applies color classes, ex: <code>{'<Button color="danger"/>'}</code></li>
               <li><code>size</code> for controlling size classes. ex: <code>{'<Button size="sm"/>'}</code></li>
+              <li><code>tag</code> - customize component output by passing in an element name or Component</li>
               <li>boolean based props (attributes) when possible for alternative style classes or sr-only content</li>
             </ul>
           </Col>

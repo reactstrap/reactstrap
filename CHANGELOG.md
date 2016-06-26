@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/reactstrap/reactstrap/compare/1.3.4...v1.4.0) (2016-06-26)
+
+
+### Features
+
+* **Card:** add Card related components ([#44](https://github.com/reactstrap/reactstrap/issues/44))([b782807](https://github.com/reactstrap/reactstrap/commit/b782807))
+
+
+
 <a name="1.3.4"></a>
 ## [1.3.4](https://github.com/reactstrap/reactstrap/compare/1.3.3...v1.3.4) (2016-06-12)
 

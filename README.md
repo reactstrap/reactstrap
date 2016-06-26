@@ -57,8 +57,9 @@ There are a few core concepts to understand in order to make the most out of thi
     - `isOpen` - current state for items like dropdown, popover, tooltip
     - `toggle` - callback for toggling `isOpen` in the controlling component
     - `color` - applies color classes, ex: `<Button color="danger"/>`
-    - `size` for controlling size classes. ex: `<Button size="sm"/>`
-    - boolean based props (attributes) when possible for alternative style classes or sr-only content
+    - `size` - for controlling size classes. ex: `<Button size="sm"/>`
+    - `tag` - customize component output by passing in an element name or Component
+    - boolean based props (attributes) when possible for alternative style classes or `sr-only` content
 
 
 ## Documentation
@@ -72,7 +73,8 @@ This library contains the following components:
  - [ButtonGroup](https://reactstrap.github.io/components/button-group/)
  - [ButtonToolbar](https://reactstrap.github.io/components/button-group/)
  - [Dropdown](https://reactstrap.github.io/components/dropdowns/)
- - [Label](https://reactstrap.github.io/components/labels/)
+ - [Labels](https://reactstrap.github.io/components/labels/)
+ - [Card](https://reactstrap.github.io/components/card/)
  - [Popover](https://reactstrap.github.io/components/popovers/)
  - [Modal](https://reactstrap.github.io/components/modals/)
  - [Tooltip](https://reactstrap.github.io/components/tooltips/)
