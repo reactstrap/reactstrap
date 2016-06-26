@@ -24,6 +24,7 @@ var paths = [
   '/components/tooltips/',
   '/components/modals/',
   '/components/labels/',
+  '/components/card/',
   '/404.html'
 ];
 
