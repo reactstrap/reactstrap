@@ -6,6 +6,21 @@
   margin-bottom: 0
 }
 
+.jumbotron .btn {
+  margin-right: 1rem;
+}
+
+.jumbotron .btn + .btn {
+  margin-right: 0;
+}
+
+@media (max-width: 543px) {
+  .jumbotron .btn {
+    display: block;
+    margin: 0 0 1rem 0;
+  }
+}
+
 .content {
   margin-top: 2rem;
 }
