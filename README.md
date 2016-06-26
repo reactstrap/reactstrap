@@ -82,6 +82,7 @@ This library contains the following components:
  - [Nav](https://reactstrap.github.io/components/navs/)
  - [Navbar](https://reactstrap.github.io/components/navbar/)
  - [Layout](https://reactstrap.github.io/components/layout/)
+ - [Tables](https://reactstrap.github.io/components/tables/)
 
 ## Development
 
