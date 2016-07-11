@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "React Bootstrap 4 components compatible with React 0.14.x and 15.x",
   "main": "lib/index.js",
   "scripts": {
@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/reactstrap/reactstrap#readme",
   "dependencies": {
+    "babel-cli": "^6.10.1",
     "classnames": "^2.2.3",
     "lodash.isfunction": "^3.0.8",
     "lodash.omit": "^4.2.0",
