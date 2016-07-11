@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import omit from 'lodash.omit';
 
 const propTypes = {
   baseClass: PropTypes.string,
@@ -12,7 +13,8 @@ const propTypes = {
   transitionAppear: PropTypes.bool,
   transitionEnter: PropTypes.bool,
   transitionLeave: PropTypes.bool,
-  onLeave: PropTypes.func
+  onLeave: PropTypes.func,
+  onEnter: PropTypes.func
 };
 
 const defaultProps = {
@@ -98,13 +100,13 @@ class Fade extends React.Component {
   }
 
   render() {
-    let {
+    const {
       baseClass,
       baseClassIn,
       className,
-      tag: Tag,
-      ...attributes
+      tag: Tag
     } = this.props;
+    const attributes = omit(this.props, Object.keys(propTypes));
 
     const classes = classNames(
       className,

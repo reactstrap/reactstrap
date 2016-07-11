@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
 import DropdownMenu from './DropdownMenu';
-import DropdownToggle from './DropdownToggle';
 
 const propTypes = {
   disabled: PropTypes.bool,
@@ -13,7 +12,9 @@ const propTypes = {
   isOpen: PropTypes.bool,
   tag: PropTypes.string,
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  toggle: PropTypes.func
+  toggle: PropTypes.func,
+  children: PropTypes.node,
+  className: PropTypes.any
 };
 
 const defaultProps = {
@@ -85,7 +86,7 @@ class Dropdown extends React.Component {
       hTargetAttach = 'right';
     }
 
-    if (childProps.dropup) {
+    if (this.props.dropup) {
       vElementAttach = 'bottom';
       vTargetAttach = 'top';
     }
@@ -138,15 +139,14 @@ class Dropdown extends React.Component {
   }
 
   renderChildren() {
-    let props = omit(this.props, ['children', 'className', 'id', 'tag']);
-    props.toggle = this.toggle;
+    const { tether, children, ...attrs } = this.props;
+    attrs.toggle = this.toggle;
 
-    return React.Children.map(React.Children.toArray(this.props.children), (child) => {
-      if (props.tether && child.type === DropdownMenu) {
+    return React.Children.map(React.Children.toArray(children), (child) => {
+      if (tether && child.type === DropdownMenu) {
         let tetherConfig = this.getTetherConfig(child.props);
-
         return (
-          <TetherContent {...props} tether={tetherConfig}>{child}</TetherContent>
+          <TetherContent {...attrs} tether={tetherConfig}>{child}</TetherContent>
         );
       }
 
@@ -159,23 +159,26 @@ class Dropdown extends React.Component {
       className,
       dropup,
       group,
-      'tag': Tag,
+      tag: Tag,
+      isOpen,
       ...attributes
-    } = omit(this.props, ['children', 'isOpen']);
+    } = omit(this.props, ['toggle', 'tether']);
 
     const classes = classNames(
       className,
       {
         'btn-group': group,
         dropdown: !group,
-        open: this.props.isOpen,
+        open: isOpen,
         dropup: dropup
       }
     );
 
     return (
-      <Tag {...attributes}
-        className={classes}>
+      <Tag
+        {...attributes}
+        className={classes}
+      >
         {this.renderChildren()}
       </Tag>
     );

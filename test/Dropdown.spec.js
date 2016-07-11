@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, TetherContent } from 'reactstrap';
 
 
 describe('Dropdown', () => {
@@ -106,7 +106,7 @@ describe('Dropdown', () => {
       expect(Dropdown.prototype.handleProps.calls.count()).toBe(1);
       expect(instance.props.isOpen).toBe(false);
 
-      wrapper.setProps({ foo: 'bar' });
+      wrapper.setProps({ 'data-foo': 'bar' });
 
       expect(Dropdown.prototype.componentDidUpdate.calls.count()).toBe(1);
       expect(Dropdown.prototype.handleProps.calls.count()).toBe(1);
@@ -145,13 +145,29 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle} tether>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right dropup>
+          <DropdownMenu right>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       );
 
       expect(Dropdown.prototype.getTetherConfig).toHaveBeenCalled();
+      wrapper.unmount();
+    });
+
+    it('should apply dropup tether values', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle} tether dropup>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.find(TetherContent).props().tether.attachment).toBe('bottom right');
+      expect(wrapper.find(TetherContent).props().tether.targetAttachment).toBe('top right');
       wrapper.unmount();
     });
   });
@@ -165,7 +181,7 @@ describe('Dropdown', () => {
       mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right dropup>
+          <DropdownMenu right>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -188,7 +204,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown id="test" isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right dropup>
+          <DropdownMenu right>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>, { attachTo: element });
@@ -212,9 +228,9 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right dropup>
+          <DropdownMenu right>
             <DropdownItem>Test</DropdownItem>
-            <DropdownItem id="divider" divider/>
+            <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>, { attachTo: element });
 

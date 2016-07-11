@@ -82,7 +82,7 @@ class Components extends React.Component {
             <div className="docs-sidebar m-b-3">
               <h5>Components</h5>
               <Nav>
-                { this.state.navItems.map((item, i) => {
+                {this.state.navItems.map((item, i) => {
                   return <ComponentLink key={i} item={item} />;
                 })}
                 <NavItem>
@@ -91,7 +91,9 @@ class Components extends React.Component {
               </Nav>
             </div>
           </Col>
-          <Col md={{ size: 9, pull: 3 }} {...this.props}/>
+          <Col md={{ size: 9, pull: 3 }}>
+            {this.props.children}
+          </Col>
         </Row>
       </Container>
     );
