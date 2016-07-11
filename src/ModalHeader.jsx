@@ -2,43 +2,43 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  toggle: PropTypes.func
+  toggle: PropTypes.func,
+  className: PropTypes.any,
+  children: PropTypes.node
 };
 
 const defaultProps = {};
 
-class ModalHeader extends React.Component {
-  render() {
-    let closeButton;
-    const {
-      className,
-      children,
-      toggle,
-      ...props } = this.props;
+const ModalHeader = (props) => {
+  let closeButton;
+  const {
+    className,
+    children,
+    toggle,
+    ...attributes } = props;
 
-    const classes = classNames(
-      className,
-      'modal-header'
-    );
+  const classes = classNames(
+    className,
+    'modal-header'
+  );
 
-    if (toggle) {
-      closeButton = (
-        <button type="button" onClick={toggle} className="close" dataDismiss="modal" ariaLabel="Close">
-          <span ariaHidden="true">{String.fromCharCode(215)}</span>
-        </button>
-      );
-    }
-
-    return (
-      <div {...props} className={classes}>
-        { closeButton }
-        <h4 className="modal-title">
-          { children }
-        </h4>
-      </div>
+  if (toggle) {
+    closeButton = (
+      <button type="button" onClick={toggle} className="close" aria-label="Close">
+        <span aria-hidden="true">{String.fromCharCode(215)}</span>
+      </button>
     );
   }
-}
+
+  return (
+    <div {...attributes} className={classes}>
+      {closeButton}
+      <h4 className="modal-title">
+        {children}
+      </h4>
+    </div>
+  );
+};
 
 ModalHeader.propTypes = propTypes;
 ModalHeader.defaultProps = defaultProps;

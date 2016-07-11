@@ -20,7 +20,8 @@ const propTypes = {
   sm: columnProps,
   md: columnProps,
   lg: columnProps,
-  xl: columnProps
+  xl: columnProps,
+  className: PropTypes.node
 };
 
 const defaultProps = {
@@ -28,10 +29,15 @@ const defaultProps = {
 };
 
 const Col = (props) => {
-  let colClasses = [];
+  const {
+    className,
+    ...attributes
+  } = props;
+  const colClasses = [];
 
   colSizes.forEach(colSize => {
-    let columnProp = props[colSize];
+    const columnProp = props[colSize];
+    delete attributes[colSize];
 
     if (!columnProp) {
       return;
@@ -47,18 +53,13 @@ const Col = (props) => {
     }
   });
 
-  const {
-    className,
-    ...attributes
-  } = props;
-
   const classes = classNames(
     className,
     colClasses
   );
 
   return (
-    <div {...attributes} className={classes}/>
+    <div {...attributes} className={classes} />
   );
 };
 

@@ -1,15 +1,16 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import omit from 'lodash.omit';
 import isFunction from 'lodash.isfunction';
 import Tether from 'tether';
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   arrow: PropTypes.string,
   disabled: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
-  tether: PropTypes.object.isRequired
+  tether: PropTypes.object.isRequired,
+  style: PropTypes.node
 };
 
 const defaultProps = {
@@ -119,15 +120,11 @@ class TetherContent extends React.Component {
   }
 
   renderChildren() {
-    const props = omit(this.props, 'children');
+    const { children, style } = this.props;
     return React.cloneElement(
-      this.props.children,
+      children,
       {
-        ...props,
-        handleDocumentClick: this.handleDocumentClick,
-        isOpen: this.props.isOpen,
-        toggle: this.toggle,
-        style: { position: 'relative', ...this.props.style }
+        style: { position: 'relative', ...style }
       }
     );
   }
