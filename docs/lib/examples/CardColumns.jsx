@@ -25,7 +25,7 @@ const Example = (props) => {
           <Button>Button</Button>
         </CardBlock>
       </Card>
-      <Card block inverse style={{ 'background-color': '#333', 'border-color': '#333' }}>
+      <Card block inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
         <CardTitle>Special Title Treatment</CardTitle>
         <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
         <Button>Button</Button>
