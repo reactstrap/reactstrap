@@ -41,6 +41,7 @@ import ModalFooter from './ModalFooter';
 import TetherContent from './TetherContent';
 import Tooltip from './Tooltip';
 import Table from './Table';
+import ListGroup from './ListGroup';
 
 export {
   Container,
@@ -85,5 +86,6 @@ export {
   ModalFooter,
   TetherContent,
   Tooltip,
-  Table
+  Table,
+  ListGroup
 };
