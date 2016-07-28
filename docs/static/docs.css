@@ -308,3 +308,9 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
+
+code .tag {
+  font-size: inherit;
+  padding: 0;
+  display: inherit;
+}
