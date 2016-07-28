@@ -1,3 +1,24 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/reactstrap/reactstrap/compare/1.6.1...v2.0.0) (2016-07-28)
+
+
+### Features
+
+* **bootstrap:** update for v4 alpha 3 ([f617dc5](https://github.com/reactstrap/reactstrap/commit/f617dc5))
+* **Col:** Update Col component with alpha 3 changes ([b62ee01](https://github.com/reactstrap/reactstrap/commit/b62ee01))
+* **outline:** Make outline a separate prop for Card & Button ([#62](https://github.com/reactstrap/reactstrap/issues/62)) ([c65e952](https://github.com/reactstrap/reactstrap/commit/c65e952))
+
+
+### BREAKING CHANGES
+
+* bootstrap: Components were updated for v4 alpha 3
+
+ - Button outline class change from `.{variant}-outline` to `.outline-{variant}`.
+ - label is now tag and all of the label variants are now tag variants.
+ - Cards now have an outline variant.
+
+
+
 <a name="1.6.1"></a>
 ## [1.6.1](https://github.com/reactstrap/reactstrap/compare/1.6.0...v1.6.1) (2016-07-16)
 
