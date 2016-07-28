@@ -6,6 +6,7 @@ const propTypes = {
   inverse: PropTypes.bool,
   color: PropTypes.string,
   block: PropTypes.bool,
+  outline: PropTypes.bool,
   className: PropTypes.any
 };
 
@@ -19,6 +20,7 @@ const Card = (props) => {
     color,
     block,
     inverse,
+    outline,
     tag: Tag,
     ...attributes
   } = props;
@@ -27,7 +29,7 @@ const Card = (props) => {
     'card',
     inverse ? 'card-inverse' : false,
     block ? 'card-block' : false,
-    color ? 'card-' + color : false
+    color ? `card${outline ? '-outline' : ''}-${color}` : false
   );
 
   return (

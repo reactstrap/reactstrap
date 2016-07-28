@@ -20,6 +20,24 @@ describe('Card', () => {
     expect(wrapper.hasClass('card-inverse')).toBe(true);
   });
 
+  it('should render with "outline" class when a color is provided', () => {
+    const wrapper = shallow(<Card outline block color="primary">Yo!</Card>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('card')).toBe(true);
+    expect(wrapper.hasClass('card-block')).toBe(true);
+    expect(wrapper.hasClass('card-outline-primary')).toBe(true);
+  });
+
+  it('should not render with "outline" class when a color is not provided (no default)', () => {
+    const wrapper = shallow(<Card outline block>Yo!</Card>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('card')).toBe(true);
+    expect(wrapper.hasClass('card-block')).toBe(true);
+    expect(wrapper.html()).not.toContain('card-outline');
+  });
+
   it('should render additional classes', () => {
     const wrapper = shallow(<Card className="other">Yo!</Card>);
 
