@@ -42,8 +42,8 @@ describe('Col', () => {
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
     expect(wrapper.hasClass('col-xs-12')).toBe(true);
-    expect(wrapper.hasClass('col-sm-push-2')).toBe(true);
-    expect(wrapper.hasClass('col-sm-pull-2')).toBe(true);
-    expect(wrapper.hasClass('col-sm-offset-2')).toBe(true);
+    expect(wrapper.hasClass('push-sm-2')).toBe(true);
+    expect(wrapper.hasClass('pull-sm-2')).toBe(true);
+    expect(wrapper.hasClass('offset-sm-2')).toBe(true);
   });
 });
