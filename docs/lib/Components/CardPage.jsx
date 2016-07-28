@@ -11,6 +11,7 @@ import CardHeaderFooterExample from '../examples/CardHeaderFooter';
 import CardImageCapsExample from '../examples/CardImageCaps';
 import CardImageOverlayExample from '../examples/CardImageOverlay';
 import CardBackgroundsExample from '../examples/CardBackgrounds';
+import CardOutlineExample from '../examples/CardOutline';
 import CardGroupsExample from '../examples/CardGroups';
 import CardDecksExample from '../examples/CardDecks';
 import CardColumnsExample from '../examples/CardColumns';
@@ -23,6 +24,7 @@ const CardHeaderFooterExampleSource = require('!!raw!../examples/CardHeaderFoote
 const CardImageCapsExampleSource = require('!!raw!../examples/CardImageCaps.jsx');
 const CardImageOverlayExampleSource = require('!!raw!../examples/CardImageOverlay.jsx');
 const CardBackgroundsExampleSource = require('!!raw!../examples/CardBackgrounds.jsx');
+const CardOutlineExampleSource = require('!!raw!../examples/CardOutline.jsx');
 const CardGroupsExampleSource = require('!!raw!../examples/CardGroups.jsx');
 const CardDecksExampleSource = require('!!raw!../examples/CardDecks.jsx');
 const CardColumnsExampleSource = require('!!raw!../examples/CardColumns.jsx');
@@ -193,6 +195,15 @@ CardTitle.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
             {CardBackgroundsExampleSource}
+          </PrismCode>
+        </pre>
+        <h3>Outline variants</h3>
+        <div className="docs-example">
+          <CardOutlineExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {CardOutlineExampleSource}
           </PrismCode>
         </pre>
         <h3>Groups</h3>

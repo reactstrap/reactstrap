@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'span'
 };
 
-const Label = (props) => {
+const Tag = (props) => {
   const {
     className,
     color,
@@ -24,9 +24,9 @@ const Label = (props) => {
 
   const classes = classNames(
     className,
-    'label',
-    'label-' + color,
-    pill ? 'label-pill' : false
+    'tag',
+    'tag-' + color,
+    pill ? 'tag-pill' : false
   );
 
   return (
@@ -34,7 +34,7 @@ const Label = (props) => {
   );
 };
 
-Label.propTypes = propTypes;
-Label.defaultProps = defaultProps;
+Tag.propTypes = propTypes;
+Tag.defaultProps = defaultProps;
 
-export default Label;
+export default Tag;

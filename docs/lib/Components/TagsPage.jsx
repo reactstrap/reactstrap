@@ -3,47 +3,47 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
-import LabelExample from '../examples/Label';
-const LabelExampleSource = require('!!raw!../examples/Label.jsx');
+import TagExample from '../examples/Tag';
+const TagExampleSource = require('!!raw!../examples/Tag.jsx');
 
-import LabelPillsExample from '../examples/LabelPills';
-const LabelPillsExampleSource = require('!!raw!../examples/LabelPills.jsx');
+import TagPillsExample from '../examples/TagPills';
+const TagPillsExampleSource = require('!!raw!../examples/TagPills.jsx');
 
-import LabelVariationsExample from '../examples/LabelVariations';
-const LabelVariationsExampleSource = require('!!raw!../examples/LabelVariations.jsx');
+import TagVariationsExample from '../examples/TagVariations';
+const TagVariationsExampleSource = require('!!raw!../examples/TagVariations.jsx');
 
-export default class LabelsPage extends React.Component {
+export default class TagsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Labels"/>
-        <h3>Labels</h3>
+        <Helmet title="Tags"/>
+        <h3>Tags</h3>
         <hr/>
         <p>Scale to parent</p>
         <div className="docs-example">
-          <LabelExample/>
+          <TagExample/>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {LabelExampleSource}
+            {TagExampleSource}
           </PrismCode>
         </pre>
         <h3>Variations</h3>
         <div className="docs-example">
-          <LabelVariationsExample/>
+          <TagVariationsExample/>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {LabelVariationsExampleSource}
+            {TagVariationsExampleSource}
           </PrismCode>
         </pre>
         <h3>Pills</h3>
         <div className="docs-example">
-          <LabelPillsExample/>
+          <TagPillsExample/>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {LabelPillsExampleSource}
+            {TagPillsExampleSource}
           </PrismCode>
         </pre>
       </div>

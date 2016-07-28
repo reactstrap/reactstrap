@@ -10,7 +10,7 @@ import ButtonDropdownPage from './Components/ButtonDropdownPage';
 import DropdownsPage from './Components/DropdownsPage';
 import PopoversPage from './Components/PopoversPage';
 import TooltipsPage from './Components/TooltipsPage';
-import LabelsPage from './Components/LabelsPage';
+import TagsPage from './Components/TagsPage';
 import ModalsPage from './Components/ModalsPage';
 import CardPage from './Components/CardPage';
 import TablesPage from './Components/TablesPage';
@@ -29,7 +29,7 @@ const routes = (
       <Route path="dropdowns/" component={ DropdownsPage } />
       <Route path="popovers/" component={ PopoversPage } />
       <Route path="tooltips/" component={ TooltipsPage } />
-      <Route path="labels/" component={ LabelsPage } />
+      <Route path="tags/" component={ TagsPage } />
       <Route path="card/" component={ CardPage } />
       <Route path="tables/" component={ TablesPage } />
       <Route path="modals/" component={ ModalsPage } />

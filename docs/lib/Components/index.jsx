@@ -36,8 +36,8 @@ class Components extends React.Component {
           to: '/components/dropdowns/'
         },
         {
-          name: 'Labels',
-          to: '/components/labels/'
+          name: 'Tags',
+          to: '/components/tags/'
         },
         {
           name: 'Card',
