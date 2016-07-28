@@ -6,6 +6,7 @@ const propTypes = {
   block: PropTypes.bool,
   color: PropTypes.string,
   disabled: PropTypes.bool,
+  outline: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
   size: PropTypes.string
@@ -39,6 +40,7 @@ class Button extends React.Component {
       block,
       className,
       color,
+      outline,
       size,
       tag: Tag,
       ...attributes
@@ -47,8 +49,8 @@ class Button extends React.Component {
     const classes = classNames(
       className,
       'btn',
-      'btn-' + color,
-      size ? 'btn-' + size : false,
+      `btn${outline ? '-outline' : ''}-${color}`,
+      size ? `btn-${size}` : false,
       block ? 'btn-block' : false,
       { active, disabled: this.props.disabled }
     );

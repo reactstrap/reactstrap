@@ -37,6 +37,18 @@ describe('Button', () => {
     expect(wrapper.hasClass('btn-danger')).toBe(true);
   });
 
+  it('should render buttons with outline variant', () => {
+    const wrapper = shallow(<Button outline>Default Button</Button>);
+
+    expect(wrapper.hasClass('btn-outline-primary')).toBe(true);
+  });
+
+  it('should render buttons with outline variant with different colors', () => {
+    const wrapper = shallow(<Button outline color="info">Default Button</Button>);
+
+    expect(wrapper.hasClass('btn-outline-info')).toBe(true);
+  });
+
   it('should render buttons at different sizes', () => {
     const small = shallow(<Button size="sm">Small Button</Button>);
     const large = shallow(<Button size="lg">Large Button</Button>);

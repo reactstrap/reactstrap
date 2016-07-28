@@ -21,7 +21,7 @@ export default () => {
                 Easy to use React Bootstrap 4 components
               </p>
               <p>
-                <Button color="danger-outline" href="https://github.com/reactstrap/reactstrap">View on Github</Button>
+                <Button outline color="danger" href="https://github.com/reactstrap/reactstrap">View on Github</Button>
                 <Button color="danger" tag={Link} to="/components/">View Components</Button>
               </p>
             </Col>
