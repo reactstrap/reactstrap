@@ -44,9 +44,9 @@ const Col = (props) => {
     } else if (columnProp.size) {
       colClasses.push(classNames({
         [`col-${colSize}-${columnProp.size}`]: columnProp.size,
-        [`col-${colSize}-push-${columnProp.push}`]: columnProp.push,
-        [`col-${colSize}-pull-${columnProp.pull}`]: columnProp.pull,
-        [`col-${colSize}-offset-${columnProp.offset}`]: columnProp.offset
+        [`push-${colSize}-${columnProp.push}`]: columnProp.push,
+        [`pull-${colSize}-${columnProp.pull}`]: columnProp.pull,
+        [`offset-${colSize}-${columnProp.offset}`]: columnProp.offset
       }));
     } else {
       colClasses.push(`col-${colSize}-${columnProp}`);
