@@ -36,6 +36,10 @@ class Components extends React.Component {
           to: '/components/dropdowns/'
         },
         {
+          name: 'Form',
+          to: '/components/form/'
+        },
+        {
           name: 'Tags',
           to: '/components/tags/'
         },

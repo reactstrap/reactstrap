@@ -20,6 +20,7 @@ var paths = [
   '/components/button-toolbar/',
   '/components/button-dropdown/',
   '/components/dropdowns/',
+  '/components/form/',
   '/components/popovers/',
   '/components/tooltips/',
   '/components/modals/',
