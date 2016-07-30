@@ -23,7 +23,7 @@ var paths = [
   '/components/popovers/',
   '/components/tooltips/',
   '/components/modals/',
-  '/components/labels/',
+  '/components/tags/',
   '/components/card/',
   '/components/tables/',
   '/404.html'
