@@ -21,7 +21,7 @@ export default class Example extends React.Component {
     return (
       <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <Button id="caret" color={this.props.color}>{this.props.text}</Button>
-        <DropdownToggle caret>
+        <DropdownToggle caret split>
           <Button color={this.props.color}><span className="sr-only">Toggle Dropdown</span></Button>
         </DropdownToggle>
         <DropdownMenu>

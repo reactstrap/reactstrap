@@ -10,6 +10,7 @@ const propTypes = {
   onClick: PropTypes.func,
   'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool,
+  split: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
 
@@ -46,12 +47,13 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, children, caret, color, tag: Tag, ...props } = this.props;
+    const { className, children, caret, color, split, tag: Tag, ...props } = this.props;
     const classes = classNames(
       className,
       {
         'dropdown-toggle': caret,
-        active: this.context.isOpen
+        'dropdown-toggle-split': split,
+        active: this.context.isOpen,
       }
     );
     const buttonClasses = classNames(
