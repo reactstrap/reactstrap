@@ -20,11 +20,18 @@ const CardImg = (props) => {
     tag: Tag,
     ...attributes
   } = props;
+
+  let cardImgClassName = 'card-img';
+  if (top) {
+    cardImgClassName = 'card-img-top';
+  }
+  if (bottom) {
+    cardImgClassName = 'card-img-bottom';
+  }
+
   const classes = classNames(
     className,
-    'card-img',
-    top ? 'card-img-top' : false,
-    bottom ? 'card-img-bottom' : false
+    cardImgClassName
   );
 
   return (
