@@ -9,7 +9,7 @@ Easy to use React Bootstrap 4 components compatible with React 0.14.x and 15.x.
 
 ## Installation
 
-Install `reactstrap` and peer dependencies via NPM
+Install `reactstrap` and __peer dependencies__ via NPM
 
 ```sh
 npm install --save reactstrap react-addons-transition-group react react-dom
@@ -73,7 +73,7 @@ This library contains the following components:
  - [ButtonGroup](https://reactstrap.github.io/components/button-group/)
  - [ButtonToolbar](https://reactstrap.github.io/components/button-group/)
  - [Dropdown](https://reactstrap.github.io/components/dropdowns/)
- - [Labels](https://reactstrap.github.io/components/labels/)
+ - [Tags](https://reactstrap.github.io/components/tags/)
  - [Card](https://reactstrap.github.io/components/card/)
  - [Popover](https://reactstrap.github.io/components/popovers/)
  - [Modal](https://reactstrap.github.io/components/modals/)
@@ -83,6 +83,8 @@ This library contains the following components:
  - [Navbar](https://reactstrap.github.io/components/navbar/)
  - [Layout](https://reactstrap.github.io/components/layout/)
  - [Tables](https://reactstrap.github.io/components/tables/)
+
+## [Contributing](CONTRIBUTING.md)
 
 ## Development
 
