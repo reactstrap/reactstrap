@@ -4,6 +4,7 @@ import Home from './Home';
 import LayoutPage from './Components/LayoutPage';
 import NavsPage from './Components/NavsPage';
 import NavbarPage from './Components/NavbarPage';
+import BreadcrumbsPage from './Components/BreadcrumbsPage';
 import ButtonsPage from './Components/ButtonsPage';
 import ButtonGroupPage from './Components/ButtonGroupPage';
 import ButtonDropdownPage from './Components/ButtonDropdownPage';
@@ -24,6 +25,7 @@ const routes = (
     <IndexRoute component={ Home } />
     <Route path="/components/" component={Components}>
       <IndexRedirect to="buttons/" />
+      <Route path="breadcrumbs/" component={ BreadcrumbsPage } />
       <Route path="buttons/" component={ ButtonsPage } />
       <Route path="button-group/" component={ ButtonGroupPage } />
       <Route path="button-dropdown/" component={ ButtonDropdownPage } />

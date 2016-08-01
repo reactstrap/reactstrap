@@ -8,6 +8,8 @@ import Nav from './Nav';
 import NavItem from './NavItem';
 import NavDropdown from './NavDropdown';
 import NavLink from './NavLink';
+import Breadcrumb from './Breadcrumb';
+import BreadcrumbItem from './BreadcrumbItem';
 import Button from './Button';
 import ButtonDropdown from './ButtonDropdown';
 import ButtonGroup from './ButtonGroup';
@@ -60,6 +62,8 @@ export {
   NavItem,
   NavDropdown,
   NavLink,
+  Breadcrumb,
+  BreadcrumbItem,
   Button,
   ButtonDropdown,
   ButtonGroup,
