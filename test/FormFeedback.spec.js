@@ -16,7 +16,7 @@ describe('FormFeedback', () => {
   });
 
   it('should render with "form-control-feedback" class', () => {
-    const wrapper = shallow(<FormFeedback inline>Yo!</FormFeedback>);
+    const wrapper = shallow(<FormFeedback>Yo!</FormFeedback>);
 
     expect(wrapper.hasClass('form-control-feedback')).toBe(true);
   });
