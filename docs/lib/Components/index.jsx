@@ -36,6 +36,10 @@ class Components extends React.Component {
           to: '/components/dropdowns/'
         },
         {
+          name: 'Breadscrumbs',
+          to: '/components/breadcrumbs/'
+        },
+        {
           name: 'Tags',
           to: '/components/tags/'
         },
