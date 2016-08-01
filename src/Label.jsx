@@ -36,7 +36,7 @@ const defaultProps = {
   tag: 'label',
 };
 
-const Form = (props) => {
+const Label = (props) => {
   const {
     className,
     hidden,
@@ -76,11 +76,11 @@ const Form = (props) => {
   );
 
   return (
-    <Tag {...attributes} className={classes} htmlFor={htmlFor} />
+    <Tag htmlFor={htmlFor} {...attributes} className={classes} />
   );
 };
 
-Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
+Label.propTypes = propTypes;
+Label.defaultProps = defaultProps;
 
-export default Form;
+export default Label;

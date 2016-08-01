@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'small',
 };
 
-const Form = (props) => {
+const FormText = (props) => {
   const {
     className,
     inline,
@@ -33,7 +33,7 @@ const Form = (props) => {
   );
 };
 
-Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
+FormText.propTypes = propTypes;
+FormText.defaultProps = defaultProps;
 
-export default Form;
+export default FormText;

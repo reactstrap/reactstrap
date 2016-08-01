@@ -15,7 +15,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const Form = (props) => {
+const FormGroup = (props) => {
   const {
     className,
     row,
@@ -39,7 +39,7 @@ const Form = (props) => {
   );
 };
 
-Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
+FormGroup.propTypes = propTypes;
+FormGroup.defaultProps = defaultProps;
 
-export default Form;
+export default FormGroup;

@@ -16,7 +16,7 @@ const defaultProps = {
   type: 'text',
 };
 
-const Form = (props) => {
+const Input = (props) => {
   const {
     className,
     type,
@@ -52,7 +52,7 @@ const Form = (props) => {
     formControlClass
   );
 
-  if (!staticInput && !selectInput) {
+  if (Tag === 'input') {
     attributes.type = type;
   }
 
@@ -61,7 +61,7 @@ const Form = (props) => {
   );
 };
 
-Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
 
-export default Form;
+export default Input;

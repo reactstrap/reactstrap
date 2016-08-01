@@ -11,7 +11,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const Form = (props) => {
+const FormFeedback = (props) => {
   const {
     className,
     tag: Tag,
@@ -28,7 +28,7 @@ const Form = (props) => {
   );
 };
 
-Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
+FormFeedback.propTypes = propTypes;
+FormFeedback.defaultProps = defaultProps;
 
-export default Form;
+export default FormFeedback;
