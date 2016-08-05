@@ -2,31 +2,27 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    className: PropTypes.any
 };
 
 const defaultProps = {
-  tag: 'div'
+    tag: 'div'
 };
 
 const CardHeader = (props) => {
-  const {
-    className,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = classNames(
-    className,
-    'card-header'
-  );
+    const {className, tag: Tag, ...attributes} = props;
+    const classes = classNames(
+        className,
+        'card-header'
+    );
 
-  return (
-    <Tag {...attributes} className={classes} />
-  );
+    return (
+        <Tag {...attributes} className={classes} />
+        );
 };
 
-CardHeader.propTypes = propTypes;
+CardHeader.PropTypes = propTypes;
 CardHeader.defaultProps = defaultProps;
 
 export default CardHeader;

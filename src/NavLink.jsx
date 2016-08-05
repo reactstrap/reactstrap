@@ -2,60 +2,55 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  disabled: PropTypes.bool,
-  active: PropTypes.bool
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    disabled: PropTypes.bool,
+    active: PropTypes.bool
 };
 
 const defaultProps = {
-  tag: 'a'
+    tag: 'a'
 };
 
 class NavLink extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(e) {
-    if (this.props.disabled) {
-      return e.preventDefault();
+        this.onClick = this.onClick.bind(this);
     }
 
-    if (this.props.href === '#') {
-      e.preventDefault();
+    onClick(e) {
+        if (this.props.disabled) {
+            return e.preventDefault();
+        }
+
+        if (this.props.href === '#') {
+            e.preventDefault();
+        }
+
+        if (this.props.onClick) {
+            this.props.onClick(e);
+        }
     }
 
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    render() {
+        let {className, active, tag: Tag, ...attributes} = this.props;
+
+        const classes = classNames(
+            className,
+            'nav-link',
+            {
+                'disabled': attributes.disabled,
+                'active': active
+            }
+        );
+
+        return (
+            <Tag {...attributes} onClick={this.onClick} className={classes} />
+            );
     }
-  }
-
-  render() {
-    let {
-      className,
-      active,
-      tag: Tag,
-      ...attributes
-    } = this.props;
-
-    const classes = classNames(
-      className,
-      'nav-link',
-      {
-        'disabled': attributes.disabled,
-        'active': active
-      }
-    );
-
-    return (
-      <Tag {...attributes} onClick={this.onClick} className={classes} />
-    );
-  }
 }
 
-NavLink.propTypes = propTypes;
+NavLink.PropTypes = propTypes;
 NavLink.defaultProps = defaultProps;
 
 export default NavLink;

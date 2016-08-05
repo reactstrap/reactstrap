@@ -2,31 +2,27 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
 
 const defaultProps = {
-  tag: 'li'
+    tag: 'li'
 };
 
 const NavItem = (props) => {
-  const {
-    className,
-    tag: Tag,
-    ...attributes
-  } = props;
+    const {className, tag: Tag, ...attributes} = props;
 
-  const classes = classNames(
-    className,
-    'nav-item'
-  );
+    const classes = classNames(
+        className,
+        'nav-item'
+    );
 
-  return (
-    <Tag {...attributes} className={classes}/>
-  );
+    return (
+        <Tag {...attributes} className={classes}/>
+        );
 };
 
-NavItem.propTypes = propTypes;
+NavItem.PropTypes = propTypes;
 NavItem.defaultProps = defaultProps;
 
 export default NavItem;

@@ -2,20 +2,20 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  className: PropTypes.string
+    className: PropTypes.string
 };
 
 const ModalBody = (props) => {
-  const classes = classNames(
-    props.className,
-    'modal-body'
-  );
+    const classes = classNames(
+        props.className,
+        'modal-body'
+    );
 
-  return (
-    <div {...props} className={classes} />
-  );
+    return (
+        <div {...props} className={classes} />
+        );
 };
 
-ModalBody.propTypes = propTypes;
+ModalBody.PropTypes = propTypes;
 
 export default ModalBody;

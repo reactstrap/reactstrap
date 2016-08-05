@@ -2,31 +2,27 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
 
 const defaultProps = {
-  tag: 'div'
+    tag: 'div'
 };
 
 const PopoverContent = (props) => {
-  const {
-    className,
-    tag: Tag,
-    ...attributes
-  } = props;
+    const {className, tag: Tag, ...attributes} = props;
 
-  const classes = classNames(
-    className,
-    'popover-content'
-  );
+    const classes = classNames(
+        className,
+        'popover-content'
+    );
 
-  return (
-    <Tag {...attributes} className={classes} />
-  );
+    return (
+        <Tag {...attributes} className={classes} />
+        );
 };
 
-PopoverContent.propTypes = propTypes;
+PopoverContent.PropTypes = propTypes;
 PopoverContent.defaultProps = defaultProps;
 
 export default PopoverContent;
