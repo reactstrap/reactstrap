@@ -2,31 +2,27 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    className: PropTypes.any
 };
 
 const defaultProps = {
-  tag: 'div'
+    tag: 'div'
 };
 
 const CardFooter = (props) => {
-  const {
-    className,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = classNames(
-    className,
-    'card-footer'
-  );
+    const {className, tag: Tag, ...attributes} = props;
+    const classes = classNames(
+        className,
+        'card-footer'
+    );
 
-  return (
-    <Tag {...attributes} className={classes} />
-  );
+    return (
+        <Tag {...attributes} className={classes} />
+        );
 };
 
-CardFooter.propTypes = propTypes;
+CardFooter.PropTypes = propTypes;
 CardFooter.defaultProps = defaultProps;
 
 export default CardFooter;
