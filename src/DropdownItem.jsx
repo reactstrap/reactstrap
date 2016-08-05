@@ -81,7 +81,7 @@ class DropdownItem extends React.Component {
   }
 }
 
-DropdownItem.propTypes = propTypes;
+DropdownItem.PropTypes = propTypes;
 DropdownItem.defaultProps = defaultProps;
 DropdownItem.contextTypes = contextTypes;
 

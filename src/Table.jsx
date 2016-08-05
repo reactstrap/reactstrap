@@ -53,7 +53,7 @@ const Table = (props) => {
   return table;
 };
 
-Table.propTypes = propTypes;
+Table.PropTypes = propTypes;
 Table.defaultProps = defaultProps;
 
 export default Table;

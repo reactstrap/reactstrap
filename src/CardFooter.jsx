@@ -26,7 +26,7 @@ const CardFooter = (props) => {
   );
 };
 
-CardFooter.propTypes = propTypes;
+CardFooter.PropTypes = propTypes;
 CardFooter.defaultProps = defaultProps;
 
 export default CardFooter;

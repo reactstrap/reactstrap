@@ -26,7 +26,7 @@ const NavbarBrand = (props) => {
   );
 }
 
-NavbarBrand.propTypes = propTypes;
+NavbarBrand.PropTypes = propTypes;
 NavbarBrand.defaultProps = defaultProps;
 
 export default NavbarBrand;

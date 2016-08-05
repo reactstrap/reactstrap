@@ -25,7 +25,7 @@ const Container = (props) => {
   );
 };
 
-Container.propTypes = propTypes;
+Container.PropTypes = propTypes;
 Container.defaultProps = defaultProps;
 
 export default Container;

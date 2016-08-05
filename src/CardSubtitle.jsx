@@ -26,7 +26,7 @@ const CardSubtitle = (props) => {
   );
 };
 
-CardSubtitle.propTypes = propTypes;
+CardSubtitle.PropTypes = propTypes;
 CardSubtitle.defaultProps = defaultProps;
 
 export default CardSubtitle;

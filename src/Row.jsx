@@ -26,7 +26,7 @@ const Row = (props) => {
   );
 };
 
-Row.propTypes = propTypes;
+Row.PropTypes = propTypes;
 Row.defaultProps = defaultProps;
 
 export default Row;

@@ -34,7 +34,7 @@ const Tag = (props) => {
   );
 };
 
-Tag.propTypes = propTypes;
+Tag.PropTypes = propTypes;
 Tag.defaultProps = defaultProps;
 
 export default Tag;

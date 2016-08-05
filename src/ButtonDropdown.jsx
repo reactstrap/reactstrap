@@ -11,6 +11,6 @@ const ButtonDropdown = (props) => {
   );
 };
 
-ButtonDropdown.propTypes = propTypes;
+ButtonDropdown.PropTypes = propTypes;
 
 export default ButtonDropdown;

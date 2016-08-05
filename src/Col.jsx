@@ -63,7 +63,7 @@ const Col = (props) => {
   );
 };
 
-Col.propTypes = propTypes;
+Col.PropTypes = propTypes;
 Col.defaultProps = defaultProps;
 
 export default Col;

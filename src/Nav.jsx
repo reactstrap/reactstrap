@@ -45,7 +45,7 @@ const Nav = (props) => {
   );
 };
 
-Nav.propTypes = propTypes;
+Nav.PropTypes = propTypes;
 Nav.defaultProps = defaultProps;
 
 export default Nav;

@@ -65,7 +65,7 @@ class Button extends React.Component {
   }
 }
 
-Button.propTypes = propTypes;
+Button.PropTypes = propTypes;
 Button.defaultProps = defaultProps;
 
 export default Button;

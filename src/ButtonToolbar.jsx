@@ -27,7 +27,7 @@ const ButtonToolbar = (props) => {
   );
 };
 
-ButtonToolbar.propTypes = propTypes;
+ButtonToolbar.PropTypes = propTypes;
 ButtonToolbar.defaultProps = defaultProps;
 
 export default ButtonToolbar;

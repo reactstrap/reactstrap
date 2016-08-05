@@ -28,7 +28,7 @@ const NavDropdown = (props) => {
   );
 };
 
-NavDropdown.propTypes = propTypes;
+NavDropdown.PropTypes = propTypes;
 NavDropdown.defaultProps = defaultProps;
 
 export default NavDropdown;

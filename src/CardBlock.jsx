@@ -26,7 +26,7 @@ const CardBlock = (props) => {
   );
 };
 
-CardBlock.propTypes = propTypes;
+CardBlock.PropTypes = propTypes;
 CardBlock.defaultProps = defaultProps;
 
 export default CardBlock;

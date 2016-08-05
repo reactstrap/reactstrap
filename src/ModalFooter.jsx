@@ -16,6 +16,6 @@ const ModalFooter = (props) => {
   );
 };
 
-ModalFooter.propTypes = propTypes;
+ModalFooter.PropTypes = propTypes;
 
 export default ModalFooter;

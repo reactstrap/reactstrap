@@ -26,7 +26,7 @@ const CardText = (props) => {
   );
 };
 
-CardText.propTypes = propTypes;
+CardText.PropTypes = propTypes;
 CardText.defaultProps = defaultProps;
 
 export default CardText;

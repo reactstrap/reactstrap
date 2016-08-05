@@ -134,7 +134,7 @@ class TetherContent extends React.Component {
   }
 }
 
-TetherContent.propTypes = propTypes;
+TetherContent.PropTypes = propTypes;
 TetherContent.defaultProps = defaultProps;
 
 export default TetherContent;
