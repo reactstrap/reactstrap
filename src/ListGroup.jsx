@@ -29,7 +29,7 @@ const ListGroup = (props) => {
   );
 };
 
-ListGroup.propTypes = propTypes;
+ListGroup.PropTypes = propTypes;
 ListGroup.defaultProps = defaultProps;
 
 export default ListGroup;

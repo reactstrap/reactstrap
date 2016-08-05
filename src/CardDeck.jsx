@@ -37,7 +37,7 @@ const CardDeck = (props) => {
   );
 };
 
-CardDeck.propTypes = propTypes;
+CardDeck.PropTypes = propTypes;
 CardDeck.defaultProps = defaultProps;
 
 export default CardDeck;

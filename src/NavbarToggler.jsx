@@ -31,7 +31,7 @@ const NavbarToggler = (props) => {
   );
 };
 
-NavbarToggler.propTypes = propTypes;
+NavbarToggler.PropTypes = propTypes;
 NavbarToggler.defaultProps = defaultProps;
 
 export default NavbarToggler;

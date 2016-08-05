@@ -185,7 +185,7 @@ class Dropdown extends React.Component {
   }
 }
 
-Dropdown.propTypes = propTypes;
+Dropdown.PropTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
 Dropdown.childContextTypes = childContextTypes;
 

@@ -26,7 +26,7 @@ const CardLink = (props) => {
   );
 };
 
-CardLink.propTypes = propTypes;
+CardLink.PropTypes = propTypes;
 CardLink.defaultProps = defaultProps;
 
 export default CardLink;

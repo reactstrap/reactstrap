@@ -32,7 +32,7 @@ const ButtonGroup = (props) => {
   );
 };
 
-ButtonGroup.propTypes = propTypes;
+ButtonGroup.PropTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;
 
 export default ButtonGroup;

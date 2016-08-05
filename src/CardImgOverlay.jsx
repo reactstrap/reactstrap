@@ -26,7 +26,7 @@ const CardImgOverlay = (props) => {
   );
 };
 
-CardImgOverlay.propTypes = propTypes;
+CardImgOverlay.PropTypes = propTypes;
 CardImgOverlay.defaultProps = defaultProps;
 
 export default CardImgOverlay;

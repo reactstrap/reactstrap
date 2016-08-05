@@ -23,7 +23,7 @@ const DropdownMenu = (props, context) => {
   );
 };
 
-DropdownMenu.propTypes = propTypes;
+DropdownMenu.PropTypes = propTypes;
 DropdownMenu.contextTypes = contextTypes;
 
 export default DropdownMenu;

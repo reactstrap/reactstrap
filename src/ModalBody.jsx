@@ -16,6 +16,6 @@ const ModalBody = (props) => {
   );
 };
 
-ModalBody.propTypes = propTypes;
+ModalBody.PropTypes = propTypes;
 
 export default ModalBody;

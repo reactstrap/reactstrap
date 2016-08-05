@@ -32,7 +32,7 @@ const CardImg = (props) => {
   );
 };
 
-CardImg.propTypes = propTypes;
+CardImg.PropTypes = propTypes;
 CardImg.defaultProps = defaultProps;
 
 export default CardImg;

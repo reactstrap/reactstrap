@@ -26,7 +26,7 @@ const NavItem = (props) => {
   );
 };
 
-NavItem.propTypes = propTypes;
+NavItem.PropTypes = propTypes;
 NavItem.defaultProps = defaultProps;
 
 export default NavItem;

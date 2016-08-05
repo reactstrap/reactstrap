@@ -26,7 +26,7 @@ const PopoverContent = (props) => {
   );
 };
 
-PopoverContent.propTypes = propTypes;
+PopoverContent.PropTypes = propTypes;
 PopoverContent.defaultProps = defaultProps;
 
 export default PopoverContent;

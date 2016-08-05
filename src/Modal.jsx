@@ -178,7 +178,7 @@ class Modal extends React.Component {
   }
 }
 
-Modal.propTypes = propTypes;
+Modal.PropTypes = propTypes;
 Modal.defaultProps = defaultProps;
 
 export default Modal;

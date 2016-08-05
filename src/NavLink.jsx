@@ -55,7 +55,7 @@ class NavLink extends React.Component {
   }
 }
 
-NavLink.propTypes = propTypes;
+NavLink.PropTypes = propTypes;
 NavLink.defaultProps = defaultProps;
 
 export default NavLink;

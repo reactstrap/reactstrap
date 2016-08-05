@@ -129,7 +129,7 @@ class Tooltip extends React.Component {
   }
 }
 
-Tooltip.propTypes = propTypes;
+Tooltip.PropTypes = propTypes;
 Tooltip.defaultProps = defaultProps;
 
 export default Tooltip;

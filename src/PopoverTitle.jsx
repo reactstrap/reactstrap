@@ -26,7 +26,7 @@ const PopoverTitle = (props) => {
   );
 };
 
-PopoverTitle.propTypes = propTypes;
+PopoverTitle.PropTypes = propTypes;
 PopoverTitle.defaultProps = defaultProps;
 
 export default PopoverTitle;

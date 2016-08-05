@@ -79,7 +79,7 @@ class DropdownToggle extends React.Component {
   }
 }
 
-DropdownToggle.propTypes = propTypes;
+DropdownToggle.PropTypes = propTypes;
 DropdownToggle.defaultProps = defaultProps;
 DropdownToggle.contextTypes = contextTypes;
 

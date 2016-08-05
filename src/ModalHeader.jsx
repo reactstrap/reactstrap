@@ -40,7 +40,7 @@ const ModalHeader = (props) => {
   );
 };
 
-ModalHeader.propTypes = propTypes;
+ModalHeader.PropTypes = propTypes;
 ModalHeader.defaultProps = defaultProps;
 
 export default ModalHeader;

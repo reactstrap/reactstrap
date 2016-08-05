@@ -120,7 +120,7 @@ class Fade extends React.Component {
   }
 }
 
-Fade.propTypes = propTypes;
+Fade.PropTypes = propTypes;
 Fade.defaultProps = defaultProps;
 
 export default Fade;

@@ -37,7 +37,7 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = propTypes;
+Card.PropTypes = propTypes;
 Card.defaultProps = defaultProps;
 
 export default Card;

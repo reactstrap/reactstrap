@@ -26,7 +26,7 @@ const CardGroup = (props) => {
   );
 };
 
-CardGroup.propTypes = propTypes;
+CardGroup.PropTypes = propTypes;
 CardGroup.defaultProps = defaultProps;
 
 export default CardGroup;

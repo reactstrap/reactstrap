@@ -26,7 +26,7 @@ const CardHeader = (props) => {
   );
 };
 
-CardHeader.propTypes = propTypes;
+CardHeader.PropTypes = propTypes;
 CardHeader.defaultProps = defaultProps;
 
 export default CardHeader;

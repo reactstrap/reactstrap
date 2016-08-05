@@ -26,7 +26,7 @@ const CardColumns = (props) => {
   );
 };
 
-CardColumns.propTypes = propTypes;
+CardColumns.PropTypes = propTypes;
 CardColumns.defaultProps = defaultProps;
 
 export default CardColumns;
