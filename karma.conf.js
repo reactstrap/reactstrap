@@ -53,6 +53,10 @@ module.exports = function (config) {
 
   if (process.env.TRAVIS) {
     configuration.browsers = ['PhantomJS'];
+    configuration.captureTimeout = 2000;
+    configuration.browserDisconnectTimeout = 2000;
+    configuration.browserDisconnectTolerance = 3;
+    configuration.browserNoActivityTimeout = 30000;
   }
 
   config.set(configuration);
