@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 export default () => {
   return (
     <div>
-      <Helmet title="404 Page Not Found"/>
+      <Helmet title="404 Page Not Found" />
       <section className="jumbotron text-xs-center m-b-3">
         <Container fluid>
           <Row>

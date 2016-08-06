@@ -27,7 +27,7 @@ export default class Example extends React.Component {
           <DropdownItem header>Header</DropdownItem>
           <DropdownItem disabled>Action</DropdownItem>
           <DropdownItem>Another Action</DropdownItem>
-          <DropdownItem divider/>
+          <DropdownItem divider />
           <DropdownItem>Another Action</DropdownItem>
         </DropdownMenu>
       </Dropdown>

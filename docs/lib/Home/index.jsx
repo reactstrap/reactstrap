@@ -32,7 +32,7 @@ export default () => {
         <Row>
           <Col sm={{ size: 8, offset: 2 }}>
             <h2>Installation</h2>
-            <hr/>
+            <hr />
             <h3>NPM</h3>
             <p>Install reactstrap and peer dependencies via NPM</p>
             <pre>
@@ -40,7 +40,7 @@ export default () => {
             </pre>
             <p>ES6 - import the components you need</p>
             <div className="docs-example">
-              <Example/>
+              <Example />
             </div>
             <pre>
               <PrismCode className="language-jsx">
@@ -55,7 +55,7 @@ export default () => {
             </pre>
             <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>
             <h2 className="m-t-3">About the Project</h2>
-            <hr/>
+            <hr />
             <p>This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, <a href="http://tether.io/" target="_blank">Tether</a> is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.</p>
             <p>There are a few core concepts to understand in order to make the most out of this library.</p>
             <p>1) Your content is expected to be composed via props.children rather than using named props to pass in Components.</p>

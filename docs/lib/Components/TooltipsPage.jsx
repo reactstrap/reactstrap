@@ -11,11 +11,11 @@ export default class TooltipsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Tooltips"/>
+        <Helmet title="Tooltips" />
         <h3>Tooltips</h3>
         <p>Tooltips are built with <a href="http://tether.io/">http://tether.io</a>.</p>
         <div className="docs-example">
-          <TooltipExample/>
+          <TooltipExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -32,7 +32,7 @@ export default class TooltipsPage extends React.Component {
   // callback for toggling isOpen in the controlling component
   target:  PropTypes.string.isRequired,
   // target div ID, popover is attached to this element
-  tether: PropTypes.object,
+  tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   // optionally overide tether config http://tether.io/#options
   placement: PropTypes.oneOf([
     'top',
@@ -59,7 +59,7 @@ export default class TooltipsPage extends React.Component {
         </pre>
         <h3>Tooltips List</h3>
         <div className="docs-example">
-          <TooltipExampleMulti/>
+          <TooltipExampleMulti />
         </div>
         <pre>
           <PrismCode className="language-jsx">

@@ -25,11 +25,11 @@ export default class TablesPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Tables"/>
+        <Helmet title="Tables" />
         <h3>Tables</h3>
-        <hr/>
+        <hr />
         <div className="docs-example">
-          <TableExample/>
+          <TableExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -54,7 +54,7 @@ responsive: PropTypes.bool
         </pre>
         <h3>Inverse table</h3>
         <div className="docs-example">
-          <TableInverseExample/>
+          <TableInverseExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -63,7 +63,7 @@ responsive: PropTypes.bool
         </pre>
         <h3>Striped rows</h3>
         <div className="docs-example">
-          <TableStripedExample/>
+          <TableStripedExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -72,7 +72,7 @@ responsive: PropTypes.bool
         </pre>
         <h3>Bordered table</h3>
         <div className="docs-example">
-          <TableBorderedExample/>
+          <TableBorderedExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -81,7 +81,7 @@ responsive: PropTypes.bool
         </pre>
         <h3>Hoverable rows</h3>
         <div className="docs-example">
-          <TableHoverExample/>
+          <TableHoverExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -90,7 +90,7 @@ responsive: PropTypes.bool
         </pre>
         <h3>Small table</h3>
         <div className="docs-example">
-          <TableSizingExample/>
+          <TableSizingExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -99,7 +99,7 @@ responsive: PropTypes.bool
         </pre>
         <h3>Responsive table</h3>
         <div className="docs-example">
-          <TableResponsiveExample/>
+          <TableResponsiveExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -108,7 +108,7 @@ responsive: PropTypes.bool
         </pre>
         <h3>Reflow</h3>
         <div className="docs-example">
-          <TableReflowExample/>
+          <TableReflowExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">

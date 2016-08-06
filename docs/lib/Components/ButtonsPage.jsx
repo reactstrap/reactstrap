@@ -13,10 +13,10 @@ export default class ButtonsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Buttons"/>
+        <Helmet title="Buttons" />
         <h3>Buttons</h3>
         <div className="docs-example">
-          <ButtonExample/>
+          <ButtonExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -43,7 +43,7 @@ export default class ButtonsPage extends React.Component {
         </pre>
         <h3>Outline Buttons</h3>
         <div className="docs-example">
-          <ButtonOutline/>
+          <ButtonOutline />
         </div>
         <pre>
           <PrismCode className="language-jsx">

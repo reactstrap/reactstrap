@@ -11,11 +11,11 @@ export default class PopoversPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Popovers"/>
+        <Helmet title="Popovers" />
         <h3>Popovers</h3>
         <p>Popovers are built with <a href="http://tether.io/">http://tether.io</a>.</p>
         <div className="docs-example">
-          <PopoverExample/>
+          <PopoverExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -59,7 +59,7 @@ export default class PopoversPage extends React.Component {
         </pre>
         <h3>Popovers List</h3>
         <div className="docs-example">
-          <PopoverExampleMulti/>
+          <PopoverExampleMulti />
         </div>
         <pre>
           <PrismCode className="language-jsx">

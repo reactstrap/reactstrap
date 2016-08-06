@@ -15,10 +15,10 @@ export default class NavssPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Nav Components"/>
+        <Helmet title="Nav Components" />
         <h3>Navs</h3>
         <div className="docs-example">
-          <NavsExample/>
+          <NavsExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -76,7 +76,7 @@ export default class NavssPage extends React.Component {
         </pre>
         <h3>Inline</h3>
         <div className="docs-example">
-          <NavInlineExample/>
+          <NavInlineExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -85,7 +85,7 @@ export default class NavssPage extends React.Component {
         </pre>
         <h3>Tabs</h3>
         <div className="docs-example">
-          <NavTabsExample/>
+          <NavTabsExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -94,7 +94,7 @@ export default class NavssPage extends React.Component {
         </pre>
         <h3>Pills</h3>
         <div className="docs-example">
-          <NavPillsExample/>
+          <NavPillsExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">

@@ -9,10 +9,10 @@ export default class LayoutsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Layout Components (Container, Row, Col)"/>
+        <Helmet title="Layout Components (Container, Row, Col)" />
         <h3>Layout</h3>
         <div className="docs-example">
-          <LayoutExample/>
+          <LayoutExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -31,7 +31,7 @@ export default class LayoutsPage extends React.Component {
         <h4>Row Properties</h4>
         <pre>
           <PrismCode className="language-jsx">
-{`Row.propTypes = {}`}
+{'Row.propTypes = {}'}
           </PrismCode>
         </pre>
         <h4>Col Properties</h4>

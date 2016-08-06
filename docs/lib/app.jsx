@@ -14,7 +14,7 @@ if (typeof document !== 'undefined') {
     window.ga('set', 'page', location.pathname);
     window.ga('send', 'pageview');
   });
-  ReactDOM.render(<Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />, outlet)
+  ReactDOM.render(<Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />, outlet);
 }
 
 // Exported static site renderer:
@@ -23,7 +23,7 @@ export default (locals, callback) => {
   const location = history.createLocation(locals.path);
 
   match({ routes, location }, (error, redirectLocation, renderProps) => {
-    var url;
+    let url;
     if (redirectLocation && redirectLocation.pathname) {
       url = redirectLocation.pathname;
       callback(null, `<!DOCTYPE html>

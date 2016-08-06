@@ -32,10 +32,10 @@ export default class ButtonDropdownPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Button Dropdown"/>
+        <Helmet title="Button Dropdown" />
         <h3>Button Dropdown</h3>
         <div className="docs-example">
-          <ButtonDropdownExample/>
+          <ButtonDropdownExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -68,12 +68,12 @@ DropdownToggle.propTypes = {
         <h3>Single button dropdowns</h3>
         <div className="docs-example">
           <div>
-            <Example color="secondary" text="Default"/>
-            <Example color="primary" text="Primary"/>
-            <Example color="success" text="Success"/>
-            <Example color="info" text="Info"/>
-            <Example color="warning" text="Warning"/>
-            <Example color="danger" text="Darning"/>
+            <Example color="secondary" text="Default" />
+            <Example color="primary" text="Primary" />
+            <Example color="success" text="Success" />
+            <Example color="info" text="Info" />
+            <Example color="warning" text="Warning" />
+            <Example color="danger" text="Darning" />
           </div>
         </div>
         <pre>
@@ -95,12 +95,12 @@ DropdownToggle.propTypes = {
         <h3>Single button dropdowns</h3>
         <div className="docs-example">
           <div>
-            <ExampleSplit color="secondary" text="Default"/>
-            <ExampleSplit color="primary" text="Primary"/>
-            <ExampleSplit color="success" text="Success"/>
-            <ExampleSplit color="info" text="Info"/>
-            <ExampleSplit color="warning" text="Warning"/>
-            <ExampleSplit color="danger" text="Darning"/>
+            <ExampleSplit color="secondary" text="Default" />
+            <ExampleSplit color="primary" text="Primary" />
+            <ExampleSplit color="success" text="Success" />
+            <ExampleSplit color="info" text="Info" />
+            <ExampleSplit color="warning" text="Warning" />
+            <ExampleSplit color="danger" text="Darning" />
           </div>
         </div>
         <pre>
@@ -123,7 +123,7 @@ DropdownToggle.propTypes = {
         <h3>Sizing</h3>
         <div className="docs-example">
           <div>
-            <ButtonDropdown isOpen={this.state.btnLg} toggle={()=> {this.setState({btnLg: !this.state.btnLg})}}>
+            <ButtonDropdown isOpen={this.state.btnLg} toggle={() => { this.setState({ btnLg: !this.state.btnLg }); }}>
               <DropdownToggle caret>
                 <Button size="lg">Large Button</Button>
               </DropdownToggle>
@@ -134,7 +134,7 @@ DropdownToggle.propTypes = {
             </ButtonDropdown>
           </div>
           <div className="m-t-1">
-            <ButtonDropdown isOpen={this.state.btnSm} toggle={()=> {this.setState({btnSm: !this.state.btnSm})}}>
+            <ButtonDropdown isOpen={this.state.btnSm} toggle={() => { this.setState({ btnSm: !this.state.btnSm }); }}>
               <DropdownToggle caret>
                 <Button size="sm">Small Button</Button>
               </DropdownToggle>
@@ -171,7 +171,7 @@ DropdownToggle.propTypes = {
         <h3>Dropup variation</h3>
         <div className="docs-example">
           <div>
-            <ButtonDropdown dropup isOpen={this.state.btnDropup} toggle={()=> {this.setState({btnDropup: !this.state.btnDropup})}}>
+            <ButtonDropdown dropup isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>
               <DropdownToggle caret>
                 <Button size="lg">Dropup</Button>
               </DropdownToggle>
