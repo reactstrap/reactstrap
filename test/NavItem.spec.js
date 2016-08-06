@@ -5,13 +5,13 @@ import { NavItem } from 'reactstrap';
 
 describe('NavItem', () => {
   it('should render .nav-item markup', () => {
-    const wrapper = shallow(<NavItem/>);
+    const wrapper = shallow(<NavItem />);
 
     expect(wrapper.html()).toBe('<li class="nav-item"></li>');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<NavItem tag="div"/>);
+    const wrapper = shallow(<NavItem tag="div" />);
 
     expect(wrapper.html()).toBe('<div class="nav-item"></div>');
   });
@@ -23,7 +23,7 @@ describe('NavItem', () => {
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<NavItem className="extra"/>);
+    const wrapper = shallow(<NavItem className="extra" />);
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('nav-item')).toBe(true);

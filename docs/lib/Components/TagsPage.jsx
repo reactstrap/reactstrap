@@ -16,12 +16,12 @@ export default class TagsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Tags"/>
+        <Helmet title="Tags" />
         <h3>Tags</h3>
-        <hr/>
+        <hr />
         <p>Scale to parent</p>
         <div className="docs-example">
-          <TagExample/>
+          <TagExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -30,7 +30,7 @@ export default class TagsPage extends React.Component {
         </pre>
         <h3>Variations</h3>
         <div className="docs-example">
-          <TagVariationsExample/>
+          <TagVariationsExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -39,7 +39,7 @@ export default class TagsPage extends React.Component {
         </pre>
         <h3>Pills</h3>
         <div className="docs-example">
-          <TagPillsExample/>
+          <TagPillsExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">

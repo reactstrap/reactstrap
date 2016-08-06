@@ -6,7 +6,9 @@ const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
-  tether: PropTypes.object
+  tether: PropTypes.object,
+  children: PropTypes.node,
+  toggle: PropTypes.func
 };
 
 const defaultProps = {
@@ -53,7 +55,8 @@ class Popover extends React.Component {
         arrow="popover"
         tether={tetherConfig}
         isOpen={this.props.isOpen}
-        toggle={this.props.toggle}>
+        toggle={this.props.toggle}
+      >
         <div className="popover-inner">
           {this.props.children}
         </div>

@@ -10,10 +10,10 @@ export default class NavsPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Navbar Components"/>
+        <Helmet title="Navbar Components" />
         <h3>Navbar</h3>
         <div className="docs-example">
-          <NavbarExample/>
+          <NavbarExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">

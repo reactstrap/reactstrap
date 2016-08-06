@@ -20,7 +20,7 @@ export default class Example extends React.Component {
             <NavLink disabled href="#">Disabled Link</NavLink>
           </NavItem>
         </Nav>
-        <hr/>
+        <hr />
         <p>Link based</p>
         <Nav inline>
           <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink> <NavLink disabled href="#">Disabled Link</NavLink>

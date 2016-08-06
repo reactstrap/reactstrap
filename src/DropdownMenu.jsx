@@ -4,6 +4,7 @@ import classNames from 'classnames';
 const propTypes = {
   children: PropTypes.node.isRequired,
   right: PropTypes.bool,
+  className: PropTypes.any
 };
 
 const contextTypes = {
@@ -19,7 +20,7 @@ const DropdownMenu = (props, context) => {
   );
 
   return (
-    <div {...attributes} tabIndex="-1" aria-hidden={!context.isOpen} role="menu" className={classes}/>
+    <div {...attributes} tabIndex="-1" aria-hidden={!context.isOpen} role="menu" className={classes} />
   );
 };
 

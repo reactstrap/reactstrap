@@ -7,7 +7,7 @@ const propTypes = {
   size: PropTypes.string,
   state: PropTypes.string,
   tag: PropTypes.string,
-  'static': PropTypes.bool,
+  static: PropTypes.bool,
   className: PropTypes.string,
 };
 
@@ -23,7 +23,7 @@ const Input = (props) => {
     size,
     state,
     tag,
-    'static': staticInput,
+    static: staticInput,
     ...attributes,
   } = props;
 

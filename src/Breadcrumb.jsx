@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 const propTypes = {
   tag: PropTypes.string,
-
   className: PropTypes.any
 };
 

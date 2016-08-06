@@ -5,7 +5,7 @@ import { Row } from 'reactstrap';
 
 describe('Row', () => {
   it('should render .row markup', () => {
-    const wrapper = shallow(<Row/>);
+    const wrapper = shallow(<Row />);
 
     expect(wrapper.html()).toBe('<div class="row"></div>');
   });
@@ -17,7 +17,7 @@ describe('Row', () => {
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Row className="extra"/>);
+    const wrapper = shallow(<Row className="extra" />);
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('row')).toBe(true);

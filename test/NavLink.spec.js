@@ -5,13 +5,13 @@ import { NavLink } from 'reactstrap';
 
 describe('NavLink', () => {
   it('should render .nav-link markup', () => {
-    const wrapper = shallow(<NavLink/>);
+    const wrapper = shallow(<NavLink />);
 
     expect(wrapper.html()).toBe('<a class="nav-link"></a>');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<NavLink tag="div"/>);
+    const wrapper = shallow(<NavLink tag="div" />);
 
     expect(wrapper.html()).toBe('<div class="nav-link"></div>');
   });
@@ -23,20 +23,20 @@ describe('NavLink', () => {
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<NavLink className="extra"/>);
+    const wrapper = shallow(<NavLink className="extra" />);
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('nav-link')).toBe(true);
   });
 
   it('should render active class', () => {
-    const wrapper = shallow(<NavLink active/>);
+    const wrapper = shallow(<NavLink active />);
 
     expect(wrapper.hasClass('active')).toBe(true);
   });
 
   it('should render disabled markup', () => {
-    const wrapper = shallow(<NavLink disabled/>);
+    const wrapper = shallow(<NavLink disabled />);
 
     expect(wrapper.hasClass('disabled')).toBe(true);
   });
@@ -56,7 +56,7 @@ describe('NavLink', () => {
   it('handles onClick events', () => {
     const e = jasmine.createSpyObj('e', ['preventDefault']);
     const wrapper = shallow(
-      <NavLink/>
+      <NavLink />
     );
 
     wrapper.find('a').simulate('click', e);
@@ -66,7 +66,7 @@ describe('NavLink', () => {
   it('prevents link clicks via onClick for dropdown nav-items', () => {
     const e = jasmine.createSpyObj('e', ['preventDefault']);
     const wrapper = shallow(
-      <NavLink href="#"/>
+      <NavLink href="#" />
     );
 
     wrapper.find('a').simulate('click', e);

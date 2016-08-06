@@ -41,7 +41,7 @@ describe('FormText', () => {
 
   it('should render custom tag', () => {
     const wrapper = shallow(<FormText tag="main">Yo!</FormText>);
-    
+
     expect(wrapper.type()).toBe('main');
   });
 });

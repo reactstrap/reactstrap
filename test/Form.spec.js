@@ -29,7 +29,7 @@ describe('Form', () => {
 
   it('should render custom tag', () => {
     const wrapper = shallow(<Form tag="main">Yo!</Form>);
-    
+
     expect(wrapper.type()).toBe('main');
   });
 });

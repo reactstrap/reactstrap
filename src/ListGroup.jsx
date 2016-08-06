@@ -21,7 +21,7 @@ const ListGroup = (props) => {
   const classes = classNames(
     className,
     'list-group',
-    flush ? 'list-group-flush' : false,
+    flush ? 'list-group-flush' : false
   );
 
   return (

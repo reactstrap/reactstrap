@@ -5,13 +5,13 @@ import { Container } from 'reactstrap';
 
 describe('Container', () => {
   it('should render .container markup', () => {
-    const wrapper = shallow(<Container/>);
+    const wrapper = shallow(<Container />);
 
     expect(wrapper.html()).toBe('<div class="container"></div>');
   });
 
   it('should render .container-fluid markup', () => {
-    const wrapper = shallow(<Container fluid/>);
+    const wrapper = shallow(<Container fluid />);
 
     expect(wrapper.html()).toBe('<div class="container-fluid"></div>');
   });
@@ -23,7 +23,7 @@ describe('Container', () => {
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Container className="extra"/>);
+    const wrapper = shallow(<Container className="extra" />);
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('container')).toBe(true);

@@ -4,7 +4,10 @@ import classNames from 'classnames';
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   disabled: PropTypes.bool,
-  active: PropTypes.bool
+  active: PropTypes.bool,
+  className: PropTypes.any,
+  onClick: PropTypes.func,
+  href: PropTypes.any
 };
 
 const defaultProps = {
@@ -20,7 +23,8 @@ class NavLink extends React.Component {
 
   onClick(e) {
     if (this.props.disabled) {
-      return e.preventDefault();
+      e.preventDefault();
+      return;
     }
 
     if (this.props.href === '#') {
@@ -44,8 +48,8 @@ class NavLink extends React.Component {
       className,
       'nav-link',
       {
-        'disabled': attributes.disabled,
-        'active': active
+        disabled: attributes.disabled,
+        active: active
       }
     );
 

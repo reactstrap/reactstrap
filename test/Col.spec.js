@@ -5,7 +5,7 @@ import { Col } from 'reactstrap';
 
 describe('Col', () => {
   it('should render default .col-* markup', () => {
-    const wrapper = shallow(<Col/>);
+    const wrapper = shallow(<Col />);
 
     expect(wrapper.html()).toBe('<div class="col-xs-12"></div>');
   });
@@ -17,28 +17,28 @@ describe('Col', () => {
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Col className="extra"/>);
+    const wrapper = shallow(<Col className="extra" />);
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('col-xs-12')).toBe(true);
   });
 
   it('should pass col size specific classes as Strings', () => {
-    const wrapper = shallow(<Col sm="6"/>);
+    const wrapper = shallow(<Col sm="6" />);
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
     expect(wrapper.hasClass('col-xs-12')).toBe(true);
   });
 
   it('should pass col size specific classes as Numbers', () => {
-    const wrapper = shallow(<Col sm={6}/>);
+    const wrapper = shallow(<Col sm={6} />);
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
     expect(wrapper.hasClass('col-xs-12')).toBe(true);
   });
 
   it('should pass col size specific classes via Objects', () => {
-    const wrapper = shallow(<Col sm={{ size: 6, push: 2, pull: 2, offset: 2 }}/>);
+    const wrapper = shallow(<Col sm={{ size: 6, push: 2, pull: 2, offset: 2 }} />);
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
     expect(wrapper.hasClass('col-xs-12')).toBe(true);

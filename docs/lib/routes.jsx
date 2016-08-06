@@ -21,25 +21,25 @@ import Components from './Components';
 import UI from './UI';
 
 const routes = (
-  <Route path="/" component={ UI.Layout }>
-    <IndexRoute component={ Home } />
+  <Route path="/" component={UI.Layout}>
+    <IndexRoute component={Home} />
     <Route path="/components/" component={Components}>
       <IndexRedirect to="buttons/" />
-      <Route path="breadcrumbs/" component={ BreadcrumbsPage } />
-      <Route path="buttons/" component={ ButtonsPage } />
-      <Route path="button-group/" component={ ButtonGroupPage } />
-      <Route path="button-dropdown/" component={ ButtonDropdownPage } />
-      <Route path="dropdowns/" component={ DropdownsPage } />
-      <Route path="form/" component={ FormPage } />
-      <Route path="popovers/" component={ PopoversPage } />
-      <Route path="tooltips/" component={ TooltipsPage } />
-      <Route path="tags/" component={ TagsPage } />
-      <Route path="card/" component={ CardPage } />
-      <Route path="tables/" component={ TablesPage } />
-      <Route path="modals/" component={ ModalsPage } />
-      <Route path="layout/" component={ LayoutPage } />
-      <Route path="navs/" component={ NavsPage } />
-      <Route path="navbar/" component={ NavbarPage } />
+      <Route path="breadcrumbs/" component={BreadcrumbsPage} />
+      <Route path="buttons/" component={ButtonsPage} />
+      <Route path="button-group/" component={ButtonGroupPage} />
+      <Route path="button-dropdown/" component={ButtonDropdownPage} />
+      <Route path="dropdowns/" component={DropdownsPage} />
+      <Route path="form/" component={FormPage} />
+      <Route path="popovers/" component={PopoversPage} />
+      <Route path="tooltips/" component={TooltipsPage} />
+      <Route path="tags/" component={TagsPage} />
+      <Route path="card/" component={CardPage} />
+      <Route path="tables/" component={TablesPage} />
+      <Route path="modals/" component={ModalsPage} />
+      <Route path="layout/" component={LayoutPage} />
+      <Route path="navs/" component={NavsPage} />
+      <Route path="navbar/" component={NavbarPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>

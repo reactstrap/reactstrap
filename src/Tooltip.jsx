@@ -1,10 +1,15 @@
 import React, { PropTypes } from 'react';
 import TetherContent from './TetherContent';
 import { getTetherAttachments, tetherAttachements } from './utils';
+
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  disabled: PropTypes.bool,
+  tether: PropTypes.object,
+  toggle: PropTypes.func,
+  children: PropTypes.node
 };
 
 const defaultProps = {
@@ -103,7 +108,7 @@ class Tooltip extends React.Component {
       return e && e.preventDefault();
     }
 
-    this.props.toggle();
+    return this.props.toggle();
   }
 
   render() {
@@ -120,7 +125,8 @@ class Tooltip extends React.Component {
         arrow="tooltip"
         tether={tetherConfig}
         isOpen={this.props.isOpen}
-        toggle={this.toggle}>
+        toggle={this.toggle}
+      >
         <div className="tooltip-inner">
           {this.props.children}
         </div>

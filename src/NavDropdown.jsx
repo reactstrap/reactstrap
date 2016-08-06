@@ -4,7 +4,8 @@ import Dropdown from './Dropdown';
 
 const propTypes = {
   children: PropTypes.node,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  className: PropTypes.any
 };
 
 const defaultProps = {

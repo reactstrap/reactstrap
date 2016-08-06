@@ -4,6 +4,7 @@ import classNames from 'classnames';
 const propTypes = {
   caret: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  className: PropTypes.any,
   color: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
@@ -33,7 +34,8 @@ class DropdownToggle extends React.Component {
 
   onClick(e) {
     if (this.props.disabled) {
-      return e.preventDefault();
+      e.preventDefault();
+      return;
     }
 
     if (this.props.onClick) {
@@ -44,12 +46,12 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, children, caret, color, 'tag': Tag, ...props } = this.props;
+    const { className, children, caret, color, tag: Tag, ...props } = this.props;
     const classes = classNames(
       className,
       {
         'dropdown-toggle': caret,
-        'active': this.context.isOpen
+        active: this.context.isOpen
       }
     );
     const buttonClasses = classNames(
@@ -69,12 +71,14 @@ class DropdownToggle extends React.Component {
     }
 
     return (
-      <Tag {...props}
+      <Tag
+        {...props}
         children={children}
         className={buttonClasses}
         onClick={this.onClick}
         aria-haspopup="true"
-        aria-expanded={this.context.isOpen} />
+        aria-expanded={this.context.isOpen}
+      />
     );
   }
 }

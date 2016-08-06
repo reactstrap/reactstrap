@@ -5,13 +5,13 @@ import { Navbar } from 'reactstrap';
 
 describe('Navbar', () => {
   it('should render .navbar markup', () => {
-    const wrapper = shallow(<Navbar/>);
+    const wrapper = shallow(<Navbar />);
 
     expect(wrapper.html()).toBe('<nav role="navigation" class="navbar"></nav>');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Navbar tag="div"/>);
+    const wrapper = shallow(<Navbar tag="div" />);
 
     expect(wrapper.html()).toBe('<div role="navigation" class="navbar"></div>');
   });
@@ -23,7 +23,7 @@ describe('Navbar', () => {
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Navbar className="extra"/>);
+    const wrapper = shallow(<Navbar className="extra" />);
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('navbar')).toBe(true);

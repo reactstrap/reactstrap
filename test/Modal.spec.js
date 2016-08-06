@@ -183,13 +183,13 @@ describe('Modal', () => {
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
-    instance.handleEscape({keyCode: 13});
+    instance.handleEscape({ keyCode: 13 });
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
-    instance.handleEscape({keyCode: 27});
+    instance.handleEscape({ keyCode: 27 });
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(false);
@@ -240,11 +240,11 @@ describe('Modal', () => {
     const instance = wrapper.instance();
 
     jasmine.clock().tick(300);
-    expect(instance._element).toBeTruthy()
+    expect(instance._element).toBeTruthy();
 
     instance.destroy();
 
-    expect(instance._element).toBe(null)
+    expect(instance._element).toBe(null);
 
     instance.destroy();
     wrapper.unmount();

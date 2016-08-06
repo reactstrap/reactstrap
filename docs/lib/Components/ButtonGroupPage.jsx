@@ -38,11 +38,11 @@ export default class ButtonGroupPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Button Group"/>
+        <Helmet title="Button Group" />
         <h3>Button Group</h3>
         <div className="docs-example">
           <div>
-            <ButtonGroupExample/>
+            <ButtonGroupExample />
           </div>
         </div>
         <pre>
@@ -64,7 +64,7 @@ export default class ButtonGroupPage extends React.Component {
         </pre>
         <h3>Button Toolbar</h3>
         <div className="docs-example">
-          <ButtonToolbarExample/>
+          <ButtonToolbarExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -79,13 +79,13 @@ export default class ButtonGroupPage extends React.Component {
               <Button>Middle</Button>
               <Button>Right</Button>
             </ButtonGroup>
-            <br/>
+            <br />
             <ButtonGroup className="m-t-1">
               <Button>Left</Button>
               <Button>Middle</Button>
               <Button>Right</Button>
             </ButtonGroup>
-            <br/>
+            <br />
             <ButtonGroup size="sm" className="m-t-1">
               <Button>Left</Button>
               <Button>Middle</Button>
