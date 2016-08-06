@@ -9,6 +9,7 @@ import {
   DropdownMenu } from 'reactstrap';
 import DropdownExample from '../examples/Dropdown';
 const DropdownExampleSource = require('!!raw!../examples/Dropdown.jsx');
+import DropdownSizingExample from '../examples/DropdownSizing';
 
 export default class DropdownPage extends React.Component {
   constructor(props) {
@@ -118,6 +119,44 @@ DropdownToggle.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
 {'<DropdownItem disabled>Action</DropdownItem>'}
+          </PrismCode>
+        </pre>
+        <h3>Sizing</h3>
+        <div className="docs-example">
+          <div>
+            <DropdownSizingExample group size="lg" />
+            <DropdownSizingExample className="m-t-1" />
+            <DropdownSizingExample className="m-t-1" group size="sm" />
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+{`<Dropdown group isOpen={this.state.dropdownOpen} size="lg" toggle={this.toggle}>
+  <DropdownToggle caret>
+    Dropdown
+  </DropdownToggle>
+  <DropdownMenu>
+    ...
+  </DropdownMenu>
+</Dropdown>
+
+<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+  <DropdownToggle caret>
+    Dropdown
+  </DropdownToggle>
+  <DropdownMenu>
+    ...
+  </DropdownMenu>
+</Dropdown>
+
+<Dropdown group isOpen={this.state.dropdownOpen} size="sm" toggle={this.toggle}>
+  <DropdownToggle caret>
+    Dropdown
+  </DropdownToggle>
+  <DropdownMenu>
+    ...
+  </DropdownMenu>
+</Dropdown>`}
           </PrismCode>
         </pre>
       </div>
