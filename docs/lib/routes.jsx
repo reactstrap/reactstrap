@@ -8,6 +8,7 @@ import ButtonsPage from './Components/ButtonsPage';
 import ButtonGroupPage from './Components/ButtonGroupPage';
 import ButtonDropdownPage from './Components/ButtonDropdownPage';
 import DropdownsPage from './Components/DropdownsPage';
+import FormPage from './Components/FormPage';
 import PopoversPage from './Components/PopoversPage';
 import TooltipsPage from './Components/TooltipsPage';
 import TagsPage from './Components/TagsPage';
@@ -27,6 +28,7 @@ const routes = (
       <Route path="button-group/" component={ ButtonGroupPage } />
       <Route path="button-dropdown/" component={ ButtonDropdownPage } />
       <Route path="dropdowns/" component={ DropdownsPage } />
+      <Route path="form/" component={ FormPage } />
       <Route path="popovers/" component={ PopoversPage } />
       <Route path="tooltips/" component={ TooltipsPage } />
       <Route path="tags/" component={ TagsPage } />

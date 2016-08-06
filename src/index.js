@@ -42,6 +42,12 @@ import TetherContent from './TetherContent';
 import Tooltip from './Tooltip';
 import Table from './Table';
 import ListGroup from './ListGroup';
+import Form from './Form';
+import FormFeedback from './FormFeedback';
+import FormGroup from './FormGroup';
+import FormText from './FormText';
+import Input from './Input';
+import Label from './Label';
 
 export {
   Container,
@@ -87,5 +93,11 @@ export {
   TetherContent,
   Tooltip,
   Table,
-  ListGroup
+  ListGroup,
+  Form,
+  FormFeedback,
+  FormGroup,
+  FormText,
+  Input,
+  Label,
 };
