@@ -8,7 +8,8 @@ const propTypes = {
   fixed: PropTypes.string,
   color: PropTypes.string,
   role: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  className: PropTypes.any
 };
 
 const defaultProps = {
@@ -41,7 +42,7 @@ const Navbar = (props) => {
   );
 
   return (
-    <Tag {...attributes} className={classes}/>
+    <Tag {...attributes} className={classes} />
   );
 };
 

@@ -9,7 +9,9 @@ const propTypes = {
   outline: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
-  size: PropTypes.string
+  size: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.any
 };
 
 const defaultProps = {
@@ -26,7 +28,8 @@ class Button extends React.Component {
 
   onClick(e) {
     if (this.props.disabled) {
-      return e.preventDefault();
+      e.preventDefault();
+      return;
     }
 
     if (this.props.onClick) {
@@ -60,7 +63,7 @@ class Button extends React.Component {
     }
 
     return (
-      <Tag {...attributes} className={classes} onClick={this.onClick}/>
+      <Tag {...attributes} className={classes} onClick={this.onClick} />
     );
   }
 }

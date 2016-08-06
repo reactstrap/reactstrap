@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  active: PropTypes.string,
+  active: PropTypes.bool,
   className: PropTypes.any
 };
 

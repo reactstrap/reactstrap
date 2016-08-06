@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  className: PropTypes.any
 };
 
 const defaultProps = {
@@ -22,7 +23,7 @@ const NavItem = (props) => {
   );
 
   return (
-    <Tag {...attributes} className={classes}/>
+    <Tag {...attributes} className={classes} />
   );
 };
 

@@ -43,24 +43,24 @@ class TetherContent extends React.Component {
     const target = this.props.tether.target;
 
     if (isFunction(target)) {
-      return ReactDOM.findDOMNode(target());
+      return target();
     }
 
     return target;
   }
 
   getTetherConfig() {
-    let config = {
+    const config = {
       ...this.props.tether
     };
 
-    config.element = ReactDOM.findDOMNode(this._element);
+    config.element = this._element;
     config.target = this.getTarget();
     return config;
   }
 
   handleDocumentClick(e) {
-    const container = ReactDOM.findDOMNode(this._element);
+    const container = this._element;
     if (e.target === container || !container.contains(e.target)) {
       this.toggle();
     }
@@ -101,7 +101,7 @@ class TetherContent extends React.Component {
     );
 
     if (this.props.arrow) {
-      let arrow = document.createElement('div');
+      const arrow = document.createElement('div');
       arrow.className = this.props.arrow + '-arrow';
       this._element.appendChild(arrow);
     }
@@ -116,7 +116,7 @@ class TetherContent extends React.Component {
       return e && e.preventDefault();
     }
 
-    this.props.toggle();
+    return this.props.toggle();
   }
 
   renderChildren() {

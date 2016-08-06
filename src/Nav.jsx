@@ -8,7 +8,8 @@ const propTypes = {
   pills: PropTypes.bool,
   stacked: PropTypes.bool,
   navbar: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  className: PropTypes.any
 };
 
 const defaultProps = {
@@ -36,12 +37,12 @@ const Nav = (props) => {
       'nav-pills': pills,
       'nav-inline': inline,
       'nav-stacked': stacked,
-      'disabled': attributes.disabled
+      disabled: attributes.disabled
     }
   );
 
   return (
-    <Tag {...attributes} className={classes}/>
+    <Tag {...attributes} className={classes} />
   );
 };
 

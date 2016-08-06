@@ -1,3 +1,6 @@
+/* eslint react/no-find-dom-node: 0 */
+// https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-find-dom-node.md
+
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -135,7 +138,7 @@ class Dropdown extends React.Component {
       return e && e.preventDefault();
     }
 
-    this.props.toggle();
+    return this.props.toggle();
   }
 
   renderChildren() {

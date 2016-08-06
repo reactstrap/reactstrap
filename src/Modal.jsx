@@ -1,15 +1,16 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import Fade from './Fade';
 import TransitionGroup from 'react-addons-transition-group';
+import Fade from './Fade';
 
 const propTypes = {
   isOpen: PropTypes.bool,
   size: PropTypes.string,
   toggle: PropTypes.func.isRequired,
   onEnter: PropTypes.func,
-  onExit: PropTypes.func
+  onExit: PropTypes.func,
+  children: PropTypes.node
 };
 
 const defaultProps = {
@@ -68,7 +69,7 @@ class Modal extends React.Component {
   }
 
   handleBackdropClick(e) {
-    const container = ReactDOM.findDOMNode(this._dialog);
+    const container = this._dialog;
 
     if (e.target && !container.contains(e.target)) {
       this.props.toggle();
@@ -153,7 +154,7 @@ class Modal extends React.Component {
             style={{ display: 'block' }}
             tabIndex="-1"
           >
-            <div className="modal-dialog" role="document" ref={(c) => this._dialog = c }>
+            <div className="modal-dialog" role="document" ref={(c) => (this._dialog = c)}>
               <div className="modal-content">
                 {this.props.children}
               </div>

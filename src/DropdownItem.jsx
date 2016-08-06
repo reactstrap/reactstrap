@@ -6,7 +6,9 @@ const propTypes = {
   disabled: PropTypes.bool,
   divider: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  header: PropTypes.bool
+  header: PropTypes.bool,
+  onClick: PropTypes.func,
+  className: PropTypes.any
 };
 
 const contextTypes = {
@@ -27,7 +29,8 @@ class DropdownItem extends React.Component {
 
   onClick(e) {
     if (this.props.disabled || this.props.header || this.props.divider) {
-      return e.preventDefault();
+      e.preventDefault();
+      return;
     }
 
     if (this.props.onClick) {
@@ -57,7 +60,7 @@ class DropdownItem extends React.Component {
     const classes = classNames(
       className,
       {
-        'disabled': props.disabled,
+        disabled: props.disabled,
         'dropdown-item': !divider && !header,
         'dropdown-header': header,
         'dropdown-divider': divider
@@ -73,10 +76,12 @@ class DropdownItem extends React.Component {
     }
 
     return (
-      <Tag {...props}
+      <Tag
+        {...props}
         tabIndex={tabIndex}
         className={classes}
-        onClick={this.onClick}/>
+        onClick={this.onClick}
+      />
     );
   }
 }

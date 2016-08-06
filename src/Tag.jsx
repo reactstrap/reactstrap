@@ -4,7 +4,9 @@ import classNames from 'classnames';
 const propTypes = {
   color: PropTypes.string,
   pill: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  children: PropTypes.node,
+  className: PropTypes.any
 };
 
 const defaultProps = {
@@ -18,7 +20,7 @@ const Tag = (props) => {
     className,
     color,
     pill,
-    tag: Tag,
+    tag: Component,
     ...attributes
   } = props;
 
@@ -30,7 +32,7 @@ const Tag = (props) => {
   );
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Component {...attributes} className={classes} />
   );
 };
 

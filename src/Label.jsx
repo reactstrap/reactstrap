@@ -22,7 +22,7 @@ const propTypes = {
   check: PropTypes.bool,
   inline: PropTypes.bool,
   size: PropTypes.string,
-  'for': PropTypes.string,
+  for: PropTypes.string,
   tag: PropTypes.string,
   className: PropTypes.string,
   xs: columnProps,
@@ -44,7 +44,7 @@ const Label = (props) => {
     check,
     inline,
     size,
-    'for': htmlFor,
+    for: htmlFor,
     ...attributes,
   } = props;
 
