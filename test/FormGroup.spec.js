@@ -20,7 +20,7 @@ describe('FormGroup', () => {
 
     expect(wrapper.hasClass('form-group')).toBe(true);
   });
-  
+
   it('should not render with "form-check" class by default', () => {
     const wrapper = shallow(<FormGroup>Yo!</FormGroup>);
 

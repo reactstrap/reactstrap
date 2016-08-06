@@ -5,13 +5,13 @@ import { NavbarToggler } from 'reactstrap';
 
 describe('NavbarToggler', () => {
   it('should render .navbar-toggler markup', () => {
-    const wrapper = shallow(<NavbarToggler/>);
+    const wrapper = shallow(<NavbarToggler />);
 
     expect(wrapper.html()).toBe('<button type="button" class="navbar-toggler">☰</button>');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<NavbarToggler tag="div"/>);
+    const wrapper = shallow(<NavbarToggler tag="div" />);
 
     expect(wrapper.html()).toBe('<div type="button" class="navbar-toggler">☰</div>');
   });
@@ -23,7 +23,7 @@ describe('NavbarToggler', () => {
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<NavbarToggler className="extra"/>);
+    const wrapper = shallow(<NavbarToggler className="extra" />);
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('navbar-toggler')).toBe(true);

@@ -41,7 +41,7 @@ describe('DropdownItem', () => {
 
   describe('divider', () => {
     it('should render a divider element', () => {
-      const wrapper = mount(<DropdownItem divider/>);
+      const wrapper = mount(<DropdownItem divider />);
 
       expect(wrapper.find('.dropdown-divider').length).toBe(1);
     });
@@ -59,7 +59,7 @@ describe('DropdownItem', () => {
 
     it('should not be called when divider is set', () => {
       const e = { preventDefault: jasmine.createSpy('preventDefault') };
-      const wrapper = mount(<DropdownItem divider/>);
+      const wrapper = mount(<DropdownItem divider />);
       const instance = wrapper.instance();
 
       instance.onClick(e);
