@@ -1,3 +1,14 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/reactstrap/reactstrap/compare/2.0.0...v2.1.0) (2016-08-06)
+
+
+### Features
+
+* **breadcrumb:** Add Breadcrumb and BreadcrumbItem ([d34d738](https://github.com/reactstrap/reactstrap/commit/d34d738))
+* **form:** add forms and form element components ([#67](https://github.com/reactstrap/reactstrap/issues/67)) ([7c32483](https://github.com/reactstrap/reactstrap/commit/7c32483))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/reactstrap/reactstrap/compare/1.6.1...v2.0.0) (2016-07-28)
 
