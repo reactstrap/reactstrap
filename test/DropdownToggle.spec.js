@@ -56,6 +56,20 @@ describe('DropdownToggle', () => {
     expect(wrapper.find('[data-toggle="dropdown"]').hasClass('dropdown-toggle')).toBe(true);
   });
 
+  it('should render a split', () => {
+    const wrapper = mount(
+      <DropdownToggle split>Ello world</DropdownToggle>,
+      {
+        context: {
+          isOpen: isOpen,
+          toggle: toggle
+        }
+      }
+    );
+
+    expect(wrapper.find('[data-toggle="dropdown"]').hasClass('dropdown-toggle-split')).toBe(true);
+  });
+
   describe('onClick', () => {
     it('should call props.onClick if it exists', () => {
       const onClick = jasmine.createSpy('onClick');

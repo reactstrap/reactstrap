@@ -92,7 +92,7 @@ DropdownToggle.propTypes = {
 </ButtonDropdown>`}
           </PrismCode>
         </pre>
-        <h3>Single button dropdowns</h3>
+        <h3>Split button dropdowns</h3>
         <div className="docs-example">
           <div>
             <ExampleSplit color="secondary" text="Default" />
