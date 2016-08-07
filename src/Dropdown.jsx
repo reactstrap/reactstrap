@@ -13,6 +13,7 @@ const propTypes = {
   dropup: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
+  size: PropTypes.string,
   tag: PropTypes.string,
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func,
@@ -162,6 +163,7 @@ class Dropdown extends React.Component {
       className,
       dropup,
       group,
+      size,
       tag: Tag,
       isOpen,
       ...attributes
@@ -171,6 +173,7 @@ class Dropdown extends React.Component {
       className,
       {
         'btn-group': group,
+        [`btn-group-${size}`]: !!size,
         dropdown: !group,
         open: isOpen,
         dropup: dropup

@@ -245,4 +245,27 @@ describe('Dropdown', () => {
       wrapper.detach();
     });
   });
+
+  it('should render different size classes', () => {
+    const small = mount(
+      <Dropdown group isOpen={isOpen} size="sm" toggle={toggle}>
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>Test</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    const large = mount(
+      <Dropdown group isOpen={isOpen} size="lg" toggle={toggle}>
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>Test</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+
+    expect(small.find('.btn-group-sm').length).toBe(1);
+    expect(large.find('.btn-group-lg').length).toBe(1);
+  });
 });
