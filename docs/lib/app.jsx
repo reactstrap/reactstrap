@@ -14,7 +14,26 @@ if (typeof document !== 'undefined') {
     window.ga('set', 'page', location.pathname);
     window.ga('send', 'pageview');
   });
-  ReactDOM.render(<Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />, outlet);
+
+  let Holder;
+  window.addEventListener('DOMContentLoaded', () => {
+    Holder = require('holderjs');
+  });
+
+  ReactDOM.render(
+    <Router
+      onUpdate={() => {
+        window.scrollTo(0, 0);
+
+        if (Holder) {
+          Holder.run();
+        }
+      }}
+      history={browserHistory}
+      routes={routes}
+    />,
+    outlet
+  );
 }
 
 // Exported static site renderer:

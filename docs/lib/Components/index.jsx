@@ -83,6 +83,10 @@ class Components extends React.Component {
           name: 'Tables',
           to: '/components/tables/'
         },
+        {
+          name: 'Media',
+          to: '/components/media/'
+        },
       ]
     };
   }

@@ -53,6 +53,7 @@ import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 import InputGroupButton from './InputGroupButton';
 import Label from './Label';
+import Media from './Media';
 
 export {
   Container,
@@ -110,4 +111,5 @@ export {
   InputGroupAddon,
   InputGroupButton,
   Label,
+  Media,
 };

@@ -82,6 +82,7 @@
     "eslint-plugin-standard": "^2.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "history": "^3.0.0",
+    "holderjs": "^2.9.3",
     "jasmine-core": "^2.4.1",
     "json-loader": "^0.5.4",
     "karma": "^1.1.2",

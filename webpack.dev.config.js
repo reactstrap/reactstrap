@@ -29,6 +29,7 @@ var paths = [
   '/components/tags/',
   '/components/card/',
   '/components/tables/',
+  '/components/media/',
   '/404.html'
 ];
 
@@ -66,7 +67,7 @@ var config = [{
   module: {
     loaders: [
       {
-        test: /\.(json)$/,
+        test: /\.json$/,
         loaders: [
           'json-loader?cacheDirectory'
         ]
