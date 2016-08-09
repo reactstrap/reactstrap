@@ -154,9 +154,9 @@ class Modal extends React.Component {
             style={{ display: 'block' }}
             tabIndex="-1"
           >
-            <div 
-              className={this.props.size ? `modal-dialog modal-${this.props.size}` : 'modal-dialog'} 
-              role="document" 
+            <div
+              className={this.props.size ? `modal-dialog modal-${this.props.size}` : 'modal-dialog'}
+              role="document"
               ref={(c) => (this._dialog = c)}
             >
               <div className="modal-content">
