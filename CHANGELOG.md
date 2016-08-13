@@ -1,3 +1,15 @@
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/reactstrap/reactstrap/compare/2.1.0...v2.2.0) (2016-08-13)
+
+
+### Features
+
+* **Card:** update img position classes ([#91](https://github.com/reactstrap/reactstrap/issues/91)) ([920e2f8](https://github.com/reactstrap/reactstrap/commit/920e2f8))
+* **Dropdown:** add size prop ([#90](https://github.com/reactstrap/reactstrap/issues/90)) ([92c62b1](https://github.com/reactstrap/reactstrap/commit/92c62b1))
+* **Dropdowns:** use split class for split dropdowns ([#92](https://github.com/reactstrap/reactstrap/issues/92)) ([ee17a47](https://github.com/reactstrap/reactstrap/commit/ee17a47))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/reactstrap/reactstrap/compare/2.0.0...v2.1.0) (2016-08-06)
 
