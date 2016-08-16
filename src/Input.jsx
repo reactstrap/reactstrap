@@ -8,6 +8,7 @@ const propTypes = {
   state: PropTypes.string,
   tag: PropTypes.string,
   static: PropTypes.bool,
+  addon: PropTypes.bool,
   className: PropTypes.string,
 };
 
@@ -23,6 +24,7 @@ const Input = (props) => {
     size,
     state,
     tag,
+    addon,
     static: staticInput,
     ...attributes,
   } = props;
@@ -42,7 +44,11 @@ const Input = (props) => {
   } else if (fileInput) {
     formControlClass = `${formControlClass}-file`;
   } else if (checkInput) {
-    formControlClass = 'form-check-input';
+    if (addon) {
+      formControlClass = null;
+    } else {
+      formControlClass = 'form-check-input';
+    }
   }
 
   const classes = classNames(

@@ -133,6 +133,20 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-check-input')).toBe(true);
   });
 
+  it('should not render with "form-check-input" nor "form-control" class when type is checkbox and addon is truthy', () => {
+    const wrapper = shallow(<Input addon type="checkbox" />);
+
+    expect(wrapper.hasClass('form-check-input')).toBe(false);
+    expect(wrapper.hasClass('form-control')).toBe(false);
+  });
+
+  it('should not render with "form-check-input" nor "form-control" class when type is radio and addon is truthy', () => {
+    const wrapper = shallow(<Input addon type="radio" />);
+
+    expect(wrapper.hasClass('form-check-input')).toBe(false);
+    expect(wrapper.hasClass('form-control')).toBe(false);
+  });
+
   it('should render with "form-control-file" class when type is file', () => {
     const wrapper = shallow(<Input type="file" />);
 

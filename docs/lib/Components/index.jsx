@@ -40,6 +40,10 @@ class Components extends React.Component {
           to: '/components/form/'
         },
         {
+          name: 'Input Group',
+          to: '/components/input-group/'
+        },
+        {
           name: 'Breadscrumbs',
           to: '/components/breadcrumbs/'
         },
