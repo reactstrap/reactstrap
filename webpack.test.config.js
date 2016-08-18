@@ -38,12 +38,6 @@ var webpackConfig = {
   },
 };
 
-webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || [];
-webpackConfig.module.preLoaders.push({
-  test: /\.jsx?$/,
-  exclude: /(test|node_modules)\//,
-  loader: 'isparta'
-});
 webpackConfig.webpackServer = {
   noInfo: true
 };
