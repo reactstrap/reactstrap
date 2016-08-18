@@ -49,6 +49,9 @@ import FormFeedback from './FormFeedback';
 import FormGroup from './FormGroup';
 import FormText from './FormText';
 import Input from './Input';
+import InputGroup from './InputGroup';
+import InputGroupAddon from './InputGroupAddon';
+import InputGroupButton from './InputGroupButton';
 import Label from './Label';
 
 export {
@@ -103,5 +106,8 @@ export {
   FormGroup,
   FormText,
   Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
   Label,
 };
