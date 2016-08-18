@@ -1,3 +1,13 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/reactstrap/reactstrap/compare/2.3.0...v2.4.0) (2016-08-18)
+
+
+### Features
+
+* **Media:** add Media component ([#94](https://github.com/reactstrap/reactstrap/issues/94)) ([d4c0f2d](https://github.com/reactstrap/reactstrap/commit/d4c0f2d))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/reactstrap/reactstrap/compare/2.2.0...v2.3.0) (2016-08-18)
 
