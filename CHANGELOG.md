@@ -1,3 +1,13 @@
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/reactstrap/reactstrap/compare/2.2.0...v2.3.0) (2016-08-18)
+
+
+### Features
+
+* **inputGroup:** add InputGroup components ([#99](https://github.com/reactstrap/reactstrap/issues/99)) ([18a2ef7](https://github.com/reactstrap/reactstrap/commit/18a2ef7)), closes [#74](https://github.com/reactstrap/reactstrap/issues/74)
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/reactstrap/reactstrap/compare/2.1.0...v2.2.0) (2016-08-13)
 

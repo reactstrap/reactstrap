@@ -25,6 +25,7 @@ fi
 
 git checkout master
 git pull
+npm install
 npm run build
 git tag -a $VERSION -m "release $VERSION"
 git push --set-upstream origin $CURRENT_BRANCH
