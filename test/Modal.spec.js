@@ -19,6 +19,35 @@ describe('Modal', () => {
     jasmine.clock().uninstall();
   });
 
+  it('should render with the class "modal-dialog"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with the class "modal-${size}" when size is passed', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} size="crazy">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-crazy').length).toBe(1);
+    wrapper.unmount();
+  });
+
 
   it('should render modal when isOpen is true', () => {
     isOpen = true;
