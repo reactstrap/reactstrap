@@ -78,8 +78,8 @@ class Modal extends React.Component {
 
   togglePortal() {
     if (this.props.isOpen) {
-      this.show();
       this._focus = true;
+      this.show();
     } else {
       this.hide();
     }
