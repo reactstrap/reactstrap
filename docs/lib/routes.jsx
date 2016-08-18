@@ -12,6 +12,7 @@ import DropdownsPage from './Components/DropdownsPage';
 import FormPage from './Components/FormPage';
 import InputGroupPage from './Components/InputGroupPage';
 import PopoversPage from './Components/PopoversPage';
+import ProgressPage from './Components/ProgressPage';
 import TooltipsPage from './Components/TooltipsPage';
 import TagsPage from './Components/TagsPage';
 import MediaPage from './Components/MediaPage';
@@ -35,6 +36,7 @@ const routes = (
       <Route path="form/" component={FormPage} />
       <Route path="input-group/" component={InputGroupPage} />
       <Route path="popovers/" component={PopoversPage} />
+      <Route path="progress/" component={ProgressPage} />
       <Route path="tooltips/" component={TooltipsPage} />
       <Route path="tags/" component={TagsPage} />
       <Route path="card/" component={CardPage} />

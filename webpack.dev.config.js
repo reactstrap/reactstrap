@@ -24,6 +24,7 @@ var paths = [
   '/components/form/',
   '/components/input-group/',
   '/components/popovers/',
+  '/components/progress/',
   '/components/tooltips/',
   '/components/modals/',
   '/components/tags/',

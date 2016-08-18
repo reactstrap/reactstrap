@@ -47,6 +47,7 @@
     "classnames": "^2.2.3",
     "lodash.isfunction": "^3.0.8",
     "lodash.omit": "^4.4.1",
+    "lodash.tonumber": "^4.0.3",
     "tether": "^1.3.4"
   },
   "peerDependencies": {
