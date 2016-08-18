@@ -14,6 +14,7 @@ import InputGroupPage from './Components/InputGroupPage';
 import PopoversPage from './Components/PopoversPage';
 import TooltipsPage from './Components/TooltipsPage';
 import TagsPage from './Components/TagsPage';
+import MediaPage from './Components/MediaPage';
 import ModalsPage from './Components/ModalsPage';
 import CardPage from './Components/CardPage';
 import TablesPage from './Components/TablesPage';
@@ -42,6 +43,7 @@ const routes = (
       <Route path="layout/" component={LayoutPage} />
       <Route path="navs/" component={NavsPage} />
       <Route path="navbar/" component={NavbarPage} />
+      <Route path="media/" component={MediaPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>
