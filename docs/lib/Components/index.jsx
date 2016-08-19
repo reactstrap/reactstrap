@@ -72,6 +72,10 @@ class Components extends React.Component {
           to: '/components/popovers/'
         },
         {
+          name: 'Progress',
+          to: '/components/progress/'
+        },
+        {
           name: 'Modals',
           to: '/components/modals/'
         },

@@ -36,6 +36,7 @@ import CardTitle from './CardTitle';
 import Popover from './Popover';
 import PopoverTitle from './PopoverTitle';
 import PopoverContent from './PopoverContent';
+import Progress from './Progress';
 import Modal from './Modal';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
@@ -94,6 +95,7 @@ export {
   Popover,
   PopoverContent,
   PopoverTitle,
+  Progress,
   Modal,
   ModalHeader,
   ModalBody,
