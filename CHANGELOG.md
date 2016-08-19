@@ -1,3 +1,19 @@
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/reactstrap/reactstrap/compare/2.4.0...v2.5.0) (2016-08-19)
+
+
+### Bug Fixes
+
+* **Modal:** set focus state before showing ([#104](https://github.com/reactstrap/reactstrap/issues/104)) ([a358233](https://github.com/reactstrap/reactstrap/commit/a358233))
+* **Modal:** use togglePortal on componentDidMount ([#106](https://github.com/reactstrap/reactstrap/issues/106)) ([942b24a](https://github.com/reactstrap/reactstrap/commit/942b24a))
+
+
+### Features
+
+* **Progress:** add Progress component ([#105](https://github.com/reactstrap/reactstrap/issues/105)) ([bc185d8](https://github.com/reactstrap/reactstrap/commit/bc185d8)), closes [#78](https://github.com/reactstrap/reactstrap/issues/78)
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/reactstrap/reactstrap/compare/2.3.0...v2.4.0) (2016-08-18)
 
