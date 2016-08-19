@@ -31,7 +31,7 @@ class Modal extends React.Component {
 
   componentDidMount() {
     if (this.props.isOpen) {
-      this.show();
+      this.togglePortal();
     }
   }
 

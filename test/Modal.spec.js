@@ -183,7 +183,7 @@ describe('Modal', () => {
 
     jasmine.clock().tick(300);
     expect(isOpen).toBe(true);
-    expect(Modal.prototype.togglePortal.calls.count()).toEqual(0);
+    expect(Modal.prototype.togglePortal.calls.count()).toEqual(1);
     expect(Modal.prototype.renderIntoSubtree.calls.count()).toEqual(1);
 
     wrapper.setProps({
@@ -192,7 +192,7 @@ describe('Modal', () => {
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(true);
-    expect(Modal.prototype.togglePortal.calls.count()).toEqual(0);
+    expect(Modal.prototype.togglePortal.calls.count()).toEqual(1);
     expect(Modal.prototype.renderIntoSubtree.calls.count()).toEqual(2);
 
     wrapper.unmount();
