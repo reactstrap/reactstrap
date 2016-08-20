@@ -55,6 +55,9 @@ import InputGroupAddon from './InputGroupAddon';
 import InputGroupButton from './InputGroupButton';
 import Label from './Label';
 import Media from './Media';
+import Pagination from './Pagination';
+import PaginationItem from './PaginationItem';
+import PaginationLink from './PaginationLink';
 
 export {
   Container,
@@ -114,4 +117,7 @@ export {
   InputGroupButton,
   Label,
   Media,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
 };

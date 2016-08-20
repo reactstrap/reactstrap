@@ -31,6 +31,7 @@ var paths = [
   '/components/card/',
   '/components/tables/',
   '/components/media/',
+  '/components/pagination/',
   '/404.html'
 ];
 
