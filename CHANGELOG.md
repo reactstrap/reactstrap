@@ -1,3 +1,13 @@
+<a name="2.6.0"></a>
+# [2.6.0](https://github.com/reactstrap/reactstrap/compare/2.5.0...v2.6.0) (2016-08-21)
+
+
+### Features
+
+* **Pagination:** add Pagination component ([#108](https://github.com/reactstrap/reactstrap/issues/108)) ([fdc5c45](https://github.com/reactstrap/reactstrap/commit/fdc5c45))
+
+
+
 <a name="2.5.0"></a>
 # [2.5.0](https://github.com/reactstrap/reactstrap/compare/2.4.0...v2.5.0) (2016-08-19)
 
