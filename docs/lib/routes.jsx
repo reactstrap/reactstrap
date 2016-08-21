@@ -19,6 +19,7 @@ import MediaPage from './Components/MediaPage';
 import ModalsPage from './Components/ModalsPage';
 import CardPage from './Components/CardPage';
 import TablesPage from './Components/TablesPage';
+import PaginationPage from './Components/PaginationPage';
 import NotFound from './NotFound';
 import Components from './Components';
 import UI from './UI';
@@ -46,6 +47,7 @@ const routes = (
       <Route path="navs/" component={NavsPage} />
       <Route path="navbar/" component={NavbarPage} />
       <Route path="media/" component={MediaPage} />
+      <Route path="pagination/" component={PaginationPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>

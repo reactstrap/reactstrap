@@ -91,6 +91,10 @@ class Components extends React.Component {
           name: 'Media',
           to: '/components/media/'
         },
+        {
+          name: 'Pagination',
+          to: '/components/pagination/'
+        },
       ]
     };
   }
