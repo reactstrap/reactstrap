@@ -1,3 +1,13 @@
+<a name="2.6.1"></a>
+## [2.6.1](https://github.com/reactstrap/reactstrap/compare/2.6.0...v2.6.1) (2016-09-01)
+
+
+### Features
+
+* **ModalClassName:** Adds custom class name for modal-dialogs for namespacing ([#111](https://github.com/reactstrap/reactstrap/issues/111)) ([5f7cab6](https://github.com/reactstrap/reactstrap/commit/5f7cab6))
+
+
+
 <a name="2.6.0"></a>
 # [2.6.0](https://github.com/reactstrap/reactstrap/compare/2.5.0...v2.6.0) (2016-08-21)
 
