@@ -12,7 +12,17 @@ export default class ModalsPage extends React.Component {
         <Helmet title="Modals" />
         <h3>Modals</h3>
         <div className="docs-example">
-          <ModalExample />
+          <div className="btn-group">
+            <div className="btn">
+              <ModalExample buttonLabel="Launch Modal" />
+            </div>
+            <div className="btn">
+              <ModalExample
+                buttonLabel="Launch Modal with custom className"
+                className="my-custom-modal"
+              />
+            </div>
+          </div>
         </div>
         <pre>
           <PrismCode className="language-jsx">
