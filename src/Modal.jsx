@@ -10,7 +10,8 @@ const propTypes = {
   toggle: PropTypes.func.isRequired,
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.any
 };
 
 const defaultProps = {
@@ -155,7 +156,9 @@ class Modal extends React.Component {
             tabIndex="-1"
           >
             <div
-              className={this.props.size ? `modal-dialog modal-${this.props.size}` : 'modal-dialog'}
+              className={classNames('modal-dialog', this.props.className, {
+                [`modal-${this.props.size}`]: this.props.size
+              })}
               role="document"
               ref={(c) => (this._dialog = c)}
             >
