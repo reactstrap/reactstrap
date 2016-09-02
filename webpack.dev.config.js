@@ -16,6 +16,7 @@ var paths = [
   '/components/navs/',
   '/components/navbar/',
   '/components/breadcrumbs/',
+  '/components/alerts/',
   '/components/buttons/',
   '/components/button-group/',
   '/components/button-toolbar/',

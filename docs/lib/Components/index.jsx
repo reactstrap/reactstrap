@@ -20,6 +20,10 @@ class Components extends React.Component {
     this.state = {
       navItems: [
         {
+          name: 'Alerts',
+          to: '/components/alerts/'
+        },
+        {
           name: 'Buttons',
           to: '/components/buttons/'
         },
