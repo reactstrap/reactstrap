@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from './index';
 
 const propTypes = {
-  className: PropTypes.string,
   page: PropTypes.number.isRequired,
   pages: PropTypes.number.isRequired,
   showPages: PropTypes.number,
@@ -10,7 +9,7 @@ const propTypes = {
   prev: PropTypes.string,
   first: PropTypes.string,
   last: PropTypes.string,
-  middle:PropTypes.bool,
+  middle: PropTypes.bool,
   onClick: PropTypes.func
 };
 
@@ -21,12 +20,12 @@ const defaultProps = {
   prev: '<',
   first: '<<',
   last: '>>',
-  middle:true,
+  middle: true,
   onClick: () => null
 };
 
 const Paginate = (props) => {
-  const { showPages, onClick, pages, page, next, prev, first, last,middle, ...resetOfProps } = props;
+  const { showPages, onClick, pages, page, next, prev, first, last, middle, ...resetOfProps } = props;
   const createLink = (_page, title, key, attributes = {}) => {
     return (<PaginationItem {...attributes} key={key}>
       <PaginationLink tag="button" type="button" onClick={() => onClick(_page)}>
@@ -41,15 +40,15 @@ const Paginate = (props) => {
     let isMaxSized = !isNaN(showPages) && showPages < pages;
 
     if (isMaxSized) {
-      if (middle){
+      if (middle) {
         // Current page is displayed in the middle of the visible ones
         startPage = Math.max(page - Math.floor(showPages / 2), 1);
-        endPage = startPage + showPages - 1;
+        endPage = (startPage + showPages) - 1;
 
         // Adjust if limit is exceeded
         if (endPage > pages) {
           endPage = pages;
-          startPage = endPage - showPages + 1;
+          startPage = (endPage - showPages) + 1;
         }
       } else {
         startPage = ((Math.ceil(page / showPages) - 1) * showPages) + 1;
