@@ -3,6 +3,9 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
+import PagenateExample from '../examples/Paginate';
+const PagenateExampleSource = require('!!raw!../examples/Paginate.jsx');
+
 import PaginationExample from '../examples/Pagination';
 const PaginationExampleSource = require('!!raw!../examples/Pagination.jsx');
 
@@ -64,6 +67,22 @@ export default class PaginationPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {PaginationSizingSmallExampleSource}
+          </PrismCode>
+        </pre>
+        <div className="docs-example">
+          <PagenateExample />
+            <hr/>
+            Middle is off
+            <hr/>
+          <PagenateExample middle={false} />
+            <hr/>
+            Customize navigators
+            <hr/>
+          <PagenateExample custom={true} />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {PagenateExampleSource}
           </PrismCode>
         </pre>
       </div>

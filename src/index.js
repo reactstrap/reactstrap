@@ -58,6 +58,7 @@ import Media from './Media';
 import Pagination from './Pagination';
 import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
+import Paginate from './Paginate';
 
 export {
   Container,
@@ -120,4 +121,5 @@ export {
   Pagination,
   PaginationItem,
   PaginationLink,
+  Paginate
 };
