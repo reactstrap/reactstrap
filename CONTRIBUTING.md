@@ -35,5 +35,6 @@ If you wish to submit a pull request for a new feature or issue, you should star
 
 - [Codepen Demo](http://codepen.io/eddywashere/pen/ZOjmkm)
 - [Slack](https://reactstrap.slack.com)
-  - [Slack Invite](https://reactstrap.herokuapp.com/)
-- [stackoverflow](stackoverflow.com/questions/ask?tags=reactstrap+react)
+  - [Get Slack Invite](https://reactstrap.herokuapp.com/)
+- [Ask Stackoverflow](http://stackoverflow.com/questions/ask?tags=reactstrap+react)
+  - [View Stackoverflow reactstrap tag](http://stackoverflow.com/questions/tagged/reactstrap)
