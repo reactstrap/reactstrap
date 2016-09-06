@@ -16,18 +16,18 @@ import CardGroupsExample from '../examples/CardGroups';
 import CardDecksExample from '../examples/CardDecks';
 import CardColumnsExample from '../examples/CardColumns';
 
-const CardExampleSource = require('!!raw!../examples/Card.jsx');
-const CardContentExampleSource = require('!!raw!../examples/CardContentTypes.jsx');
-const CardSizingExampleSource = require('!!raw!../examples/CardSizing.jsx');
-const CardAlignmentExampleSource = require('!!raw!../examples/CardAlignment.jsx');
-const CardHeaderFooterExampleSource = require('!!raw!../examples/CardHeaderFooter.jsx');
-const CardImageCapsExampleSource = require('!!raw!../examples/CardImageCaps.jsx');
-const CardImageOverlayExampleSource = require('!!raw!../examples/CardImageOverlay.jsx');
-const CardBackgroundsExampleSource = require('!!raw!../examples/CardBackgrounds.jsx');
-const CardOutlineExampleSource = require('!!raw!../examples/CardOutline.jsx');
-const CardGroupsExampleSource = require('!!raw!../examples/CardGroups.jsx');
-const CardDecksExampleSource = require('!!raw!../examples/CardDecks.jsx');
-const CardColumnsExampleSource = require('!!raw!../examples/CardColumns.jsx');
+const CardExampleSource = require('!!raw!../examples/Card');
+const CardContentExampleSource = require('!!raw!../examples/CardContentTypes');
+const CardSizingExampleSource = require('!!raw!../examples/CardSizing');
+const CardAlignmentExampleSource = require('!!raw!../examples/CardAlignment');
+const CardHeaderFooterExampleSource = require('!!raw!../examples/CardHeaderFooter');
+const CardImageCapsExampleSource = require('!!raw!../examples/CardImageCaps');
+const CardImageOverlayExampleSource = require('!!raw!../examples/CardImageOverlay');
+const CardBackgroundsExampleSource = require('!!raw!../examples/CardBackgrounds');
+const CardOutlineExampleSource = require('!!raw!../examples/CardOutline');
+const CardGroupsExampleSource = require('!!raw!../examples/CardGroups');
+const CardDecksExampleSource = require('!!raw!../examples/CardDecks');
+const CardColumnsExampleSource = require('!!raw!../examples/CardColumns');
 
 export default class CardPage extends React.Component {
   render() {

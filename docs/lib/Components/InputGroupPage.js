@@ -3,15 +3,15 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import OverviewExample from '../examples/InputGroupOverview';
-const OverviewExampleSource = require('!!raw!../examples/InputGroupOverview.jsx');
+const OverviewExampleSource = require('!!raw!../examples/InputGroupOverview');
 import AddonExample from '../examples/InputGroupAddon';
-const AddonExampleSource = require('!!raw!../examples/InputGroupAddon.jsx');
+const AddonExampleSource = require('!!raw!../examples/InputGroupAddon');
 import AddonSizingExample from '../examples/InputGroupSizing';
-const AddonSizingExampleSource = require('!!raw!../examples/InputGroupSizing.jsx');
+const AddonSizingExampleSource = require('!!raw!../examples/InputGroupSizing');
 import ButtonExample from '../examples/InputGroupButton';
-const ButtonExampleSource = require('!!raw!../examples/InputGroupButton.jsx');
+const ButtonExampleSource = require('!!raw!../examples/InputGroupButton');
 import ButtonShorthandExample from '../examples/InputGroupButtonShorthand';
-const ButtonShorthandExampleSource = require('!!raw!../examples/InputGroupButtonShorthand.jsx');
+const ButtonShorthandExampleSource = require('!!raw!../examples/InputGroupButtonShorthand');
 
 export default class InputGroupPage extends React.Component {
   constructor(props) {

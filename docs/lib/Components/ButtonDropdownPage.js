@@ -11,7 +11,7 @@ import {
 import Example from '../examples/ButtonDropdownMulti';
 import ExampleSplit from '../examples/ButtonDropdownMultiSplit';
 import ButtonDropdownExample from '../examples/ButtonDropdown';
-const ButtonDropdownExampleSource = require('!!raw!../examples/ButtonDropdown.jsx');
+const ButtonDropdownExampleSource = require('!!raw!../examples/ButtonDropdown');
 
 export default class ButtonDropdownPage extends React.Component {
   constructor(props) {

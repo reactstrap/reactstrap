@@ -3,13 +3,13 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import NavsExample from '../examples/Navs';
-const NavsExampleSource = require('!!raw!../examples/Navs.jsx');
+const NavsExampleSource = require('!!raw!../examples/Navs');
 import NavInlineExample from '../examples/NavInline';
-const NavInlineExampleSource = require('!!raw!../examples/NavInline.jsx');
+const NavInlineExampleSource = require('!!raw!../examples/NavInline');
 import NavTabsExample from '../examples/NavTabs';
-const NavTabsExampleSource = require('!!raw!../examples/NavTabs.jsx');
+const NavTabsExampleSource = require('!!raw!../examples/NavTabs');
 import NavPillsExample from '../examples/NavPills';
-const NavPillsExampleSource = require('!!raw!../examples/NavPills.jsx');
+const NavPillsExampleSource = require('!!raw!../examples/NavPills');
 
 export default class NavssPage extends React.Component {
   render() {

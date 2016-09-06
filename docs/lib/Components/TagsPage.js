@@ -4,13 +4,13 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
 import TagExample from '../examples/Tag';
-const TagExampleSource = require('!!raw!../examples/Tag.jsx');
+const TagExampleSource = require('!!raw!../examples/Tag');
 
 import TagPillsExample from '../examples/TagPills';
-const TagPillsExampleSource = require('!!raw!../examples/TagPills.jsx');
+const TagPillsExampleSource = require('!!raw!../examples/TagPills');
 
 import TagVariationsExample from '../examples/TagVariations';
-const TagVariationsExampleSource = require('!!raw!../examples/TagVariations.jsx');
+const TagVariationsExampleSource = require('!!raw!../examples/TagVariations');
 
 export default class TagsPage extends React.Component {
   render() {

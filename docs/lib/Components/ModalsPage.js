@@ -3,7 +3,7 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import ModalExample from '../examples/Modal';
-const ModalExampleSource = require('!!raw!../examples/Modal.jsx');
+const ModalExampleSource = require('!!raw!../examples/Modal');
 
 export default class ModalsPage extends React.Component {
   render() {

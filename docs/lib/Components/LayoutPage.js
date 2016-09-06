@@ -3,7 +3,7 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import LayoutExample from '../examples/Layout';
-const LayoutExampleSource = require('!!raw!../examples/Layout.jsx');
+const LayoutExampleSource = require('!!raw!../examples/Layout');
 
 export default class LayoutsPage extends React.Component {
   render() {

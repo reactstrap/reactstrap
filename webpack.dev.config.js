@@ -44,7 +44,7 @@ var config = [{
     }
   },
   entry: {
-    main: './docs/lib/app.jsx'
+    main: './docs/lib/app'
   },
   node: {
     fs: 'empty'
@@ -88,7 +88,7 @@ var config = [{
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['', '.js', '.json'],
     alias: {
       'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css'),
       reactstrap: path.resolve('./src')

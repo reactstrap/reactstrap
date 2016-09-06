@@ -3,9 +3,9 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import TooltipExample from '../examples/Tooltip';
-const TooltipExampleSource = require('!!raw!../examples/Tooltip.jsx');
+const TooltipExampleSource = require('!!raw!../examples/Tooltip');
 import TooltipExampleMulti from '../examples/TooltipMulti';
-const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti.jsx');
+const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti');
 
 export default class TooltipsPage extends React.Component {
   render() {

@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import NavbarExample from '../examples/Navbar';
-const NavbarExampleSource = require('!!raw!../examples/Navbar.jsx');
+const NavbarExampleSource = require('!!raw!../examples/Navbar');
 
 export default class NavsPage extends React.Component {
   render() {
