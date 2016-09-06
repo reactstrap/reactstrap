@@ -29,11 +29,12 @@ export default class ButtonsPage extends React.Component {
 {`Button.propTypes = {
   active: PropTypes.bool,
   block: PropTypes.bool,
-  color: PropTypes.string,
+  color: PropTypes.string, // default: 'secondary'
   disabled: PropTypes.bool,
 
   // Pass in a Component to override default button element
   // example: react-router Link
+  // default: 'button'
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
   onClick: PropTypes.func,
@@ -52,54 +53,54 @@ export default class ButtonsPage extends React.Component {
         </pre>
         <h3>Sizes</h3>
         <div className="docs-example">
-          <Button size="lg">Large Button</Button>
+          <Button color="primary" size="lg">Large Button</Button>
           <Button color="secondary" size="lg">Large Button</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button size="lg">Large Button</Button>
+{`<Button color="primary" size="lg">Large Button</Button>
 <Button color="secondary" size="lg">Large Button</Button>`}
           </PrismCode>
         </pre>
         <div className="docs-example">
-          <Button size="sm">Small Button</Button>
+          <Button color="primary" size="sm">Small Button</Button>
           <Button color="secondary" size="sm">Small Button</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button size="sm">Small Button</Button>
+{`<Button color="primary" size="sm">Small Button</Button>
 <Button color="secondary" size="sm">Small Button</Button>`}
           </PrismCode>
         </pre>
         <div className="docs-example">
-          <Button size="lg" block>Block level button</Button>
+          <Button color="primary" size="lg" block>Block level button</Button>
           <Button color="secondary" size="lg" block>Block level button</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button size="lg" block>Block level button</Button>
+{`<Button color="primary" size="lg" block>Block level button</Button>
 <Button color="secondary" size="lg" block>Block level button</Button>`}
           </PrismCode>
         </pre>
         <h3>Active State</h3>
         <div className="docs-example">
-          <Button size="lg" active>Primary link</Button>
+          <Button color="primary" size="lg" active>Primary link</Button>
           <Button color="secondary" size="lg" active>Link</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button size="lg" active>Primary link</Button>
+{`<Button color="primary" size="lg" active>Primary link</Button>
 <Button color="secondary" size="lg" active>Link</Button>`}
           </PrismCode>
         </pre>
         <h3>Disabled State</h3>
         <div className="docs-example">
-          <Button size="lg" disabled>Primary button</Button>
+          <Button color="primary" size="lg" disabled>Primary button</Button>
           <Button color="secondary" size="lg" disabled>Button</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button size="lg" disabled>Primary button</Button>
+{`<Button color="primary" size="lg" disabled>Primary button</Button>
 <Button color="secondary" size="lg" disabled>Button</Button>`}
           </PrismCode>
         </pre>

@@ -122,7 +122,7 @@ export default class ButtonGroupPage extends React.Component {
               <Button>2</Button>
               <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle caret>
-                  <Button>Dropdown</Button>
+                  Dropdown
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem>Dropdown Link</DropdownItem>
@@ -139,7 +139,7 @@ export default class ButtonGroupPage extends React.Component {
   <Button>2</Button>
   <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
     <DropdownToggle caret>
-      <Button>Dropdown</Button>
+      Dropdown
     </DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Dropdown Link</DropdownItem>
@@ -156,7 +156,7 @@ export default class ButtonGroupPage extends React.Component {
             <Button>2</Button>
             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>
-                <Button>Dropdown</Button>
+                Dropdown
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem>Dropdown Link</DropdownItem>
@@ -172,7 +172,7 @@ export default class ButtonGroupPage extends React.Component {
   <Button>2</Button>
   <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
     <DropdownToggle caret>
-      <Button>Dropdown</Button>
+      Dropdown
     </DropdownToggle>
     <DropdownMenu>
       <DropdownItem>Dropdown Link</DropdownItem>
