@@ -1,3 +1,19 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/reactstrap/reactstrap/compare/2.6.1...v3.0.0) (2016-09-06)
+
+
+### Code Refactoring
+
+* **Button,DropdownToggle:** default to secondary style, remove cloning ([#120](https://github.com/reactstrap/reactstrap/issues/120)) ([5c56749](https://github.com/reactstrap/reactstrap/commit/5c56749)), closes [#98](https://github.com/reactstrap/reactstrap/issues/98)
+
+
+### BREAKING CHANGES
+
+* Button,DropdownToggle: DropdownToggle no longer clones each element in props.children when it’s an array, instead it renders props.children inside a single component (Butt
+* Button,DropdownToggle: Button color now defaults to “secondary”. This behavior aligns with DropdownToggle color default.
+
+
+
 <a name="2.6.1"></a>
 ## [2.6.1](https://github.com/reactstrap/reactstrap/compare/2.6.0...v2.6.1) (2016-09-01)
 
