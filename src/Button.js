@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  color: 'primary',
+  color: 'secondary',
   tag: 'button'
 };
 

@@ -28,7 +28,7 @@ describe('Button', () => {
   it('should render buttons with default color', () => {
     const wrapper = shallow(<Button>Default Button</Button>);
 
-    expect(wrapper.hasClass('btn-primary')).toBe(true);
+    expect(wrapper.hasClass('btn-secondary')).toBe(true);
   });
 
   it('should render buttons with other colors', () => {
@@ -40,7 +40,7 @@ describe('Button', () => {
   it('should render buttons with outline variant', () => {
     const wrapper = shallow(<Button outline>Default Button</Button>);
 
-    expect(wrapper.hasClass('btn-outline-primary')).toBe(true);
+    expect(wrapper.hasClass('btn-outline-secondary')).toBe(true);
   });
 
   it('should render buttons with outline variant with different colors', () => {
