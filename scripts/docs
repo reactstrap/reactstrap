@@ -15,7 +15,9 @@ error() {
   echo -e "\033[31;1m$1"
 }
 
-if [ "$TRAVIS_BRANCH" != "master" ]; then
+if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  echo "Deploying documentation"
+else
   success "Not building master branch. Skipping deploy."
   exit 0
 fi

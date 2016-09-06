@@ -13,11 +13,8 @@ before_script:
   - chmod +x scripts/docs
 after_script:
   - npm run coverage
-deploy:
-  provider: script
-  script: scripts/docs
-  on:
-    branch: master
+after_success:
+  - scripts/docs
 env:
   global:
     secure: GKu1vrkY7RWrrp0VOyxBjGSyTOGdU9jNT+oYR7P12PbCX4yzZ2mbsPpxWWs7Uh8ZXm5VEEfkrF80v/ccUEMvf1MD/q95nqLcQRoN/31yDhiJ66uW+mZk0C6OqUUZJlcSt1Ta6oLmLVmkJUu2euOo4ZTGQ1iwV9EOS+auPYUjXF7df8JE9sTof4YM3jUiQ+3ABIG8cOcsf81AyS9TOcpH6xPEs71Hz0uXta3TAAYpLgJSuuCciQn5Sr/9UIh9w10zAasSZBy27+A5mTf0C0xk3vN95cHfyS25r5x/zC3++YS//6MQASruT05Hf7STpF9Dy/6mdg6tMfGr+85zDqpMaF1dP5Rm9f8KHqZzYD52PtwLEkHpWwi/gqHY5vc+wHla5FEXiqawtBTRMj/hlvkvdN55qZnnFmsVEPrhHAIm1a8ECngzkZhG9QblszGgc55RtAtgGSlVsS5VWStsj29xLs2VJb6gYj69cMDSIND4e5VYzmrnaO/qRbzvRWJUIWFo/nmpSnAQbq5yV8K1+VukbxX/hF7+mE55ieeVww8tnC2bkxuQF1CbzTul5kPgAD7Hf8YdsSczvdZpSRHtN6OXGCotw4DRAiXZRb5TLFvEQFvbrNGciN5/Z1rXxlMr8WWwckAFxVW1EQd+kKg8abjCOLE+YY04a+h3W/+XOgDPUlA=
