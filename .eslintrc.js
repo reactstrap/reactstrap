@@ -30,7 +30,8 @@ var rules = {
   'max-len': 0,
   'camelcase': 0,
   'react/jsx-pascal-case': 0,
-  'prefer-const': 0
+  'prefer-const': 0,
+  'react/jsx-filename-extension': 0
 };
 
 module.exports = {

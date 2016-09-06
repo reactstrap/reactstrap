@@ -87,7 +87,7 @@ module.exports = function (env) {
       alias: {
         reactstrap: 'src/index'
       },
-      extensions: ['', '.js', '.jsx', '.json'],
+      extensions: ['', '.js', '.json'],
       root: [
         path.resolve('./src')
       ]

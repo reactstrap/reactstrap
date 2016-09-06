@@ -8,7 +8,7 @@ import {
   DropdownItem,
   DropdownMenu } from 'reactstrap';
 import DropdownExample from '../examples/Dropdown';
-const DropdownExampleSource = require('!!raw!../examples/Dropdown.jsx');
+const DropdownExampleSource = require('!!raw!../examples/Dropdown');
 import DropdownSizingExample from '../examples/DropdownSizing';
 
 export default class DropdownPage extends React.Component {

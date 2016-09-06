@@ -34,7 +34,7 @@ var webpackConfig = {
     alias: {
       reactstrap: path.resolve('./src/index.js')
     },
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', '.js', '.json']
   },
 };
 

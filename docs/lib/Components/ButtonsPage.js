@@ -4,10 +4,10 @@ import { PrismCode } from 'react-prism';
 import { Button } from 'reactstrap';
 import Helmet from 'react-helmet';
 import ButtonExample from '../examples/Button';
-const ButtonExampleSource = require('!!raw!../examples/Button.jsx');
+const ButtonExampleSource = require('!!raw!../examples/Button');
 
 import ButtonOutline from '../examples/ButtonOutline';
-const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline.jsx');
+const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline');
 
 export default class ButtonsPage extends React.Component {
   render() {

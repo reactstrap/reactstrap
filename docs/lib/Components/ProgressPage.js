@@ -4,15 +4,15 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import { Card, CardText } from 'reactstrap';
 import ProgressExample from '../examples/Progress';
-const ProgressExampleSource = require('!!raw!../examples/Progress.jsx');
+const ProgressExampleSource = require('!!raw!../examples/Progress');
 import ProgressColorExample from '../examples/ProgressColor';
-const ProgressColorExampleSource = require('!!raw!../examples/ProgressColor.jsx');
+const ProgressColorExampleSource = require('!!raw!../examples/ProgressColor');
 import ProgressAnimatedExample from '../examples/ProgressAnimated';
-const ProgressAnimatedExampleSource = require('!!raw!../examples/ProgressAnimated.jsx');
+const ProgressAnimatedExampleSource = require('!!raw!../examples/ProgressAnimated');
 import ProgressStripedExample from '../examples/ProgressStriped';
-const ProgressStripedExampleSource = require('!!raw!../examples/ProgressStriped.jsx');
+const ProgressStripedExampleSource = require('!!raw!../examples/ProgressStriped');
 import ProgressMaxExample from '../examples/ProgressMax';
-const ProgressMaxExampleSource = require('!!raw!../examples/ProgressMax.jsx');
+const ProgressMaxExampleSource = require('!!raw!../examples/ProgressMax');
 
 export default class ProgressPage extends React.Component {
   render() {

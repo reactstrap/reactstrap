@@ -2,37 +2,37 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
-import TooltipExample from '../examples/Tooltip';
-const TooltipExampleSource = require('!!raw!../examples/Tooltip.jsx');
-import TooltipExampleMulti from '../examples/TooltipMulti';
-const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti.jsx');
+import PopoverExample from '../examples/Popover';
+const PopoverExampleSource = require('!!raw!../examples/Popover');
+import PopoverExampleMulti from '../examples/PopoverMulti';
+const PopoverExampleMultiSource = require('!!raw!../examples/PopoverMulti');
 
-export default class TooltipsPage extends React.Component {
+export default class PopoversPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Tooltips" />
-        <h3>Tooltips</h3>
-        <p>Tooltips are built with <a href="http://tether.io/">http://tether.io</a>.</p>
+        <Helmet title="Popovers" />
+        <h3>Popovers</h3>
+        <p>Popovers are built with <a href="http://tether.io/">http://tether.io</a>.</p>
         <div className="docs-example">
-          <TooltipExample />
+          <PopoverExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {TooltipExampleSource}
+            {PopoverExampleSource}
           </PrismCode>
         </pre>
         <h4>Properties</h4>
         <pre>
           <PrismCode className="language-jsx">
-{`Tooltip.propTypes = {
+{`Popover.propTypes = {
   isOpen:  PropTypes.bool,
-  // boolean to control the state of the tooltip
+  // boolean to control the state of the popover
   toggle:  PropTypes.func,
   // callback for toggling isOpen in the controlling component
   target:  PropTypes.string.isRequired,
   // target div ID, popover is attached to this element
-  tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  tether: PropTypes.object,
   // optionally overide tether config http://tether.io/#options
   placement: PropTypes.oneOf([
     'top',
@@ -57,13 +57,13 @@ export default class TooltipsPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>Tooltips List</h3>
+        <h3>Popovers List</h3>
         <div className="docs-example">
-          <TooltipExampleMulti />
+          <PopoverExampleMulti />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {TooltipExampleMultiSource}
+            {PopoverExampleMultiSource}
           </PrismCode>
         </pre>
       </div>

@@ -4,28 +4,28 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
 import FormExample from '../examples/Form';
-const FormExampleSource = require('!!raw!../examples/Form.jsx');
+const FormExampleSource = require('!!raw!../examples/Form');
 
 import FormGridExample from '../examples/FormGrid';
-const FormGridExampleSource = require('!!raw!../examples/FormGrid.jsx');
+const FormGridExampleSource = require('!!raw!../examples/FormGrid');
 
 import FormInlineExample from '../examples/FormInline';
-const FormInlineExampleSource = require('!!raw!../examples/FormInline.jsx');
+const FormInlineExampleSource = require('!!raw!../examples/FormInline');
 
 import FormFeedbackExample from '../examples/FormFeedback';
-const FormFeedbackExampleSource = require('!!raw!../examples/FormFeedback.jsx');
+const FormFeedbackExampleSource = require('!!raw!../examples/FormFeedback');
 
 import InputTypeExample from '../examples/InputType';
-const InputTypeExampleSource = require('!!raw!../examples/InputType.jsx');
+const InputTypeExampleSource = require('!!raw!../examples/InputType');
 
 import InputSizingExample from '../examples/InputSizing';
-const InputSizingExampleSource = require('!!raw!../examples/InputSizing.jsx');
+const InputSizingExampleSource = require('!!raw!../examples/InputSizing');
 
 import InputGridSizingExample from '../examples/InputGridSizing';
-const InputGridSizingExampleSource = require('!!raw!../examples/InputGridSizing.jsx');
+const InputGridSizingExampleSource = require('!!raw!../examples/InputGridSizing');
 
 import LabelHiddenExample from '../examples/LabelHidden';
-const LabelHiddenExampleSource = require('!!raw!../examples/LabelHidden.jsx');
+const LabelHiddenExampleSource = require('!!raw!../examples/LabelHidden');
 
 export default class FormPage extends React.Component {
   render() {

@@ -4,16 +4,16 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
 import PaginationExample from '../examples/Pagination';
-const PaginationExampleSource = require('!!raw!../examples/Pagination.jsx');
+const PaginationExampleSource = require('!!raw!../examples/Pagination');
 
 import PaginationStateExample from '../examples/PaginationState';
-const PaginationStateExampleSource = require('!!raw!../examples/PaginationState.jsx');
+const PaginationStateExampleSource = require('!!raw!../examples/PaginationState');
 
 import PaginationSizingLargeExample from '../examples/PaginationSizingLarge';
-const PaginationSizingLargeExampleSource = require('!!raw!../examples/PaginationSizingLarge.jsx');
+const PaginationSizingLargeExampleSource = require('!!raw!../examples/PaginationSizingLarge');
 
 import PaginationSizingSmallExample from '../examples/PaginationSizingSmall';
-const PaginationSizingSmallExampleSource = require('!!raw!../examples/PaginationSizingSmall.jsx');
+const PaginationSizingSmallExampleSource = require('!!raw!../examples/PaginationSizingSmall');
 
 export default class PaginationPage extends React.Component {
   render() {
