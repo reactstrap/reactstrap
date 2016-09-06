@@ -1,5 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
+import { Link } from 'react-router';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import {
@@ -32,6 +33,13 @@ export default class DropdownPage extends React.Component {
       <div>
         <Helmet title="Dropdowns" />
         <h3>Dropdowns</h3>
+        <p>
+          The <code>Dropdown</code> component is used to pass the <code>isOpen</code> & <code>toggle</code> props via context to the following components: <code>DropdownToggle</code>, <code>DropdownMenu</code>. The <code>DropdownToggle</code> uses the <code>Button</code> component internally, meaning it also accepts all the props the <Link to="/components/buttons/">Button component</Link> accepts.
+        </p>
+        <h4>Advanced Positioning</h4>
+        <p>
+          The <code>DropdownMenu</code> can automatically be flipped (dropup vs dropdown) according to space available in the viewport by passing the <code>tether</code> prop to Dropdown <code>{`<Dropdown tether />`}</code>. For full customization, an object with <a href="http://tether.io/#options">Tether options</a> can be used instead.
+        </p>
         <div className="docs-example">
           <DropdownExample />
         </div>
@@ -48,7 +56,7 @@ export default class DropdownPage extends React.Component {
   dropup: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: PropTypes.string, // default: 'div'
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func
 };
@@ -56,10 +64,14 @@ export default class DropdownPage extends React.Component {
 DropdownToggle.propTypes = {
   caret: PropTypes.bool,
   color: PropTypes.string,
+  className: PropTypes.any,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   'data-toggle': PropTypes.string,
-  'aria-haspopup': PropTypes.bool
+  'aria-haspopup': PropTypes.bool,
+
+  // Defaults to Button component
+  tag: PropTypes.any
 };`}
           </PrismCode>
         </pre>

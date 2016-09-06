@@ -68,8 +68,8 @@ DropdownToggle.propTypes = {
         <h3>Single button dropdowns</h3>
         <div className="docs-example">
           <div>
-            <Example color="secondary" text="Default" />
             <Example color="primary" text="Primary" />
+            <Example color="secondary" text="Secondary" />
             <Example color="success" text="Success" />
             <Example color="info" text="Info" />
             <Example color="warning" text="Warning" />
@@ -95,8 +95,8 @@ DropdownToggle.propTypes = {
         <h3>Split button dropdowns</h3>
         <div className="docs-example">
           <div>
-            <ExampleSplit color="secondary" text="Default" />
             <ExampleSplit color="primary" text="Primary" />
+            <ExampleSplit color="secondary" text="Secondary" />
             <ExampleSplit color="success" text="Success" />
             <ExampleSplit color="info" text="Info" />
             <ExampleSplit color="warning" text="Warning" />
@@ -107,9 +107,7 @@ DropdownToggle.propTypes = {
           <PrismCode className="language-jsx">
 {`<ButtonDropdown isOpen={isOpen} toggle={toggle}>
   <Button id="caret" color="primary">{this.props.text}</Button>
-  <DropdownToggle caret>
-    <Button color="primary"><span className="sr-only">Toggle Dropdown</span></Button>
-  </DropdownToggle>
+  <DropdownToggle caret color="primary" />
   <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>
@@ -124,8 +122,8 @@ DropdownToggle.propTypes = {
         <div className="docs-example">
           <div>
             <ButtonDropdown isOpen={this.state.btnLg} toggle={() => { this.setState({ btnLg: !this.state.btnLg }); }}>
-              <DropdownToggle caret>
-                <Button size="lg">Large Button</Button>
+              <DropdownToggle caret size="lg">
+                Large Button
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem>Another Action</DropdownItem>
@@ -135,8 +133,8 @@ DropdownToggle.propTypes = {
           </div>
           <div className="m-t-1">
             <ButtonDropdown isOpen={this.state.btnSm} toggle={() => { this.setState({ btnSm: !this.state.btnSm }); }}>
-              <DropdownToggle caret>
-                <Button size="sm">Small Button</Button>
+              <DropdownToggle caret size="sm">
+                Small Button
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem>Another Action</DropdownItem>
@@ -148,8 +146,8 @@ DropdownToggle.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
 {`<ButtonDropdown isOpen={isOpen} toggle={toggle}>
-  <DropdownToggle caret>
-    <Button size="lg">Large Button</Button>
+  <DropdownToggle caret size="lg">
+    Large Button
   </DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
@@ -158,8 +156,8 @@ DropdownToggle.propTypes = {
 </ButtonDropdown>
 
 <ButtonDropdown isOpen={isOpen} toggle={toggle}>
-  <DropdownToggle caret>
-    <Button size="sm">Small Button</Button>
+  <DropdownToggle caret size="sm">
+    Small Button
   </DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
@@ -172,8 +170,8 @@ DropdownToggle.propTypes = {
         <div className="docs-example">
           <div>
             <ButtonDropdown dropup isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>
-              <DropdownToggle caret>
-                <Button size="lg">Dropup</Button>
+              <DropdownToggle caret size="lg">
+                Dropup
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem>Another Action</DropdownItem>
@@ -185,8 +183,8 @@ DropdownToggle.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
 {`<ButtonDropdown isOpen={isOpen} toggle={toggle} dropup>
-  <DropdownToggle caret>
-    <Button>Dropup</Button>
+  <DropdownToggle caret caret size="lg">
+    Dropup
   </DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>
