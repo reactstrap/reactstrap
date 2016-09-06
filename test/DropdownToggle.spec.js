@@ -27,9 +27,39 @@ describe('DropdownToggle', () => {
     expect(wrapper.find('[data-toggle="dropdown"]').length).toBe(1);
   });
 
+  it('should add default sr-only content', () => {
+    const wrapper = mount(
+      <DropdownToggle />,
+      {
+        context: {
+          isOpen: isOpen,
+          toggle: toggle
+        }
+      }
+    );
+
+    expect(wrapper.text()).toBe('Toggle Dropdown');
+    expect(wrapper.find('.sr-only').length).toBe(1);
+  });
+
+  it('should add default sr-only content', () => {
+    const wrapper = mount(
+      <DropdownToggle aria-label="Dropup Toggle" />,
+      {
+        context: {
+          isOpen: isOpen,
+          toggle: toggle
+        }
+      }
+    );
+
+    expect(wrapper.text()).toBe('Dropup Toggle');
+    expect(wrapper.find('.sr-only').length).toBe(1);
+  });
+
   it('should render elements', () => {
     const wrapper = mount(
-      <DropdownToggle><Button>Click Me</Button></DropdownToggle>,
+      <DropdownToggle>Click Me</DropdownToggle>,
       {
         context: {
           isOpen: isOpen,
