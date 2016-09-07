@@ -100,7 +100,7 @@ class Modal extends React.Component {
   }
 
   removeEvents() {
-    document.removeEventListener('click', this.handleBackdropClick, false);
+    document.removeEventListener('click', this.handleBackdropClick, true);
     document.removeEventListener('keyup', this.handleEscape, false);
   }
 
@@ -115,7 +115,7 @@ class Modal extends React.Component {
     this._element.setAttribute('tabindex', '-1');
 
     document.body.appendChild(this._element);
-    document.addEventListener('click', this.handleBackdropClick, false);
+    document.addEventListener('click', this.handleBackdropClick, true);
     document.addEventListener('keyup', this.handleEscape, false);
 
     document.body.className = classNames(
