@@ -81,14 +81,14 @@ describe('TetherContent', () => {
   });
 
   describe('show', () => {
-    it('should be called on componentWillUnmount', () => {
+    it('should be called on componentDidMount', () => {
       state = true;
-      spyOn(TetherContent.prototype, 'componentWillUnmount').and.callThrough();
+      spyOn(TetherContent.prototype, 'componentDidMount').and.callThrough();
       spyOn(TetherContent.prototype, 'show').and.callThrough();
       const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
       const instance = wrapper.instance();
 
-      expect(TetherContent.prototype.componentWillUnmount.calls.count()).toBe(0);
+      expect(TetherContent.prototype.componentDidMount.calls.count()).toBe(1);
       expect(TetherContent.prototype.show.calls.count()).toBe(1);
       expect(instance._element.textContent).toBe('Content');
       expect(instance._tether.enabled).toBe(true);
@@ -231,6 +231,73 @@ describe('TetherContent', () => {
 
       expect(TetherContent.prototype.componentDidUpdate.calls.count()).toBe(1);
       expect(TetherContent.prototype.handleProps.calls.count()).toBe(1);
+      expect(instance.props.isOpen).toBe(false);
+    });
+  });
+
+  describe('renderIntoSubtree', () => {
+    it('should be called when the content is shown', () => {
+      spyOn(TetherContent.prototype, 'renderIntoSubtree').and.callThrough();
+      mount(<TetherContent tether={tetherConfig} isOpen toggle={toggle}><p>Content</p></TetherContent>);
+
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(1);
+    });
+
+    it('should be called when the content is not shown', () => {
+      spyOn(TetherContent.prototype, 'renderIntoSubtree').and.callThrough();
+      mount(<TetherContent tether={tetherConfig} isOpen={false} toggle={toggle}><p>Content</p></TetherContent>);
+
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(0);
+    });
+
+    it('should be called on componentDidUpdate when isOpen did not change is true', () => {
+      spyOn(TetherContent.prototype, 'componentDidUpdate').and.callThrough();
+      spyOn(TetherContent.prototype, 'renderIntoSubtree').and.callThrough();
+      const wrapper = mount(<TetherContent tether={tetherConfig} isOpen toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+
+      expect(TetherContent.prototype.componentDidUpdate.calls.count()).toBe(0);
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(1);
+      expect(instance.props.isOpen).toBe(true);
+
+      wrapper.setProps({ children: <span>something</span> });
+
+      expect(TetherContent.prototype.componentDidUpdate.calls.count()).toBe(1);
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(2);
+      expect(instance.props.isOpen).toBe(true);
+    });
+
+    it('should not be called on componentDidUpdate when isOpen changed to false', () => {
+      spyOn(TetherContent.prototype, 'componentDidUpdate').and.callThrough();
+      spyOn(TetherContent.prototype, 'renderIntoSubtree').and.callThrough();
+      const wrapper = mount(<TetherContent tether={tetherConfig} isOpen toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+
+      expect(TetherContent.prototype.componentDidUpdate.calls.count()).toBe(0);
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(1);
+      expect(instance.props.isOpen).toBe(true);
+
+      wrapper.setProps({ isOpen: false });
+
+      expect(TetherContent.prototype.componentDidUpdate.calls.count()).toBe(1);
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(1);
+      expect(instance.props.isOpen).toBe(false);
+    });
+
+    it('should not be called on componentDidUpdate when isOpen did not change and is false', () => {
+      spyOn(TetherContent.prototype, 'componentDidUpdate').and.callThrough();
+      spyOn(TetherContent.prototype, 'renderIntoSubtree').and.callThrough();
+      const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={false} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+
+      expect(TetherContent.prototype.componentDidUpdate.calls.count()).toBe(0);
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(0);
+      expect(instance.props.isOpen).toBe(false);
+
+      wrapper.setProps({ children: <span>something</span> });
+
+      expect(TetherContent.prototype.componentDidUpdate.calls.count()).toBe(1);
+      expect(TetherContent.prototype.renderIntoSubtree.calls.count()).toBe(0);
       expect(instance.props.isOpen).toBe(false);
     });
   });
