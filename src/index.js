@@ -58,6 +58,8 @@ import Media from './Media';
 import Pagination from './Pagination';
 import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
+import TabContent from './TabContent';
+import TabPane from './TabPane';
 
 export {
   Container,
@@ -120,4 +122,6 @@ export {
   Pagination,
   PaginationItem,
   PaginationLink,
+  TabContent,
+  TabPane
 };
