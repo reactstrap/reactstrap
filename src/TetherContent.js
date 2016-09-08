@@ -32,6 +32,9 @@ class TetherContent extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.isOpen !== prevProps.isOpen) {
       this.handleProps();
+    } else if (this._element) {
+      // rerender
+      this.renderIntoSubtree();
     }
   }
 
@@ -94,11 +97,7 @@ class TetherContent extends React.Component {
 
     this._element = document.createElement('div');
     document.body.appendChild(this._element);
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this,
-      this.renderChildren(),
-      this._element
-    );
+    this.renderIntoSubtree();
 
     if (this.props.arrow) {
       const arrow = document.createElement('div');
@@ -117,6 +116,14 @@ class TetherContent extends React.Component {
     }
 
     return this.props.toggle();
+  }
+
+  renderIntoSubtree() {
+    ReactDOM.unstable_renderSubtreeIntoContainer(
+      this,
+      this.renderChildren(),
+      this._element
+    );
   }
 
   renderChildren() {
