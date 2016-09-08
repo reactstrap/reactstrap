@@ -1,3 +1,15 @@
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/reactstrap/reactstrap/compare/3.0.0...v3.0.1) (2016-09-08)
+
+
+### Bug Fixes
+
+* **docs:** update deploy script ([8fd0761](https://github.com/reactstrap/reactstrap/commit/8fd0761))
+* **modal:** fix event listener for modal ([#127](https://github.com/reactstrap/reactstrap/issues/127)) ([c778608](https://github.com/reactstrap/reactstrap/commit/c778608)), closes [#126](https://github.com/reactstrap/reactstrap/issues/126)
+* **TetherContent:** rerender when other props change ([#128](https://github.com/reactstrap/reactstrap/issues/128)) ([25600d4](https://github.com/reactstrap/reactstrap/commit/25600d4)), closes [#125](https://github.com/reactstrap/reactstrap/issues/125)
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/reactstrap/reactstrap/compare/2.6.1...v3.0.0) (2016-09-06)
 
