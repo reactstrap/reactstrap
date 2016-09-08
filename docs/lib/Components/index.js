@@ -11,7 +11,9 @@ const ComponentLink = (props) => {
     </NavItem>
   );
 };
-
+const propTypes = {
+  children: React.PropTypes.node
+};
 
 class Components extends React.Component {
   constructor(props) {
@@ -95,6 +97,10 @@ class Components extends React.Component {
           name: 'Pagination',
           to: '/components/pagination/'
         },
+        {
+          name: 'Tabs',
+          to: '/components/tabs/'
+        },
       ]
     };
   }
@@ -123,5 +129,5 @@ class Components extends React.Component {
     );
   }
 }
-
+Components.propTypes = propTypes;
 export default Components;
