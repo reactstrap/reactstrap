@@ -191,6 +191,10 @@ pre, code {
     margin-top: .5rem;
 }
 
+.docs-example .nav-tabs {
+  margin-bottom: 1rem;
+}
+
 
 /* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+jsx */
 /**
