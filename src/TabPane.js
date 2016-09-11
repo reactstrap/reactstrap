@@ -11,9 +11,16 @@ const contextTypes = {
   activeTabId: PropTypes.any
 };
 
-export default function TabPane({ className, tabId, children }, context) {
+export default function TabPane(props, context) {
+  const {
+    className,
+    tabId,
+    children,
+    ...attributes
+  } = props;
+  const classes = classnames('tab-pane', className, { active: tabId === context.activeTabId });
   return (
-    <div className={classnames('tab-pane', className, { active: tabId === context.activeTabId })}>
+    <div {...attributes} className={classes}>
       {children}
     </div>
   );

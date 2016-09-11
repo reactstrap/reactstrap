@@ -14,7 +14,6 @@ const childContextTypes = {
 export default class TabContent extends Component {
   constructor(props) {
     super(props);
-    this.childRefs = {};
     this.state = {
       activeTab: this.props.activeTab
     };
@@ -25,13 +24,16 @@ export default class TabContent extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      activeTab: nextProps.activeTab
-    });
+    if (this.state.activeTab !== nextProps.activeTab) {
+      this.setState({
+        activeTab: nextProps.activeTab
+      });
+    }
   }
   render() {
+    const classes = classnames('tab-content', this.props.className);
     return (
-      <div className={classnames('tab-content', this.props.className)}>
+      <div className={classes}>
         { this.props.children }
       </div>
     );
