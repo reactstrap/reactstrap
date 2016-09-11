@@ -13,21 +13,48 @@ describe('Tabs', () => {
     let tab1 = mount(<TabsExample />);
     expect(tab1.find('.nav .nav-tabs').length).toBe(1);
     expect(tab1.find('.nav .nav-item').length).toBe(2);
-    expect(tab1.find('.tab-content-wrapper').length).toBe(2);
+    expect(tab1.find('.tab-content').length).toBe(1);
+    expect(tab1.find('.tab-pane').length).toBe(2);
   });
   it('should have tab1 as active', () => {
     let tab1 = mount(<TabsExample />);
     expect(tab1.find('.nav .nav-item .nav-link').at(0).hasClass('active')).toBe(true);
     expect(tab1.find('.nav .nav-item .nav-link').at(1).hasClass('active')).toBe(false);
+    expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(true);
   });
   it('should switch to tab2 as active when clicked', () => {
     let tab1 = mount(<TabsExample />);
     expect(tab1.find('.nav .nav-item .nav-link').at(0).hasClass('active')).toBe(true);
     expect(tab1.find('.nav .nav-item .nav-link').at(1).hasClass('active')).toBe(false);
+    expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(true);
     tab1.find('.nav .nav-item .nav-link').at(1).simulate('click');
     expect(tab1.find('.nav .nav-item .nav-link').at(0).hasClass('active')).toBe(false);
     expect(tab1.find('.nav .nav-item .nav-link').at(1).hasClass('active')).toBe(true);
+    expect(tab1.find('.tab-content .tab-pane').at(1).hasClass('active')).toBe(true);
+    tab1.find('.nav .nav-item .nav-link').at(0).simulate('click');
   });
-  // FIXME: Need to add a test for checking for #of hidden tabs. For some reason enzyme doesn't
-  // give hidden as the element's props() (or prop('hidden'))
+  it('should show no active tabs if active tab id is unknown', () => {
+    let tab1 = mount(<TabsExample />);
+    const instance = tab1.instance();
+    expect(instance instanceof TabsExample).toBe(true);
+    instance.toggle('3');
+    /* Not sure if this is what we want. Toggling to an unknown tab id should
+      render all tabs as inactive and should show no content.
+      This could be a warning during development that the user is not having a proper tab ids.
+      NOTE: Should this be different?
+    */
+    expect(tab1.find('.nav .nav-item .nav-link').at(0).hasClass('active')).toBe(false);
+    expect(tab1.find('.nav .nav-item .nav-link').at(1).hasClass('active')).toBe(false);
+    expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(false);
+  });
+  it('should do nothing clicking on the same tab', () => {
+    let tab1 = mount(<TabsExample />);
+    expect(tab1.find('.nav .nav-item .nav-link').at(0).hasClass('active')).toBe(true);
+    expect(tab1.find('.nav .nav-item .nav-link').at(1).hasClass('active')).toBe(false);
+    expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(true);
+    tab1.find('.nav .nav-item .nav-link').at(0).simulate('click');
+    expect(tab1.find('.nav .nav-item .nav-link').at(0).hasClass('active')).toBe(true);
+    expect(tab1.find('.nav .nav-item .nav-link').at(1).hasClass('active')).toBe(false);
+    expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(true);
+  });
 });
