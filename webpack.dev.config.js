@@ -32,6 +32,7 @@ var paths = [
   '/components/tables/',
   '/components/media/',
   '/components/pagination/',
+  '/components/tabs/',
   '/404.html'
 ];
 
