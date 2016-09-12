@@ -50,7 +50,7 @@ export default () => {
             <h3>CDN</h3>
             <pre>
               <PrismCode className="language-jsx">
-                https://npmcdn.com/reactstrap/dist/reactstrap.min.js
+                https://unpkg.com/reactstrap/dist/reactstrap.min.js
               </PrismCode>
             </pre>
             <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>
