@@ -33,6 +33,49 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render with the backdrop with the class "modal-backdrop" by default', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with the backdrop with the class "modal-backdrop" when backdrop is "static"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should not render with the backdrop with the class "modal-backdrop" when backdrop is "false"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop={false}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
+    wrapper.unmount();
+  });
+
   it('should render with class "modal-dialog" and have custom class name if provided', () => {
     isOpen = true;
     const wrapper = mount(
@@ -248,6 +291,41 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should not close modal when escape key pressed when keyboard is false', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} keyboard={false}>
+        Yo!
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    instance.handleEscape({ keyCode: 13 });
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    instance.handleEscape({ keyCode: 27 });
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(300);
+
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    wrapper.unmount();
+  });
+
   it('should close modal when clicking backdrop', () => {
     isOpen = true;
     const wrapper = mount(
@@ -270,6 +348,32 @@ describe('Modal', () => {
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(false);
+
+    wrapper.unmount();
+  });
+
+  it('should not close modal when clicking backdrop and backdrop is "static"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    document.getElementById('clicker').click();
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+
+    document.getElementsByClassName('modal-backdrop')[0].click();
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
 
     wrapper.unmount();
   });

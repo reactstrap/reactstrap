@@ -8,6 +8,11 @@ const propTypes = {
   isOpen: PropTypes.bool,
   size: PropTypes.string,
   toggle: PropTypes.func.isRequired,
+  keyboard: PropTypes.bool,
+  backdrop: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['static'])
+  ]),
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
   children: PropTypes.node,
@@ -15,7 +20,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-  isOpen: false
+  isOpen: false,
+  backdrop: true,
+  keyboard: true
 };
 
 class Modal extends React.Component {
@@ -64,12 +71,14 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
-    if (e.keyCode === 27) {
+    if (this.props.keyboard && e.keyCode === 27) {
       this.props.toggle();
     }
   }
 
   handleBackdropClick(e) {
+    if (this.props.backdrop !== true) return;
+
     const container = this._dialog;
 
     if (e.target && !container.contains(e.target)) {
@@ -168,7 +177,7 @@ class Modal extends React.Component {
             </div>
           </Fade>
         )}
-        {this.props.isOpen && (
+        {this.props.isOpen && this.props.backdrop && (
           <Fade
             key="modal-backdrop"
             transitionAppearTimeout={150}

@@ -5,6 +5,9 @@ import Helmet from 'react-helmet';
 import ModalExample from '../examples/Modal';
 const ModalExampleSource = require('!!raw!../examples/Modal');
 
+import ModalBackdropExample from '../examples/ModalBackdrop';
+const ModalBackdropExampleSource = require('!!raw!../examples/ModalBackdrop');
+
 export default class ModalsPage extends React.Component {
   render() {
     return (
@@ -37,8 +40,28 @@ export default class ModalsPage extends React.Component {
   // boolean to control the state of the popover
   toggle:  PropTypes.func,
   // callback for toggling isOpen in the controlling component
-  size: PropTypes.string
+  size: PropTypes.string,
+  // control backdrop, see http://v4-alpha.getbootstrap.com/components/modal/#options
+  backdrop: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['static'])
+  ]),
+  keyboard: PropTypes.bool
 }`}
+          </PrismCode>
+        </pre>
+
+        <h4>Backdrop</h4>
+        <div className="docs-example">
+          <div className="btn-group">
+            <div className="btn">
+              <ModalBackdropExample buttonLabel="Launch Modal" />
+            </div>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ModalBackdropExampleSource}
           </PrismCode>
         </pre>
       </div>
