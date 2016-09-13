@@ -34,7 +34,7 @@ export default class TabContent extends Component {
     const classes = classnames('tab-content', this.props.className);
     return (
       <div className={classes}>
-        { this.props.children }
+        {this.props.children}
       </div>
     );
   }
