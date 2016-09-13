@@ -266,7 +266,7 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(true);
 
-    document.getElementsByClassName('modal-backdrop')[0].click();
+    document.getElementsByClassName('modal')[0].click();
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(false);
