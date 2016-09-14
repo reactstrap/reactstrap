@@ -97,7 +97,6 @@ class Modal extends React.Component {
 
   destroy() {
     const classes = document.body.className.replace('modal-open', '');
-    this.removeEvents();
 
     if (this._element) {
       ReactDOM.unmountComponentAtNode(this._element);
@@ -108,14 +107,8 @@ class Modal extends React.Component {
     document.body.className = classNames(classes).trim();
   }
 
-  removeEvents() {
-    document.removeEventListener('click', this.handleBackdropClick, true);
-    document.removeEventListener('keyup', this.handleEscape, false);
-  }
-
   hide() {
     this.renderIntoSubtree();
-    this.removeEvents();
   }
 
   show() {
@@ -124,8 +117,6 @@ class Modal extends React.Component {
     this._element.setAttribute('tabindex', '-1');
 
     document.body.appendChild(this._element);
-    document.addEventListener('click', this.handleBackdropClick, true);
-    document.addEventListener('keyup', this.handleEscape, false);
 
     document.body.className = classNames(
       classes,
@@ -144,7 +135,7 @@ class Modal extends React.Component {
 
     // check if modal should receive focus
     if (this._focus) {
-      this._element.focus();
+      this._dialog.parentNode.focus();
       this._focus = false;
     }
   }
@@ -160,6 +151,8 @@ class Modal extends React.Component {
             transitionAppearTimeout={300}
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
+            onClickCapture={this.handleBackdropClick}
+            onKeyUp={this.handleEscape}
             className="modal"
             style={{ display: 'block' }}
             tabIndex="-1"
