@@ -10,7 +10,10 @@ const propTypes = {
   tether: PropTypes.object,
   toggle: PropTypes.func,
   children: PropTypes.node,
-  delay: PropTypes.oneOfType([PropTypes.object, PropTypes.number])
+  delay: PropTypes.oneOfType([
+    PropTypes.shape({ show: PropTypes.number.isRequired, hide: PropTypes.number.isRequired }),
+    PropTypes.number
+  ])
 };
 
 const DEFAULT_DELAYS = {
@@ -73,10 +76,9 @@ class Tooltip extends React.Component {
 
   getDelay(key) {
     const { delay } = this.props;
-    if (typeof delay === 'object') {
-      return isNaN(delay[key]) ? DEFAULT_DELAYS[key] : delay[key];
-    }
-    return delay;
+    return typeof delay === 'object'
+      ? delay[key]
+      : delay;
   }
 
   getTetherConfig() {
@@ -114,9 +116,6 @@ class Tooltip extends React.Component {
     if (e.target === this._target || this._target.contains(e.target)) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
-      }
-      if (this._showTimeout) {
-        this.clearShowTimeout();
       }
 
       if (!this.props.isOpen) {

@@ -137,7 +137,7 @@ describe('Tooltip', () => {
 
   it('should clear hide timeout if it exists on target click', () => {
     const wrapper = mount(
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={200}>
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={200}>
         Tooltip Content
       </Tooltip>,
       { attachTo: container }
@@ -174,6 +174,40 @@ describe('Tooltip', () => {
     expect(props.toggle).not.toHaveBeenCalled();
 
     wrapper.detach();
+  });
+
+  describe('delay', () => {
+    it('should accept a number', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={200}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      instance.onMouseLeaveTooltip();
+      expect(isOpen).toBe(true);
+      jasmine.clock().tick(200);
+      expect(isOpen).toBe(false);
+    });
+
+    it('should accept an object', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={{ show: 200, hide: 200 }}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      instance.onMouseLeaveTooltip();
+      expect(isOpen).toBe(true);
+      jasmine.clock().tick(200);
+      expect(isOpen).toBe(false);
+    });
   });
 
   describe('hide', () => {
@@ -221,11 +255,11 @@ describe('Tooltip', () => {
     it('should call toggle when isOpen is false', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
@@ -241,11 +275,11 @@ describe('Tooltip', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       isOpen = true;
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
@@ -262,7 +296,7 @@ describe('Tooltip', () => {
     it('should clear timeout if it exists on target click', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       const wrapper = mount(
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={{show: 200, hide: 200}}>
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={200}>
           Tooltip Content
         </Tooltip>,
         { attachTo: container }
@@ -286,10 +320,11 @@ describe('Tooltip', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       isOpen = true;
       const wrapper = mount(
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={0}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={0}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       instance.onMouseOverTooltip();
@@ -307,8 +342,7 @@ describe('Tooltip', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       isOpen = true;
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={{show: 200, hide: 200}}>
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={200}>
           Tooltip Content
         </Tooltip>,
         { attachTo: container }
@@ -332,11 +366,11 @@ describe('Tooltip', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       isOpen = false;
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={0}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={0}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       instance.onMouseLeaveTooltip();
