@@ -1,4 +1,3 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, TetherContent } from 'reactstrap';
@@ -11,7 +10,7 @@ describe('Dropdown', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => isOpen = !isOpen;
+    toggle = () => { isOpen = !isOpen; };
     element = document.createElement('div');
     document.body.appendChild(element);
   });

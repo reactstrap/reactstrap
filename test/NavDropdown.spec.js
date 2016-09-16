@@ -1,4 +1,3 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
 import { NavDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -10,7 +9,7 @@ describe('NavDropdown', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => isOpen = !isOpen;
+    toggle = () => { isOpen = !isOpen; };
   });
 
   it('should render a single child', () => {

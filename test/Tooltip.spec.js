@@ -1,9 +1,7 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import { Tooltip } from 'reactstrap';
-
 
 describe('Tooltip', () => {
   let isOpen;
@@ -15,7 +13,7 @@ describe('Tooltip', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => isOpen = !isOpen;
+    toggle = () => { isOpen = !isOpen; };
     element = document.createElement('div');
     container = document.createElement('div');
     element.innerHTML = '<p id="target">This is the tooltip <span id="innerTarget">target</span>.</p>';
@@ -40,11 +38,11 @@ describe('Tooltip', () => {
 
   it('should not render children if isOpen is false', () => {
     const wrapper = mount(
-      (
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
     const instance = wrapper.instance();
     const tooltips = document.getElementsByClassName('tooltip');
 
@@ -57,11 +55,11 @@ describe('Tooltip', () => {
   it('should render if isOpen is true', () => {
     isOpen = true;
     const wrapper = mount(
-      (
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
     const instance = wrapper.instance();
     const tooltips = document.getElementsByClassName('tooltip');
 
@@ -74,11 +72,11 @@ describe('Tooltip', () => {
 
   it('should toggle isOpen', () => {
     const wrapper = mount(
-      (
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
 
     expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.setProps({ isOpen: true });
@@ -90,11 +88,11 @@ describe('Tooltip', () => {
 
   it('should handle target clicks', () => {
     const wrapper = mount(
-      (
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
     const instance = wrapper.instance();
 
     expect(isOpen).toBe(false);
@@ -108,11 +106,11 @@ describe('Tooltip', () => {
 
   it('should handle inner target clicks', () => {
     const wrapper = mount(
-      (
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
     const instance = wrapper.instance();
 
     expect(isOpen).toBe(false);
@@ -123,11 +121,11 @@ describe('Tooltip', () => {
 
   it('should not do anything when document click outside of target', () => {
     const wrapper = mount(
-      (
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
     const instance = wrapper.instance();
 
     expect(isOpen).toBe(false);
@@ -139,11 +137,11 @@ describe('Tooltip', () => {
 
   it('should clear timeout if it exists on target click', () => {
     const wrapper = mount(
-      (
-        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
     const instance = wrapper.instance();
 
     instance.onMouseLeaveTooltip();
@@ -163,11 +161,11 @@ describe('Tooltip', () => {
     const event = jasmine.createSpyObj('event', ['preventDefault']);
 
     const wrapper = mount(
-      (
-        <Tooltip target="target" disabled isOpen={isOpen} toggle={props.toggle}>
-          Tooltip Content
-        </Tooltip>
-    ), { attachTo: container });
+      <Tooltip target="target" disabled isOpen={isOpen} toggle={props.toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
     const instance = wrapper.instance();
 
     instance.toggle(event);
@@ -183,11 +181,11 @@ describe('Tooltip', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       isOpen = true;
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
@@ -202,11 +200,11 @@ describe('Tooltip', () => {
     it('should not call toggle when isOpen is false', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
@@ -223,11 +221,11 @@ describe('Tooltip', () => {
     it('should clear timeout if it exists on target click', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       instance.onMouseLeaveTooltip();
@@ -246,11 +244,11 @@ describe('Tooltip', () => {
       spyOn(Tooltip.prototype, 'toggle').and.callThrough();
       isOpen = true;
       const wrapper = mount(
-        (
-          <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
-            Tooltip Content
-          </Tooltip>
-      ), { attachTo: container });
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
       const instance = wrapper.instance();
 
       instance.onMouseOverTooltip();

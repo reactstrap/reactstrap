@@ -1,7 +1,6 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
-import { DropdownToggle, Button } from 'reactstrap';
+import { DropdownToggle } from 'reactstrap';
 
 describe('DropdownToggle', () => {
   let isOpen;
@@ -9,7 +8,7 @@ describe('DropdownToggle', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => isOpen = !isOpen;
+    toggle = () => { isOpen = !isOpen; };
   });
 
   it('should wrap text', () => {
@@ -104,7 +103,7 @@ describe('DropdownToggle', () => {
     it('should call props.onClick if it exists', () => {
       const onClick = jasmine.createSpy('onClick');
       const wrapper = mount(
-        <DropdownToggle onClick={onClick.bind(this)}>Ello world</DropdownToggle>,
+        <DropdownToggle onClick={() => onClick()}>Ello world</DropdownToggle>,
         {
           context: {
             isOpen: isOpen,
