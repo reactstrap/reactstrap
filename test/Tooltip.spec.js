@@ -208,6 +208,22 @@ describe('Tooltip', () => {
       jasmine.clock().tick(200);
       expect(isOpen).toBe(false);
     });
+
+    it('should use default value if value is missing from object', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} delay={{ show: 0 }}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      instance.onMouseLeaveTooltip();
+      expect(isOpen).toBe(true);
+      jasmine.clock().tick(250);  // Default hide value: 250
+      expect(isOpen).toBe(false);
+    });
   });
 
   describe('hide', () => {

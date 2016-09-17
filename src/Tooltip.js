@@ -11,7 +11,7 @@ const propTypes = {
   toggle: PropTypes.func,
   children: PropTypes.node,
   delay: PropTypes.oneOfType([
-    PropTypes.shape({ show: PropTypes.number.isRequired, hide: PropTypes.number.isRequired }),
+    PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
   ])
 };
@@ -76,9 +76,10 @@ class Tooltip extends React.Component {
 
   getDelay(key) {
     const { delay } = this.props;
-    return typeof delay === 'object'
-      ? delay[key]
-      : delay;
+    if (typeof delay === 'object') {
+      return isNaN(delay[key]) ? DEFAULT_DELAYS[key] : delay[key];
+    }
+    return delay;
   }
 
   getTetherConfig() {
