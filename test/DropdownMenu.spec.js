@@ -1,15 +1,12 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
 import { DropdownMenu } from 'reactstrap';
 
 describe('DropdownMenu', () => {
   let isOpen;
-  let toggle;
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => isOpen = !isOpen;
   });
 
   it('should render children', () => {

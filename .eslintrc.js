@@ -31,7 +31,9 @@ var rules = {
   'camelcase': 0,
   'react/jsx-pascal-case': 0,
   'prefer-const': 0,
-  'react/jsx-filename-extension': 0
+  'react/jsx-filename-extension': 0,
+  'linebreak-style': 0,
+  'react/require-extension': 0
 };
 
 module.exports = {
@@ -39,8 +41,7 @@ module.exports = {
   'env': {
     'browser': true,
     'node': true,
-    'es6': true,
-    'jasmine': true
+    'es6': true
   },
   'globals': {
     'describe': true,

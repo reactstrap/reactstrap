@@ -1,4 +1,3 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
 import { DropdownItem } from 'reactstrap';
@@ -9,7 +8,7 @@ describe('DropdownItem', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => isOpen = !isOpen;
+    toggle = () => { isOpen = !isOpen; };
   });
 
   it('should render a single child', () => {
@@ -79,7 +78,7 @@ describe('DropdownItem', () => {
       const e = { preventDefault: jasmine.createSpy('preventDefault') };
       const onClick = jasmine.createSpy('onClick');
       const wrapper = mount(
-        <DropdownItem onClick={onClick.bind(this)}>Click me</DropdownItem>,
+        <DropdownItem onClick={() => onClick()}>Click me</DropdownItem>,
         {
           context: {
             toggle: toggle

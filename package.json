@@ -13,7 +13,7 @@
     "prebuild": "babel src --out-dir lib",
     "create-release": "npm test && sh ./scripts/release",
     "publish-release": "npm test && sh ./scripts/publish",
-    "lint": "eslint 'src/**'"
+    "lint": "eslint src test"
   },
   "repository": {
     "type": "git",

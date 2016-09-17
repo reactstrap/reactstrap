@@ -1,4 +1,3 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { mount } from 'enzyme';
 import { TetherContent } from 'reactstrap';
@@ -10,7 +9,7 @@ describe('TetherContent', () => {
 
   beforeEach(() => {
     state = false;
-    toggle = () => state = !state;
+    toggle = () => { state = !state; };
     tetherConfig = {
       target: () => document.body,
       attachment: 'middle left',
