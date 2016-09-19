@@ -398,4 +398,92 @@ describe('Tooltip', () => {
       wrapper.detach();
     });
   });
+
+  describe('autohide', () => {
+    it('should keep tooltip around when false and onmouseleave from tooltip content', () => {
+      spyOn(Tooltip.prototype, 'toggle').and.callThrough();
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" autohide={false} isOpen={isOpen} toggle={toggle} delay={200}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      expect(isOpen).toBe(true);
+      expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
+
+      instance.onMouseLeaveTooltipContent();
+      jasmine.clock().tick(100);
+      expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
+      jasmine.clock().tick(200);
+      expect(Tooltip.prototype.toggle).toHaveBeenCalled();
+
+      wrapper.detach();
+    });
+
+    it('clears showTimeout in onMouseLeaveTooltipContent', () => {
+      spyOn(Tooltip.prototype, 'toggle').and.callThrough();
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" autohide={false} isOpen={isOpen} toggle={toggle} delay={200}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      instance.onMouseOverTooltip();
+      expect(instance._showTimeout).toBeTruthy();
+      instance.onMouseLeaveTooltipContent();
+      jasmine.clock().tick(300);
+      expect(instance._showTimeout).toBeFalsy();
+      wrapper.detach();
+    });
+
+    it('clears hide timeout in onMouseOverTooltipContent', () => {
+      spyOn(Tooltip.prototype, 'toggle').and.callThrough();
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" autohide={false} isOpen={isOpen} toggle={toggle} delay={200}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      expect(isOpen).toBe(true);
+      expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
+      instance.onMouseLeaveTooltipContent();
+      jasmine.clock().tick(100);
+      expect(instance._hideTimeout).toBeTruthy();
+      instance.onMouseOverTooltipContent();
+      expect(instance._hideTimeout).toBeFalsy();
+      instance.onMouseOverTooltipContent();
+      wrapper.detach();
+    });
+
+    it('should not keep tooltip around when autohide is true and tooltip content is hovered over', () => {
+      spyOn(Tooltip.prototype, 'toggle').and.callThrough();
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" autohide isOpen={isOpen} toggle={toggle} delay={200}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+      expect(isOpen).toBe(true);
+      expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
+      instance.onMouseLeaveTooltip();
+      jasmine.clock().tick(100);
+      instance.onMouseOverTooltipContent();
+      jasmine.clock().tick(200);
+      expect(Tooltip.prototype.toggle).toHaveBeenCalled();
+      instance.onMouseLeaveTooltipContent();
+      expect(instance._hideTimeout).toBeFalsy();
+      wrapper.detach();
+    });
+  });
 });

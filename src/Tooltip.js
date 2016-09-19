@@ -10,6 +10,7 @@ const propTypes = {
   tether: PropTypes.object,
   toggle: PropTypes.func,
   children: PropTypes.node,
+  autohide: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
@@ -24,7 +25,8 @@ const DEFAULT_DELAYS = {
 const defaultProps = {
   isOpen: false,
   placement: 'bottom',
-  delay: DEFAULT_DELAYS
+  delay: DEFAULT_DELAYS,
+  autohide: true
 };
 
 const defaultTetherConfig = {
@@ -47,6 +49,8 @@ class Tooltip extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.onMouseOverTooltip = this.onMouseOverTooltip.bind(this);
     this.onMouseLeaveTooltip = this.onMouseLeaveTooltip.bind(this);
+    this.onMouseOverTooltipContent = this.onMouseOverTooltipContent.bind(this);
+    this.onMouseLeaveTooltipContent = this.onMouseLeaveTooltipContent.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
   }
@@ -74,6 +78,25 @@ class Tooltip extends React.Component {
     this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
   }
 
+  onMouseOverTooltipContent() {
+    if (this.props.autohide) {
+      return;
+    }
+    if (this._hideTimeout) {
+      this.clearHideTimeout();
+    }
+  }
+
+  onMouseLeaveTooltipContent() {
+    if (this.props.autohide) {
+      return;
+    }
+    if (this._showTimeout) {
+      this.clearShowTimeout();
+    }
+    this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
+  }
+
   getDelay(key) {
     const { delay } = this.props;
     if (typeof delay === 'object') {
@@ -94,11 +117,14 @@ class Tooltip extends React.Component {
 
   show() {
     if (!this.props.isOpen) {
+      this.clearShowTimeout();
       this.toggle();
     }
   }
+
   hide() {
     if (this.props.isOpen) {
+      this.clearHideTimeout();
       this.toggle();
     }
   }
@@ -154,14 +180,16 @@ class Tooltip extends React.Component {
 
     return (
       <TetherContent
-        onMouseOver={this.onMouseOverTooltip}
-        onMouseLeave={this.onMouseLeaveTooltip}
         arrow="tooltip"
         tether={tetherConfig}
         isOpen={this.props.isOpen}
         toggle={this.toggle}
       >
-        <div className="tooltip-inner">
+        <div
+          className="tooltip-inner"
+          onMouseOver={this.onMouseOverTooltipContent}
+          onMouseLeave={this.onMouseLeaveTooltipContent}
+        >
           {this.props.children}
         </div>
       </TetherContent>

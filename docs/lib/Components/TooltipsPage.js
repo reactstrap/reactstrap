@@ -4,6 +4,8 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import TooltipExample from '../examples/Tooltip';
 const TooltipExampleSource = require('!!raw!../examples/Tooltip');
+import TooltipAutoHideExample from '../examples/TooltipAutoHide';
+const TooltipExampleAutoHideSource = require('!!raw!../examples/TooltipAutoHide');
 import TooltipExampleMulti from '../examples/TooltipMulti';
 const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti');
 
@@ -39,6 +41,8 @@ export default class TooltipsPage extends React.Component {
     PropTypes.number
   ]),
   // optionally override show/hide delays - default { show: 0, hide: 250 }
+  autohide: PropTypes.bool,
+  // optionally hide tooltip when hovering over tooltip content - default true
   placement: PropTypes.oneOf([
     'top',
     'bottom',
@@ -60,6 +64,15 @@ export default class TooltipsPage extends React.Component {
   // convenience attachments for popover
   // examples http://github.hubspot.com/tooltip/docs/welcome/
 }`}
+          </PrismCode>
+        </pre>
+        <h3>Tooltip Disable Autohide</h3>
+        <div className="docs-example">
+          <TooltipAutoHideExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {TooltipExampleAutoHideSource}
           </PrismCode>
         </pre>
         <h3>Tooltips List</h3>

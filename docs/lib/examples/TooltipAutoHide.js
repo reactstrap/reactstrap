@@ -21,9 +21,9 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <p>Somewhere in here is a <a href="#" id="TooltipExample">tooltip</a>.</p>
-        <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
-          Hello world!
+        <p>Sometimes you need to allow users to select text within a <a href="#" id="DisabledAutoHideExample">tooltip</a>.</p>
+        <Tooltip placement="top" isOpen={this.state.tooltipOpen} autohide={false} target="DisabledAutoHideExample" toggle={this.toggle}>
+          Try to select this text!
         </Tooltip>
       </div>
     );
