@@ -1,11 +1,11 @@
 {
   "name": "reactstrap",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "React Bootstrap 4 components compatible with React 0.14.x and 15.x",
   "main": "lib/index.js",
   "scripts": {
     "coverage": "coveralls < ./test/coverage/lcov/lcov.info",
-    "test": "npm run lint && cross-env BABEL_ENV=test karma start --single-run --reporters spec,coverage",
+    "test": "cross-env BABEL_ENV=test karma start --single-run --reporters spec,coverage",
     "test-watch": "karma start --reporters dots,coverage",
     "start": "webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
