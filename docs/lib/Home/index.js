@@ -9,7 +9,7 @@ const importBasic = require('!!raw!../examples/import-basic');
 export default () => {
   return (
     <div>
-      <section className="jumbotron text-xs-center m-b-3">
+      <section className="jumbotron jumbotron-header text-xs-center m-b-3">
         <Container fluid>
           <Row>
             <Col>

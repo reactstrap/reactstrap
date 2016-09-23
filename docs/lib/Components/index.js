@@ -101,6 +101,10 @@ class Components extends React.Component {
           name: 'Tabs',
           to: '/components/tabs/'
         },
+        {
+          name: 'Jumbotron',
+          to: '/components/jumbotron/'
+        }
       ]
     };
   }
