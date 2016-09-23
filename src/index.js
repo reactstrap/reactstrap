@@ -60,6 +60,7 @@ import PaginationItem from './PaginationItem';
 import PaginationLink from './PaginationLink';
 import TabContent from './TabContent';
 import TabPane from './TabPane';
+import Jumbotron from './Jumbotron';
 
 export {
   Container,
@@ -123,5 +124,6 @@ export {
   PaginationItem,
   PaginationLink,
   TabContent,
-  TabPane
+  TabPane,
+  Jumbotron
 };
