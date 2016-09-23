@@ -78,4 +78,12 @@ describe('Tabs', () => {
     expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(false);
     expect(tab1.find('.tab-content .tab-pane').at(1).hasClass('active')).toBe(false);
   });
+  it('should call setState when the active tab does change during a prop update', () => {
+    const tab1 = mount(<TabContent activeTab={1} />);
+    const instance = tab1.instance();
+    spyOn(instance, 'setState').and.callThrough();
+    expect(instance.setState).not.toHaveBeenCalled();
+    tab1.setProps({ activeTab: 2 });
+    expect(instance.setState).toHaveBeenCalled();
+  });
 });
