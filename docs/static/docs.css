@@ -2,20 +2,20 @@
   max-width: 1200px;
 }
 
-.jumbotron, .jumbotron p:last-child, .navbar {
+.jumbotron-header, .jumbotron-header p:last-child, .navbar {
   margin-bottom: 0
 }
 
-.jumbotron .btn {
+.jumbotron-header .btn {
   margin-right: 1rem;
 }
 
-.jumbotron .btn + .btn {
+.jumbotron-header .btn + .btn {
   margin-right: 0;
 }
 
 @media (max-width: 543px) {
-  .jumbotron .btn {
+  .jumbotron-header .btn {
     display: block;
     margin: 0 0 1rem 0;
   }
@@ -71,7 +71,7 @@
 .social a:hover {
   color: #fff
 }
-.jumbotron {
+.jumbotron-header {
   padding-top: 2rem;
   padding-bottom: 2rem;
   background-color: #fff

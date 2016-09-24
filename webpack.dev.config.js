@@ -33,6 +33,7 @@ var paths = [
   '/components/media/',
   '/components/pagination/',
   '/components/tabs/',
+  '/components/jumbotron/',
   '/404.html'
 ];
 
