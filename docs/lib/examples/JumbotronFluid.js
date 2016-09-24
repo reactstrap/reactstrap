@@ -1,14 +1,14 @@
 import React from 'react';
-import { Jumbotron } from 'reactstrap';
+import { Jumbotron, Container } from 'reactstrap';
 
 const Example = (props) => {
   return (
     <div>
       <Jumbotron fluid>
-        <div className="container-fluid">
+        <Container fluid>
           <h1 className="display-3">Fluid jumbotron</h1>
           <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        </div>
+        </Container>
       </Jumbotron>
     </div>
   );

@@ -35,7 +35,6 @@ export default class JumbotronPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <Helmet title="Fluid Jumbotron" />
         <h3>Fluid Jumbotron</h3>
         <hr />
         <div className="docs-example">
