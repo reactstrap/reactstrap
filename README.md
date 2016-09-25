@@ -62,27 +62,9 @@ There are a few core concepts to understand in order to make the most out of thi
     - boolean based props (attributes) when possible for alternative style classes or `sr-only` content
 
 
-## Documentation
+## [Documentation](https://reactstrap.github.io)
 
 https://reactstrap.github.io
-
-This library contains the following components:
-
- - [Button](https://reactstrap.github.io/components/buttons/)
- - [ButtonDropdown](https://reactstrap.github.io/components/button-dropdown/)
- - [ButtonGroup](https://reactstrap.github.io/components/button-group/)
- - [ButtonToolbar](https://reactstrap.github.io/components/button-group/)
- - [Dropdown](https://reactstrap.github.io/components/dropdowns/)
- - [Tags](https://reactstrap.github.io/components/tags/)
- - [Card](https://reactstrap.github.io/components/card/)
- - [Popover](https://reactstrap.github.io/components/popovers/)
- - [Modal](https://reactstrap.github.io/components/modals/)
- - [Tooltip](https://reactstrap.github.io/components/tooltips/)
- - [Layout (Container, Row, Col)](https://reactstrap.github.io/components/layout/)
- - [Nav](https://reactstrap.github.io/components/navs/)
- - [Navbar](https://reactstrap.github.io/components/navbar/)
- - [Layout](https://reactstrap.github.io/components/layout/)
- - [Tables](https://reactstrap.github.io/components/tables/)
 
 ## [Contributing](CONTRIBUTING.md)
 
@@ -111,3 +93,14 @@ Watch tests:
 ```sh
 npm run test-watch
 ```
+
+## In the wild
+
+Organizations and projects using `reactstrap`
+
+- [availity-reactstrap-validation](https://availity.github.io/availity-reactstrap-validation/)
+- [component-template](https://reactstrap.github.io/component-template/)
+
+Submit a PR to add to this list!
+
+Looking to build, document and publish reusable components built on top of `reactstrap`? Consider forking https://github.com/reactstrap/component-template to kickstart your project!
