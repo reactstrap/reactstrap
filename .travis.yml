@@ -4,15 +4,12 @@ node_js:
 cache:
   directories:
     - node_modules
-before_install:
-  - npm install -g npm@latest
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
 before_script:
   - chmod +x scripts/docs
+script:
+  - npm run cover
 after_script:
-  - npm run coverage
+  - npm run report-coverage
 after_success:
   - scripts/docs
 env:
