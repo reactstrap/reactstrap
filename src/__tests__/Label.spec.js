@@ -57,6 +57,12 @@ describe('Label', () => {
     expect(wrapper.hasClass('form-check-inline')).toBe(false);
   });
 
+  it('should not render with "disabled" class when check and disabled props are truthy and inline is not', () => {
+    const wrapper = shallow(<Label check disabled>Yo!</Label>);
+
+    expect(wrapper.hasClass('disabled')).toBe(false);
+  });
+
   it('should render with "form-check-inline" class when check and inline props are truthy', () => {
     const wrapper = shallow(<Label check inline>Yo!</Label>);
 
@@ -69,10 +75,22 @@ describe('Label', () => {
     expect(wrapper.hasClass('form-check-label')).toBe(false);
   });
 
+  it('should not render with "disabled" class when check, inline, and disabled props are truthy', () => {
+    const wrapper = shallow(<Label check inline disabled>Yo!</Label>);
+
+    expect(wrapper.hasClass('disabled')).toBe(true);
+  });
+
   it('should not render with "form-check-inline" class when inline prop is truthy and check is not', () => {
     const wrapper = shallow(<Label inline>Yo!</Label>);
 
     expect(wrapper.hasClass('form-check-inline')).toBe(false);
+  });
+
+  it('should not render with "disabled" class when inline and disabled props are truthy and check is not', () => {
+    const wrapper = shallow(<Label inline disabled>Yo!</Label>);
+
+    expect(wrapper.hasClass('disabled')).toBe(false);
   });
 
   it('should not render with "form-check-inline" nor "form-check-label" by default', () => {
