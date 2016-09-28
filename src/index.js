@@ -61,8 +61,10 @@ import PaginationLink from './PaginationLink';
 import TabContent from './TabContent';
 import TabPane from './TabPane';
 import Jumbotron from './Jumbotron';
+import Alert from './Alert';
 
 export {
+  Alert,
   Container,
   Row,
   Col,
