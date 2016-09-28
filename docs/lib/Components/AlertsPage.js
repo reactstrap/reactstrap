@@ -10,13 +10,13 @@ const AlertExampleSource = require('!!raw!../examples/Alert');
 import AlertDismissExample from '../examples/AlertDismiss';
 const AlertDismissExampleSource = require('!!raw!../examples/AlertDismiss');
 
-export default class AlertPage extends React.Component {
+export default class AlertsPage extends React.Component {
   render() {
     return (
       <div>
         <Helmet title="Alerts" />
 
-        <h3>Alert</h3>
+        <h3>Alerts</h3>
         <div className="docs-example">
           <AlertExample />
         </div>

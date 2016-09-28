@@ -34,7 +34,7 @@ var paths = [
   '/components/pagination/',
   '/components/tabs/',
   '/components/jumbotron/',
-  '/components/alert/',
+  '/components/alerts/',
   '/404.html'
 ];
 

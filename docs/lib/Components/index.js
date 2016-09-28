@@ -106,8 +106,8 @@ class Components extends React.Component {
           to: '/components/jumbotron/'
         },
         {
-          name: 'Alert',
-          to: '/components/alert/'
+          name: 'Alerts',
+          to: '/components/alerts/'
         }
       ]
     };
