@@ -9,14 +9,14 @@ describe('Alert', () => {
     expect(alert.text()).toBe('Yo!');
   });
 
-  it('should have "warning" as default color', () => {
+  it('should have "success" as default color', () => {
     const alert = shallow(<Alert>Yo!</Alert>);
-    expect(alert.hasClass('alert-warning')).toBe(true);
+    expect(alert.hasClass('alert-success')).toBe(true);
   });
 
   it('should accept color prop', () => {
-    const alert = shallow(<Alert color="success">Yo!</Alert>);
-    expect(alert.hasClass('alert-success')).toBe(true);
+    const alert = shallow(<Alert color="warning">Yo!</Alert>);
+    expect(alert.hasClass('alert-warning')).toBe(true);
   });
 
   it('should use a div tag by default', () => {

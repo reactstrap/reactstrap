@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  color: 'warning',
+  color: 'success',
   tag: 'div'
 };
 
