@@ -1,65 +1,56 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import AlertWrapper, { Alert } from '../Alert';
+import Alert from '../Alert';
 
 describe('Alert', () => {
   it('should render children', () => {
-    const alert = shallow(<Alert>Yo!</Alert>);
+    const alert = shallow(<Alert>Yo!</Alert>).find('div');
     expect(alert.text()).toBe('Yo!');
   });
 
   it('should have "success" as default color', () => {
-    const alert = shallow(<Alert>Yo!</Alert>);
+    const alert = shallow(<Alert>Yo!</Alert>).find('div');
     expect(alert.hasClass('alert-success')).toBe(true);
   });
 
   it('should accept color prop', () => {
-    const alert = shallow(<Alert color="warning">Yo!</Alert>);
+    const alert = shallow(<Alert color="warning">Yo!</Alert>).find('div');
     expect(alert.hasClass('alert-warning')).toBe(true);
   });
 
   it('should use a div tag by default', () => {
-    const alert = shallow(<Alert>Yo!</Alert>);
+    const alert = shallow(<Alert>Yo!</Alert>).children().first();
     expect(alert.type()).toBe('div');
   });
 
   it('should be non dismissible by default', () => {
-    const alert = shallow(<Alert>Yo!</Alert>);
+    const alert = shallow(<Alert>Yo!</Alert>).find('div');
     expect(alert.find('button').length).toEqual(0);
     expect(alert.hasClass('alert-dismissible')).toBe(false);
   });
 
-  it('should show dismiss button if passed onDismiss', () => {
-    const alert = shallow(<Alert color="danger" onDismiss={() => {}}>Yo!</Alert>);
+  it('should show dismiss button if passed toggle', () => {
+    const alert = shallow(<Alert color="danger" toggle={() => {}}>Yo!</Alert>).find('div');
     expect(alert.find('button').length).toEqual(1);
     expect(alert.hasClass('alert-dismissible')).toBe(true);
   });
 
   it('should support custom tag', () => {
-    const alert = shallow(<Alert tag="p">Yo!</Alert>);
+    const alert = shallow(<Alert tag="p">Yo!</Alert>).children().first();
     expect(alert.type()).toBe('p');
   });
 
-  it('should not pass onDismiss when not dismissible', () => {
-    const alertWrapper = shallow(<AlertWrapper color="warning">Yo!</AlertWrapper>);
-    expect(alertWrapper.prop('onDismiss')).toBeFalsy();
-    expect(alertWrapper.find(ReactCSSTransitionGroup).length).toEqual(0);
+  it('should be empty if not isOpen', () => {
+    const alert = shallow(<Alert isOpen={false}>Yo!</Alert>);
+    expect(alert.html()).toBe('');
   });
 
   it('should be dismissible', () => {
-    jasmine.clock().install();
+    const onClick = jasmine.createSpy('onClick');
+    const alert = shallow(<Alert color="danger" toggle={onClick}>Yo!</Alert>);
 
-    const alertWrapper = mount(<AlertWrapper dismissible color="info">Yo!</AlertWrapper>);
-    expect(alertWrapper.find(ReactCSSTransitionGroup).length).toEqual(1);
-    expect(alertWrapper.state('visible')).toBe(true);
-
-    alertWrapper.find('button').simulate('click');
-    expect(alertWrapper.state('visible')).toBe(false);
-
-    jasmine.clock().tick(300);
-    expect(alertWrapper.text()).toBe('');
-
-    jasmine.clock().uninstall();
+    alert.find('button').simulate('click');
+    expect(onClick).toHaveBeenCalled();
   });
 });
