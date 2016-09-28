@@ -1,3 +1,13 @@
+<a name="3.3.1"></a>
+## [3.3.1](https://github.com/reactstrap/reactstrap/compare/3.3.0...v3.3.1) (2016-09-28)
+
+
+### Bug Fixes
+
+* **label:** add disabled class when form-check-inline and disabled ([#159](https://github.com/reactstrap/reactstrap/issues/159)) ([312b29e](https://github.com/reactstrap/reactstrap/commit/312b29e))
+
+
+
 <a name="3.3.0"></a>
 # [3.3.0](https://github.com/reactstrap/reactstrap/compare/3.2.2...v3.3.0) (2016-09-24)
 
