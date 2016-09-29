@@ -41,6 +41,7 @@ var config = [{
   devtool: 'source-map',
   devServer: {
     contentBase: './build',
+    historyApiFallback: true,
     stats: {
       chunks: false
     }
