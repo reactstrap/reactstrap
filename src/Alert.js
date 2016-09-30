@@ -11,13 +11,19 @@ const propTypes = {
   color: PropTypes.string,
   isOpen: PropTypes.bool,
   toggle: PropTypes.func,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  transitionAppearTimeout: PropTypes.number,
+  transitionEnterTimeout: PropTypes.number,
+  transitionLeaveTimeout: PropTypes.number
 };
 
 const defaultProps = {
   color: 'success',
   isOpen: true,
-  tag: 'div'
+  tag: 'div',
+  transitionAppearTimeout: 150,
+  transitionEnterTimeout: 150,
+  transitionLeaveTimeout: 150
 };
 
 const Alert = (props) => {
@@ -28,6 +34,9 @@ const Alert = (props) => {
     isOpen,
     toggle,
     children,
+    transitionAppearTimeout,
+    transitionEnterTimeout,
+    transitionLeaveTimeout,
     ...attributes
   } = props;
 
@@ -53,11 +62,20 @@ const Alert = (props) => {
     <ReactCSSTransitionGroup
       component={FirstChild}
       transitionName={{
+        appear: 'fade',
+        appearActive: 'in',
+        enter: 'fade',
+        enterActive: 'in',
         leave: 'fade',
         leaveActive: 'out'
       }}
-      transitionEnter={false}
-      transitionLeaveTimeout={300}>
+      transitionAppear={transitionAppearTimeout > 0}
+      transitionAppearTimeout={transitionAppearTimeout}
+      transitionEnter={transitionEnterTimeout > 0}
+      transitionEnterTimeout={transitionEnterTimeout}
+      transitionLeave={transitionLeaveTimeout > 0}
+      transitionLeaveTimeout={transitionLeaveTimeout}
+      >
       {isOpen ? alert : null}
     </ReactCSSTransitionGroup>
   );

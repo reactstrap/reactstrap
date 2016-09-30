@@ -9,6 +9,47 @@ describe('Alert', () => {
     expect(alert.text()).toBe('Yo!');
   });
 
+  it('should transition on appear, enter, and leave using fade', () => {
+    const alert = shallow(<Alert>Yo!</Alert>);
+    expect(alert.prop('transitionName')).toEqual({
+      appear: 'fade',
+      appearActive: 'in',
+      enter: 'fade',
+      enterActive: 'in',
+      leave: 'fade',
+      leaveActive: 'out'
+    });
+  });
+
+  it('should have default transitionTimeouts', () => {
+    const alert = shallow(<Alert>Yo!</Alert>);
+
+    expect(alert.prop('transitionAppearTimeout')).toBe(150);
+    expect(alert.prop('transitionAppear')).toBe(true);
+    expect(alert.prop('transitionEnterTimeout')).toBe(150);
+    expect(alert.prop('transitionEnter')).toBe(true);
+    expect(alert.prop('transitionLeaveTimeout')).toBe(150);
+    expect(alert.prop('transitionLeave')).toBe(true);
+  });
+
+  it('should have support configurable transitionTimeouts', () => {
+    const alert = shallow(
+      <Alert
+        transitionAppearTimeout={0}
+        transitionEnterTimeout={0}
+        transitionLeaveTimeout={0}>
+        Yo!
+      </Alert>
+    );
+
+    expect(alert.prop('transitionAppearTimeout')).toBe(0);
+    expect(alert.prop('transitionAppear')).toBe(false);
+    expect(alert.prop('transitionEnterTimeout')).toBe(0);
+    expect(alert.prop('transitionEnter')).toBe(false);
+    expect(alert.prop('transitionLeaveTimeout')).toBe(0);
+    expect(alert.prop('transitionLeave')).toBe(false);
+  });
+
   it('should have "success" as default color', () => {
     const alert = shallow(<Alert>Yo!</Alert>).find('div');
     expect(alert.hasClass('alert-success')).toBe(true);
