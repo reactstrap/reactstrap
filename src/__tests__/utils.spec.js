@@ -113,4 +113,42 @@ describe('Utils', () => {
       expect(Utils.getTetherAttachments('left bottom')).toEqual(expectedConfig);
     });
   });
+
+  // TODO
+  // describe('getScrollbarWidth', () => {
+  //   // jsdom workaround https://github.com/tmpvar/jsdom/issues/135#issuecomment-68191941
+  //   Object.defineProperties(window.HTMLElement.prototype, {
+  //     offsetLeft: {
+  //       get: function () { return parseFloat(window.getComputedStyle(this).marginLeft) || 0; }
+  //     },
+  //     offsetTop: {
+  //       get: function () { return parseFloat(window.getComputedStyle(this).marginTop) || 0; }
+  //     },
+  //     offsetHeight: {
+  //       get: function () { return parseFloat(window.getComputedStyle(this).height) || 0; }
+  //     },
+  //     offsetWidth: {
+  //       get: function () { return parseFloat(window.getComputedStyle(this).width) || 0; }
+  //     }
+  //   });
+  //
+  //   it('should return scrollbarWidth', () => {
+  //     expect(Utils.getScrollbarWidth()).toBe();
+  //   });
+  // });
+
+  // TODO verify setScrollbarWidth is called with values when body overflows
+  // it('should conditionallyUpdateScrollbar when isBodyOverflowing is true', () => {
+  //   const stubbedSetScrollbarWidth = jasmine.createSpy('Utils', setScrollbarWidth).and.callThrough();
+  //   const prevClientWidth = document.body.clientWidth;
+  //   const prevWindowInnerWidth = window.innerWidth;
+  //   document.body.clientWidth = 100;
+  //   window.innerWidth = 500;
+  //
+  //   conditionallyUpdateScrollbar();
+  //   expect(stubbedSetScrollbarWidth).toHaveBeenCalled();
+  //
+  //   document.body.clientWidth = prevClientWidth;
+  //   window.innerWidth = prevWindowInnerWidth;
+  // });
 });
