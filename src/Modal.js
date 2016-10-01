@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import TransitionGroup from 'react-addons-transition-group';
 import Fade from './Fade';
+import {
+  getOriginalBodyPadding,
+  conditionallyUpdateScrollbar,
+  setScrollbarWidth
+} from './utils';
 
 const propTypes = {
   isOpen: PropTypes.bool,
@@ -29,6 +34,8 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
 
+    this.originalBodyPadding = null;
+    this.isBodyOverflowing = false;
     this.togglePortal = this.togglePortal.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
@@ -105,6 +112,7 @@ class Modal extends React.Component {
     }
 
     document.body.className = classNames(classes).trim();
+    setScrollbarWidth(this.originalBodyPadding);
   }
 
   hide() {
@@ -115,6 +123,9 @@ class Modal extends React.Component {
     const classes = document.body.className;
     this._element = document.createElement('div');
     this._element.setAttribute('tabindex', '-1');
+    this.originalBodyPadding = getOriginalBodyPadding();
+
+    conditionallyUpdateScrollbar();
 
     document.body.appendChild(this._element);
 
