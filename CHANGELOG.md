@@ -1,3 +1,13 @@
+<a name="3.3.2"></a>
+## [3.3.2](https://github.com/reactstrap/reactstrap/compare/3.3.1...v3.3.2) (2016-10-01)
+
+
+### Bug Fixes
+
+* **Modal:** Account for body padding when scrollbar is present ([#165](https://github.com/reactstrap/reactstrap/issues/165)) ([e159628](https://github.com/reactstrap/reactstrap/commit/e159628))
+
+
+
 <a name="3.3.1"></a>
 ## [3.3.1](https://github.com/reactstrap/reactstrap/compare/3.3.0...v3.3.1) (2016-09-28)
 
