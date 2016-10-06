@@ -1,3 +1,13 @@
+<a name="3.4.0"></a>
+# [3.4.0](https://github.com/reactstrap/reactstrap/compare/3.3.2...v3.4.0) (2016-10-06)
+
+
+### Features
+
+* **Alert:** Add Alert component ([#162](https://github.com/reactstrap/reactstrap/issues/162)) ([240e776](https://github.com/reactstrap/reactstrap/commit/240e776))
+
+
+
 <a name="3.3.2"></a>
 ## [3.3.2](https://github.com/reactstrap/reactstrap/compare/3.3.1...v3.3.2) (2016-10-01)
 

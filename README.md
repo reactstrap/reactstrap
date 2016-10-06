@@ -12,7 +12,7 @@ Easy to use React Bootstrap 4 components compatible with React 0.14.x and 15.x.
 Install `reactstrap` and __peer dependencies__ via NPM
 
 ```sh
-npm install --save reactstrap react-addons-transition-group react react-dom
+npm install --save reactstrap react-addons-transition-group react-addons-css-transition-group react react-dom
 ```
 
 Import the components you need, example:
