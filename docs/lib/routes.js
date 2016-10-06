@@ -22,6 +22,7 @@ import TablesPage from './Components/TablesPage';
 import PaginationPage from './Components/PaginationPage';
 import TabsPage from './Components/TabsPage';
 import JumbotronPage from './Components/JumbotronPage';
+import AlertsPage from './Components/AlertsPage';
 import NotFound from './NotFound';
 import Components from './Components';
 import UI from './UI';
@@ -51,6 +52,7 @@ const routes = (
       <Route path="media/" component={MediaPage} />
       <Route path="pagination/" component={PaginationPage} />
       <Route path="tabs/" component={TabsPage} />
+      <Route path="alerts/" component={AlertsPage} />
       <Route path="jumbotron/" component={JumbotronPage} />
     </Route>
     <Route path="*" component={NotFound} />
