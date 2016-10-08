@@ -8,6 +8,9 @@ const ModalExampleSource = require('!!raw!../examples/Modal');
 import ModalBackdropExample from '../examples/ModalBackdrop';
 const ModalBackdropExampleSource = require('!!raw!../examples/ModalBackdrop');
 
+import ModalNestedExample from '../examples/ModalNested';
+const ModalNestedExampleSource = require('!!raw!../examples/ModalNested');
+
 export default class ModalsPage extends React.Component {
   render() {
     return (
@@ -62,6 +65,20 @@ export default class ModalsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ModalBackdropExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h4>Nested Modals</h4>
+        <div className="docs-example">
+          <div className="btn-group">
+            <div className="btn">
+              <ModalNestedExample buttonLabel="Launch Modal w/ Nested Example" />
+            </div>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ModalNestedExampleSource}
           </PrismCode>
         </pre>
       </div>
