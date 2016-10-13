@@ -2,13 +2,15 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+const colSizeProp = PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]);
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
-  PropTypes.string,
+  PropTypes.bool,
   PropTypes.number,
+  PropTypes.string,
   PropTypes.shape({
-    size: stringOrNumberProp,
+    size: colSizeProp,
     push: stringOrNumberProp,
     pull: stringOrNumberProp,
     offset: stringOrNumberProp
@@ -38,18 +40,31 @@ const Col = (props) => {
   colSizes.forEach(colSize => {
     const columnProp = props[colSize];
     delete attributes[colSize];
+    let colClass;
 
     if (!columnProp) {
       return;
     } else if (columnProp.size) {
+      if (columnProp.size === 'auto' || columnProp.size === 'flex' || columnProp.size === true) {
+        colClass = `col-${colSize}`;
+      } else {
+        colClass = `col-${colSize}-${columnProp.size}`;
+      }
+
       colClasses.push(classNames({
-        [`col-${colSize}-${columnProp.size}`]: columnProp.size,
+        [colClass]: columnProp.size,
         [`push-${colSize}-${columnProp.push}`]: columnProp.push,
         [`pull-${colSize}-${columnProp.pull}`]: columnProp.pull,
         [`offset-${colSize}-${columnProp.offset}`]: columnProp.offset
       }));
     } else {
-      colClasses.push(`col-${colSize}-${columnProp}`);
+      if (columnProp === 'auto' || columnProp === 'flex' || columnProp === true) {
+        colClass = `col-${colSize}`;
+      } else {
+        colClass = `col-${colSize}-${columnProp}`;
+      }
+
+      colClasses.push(colClass);
     }
   });
 
