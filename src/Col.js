@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
-const colSizeProp = PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]);
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
@@ -10,7 +9,7 @@ const columnProps = PropTypes.oneOfType([
   PropTypes.number,
   PropTypes.string,
   PropTypes.shape({
-    size: colSizeProp,
+    size: stringOrNumberProp,
     push: stringOrNumberProp,
     pull: stringOrNumberProp,
     offset: stringOrNumberProp
@@ -45,7 +44,7 @@ const Col = (props) => {
     if (!columnProp) {
       return;
     } else if (columnProp.size) {
-      if (columnProp.size === 'auto' || columnProp.size === 'flex' || columnProp.size === true) {
+      if (columnProp.size === 'auto') {
         colClass = `col-${colSize}`;
       } else {
         colClass = `col-${colSize}-${columnProp.size}`;
@@ -58,7 +57,7 @@ const Col = (props) => {
         [`offset-${colSize}-${columnProp.offset}`]: columnProp.offset
       }));
     } else {
-      if (columnProp === 'auto' || columnProp === 'flex' || columnProp === true) {
+      if (columnProp === 'auto' || columnProp === true) {
         colClass = `col-${colSize}`;
       } else {
         colClass = `col-${colSize}-${columnProp}`;
