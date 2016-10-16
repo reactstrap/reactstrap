@@ -46,7 +46,7 @@ class Components extends React.Component {
           to: '/components/input-group/'
         },
         {
-          name: 'Breadscrumbs',
+          name: 'Breadcrumbs',
           to: '/components/breadcrumbs/'
         },
         {
