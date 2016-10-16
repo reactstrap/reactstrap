@@ -22,16 +22,28 @@ class Components extends React.Component {
     this.state = {
       navItems: [
         {
-          name: 'Buttons',
-          to: '/components/buttons/'
+          name: 'Alerts',
+          to: '/components/alerts/'
+        },
+        {
+          name: 'Breadscrumbs',
+          to: '/components/breadcrumbs/'
+        },
+        {
+          name: 'Button Dropdown',
+          to: '/components/button-dropdown/'
         },
         {
           name: 'Button Group',
           to: '/components/button-group/'
         },
         {
-          name: 'Button Dropdown',
-          to: '/components/button-dropdown/'
+          name: 'Buttons',
+          to: '/components/buttons/'
+        },
+        {
+          name: 'Card',
+          to: '/components/card/'
         },
         {
           name: 'Dropdowns',
@@ -46,28 +58,32 @@ class Components extends React.Component {
           to: '/components/input-group/'
         },
         {
-          name: 'Breadscrumbs',
-          to: '/components/breadcrumbs/'
+          name: 'Jumbotron',
+          to: '/components/jumbotron/'
         },
         {
-          name: 'Tags',
-          to: '/components/tags/'
+          name: 'Layout',
+          to: '/components/layout/'
         },
         {
-          name: 'Card',
-          to: '/components/card/'
+          name: 'Media',
+          to: '/components/media/'
         },
         {
-          name: 'Navs',
-          to: '/components/navs/'
+          name: 'Modals',
+          to: '/components/modals/'
         },
         {
           name: 'Navbar',
           to: '/components/navbar/'
         },
         {
-          name: 'Tooltips',
-          to: '/components/tooltips/'
+          name: 'Navs',
+          to: '/components/navs/'
+        },
+        {
+          name: 'Pagination',
+          to: '/components/pagination/'
         },
         {
           name: 'Popovers',
@@ -78,37 +94,21 @@ class Components extends React.Component {
           to: '/components/progress/'
         },
         {
-          name: 'Modals',
-          to: '/components/modals/'
-        },
-        {
-          name: 'Layout',
-          to: '/components/layout/'
-        },
-        {
           name: 'Tables',
           to: '/components/tables/'
-        },
-        {
-          name: 'Media',
-          to: '/components/media/'
-        },
-        {
-          name: 'Pagination',
-          to: '/components/pagination/'
         },
         {
           name: 'Tabs',
           to: '/components/tabs/'
         },
         {
-          name: 'Jumbotron',
-          to: '/components/jumbotron/'
+          name: 'Tags',
+          to: '/components/tags/'
         },
         {
-          name: 'Alerts',
-          to: '/components/alerts/'
-        }
+          name: 'Tooltips',
+          to: '/components/tooltips/'
+        },
       ]
     };
   }
