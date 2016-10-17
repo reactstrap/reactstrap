@@ -7,6 +7,7 @@ const FirstChild = ({ children }) => (
 );
 
 const propTypes = {
+  children: PropTypes.node,
   className: PropTypes.any,
   color: PropTypes.string,
   isOpen: PropTypes.bool,
@@ -75,11 +76,11 @@ const Alert = (props) => {
       transitionEnterTimeout={transitionEnterTimeout}
       transitionLeave={transitionLeaveTimeout > 0}
       transitionLeaveTimeout={transitionLeaveTimeout}
-      >
+    >
       {isOpen ? alert : null}
     </ReactCSSTransitionGroup>
   );
-}
+};
 
 Alert.propTypes = propTypes;
 Alert.defaultProps = defaultProps;
