@@ -134,4 +134,17 @@ describe('Popover', () => {
 
     wrapper.unmount();
   });
+
+  it('should allow custom classes to be added to the popover-inner', () => {
+    const wrapper = mount(
+      <Popover isOpen placement={placement} target="popover-target" className="popover-special">
+        <PopoverTitle>Title</PopoverTitle>
+        <PopoverContent>Content</PopoverContent>
+      </Popover>
+    );
+
+    expect(document.getElementsByClassName('popover-inner')[0].className.indexOf('popover-special') > -1).toBe(true);
+
+    wrapper.unmount();
+  });
 });
