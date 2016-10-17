@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
 import { getTetherAttachments, tetherAttachements } from './utils';
 
@@ -176,10 +177,13 @@ class Tooltip extends React.Component {
       return null;
     }
 
+    const attributes = omit(this.props, Object.keys(propTypes));
+
     let tetherConfig = this.getTetherConfig();
 
     return (
       <TetherContent
+        {...attributes}
         arrow="tooltip"
         tether={tetherConfig}
         isOpen={this.props.isOpen}
