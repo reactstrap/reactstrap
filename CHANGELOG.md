@@ -1,3 +1,13 @@
+<a name="3.4.1"></a>
+## [3.4.1](https://github.com/reactstrap/reactstrap/compare/3.4.0...v3.4.1) (2016-10-16)
+
+
+### Features
+
+* **Input:** enable refs on Input components ([#178](https://github.com/reactstrap/reactstrap/issues/178)) ([ed9e584](https://github.com/reactstrap/reactstrap/commit/ed9e584))
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/reactstrap/reactstrap/compare/3.3.2...v3.4.0) (2016-10-06)
 
