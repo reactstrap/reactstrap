@@ -77,6 +77,20 @@ describe('TetherContent', () => {
       expect(instance._element).toBe(null);
       expect(instance._tether).toBe(null);
     });
+
+
+
+    it('should pass the new tether reference', () => {
+      state = true;
+      const tetherRef = jasmine.createSpy();
+      const wrapper = mount(<TetherContent tetherRef={tetherRef} tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+
+      wrapper.unmount();
+
+      expect(tetherRef.calls.count()).toBe(2);
+      expect(tetherRef.calls.mostRecent().args[0]).toEqual(instance._tether);
+    });
   });
 
   describe('show', () => {
@@ -91,6 +105,15 @@ describe('TetherContent', () => {
       expect(TetherContent.prototype.show.calls.count()).toBe(1);
       expect(instance._element.textContent).toBe('Content');
       expect(instance._tether.enabled).toBe(true);
+    });
+
+    it('should pass the new tether reference', () => {
+      state = true;
+      const tetherRef = jasmine.createSpy();
+      const wrapper = mount(<TetherContent tetherRef={tetherRef} tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+      expect(tetherRef.calls.count()).toBe(1);
+      expect(tetherRef.calls.first().args[0]).toEqual(instance._tether);
     });
   });
 
