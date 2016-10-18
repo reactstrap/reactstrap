@@ -176,6 +176,22 @@ describe('Tooltip', () => {
     wrapper.detach();
   });
 
+  it('should not throw when props.toggle is not provided ', () => {
+    const event = jasmine.createSpyObj('event', ['preventDefault']);
+
+    const wrapper = mount(
+      <Tooltip target="target" isOpen={isOpen}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
+    const instance = wrapper.instance();
+
+    instance.toggle(event);
+
+    wrapper.detach();
+  });
+
   describe('delay', () => {
     it('should accept a number', () => {
       isOpen = true;
