@@ -1,3 +1,20 @@
+<a name="3.5.0"></a>
+# [3.5.0](https://github.com/reactstrap/reactstrap/compare/3.4.1...v3.5.0) (2016-10-18)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix when toggle is not provided ([#182](https://github.com/reactstrap/reactstrap/issues/182)) ([47239f3](https://github.com/reactstrap/reactstrap/commit/47239f3))
+
+
+### Features
+
+* **Col:** add flex-support to Col component ([#169](https://github.com/reactstrap/reactstrap/issues/169)) ([#175](https://github.com/reactstrap/reactstrap/issues/175)) ([ebdecb8](https://github.com/reactstrap/reactstrap/commit/ebdecb8))
+* **Popover:** add `tetherRef` to Popover ([#183](https://github.com/reactstrap/reactstrap/issues/183)) ([00d08ad](https://github.com/reactstrap/reactstrap/commit/00d08ad))
+* **TetherContent:** Add `tetherRef` to TetherContent  ([#181](https://github.com/reactstrap/reactstrap/issues/181)) ([6be1a67](https://github.com/reactstrap/reactstrap/commit/6be1a67)), closes [#174](https://github.com/reactstrap/reactstrap/issues/174)
+
+
+
 <a name="3.4.1"></a>
 ## [3.4.1](https://github.com/reactstrap/reactstrap/compare/3.4.0...v3.4.1) (2016-10-16)
 
