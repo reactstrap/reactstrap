@@ -41,6 +41,7 @@ export default class LayoutsPage extends React.Component {
 const columnProps = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
+  PropTypes.bool,
   PropTypes.shape({
     size: stringOrNumberProp,
     push: stringOrNumberProp,
