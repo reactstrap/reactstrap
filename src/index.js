@@ -62,6 +62,7 @@ import TabContent from './TabContent';
 import TabPane from './TabPane';
 import Jumbotron from './Jumbotron';
 import Alert from './Alert';
+import Collapse from './Collapse';
 
 export {
   Alert,
@@ -127,5 +128,6 @@ export {
   PaginationLink,
   TabContent,
   TabPane,
-  Jumbotron
+  Jumbotron,
+  Collapse
 };
