@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Alert from '../Alert';
 
 describe('Alert', () => {
@@ -37,7 +36,8 @@ describe('Alert', () => {
       <Alert
         transitionAppearTimeout={0}
         transitionEnterTimeout={0}
-        transitionLeaveTimeout={0}>
+        transitionLeaveTimeout={0}
+      >
         Yo!
       </Alert>
     );

@@ -53,22 +53,22 @@ export default class ButtonsPage extends React.Component {
         </pre>
         <h3>Sizes</h3>
         <div className="docs-example">
-          <Button color="primary" size="lg">Large Button</Button>
+          <Button color="primary" size="lg">Large Button</Button>{' '}
           <Button color="secondary" size="lg">Large Button</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button color="primary" size="lg">Large Button</Button>
+{`<Button color="primary" size="lg">Large Button</Button>{' '}
 <Button color="secondary" size="lg">Large Button</Button>`}
           </PrismCode>
         </pre>
         <div className="docs-example">
-          <Button color="primary" size="sm">Small Button</Button>
+          <Button color="primary" size="sm">Small Button</Button>{' '}
           <Button color="secondary" size="sm">Small Button</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button color="primary" size="sm">Small Button</Button>
+{`<Button color="primary" size="sm">Small Button</Button>{' '}
 <Button color="secondary" size="sm">Small Button</Button>`}
           </PrismCode>
         </pre>
@@ -84,23 +84,23 @@ export default class ButtonsPage extends React.Component {
         </pre>
         <h3>Active State</h3>
         <div className="docs-example">
-          <Button color="primary" size="lg" active>Primary link</Button>
+          <Button color="primary" size="lg" active>Primary link</Button>{' '}
           <Button color="secondary" size="lg" active>Link</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button color="primary" size="lg" active>Primary link</Button>
+{`<Button color="primary" size="lg" active>Primary link</Button>{' '}
 <Button color="secondary" size="lg" active>Link</Button>`}
           </PrismCode>
         </pre>
         <h3>Disabled State</h3>
         <div className="docs-example">
-          <Button color="primary" size="lg" disabled>Primary button</Button>
+          <Button color="primary" size="lg" disabled>Primary button</Button>{' '}
           <Button color="secondary" size="lg" disabled>Button</Button>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Button color="primary" size="lg" disabled>Primary button</Button>
+{`<Button color="primary" size="lg" disabled>Primary button</Button>{' '}
 <Button color="secondary" size="lg" disabled>Button</Button>`}
           </PrismCode>
         </pre>

@@ -34,6 +34,8 @@ export default class PopoversPage extends React.Component {
   // target div ID, popover is attached to this element
   tether: PropTypes.object,
   // optionally overide tether config http://tether.io/#options
+  tetherRef: PropType.function,
+  // function which is passed a reference to the instance of tether for manually \`position()\`ing
   placement: PropTypes.oneOf([
     'top',
     'bottom',

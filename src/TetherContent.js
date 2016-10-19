@@ -10,11 +10,13 @@ const propTypes = {
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
   tether: PropTypes.object.isRequired,
+  tetherRef: PropTypes.func,
   style: PropTypes.node
 };
 
 const defaultProps = {
-  isOpen: false
+  isOpen: false,
+  tetherRef: function () {}
 };
 
 class TetherContent extends React.Component {
@@ -89,6 +91,7 @@ class TetherContent extends React.Component {
     if (this._tether) {
       this._tether.destroy();
       this._tether = null;
+      this.props.tetherRef(this._tether);
     }
   }
 
@@ -106,6 +109,7 @@ class TetherContent extends React.Component {
     }
 
     this._tether = new Tether(this.getTetherConfig());
+    this.props.tetherRef(this._tether);
     this._tether.position();
     this._element.childNodes[0].focus();
   }

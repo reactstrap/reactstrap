@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
 import { getTetherAttachments, tetherAttachements } from './utils';
 
@@ -8,8 +10,9 @@ const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   tether: PropTypes.object,
+  tetherRef: PropTypes.func,
+  classNames: PropTypes.string,
   toggle: PropTypes.func,
-  children: PropTypes.node,
   autohide: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
@@ -26,7 +29,8 @@ const defaultProps = {
   isOpen: false,
   placement: 'bottom',
   delay: DEFAULT_DELAYS,
-  autohide: true
+  autohide: true,
+  toggle: function () {}
 };
 
 const defaultTetherConfig = {
@@ -176,22 +180,28 @@ class Tooltip extends React.Component {
       return null;
     }
 
+    const attributes = omit(this.props, Object.keys(propTypes));
+    const classes = classNames(
+      'tooltip-inner',
+      this.props.classNames
+    );
+
     let tetherConfig = this.getTetherConfig();
 
     return (
       <TetherContent
         arrow="tooltip"
         tether={tetherConfig}
+        tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
         toggle={this.toggle}
       >
         <div
-          className="tooltip-inner"
+          {...attributes}
+          className={classes}
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
-        >
-          {this.props.children}
-        </div>
+        />
       </TetherContent>
     );
   }

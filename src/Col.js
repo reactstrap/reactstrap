@@ -5,8 +5,9 @@ const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
-  PropTypes.string,
+  PropTypes.bool,
   PropTypes.number,
+  PropTypes.string,
   PropTypes.shape({
     size: stringOrNumberProp,
     push: stringOrNumberProp,
@@ -38,18 +39,31 @@ const Col = (props) => {
   colSizes.forEach(colSize => {
     const columnProp = props[colSize];
     delete attributes[colSize];
+    let colClass;
 
     if (!columnProp) {
       return;
     } else if (columnProp.size) {
+      if (columnProp.size === 'auto') {
+        colClass = `col-${colSize}`;
+      } else {
+        colClass = `col-${colSize}-${columnProp.size}`;
+      }
+
       colClasses.push(classNames({
-        [`col-${colSize}-${columnProp.size}`]: columnProp.size,
+        [colClass]: columnProp.size,
         [`push-${colSize}-${columnProp.push}`]: columnProp.push,
         [`pull-${colSize}-${columnProp.pull}`]: columnProp.pull,
         [`offset-${colSize}-${columnProp.offset}`]: columnProp.offset
       }));
     } else {
-      colClasses.push(`col-${colSize}-${columnProp}`);
+      if (columnProp === 'auto' || columnProp === true) {
+        colClass = `col-${colSize}`;
+      } else {
+        colClass = `col-${colSize}-${columnProp}`;
+      }
+
+      colClasses.push(colClass);
     }
   });
 

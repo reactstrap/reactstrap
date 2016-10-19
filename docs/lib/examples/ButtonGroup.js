@@ -5,8 +5,8 @@ export default class Example extends React.Component {
   render() {
     return (
       <ButtonGroup>
-        <Button>Left</Button>
-        <Button>Middle</Button>
+        <Button>Left</Button>{' '}
+        <Button>Middle</Button>{' '}
         <Button>Right</Button>
       </ButtonGroup>
     );
