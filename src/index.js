@@ -4,6 +4,7 @@ import Col from './Col';
 import Navbar from './Navbar';
 import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
+import NavbarCollapse from './NavbarCollapse';
 import Nav from './Nav';
 import NavItem from './NavItem';
 import NavDropdown from './NavDropdown';
@@ -71,6 +72,7 @@ export {
   Navbar,
   NavbarBrand,
   NavbarToggler,
+  NavbarCollapse,
   Nav,
   NavItem,
   NavDropdown,
