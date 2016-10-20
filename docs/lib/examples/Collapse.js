@@ -15,7 +15,7 @@ class Example extends Component {
   render() {
     return (
       <div>
-        <Button color="primary" onClick={this.toggle}>Toggle</Button>
+        <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
         <Collapse isOpen={this.state.collapse}>
           <Card>
             <CardBlock>

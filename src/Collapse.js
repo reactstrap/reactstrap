@@ -18,14 +18,9 @@ class Collapse extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // show, hide, collapsing
       collapse: props.isOpen ? SHOWN : HIDDEN,
     };
     this.element = null;
-  }
-
-  componentDidMount() {
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,22 +33,26 @@ class Collapse extends Component {
         // start transition
         this.element.style.height = `${this.getHeight()}px`;
       });
-      setTimeout(() => {
+      this.transitionTag = setTimeout(() => {
         this.setState({ collapse: SHOWN });
       }, 350);
     } else if (!willOpen && collapse === SHOWN) {
       // will hide
       this.setState({ collapse: HIDE }, () => {
         this.element.style.height = `${this.getHeight()}px`;
-        // force refreh
+        // force refresh
         const temp = this.element.style.height;
         this.element.style.height = '0px';
       });
-      setTimeout(() => {
+      this.transitionTag = setTimeout(() => {
         this.setState({ collapse: HIDDEN });
       }, 350);
     }
     // else: do nothing.
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.transitionTag);
   }
 
   getHeight() {
@@ -65,25 +64,20 @@ class Collapse extends Component {
       className,
       ...attributes,
     } = omit(this.props, ['isOpen']);
-    let style = { height: 0 };
     let collapseClass;
     switch (this.state.collapse) {
       case SHOW:
         collapseClass = 'collapsing';
-        style = { height: 0 };
         break;
       case SHOWN:
         collapseClass = 'collapse in';
-        style = null;
         break;
       case HIDE:
         collapseClass = 'collapsing';
-        style = { height: this.getHeight() };
         break;
       default:
       // HIDDEN
         collapseClass = 'collapse';
-        style = { height: 0 };
     }
 
     const classes = classNames(
