@@ -67,6 +67,16 @@ export default class NavsPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
+        <h4>NavbarCollapse Properties</h4>
+        <pre>
+          <PrismCode className="language-jsx">
+{`NavbarCollapse.propTypes = {
+  collapsed: PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  // pass in custom element to use
+}`}
+          </PrismCode>
+        </pre>
       </div>
     );
   }
