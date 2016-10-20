@@ -26,17 +26,9 @@ export default class AlertsPage extends React.Component {
         <h3>Properties</h3>
         <pre>
           <PrismCode className="language-jsx">
-{`Alert.propTypes = {
-  className: PropTypes.any,
-  color: PropTypes.string, // default: 'success'
-  isOpen: PropTypes.bool,  // default: true
-  toggle: PropTypes.func,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
-  // Set any of the timeouts to 0 to disable animation
-  transitionAppearTimeout: PropTypes.number,
-  transitionEnterTimeout: PropTypes.number,
-  transitionLeaveTimeout: PropTypes.number
+{`Collapse.propTypes = {
+  isOpen: PropTypes.bool,
+  className: PropTypes.node
 }`}
           </PrismCode>
         </pre>

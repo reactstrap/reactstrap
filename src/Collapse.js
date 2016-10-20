@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
+import omit from 'lodash.omit';
 
 const SHOW = 'SHOW';
-const COLLAPSING = 'COLLAPSING';
+const SHOWN = 'SHOWN';
 const HIDE = 'HIDE';
+const HIDDEN = 'HIDDEN';
 
 const propTypes = {
   isOpen: PropTypes.bool,
@@ -17,43 +19,71 @@ class Collapse extends Component {
     super(props);
     this.state = {
       // show, hide, collapsing
-      collapse: HIDE,
+      collapse: props.isOpen ? SHOWN : HIDDEN,
     };
+    this.element = null;
   }
+
+  componentDidMount() {
+
+  }
+
   componentWillReceiveProps(nextProps) {
     const willOpen = nextProps.isOpen;
     const collapse = this.state.collapse;
-    if (willOpen && collapse === HIDE) {
+
+    if (willOpen && collapse === HIDDEN) {
       // will open
-      this.setState({ collapse: COLLAPSING });
+      this.setState({ collapse: SHOW }, () => {
+        // start transition
+        this.element.style.height = `${this.getHeight()}px`;
+      });
       setTimeout(() => {
-        this.setState({ collapse: SHOW });
+        this.setState({ collapse: SHOWN });
       }, 350);
-    } else if (!willOpen && collapse === SHOW) {
+    } else if (!willOpen && collapse === SHOWN) {
       // will hide
-      this.setState({ collapse: COLLAPSING });
+      this.setState({ collapse: HIDE }, () => {
+        this.element.style.height = `${this.getHeight()}px`;
+        // force refreh
+        const temp = this.element.style.height;
+        this.element.style.height = '0px';
+      });
       setTimeout(() => {
-        this.setState({ collapse: HIDE });
+        this.setState({ collapse: HIDDEN });
       }, 350);
     }
     // else: do nothing.
   }
+
+  getHeight() {
+    return this.element.scrollHeight;
+  }
+
   render() {
     const {
       className,
       ...attributes,
-    } = this.props;
-
+    } = omit(this.props, ['isOpen']);
+    let style = { height: 0 };
     let collapseClass;
     switch (this.state.collapse) {
       case SHOW:
-        collapseClass = 'collapse in';
-        break;
-      case COLLAPSING:
         collapseClass = 'collapsing';
+        style = { height: 0 };
+        break;
+      case SHOWN:
+        collapseClass = 'collapse in';
+        style = null;
+        break;
+      case HIDE:
+        collapseClass = 'collapsing';
+        style = { height: this.getHeight() };
         break;
       default:
+      // HIDDEN
         collapseClass = 'collapse';
+        style = { height: 0 };
     }
 
     const classes = classNames(
@@ -61,7 +91,11 @@ class Collapse extends Component {
       collapseClass
     );
     return (
-      <div {...attributes} className={classes} />
+      <div
+        {...attributes}
+        className={classes}
+        ref={(c) => { this.element = c; }}
+      />
     );
   }
 }
