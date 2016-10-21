@@ -94,7 +94,7 @@ var config = [{
   resolve: {
     extensions: ['', '.js', '.json'],
     alias: {
-      'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css'),
+      'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap-flex.css'),
       reactstrap: path.resolve('./src')
     }
   }
