@@ -32,9 +32,4 @@ describe('ListGroupItem', () => {
     const wrapper = shallow(<ListGroupItem color="success">Yo!</ListGroupItem>);
     expect(wrapper.hasClass('list-group-item-success')).toBe(true);
   });
-
-  it('should render with "list-group-item-info" class when color="info" is passed', () => {
-    const wrapper = shallow(<ListGroupItem color="info">Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('list-group-item-info')).toBe(true);
-  });
 });
