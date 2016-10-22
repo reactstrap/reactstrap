@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Button from './Button';
+import NavLink from './NavLink';
 
 const propTypes = {
   caret: PropTypes.bool,
@@ -11,7 +12,8 @@ const propTypes = {
   'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool,
   split: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  nav: PropTypes.bool
 };
 
 const defaultProps = {
@@ -39,6 +41,10 @@ class DropdownToggle extends React.Component {
       return;
     }
 
+    if (this.props.nav) {
+      e.preventDefault();
+    }
+
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -47,7 +53,7 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, caret, split, tag: Tag, ...props } = this.props;
+    const { className, caret, split, nav, tag: Tag, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = classNames(
       className,
@@ -55,9 +61,15 @@ class DropdownToggle extends React.Component {
         'dropdown-toggle': caret || split,
         'dropdown-toggle-split': split,
         active: this.context.isOpen,
+        'nav-link': nav
       }
     );
     const children = props.children || <span className="sr-only">{ariaLabel}</span>;
+
+    if (nav) {
+      props.tag = NavLink;
+      props.href = '#';
+    }
 
     return (
       <Tag
