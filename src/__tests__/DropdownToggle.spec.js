@@ -153,4 +153,38 @@ describe('DropdownToggle', () => {
       expect(e.preventDefault).toHaveBeenCalled();
     });
   });
+
+  describe('nav', () => {
+    it('should add .nav-link class', () => {
+      const wrapper = mount(
+        <DropdownToggle nav>Ello world</DropdownToggle>,
+        {
+          context: {
+            isOpen: isOpen,
+            toggle: toggle
+          }
+        }
+      );
+
+      expect(wrapper.find('a').length).toBe(1);
+      expect(wrapper.find('.nav-link').length).toBe(1);
+    });
+
+    it('should preventDefault', () => {
+      const e = { preventDefault: jasmine.createSpy('preventDefault') };
+      const wrapper = mount(
+        <DropdownToggle nav>Ello world</DropdownToggle>,
+        {
+          context: {
+            isOpen: isOpen,
+            toggle: toggle
+          }
+        }
+      );
+      const instance = wrapper.instance();
+
+      instance.onClick(e);
+      expect(e.preventDefault).toHaveBeenCalled();
+    });
+  });
 });
