@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Button from './Button';
-import NavLink from './NavLink';
 
 const propTypes = {
   caret: PropTypes.bool,
@@ -67,7 +66,7 @@ class DropdownToggle extends React.Component {
     const children = props.children || <span className="sr-only">{ariaLabel}</span>;
 
     if (nav) {
-      props.tag = NavLink;
+      props.tag = 'a';
       props.href = '#';
     }
 
