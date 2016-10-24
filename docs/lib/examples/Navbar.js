@@ -7,7 +7,7 @@ export default class Example extends React.Component {
       <div>
         <Navbar color="faded" light>
           <NavbarBrand href="/">reactstrap</NavbarBrand>
-          <Nav className="pull-xs-right" navbar>
+          <Nav className="float-xs-right" navbar>
             <NavItem>
               <NavLink href="/components/">Components</NavLink>
             </NavItem>
