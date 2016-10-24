@@ -69,7 +69,8 @@ DropdownToggle.propTypes = {
   onClick: PropTypes.func,
   'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool,
-
+  // For DropdownToggle usage inside a Nav
+  nav: PropTypes.bool,
   // Defaults to Button component
   tag: PropTypes.any
 };`}
