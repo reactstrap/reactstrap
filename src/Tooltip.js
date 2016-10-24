@@ -156,15 +156,15 @@ class Tooltip extends React.Component {
   }
 
   addTargetEvents() {
-    this._target.addEventListener('mouseover', this.onMouseOverTooltip);
-    this._target.addEventListener('mouseout', this.onMouseLeaveTooltip);
-    document.addEventListener('click', this.handleDocumentClick);
+    this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
+    this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    document.addEventListener('click', this.handleDocumentClick, true);
   }
 
   removeTargetEvents() {
-    this._target.removeEventListener('mouseover', this.onMouseOverTooltip);
-    this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip);
-    document.removeEventListener('click', this.handleDocumentClick);
+    this._target.removeEventListener('mouseover', this.onMouseOverTooltip, true);
+    this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    document.removeEventListener('click', this.handleDocumentClick, true);
   }
 
   toggle(e) {

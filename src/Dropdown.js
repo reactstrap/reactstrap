@@ -105,11 +105,11 @@ class Dropdown extends React.Component {
   }
 
   addEvents() {
-    document.addEventListener('click', this.handleDocumentClick);
+    document.addEventListener('click', this.handleDocumentClick, true);
   }
 
   removeEvents() {
-    document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('click', this.handleDocumentClick, true);
   }
 
   handleDocumentClick(e) {
