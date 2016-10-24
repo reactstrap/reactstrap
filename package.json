@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "description": "React Bootstrap 4 components compatible with React 0.14.x and 15.x",
   "main": "lib/index.js",
   "scripts": {
@@ -63,7 +63,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-preset-react-app": "^0.2.1",
-    "bootstrap": "^4.0.0-alpha.4",
+    "bootstrap": "^4.0.0-alpha.5",
     "clean-webpack-plugin": "^0.1.8",
     "conventional-changelog-cli": "^1.1.1",
     "conventional-recommended-bump": "^0.3.0",
