@@ -41,7 +41,9 @@ class Collapse extends Component {
       this.setState({ collapse: HIDE }, () => {
         this.element.style.height = `${this.getHeight()}px`;
         // force refresh
+        /* eslint-disable */
         const temp = this.element.style.height;
+        /* eslint-enable */
         this.element.style.height = '0px';
       });
       this.transitionTag = setTimeout(() => {
