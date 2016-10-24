@@ -28,7 +28,7 @@ const NavbarToggler = (props) => {
 
   return (
     <Tag {...attributes} className={classes}>
-      {children || String.fromCharCode(9776)}
+      {children}
     </Tag>
   );
 };
