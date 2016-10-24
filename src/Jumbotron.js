@@ -22,7 +22,7 @@ const Jumbotron = (props) => {
   const classes = classNames(
     className,
     'jumbotron',
-    fluid ? 'jumbotron-fluid' : false
+    { 'jumbotron-fluid': fluid }
   );
 
   return (

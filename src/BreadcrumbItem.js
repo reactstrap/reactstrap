@@ -20,8 +20,8 @@ const BreadcrumbItem = (props) => {
   } = props;
   const classes = classNames(
     className,
-    active ? 'active' : false,
-    'breadcrumb-item'
+    'breadcrumb-item',
+    { active }
   );
 
   return (

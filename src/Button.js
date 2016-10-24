@@ -53,9 +53,12 @@ class Button extends React.Component {
       className,
       'btn',
       `btn${outline ? '-outline' : ''}-${color}`,
-      size ? `btn-${size}` : false,
-      block ? 'btn-block' : false,
-      { active, disabled: this.props.disabled }
+      {
+        active,
+        'btn-block': block,
+        [`btn-${size}`]: size,
+        disabled: this.props.disabled,
+      }
     );
 
     if (attributes.href && Tag === 'button') {

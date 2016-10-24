@@ -21,7 +21,7 @@ const InputGroup = (props) => {
   const classes = classNames(
     className,
     'input-group',
-    size ? `input-group-${size}` : null
+    { [`input-group-${size}`]: size }
   );
 
   return (

@@ -34,12 +34,14 @@ const Table = (props) => {
   const classes = classNames(
     className,
     'table',
-    size ? 'table-' + size : false,
-    bordered ? 'table-bordered' : false,
-    striped ? 'table-striped' : false,
-    inverse ? 'table-inverse' : false,
-    hover ? 'table-hover' : false,
-    reflow ? 'table-reflow' : false
+    {
+      [`table-${size}`]: size,
+      'table-bordered': bordered,
+      'table-striped': striped,
+      'table-inverse': inverse,
+      'table-hover': hover,
+      'table-reflow': reflow,
+    }
   );
 
   const table = <Tag {...attributes} className={classes} />;

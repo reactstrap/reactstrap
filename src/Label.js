@@ -70,12 +70,14 @@ const Label = (props) => {
 
   const classes = classNames(
     className,
-    hidden ? 'sr-only' : false,
-    check ? `form-check-${inline ? 'inline' : 'label'}` : false,
-    check && inline && disabled ? 'disabled' : false,
-    size ? `col-form-label-${size}` : false,
     colClasses,
-    colClasses.length ? 'col-form-label' : false
+    {
+      disabled: check && inline && disabled,
+      'col-form-label': colClasses.length,
+      [`col-form-label-${size}`]: size,
+      [`form-check-${inline ? 'inline' : 'label'}`]: check,
+      'sr-only': hidden,
+    }
   );
 
   return (

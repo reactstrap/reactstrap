@@ -22,7 +22,7 @@ const Form = (props) => {
 
   const classes = classNames(
     className,
-    inline ? 'form-inline' : false
+    { 'form-inline': inline }
   );
 
   return (
