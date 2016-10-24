@@ -25,8 +25,8 @@ export default class Example extends React.Component {
             <NavLink href="#" active>Link</NavLink>
           </NavItem>
           <NavDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle caret>
-              <NavLink href="#">Dropdown</NavLink>
+            <DropdownToggle nav caret>
+              Dropdown
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem header>Header</DropdownItem>
