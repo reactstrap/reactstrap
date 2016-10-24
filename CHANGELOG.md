@@ -1,3 +1,13 @@
+<a name="3.6.0"></a>
+# [3.6.0](https://github.com/reactstrap/reactstrap/compare/3.5.0...v3.6.0) (2016-10-23)
+
+
+### Features
+
+* **DropdownToggle:** add nav prop to enable Nav specific functionality ([#197](https://github.com/reactstrap/reactstrap/issues/197))([9b28cbc](https://github.com/reactstrap/reactstrap/commit/9b28cbc))
+
+
+
 <a name="3.5.0"></a>
 # [3.5.0](https://github.com/reactstrap/reactstrap/compare/3.4.1...v3.5.0) (2016-10-18)
 
