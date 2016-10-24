@@ -138,8 +138,8 @@ DropdownToggle.propTypes = {
         <div className="docs-example">
           <div>
             <DropdownSizingExample group size="lg" />
-            <DropdownSizingExample className="m-t-1" />
-            <DropdownSizingExample className="m-t-1" group size="sm" />
+            <DropdownSizingExample className="mt-1" />
+            <DropdownSizingExample className="mt-1" group size="sm" />
           </div>
         </div>
         <pre>

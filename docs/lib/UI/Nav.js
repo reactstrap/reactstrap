@@ -7,7 +7,7 @@ export default () => {
     <Navbar className="header" color="faded" light>
       <Container fluid>
         <NavbarBrand tag={Link} to="/">reactstrap</NavbarBrand>
-        <Nav className="nav navbar-nav pull-xs-right">
+        <Nav className="nav navbar-nav float-xs-right">
           <NavItem>
             <NavLink tag={Link} className="nav-link" to="/components/" activeClassName="active">Components</NavLink>
           </NavItem>
