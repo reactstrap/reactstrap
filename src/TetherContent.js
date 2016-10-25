@@ -80,7 +80,7 @@ class TetherContent extends React.Component {
   }
 
   hide() {
-    document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('click', this.handleDocumentClick, true);
 
     if (this._element) {
       document.body.removeChild(this._element);
@@ -96,7 +96,7 @@ class TetherContent extends React.Component {
   }
 
   show() {
-    document.addEventListener('click', this.handleDocumentClick);
+    document.addEventListener('click', this.handleDocumentClick, true);
 
     this._element = document.createElement('div');
     document.body.appendChild(this._element);
