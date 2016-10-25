@@ -60,4 +60,23 @@ describe('Col', () => {
 
     expect(wrapper.hasClass('col-sm')).toBe(true);
   });
+
+  it('should pass visual order classes when passed', () => {
+    const wrapper = shallow(<Col
+        first="all"
+        last="xs"
+        unordered={['xs', 'xl']}
+    />);
+
+    expect(wrapper.hasClass('flex-xs-first')).toBe(true);
+    expect(wrapper.hasClass('flex-sm-first')).toBe(true);
+    expect(wrapper.hasClass('flex-md-first')).toBe(true);
+    expect(wrapper.hasClass('flex-lg-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xl-first')).toBe(true);
+
+    expect(wrapper.hasClass('flex-xs-last')).toBe(true);
+
+    expect(wrapper.hasClass('flex-xs-unordered')).toBe(true);
+    expect(wrapper.hasClass('flex-xl-unordered')).toBe(true);
+  });
 });

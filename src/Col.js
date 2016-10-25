@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { breakpoints, colReordering, rowHAlignment, rowVAlignment } from './utils';
 
-const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
@@ -16,12 +16,23 @@ const columnProps = PropTypes.oneOfType([
   })
 ]);
 
+const breaktpointOrAllProp = PropTypes.oneOf([...breakpoints, 'all']);
+
+const orderProps = PropTypes.oneOfType([
+  PropTypes.bool,
+  breaktpointOrAllProp,
+  PropTypes.arrayOf(breaktpointOrAllProp)
+]);
+
 const propTypes = {
   xs: columnProps,
   sm: columnProps,
   md: columnProps,
   lg: columnProps,
   xl: columnProps,
+  first: orderProps,
+  last: orderProps,
+  unordered: orderProps,
   className: PropTypes.node
 };
 
@@ -34,8 +45,10 @@ const Col = (props) => {
     className,
     ...attributes
   } = props;
-  const colClasses = [];
 
+  // Pass in column class names
+  const colClasses = [];
+  const colSizes = [ ...breakpoints ];
   colSizes.forEach(colSize => {
     const columnProp = props[colSize];
     delete attributes[colSize];
@@ -67,10 +80,29 @@ const Col = (props) => {
     }
   });
 
-  const classes = classNames(
-    className,
-    colClasses
-  );
+  // Pass in visual order class names
+  const orderClasses = [];
+  const colOrderings = [...colReordering];
+  colOrderings.forEach(colOrder => {
+    const orderProp = props[colOrder];
+    delete attributes[colOrder];
+
+    let orderClass;
+
+    if (!orderProp) {
+      return;
+    } else if (orderProp === true || orderProp === 'all') {
+      breakpoints.map(breakpoint => orderClasses.push(`flex-${breakpoint}-${colOrder}`));
+    } else if (Array.isArray(orderProp)) {
+      orderProp.map(curOrderProp => orderClasses.push(`flex-${curOrderProp}-${colOrder}`));
+    } else {
+      orderClasses.push(`flex-${orderProp}-${colOrder}`);
+    }
+  });
+
+  const classes = (orderClasses.length > 0)
+      ? classNames(className, colClasses, orderClasses)
+      : classNames(className, colClasses);
 
   return (
     <div {...attributes} className={classes} />

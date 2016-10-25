@@ -149,3 +149,8 @@ export function conditionallyUpdateScrollbar() {
     setScrollbarWidth(bodyPadding + scrollbarWidth);
   }
 }
+
+export const breakpoints = ['xs', 'sm', 'md', 'lg', 'xl'];
+export const colReordering = ['first', 'last', 'unordered'];
+export const rowHAlignment = ['around', 'between', 'left', 'center', 'right'];
+export const rowVAlignment = ['top', 'middle', 'bottom'];
