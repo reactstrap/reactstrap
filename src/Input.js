@@ -56,9 +56,11 @@ class Input extends React.Component {
 
     const classes = classNames(
       className,
-      state ? `form-control-${state}` : false,
-      size ? `form-control-${size}` : false,
-      formControlClass
+      formControlClass,
+      {
+        [`form-control-${size}`]: size,
+        [`form-control-${state}`]: state,
+      }
     );
 
     if (Tag === 'input') {

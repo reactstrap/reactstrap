@@ -27,9 +27,11 @@ const Card = (props) => {
   const classes = classNames(
     className,
     'card',
-    inverse ? 'card-inverse' : false,
-    block ? 'card-block' : false,
-    color ? `card${outline ? '-outline' : ''}-${color}` : false
+    {
+      'card-inverse': inverse,
+      'card-block': block,
+      [`card${outline ? '-outline' : ''}-${color}`]: color,
+    }
   );
 
   return (

@@ -111,7 +111,7 @@ class Fade extends React.Component {
     const classes = classNames(
       className,
       baseClass,
-      this.state.mounted ? baseClassIn : false
+      { [baseClassIn]: this.state.mounted }
     );
 
     return (

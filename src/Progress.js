@@ -41,19 +41,23 @@ const Progress = (props) => {
   const nonProgressClasses = classNames(
     className,
     'progress',
-    animated ? 'progress-animated' : null
+    { 'progress-animated': animated }
   );
 
   const progressClasses = classNames(
     nonProgressClasses,
-    color ? `progress-${color}` : null,
-    striped || animated ? 'progress-striped' : null
+    {
+      [`progress-${color}`]: color,
+      'progress-striped': striped || animated,
+    }
   );
 
   const fallbackClasses = classNames(
     'progress-bar',
-    color ? `progress-${color}` : null,
-    striped || animated ? 'progress-bar-striped' : null
+    {
+      [`progress-${color}`]: color,
+      'progress-bar-striped': striped || animated,
+    }
   );
 
   const fallbackFill = (

@@ -28,10 +28,12 @@ const FormGroup = (props) => {
 
   const classes = classNames(
     className,
-    color ? `has-${color}` : false,
-    row ? 'row' : false,
     check ? 'form-check' : 'form-group',
-    check && disabled ? 'disabled' : false
+    {
+      row,
+      disabled: check && disabled,
+      [`has-${color}`]: color,
+    }
   );
 
   return (

@@ -24,8 +24,10 @@ const FormText = (props) => {
 
   const classes = classNames(
     className,
-    !inline ? 'form-text' : false,
-    color ? `text-${color}` : false
+    {
+      'form-text': !inline,
+      [`text-${color}`]: color,
+    }
   );
 
   return (

@@ -27,8 +27,8 @@ const Tag = (props) => {
   const classes = classNames(
     className,
     'tag',
-    'tag-' + color,
-    pill ? 'tag-pill' : false
+    `tag-${color}`,
+    { 'tag-pill': pill }
   );
 
   return (

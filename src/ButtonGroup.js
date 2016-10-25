@@ -23,8 +23,8 @@ const ButtonGroup = (props) => {
 
   const classes = classNames(
     className,
-    size ? 'btn-group-' + size : false,
-    vertical ? 'btn-group-vertical' : 'btn-group'
+    vertical ? 'btn-group-vertical' : 'btn-group',
+    { [`btn-group-${size}`]: size }
   );
 
   return (
