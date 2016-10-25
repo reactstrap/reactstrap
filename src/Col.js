@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { breakpoints, colReordering } from './utils';
 
-const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
@@ -22,7 +22,22 @@ const propTypes = {
   md: columnProps,
   lg: columnProps,
   xl: columnProps,
-  className: PropTypes.node
+  className: PropTypes.node,
+  xsFirst: PropTypes.bool,
+  xsLast: PropTypes.bool,
+  xsUnordered: PropTypes.bool,
+  smFirst: PropTypes.bool,
+  smLast: PropTypes.bool,
+  smUnordered: PropTypes.bool,
+  mdFirst: PropTypes.bool,
+  mdLast: PropTypes.bool,
+  mdUnordered: PropTypes.bool,
+  lgFirst: PropTypes.bool,
+  lgLast: PropTypes.bool,
+  lgUnordered: PropTypes.bool,
+  xlFirst: PropTypes.bool,
+  xlLast: PropTypes.bool,
+  xlUnordered: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -34,8 +49,10 @@ const Col = (props) => {
     className,
     ...attributes
   } = props;
-  const colClasses = [];
 
+  // Pass in column class names
+  const colClasses = [];
+  const colSizes = [...breakpoints];
   colSizes.forEach(colSize => {
     const columnProp = props[colSize];
     delete attributes[colSize];
@@ -67,10 +84,24 @@ const Col = (props) => {
     }
   });
 
-  const classes = classNames(
-    className,
-    colClasses
-  );
+  // Pass in visual order class names
+  const orderClasses = [];
+  const colOrderings = [];
+  breakpoints.map(bp => colReordering
+      .map(order => colOrderings.push(bp + order[0].toUpperCase() + order.slice(1))));
+
+  colOrderings.forEach(colOrder => {
+    const orderProp = props[colOrder];
+    delete attributes[colOrder];
+
+    if (!orderProp) return;
+
+    orderClasses.push(`flex-${colOrder.slice(0, 2)}-${colOrder.slice(2).toLowerCase()}`);
+  });
+
+  const classes = (orderClasses.length > 0)
+      ? classNames(className, colClasses, orderClasses)
+      : classNames(className, colClasses);
 
   return (
     <div {...attributes} className={classes} />

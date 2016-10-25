@@ -60,4 +60,44 @@ describe('Col', () => {
 
     expect(wrapper.hasClass('col-sm')).toBe(true);
   });
+
+  it('should pass visual order classes when passed', () => {
+    const wrapper = shallow(<Col
+      xsFirst xsLast xsUnordered
+      smFirst smLast smUnordered
+      mdFirst mdLast mdUnordered
+      lgFirst lgLast lgUnordered
+      xlFirst xlLast xlUnordered
+    />);
+
+    expect(wrapper.hasClass('flex-xs-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xs-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xs-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xs-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xs-first')).toBe(true);
+
+    expect(wrapper.hasClass('flex-sm-first')).toBe(true);
+    expect(wrapper.hasClass('flex-sm-first')).toBe(true);
+    expect(wrapper.hasClass('flex-sm-first')).toBe(true);
+    expect(wrapper.hasClass('flex-sm-first')).toBe(true);
+    expect(wrapper.hasClass('flex-sm-first')).toBe(true);
+
+    expect(wrapper.hasClass('flex-md-first')).toBe(true);
+    expect(wrapper.hasClass('flex-md-first')).toBe(true);
+    expect(wrapper.hasClass('flex-md-first')).toBe(true);
+    expect(wrapper.hasClass('flex-md-first')).toBe(true);
+    expect(wrapper.hasClass('flex-md-first')).toBe(true);
+
+    expect(wrapper.hasClass('flex-lg-first')).toBe(true);
+    expect(wrapper.hasClass('flex-lg-first')).toBe(true);
+    expect(wrapper.hasClass('flex-lg-first')).toBe(true);
+    expect(wrapper.hasClass('flex-lg-first')).toBe(true);
+    expect(wrapper.hasClass('flex-lg-first')).toBe(true);
+
+    expect(wrapper.hasClass('flex-xl-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xl-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xl-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xl-first')).toBe(true);
+    expect(wrapper.hasClass('flex-xl-first')).toBe(true);
+  });
 });
