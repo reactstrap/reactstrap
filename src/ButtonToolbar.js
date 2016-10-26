@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   'aria-label': PropTypes.string,
-  className: PropTypes.string,
-  role: PropTypes.string
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
+  role: PropTypes.string,
 };
 
 const defaultProps = {
@@ -14,13 +16,14 @@ const defaultProps = {
 const ButtonToolbar = (props) => {
   const {
     className,
+    cssModule,
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'btn-toolbar'
-  );
+  ), cssModule);
 
   return (
     <div {...attributes} className={classes} />

@@ -1,10 +1,12 @@
 import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   activeTab: PropTypes.any,
-  className: PropTypes.string
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const childContextTypes = {
@@ -31,7 +33,7 @@ export default class TabContent extends Component {
     }
   }
   render() {
-    const classes = classnames('tab-content', this.props.className);
+    const classes = mapToCssModules(classNames('tab-content', this.props.className), this.props.cssModule);
     return (
       <div className={classes}>
         {this.props.children}

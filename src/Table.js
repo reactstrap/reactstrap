@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   className: PropTypes.any,
+  cssModule: PropTypes.object,
   size: PropTypes.string,
   bordered: PropTypes.bool,
   striped: PropTypes.bool,
@@ -10,7 +12,7 @@ const propTypes = {
   hover: PropTypes.bool,
   reflow: PropTypes.bool,
   responsive: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
 const defaultProps = {
@@ -20,6 +22,7 @@ const defaultProps = {
 const Table = (props) => {
   const {
     className,
+    cssModule,
     size,
     bordered,
     striped,
@@ -31,7 +34,7 @@ const Table = (props) => {
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'table',
     size ? 'table-' + size : false,
@@ -40,7 +43,7 @@ const Table = (props) => {
     inverse ? 'table-inverse' : false,
     hover ? 'table-hover' : false,
     reflow ? 'table-reflow' : false
-  );
+  ), cssModule);
 
   const table = <Tag {...attributes} className={classes} />;
 

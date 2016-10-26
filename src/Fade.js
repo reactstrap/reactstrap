@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 import omit from 'lodash.omit';
 
 const propTypes = {
   baseClass: PropTypes.string,
   baseClassIn: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
   transitionAppearTimeout: PropTypes.number,
   transitionEnterTimeout: PropTypes.number,
   transitionLeaveTimeout: PropTypes.number,
@@ -14,7 +16,7 @@ const propTypes = {
   transitionEnter: PropTypes.bool,
   transitionLeave: PropTypes.bool,
   onLeave: PropTypes.func,
-  onEnter: PropTypes.func
+  onEnter: PropTypes.func,
 };
 
 const defaultProps = {
@@ -104,15 +106,16 @@ class Fade extends React.Component {
       baseClass,
       baseClassIn,
       className,
+      cssModule,
       tag: Tag
     } = this.props;
     const attributes = omit(this.props, Object.keys(propTypes));
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       baseClass,
       this.state.mounted ? baseClassIn : false
-    );
+    ), cssModule);
 
     return (
       <Tag {...attributes} className={classes} />

@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   top: PropTypes.bool,
   bottom: PropTypes.bool,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -15,6 +17,7 @@ const defaultProps = {
 const CardImg = (props) => {
   const {
     className,
+    cssModule,
     top,
     bottom,
     tag: Tag,
@@ -29,10 +32,10 @@ const CardImg = (props) => {
     cardImgClassName = 'card-img-bottom';
   }
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     cardImgClassName
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

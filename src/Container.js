@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   fluid: PropTypes.bool,
-  className: PropTypes.node
+  className: PropTypes.node,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {};
@@ -11,14 +13,15 @@ const defaultProps = {};
 const Container = (props) => {
   const {
     className,
+    cssModule,
     fluid,
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     fluid ? 'container-fluid' : 'container'
-  );
+  ), cssModule);
 
   return (
     <div {...attributes} className={classes} />

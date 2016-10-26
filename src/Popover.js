@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
 import { getTetherAttachments, tetherAttachements } from './utils';
@@ -10,8 +11,9 @@ const propTypes = {
   isOpen: PropTypes.bool,
   tether: PropTypes.object,
   tetherRef: PropTypes.func,
-  className: PropTypes.string,
-  toggle: PropTypes.func
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
+  toggle: PropTypes.func,
 };
 
 const defaultProps = {
@@ -53,10 +55,10 @@ class Popover extends React.Component {
 
     let tetherConfig = this.getTetherConfig();
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       'popover-inner',
       this.props.className
-    );
+    ), this.props.cssModule);
 
     const attributes = omit(this.props, Object.keys(propTypes));
 
