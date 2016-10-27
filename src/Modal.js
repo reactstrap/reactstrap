@@ -6,7 +6,8 @@ import Fade from './Fade';
 import {
   getOriginalBodyPadding,
   conditionallyUpdateScrollbar,
-  setScrollbarWidth
+  setScrollbarWidth,
+  mapToCssModules,
 } from './utils';
 
 const propTypes = {
@@ -21,7 +22,8 @@ const propTypes = {
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
   children: PropTypes.node,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -111,7 +113,7 @@ class Modal extends React.Component {
       this._element = null;
     }
 
-    document.body.className = classNames(classes).trim();
+    document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
     setScrollbarWidth(this.originalBodyPadding);
   }
 
@@ -129,10 +131,10 @@ class Modal extends React.Component {
 
     document.body.appendChild(this._element);
 
-    document.body.className = classNames(
+    document.body.className = mapToCssModules(classNames(
       classes,
       'modal-open'
-    );
+    ), this.props.cssModule);
 
     this.renderIntoSubtree();
   }
@@ -169,9 +171,9 @@ class Modal extends React.Component {
             tabIndex="-1"
           >
             <div
-              className={classNames('modal-dialog', this.props.className, {
+              className={mapToCssModules(classNames('modal-dialog', this.props.className, {
                 [`modal-${this.props.size}`]: this.props.size
-              })}
+              }), this.props.cssModule)}
               role="document"
               ref={(c) => (this._dialog = c)}
             >

@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
@@ -11,7 +12,8 @@ const propTypes = {
   tag: PropTypes.string,
   static: PropTypes.bool,
   addon: PropTypes.bool,
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -23,6 +25,7 @@ class Input extends React.Component {
   render() {
     const {
       className,
+      cssModule,
       type,
       size,
       state,
@@ -54,12 +57,12 @@ class Input extends React.Component {
       }
     }
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       state ? `form-control-${state}` : false,
       size ? `form-control-${size}` : false,
       formControlClass
-    );
+    ), cssModule);
 
     if (Tag === 'input') {
       attributes.type = type;

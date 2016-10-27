@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import isFunction from 'lodash.isfunction';
 import Tether from 'tether';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -11,7 +12,8 @@ const propTypes = {
   toggle: PropTypes.func.isRequired,
   tether: PropTypes.object.isRequired,
   tetherRef: PropTypes.func,
-  style: PropTypes.node
+  style: PropTypes.node,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -104,7 +106,7 @@ class TetherContent extends React.Component {
 
     if (this.props.arrow) {
       const arrow = document.createElement('div');
-      arrow.className = this.props.arrow + '-arrow';
+      arrow.className = mapToCssModules(this.props.arrow + '-arrow', this.props.cssModule);
       this._element.appendChild(arrow);
     }
 

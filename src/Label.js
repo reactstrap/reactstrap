@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -25,7 +26,8 @@ const propTypes = {
   size: PropTypes.string,
   for: PropTypes.string,
   tag: PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
   xs: columnProps,
   sm: columnProps,
   md: columnProps,
@@ -40,6 +42,7 @@ const defaultProps = {
 const Label = (props) => {
   const {
     className,
+    cssModule,
     hidden,
     tag: Tag,
     check,
@@ -57,18 +60,18 @@ const Label = (props) => {
     delete attributes[colSize];
 
     if (columnProp && columnProp.size) {
-      colClasses.push(classNames({
+      colClasses.push(mapToCssModules(classNames({
         [`col-${colSize}-${columnProp.size}`]: columnProp.size,
         [`push-${colSize}-${columnProp.push}`]: columnProp.push,
         [`pull-${colSize}-${columnProp.pull}`]: columnProp.pull,
         [`offset-${colSize}-${columnProp.offset}`]: columnProp.offset,
-      }));
+      })), cssModule);
     } else if (columnProp) {
       colClasses.push(`col-${colSize}-${columnProp}`);
     }
   });
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     hidden ? 'sr-only' : false,
     check ? `form-check-${inline ? 'inline' : 'label'}` : false,
@@ -76,7 +79,7 @@ const Label = (props) => {
     size ? `col-form-label-${size}` : false,
     colClasses,
     colClasses.length ? 'col-form-label' : false
-  );
+  ), cssModule);
 
   return (
     <Tag htmlFor={htmlFor} {...attributes} className={classes} />

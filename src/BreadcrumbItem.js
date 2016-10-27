@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   active: PropTypes.bool,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -14,15 +16,16 @@ const defaultProps = {
 const BreadcrumbItem = (props) => {
   const {
     className,
+    cssModule,
     active,
     tag: Tag,
     ...attributes
   } = props;
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     active ? 'active' : false,
     'breadcrumb-item'
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

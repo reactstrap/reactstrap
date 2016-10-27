@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   toggle: PropTypes.func,
   className: PropTypes.any,
-  children: PropTypes.node
+  cssModule: PropTypes.object,
+  children: PropTypes.node,
 };
 
 const defaultProps = {};
@@ -13,14 +15,15 @@ const ModalHeader = (props) => {
   let closeButton;
   const {
     className,
+    cssModule,
     children,
     toggle,
     ...attributes } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'modal-header'
-  );
+  ), cssModule);
 
   if (toggle) {
     closeButton = (

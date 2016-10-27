@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   flush: PropTypes.bool,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -14,15 +16,16 @@ const defaultProps = {
 const ListGroup = (props) => {
   const {
     className,
+    cssModule,
     tag: Tag,
     flush,
     ...attributes
   } = props;
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'list-group',
     flush ? 'list-group-flush' : false
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

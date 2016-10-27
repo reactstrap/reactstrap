@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   body: PropTypes.bool,
   bottom: PropTypes.bool,
   children: PropTypes.node,
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
   heading: PropTypes.bool,
   left: PropTypes.bool,
   list: PropTypes.bool,
@@ -21,6 +23,7 @@ const Media = (props) => {
     body,
     bottom,
     className,
+    cssModule,
     heading,
     left,
     list,
@@ -46,7 +49,7 @@ const Media = (props) => {
   }
   const Tag = tag || defaultTag;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     {
       'media-body': body,
@@ -60,7 +63,7 @@ const Media = (props) => {
       'media-list': list,
       media: !body && !heading && !left && !right && !top && !bottom && !middle && !object && !list,
     }
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

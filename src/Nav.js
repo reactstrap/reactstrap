@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   inline: PropTypes.bool,
@@ -9,7 +10,8 @@ const propTypes = {
   stacked: PropTypes.bool,
   navbar: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -19,6 +21,7 @@ const defaultProps = {
 const Nav = (props) => {
   const {
     className,
+    cssModule,
     tabs,
     pills,
     inline,
@@ -28,7 +31,7 @@ const Nav = (props) => {
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'nav',
     {
@@ -39,7 +42,7 @@ const Nav = (props) => {
       'nav-stacked': stacked,
       disabled: attributes.disabled
     }
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
-import { getTetherAttachments, tetherAttachements } from './utils';
+import { getTetherAttachments, tetherAttachements, mapToCssModules } from './utils';
 
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
@@ -11,13 +11,14 @@ const propTypes = {
   disabled: PropTypes.bool,
   tether: PropTypes.object,
   tetherRef: PropTypes.func,
-  classNames: PropTypes.string,
+  classNames: PropTypes.any,
+  cssModule: PropTypes.object,
   toggle: PropTypes.func,
   autohide: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
-    PropTypes.number
-  ])
+    PropTypes.number,
+  ]),
 };
 
 const DEFAULT_DELAYS = {
@@ -181,10 +182,10 @@ class Tooltip extends React.Component {
     }
 
     const attributes = omit(this.props, Object.keys(propTypes));
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       'tooltip-inner',
       this.props.classNames
-    );
+    ), this.props.cssModule);
 
     let tetherConfig = this.getTetherConfig();
 

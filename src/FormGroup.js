@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
@@ -8,7 +9,8 @@ const propTypes = {
   disabled: PropTypes.bool,
   tag: PropTypes.string,
   color: PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -18,6 +20,7 @@ const defaultProps = {
 const FormGroup = (props) => {
   const {
     className,
+    cssModule,
     row,
     disabled,
     color,
@@ -26,13 +29,13 @@ const FormGroup = (props) => {
     ...attributes,
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     color ? `has-${color}` : false,
     row ? 'row' : false,
     check ? 'form-check' : 'form-group',
     check && disabled ? 'disabled' : false
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

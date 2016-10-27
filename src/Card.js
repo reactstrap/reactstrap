@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -7,7 +8,8 @@ const propTypes = {
   color: PropTypes.string,
   block: PropTypes.bool,
   outline: PropTypes.bool,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -17,6 +19,7 @@ const defaultProps = {
 const Card = (props) => {
   const {
     className,
+    cssModule,
     color,
     block,
     inverse,
@@ -24,13 +27,13 @@ const Card = (props) => {
     tag: Tag,
     ...attributes
   } = props;
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'card',
     inverse ? 'card-inverse' : false,
     block ? 'card-block' : false,
     color ? `card${outline ? '-outline' : ''}-${color}` : false
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

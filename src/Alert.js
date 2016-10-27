@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const FirstChild = ({ children }) => (
@@ -9,13 +10,14 @@ const FirstChild = ({ children }) => (
 const propTypes = {
   children: PropTypes.node,
   className: PropTypes.any,
+  cssModule: PropTypes.object,
   color: PropTypes.string,
   isOpen: PropTypes.bool,
   toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   transitionAppearTimeout: PropTypes.number,
   transitionEnterTimeout: PropTypes.number,
-  transitionLeaveTimeout: PropTypes.number
+  transitionLeaveTimeout: PropTypes.number,
 };
 
 const defaultProps = {
@@ -30,6 +32,7 @@ const defaultProps = {
 const Alert = (props) => {
   const {
     className,
+    cssModule,
     tag: Tag,
     color,
     isOpen,
@@ -41,12 +44,12 @@ const Alert = (props) => {
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'alert',
     `alert-${color}`,
     { 'alert-dismissible': toggle }
-  );
+  ), cssModule);
 
   const alert = (
     <Tag {...attributes} className={classes} role="alert">

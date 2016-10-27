@@ -1,18 +1,20 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 import Button from './Button';
 
 const propTypes = {
   caret: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.any,
+  cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool,
   split: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  nav: PropTypes.bool
+  nav: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -52,9 +54,9 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, caret, split, nav, tag: Tag, ...props } = this.props;
+    const { className, cssModule, caret, split, nav, tag: Tag, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       {
         'dropdown-toggle': caret || split,
@@ -62,7 +64,7 @@ class DropdownToggle extends React.Component {
         active: this.context.isOpen,
         'nav-link': nav
       }
-    );
+    ), cssModule);
     const children = props.children || <span className="sr-only">{ariaLabel}</span>;
 
     if (nav) {
