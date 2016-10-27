@@ -4,9 +4,11 @@ set -e
 
 BUMP_TYPE=$1
 
-git checkout master
-git pull
-npm install
+if [ -z "$TRAVIS" ]; then
+  git checkout master
+  git pull
+  npm install
+fi
 
 CURRENT_BRANCH="$(git symbolic-ref --short -q HEAD)"
 
@@ -17,6 +19,11 @@ success() {
 error() {
   echo -e "\033[31;1m$1"
 }
+
+if [ -z "$GITHUB_TOKEN" ]; then
+  error "Environment variable GITHUB_TOKEN does not exist. Stopping deploy."
+  exit 1
+fi
 
 if [ -z "$CURRENT_BRANCH" ]; then
   error "Not in a branch. Stopping release."
@@ -47,9 +54,16 @@ npm run build
 
 echo "==> Committing changes"
 
+if ! [ -z "$TRAVIS" ]; then
+  git remote rm origin
+  git remote add origin https://${GITHUB_TOKEN}@github.com/reactstrap/reactstrap.git > /dev/null 2>&1
+  git config user.name "Travis-CI"
+  git config user.email "reactstrap@github.io"
+fi
+
 git checkout -b "release-$VERSION"
 git add --all
 git commit --message "chore(release): adding $VERSION"
-git push --set-upstream origin "release-$VERSION"
+git push --set-upstream origin "release-$VERSION" > /dev/null 2>&1
 
 success "release-$VERSION branch has been pushed"
