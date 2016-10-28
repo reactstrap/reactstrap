@@ -9,7 +9,7 @@ const importBasic = require('!!raw!../examples/import-basic');
 export default () => {
   return (
     <div>
-      <Jumbotron tag="section" className="jumbotron-header text-xs-center m-b-3">
+      <Jumbotron tag="section" className="jumbotron-header text-xs-center mb-3">
         <Container fluid>
           <Row>
             <Col>
@@ -54,7 +54,7 @@ export default () => {
               </PrismCode>
             </pre>
             <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>
-            <h2 className="m-t-3">About the Project</h2>
+            <h2 className="mt-3">About the Project</h2>
             <hr />
             <p>This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, <a href="http://tether.io/" target="_blank">Tether</a> is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.</p>
             <p>There are a few core concepts to understand in order to make the most out of this library.</p>

@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   right: PropTypes.bool,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const contextTypes = {
@@ -12,12 +14,12 @@ const contextTypes = {
 };
 
 const DropdownMenu = (props, context) => {
-  const { className, right, ...attributes } = props;
-  const classes = classNames(
+  const { className, cssModule, right, ...attributes } = props;
+  const classes = mapToCssModules(classNames(
     className,
     'dropdown-menu',
     { 'dropdown-menu-right': right }
-  );
+  ), cssModule);
 
   return (
     <div {...attributes} tabIndex="-1" aria-hidden={!context.isOpen} role="menu" className={classes} />

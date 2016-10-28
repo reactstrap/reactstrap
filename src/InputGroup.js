@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   size: PropTypes.string,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -14,15 +16,16 @@ const defaultProps = {
 const InputGroup = (props) => {
   const {
     className,
+    cssModule,
     tag: Tag,
     size,
     ...attributes
   } = props;
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'input-group',
     size ? `input-group-${size}` : null
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

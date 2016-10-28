@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
   size: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
@@ -15,18 +17,19 @@ const defaultProps = {
 const Pagination = (props) => {
   const {
     className,
+    cssModule,
     size,
     tag: Tag,
     ...attributes,
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'pagination',
     {
       [`pagination-${size}`]: !!size,
     }
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

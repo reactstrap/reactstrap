@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   'aria-label': PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
   role: PropTypes.string,
   size: PropTypes.string,
-  vertical: PropTypes.bool
+  vertical: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -16,16 +18,17 @@ const defaultProps = {
 const ButtonGroup = (props) => {
   const {
     className,
+    cssModule,
     size,
     vertical,
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     size ? 'btn-group-' + size : false,
     vertical ? 'btn-group-vertical' : 'btn-group'
-  );
+  ), cssModule);
 
   return (
     <div {...attributes} className={classes} />

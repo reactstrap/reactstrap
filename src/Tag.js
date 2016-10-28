@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   color: PropTypes.string,
   pill: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   children: PropTypes.node,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -18,18 +20,19 @@ const defaultProps = {
 const Tag = (props) => {
   const {
     className,
+    cssModule,
     color,
     pill,
     tag: Component,
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'tag',
     'tag-' + color,
     pill ? 'tag-pill' : false
-  );
+  ), cssModule);
 
   return (
     <Component {...attributes} className={classes} />

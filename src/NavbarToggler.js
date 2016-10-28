@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   type: PropTypes.string,
   className: PropTypes.any,
-  children: PropTypes.node
+  cssModule: PropTypes.object,
+  children: PropTypes.node,
 };
 
 const defaultProps = {
@@ -16,15 +18,16 @@ const defaultProps = {
 const NavbarToggler = (props) => {
   const {
     className,
+    cssModule,
     children,
     tag: Tag,
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'navbar-toggler'
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes}>

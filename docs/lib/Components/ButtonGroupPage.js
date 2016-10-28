@@ -80,13 +80,13 @@ export default class ButtonGroupPage extends React.Component {
               <Button>Right</Button>
             </ButtonGroup>
             <br />
-            <ButtonGroup className="m-t-1">
+            <ButtonGroup className="mt-1">
               <Button>Left</Button>
               <Button>Middle</Button>
               <Button>Right</Button>
             </ButtonGroup>
             <br />
-            <ButtonGroup size="sm" className="m-t-1">
+            <ButtonGroup size="sm" className="mt-1">
               <Button>Left</Button>
               <Button>Middle</Button>
               <Button>Right</Button>

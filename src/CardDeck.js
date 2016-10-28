@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.any,
-  flex: PropTypes.bool
+  cssModule: PropTypes.object,
+  flex: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -15,14 +17,15 @@ const defaultProps = {
 const CardDeck = (props) => {
   const {
     className,
+    cssModule,
     tag: Tag,
     flex,
     ...attributes
   } = props;
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'card-deck'
-  );
+  ), cssModule);
 
   if (flex) {
     return (

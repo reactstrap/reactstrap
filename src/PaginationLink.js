@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   'aria-label': PropTypes.string,
   children: PropTypes.node,
-  className: PropTypes.string,
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
   next: PropTypes.bool,
   previous: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -17,16 +19,17 @@ const defaultProps = {
 const PaginationLink = (props) => {
   const {
     className,
+    cssModule,
     next,
     previous,
     tag: Tag,
     ...attributes,
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'page-link'
-  );
+  ), cssModule);
 
   let defaultAriaLabel;
   if (previous) {

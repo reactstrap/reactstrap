@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   light: PropTypes.bool,
@@ -9,7 +10,8 @@ const propTypes = {
   color: PropTypes.string,
   role: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -20,6 +22,7 @@ const defaultProps = {
 const Navbar = (props) => {
   const {
     className,
+    cssModule,
     light,
     dark,
     full,
@@ -29,7 +32,7 @@ const Navbar = (props) => {
     ...attributes
   } = props;
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     'navbar',
     {
@@ -39,7 +42,7 @@ const Navbar = (props) => {
       'navbar-full': full,
       [`navbar-fixed-${fixed}`]: fixed
     }
-  );
+  ), cssModule);
 
   return (
     <Tag {...attributes} className={classes} />

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
@@ -8,7 +9,8 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   header: PropTypes.bool,
   onClick: PropTypes.func,
-  className: PropTypes.any
+  className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const contextTypes = {
@@ -52,12 +54,13 @@ class DropdownItem extends React.Component {
     const tabIndex = this.getTabIndex();
     let {
       className,
+      cssModule,
       divider,
       tag: Tag,
       header,
       ...props } = this.props;
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       {
         disabled: props.disabled,
@@ -65,7 +68,7 @@ class DropdownItem extends React.Component {
         'dropdown-header': header,
         'dropdown-divider': divider
       }
-    );
+    ), cssModule);
 
     if (Tag === 'button') {
       if (header) {
