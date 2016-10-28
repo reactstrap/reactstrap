@@ -35,7 +35,6 @@ class Collapse extends Component {
       });
       this.transitionTag = setTimeout(() => {
         this.setState({ collapse: SHOWN });
-        this.element.style.height = null;
       }, 350);
     } else if (!willOpen && collapse === SHOWN) {
       // will hide
