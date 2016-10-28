@@ -11,7 +11,9 @@ const propTypes = {
   isOpen: PropTypes.bool,
   className: PropTypes.node
 };
-
+function reflow(element) {
+  ((function (bs) { return bs; })(element.offsetHeight));
+}
 const defaultProps = { isOpen: false };
 
 class Collapse extends Component {
@@ -35,19 +37,20 @@ class Collapse extends Component {
       });
       this.transitionTag = setTimeout(() => {
         this.setState({ collapse: SHOWN });
+        this.element.style.height = null;
       }, 350);
     } else if (!willOpen && collapse === SHOWN) {
       // will hide
+      this.element.style.height = `${this.getHeight()}px`;
+      // force update style
+      // learn from https://github.com/twbs/bootstrap/blob/v4-dev/js/src/util.js#L123
+      reflow(this.element);
       this.setState({ collapse: HIDE }, () => {
-        this.element.style.height = `${this.getHeight()}px`;
-        // force refresh
-        /* eslint-disable */
-        const temp = this.element.style.height;
-        /* eslint-enable */
         this.element.style.height = '0px';
       });
       this.transitionTag = setTimeout(() => {
         this.setState({ collapse: HIDDEN });
+        this.element.style.height = null;
       }, 350);
     }
     // else: do nothing.
