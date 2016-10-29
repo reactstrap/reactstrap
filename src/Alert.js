@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { mapToCssModules } from './utils';
 
 const FirstChild = ({ children }) => (
   React.Children.toArray(children)[0] || null

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
 import toNumber from 'lodash.tonumber';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.string,
