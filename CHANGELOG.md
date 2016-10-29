@@ -1,3 +1,13 @@
+<a name="3.7.1"></a>
+## [3.7.1](https://github.com/reactstrap/reactstrap/compare/3.7.0...v3.7.1) (2016-10-29)
+
+
+### Bug Fixes
+
+* **NavbarToggler:** remove unnecessary menu char ([#200](https://github.com/reactstrap/reactstrap/issues/200)) ([67544a3](https://github.com/reactstrap/reactstrap/commit/67544a3))
+
+
+
 <a name="3.7.0"></a>
 # [3.7.0](https://github.com/reactstrap/reactstrap/compare/3.6.0...v3.7.0) (2016-10-27)
 
