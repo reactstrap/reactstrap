@@ -11,7 +11,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   tether: PropTypes.object,
   tetherRef: PropTypes.func,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
 };

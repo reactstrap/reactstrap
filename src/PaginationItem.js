@@ -5,7 +5,7 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),

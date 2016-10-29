@@ -7,7 +7,7 @@ const propTypes = {
   inline: PropTypes.bool,
   tag: PropTypes.string,
   color: PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

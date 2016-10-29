@@ -26,7 +26,7 @@ const propTypes = {
   size: PropTypes.string,
   for: PropTypes.string,
   tag: PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   xs: columnProps,
   sm: columnProps,

@@ -16,7 +16,7 @@ const propTypes = {
   animated: PropTypes.bool,
   striped: PropTypes.bool,
   color: PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

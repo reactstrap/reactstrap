@@ -12,7 +12,7 @@ const propTypes = {
   tag: PropTypes.string,
   static: PropTypes.bool,
   addon: PropTypes.bool,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

@@ -9,7 +9,7 @@ const FirstChild = ({ children }) => (
 
 const propTypes = {
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   color: PropTypes.string,
   isOpen: PropTypes.bool,

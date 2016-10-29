@@ -7,7 +7,7 @@ const propTypes = {
   pill: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

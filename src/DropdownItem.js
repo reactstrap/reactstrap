@@ -9,7 +9,7 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   header: PropTypes.bool,
   onClick: PropTypes.func,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

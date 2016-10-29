@@ -10,7 +10,7 @@ const propTypes = {
   color: PropTypes.string,
   role: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

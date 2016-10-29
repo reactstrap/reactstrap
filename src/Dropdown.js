@@ -19,7 +19,7 @@ const propTypes = {
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func,
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

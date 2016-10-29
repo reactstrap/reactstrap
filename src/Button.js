@@ -12,7 +12,7 @@ const propTypes = {
   onClick: PropTypes.func,
   size: PropTypes.string,
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

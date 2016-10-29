@@ -64,7 +64,7 @@ export default class DropdownPage extends React.Component {
 DropdownToggle.propTypes = {
   caret: PropTypes.bool,
   color: PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   'data-toggle': PropTypes.string,

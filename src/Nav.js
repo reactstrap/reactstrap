@@ -10,7 +10,7 @@ const propTypes = {
   stacked: PropTypes.bool,
   navbar: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

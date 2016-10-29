@@ -4,7 +4,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   toggle: PropTypes.func,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.node,
 };
