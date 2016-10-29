@@ -30,7 +30,7 @@ export default class JumbotronPage extends React.Component {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   fluid: PropTypes.bool,
-  className: PropTypes.any
+  className: PropTypes.string
 };`}
           </PrismCode>
         </pre>

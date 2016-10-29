@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   size: PropTypes.string,
   bordered: PropTypes.bool,

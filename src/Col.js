@@ -23,7 +23,7 @@ const propTypes = {
   md: columnProps,
   lg: columnProps,
   xl: columnProps,
-  className: PropTypes.node,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

@@ -5,7 +5,7 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   children: PropTypes.node.isRequired,
   right: PropTypes.bool,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

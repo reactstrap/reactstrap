@@ -6,7 +6,7 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   disabled: PropTypes.bool,
   active: PropTypes.bool,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   onClick: PropTypes.func,
   href: PropTypes.any,

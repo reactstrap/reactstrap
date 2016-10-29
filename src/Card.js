@@ -8,7 +8,7 @@ const propTypes = {
   color: PropTypes.string,
   block: PropTypes.bool,
   outline: PropTypes.bool,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

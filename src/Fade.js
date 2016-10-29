@@ -7,7 +7,7 @@ const propTypes = {
   baseClass: PropTypes.string,
   baseClassIn: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   transitionAppearTimeout: PropTypes.number,
   transitionEnterTimeout: PropTypes.number,

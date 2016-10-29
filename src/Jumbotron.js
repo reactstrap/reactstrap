@@ -5,7 +5,7 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   fluid: PropTypes.bool,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

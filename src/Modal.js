@@ -22,7 +22,7 @@ const propTypes = {
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
