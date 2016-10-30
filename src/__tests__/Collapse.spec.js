@@ -88,7 +88,6 @@ describe('Collapse', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
     wrapper.setProps({ isOpen: isOpen });
-    // expect(wrapper.html()).toBe('');
     expect(wrapper.state('height')).toBe(0);
     wrapper.unmount();
   });
@@ -97,7 +96,6 @@ describe('Collapse', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
     wrapper.setProps({ isOpen: isOpen });
-    // expect(wrapper.html()).toBe('');
     jasmine.clock().tick(380);
     expect(wrapper.state('height')).toBe(null);
     wrapper.unmount();
