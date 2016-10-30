@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Collapse, Button, CardBlock, Card } from 'reactstrap';
 
 class Example extends Component {
@@ -16,7 +16,7 @@ class Example extends Component {
     return (
       <div>
         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
-        <Collapse isOpen={this.state.collapse}>
+        <Collapse isOpen={this.state.collapse} tag="nav">
           <Card>
             <CardBlock>
             Anim pariatur cliche reprehenderit,
