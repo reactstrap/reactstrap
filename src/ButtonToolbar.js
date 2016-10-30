@@ -4,7 +4,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   'aria-label': PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   role: PropTypes.string,
 };

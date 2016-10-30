@@ -6,7 +6,7 @@ import Button from './Button';
 const propTypes = {
   caret: PropTypes.bool,
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,

@@ -44,7 +44,7 @@ export default class ProgressPage extends React.Component {
   animated: PropTypes.bool,
   stripped: PropTypes.bool,
   color: PropTypes.string,
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 Progress.defaultProps = {

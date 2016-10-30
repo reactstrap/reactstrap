@@ -4,8 +4,8 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
 import omit from 'lodash.omit';
+import { mapToCssModules } from './utils';
 import TetherContent from './TetherContent';
 import DropdownMenu from './DropdownMenu';
 
@@ -19,7 +19,7 @@ const propTypes = {
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func,
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

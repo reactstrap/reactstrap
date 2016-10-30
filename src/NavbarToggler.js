@@ -5,7 +5,7 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   type: PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.node,
 };
@@ -31,7 +31,7 @@ const NavbarToggler = (props) => {
 
   return (
     <Tag {...attributes} className={classes}>
-      {children || String.fromCharCode(9776)}
+      {children}
     </Tag>
   );
 };

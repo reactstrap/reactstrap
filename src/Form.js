@@ -6,7 +6,7 @@ const propTypes = {
   children: PropTypes.node,
   inline: PropTypes.bool,
   tag: PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

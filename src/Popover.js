@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
 import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
-import { getTetherAttachments, tetherAttachements } from './utils';
+import { getTetherAttachments, mapToCssModules, tetherAttachements } from './utils';
 
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
@@ -11,7 +10,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   tether: PropTypes.object,
   tetherRef: PropTypes.func,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
 };

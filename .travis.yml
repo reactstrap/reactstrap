@@ -7,6 +7,7 @@ cache:
 before_script:
   - chmod +x scripts/docs
 script:
+  - npm run lint
   - npm run cover
 after_script:
   - npm run report-coverage

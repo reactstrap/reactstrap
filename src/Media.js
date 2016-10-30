@@ -6,7 +6,7 @@ const propTypes = {
   body: PropTypes.bool,
   bottom: PropTypes.bool,
   children: PropTypes.node,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   heading: PropTypes.bool,
   left: PropTypes.bool,

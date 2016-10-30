@@ -4,7 +4,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   fluid: PropTypes.bool,
-  className: PropTypes.node,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 

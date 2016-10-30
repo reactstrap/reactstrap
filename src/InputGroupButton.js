@@ -6,9 +6,9 @@ import Button from './Button';
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   children: PropTypes.node,
-  groupClassName: PropTypes.any,
+  groupClassName: PropTypes.string,
   groupAttributes: PropTypes.object,
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
