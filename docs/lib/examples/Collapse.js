@@ -16,7 +16,7 @@ class Example extends Component {
     return (
       <div>
         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
-        <Collapse isOpen={this.state.collapse} tag="nav">
+        <Collapse isOpen={this.state.collapse}>
           <Card>
             <CardBlock>
             Anim pariatur cliche reprehenderit,
