@@ -38,6 +38,15 @@ describe('Collapse', () => {
     expect(wrapper.hasClass('in')).toEqual(true);
   });
 
+  it('should render with class "collapse" with default collapse state', () => {
+    const wrapper = mount(<Collapse isOpen={isOpen} />);
+    wrapper.setState({ collapse: null });
+    jasmine.clock().tick(360);
+    wrapper.update();
+    expect(wrapper.find('.collapse').length).toBe(1);
+    wrapper.unmount();
+  });
+
   it('should change state with { collapse: ${State} } when isOpen change to true before transition', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
@@ -71,6 +80,26 @@ describe('Collapse', () => {
     wrapper.setProps({ isOpen: isOpen });
     jasmine.clock().tick(360);
     expect(wrapper.state('collapse')).toEqual('HIDDEN');
+    wrapper.unmount();
+  });
+
+  it('should set inline style to 0 when isOpen change to false', () => {
+    isOpen = true;
+    const wrapper = mount(<Collapse isOpen={isOpen} />);
+    toggle();
+    wrapper.setProps({ isOpen: isOpen });
+    // expect(wrapper.html()).toBe('');
+    expect(wrapper.state('height')).toBe(0);
+    wrapper.unmount();
+  });
+
+  it('should remove inline style when isOpen change to true after transition', () => {
+    const wrapper = mount(<Collapse isOpen={isOpen} />);
+    toggle();
+    wrapper.setProps({ isOpen: isOpen });
+    // expect(wrapper.html()).toBe('');
+    jasmine.clock().tick(380);
+    expect(wrapper.state('height')).toBe(null);
     wrapper.unmount();
   });
 
