@@ -38,6 +38,17 @@ describe('Collapse', () => {
     expect(wrapper.hasClass('in')).toEqual(true);
   });
 
+  it('should set height to null when isOpen is true', () => {
+    isOpen = true;
+    const wrapper = shallow(<Collapse isOpen={isOpen} />);
+    expect(wrapper.state('height')).toBe(null);
+  });
+
+  it('should set height to 0 when isOpen is false', () => {
+    const wrapper = shallow(<Collapse isOpen={isOpen} />);
+    expect(wrapper.state('height')).toBe(0);
+  });
+
   it('should render with class "collapse" with default collapse state', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     wrapper.setState({ collapse: null });
