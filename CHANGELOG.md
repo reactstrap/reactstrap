@@ -1,3 +1,13 @@
+<a name="3.8.1"></a>
+## [3.8.1](https://github.com/reactstrap/reactstrap/compare/3.8.0...v3.8.1) (2016-11-01)
+
+
+### Features
+
+* **refs:** add getRef to focusable components ([#218](https://github.com/reactstrap/reactstrap/issues/218)) ([cbfa0e0](https://github.com/reactstrap/reactstrap/commit/cbfa0e0))
+
+
+
 <a name="3.8.0"></a>
 # [3.8.0](https://github.com/reactstrap/reactstrap/compare/3.7.1...v3.8.0) (2016-11-01)
 
