@@ -35,6 +35,7 @@ var paths = [
   '/components/tabs/',
   '/components/jumbotron/',
   '/components/alerts/',
+  '/components/collapse/',
   '/404.html'
 ];
 
