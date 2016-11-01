@@ -4,6 +4,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -17,6 +18,7 @@ const CardLink = (props) => {
     className,
     cssModule,
     tag: Tag,
+    getRef,
     ...attributes
   } = props;
   const classes = mapToCssModules(classNames(
@@ -25,7 +27,7 @@ const CardLink = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} ref={getRef} className={classes} />
   );
 };
 
