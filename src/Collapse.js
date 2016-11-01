@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
+import { mapToCssModules } from './utils';
 
 const SHOW = 'SHOW';
 const SHOWN = 'SHOWN';
@@ -11,6 +12,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   className: PropTypes.node,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -76,6 +78,7 @@ class Collapse extends Component {
   render() {
     const {
       className,
+      cssModule,
       tag: Tag,
       ...attributes
     } = omit(this.props, ['isOpen']);
@@ -99,10 +102,10 @@ class Collapse extends Component {
         collapseClass = 'collapse';
     }
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       collapseClass
-    );
+    ), cssModule);
     const style = height === null ? null : { height };
     return (
       <Tag
