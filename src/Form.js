@@ -5,7 +5,8 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   children: PropTypes.node,
   inline: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -20,6 +21,7 @@ const Form = (props) => {
     cssModule,
     inline,
     tag: Tag,
+    getRef,
     ...attributes,
   } = props;
 
@@ -29,7 +31,7 @@ const Form = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} ref={getRef} className={classes} />
   );
 };
 

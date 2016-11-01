@@ -9,6 +9,7 @@ const propTypes = {
   disabled: PropTypes.bool,
   outline: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
   size: PropTypes.string,
   children: PropTypes.node,
@@ -18,7 +19,7 @@ const propTypes = {
 
 const defaultProps = {
   color: 'secondary',
-  tag: 'button'
+  tag: 'button',
 };
 
 class Button extends React.Component {
@@ -49,6 +50,7 @@ class Button extends React.Component {
       outline,
       size,
       tag: Tag,
+      getRef,
       ...attributes
     } = this.props;
 
@@ -66,7 +68,7 @@ class Button extends React.Component {
     }
 
     return (
-      <Tag {...attributes} className={classes} onClick={this.onClick} />
+      <Tag {...attributes} className={classes} ref={getRef} onClick={this.onClick} />
     );
   }
 }
