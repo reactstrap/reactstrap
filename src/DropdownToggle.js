@@ -23,7 +23,7 @@ const defaultProps = {
   'aria-haspopup': true,
   color: 'secondary',
   tag: null,
-  ariaLabel: "Dropdown"
+  ariaLabel: 'Dropdown'
 };
 
 const contextTypes = {
@@ -37,7 +37,6 @@ class DropdownToggle extends React.Component {
     this.onClick = this.onClick.bind(this);
     this.Tag = Button;
   }
-  
   componentWillMount() {
     if (this.props.nav) {
       this.Tag = 'a';
@@ -46,7 +45,6 @@ class DropdownToggle extends React.Component {
       this.Tag = this.props.tag;
     }
   }
-
   onClick(e) {
     if (this.props.disabled) {
       e.preventDefault();
@@ -63,7 +61,6 @@ class DropdownToggle extends React.Component {
 
     this.context.toggle();
   }
-  
   render() {
     const classes = mapToCssModules(classNames(
       this.props.className,
@@ -74,7 +71,6 @@ class DropdownToggle extends React.Component {
         'nav-link': this.props.nav
       }
     ), this.props.cssModule);
-
     return (
       <this.Tag
         href={(this.props.nav) ? '#' : false}
