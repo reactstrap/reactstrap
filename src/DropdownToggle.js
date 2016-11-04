@@ -21,7 +21,6 @@ const defaultProps = {
   'data-toggle': 'dropdown',
   'aria-haspopup': true,
   color: 'secondary',
-  tag: Button
 };
 
 const contextTypes = {
@@ -54,7 +53,7 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, cssModule, caret, split, nav, tag: Tag, ...props } = this.props;
+    const { className, cssModule, caret, split, nav, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
       className,
@@ -67,13 +66,13 @@ class DropdownToggle extends React.Component {
     ), cssModule);
     const children = props.children || <span className="sr-only">{ariaLabel}</span>;
 
-    if (nav) {
+    if (nav && !props.tag) {
       props.tag = 'a';
       props.href = '#';
     }
 
     return (
-      <Tag
+      <Button
         {...props}
         className={classes}
         onClick={this.onClick}
