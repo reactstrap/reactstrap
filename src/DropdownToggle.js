@@ -23,7 +23,7 @@ const defaultProps = {
   'aria-haspopup': true,
   color: 'secondary',
   tag: null,
-  ariaLabel: 'Dropdown'
+  ariaLabel: 'Dropdown Toggle'
 };
 
 const contextTypes = {
