@@ -15,13 +15,15 @@ const propTypes = {
   split: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   nav: PropTypes.bool,
+  ariaLabel: PropTypes.string
 };
 
 const defaultProps = {
   'data-toggle': 'dropdown',
   'aria-haspopup': true,
   color: 'secondary',
-  tag: Button
+  tag: null,
+  ariaLabel: 'Dropdown Toggle'
 };
 
 const contextTypes = {
@@ -32,10 +34,17 @@ const contextTypes = {
 class DropdownToggle extends React.Component {
   constructor(props) {
     super(props);
-
     this.onClick = this.onClick.bind(this);
+    this.Tag = Button;
   }
-
+  componentWillMount() {
+    if (this.props.nav) {
+      this.Tag = 'a';
+    }
+    if (this.props.tag) {
+      this.Tag = this.props.tag;
+    }
+  }
   onClick(e) {
     if (this.props.disabled) {
       e.preventDefault();
@@ -52,34 +61,24 @@ class DropdownToggle extends React.Component {
 
     this.context.toggle();
   }
-
   render() {
-    const { className, cssModule, caret, split, nav, tag: Tag, ...props } = this.props;
-    const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
-      className,
+      this.props.className,
       {
-        'dropdown-toggle': caret || split,
-        'dropdown-toggle-split': split,
+        'dropdown-toggle': this.props.caret || this.props.split,
+        'dropdown-toggle-split': this.props.split,
         active: this.context.isOpen,
-        'nav-link': nav
+        'nav-link': this.props.nav
       }
-    ), cssModule);
-    const children = props.children || <span className="sr-only">{ariaLabel}</span>;
-
-    if (nav) {
-      props.tag = 'a';
-      props.href = '#';
-    }
-
+    ), this.props.cssModule);
     return (
-      <Tag
-        {...props}
+      <this.Tag
+        href={(this.props.nav) ? '#' : false}
         className={classes}
         onClick={this.onClick}
         aria-haspopup="true"
         aria-expanded={this.context.isOpen}
-        children={children}
+        children={this.props.children || <span className="sr-only">{this.props.ariaLabel}</span>}
       />
     );
   }
