@@ -15,13 +15,15 @@ const propTypes = {
   split: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   nav: PropTypes.bool,
+  ariaLabel: PropTypes.string
 };
 
 const defaultProps = {
   'data-toggle': 'dropdown',
   'aria-haspopup': true,
   color: 'secondary',
-  tag: null
+  tag: null,
+  ariaLabel: "Dropdown"
 };
 
 const contextTypes = {
@@ -32,10 +34,17 @@ const contextTypes = {
 class DropdownToggle extends React.Component {
   constructor(props) {
     super(props);
-
     this.onClick = this.onClick.bind(this);
-    
-    this.Tag = Button
+    this.Tag = Button;
+  }
+  
+  componentWillMount() {
+    if (this.props.nav) {
+      this.Tag = 'a';
+    }
+    if (this.props.tag) {
+      this.Tag = this.props.tag;
+    }
   }
 
   onClick(e) {
@@ -55,15 +64,6 @@ class DropdownToggle extends React.Component {
     this.context.toggle();
   }
   
-  componentWillMount() {
-    if (this.props.nav) {
-      this.Tag = 'a'
-    }
-    if (this.props.tag) {
-      this.Tag = this.props.tag
-    }
-  }
-
   render() {
     const classes = mapToCssModules(classNames(
       this.props.className,
@@ -82,8 +82,7 @@ class DropdownToggle extends React.Component {
         onClick={this.onClick}
         aria-haspopup="true"
         aria-expanded={this.context.isOpen}
-        aria-label="Dropdown"
-        children={this.props.children || <span className="sr-only">{ariaLabel}</span>}
+        children={this.props.children || <span className="sr-only">{this.props.ariaLabel}</span>}
       />
     );
   }
