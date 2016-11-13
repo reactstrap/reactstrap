@@ -1,3 +1,18 @@
+<a name="3.9.0"></a>
+# [3.9.0](https://github.com/reactstrap/reactstrap/compare/3.8.1...v3.9.0) (2016-11-13)
+
+
+### Bug Fixes
+
+* **DropdownToggle:** support non Button styles ([#221](https://github.com/reactstrap/reactstrap/issues/221)) ([cd3c1ce](https://github.com/reactstrap/reactstrap/commit/cd3c1ce))
+
+
+### Features
+
+* **ListGroup:** add ListGroupItem, ListGroupItemHeading, ListGroupItemText components ([#192](https://github.com/reactstrap/reactstrap/issues/192)) ([d09e81a](https://github.com/reactstrap/reactstrap/commit/d09e81a))
+
+
+
 <a name="3.8.1"></a>
 ## [3.8.1](https://github.com/reactstrap/reactstrap/compare/3.8.0...v3.8.1) (2016-11-01)
 
