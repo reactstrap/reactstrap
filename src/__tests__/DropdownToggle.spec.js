@@ -181,7 +181,7 @@ describe('DropdownToggle', () => {
         }
       );
 
-      expect(wrapper.find('span').prop('tag')).toBe(undefined);
+      expect(wrapper.find('[aria-haspopup="true"]').prop('tag')).toBe(undefined);
     });
 
     it('should preventDefault', () => {

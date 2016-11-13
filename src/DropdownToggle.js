@@ -41,7 +41,7 @@ class DropdownToggle extends React.Component {
       return;
     }
 
-    if (this.props.nav) {
+    if (this.props.nav && !this.props.tag) {
       e.preventDefault();
     }
 
@@ -53,7 +53,7 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, cssModule, caret, split, nav, ...props } = this.props;
+    const { className, cssModule, caret, split, nav, tag, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
       className,
@@ -66,13 +66,19 @@ class DropdownToggle extends React.Component {
     ), cssModule);
     const children = props.children || <span className="sr-only">{ariaLabel}</span>;
 
-    if (nav && !props.tag) {
-      props.tag = 'a';
+    let Tag;
+
+    if (nav && !tag) {
+      Tag = 'a';
       props.href = '#';
+    } else if (!tag) {
+      Tag = Button;
+    } else {
+      Tag = tag;
     }
 
     return (
-      <Button
+      <Tag
         {...props}
         className={classes}
         onClick={this.onClick}
