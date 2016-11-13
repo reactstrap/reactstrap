@@ -63,6 +63,9 @@ import TabPane from './TabPane';
 import Jumbotron from './Jumbotron';
 import Alert from './Alert';
 import Collapse from './Collapse';
+import ListGroupItem from './ListGroupItem';
+import ListGroupItemHeading from './ListGroupItemHeading';
+import ListGroupItemText from './ListGroupItemText';
 
 export {
   Alert,
@@ -129,5 +132,8 @@ export {
   TabContent,
   TabPane,
   Jumbotron,
-  Collapse
+  Collapse,
+  ListGroupItem,
+  ListGroupItemText,
+  ListGroupItemHeading,
 };
