@@ -170,6 +170,20 @@ describe('DropdownToggle', () => {
       expect(wrapper.find('.nav-link').length).toBe(1);
     });
 
+    it('should not set the tag prop when the tag is defined', () => {
+      const wrapper = mount(
+        <DropdownToggle nav tag="span">Ello world</DropdownToggle>,
+        {
+          context: {
+            isOpen: isOpen,
+            toggle: toggle
+          }
+        }
+      );
+
+      expect(wrapper.find('[aria-haspopup="true"]').prop('tag')).toBe(undefined);
+    });
+
     it('should preventDefault', () => {
       const e = { preventDefault: jasmine.createSpy('preventDefault') };
       const wrapper = mount(
