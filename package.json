@@ -6,7 +6,7 @@
   "scripts": {
     "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "react-scripts test --env=jsdom",
-    "cover": "npm test -- --coverage --verbose",
+    "cover": "npm test -- --coverage",
     "start": "webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
     "build": "cross-env WEBPACK_BUILD=production webpack --progress --colors && webpack --progress --colors",

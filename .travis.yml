@@ -10,7 +10,7 @@ before_script:
   - chmod +x scripts/docs
 script:
   - npm run lint
-  - npm run cover
+  - npm run cover -- --runInBand
 after_script:
   - npm run report-coverage
 after_success:
