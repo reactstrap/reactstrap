@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "3.8.1",
+  "version": "3.9.0",
   "description": "React Bootstrap 4 components compatible with React 0.14.x and 15.x",
   "main": "lib/index.js",
   "scripts": {
@@ -92,7 +92,7 @@
     "react-helmet": "^3.0.1",
     "react-prism": "4.0.0",
     "react-router": "^2.6.1",
-    "react-scripts": "^0.6.0",
+    "react-scripts": "^0.7.0",
     "static-site-generator-webpack-plugin": "^2.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13",
