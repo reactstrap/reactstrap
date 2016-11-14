@@ -19,7 +19,7 @@ import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 import DropdownToggle from './DropdownToggle';
 import Fade from './Fade';
-import Tag from './Tag';
+import Badge from './Badge';
 import Card from './Card';
 import CardGroup from './CardGroup';
 import CardDeck from './CardDeck';
@@ -90,7 +90,7 @@ export {
   DropdownMenu,
   DropdownToggle,
   Fade,
-  Tag,
+  Badge,
   Card,
   CardLink,
   CardGroup,
