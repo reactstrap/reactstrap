@@ -6,7 +6,7 @@
   "scripts": {
     "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "react-scripts test --env=jsdom",
-    "cover": "npm test -- --coverage",
+    "cover": "npm test -- --coverage --verbose",
     "start": "webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
     "build": "cross-env WEBPACK_BUILD=production webpack --progress --colors && webpack --progress --colors",
@@ -92,7 +92,7 @@
     "react-helmet": "^3.0.1",
     "react-prism": "4.0.0",
     "react-router": "^2.6.1",
-    "react-scripts": "^0.6.0",
+    "react-scripts": "^0.7.0",
     "static-site-generator-webpack-plugin": "^2.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13",
