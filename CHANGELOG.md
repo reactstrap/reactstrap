@@ -1,3 +1,13 @@
+<a name="3.9.1"></a>
+## [3.9.1](https://github.com/reactstrap/reactstrap/compare/3.9.0...v3.9.1) (2016-11-23)
+
+
+### Bug Fixes
+
+* **modal:** fix multi-modal backdrop ([#227](https://github.com/reactstrap/reactstrap/issues/227)) ([9ddeb8a](https://github.com/reactstrap/reactstrap/commit/9ddeb8a)), closes [#222](https://github.com/reactstrap/reactstrap/issues/222)
+
+
+
 <a name="3.9.0"></a>
 # [3.9.0](https://github.com/reactstrap/reactstrap/compare/3.8.1...v3.9.0) (2016-11-13)
 
