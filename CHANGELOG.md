@@ -1,3 +1,13 @@
+<a name="4.0.0-alpha.1"></a>
+# [4.0.0-alpha.1](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.0...v4.0.0-alpha.1) (2016-11-23)
+
+
+### Features
+
+* **Badge:** rename Tag component to Badge ([#230](https://github.com/reactstrap/reactstrap/issues/230)) ([dfc9943](https://github.com/reactstrap/reactstrap/commit/dfc9943))
+
+
+
 <a name="4.0.0-alpha.0"></a>
 # [4.0.0-alpha.0](https://github.com/reactstrap/reactstrap/compare/3.9.1...v4.0.0-alpha.0) (2016-11-23)
 

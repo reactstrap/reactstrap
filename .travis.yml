@@ -21,6 +21,7 @@ env:
 branches:
   only:
   - master
+  - v4
 before_deploy:
   - npm run build
 deploy:
