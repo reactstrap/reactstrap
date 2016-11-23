@@ -1,7 +1,7 @@
 {
   "name": "reactstrap",
-  "version": "3.9.1",
-  "description": "React Bootstrap 4 components compatible with React 0.14.x and 15.x",
+  "version": "4.0.0-alpha.0",
+  "description": "Stateless React Components for Bootstrap 4",
   "main": "lib/index.js",
   "scripts": {
     "report-coverage": "coveralls < ./coverage/lcov.info",
@@ -27,6 +27,7 @@
     "dist"
   ],
   "keywords": [
+    "reactstrap",
     "bootstrap",
     "react",
     "component",

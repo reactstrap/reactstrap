@@ -4,8 +4,11 @@
 
 # reactstrap
 
-Easy to use React Bootstrap 4 components compatible with React 0.14.x and 15.x.
+Stateless React Components for Bootstrap 4.
 
+## V4 Notes
+
+The v4 branch will be used for keeping up with the latest in the twbs/bootstrap master branch. This includes breaking changes that haven't been merged and api changes in reactstrap.
 
 ## Installation
 
