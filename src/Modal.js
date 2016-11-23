@@ -125,6 +125,8 @@ class Modal extends React.Component {
     const classes = document.body.className;
     this._element = document.createElement('div');
     this._element.setAttribute('tabindex', '-1');
+    this._element.style.position = 'relative';
+    this._element.style.zIndex = '1000';
     this.originalBodyPadding = getOriginalBodyPadding();
 
     conditionallyUpdateScrollbar();
