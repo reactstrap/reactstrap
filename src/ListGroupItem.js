@@ -8,6 +8,10 @@ const propTypes = {
   color: PropTypes.string,
   action: PropTypes.bool,
   className: PropTypes.any,
+  success: PropTypes.bool,
+  warning: PropTypes.bool,
+  danger: PropTypes.bool,
+  info: PropTypes.bool
 };
 
 const defaultProps = {
@@ -21,15 +25,22 @@ const ListGroupItem = (props) => {
     active,
     disabled,
     action,
-    color,
+    success,
+    warning,
+    danger,
+    info,
     ...attributes
   } = props;
+
   const classes = classNames(
     className,
     active ? 'active' : false,
     disabled ? 'disabled' : false,
     action ? 'list-group-item-action' : false,
-    color ? `list-group-item-${color}` : false,
+    success ? 'list-group-item-success' : false,
+    warning ? 'list-group-item-warning' : false,
+    danger ? 'list-group-item-danger' : false,
+    info ? 'list-group-item-info' : false,
     'list-group-item'
   );
 
