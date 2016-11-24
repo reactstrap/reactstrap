@@ -5,6 +5,7 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
+import { mapToCssModules } from './utils';
 import TetherContent from './TetherContent';
 import DropdownMenu from './DropdownMenu';
 
@@ -18,7 +19,8 @@ const propTypes = {
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func,
   children: PropTypes.node,
-  className: PropTypes.any
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -105,11 +107,11 @@ class Dropdown extends React.Component {
   }
 
   addEvents() {
-    document.addEventListener('click', this.handleDocumentClick);
+    document.addEventListener('click', this.handleDocumentClick, true);
   }
 
   removeEvents() {
-    document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('click', this.handleDocumentClick, true);
   }
 
   handleDocumentClick(e) {
@@ -161,6 +163,7 @@ class Dropdown extends React.Component {
   render() {
     const {
       className,
+      cssModule,
       dropup,
       group,
       size,
@@ -169,7 +172,7 @@ class Dropdown extends React.Component {
       ...attributes
     } = omit(this.props, ['toggle', 'tether']);
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       {
         'btn-group': group,
@@ -178,7 +181,7 @@ class Dropdown extends React.Component {
         open: isOpen,
         dropup: dropup
       }
-    );
+    ), cssModule);
 
     return (
       <Tag

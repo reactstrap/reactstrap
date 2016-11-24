@@ -110,8 +110,13 @@ class Components extends React.Component {
           to: '/components/alerts/'
         },
         {
+<<<<<<< HEAD
           name: 'List Group',
           to: '/components/listgroup/'
+=======
+          name: 'Collapse',
+          to: '/components/collapse/',
+>>>>>>> reactstrap/master
         }
       ]
     };
@@ -121,7 +126,7 @@ class Components extends React.Component {
       <Container fluid className="content">
         <Row>
           <Col md={{ size: 3, push: 9 }}>
-            <div className="docs-sidebar m-b-3">
+            <div className="docs-sidebar mb-3">
               <h5>Components</h5>
               <Nav>
                 {this.state.navItems.map((item, i) => {

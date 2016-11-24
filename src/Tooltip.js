@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
-import { getTetherAttachments, tetherAttachements } from './utils';
+import { getTetherAttachments, tetherAttachements, mapToCssModules } from './utils';
 
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
@@ -11,13 +11,14 @@ const propTypes = {
   disabled: PropTypes.bool,
   tether: PropTypes.object,
   tetherRef: PropTypes.func,
-  classNames: PropTypes.string,
+  classNames: PropTypes.any,
+  cssModule: PropTypes.object,
   toggle: PropTypes.func,
   autohide: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
-    PropTypes.number
-  ])
+    PropTypes.number,
+  ]),
 };
 
 const DEFAULT_DELAYS = {
@@ -156,15 +157,15 @@ class Tooltip extends React.Component {
   }
 
   addTargetEvents() {
-    this._target.addEventListener('mouseover', this.onMouseOverTooltip);
-    this._target.addEventListener('mouseout', this.onMouseLeaveTooltip);
-    document.addEventListener('click', this.handleDocumentClick);
+    this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
+    this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    document.addEventListener('click', this.handleDocumentClick, true);
   }
 
   removeTargetEvents() {
-    this._target.removeEventListener('mouseover', this.onMouseOverTooltip);
-    this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip);
-    document.removeEventListener('click', this.handleDocumentClick);
+    this._target.removeEventListener('mouseover', this.onMouseOverTooltip, true);
+    this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    document.removeEventListener('click', this.handleDocumentClick, true);
   }
 
   toggle(e) {
@@ -181,10 +182,10 @@ class Tooltip extends React.Component {
     }
 
     const attributes = omit(this.props, Object.keys(propTypes));
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       'tooltip-inner',
       this.props.classNames
-    );
+    ), this.props.cssModule);
 
     let tetherConfig = this.getTetherConfig();
 

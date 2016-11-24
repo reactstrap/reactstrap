@@ -131,7 +131,7 @@ DropdownToggle.propTypes = {
               </DropdownMenu>
             </ButtonDropdown>
           </div>
-          <div className="m-t-1">
+          <div className="mt-1">
             <ButtonDropdown isOpen={this.state.btnSm} toggle={() => { this.setState({ btnSm: !this.state.btnSm }); }}>
               <DropdownToggle caret size="sm">
                 Small Button

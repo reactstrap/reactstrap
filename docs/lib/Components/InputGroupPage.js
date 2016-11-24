@@ -48,20 +48,20 @@ export default class InputGroupPage extends React.Component {
 {`InputGroup.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   size: PropTypes.string,
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 InputGroupAddOn.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 InputGroupButton.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   children: PropTypes.node,
-  groupClassName: PropTypes.any, // only used in shorthand
+  groupClassName: PropTypes.string, // only used in shorthand
   groupAttributes: PropTypes.object, // only used in shorthand
-  className: PropTypes.any
+  className: PropTypes.string
 };`}
           </PrismCode>
         </pre>

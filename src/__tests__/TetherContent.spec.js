@@ -78,8 +78,6 @@ describe('TetherContent', () => {
       expect(instance._tether).toBe(null);
     });
 
-
-
     it('should pass the new tether reference', () => {
       state = true;
       const tetherRef = jasmine.createSpy();

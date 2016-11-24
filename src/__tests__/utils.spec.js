@@ -114,6 +114,46 @@ describe('Utils', () => {
     });
   });
 
+  describe('mapToCssModules', () => {
+    describe('without css module', () => {
+      it('should return a string', () => {
+        expect(Utils.mapToCssModules('btn btn-primary')).toEqual(jasmine.any(String));
+      });
+
+      it('should return the classnames it was given, unchanged', () => {
+        expect(Utils.mapToCssModules('btn btn-primary')).toBe('btn btn-primary');
+      });
+    });
+
+    describe('with css module', () => {
+      it('should return a string', () => {
+        const cssModule = {
+          btn: 'a1',
+          'btn-success': 'b1',
+          'btn-primary': 'c2',
+        };
+        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toEqual(jasmine.any(String));
+      });
+
+      it('should return the mapped classnames', () => {
+        const cssModule = {
+          btn: 'a1',
+          'btn-success': 'b1',
+          'btn-primary': 'c2',
+        };
+        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toBe('a1 c2');
+      });
+
+      it('should return the original classname when it is not in the map', () => {
+        const cssModule = {
+          btn: 'a1',
+          'btn-success': 'b1',
+        };
+        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toBe('a1 btn-primary');
+      });
+    });
+  });
+
   // TODO
   // describe('getScrollbarWidth', () => {
   //   // jsdom workaround https://github.com/tmpvar/jsdom/issues/135#issuecomment-68191941

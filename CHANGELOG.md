@@ -1,3 +1,83 @@
+<a name="3.9.1"></a>
+## [3.9.1](https://github.com/reactstrap/reactstrap/compare/3.9.0...v3.9.1) (2016-11-23)
+
+
+### Bug Fixes
+
+* **modal:** fix multi-modal backdrop ([#227](https://github.com/reactstrap/reactstrap/issues/227)) ([9ddeb8a](https://github.com/reactstrap/reactstrap/commit/9ddeb8a)), closes [#222](https://github.com/reactstrap/reactstrap/issues/222)
+
+
+
+<a name="3.9.0"></a>
+# [3.9.0](https://github.com/reactstrap/reactstrap/compare/3.8.1...v3.9.0) (2016-11-13)
+
+
+### Bug Fixes
+
+* **DropdownToggle:** support non Button styles ([#221](https://github.com/reactstrap/reactstrap/issues/221)) ([cd3c1ce](https://github.com/reactstrap/reactstrap/commit/cd3c1ce))
+
+
+### Features
+
+* **ListGroup:** add ListGroupItem, ListGroupItemHeading, ListGroupItemText components ([#192](https://github.com/reactstrap/reactstrap/issues/192)) ([d09e81a](https://github.com/reactstrap/reactstrap/commit/d09e81a))
+
+
+
+<a name="3.8.1"></a>
+## [3.8.1](https://github.com/reactstrap/reactstrap/compare/3.8.0...v3.8.1) (2016-11-01)
+
+
+### Features
+
+* **refs:** add getRef to focusable components ([#218](https://github.com/reactstrap/reactstrap/issues/218)) ([cbfa0e0](https://github.com/reactstrap/reactstrap/commit/cbfa0e0))
+
+
+
+<a name="3.8.0"></a>
+# [3.8.0](https://github.com/reactstrap/reactstrap/compare/3.7.1...v3.8.0) (2016-11-01)
+
+
+### Features
+
+* **Collapse:** add Collapse component [#79](https://github.com/reactstrap/reactstrap/issues/79) ([#201](https://github.com/reactstrap/reactstrap/issues/201)) ([ddbf0dd](https://github.com/reactstrap/reactstrap/commit/ddbf0dd))
+
+
+
+<a name="3.7.1"></a>
+## [3.7.1](https://github.com/reactstrap/reactstrap/compare/3.7.0...v3.7.1) (2016-10-29)
+
+
+### Bug Fixes
+
+* **NavbarToggler:** remove unnecessary menu char ([#200](https://github.com/reactstrap/reactstrap/issues/200)) ([67544a3](https://github.com/reactstrap/reactstrap/commit/67544a3))
+
+
+
+<a name="3.7.0"></a>
+# [3.7.0](https://github.com/reactstrap/reactstrap/compare/3.6.0...v3.7.0) (2016-10-27)
+
+
+### Bug Fixes
+
+* **events:** add useCapture to events attached to document ([#202](https://github.com/reactstrap/reactstrap/issues/202)) ([18d7d04](https://github.com/reactstrap/reactstrap/commit/18d7d04))
+
+
+### Features
+
+* **cssModule:** add support for css module ([#206](https://github.com/reactstrap/reactstrap/issues/206)) ([3a69f14](https://github.com/reactstrap/reactstrap/commit/3a69f14)), closes [#205](https://github.com/reactstrap/reactstrap/issues/205)
+
+
+
+<a name="3.6.0"></a>
+# [3.6.0](https://github.com/reactstrap/reactstrap/compare/3.5.0...v3.6.0) (2016-10-23)
+
+
+### Features
+
+* **DropdownToggle:** add nav prop to enable Nav specific functionality ([#197](https://github.com/reactstrap/reactstrap/issues/197))([9b28cbc](https://github.com/reactstrap/reactstrap/commit/9b28cbc))
+
+
+
 <a name="3.5.0"></a>
 # [3.5.0](https://github.com/reactstrap/reactstrap/compare/3.4.1...v3.5.0) (2016-10-18)
 

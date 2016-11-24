@@ -2,16 +2,19 @@
 
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   type: PropTypes.string,
   size: PropTypes.string,
   state: PropTypes.string,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   static: PropTypes.bool,
   addon: PropTypes.bool,
   className: PropTypes.string,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -23,12 +26,14 @@ class Input extends React.Component {
   render() {
     const {
       className,
+      cssModule,
       type,
       size,
       state,
       tag,
       addon,
       static: staticInput,
+      getRef,
       ...attributes,
     } = this.props;
 
@@ -54,19 +59,19 @@ class Input extends React.Component {
       }
     }
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       state ? `form-control-${state}` : false,
       size ? `form-control-${size}` : false,
       formControlClass
-    );
+    ), cssModule);
 
     if (Tag === 'input') {
       attributes.type = type;
     }
 
     return (
-      <Tag {...attributes} className={classes} />
+      <Tag {...attributes} ref={getRef} className={classes} />
     );
   }
 }
