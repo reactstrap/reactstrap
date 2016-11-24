@@ -110,13 +110,12 @@ class Components extends React.Component {
           to: '/components/alerts/'
         },
         {
-<<<<<<< HEAD
-          name: 'List Group',
-          to: '/components/listgroup/'
-=======
           name: 'Collapse',
           to: '/components/collapse/',
->>>>>>> reactstrap/master
+        },
+        {
+          name: 'List Group',
+          to: '/components/listgroup/'
         }
       ]
     };

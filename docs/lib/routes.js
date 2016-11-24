@@ -23,11 +23,8 @@ import PaginationPage from './Components/PaginationPage';
 import TabsPage from './Components/TabsPage';
 import JumbotronPage from './Components/JumbotronPage';
 import AlertsPage from './Components/AlertsPage';
-<<<<<<< HEAD
-import ListGroupPage from './Components/ListGroupPage';
-=======
 import CollapsePage from './Components/CollapsePage';
->>>>>>> reactstrap/master
+import ListGroupPage from './Components/ListGroupPage';
 import NotFound from './NotFound';
 import Components from './Components';
 import UI from './UI';
@@ -59,11 +56,8 @@ const routes = (
       <Route path="tabs/" component={TabsPage} />
       <Route path="alerts/" component={AlertsPage} />
       <Route path="jumbotron/" component={JumbotronPage} />
-<<<<<<< HEAD
-      <Route path="listgroup/" component={ListGroupPage} />
-=======
       <Route path="collapse/" component={CollapsePage} />
->>>>>>> reactstrap/master
+      <Route path="listgroup/" component={ListGroupPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>

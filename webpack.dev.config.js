@@ -35,11 +35,8 @@ var paths = [
   '/components/tabs/',
   '/components/jumbotron/',
   '/components/alerts/',
-<<<<<<< HEAD
-  '/components/listgroup/',
-=======
   '/components/collapse/',
->>>>>>> reactstrap/master
+  '/components/listgroup/',
   '/404.html'
 ];
 
