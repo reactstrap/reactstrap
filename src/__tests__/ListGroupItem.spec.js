@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import ListGroupItem from '../ListGroupItem';
 
 describe('ListGroupItem', () => {
@@ -46,5 +46,12 @@ describe('ListGroupItem', () => {
   it('should render with "list-group-item-danger" class when danger is passed', () => {
     const wrapper = shallow(<ListGroupItem danger>Yo!</ListGroupItem>);
     expect(wrapper.hasClass('list-group-item-danger')).toBe(true);
+  });
+
+  it('should prevent click event when disabled is passed', () => {
+    const onDisableClick = jasmine.createSpy('click');
+    const wrapper = mount(<ListGroupItem disabled onClick={onDisableClick}>Yo!</ListGroupItem>);
+    wrapper.find('li').simulate('click');
+    expect(onDisableClick).not.toHaveBeenCalled();
   });
 });
