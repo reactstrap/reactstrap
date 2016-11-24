@@ -33,6 +33,12 @@ const ListGroupItem = (props) => {
     'list-group-item'
   );
 
+  // Prevent click event when disabled.
+  if (disabled) {
+    attributes.onClick = (event) => {
+      event.preventDefault();
+    };
+  }
   return (
     <Tag {...attributes} className={classes} />
   );
