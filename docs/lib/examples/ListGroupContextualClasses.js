@@ -5,10 +5,10 @@ export default class Example extends React.Component {
   render() {
     return (
       <ListGroup>
-        <ListGroupItem success>Cras justo odio</ListGroupItem>
-        <ListGroupItem info>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem warning>Morbi leo risus</ListGroupItem>
-        <ListGroupItem danger>Porta ac consectetur ac</ListGroupItem>
+        <ListGroupItem color="success">Cras justo odio</ListGroupItem>
+        <ListGroupItem color="info">Dapibus ac facilisis in</ListGroupItem>
+        <ListGroupItem color="warning">Morbi leo risus</ListGroupItem>
+        <ListGroupItem color="danger">Porta ac consectetur ac</ListGroupItem>
       </ListGroup>
     );
   }

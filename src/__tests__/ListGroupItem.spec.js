@@ -28,24 +28,9 @@ describe('ListGroupItem', () => {
     expect(wrapper.hasClass('list-group-item-action')).toBe(true);
   });
 
-  it('should render with "list-group-item-success" class when success is passed', () => {
-    const wrapper = shallow(<ListGroupItem success>Yo!</ListGroupItem>);
+  it('should render with "list-group-item-${color}" class when color is passed', () => {
+    const wrapper = shallow(<ListGroupItem color="success">Yo!</ListGroupItem>);
     expect(wrapper.hasClass('list-group-item-success')).toBe(true);
-  });
-
-  it('should render with "list-group-item-info" class when info is passed', () => {
-    const wrapper = shallow(<ListGroupItem info>Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('list-group-item-info')).toBe(true);
-  });
-
-  it('should render with "list-group-item-warning" class when warning is passed', () => {
-    const wrapper = shallow(<ListGroupItem warning>Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('list-group-item-warning')).toBe(true);
-  });
-
-  it('should render with "list-group-item-danger" class when danger is passed', () => {
-    const wrapper = shallow(<ListGroupItem danger>Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('list-group-item-danger')).toBe(true);
   });
 
   it('should prevent click event when disabled is passed', () => {
