@@ -1,3 +1,15 @@
+<a name="3.9.2"></a>
+## [3.9.2](https://github.com/reactstrap/reactstrap/compare/3.9.1...v3.9.2) (2016-11-28)
+
+
+### Bug Fixes
+
+* **Popover:** remove old arrow markup, correct enabled className ([b9d3ea7](https://github.com/reactstrap/reactstrap/commit/b9d3ea7))
+* **TetherContent:** Fixes className prop typo, removes arrow & position relative hack ([d9e7621](https://github.com/reactstrap/reactstrap/commit/d9e7621))
+* **Tooltip:** remove old arrow markup, correct enabled className ([62d622b](https://github.com/reactstrap/reactstrap/commit/62d622b))
+
+
+
 <a name="3.9.1"></a>
 ## [3.9.1](https://github.com/reactstrap/reactstrap/compare/3.9.0...v3.9.1) (2016-11-23)
 

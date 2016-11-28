@@ -11,7 +11,7 @@ const propTypes = {
   disabled: PropTypes.bool,
   tether: PropTypes.object,
   tetherRef: PropTypes.func,
-  classNames: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
   autohide: PropTypes.bool,
@@ -36,7 +36,10 @@ const defaultProps = {
 
 const defaultTetherConfig = {
   classPrefix: 'bs-tether',
-  classes: { element: 'tooltip in', enabled: 'open' },
+  classes: {
+    element: false,
+    enabled: 'in',
+  },
   constraints: [
     { to: 'scrollParent', attachment: 'together none' },
     { to: 'window', attachment: 'together none' }
@@ -184,14 +187,14 @@ class Tooltip extends React.Component {
     const attributes = omit(this.props, Object.keys(propTypes));
     const classes = mapToCssModules(classNames(
       'tooltip-inner',
-      this.props.classNames
+      this.props.className
     ), this.props.cssModule);
 
     let tetherConfig = this.getTetherConfig();
 
     return (
       <TetherContent
-        arrow="tooltip"
+        className="tooltip"
         tether={tetherConfig}
         tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
