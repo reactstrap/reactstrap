@@ -68,6 +68,7 @@ describe('Popover', () => {
     expect(isOpen).toBe(false);
 
     expect(wrapper.find(TetherContent).length).toBe(0);
+    expect(document.body.querySelectorAll('.popover.in').length).toBe(0);
     expect(document.getElementsByClassName('popover').length).toBe(0);
     expect(document.getElementsByClassName('popover-inner').length).toBe(0);
     expect(document.getElementsByClassName('popover-title').length).toBe(0);
@@ -80,6 +81,7 @@ describe('Popover', () => {
 
     expect(isOpen).toBe(true);
     expect(wrapper.find(TetherContent).length).toBe(1);
+    expect(document.body.querySelectorAll('.popover.in').length).toBe(1);
     expect(document.getElementsByClassName('popover').length).toBe(1);
     expect(document.getElementsByClassName('popover-inner').length).toBe(1);
     expect(document.getElementsByClassName('popover-title').length).toBe(1);
