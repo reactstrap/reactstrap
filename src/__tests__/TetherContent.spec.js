@@ -24,6 +24,16 @@ describe('TetherContent', () => {
     expect(instance._element).toBe(undefined);
   });
 
+  it('should renderChildren with className', () => {
+    state = true;
+    spyOn(TetherContent.prototype, 'componentDidMount').and.callThrough();
+    spyOn(TetherContent.prototype, 'renderChildren').and.callThrough();
+    const wrapper = mount(<TetherContent className="foo" tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+    const instance = wrapper.instance();
+
+    expect(instance._element.className.indexOf('foo') > -1).toBe(true);
+  });
+
   it('should renderChildren when isOpen is true', () => {
     state = true;
     spyOn(TetherContent.prototype, 'componentDidMount').and.callThrough();
@@ -35,16 +45,6 @@ describe('TetherContent', () => {
     expect(TetherContent.prototype.renderChildren.calls.count()).toBe(1);
     expect(instance.props.isOpen).toBe(true);
     expect(instance._element.className.indexOf('tether') > -1).toBe(true);
-  });
-
-  it('should render an arrow dom node when prop is true', () => {
-    state = true;
-    const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} arrow="tooltip" toggle={toggle}><p>Content</p></TetherContent>);
-    const instance = wrapper.instance();
-
-    expect(instance._element.textContent).toBe('Content');
-    expect(instance._tether.enabled).toBe(true);
-    expect(instance._element.innerHTML.indexOf('<div class="tooltip-arrow"></div>') > -1).toBe(true);
   });
 
   it('should not call props.toggle when disabled ', () => {

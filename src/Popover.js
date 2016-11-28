@@ -23,7 +23,10 @@ const defaultProps = {
 
 const defaultTetherConfig = {
   classPrefix: 'bs-tether',
-  classes: { element: 'popover', enabled: 'open' },
+  classes: {
+    element: false,
+    enabled: 'in'
+  },
   constraints: [
     { to: 'scrollParent', attachment: 'together none' },
     { to: 'window', attachment: 'together none' }
@@ -63,7 +66,7 @@ class Popover extends React.Component {
 
     return (
       <TetherContent
-        arrow="popover"
+        className="popover"
         tether={tetherConfig}
         tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
