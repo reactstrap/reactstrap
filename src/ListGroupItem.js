@@ -14,6 +14,10 @@ const defaultProps = {
   tag: 'li'
 };
 
+const handleDisabledOnClick = (e) => {
+  e.preventDefault();
+};
+
 const ListGroupItem = (props) => {
   const {
     className,
@@ -35,9 +39,7 @@ const ListGroupItem = (props) => {
 
   // Prevent click event when disabled.
   if (disabled) {
-    attributes.onClick = (event) => {
-      event.preventDefault();
-    };
+    attributes.onClick = handleDisabledOnClick;
   }
   return (
     <Tag {...attributes} className={classes} />
