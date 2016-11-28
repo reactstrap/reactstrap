@@ -1,3 +1,12 @@
+<a name="4.0.0-alpha.2"></a>
+# [4.0.0-alpha.2](https://github.com/reactstrap/reactstrap/compare/3.9.2...v4.0.0-alpha.2) (2016-11-28)
+
+
+### Bug Fixes
+
+* **className:** update "in" to "active" for stateful components ([#241](https://github.com/reactstrap/reactstrap/issues/241)) ([ea2439e](https://github.com/reactstrap/reactstrap/commit/ea2439e))
+
+
 <a name="3.9.2"></a>
 ## [3.9.2](https://github.com/reactstrap/reactstrap/compare/3.9.1...v3.9.2) (2016-11-28)
 
