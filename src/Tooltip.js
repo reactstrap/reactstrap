@@ -38,7 +38,7 @@ const defaultTetherConfig = {
   classPrefix: 'bs-tether',
   classes: {
     element: false,
-    enabled: 'in',
+    enabled: 'active',
   },
   constraints: [
     { to: 'scrollParent', attachment: 'together none' },

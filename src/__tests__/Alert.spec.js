@@ -12,9 +12,9 @@ describe('Alert', () => {
     const alert = shallow(<Alert>Yo!</Alert>);
     expect(alert.prop('transitionName')).toEqual({
       appear: 'fade',
-      appearActive: 'in',
+      appearActive: 'active',
       enter: 'fade',
-      enterActive: 'in',
+      enterActive: 'active',
       leave: 'fade',
       leaveActive: 'out'
     });
