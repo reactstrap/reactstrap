@@ -81,17 +81,6 @@ export default class ListGroupPage extends React.Component {
             {ListGroupCustomContentExampleSource}
           </PrismCode>
         </pre>
-
-
-        <h4>Container Properties</h4>
-        <pre>
-          <PrismCode className="language-jsx">
-{`Container.propTypes = {
-  fluid:  PropTypes.bool
-  // applies .container-fluid class
-}`}
-          </PrismCode>
-        </pre>
       </div>
     );
   }
