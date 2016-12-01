@@ -1,5 +1,9 @@
+<a name="4.0.0-alpha.3"></a>
+# [4.0.0-alpha.3](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.2...v4.0.0-alpha.3) (2016-12-01)
+
+
 <a name="4.0.0-alpha.2"></a>
-# [4.0.0-alpha.2](https://github.com/reactstrap/reactstrap/compare/3.9.2...v4.0.0-alpha.2) (2016-11-28)
+# [4.0.0-alpha.2](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.1...v4.0.0-alpha.2) (2016-11-28)
 
 
 ### Bug Fixes
@@ -37,7 +41,7 @@
 
 
 <a name="4.0.0-alpha.0"></a>
-# [4.0.0-alpha.0](https://github.com/reactstrap/reactstrap/compare/3.9.1...v4.0.0-alpha.0) (2016-11-23)
+# [4.0.0-alpha.0](https://github.com/reactstrap/reactstrap/compare/v4...v4.0.0-alpha.0) (2016-11-23)
 
 
 <a name="3.9.1"></a>
