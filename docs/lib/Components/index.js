@@ -112,6 +112,10 @@ class Components extends React.Component {
         {
           name: 'Collapse',
           to: '/components/collapse/',
+        },
+        {
+          name: 'List Group',
+          to: '/components/listgroup/'
         }
       ]
     };
