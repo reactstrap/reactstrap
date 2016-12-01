@@ -24,12 +24,17 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  zIndex: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 const defaultProps = {
   isOpen: false,
   backdrop: true,
-  keyboard: true
+  keyboard: true,
+  zIndex: 1000,
 };
 
 class Modal extends React.Component {
@@ -126,7 +131,7 @@ class Modal extends React.Component {
     this._element = document.createElement('div');
     this._element.setAttribute('tabindex', '-1');
     this._element.style.position = 'relative';
-    this._element.style.zIndex = '1000';
+    this._element.style.zIndex = this.props.zIndex;
     this.originalBodyPadding = getOriginalBodyPadding();
 
     conditionallyUpdateScrollbar();
