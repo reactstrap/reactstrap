@@ -1,3 +1,13 @@
+<a name="3.9.4"></a>
+## [3.9.4](https://github.com/reactstrap/reactstrap/compare/3.9.3...v3.9.4) (2016-12-12)
+
+
+### Bug Fixes
+
+* **Modal:** clear timeouts when toggling of modal - [#166](https://github.com/reactstrap/reactstrap/issues/166) ([5e0f5d2](https://github.com/reactstrap/reactstrap/commit/5e0f5d2))
+
+
+
 <a name="3.9.3"></a>
 ## [3.9.3](https://github.com/reactstrap/reactstrap/compare/3.9.2...v3.9.3) (2016-12-01)
 
