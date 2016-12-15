@@ -41,8 +41,12 @@ class Fade extends React.Component {
 
     this.onLeave = this.onLeave.bind(this);
     this.onEnter = this.onEnter.bind(this);
+    this.timers = [];
   }
 
+  componentWillUnmount() {
+    this.timers.forEach(timer => clearTimeout(timer));
+  }
   onEnter(cb) {
     return () => {
       cb();
@@ -51,7 +55,6 @@ class Fade extends React.Component {
       }
     };
   }
-
   onLeave(cb) {
     return () => {
       cb();
@@ -66,7 +69,7 @@ class Fade extends React.Component {
       this.onEnter(cb)();
     }
 
-    setTimeout(this.onEnter(cb), this.props.transitionAppearTimeout);
+    this.timers.push(setTimeout(this.onEnter(cb), this.props.transitionAppearTimeout));
   }
 
   componentDidAppear() {
@@ -80,7 +83,7 @@ class Fade extends React.Component {
       this.onEnter(cb)();
     }
 
-    setTimeout(this.onEnter(cb), this.props.transitionEnterTimeout);
+    this.timers.push(setTimeout(this.onEnter(cb), this.props.transitionEnterTimeout));
   }
 
   componentDidEnter() {
@@ -98,9 +101,8 @@ class Fade extends React.Component {
       this.onLeave(cb)();
     }
 
-    setTimeout(this.onLeave(cb), this.props.transitionLeaveTimeout);
+    this.timers.push(setTimeout(this.onLeave(cb), this.props.transitionLeaveTimeout));
   }
-
   render() {
     const {
       baseClass,
