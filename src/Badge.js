@@ -17,7 +17,7 @@ const defaultProps = {
   tag: 'span'
 };
 
-const Tag = (props) => {
+const Badge = (props) => {
   const {
     className,
     cssModule,
@@ -29,9 +29,9 @@ const Tag = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    'tag',
-    'tag-' + color,
-    pill ? 'tag-pill' : false
+    'badge',
+    'badge-' + color,
+    pill ? 'badge-pill' : false
   ), cssModule);
 
   return (
@@ -39,7 +39,7 @@ const Tag = (props) => {
   );
 };
 
-Tag.propTypes = propTypes;
-Tag.defaultProps = defaultProps;
+Badge.propTypes = propTypes;
+Badge.defaultProps = defaultProps;
 
-export default Tag;
+export default Badge;

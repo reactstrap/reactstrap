@@ -27,7 +27,7 @@ var paths = [
   '/components/progress/',
   '/components/tooltips/',
   '/components/modals/',
-  '/components/tags/',
+  '/components/badge/',
   '/components/card/',
   '/components/tables/',
   '/components/media/',

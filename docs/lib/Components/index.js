@@ -50,8 +50,8 @@ class Components extends React.Component {
           to: '/components/breadcrumbs/'
         },
         {
-          name: 'Tags',
-          to: '/components/tags/'
+          name: 'Badge',
+          to: '/components/badge/'
         },
         {
           name: 'Card',
