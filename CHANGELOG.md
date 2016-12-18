@@ -1,3 +1,12 @@
+<a name="4.0.0-alpha.5"></a>
+# [4.0.0-alpha.5](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.4...v4.0.0-alpha.5) (2016-12-18)
+
+
+### Features
+
+* **Modal:** Pass through props in Modal ([#254](https://github.com/reactstrap/reactstrap/issues/254)) ([c99e873](https://github.com/reactstrap/reactstrap/commit/c99e873))
+
+
 <a name="3.9.5"></a>
 ## [3.9.5](https://github.com/reactstrap/reactstrap/compare/3.9.4...v3.9.5) (2016-12-18)
 
@@ -689,3 +698,4 @@ custom elements should render their html “tags”.
 * **Buttons:** support block level buttons ([f9cf8db](https://github.com/reactstrap/reactstrap/commit/f9cf8db))
 * **Dropdowns:** add examples ([3d48e8c](https://github.com/reactstrap/reactstrap/commit/3d48e8c))
 * **Dropdowns:** basic dropdown, toggle, menu & menu items ([750aaf9](https://github.com/reactstrap/reactstrap/commit/750aaf9))
+
