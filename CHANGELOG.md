@@ -1,3 +1,13 @@
+<a name="3.9.5"></a>
+## [3.9.5](https://github.com/reactstrap/reactstrap/compare/3.9.4...v3.9.5) (2016-12-18)
+
+
+### Features
+
+* **Modal:** Pass through props in Modal ([#254](https://github.com/reactstrap/reactstrap/issues/254)) ([a783308](https://github.com/reactstrap/reactstrap/commit/a783308))
+
+
+
 <a name="3.9.4"></a>
 ## [3.9.4](https://github.com/reactstrap/reactstrap/compare/3.9.3...v3.9.4) (2016-12-12)
 
