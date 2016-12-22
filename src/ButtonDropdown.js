@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Dropdown from './Dropdown';
 
 const propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 const ButtonDropdown = (props) => {

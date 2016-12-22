@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
-  PropTypes.string,
+  PropTypes.bool,
   PropTypes.number,
+  PropTypes.string,
   PropTypes.shape({
     size: stringOrNumberProp,
     push: stringOrNumberProp,
@@ -21,7 +23,8 @@ const propTypes = {
   md: columnProps,
   lg: columnProps,
   xl: columnProps,
-  className: PropTypes.node
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -31,6 +34,7 @@ const defaultProps = {
 const Col = (props) => {
   const {
     className,
+    cssModule,
     ...attributes
   } = props;
   const colClasses = [];
@@ -38,25 +42,38 @@ const Col = (props) => {
   colSizes.forEach(colSize => {
     const columnProp = props[colSize];
     delete attributes[colSize];
+    let colClass;
 
     if (!columnProp) {
       return;
     } else if (columnProp.size) {
-      colClasses.push(classNames({
-        [`col-${colSize}-${columnProp.size}`]: columnProp.size,
+      if (columnProp.size === 'auto') {
+        colClass = `col-${colSize}`;
+      } else {
+        colClass = `col-${colSize}-${columnProp.size}`;
+      }
+
+      colClasses.push(mapToCssModules(classNames({
+        [colClass]: columnProp.size,
         [`push-${colSize}-${columnProp.push}`]: columnProp.push,
         [`pull-${colSize}-${columnProp.pull}`]: columnProp.pull,
         [`offset-${colSize}-${columnProp.offset}`]: columnProp.offset
-      }));
+      })), cssModule);
     } else {
-      colClasses.push(`col-${colSize}-${columnProp}`);
+      if (columnProp === 'auto' || columnProp === true) {
+        colClass = `col-${colSize}`;
+      } else {
+        colClass = `col-${colSize}-${columnProp}`;
+      }
+
+      colClasses.push(colClass);
     }
   });
 
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     colClasses
-  );
+  ), cssModule);
 
   return (
     <div {...attributes} className={classes} />

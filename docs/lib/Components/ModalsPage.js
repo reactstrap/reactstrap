@@ -49,7 +49,12 @@ export default class ModalsPage extends React.Component {
     PropTypes.bool,
     PropTypes.oneOf(['static'])
   ]),
-  keyboard: PropTypes.bool
+  keyboard: PropTypes.bool,
+  // zIndex defaults to 1000.
+  zIndex: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 }`}
           </PrismCode>
         </pre>

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -8,15 +9,17 @@ const propTypes = {
   disabled: PropTypes.bool,
   outline: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
   size: PropTypes.string,
   children: PropTypes.node,
-  className: PropTypes.any
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
   color: 'secondary',
-  tag: 'button'
+  tag: 'button',
 };
 
 class Button extends React.Component {
@@ -42,28 +45,30 @@ class Button extends React.Component {
       active,
       block,
       className,
+      cssModule,
       color,
       outline,
       size,
       tag: Tag,
+      getRef,
       ...attributes
     } = this.props;
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       'btn',
       `btn${outline ? '-outline' : ''}-${color}`,
       size ? `btn-${size}` : false,
       block ? 'btn-block' : false,
       { active, disabled: this.props.disabled }
-    );
+    ), cssModule);
 
     if (attributes.href && Tag === 'button') {
       Tag = 'a';
     }
 
     return (
-      <Tag {...attributes} className={classes} onClick={this.onClick} />
+      <Tag {...attributes} className={classes} ref={getRef} onClick={this.onClick} />
     );
   }
 }

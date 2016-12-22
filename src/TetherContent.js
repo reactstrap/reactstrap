@@ -5,16 +5,20 @@ import Tether from 'tether';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   arrow: PropTypes.string,
   disabled: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
   tether: PropTypes.object.isRequired,
-  style: PropTypes.node
+  tetherRef: PropTypes.func,
+  style: PropTypes.node,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
-  isOpen: false
+  isOpen: false,
+  tetherRef: function () {}
 };
 
 class TetherContent extends React.Component {
@@ -78,7 +82,7 @@ class TetherContent extends React.Component {
   }
 
   hide() {
-    document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('click', this.handleDocumentClick, true);
 
     if (this._element) {
       document.body.removeChild(this._element);
@@ -89,23 +93,19 @@ class TetherContent extends React.Component {
     if (this._tether) {
       this._tether.destroy();
       this._tether = null;
+      this.props.tetherRef(this._tether);
     }
   }
 
   show() {
-    document.addEventListener('click', this.handleDocumentClick);
+    document.addEventListener('click', this.handleDocumentClick, true);
 
     this._element = document.createElement('div');
+    this._element.className = this.props.className;
     document.body.appendChild(this._element);
     this.renderIntoSubtree();
-
-    if (this.props.arrow) {
-      const arrow = document.createElement('div');
-      arrow.className = this.props.arrow + '-arrow';
-      this._element.appendChild(arrow);
-    }
-
     this._tether = new Tether(this.getTetherConfig());
+    this.props.tetherRef(this._tether);
     this._tether.position();
     this._element.childNodes[0].focus();
   }
@@ -130,9 +130,7 @@ class TetherContent extends React.Component {
     const { children, style } = this.props;
     return React.cloneElement(
       children,
-      {
-        style: { position: 'relative', ...style }
-      }
+      { style }
     );
   }
 

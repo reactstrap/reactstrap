@@ -64,12 +64,13 @@ export default class DropdownPage extends React.Component {
 DropdownToggle.propTypes = {
   caret: PropTypes.bool,
   color: PropTypes.string,
-  className: PropTypes.any,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool,
-
+  // For DropdownToggle usage inside a Nav
+  nav: PropTypes.bool,
   // Defaults to Button component
   tag: PropTypes.any
 };`}
@@ -137,8 +138,8 @@ DropdownToggle.propTypes = {
         <div className="docs-example">
           <div>
             <DropdownSizingExample group size="lg" />
-            <DropdownSizingExample className="m-t-1" />
-            <DropdownSizingExample className="m-t-1" group size="sm" />
+            <DropdownSizingExample className="mt-1" />
+            <DropdownSizingExample className="mt-1" group size="sm" />
           </div>
         </div>
         <pre>

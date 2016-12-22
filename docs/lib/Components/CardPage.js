@@ -53,25 +53,25 @@ export default class CardPage extends React.Component {
   inverse: PropTypes.bool,
   color: PropTypes.string,
   block: PropTypes.bool,
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardBlock.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardColumns.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardDeck.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any,
+  className: PropTypes.string,
   // enable flexbox version of component (removes extra classes)
   flex: PropTypes.bool
 };
@@ -79,25 +79,25 @@ CardDeck.propTypes = {
 CardFooter.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardGroup.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardHeader.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardImg.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any,
+  className: PropTypes.string,
   // Use top or bottom to position image via "card-img-top" or "card-img-bottom"
   top: PropTypes.bool,
   bottom: PropTypes.bool
@@ -106,31 +106,31 @@ CardImg.propTypes = {
 CardImgOverlay.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardLink.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardSubtitle.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardText.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };
 
 CardTitle.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any
+  className: PropTypes.string
 };`}
           </PrismCode>
         </pre>

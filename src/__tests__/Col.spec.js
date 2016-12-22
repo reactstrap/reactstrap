@@ -36,6 +36,13 @@ describe('Col', () => {
     expect(wrapper.hasClass('col-xs-12')).toBe(true);
   });
 
+  it('should pass col size as flex with values "auto" or without value', () => {
+    const wrapper = shallow(<Col xs="auto" sm />);
+
+    expect(wrapper.hasClass('col-xs')).toBe(true);
+    expect(wrapper.hasClass('col-sm')).toBe(true);
+  });
+
   it('should pass col size specific classes via Objects', () => {
     const wrapper = shallow(<Col sm={{ size: 6, push: 2, pull: 2, offset: 2 }} />);
 
@@ -44,5 +51,13 @@ describe('Col', () => {
     expect(wrapper.hasClass('push-sm-2')).toBe(true);
     expect(wrapper.hasClass('pull-sm-2')).toBe(true);
     expect(wrapper.hasClass('offset-sm-2')).toBe(true);
+  });
+
+  it('should pass col size as flex when passing via object with size "auto"', () => {
+    const wrapper = shallow(<Col
+      sm={{ size: 'auto', push: 2, pull: 2, offset: 2 }}
+    />);
+
+    expect(wrapper.hasClass('col-sm')).toBe(true);
   });
 });

@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import omit from 'lodash.omit';
 import TransitionGroup from 'react-addons-transition-group';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
   conditionallyUpdateScrollbar,
-  setScrollbarWidth
+  setScrollbarWidth,
+  mapToCssModules,
 } from './utils';
 
 const propTypes = {
@@ -21,13 +23,19 @@ const propTypes = {
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
   children: PropTypes.node,
-  className: PropTypes.any
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  zIndex: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 const defaultProps = {
   isOpen: false,
   backdrop: true,
-  keyboard: true
+  keyboard: true,
+  zIndex: 1000,
 };
 
 class Modal extends React.Component {
@@ -111,7 +119,7 @@ class Modal extends React.Component {
       this._element = null;
     }
 
-    document.body.className = classNames(classes).trim();
+    document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
     setScrollbarWidth(this.originalBodyPadding);
   }
 
@@ -123,16 +131,18 @@ class Modal extends React.Component {
     const classes = document.body.className;
     this._element = document.createElement('div');
     this._element.setAttribute('tabindex', '-1');
+    this._element.style.position = 'relative';
+    this._element.style.zIndex = this.props.zIndex;
     this.originalBodyPadding = getOriginalBodyPadding();
 
     conditionallyUpdateScrollbar();
 
     document.body.appendChild(this._element);
 
-    document.body.className = classNames(
+    document.body.className = mapToCssModules(classNames(
       classes,
       'modal-open'
-    );
+    ), this.props.cssModule);
 
     this.renderIntoSubtree();
   }
@@ -152,9 +162,19 @@ class Modal extends React.Component {
   }
 
   renderChildren() {
+    const {
+      className,
+      cssModule,
+      isOpen,
+      size,
+      backdrop,
+      children,
+      ...attributes
+    } = omit(this.props, ['toggle', 'keyboard', 'onEnter', 'onExit', 'zIndex']);
+
     return (
       <TransitionGroup component="div">
-        {this.props.isOpen && (
+        {isOpen && (
           <Fade
             key="modal-dialog"
             onEnter={this.onEnter}
@@ -169,19 +189,20 @@ class Modal extends React.Component {
             tabIndex="-1"
           >
             <div
-              className={classNames('modal-dialog', this.props.className, {
-                [`modal-${this.props.size}`]: this.props.size
-              })}
+              className={mapToCssModules(classNames('modal-dialog', className, {
+                [`modal-${size}`]: size
+              }), cssModule)}
               role="document"
               ref={(c) => (this._dialog = c)}
+              {...attributes}
             >
               <div className="modal-content">
-                {this.props.children}
+                {children}
               </div>
             </div>
           </Fade>
         )}
-        {this.props.isOpen && this.props.backdrop && (
+        {isOpen && backdrop && (
           <Fade
             key="modal-backdrop"
             transitionAppearTimeout={150}

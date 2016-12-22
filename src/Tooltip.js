@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
-import { getTetherAttachments, tetherAttachements } from './utils';
+import { getTetherAttachments, tetherAttachements, mapToCssModules } from './utils';
 
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
@@ -8,13 +10,15 @@ const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   tether: PropTypes.object,
+  tetherRef: PropTypes.func,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
   toggle: PropTypes.func,
-  children: PropTypes.node,
   autohide: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
-    PropTypes.number
-  ])
+    PropTypes.number,
+  ]),
 };
 
 const DEFAULT_DELAYS = {
@@ -26,12 +30,16 @@ const defaultProps = {
   isOpen: false,
   placement: 'bottom',
   delay: DEFAULT_DELAYS,
-  autohide: true
+  autohide: true,
+  toggle: function () {}
 };
 
 const defaultTetherConfig = {
   classPrefix: 'bs-tether',
-  classes: { element: 'tooltip in', enabled: 'open' },
+  classes: {
+    element: false,
+    enabled: 'in',
+  },
   constraints: [
     { to: 'scrollParent', attachment: 'together none' },
     { to: 'window', attachment: 'together none' }
@@ -152,15 +160,15 @@ class Tooltip extends React.Component {
   }
 
   addTargetEvents() {
-    this._target.addEventListener('mouseover', this.onMouseOverTooltip);
-    this._target.addEventListener('mouseout', this.onMouseLeaveTooltip);
-    document.addEventListener('click', this.handleDocumentClick);
+    this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
+    this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    document.addEventListener('click', this.handleDocumentClick, true);
   }
 
   removeTargetEvents() {
-    this._target.removeEventListener('mouseover', this.onMouseOverTooltip);
-    this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip);
-    document.removeEventListener('click', this.handleDocumentClick);
+    this._target.removeEventListener('mouseover', this.onMouseOverTooltip, true);
+    this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    document.removeEventListener('click', this.handleDocumentClick, true);
   }
 
   toggle(e) {
@@ -176,22 +184,28 @@ class Tooltip extends React.Component {
       return null;
     }
 
+    const attributes = omit(this.props, Object.keys(propTypes));
+    const classes = mapToCssModules(classNames(
+      'tooltip-inner',
+      this.props.className
+    ), this.props.cssModule);
+
     let tetherConfig = this.getTetherConfig();
 
     return (
       <TetherContent
-        arrow="tooltip"
+        className="tooltip"
         tether={tetherConfig}
+        tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
         toggle={this.toggle}
       >
         <div
-          className="tooltip-inner"
+          {...attributes}
+          className={classes}
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
-        >
-          {this.props.children}
-        </div>
+        />
       </TetherContent>
     );
   }

@@ -46,6 +46,10 @@ class Components extends React.Component {
           to: '/components/card/'
         },
         {
+          name: 'Collapse',
+          to: '/components/collapse/',
+        },
+        {
           name: 'Dropdowns',
           to: '/components/dropdowns/'
         },
@@ -64,6 +68,10 @@ class Components extends React.Component {
         {
           name: 'Layout',
           to: '/components/layout/'
+        },
+        {
+          name: 'List Group',
+          to: '/components/listgroup/'
         },
         {
           name: 'Media',
@@ -108,7 +116,7 @@ class Components extends React.Component {
         {
           name: 'Tooltips',
           to: '/components/tooltips/'
-        },
+        }
       ]
     };
   }

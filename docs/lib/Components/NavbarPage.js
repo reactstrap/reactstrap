@@ -5,6 +5,8 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import NavbarExample from '../examples/Navbar';
 const NavbarExampleSource = require('!!raw!../examples/Navbar');
+import NavbarTogglerExample from '../examples/NavbarToggler';
+const NavbarTogglerExampleSource = require('!!raw!../examples/NavbarToggler');
 
 export default class NavsPage extends React.Component {
   render() {
@@ -43,6 +45,15 @@ export default class NavsPage extends React.Component {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use
 }`}
+          </PrismCode>
+        </pre>
+        <h3>NavbarToggler</h3>
+        <div className="docs-example">
+          <NavbarTogglerExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {NavbarTogglerExampleSource}
           </PrismCode>
         </pre>
         <h4>NavbarToggler Properties</h4>

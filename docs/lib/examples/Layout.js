@@ -13,6 +13,10 @@ export default class Example extends React.Component {
           <Col xs="6">col-xs-6</Col>
         </Row>
         <Row>
+          <Col xs>.col-xs (flexbox)</Col>
+          <Col xs>.col-xs (flexbox)</Col>
+        </Row>
+        <Row>
           <Col xs="6" sm="4">col-xs-6 col-sm-4</Col>
           <Col xs="6" sm="4">col-xs-6 col-sm-4</Col>
           <Col sm="4">col-xs-12 col-sm-4</Col>
@@ -22,6 +26,10 @@ export default class Example extends React.Component {
         </Row>
         <Row>
           <Col sm="12" md={{ size: 8, offset: 2 }}>.col-xs-12 .col-sm-12 .col-md-6 .col-md-offset-3</Col>
+        </Row>
+        <Row>
+          <Col sm={{ size: 'auto', offset: 1 }}>.col-sm .col-sm-offset-1</Col>
+          <Col sm={{ size: 'auto', offset: 1 }}>.col-sm .col-sm-offset-1</Col>
         </Row>
       </Container>
     );

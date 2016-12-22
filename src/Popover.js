@@ -1,14 +1,18 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
-import { getTetherAttachments, tetherAttachements } from './utils';
+import { getTetherAttachments, mapToCssModules, tetherAttachements } from './utils';
 
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
   tether: PropTypes.object,
-  children: PropTypes.node,
-  toggle: PropTypes.func
+  tetherRef: PropTypes.func,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  toggle: PropTypes.func,
 };
 
 const defaultProps = {
@@ -19,7 +23,10 @@ const defaultProps = {
 
 const defaultTetherConfig = {
   classPrefix: 'bs-tether',
-  classes: { element: 'popover', enabled: 'open' },
+  classes: {
+    element: false,
+    enabled: 'in'
+  },
   constraints: [
     { to: 'scrollParent', attachment: 'together none' },
     { to: 'window', attachment: 'together none' }
@@ -50,16 +57,22 @@ class Popover extends React.Component {
 
     let tetherConfig = this.getTetherConfig();
 
+    const classes = mapToCssModules(classNames(
+      'popover-inner',
+      this.props.className
+    ), this.props.cssModule);
+
+    const attributes = omit(this.props, Object.keys(propTypes));
+
     return (
       <TetherContent
-        arrow="popover"
+        className="popover"
         tether={tetherConfig}
+        tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
         toggle={this.props.toggle}
       >
-        <div className="popover-inner">
-          {this.props.children}
-        </div>
+        <div {...attributes} className={classes} />
       </TetherContent>
     );
   }

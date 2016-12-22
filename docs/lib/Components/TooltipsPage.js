@@ -36,6 +36,8 @@ export default class TooltipsPage extends React.Component {
   // target div ID, popover is attached to this element
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   // optionally overide tether config http://tether.io/#options
+  tetherRef: PropType.function,
+  // function which is passed a reference to the instance of tether for manually \`position()\`ing
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number

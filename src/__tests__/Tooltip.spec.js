@@ -47,6 +47,7 @@ describe('Tooltip', () => {
     const tooltips = document.getElementsByClassName('tooltip');
 
     expect(ReactDOM.findDOMNode(instance)).toBe(null);
+    expect(document.body.querySelectorAll('.tooltip.in').length).toBe(0);
     expect(target.className).toBe('');
     expect(tooltips.length).toBe(0);
     wrapper.detach();
@@ -64,6 +65,7 @@ describe('Tooltip', () => {
     const tooltips = document.getElementsByClassName('tooltip');
 
     expect(ReactDOM.findDOMNode(instance)).toBe(null);
+    expect(document.body.querySelectorAll('.tooltip.in').length).toBe(1);
     expect(target.className.indexOf('bs-tether-target') > -1).toBe(true);
     expect(tooltips.length).toBe(1);
     expect(tooltips[0].textContent).toBe('Tooltip Content');
@@ -172,6 +174,22 @@ describe('Tooltip', () => {
 
     expect(event.preventDefault).toHaveBeenCalled();
     expect(props.toggle).not.toHaveBeenCalled();
+
+    wrapper.detach();
+  });
+
+  it('should not throw when props.toggle is not provided ', () => {
+    const event = jasmine.createSpyObj('event', ['preventDefault']);
+
+    const wrapper = mount(
+      <Tooltip target="target" isOpen={isOpen}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
+    );
+    const instance = wrapper.instance();
+
+    instance.toggle(event);
 
     wrapper.detach();
   });

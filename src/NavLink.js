@@ -1,17 +1,20 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   disabled: PropTypes.bool,
   active: PropTypes.bool,
-  className: PropTypes.any,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
   onClick: PropTypes.func,
-  href: PropTypes.any
+  href: PropTypes.any,
 };
 
 const defaultProps = {
-  tag: 'a'
+  tag: 'a',
 };
 
 class NavLink extends React.Component {
@@ -39,22 +42,24 @@ class NavLink extends React.Component {
   render() {
     let {
       className,
+      cssModule,
       active,
       tag: Tag,
+      getRef,
       ...attributes
     } = this.props;
 
-    const classes = classNames(
+    const classes = mapToCssModules(classNames(
       className,
       'nav-link',
       {
         disabled: attributes.disabled,
         active: active
       }
-    );
+    ), cssModule);
 
     return (
-      <Tag {...attributes} onClick={this.onClick} className={classes} />
+      <Tag {...attributes} ref={getRef} onClick={this.onClick} className={classes} />
     );
   }
 }

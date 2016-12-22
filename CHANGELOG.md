@@ -1,3 +1,152 @@
+<a name="3.9.5"></a>
+## [3.9.5](https://github.com/reactstrap/reactstrap/compare/3.9.4...v3.9.5) (2016-12-18)
+
+
+### Features
+
+* **Modal:** Pass through props in Modal ([#254](https://github.com/reactstrap/reactstrap/issues/254)) ([a783308](https://github.com/reactstrap/reactstrap/commit/a783308))
+
+
+
+<a name="3.9.4"></a>
+## [3.9.4](https://github.com/reactstrap/reactstrap/compare/3.9.3...v3.9.4) (2016-12-12)
+
+
+### Bug Fixes
+
+* **Modal:** clear timeouts when toggling of modal - [#166](https://github.com/reactstrap/reactstrap/issues/166) ([5e0f5d2](https://github.com/reactstrap/reactstrap/commit/5e0f5d2))
+
+
+
+<a name="3.9.3"></a>
+## [3.9.3](https://github.com/reactstrap/reactstrap/compare/3.9.2...v3.9.3) (2016-12-01)
+
+
+### Features
+
+* **ListGroup:** prevent onClick when disabled & add docs [#185](https://github.com/reactstrap/reactstrap/issues/185) ([#236](https://github.com/reactstrap/reactstrap/issues/236)) ([1301b11](https://github.com/reactstrap/reactstrap/commit/1301b11))
+
+
+
+<a name="3.9.2"></a>
+## [3.9.2](https://github.com/reactstrap/reactstrap/compare/3.9.1...v3.9.2) (2016-11-28)
+
+
+### Bug Fixes
+
+* **Popover:** remove old arrow markup, correct enabled className ([b9d3ea7](https://github.com/reactstrap/reactstrap/commit/b9d3ea7))
+* **TetherContent:** Fixes className prop typo, removes arrow & position relative hack ([d9e7621](https://github.com/reactstrap/reactstrap/commit/d9e7621))
+* **Tooltip:** remove old arrow markup, correct enabled className ([62d622b](https://github.com/reactstrap/reactstrap/commit/62d622b))
+
+
+
+<a name="3.9.1"></a>
+## [3.9.1](https://github.com/reactstrap/reactstrap/compare/3.9.0...v3.9.1) (2016-11-23)
+
+
+### Bug Fixes
+
+* **modal:** fix multi-modal backdrop ([#227](https://github.com/reactstrap/reactstrap/issues/227)) ([9ddeb8a](https://github.com/reactstrap/reactstrap/commit/9ddeb8a)), closes [#222](https://github.com/reactstrap/reactstrap/issues/222)
+
+
+
+<a name="3.9.0"></a>
+# [3.9.0](https://github.com/reactstrap/reactstrap/compare/3.8.1...v3.9.0) (2016-11-13)
+
+
+### Bug Fixes
+
+* **DropdownToggle:** support non Button styles ([#221](https://github.com/reactstrap/reactstrap/issues/221)) ([cd3c1ce](https://github.com/reactstrap/reactstrap/commit/cd3c1ce))
+
+
+### Features
+
+* **ListGroup:** add ListGroupItem, ListGroupItemHeading, ListGroupItemText components ([#192](https://github.com/reactstrap/reactstrap/issues/192)) ([d09e81a](https://github.com/reactstrap/reactstrap/commit/d09e81a))
+
+
+
+<a name="3.8.1"></a>
+## [3.8.1](https://github.com/reactstrap/reactstrap/compare/3.8.0...v3.8.1) (2016-11-01)
+
+
+### Features
+
+* **refs:** add getRef to focusable components ([#218](https://github.com/reactstrap/reactstrap/issues/218)) ([cbfa0e0](https://github.com/reactstrap/reactstrap/commit/cbfa0e0))
+
+
+
+<a name="3.8.0"></a>
+# [3.8.0](https://github.com/reactstrap/reactstrap/compare/3.7.1...v3.8.0) (2016-11-01)
+
+
+### Features
+
+* **Collapse:** add Collapse component [#79](https://github.com/reactstrap/reactstrap/issues/79) ([#201](https://github.com/reactstrap/reactstrap/issues/201)) ([ddbf0dd](https://github.com/reactstrap/reactstrap/commit/ddbf0dd))
+
+
+
+<a name="3.7.1"></a>
+## [3.7.1](https://github.com/reactstrap/reactstrap/compare/3.7.0...v3.7.1) (2016-10-29)
+
+
+### Bug Fixes
+
+* **NavbarToggler:** remove unnecessary menu char ([#200](https://github.com/reactstrap/reactstrap/issues/200)) ([67544a3](https://github.com/reactstrap/reactstrap/commit/67544a3))
+
+
+
+<a name="3.7.0"></a>
+# [3.7.0](https://github.com/reactstrap/reactstrap/compare/3.6.0...v3.7.0) (2016-10-27)
+
+
+### Bug Fixes
+
+* **events:** add useCapture to events attached to document ([#202](https://github.com/reactstrap/reactstrap/issues/202)) ([18d7d04](https://github.com/reactstrap/reactstrap/commit/18d7d04))
+
+
+### Features
+
+* **cssModule:** add support for css module ([#206](https://github.com/reactstrap/reactstrap/issues/206)) ([3a69f14](https://github.com/reactstrap/reactstrap/commit/3a69f14)), closes [#205](https://github.com/reactstrap/reactstrap/issues/205)
+
+
+
+<a name="3.6.0"></a>
+# [3.6.0](https://github.com/reactstrap/reactstrap/compare/3.5.0...v3.6.0) (2016-10-23)
+
+
+### Features
+
+* **DropdownToggle:** add nav prop to enable Nav specific functionality ([#197](https://github.com/reactstrap/reactstrap/issues/197))([9b28cbc](https://github.com/reactstrap/reactstrap/commit/9b28cbc))
+
+
+
+<a name="3.5.0"></a>
+# [3.5.0](https://github.com/reactstrap/reactstrap/compare/3.4.1...v3.5.0) (2016-10-18)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix when toggle is not provided ([#182](https://github.com/reactstrap/reactstrap/issues/182)) ([47239f3](https://github.com/reactstrap/reactstrap/commit/47239f3))
+
+
+### Features
+
+* **Col:** add flex-support to Col component ([#169](https://github.com/reactstrap/reactstrap/issues/169)) ([#175](https://github.com/reactstrap/reactstrap/issues/175)) ([ebdecb8](https://github.com/reactstrap/reactstrap/commit/ebdecb8))
+* **Popover:** add `tetherRef` to Popover ([#183](https://github.com/reactstrap/reactstrap/issues/183)) ([00d08ad](https://github.com/reactstrap/reactstrap/commit/00d08ad))
+* **TetherContent:** Add `tetherRef` to TetherContent  ([#181](https://github.com/reactstrap/reactstrap/issues/181)) ([6be1a67](https://github.com/reactstrap/reactstrap/commit/6be1a67)), closes [#174](https://github.com/reactstrap/reactstrap/issues/174)
+
+
+
+<a name="3.4.1"></a>
+## [3.4.1](https://github.com/reactstrap/reactstrap/compare/3.4.0...v3.4.1) (2016-10-16)
+
+
+### Features
+
+* **Input:** enable refs on Input components ([#178](https://github.com/reactstrap/reactstrap/issues/178)) ([ed9e584](https://github.com/reactstrap/reactstrap/commit/ed9e584))
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/reactstrap/reactstrap/compare/3.3.2...v3.4.0) (2016-10-06)
 
