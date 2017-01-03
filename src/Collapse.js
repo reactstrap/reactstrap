@@ -89,7 +89,7 @@ class Collapse extends Component {
         collapseClass = 'collapsing';
         break;
       case SHOWN:
-        collapseClass = 'collapse active';
+        collapseClass = 'collapse show';
         break;
       case HIDE:
         collapseClass = 'collapsing';
