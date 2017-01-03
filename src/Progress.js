@@ -4,6 +4,8 @@ import toNumber from 'lodash.tonumber';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
+  children: PropTypes.node,
+  bar: PropTypes.bool,
   tag: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -21,13 +23,14 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'progress',
+  tag: 'div',
   value: 0,
   max: 100,
 };
 
 const Progress = (props) => {
   const {
+    children,
     className,
     cssModule,
     value,
@@ -35,33 +38,39 @@ const Progress = (props) => {
     animated,
     striped,
     color,
+    bar,
     tag: Tag,
     ...attributes
   } = props;
 
   const percent = ((toNumber(value) / toNumber(max)) * 100);
 
-  const nonProgressClasses = mapToCssModules(classNames(
-    className,
-    'progress',
-    animated ? 'progress-animated' : null
-  ), cssModule);
-
   const progressClasses = mapToCssModules(classNames(
-    nonProgressClasses,
-    color ? `progress-${color}` : null,
-    striped || animated ? 'progress-striped' : null
+    className,
+    'progress'
   ), cssModule);
 
-  const fallbackClasses = mapToCssModules(classNames(
+  const progressBarClasses = mapToCssModules(classNames(
     'progress-bar',
-    color ? `progress-${color}` : null,
+    animated ? 'progress-bar-animated' : null,
+    color ? `bg-${color}` : null,
     striped || animated ? 'progress-bar-striped' : null
   ), cssModule);
 
-  const fallbackFill = (
-    <span
-      className={fallbackClasses}
+  if (children) {
+    const childrenWithProps = React.Children.map(children, el => {
+      return React.cloneElement(el, {
+        bar: true
+      });
+    });
+    return (
+      <Tag {...attributes} className={progressClasses} children={childrenWithProps} />
+    );
+  }
+
+  const ProgressBar = (
+    <div
+      className={progressBarClasses}
       style={{ width: `${percent}%` }}
       role="progressbar"
       aria-valuenow={value}
@@ -70,16 +79,12 @@ const Progress = (props) => {
     />
   );
 
-  if (Tag === 'progress') {
-    return (
-      <Tag {...attributes} className={progressClasses} value={value} max={max}>
-        <div className={nonProgressClasses} children={fallbackFill} />
-      </Tag>
-    );
+  if (bar) {
+    return ProgressBar;
   }
 
   return (
-    <Tag {...attributes} className={nonProgressClasses} children={fallbackFill} />
+    <Tag {...attributes} className={progressClasses} children={ProgressBar} />
   );
 };
 
