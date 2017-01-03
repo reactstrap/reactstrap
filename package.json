@@ -53,8 +53,8 @@
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
-    "react-addons-transition-group": "^0.14.0 || ^15.0.0",
     "react-addons-css-transition-group": "^0.14.0 || ^15.0.0",
+    "react-addons-transition-group": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
@@ -62,9 +62,9 @@
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0",
     "babel-preset-react-app": "^0.2.1",
-    "bootstrap": "^4.0.0-alpha.5",
+    "babel-preset-stage-0": "^6.5.0",
+    "bootstrap": "twbs/bootstrap#d82914fb2fc02cc9f9bad132782feb91a049f226",
     "clean-webpack-plugin": "^0.1.8",
     "conventional-changelog-cli": "^1.1.1",
     "conventional-recommended-bump": "^0.3.0",

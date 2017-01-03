@@ -83,12 +83,6 @@ Progress.defaultProps = {
         <p>
           The <code>animated</code> prop also adds the <code>striped</code> prop; there is no need to pass both.
         </p>
-        <Card block outline color="danger">
-          <CardText>
-            Currently, animated progress does not work in bootstrap v4 (alpha 3). This is an issue bootstrap has to
-            resolve.
-          </CardText>
-        </Card>
         <div className="docs-example">
           <div>
             <ProgressAnimatedExample />
