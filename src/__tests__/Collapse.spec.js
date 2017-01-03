@@ -33,9 +33,9 @@ describe('Collapse', () => {
     expect(wrapper.hasClass('collapse')).toEqual(true);
   });
 
-  it('should render with class "active" when isOpen is true', () => {
+  it('should render with class "show" when isOpen is true', () => {
     const wrapper = shallow(<Collapse isOpen />);
-    expect(wrapper.hasClass('active')).toEqual(true);
+    expect(wrapper.hasClass('show')).toEqual(true);
   });
 
   it('should set height to null when isOpen is true', () => {
