@@ -31,9 +31,9 @@ export default class LayoutsPage extends React.Component {
         <h4>Row Properties</h4>
         <pre>
           <PrismCode className="language-jsx">
-{'Row.propTypes = {
+{`Row.propTypes = {
   noGutters: PropTypes.bool
-}'}
+}`}
           </PrismCode>
         </pre>
         <h4>Col Properties</h4>
