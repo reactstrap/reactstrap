@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Progress } from '../';
 
 describe('Progress', () => {
@@ -81,5 +81,27 @@ describe('Progress', () => {
     const wrapper = shallow(<Progress tag="main" />);
 
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should render only the .progress-bar when "bar" is passed', () => {
+    const wrapper = shallow(<Progress bar />);
+
+    expect(wrapper.type()).toBe('div');
+    expect(wrapper.hasClass('progress-bar')).toBe(true);
+  });
+
+  it('should render nested progress bars', () => {
+    const wrapper = mount(
+      <Progress>
+        <Progress value="15" />
+        <Progress color="success" value="30" />
+        <Progress color="info" value="25" />
+        <Progress color="warning" value="20" />
+        <Progress color="danger" value="5" />
+      </Progress>
+    );
+
+    expect(wrapper.find('.progress').length).toBe(1);
+    expect(wrapper.find('.progress-bar').length).toBe(5);
   });
 });
