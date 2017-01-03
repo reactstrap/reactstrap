@@ -4,6 +4,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  noGutters: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -16,12 +17,14 @@ const Row = (props) => {
   const {
     className,
     cssModule,
+    noGutters,
     tag: Tag,
-    ...attributes
+    ...attributes,
   } = props;
 
   const classes = mapToCssModules(classNames(
     className,
+    noGutters ? 'no-gutters' : null,
     'row'
   ), cssModule);
 
