@@ -1,3 +1,18 @@
+<a name="4.0.0-alpha.6"></a>
+# [4.0.0-alpha.6](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.5...v4.0.0-alpha.6) (2017-01-03)
+
+
+### Bug Fixes
+
+* **className:** update "active" to "show" for stateful components ([#259](https://github.com/reactstrap/reactstrap/issues/259)) ([7df9a01](https://github.com/reactstrap/reactstrap/commit/7df9a01))
+
+
+### Features
+
+* **Progress:** update markup & support nested progress bars ([#261](https://github.com/reactstrap/reactstrap/issues/261)) ([0b19b41](https://github.com/reactstrap/reactstrap/commit/0b19b41))
+* **Row:** add noGutters prop ([#260](https://github.com/reactstrap/reactstrap/issues/260)) ([c79bb3e](https://github.com/reactstrap/reactstrap/commit/c79bb3e))
+
+
 <a name="4.0.0-alpha.5"></a>
 # [4.0.0-alpha.5](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.4...v4.0.0-alpha.5) (2016-12-18)
 

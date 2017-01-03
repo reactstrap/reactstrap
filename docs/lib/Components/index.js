@@ -127,7 +127,7 @@ class Components extends React.Component {
           <Col md={{ size: 3, push: 9 }}>
             <div className="docs-sidebar mb-3">
               <h5>Components</h5>
-              <Nav>
+              <Nav className="flex-column">
                 {this.state.navItems.map((item, i) => {
                   return <ComponentLink key={i} item={item} />;
                 })}
