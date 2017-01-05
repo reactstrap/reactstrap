@@ -1,13 +1,12 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import { Alert } from 'reactstrap';
 import Helmet from 'react-helmet';
 
 import CollapseExample from '../examples/Collapse';
 const CollapseExampleSource = require('!!raw!../examples/Collapse');
 
-export default class AlertsPage extends React.Component {
+export default class CollapsePage extends React.Component {
   render() {
     return (
       <div>
@@ -28,7 +27,8 @@ export default class AlertsPage extends React.Component {
           <PrismCode className="language-jsx">
 {`Collapse.propTypes = {
   isOpen: PropTypes.bool,
-  className: PropTypes.node
+  className: PropTypes.node,
+  navbar: PropTypes.bool
 }`}
           </PrismCode>
         </pre>
