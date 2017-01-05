@@ -4,7 +4,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   light: PropTypes.bool,
-  dark: PropTypes.bool,
+  inverse: PropTypes.bool,
   full: PropTypes.bool,
   fixed: PropTypes.string,
   color: PropTypes.string,
@@ -12,19 +12,22 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  toggleable: PropTypes.string,
 };
 
 const defaultProps = {
   tag: 'nav',
-  role: 'navigation'
+  role: 'navigation',
+  toggleable: '',
 };
 
 const Navbar = (props) => {
   const {
+    toggleable,
     className,
     cssModule,
     light,
-    dark,
+    inverse,
     full,
     fixed,
     color,
@@ -35,9 +38,10 @@ const Navbar = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     'navbar',
+    toggleable === '' ? 'navbar-toggleable' : `navbar-toggleable-${toggleable}`,
     {
       'navbar-light': light,
-      'navbar-dark': dark,
+      'navbar-inverse': inverse,
       [`bg-${color}`]: color,
       'navbar-full': full,
       [`navbar-fixed-${fixed}`]: fixed
