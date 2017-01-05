@@ -28,11 +28,12 @@ export default class NavsPage extends React.Component {
           <PrismCode className="language-jsx">
 {`Navbar.propTypes = {
   light: PropTypes.bool,
-  dark: PropTypes.bool,
+  inverse: PropTypes.bool,
   full: PropTypes.bool,
   fixed: PropTypes.string,
   color: PropTypes.string,
   role: PropTypes.string,
+  toggleable: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use
 }`}

@@ -33,9 +33,8 @@ const Nav = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    'nav',
+    navbar ? 'navbar-nav' : 'nav',
     {
-      'navbar-nav': navbar,
       'nav-tabs': tabs,
       'nav-pills': pills,
       'nav-inline': inline,
