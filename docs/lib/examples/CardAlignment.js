@@ -9,12 +9,12 @@ const Example = (props) => {
         <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
         <Button>Go somewhere</Button>
       </Card>
-      <Card block className="text-xs-center">
+      <Card block className="text-center">
         <CardTitle>Special Title Treatment</CardTitle>
         <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
         <Button>Go somewhere</Button>
       </Card>
-      <Card block className="text-xs-right">
+      <Card block className="text-right">
         <CardTitle>Special Title Treatment</CardTitle>
         <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
         <Button>Go somewhere</Button>
