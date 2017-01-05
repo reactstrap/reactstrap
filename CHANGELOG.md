@@ -1,3 +1,25 @@
+<a name="4.0.0-alpha.7"></a>
+# [4.0.0-alpha.7](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.6...v4.0.0-alpha.7) (2017-01-05)
+
+
+### Features
+
+* **Col:** update classes based on alpha.6 changes ([#267](https://github.com/reactstrap/reactstrap/issues/267)) ([89ff16c](https://github.com/reactstrap/reactstrap/commit/89ff16c))
+* **Collapse:** add navbar prop ([#266](https://github.com/reactstrap/reactstrap/issues/266)) ([c1b633a](https://github.com/reactstrap/reactstrap/commit/c1b633a))
+* **Nav:** update navbar prop class value ([#265](https://github.com/reactstrap/reactstrap/pull/265))([f979aae54a8662d151d6216dac45b9dc3541ca7e] (https://github.com/reactstrap/reactstrap/pull/265/commits/f979aae54a8662d151d6216dac45b9dc3541ca7e))
+* **Navbar:** rename dark prop to inverse, add toggleable size prop ([#265](https://github.com/reactstrap/reactstrap/pull/265))([3ee55f19792bd803d937837f4599ff0ee88974fb] (https://github.com/reactstrap/reactstrap/pull/265/commits/3ee55f19792bd803d937837f4599ff0ee88974fb))
+
+
+### BREAKING CHANGES
+
+* Col: The default xs prop now returns `.col` instead of
+`.col-xs-12`. The `auto` size value now returns `.col-auto` or
+`.col-sm-auto` for variable width content columns. Use `true` or `''`
+as the size value to return `.col` or `.col-sm` for auto layout of
+columns (not to be confused with `auto`  -> (variable width of
+content)).
+
+
 <a name="4.0.0-alpha.6"></a>
 # [4.0.0-alpha.6](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.5...v4.0.0-alpha.6) (2017-01-03)
 
