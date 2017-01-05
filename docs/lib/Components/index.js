@@ -122,7 +122,7 @@ class Components extends React.Component {
   }
   render() {
     return (
-      <Container fluid className="content">
+      <Container className="content">
         <Row>
           <Col md={{ size: 3, push: 9 }}>
             <div className="docs-sidebar mb-3">
