@@ -1,8 +1,9 @@
+import isobject from 'lodash.isobject';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
@@ -10,7 +11,7 @@ const columnProps = PropTypes.oneOfType([
   PropTypes.number,
   PropTypes.string,
   PropTypes.shape({
-    size: stringOrNumberProp,
+    size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
     push: stringOrNumberProp,
     pull: stringOrNumberProp,
     offset: stringOrNumberProp
@@ -28,7 +29,17 @@ const propTypes = {
 };
 
 const defaultProps = {
-  xs: 12
+  xs: true
+};
+
+const getColumnSizeClass = (isXs, colWidth, colSize) => {
+  if (colSize === true || colSize === '') {
+    return isXs ? 'col' : `col-${colWidth}`;
+  } else if (colSize === 'auto') {
+    return isXs ? 'col-auto' : `col-${colWidth}-auto`;
+  }
+
+  return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 };
 
 const Col = (props) => {
@@ -39,33 +50,30 @@ const Col = (props) => {
   } = props;
   const colClasses = [];
 
-  colSizes.forEach(colSize => {
-    const columnProp = props[colSize];
-    delete attributes[colSize];
-    let colClass;
+  colWidths.forEach(colWidth => {
+    const columnProp = props[colWidth];
 
     if (!columnProp) {
       return;
-    } else if (columnProp.size) {
-      if (columnProp.size === 'auto') {
-        colClass = `col-${colSize}`;
-      } else {
-        colClass = `col-${colSize}-${columnProp.size}`;
-      }
+    }
+
+    const isXs = colWidth === 'xs';
+    let colClass;
+
+    delete attributes[colWidth];
+
+    if (isobject(columnProp)) {
+      const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
+      colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 
       colClasses.push(mapToCssModules(classNames({
-        [colClass]: columnProp.size,
-        [`push-${colSize}-${columnProp.push}`]: columnProp.push,
-        [`pull-${colSize}-${columnProp.pull}`]: columnProp.pull,
-        [`offset-${colSize}-${columnProp.offset}`]: columnProp.offset
+        [colClass]: columnProp.size || columnProp.size === '',
+        [`push${colSizeInterfix}${columnProp.push}`]: columnProp.push,
+        [`pull${colSizeInterfix}${columnProp.pull}`]: columnProp.pull,
+        [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset
       })), cssModule);
     } else {
-      if (columnProp === 'auto' || columnProp === true) {
-        colClass = `col-${colSize}`;
-      } else {
-        colClass = `col-${colSize}-${columnProp}`;
-      }
-
+      colClass = getColumnSizeClass(isXs, colWidth, columnProp);
       colClasses.push(colClass);
     }
   });
