@@ -1,3 +1,16 @@
+<a name="4.0.0-alpha.8"></a>
+# [4.0.0-alpha.8](https://github.com/reactstrap/reactstrap/compare/3.9.5...v4.0.0-alpha.8) (2017-01-06)
+
+
+### Features
+
+* **cssModules:** adding missing classes ([#271](https://github.com/reactstrap/reactstrap/issues/271)) ([e8e818b](https://github.com/reactstrap/reactstrap/commit/e8e818b))
+* **Progress:** enchance multiple progress bars ([#271](https://github.com/reactstrap/reactstrap/issues/274))
+
+### BREAKING CHANGE:
+
+Progress component now requires `multi` prop on the outer component for nested progress bars. Inner Progress components will require the `bar` prop for nested progress bars.
+
 <a name="4.0.0-alpha.7"></a>
 # [4.0.0-alpha.7](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.6...v4.0.0-alpha.7) (2017-01-05)
 
