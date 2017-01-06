@@ -83,6 +83,13 @@ describe('Progress', () => {
     expect(wrapper.type()).toBe('main');
   });
 
+  it('should render only the .progress when "multi" is passed', () => {
+    const wrapper = shallow(<Progress multi />);
+
+    expect(wrapper.type()).toBe('div');
+    expect(wrapper.hasClass('progress')).toBe(true);
+  });
+
   it('should render only the .progress-bar when "bar" is passed', () => {
     const wrapper = shallow(<Progress bar />);
 
@@ -90,14 +97,34 @@ describe('Progress', () => {
     expect(wrapper.hasClass('progress-bar')).toBe(true);
   });
 
+  it('should render the children (label)', () => {
+    const wrapper = shallow(<Progress>0%</Progress>);
+
+    expect(wrapper.text()).toBe('0%');
+  });
+
+  it('should render the children (label) (multi)', () => {
+    const wrapper = mount(
+      <Progress multi>
+        <Progress bar value="15">15%</Progress>
+        <Progress bar color="success" value="30">30%</Progress>
+        <Progress bar color="info" value="25">25%</Progress>
+        <Progress bar color="warning" value="20">20%</Progress>
+        <Progress bar color="danger" value="5">5%</Progress>
+      </Progress>
+    );
+
+    expect(wrapper.text()).toBe('15%30%25%20%5%');
+  });
+
   it('should render nested progress bars', () => {
     const wrapper = mount(
-      <Progress>
-        <Progress value="15" />
-        <Progress color="success" value="30" />
-        <Progress color="info" value="25" />
-        <Progress color="warning" value="20" />
-        <Progress color="danger" value="5" />
+      <Progress multi>
+        <Progress bar value="15" />
+        <Progress bar color="success" value="30" />
+        <Progress bar color="info" value="25" />
+        <Progress bar color="warning" value="20" />
+        <Progress bar color="danger" value="5" />
       </Progress>
     );
 
