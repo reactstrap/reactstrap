@@ -22,7 +22,7 @@ const propTypes = {
 const defaultProps = {
   tag: 'div',
   baseClass: 'fade',
-  baseClassIn: 'in',
+  baseClassIn: 'show',
   transitionAppearTimeout: 0,
   transitionEnterTimeout: 0,
   transitionLeaveTimeout: 0,

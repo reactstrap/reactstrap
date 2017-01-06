@@ -1,3 +1,49 @@
+<a name="4.0.0-alpha.7"></a>
+# [4.0.0-alpha.7](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.6...v4.0.0-alpha.7) (2017-01-05)
+
+
+### Features
+
+* **Col:** update classes based on alpha.6 changes ([#267](https://github.com/reactstrap/reactstrap/issues/267)) ([89ff16c](https://github.com/reactstrap/reactstrap/commit/89ff16c))
+* **Collapse:** add navbar prop ([#266](https://github.com/reactstrap/reactstrap/issues/266)) ([c1b633a](https://github.com/reactstrap/reactstrap/commit/c1b633a))
+* **Nav:** update navbar prop class value ([#265](https://github.com/reactstrap/reactstrap/pull/265))([f979aae54a8662d151d6216dac45b9dc3541ca7e] (https://github.com/reactstrap/reactstrap/pull/265/commits/f979aae54a8662d151d6216dac45b9dc3541ca7e))
+* **Navbar:** rename dark prop to inverse, add toggleable size prop ([#265](https://github.com/reactstrap/reactstrap/pull/265))([3ee55f19792bd803d937837f4599ff0ee88974fb] (https://github.com/reactstrap/reactstrap/pull/265/commits/3ee55f19792bd803d937837f4599ff0ee88974fb))
+
+
+### BREAKING CHANGES
+
+* Col: The default xs prop now returns `.col` instead of
+`.col-xs-12`. The `auto` size value now returns `.col-auto` or
+`.col-sm-auto` for variable width content columns. Use `true` or `''`
+as the size value to return `.col` or `.col-sm` for auto layout of
+columns (not to be confused with `auto`  -> (variable width of
+content)).
+
+
+<a name="4.0.0-alpha.6"></a>
+# [4.0.0-alpha.6](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.5...v4.0.0-alpha.6) (2017-01-03)
+
+
+### Bug Fixes
+
+* **className:** update "active" to "show" for stateful components ([#259](https://github.com/reactstrap/reactstrap/issues/259)) ([7df9a01](https://github.com/reactstrap/reactstrap/commit/7df9a01))
+
+
+### Features
+
+* **Progress:** update markup & support nested progress bars ([#261](https://github.com/reactstrap/reactstrap/issues/261)) ([0b19b41](https://github.com/reactstrap/reactstrap/commit/0b19b41))
+* **Row:** add noGutters prop ([#260](https://github.com/reactstrap/reactstrap/issues/260)) ([c79bb3e](https://github.com/reactstrap/reactstrap/commit/c79bb3e))
+
+
+<a name="4.0.0-alpha.5"></a>
+# [4.0.0-alpha.5](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.4...v4.0.0-alpha.5) (2016-12-18)
+
+
+### Features
+
+* **Modal:** Pass through props in Modal ([#254](https://github.com/reactstrap/reactstrap/issues/254)) ([c99e873](https://github.com/reactstrap/reactstrap/commit/c99e873))
+
+
 <a name="3.9.5"></a>
 ## [3.9.5](https://github.com/reactstrap/reactstrap/compare/3.9.4...v3.9.5) (2016-12-18)
 
@@ -7,15 +53,30 @@
 * **Modal:** Pass through props in Modal ([#254](https://github.com/reactstrap/reactstrap/issues/254)) ([a783308](https://github.com/reactstrap/reactstrap/commit/a783308))
 
 
+<a name="4.0.0-alpha.4"></a>
+# [4.0.0-alpha.4](https://github.com/reactstrap/reactstrap/compare/3.9.4...v4.0.0-alpha.4) (2016-12-15)
+
+* **Modal:** clear timeouts when toggling of modal - [#166](https://github.com/reactstrap/reactstrap/issues/166) ([5e0f5d2](https://github.com/reactstrap/reactstrap/commit/5e0f5d2))
+
 
 <a name="3.9.4"></a>
 ## [3.9.4](https://github.com/reactstrap/reactstrap/compare/3.9.3...v3.9.4) (2016-12-12)
-
 
 ### Bug Fixes
 
 * **Modal:** clear timeouts when toggling of modal - [#166](https://github.com/reactstrap/reactstrap/issues/166) ([5e0f5d2](https://github.com/reactstrap/reactstrap/commit/5e0f5d2))
 
+<a name="4.0.0-alpha.3"></a>
+# [4.0.0-alpha.3](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.2...v4.0.0-alpha.3) (2016-12-01)
+
+
+<a name="4.0.0-alpha.2"></a>
+# [4.0.0-alpha.2](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.1...v4.0.0-alpha.2) (2016-11-28)
+
+
+### Bug Fixes
+
+* **className:** update "in" to "active" for stateful components ([#241](https://github.com/reactstrap/reactstrap/issues/241)) ([ea2439e](https://github.com/reactstrap/reactstrap/commit/ea2439e))
 
 
 <a name="3.9.3"></a>
@@ -25,7 +86,6 @@
 ### Features
 
 * **ListGroup:** prevent onClick when disabled & add docs [#185](https://github.com/reactstrap/reactstrap/issues/185) ([#236](https://github.com/reactstrap/reactstrap/issues/236)) ([1301b11](https://github.com/reactstrap/reactstrap/commit/1301b11))
-
 
 
 <a name="3.9.2"></a>
@@ -38,6 +98,18 @@
 * **TetherContent:** Fixes className prop typo, removes arrow & position relative hack ([d9e7621](https://github.com/reactstrap/reactstrap/commit/d9e7621))
 * **Tooltip:** remove old arrow markup, correct enabled className ([62d622b](https://github.com/reactstrap/reactstrap/commit/62d622b))
 
+
+<a name="4.0.0-alpha.1"></a>
+# [4.0.0-alpha.1](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.0...v4.0.0-alpha.1) (2016-11-23)
+
+
+### Features
+
+* **Badge:** rename Tag component to Badge ([#230](https://github.com/reactstrap/reactstrap/issues/230)) ([dfc9943](https://github.com/reactstrap/reactstrap/commit/dfc9943))
+
+
+<a name="4.0.0-alpha.0"></a>
+# [4.0.0-alpha.0](https://github.com/reactstrap/reactstrap/compare/v4...v4.0.0-alpha.0) (2016-11-23)
 
 
 <a name="3.9.1"></a>
@@ -663,6 +735,4 @@ custom elements should render their html “tags”.
 * **Buttons:** support block level buttons ([f9cf8db](https://github.com/reactstrap/reactstrap/commit/f9cf8db))
 * **Dropdowns:** add examples ([3d48e8c](https://github.com/reactstrap/reactstrap/commit/3d48e8c))
 * **Dropdowns:** basic dropdown, toggle, menu & menu items ([750aaf9](https://github.com/reactstrap/reactstrap/commit/750aaf9))
-
-
 

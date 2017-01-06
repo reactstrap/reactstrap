@@ -9,8 +9,8 @@ const importBasic = require('!!raw!../examples/import-basic');
 export default () => {
   return (
     <div>
-      <Jumbotron tag="section" className="jumbotron-header text-xs-center mb-3">
-        <Container fluid>
+      <Jumbotron tag="section" className="jumbotron-header text-center mb-3">
+        <Container>
           <Row>
             <Col>
               <p className="lead">
@@ -28,7 +28,7 @@ export default () => {
           </Row>
         </Container>
       </Jumbotron>
-      <Container fluid>
+      <Container>
         <Row>
           <Col sm={{ size: 8, offset: 2 }}>
             <h2>Installation</h2>

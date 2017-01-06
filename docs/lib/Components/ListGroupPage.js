@@ -3,13 +3,13 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import ListGroupExample from '../examples/ListGroup';
-import ListGroupTagExample from '../examples/ListGroupTag';
+import ListGroupBadgeExample from '../examples/ListGroupBadge';
 import ListGroupDisabledItemsExample from '../examples/ListGroupDisabledItems';
 import ListGroupAnchorsAndButtonsExample from '../examples/ListGroupAnchorsAndButtons';
 import ListGroupContextualClassesExample from '../examples/ListGroupContextualClasses';
 import ListGroupCustomContentExample from '../examples/ListGroupCustomContent';
 
-const ListGroupTagExampleSource = require('!!raw!../examples/ListGroupTag');
+const ListGroupBadgeExampleSource = require('!!raw!../examples/ListGroupBadge');
 const ListGroupExampleSource = require('!!raw!../examples/ListGroup');
 const ListGroupDisabledItemsExampleSource = require('!!raw!../examples/ListGroupDisabledItems');
 const ListGroupAnchorsAndButtonsExampleSource = require('!!raw!../examples/ListGroupAnchorsAndButtons');
@@ -33,11 +33,11 @@ export default class ListGroupPage extends React.Component {
 
         <legend>Tags</legend>
         <div className="docs-example">
-          <ListGroupTagExample />
+          <ListGroupBadgeExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {ListGroupTagExampleSource}
+            {ListGroupBadgeExampleSource}
           </PrismCode>
         </pre>
 

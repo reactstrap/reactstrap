@@ -27,4 +27,10 @@ describe('Nav', () => {
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('nav')).toBe(true);
   });
+
+  it('should render .navbar-nav class only', () => {
+    const wrapper = shallow(<Nav navbar>Children</Nav>);
+
+    expect(wrapper.html()).toBe('<ul class="navbar-nav">Children</ul>');
+  });
 });

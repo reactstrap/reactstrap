@@ -67,9 +67,9 @@ const Alert = (props) => {
       component={FirstChild}
       transitionName={{
         appear: 'fade',
-        appearActive: 'in',
+        appearActive: 'show',
         enter: 'fade',
-        enterActive: 'in',
+        enterActive: 'show',
         leave: 'fade',
         leaveActive: 'out'
       }}

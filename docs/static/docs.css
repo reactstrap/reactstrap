@@ -2,6 +2,14 @@
   max-width: 1200px;
 }
 
+@media (max-width: 575px) {
+  .navbar-toggleable > .container {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+  }
+}
+
 .jumbotron-header, .jumbotron-header p:last-child, .navbar {
   margin-bottom: 0
 }
@@ -79,9 +87,7 @@
 .jumbotron-heading {
   font-weight: 300
 }
-.container {
-  max-width: 40rem
-}
+
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem
@@ -164,7 +170,7 @@ pre, code {
   margin-bottom: 1rem;
 }
 
-.docs-example > .container .row > [class^="col-"] {
+.docs-example > .container .row > [class^="col"] {
   padding-top: .75rem;
   padding-bottom: .75rem;
   background-color: #E5EDF5;
@@ -177,6 +183,10 @@ pre, code {
 }
 
 .docs-example .nav-tabs {
+  margin-bottom: 1rem;
+}
+
+.docs-example .progress {
   margin-bottom: 1rem;
 }
 

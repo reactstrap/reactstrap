@@ -13,6 +13,7 @@ const propTypes = {
   className: PropTypes.node,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   cssModule: PropTypes.object,
+  navbar: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -77,6 +78,7 @@ class Collapse extends Component {
 
   render() {
     const {
+      navbar,
       className,
       cssModule,
       tag: Tag,
@@ -89,7 +91,7 @@ class Collapse extends Component {
         collapseClass = 'collapsing';
         break;
       case SHOWN:
-        collapseClass = 'collapse in';
+        collapseClass = 'collapse show';
         break;
       case HIDE:
         collapseClass = 'collapsing';
@@ -104,7 +106,8 @@ class Collapse extends Component {
 
     const classes = mapToCssModules(classNames(
       className,
-      collapseClass
+      collapseClass,
+      { navbar }
     ), cssModule);
     const style = height === null ? null : { height };
     return (

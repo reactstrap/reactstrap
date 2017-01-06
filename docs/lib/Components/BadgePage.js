@@ -3,47 +3,47 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
-import TagExample from '../examples/Tag';
-const TagExampleSource = require('!!raw!../examples/Tag');
+import BadgeExample from '../examples/Badge';
+const BadgeExampleSource = require('!!raw!../examples/Badge');
 
-import TagPillsExample from '../examples/TagPills';
-const TagPillsExampleSource = require('!!raw!../examples/TagPills');
+import BadgePillsExample from '../examples/BadgePills';
+const BadgePillsExampleSource = require('!!raw!../examples/BadgePills');
 
-import TagVariationsExample from '../examples/TagVariations';
-const TagVariationsExampleSource = require('!!raw!../examples/TagVariations');
+import BadgeVariationsExample from '../examples/BadgeVariations';
+const BadgeVariationsExampleSource = require('!!raw!../examples/BadgeVariations');
 
-export default class TagsPage extends React.Component {
+export default class BadgesPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Tags" />
-        <h3>Tags</h3>
+        <Helmet title="Badges" />
+        <h3>Badges</h3>
         <hr />
         <p>Scale to parent</p>
         <div className="docs-example">
-          <TagExample />
+          <BadgeExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {TagExampleSource}
+            {BadgeExampleSource}
           </PrismCode>
         </pre>
         <h3>Variations</h3>
         <div className="docs-example">
-          <TagVariationsExample />
+          <BadgeVariationsExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {TagVariationsExampleSource}
+            {BadgeVariationsExampleSource}
           </PrismCode>
         </pre>
         <h3>Pills</h3>
         <div className="docs-example">
-          <TagPillsExample />
+          <BadgePillsExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {TagPillsExampleSource}
+            {BadgePillsExampleSource}
           </PrismCode>
         </pre>
       </div>

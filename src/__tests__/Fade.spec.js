@@ -39,7 +39,7 @@ describe('Fade', () => {
     jasmine.clock().uninstall();
   });
 
-  it('should transition classes from "fade" to "fade in" on appear', () => {
+  it('should transition classes from "fade" to "fade show" on appear', () => {
     let isOpen = true;
     const wrapper = mount(
       <Helper showItem={isOpen} >
@@ -49,17 +49,17 @@ describe('Fade', () => {
     );
 
     expect(wrapper.find('div.fade').length).toBe(2);
-    expect(wrapper.find('div.fade.in').length).toBe(1);
+    expect(wrapper.find('div.fade.show').length).toBe(1);
 
     jasmine.clock().tick(300);
 
-    expect(wrapper.find('div.fade.in').length).toBe(2);
+    expect(wrapper.find('div.fade.show').length).toBe(2);
 
     wrapper.find('.trigger').simulate('click');
-    expect(wrapper.find('div.fade.in').length).toBe(0);
+    expect(wrapper.find('div.fade.show').length).toBe(0);
   });
 
-  it('should transition classes from "fade" to "fade in" on enter', () => {
+  it('should transition classes from "fade" to "fade show" on enter', () => {
     const onEnter = jasmine.createSpy('spy');
     const onLeave = jasmine.createSpy('spy');
     let isOpen = false;
@@ -71,21 +71,21 @@ describe('Fade', () => {
     );
 
     expect(wrapper.find('div.fade').length).toBe(0);
-    expect(wrapper.find('div.fade.in').length).toBe(0);
+    expect(wrapper.find('div.fade.show').length).toBe(0);
 
     wrapper.find('.trigger').simulate('click');
 
     expect(wrapper.find('div.fade').length).toBe(2);
-    expect(wrapper.find('div.fade.in').length).toBe(1);
+    expect(wrapper.find('div.fade.show').length).toBe(1);
     expect(onEnter).not.toHaveBeenCalled();
 
     jasmine.clock().tick(300);
 
     expect(onEnter).toHaveBeenCalled();
     expect(onLeave).not.toHaveBeenCalled();
-    expect(wrapper.find('div.fade.in').length).toBe(2);
+    expect(wrapper.find('div.fade.show').length).toBe(2);
 
     wrapper.find('.trigger').simulate('click');
-    expect(wrapper.find('div.fade.in').length).toBe(0);
+    expect(wrapper.find('div.fade.show').length).toBe(0);
   });
 });

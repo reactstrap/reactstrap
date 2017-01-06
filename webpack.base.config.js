@@ -11,7 +11,6 @@ module.exports = function (env) {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
     }),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin()
   ];
 

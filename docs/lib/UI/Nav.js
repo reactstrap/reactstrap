@@ -4,10 +4,10 @@ import { Container, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstra
 
 export default () => {
   return (
-    <Navbar className="header" color="faded" light>
-      <Container fluid>
-        <NavbarBrand tag={Link} to="/">reactstrap</NavbarBrand>
-        <Nav className="nav navbar-nav float-xs-right">
+    <Navbar className="header" full color="faded" light>
+      <Container>
+        <NavbarBrand className="mr-auto" tag={Link} to="/">reactstrap</NavbarBrand>
+        <Nav navbar className="ml-sm-auto">
           <NavItem>
             <NavLink tag={Link} className="nav-link" to="/components/" activeClassName="active">Components</NavLink>
           </NavItem>
