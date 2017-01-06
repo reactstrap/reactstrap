@@ -7,10 +7,14 @@ import ProgressExample from '../examples/Progress';
 const ProgressExampleSource = require('!!raw!../examples/Progress');
 import ProgressColorExample from '../examples/ProgressColor';
 const ProgressColorExampleSource = require('!!raw!../examples/ProgressColor');
+import ProgressLabelsExample from '../examples/ProgressLabels';
+const ProgressLabelsExampleSource = require('!!raw!../examples/ProgressLabels');
 import ProgressAnimatedExample from '../examples/ProgressAnimated';
 const ProgressAnimatedExampleSource = require('!!raw!../examples/ProgressAnimated');
 import ProgressStripedExample from '../examples/ProgressStriped';
 const ProgressStripedExampleSource = require('!!raw!../examples/ProgressStriped');
+import ProgressMultiExample from '../examples/ProgressMulti';
+const ProgressMultiExampleSource = require('!!raw!../examples/ProgressMulti');
 import ProgressMaxExample from '../examples/ProgressMax';
 const ProgressMaxExampleSource = require('!!raw!../examples/ProgressMax');
 
@@ -32,6 +36,8 @@ export default class ProgressPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Progress.propTypes = {
+  multi: PropTypes.bool,
+  bar: PropTypes.bool, // used in combination with multi
   tag: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -67,6 +73,18 @@ Progress.defaultProps = {
           </PrismCode>
         </pre>
 
+        <h3>Labels</h3>
+        <div className="docs-example">
+          <div>
+            <ProgressLabelsExample />
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ProgressLabelsExampleSource}
+          </PrismCode>
+        </pre>
+
         <h3>Striped</h3>
         <div className="docs-example">
           <div>
@@ -91,6 +109,18 @@ Progress.defaultProps = {
         <pre>
           <PrismCode className="language-jsx">
             {ProgressAnimatedExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h3>Multiple bars / Stacked</h3>
+        <div className="docs-example">
+          <div>
+            <ProgressMultiExample />
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ProgressMultiExampleSource}
           </PrismCode>
         </pre>
 

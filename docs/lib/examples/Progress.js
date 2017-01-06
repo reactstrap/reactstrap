@@ -15,12 +15,12 @@ const Example = (props) => {
       <div className="text-center">100%</div>
       <Progress value="100" />
       <div className="text-center">Multiple bars</div>
-      <Progress>
-        <Progress value="15" />
-        <Progress color="success" value="30" />
-        <Progress color="info" value="25" />
-        <Progress color="warning" value="20" />
-        <Progress color="danger" value="5" />
+      <Progress multi>
+        <Progress bar value="15" />
+        <Progress bar color="success" value="30" />
+        <Progress bar color="info" value="25" />
+        <Progress bar color="warning" value="20" />
+        <Progress bar color="danger" value="5" />
       </Progress>
     </div>
   );

@@ -6,6 +6,7 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   children: PropTypes.node,
   bar: PropTypes.bool,
+  multi: PropTypes.bool,
   tag: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -39,6 +40,7 @@ const Progress = (props) => {
     striped,
     color,
     bar,
+    multi,
     tag: Tag,
     ...attributes
   } = props;
@@ -57,18 +59,7 @@ const Progress = (props) => {
     striped || animated ? 'progress-bar-striped' : null
   ), cssModule);
 
-  if (children) {
-    const childrenWithProps = React.Children.map(children, el => {
-      return React.cloneElement(el, {
-        bar: true
-      });
-    });
-    return (
-      <Tag {...attributes} className={progressClasses} children={childrenWithProps} />
-    );
-  }
-
-  const ProgressBar = (
+  const ProgressBar = multi ? children : (
     <div
       className={progressBarClasses}
       style={{ width: `${percent}%` }}
@@ -76,6 +67,7 @@ const Progress = (props) => {
       aria-valuenow={value}
       aria-valuemin="0"
       aria-valuemax={max}
+      children={children}
     />
   );
 
