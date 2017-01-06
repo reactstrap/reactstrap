@@ -66,7 +66,7 @@ class Popover extends React.Component {
 
     return (
       <TetherContent
-        className="popover"
+        className={mapToCssModules('popover', this.props.className)}
         tether={tetherConfig}
         tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}

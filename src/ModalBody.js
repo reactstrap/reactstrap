@@ -8,13 +8,17 @@ const propTypes = {
 };
 
 const ModalBody = (props) => {
+  const {
+    className,
+    cssModule,
+    ...attributes } = props;
   const classes = mapToCssModules(classNames(
-    props.className,
+    className,
     'modal-body'
-  ), props.cssModule);
+  ), cssModule);
 
   return (
-    <div {...props} className={classes} />
+    <div {...attributes} className={classes} />
   );
 };
 

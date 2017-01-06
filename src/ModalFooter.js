@@ -8,13 +8,17 @@ const propTypes = {
 };
 
 const ModalFooter = (props) => {
+  const {
+    className,
+    cssModule,
+    ...attributes } = props;
   const classes = mapToCssModules(classNames(
-    props.className,
+    className,
     'modal-footer'
-  ), props.cssModule);
+  ), cssModule);
 
   return (
-    <div {...props} className={classes} />
+    <div {...attributes} className={classes} />
   );
 };
 
