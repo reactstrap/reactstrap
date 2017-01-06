@@ -184,7 +184,7 @@ class Modal extends React.Component {
             transitionLeaveTimeout={300}
             onClickCapture={this.handleBackdropClick}
             onKeyUp={this.handleEscape}
-            className="modal"
+            className={mapToCssModules('modal', cssModule)}
             style={{ display: 'block' }}
             tabIndex="-1"
           >
@@ -196,7 +196,7 @@ class Modal extends React.Component {
               ref={(c) => (this._dialog = c)}
               {...attributes}
             >
-              <div className="modal-content">
+              <div className={mapToCssModules('modal-content', cssModule)}>
                 {children}
               </div>
             </div>
@@ -208,7 +208,7 @@ class Modal extends React.Component {
             transitionAppearTimeout={150}
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
-            className="modal-backdrop"
+            className={mapToCssModules('modal-backdrop', cssModule)}
           />
         )}
       </TransitionGroup>

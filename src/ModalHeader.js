@@ -36,7 +36,7 @@ const ModalHeader = (props) => {
   return (
     <div {...attributes} className={classes}>
       {closeButton}
-      <h4 className="modal-title">
+      <h4 className={mapToCssModules('modal-title', cssModule)}>
         {children}
       </h4>
     </div>
