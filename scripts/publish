@@ -14,7 +14,7 @@ error() {
 }
 
 if [ -z "$TRAVIS" ]; then
-  git checkout v4
+  git checkout master
   git pull
   npm install
   npm run build
