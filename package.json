@@ -65,7 +65,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-app": "^0.2.1",
     "babel-preset-stage-0": "^6.5.0",
-    "bootstrap": "twbs/bootstrap#0ac7eb4fe0737df385299b2f476d49d3bcc5e8a4",
+    "bootstrap": "^4.0.0-alpha.6",
     "clean-webpack-plugin": "^0.1.8",
     "conventional-changelog-cli": "^1.1.1",
     "conventional-recommended-bump": "^0.3.0",
