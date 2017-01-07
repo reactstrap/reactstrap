@@ -31,7 +31,9 @@ export default class LayoutsPage extends React.Component {
         <h4>Row Properties</h4>
         <pre>
           <PrismCode className="language-jsx">
-{'Row.propTypes = {}'}
+{`Row.propTypes = {
+  noGutters: PropTypes.bool
+}`}
           </PrismCode>
         </pre>
         <h4>Col Properties</h4>
@@ -43,7 +45,11 @@ const columnProps = PropTypes.oneOfType([
   PropTypes.number,
   PropTypes.bool,
   PropTypes.shape({
-    size: stringOrNumberProp,
+    size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
+    // example size values:
+    // 12 || "12" => col-12 or col-\`width\`-12
+    // auto => col-auto or col-\`width\`-auto
+    // true => col or col-\`width\`
     push: stringOrNumberProp,
     pull: stringOrNumberProp,
     offset: stringOrNumberProp

@@ -27,7 +27,7 @@ var paths = [
   '/components/progress/',
   '/components/tooltips/',
   '/components/modals/',
-  '/components/tags/',
+  '/components/badge/',
   '/components/card/',
   '/components/tables/',
   '/components/media/',
@@ -66,7 +66,6 @@ var config = [{
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
     }),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new StaticSiteGeneratorPlugin('main', paths, {}),
     new webpack.NoErrorsPlugin(),
@@ -96,7 +95,7 @@ var config = [{
   resolve: {
     extensions: ['', '.js', '.json'],
     alias: {
-      'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap-flex.css'),
+      'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css'),
       reactstrap: path.resolve('./src')
     }
   }

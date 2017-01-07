@@ -21,4 +21,11 @@ describe('Row', () => {
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('row')).toBe(true);
   });
+
+  it('show render noGutters classes', () => {
+    const wrapper = shallow(<Row noGutters />);
+
+    expect(wrapper.hasClass('no-gutters')).toBe(true);
+    expect(wrapper.hasClass('row')).toBe(true);
+  });
 });

@@ -35,7 +35,7 @@ const childContextTypes = {
 
 const defaultTetherConfig = {
   classPrefix: 'bs-tether',
-  classes: { element: 'dropdown', enabled: 'open' },
+  classes: { element: 'dropdown', enabled: 'show' },
   constraints: [
     { to: 'scrollParent', attachment: 'together none' },
     { to: 'window', attachment: 'together none' }
@@ -178,7 +178,7 @@ class Dropdown extends React.Component {
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
         dropdown: !group,
-        open: isOpen,
+        show: isOpen,
         dropup: dropup
       }
     ), cssModule);

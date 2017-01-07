@@ -25,7 +25,7 @@ const defaultTetherConfig = {
   classPrefix: 'bs-tether',
   classes: {
     element: false,
-    enabled: 'in'
+    enabled: 'show',
   },
   constraints: [
     { to: 'scrollParent', attachment: 'together none' },
@@ -66,7 +66,7 @@ class Popover extends React.Component {
 
     return (
       <TetherContent
-        className="popover"
+        className={mapToCssModules('popover', this.props.cssModule)}
         tether={tetherConfig}
         tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
