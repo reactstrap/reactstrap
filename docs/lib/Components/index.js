@@ -22,16 +22,36 @@ class Components extends React.Component {
     this.state = {
       navItems: [
         {
+          name: 'Alerts',
+          to: '/components/alerts/'
+        },
+        {
+          name: 'Badge',
+          to: '/components/badge/'
+        },
+        {
+          name: 'Breadscrumbs',
+          to: '/components/breadcrumbs/'
+        },
+        {
           name: 'Buttons',
           to: '/components/buttons/'
+        },
+        {
+          name: 'Button Dropdown',
+          to: '/components/button-dropdown/'
         },
         {
           name: 'Button Group',
           to: '/components/button-group/'
         },
         {
-          name: 'Button Dropdown',
-          to: '/components/button-dropdown/'
+          name: 'Card',
+          to: '/components/card/'
+        },
+        {
+          name: 'Collapse',
+          to: '/components/collapse/',
         },
         {
           name: 'Dropdowns',
@@ -46,28 +66,36 @@ class Components extends React.Component {
           to: '/components/input-group/'
         },
         {
-          name: 'Breadcrumbs',
-          to: '/components/breadcrumbs/'
+          name: 'Jumbotron',
+          to: '/components/jumbotron/'
         },
         {
-          name: 'Badge',
-          to: '/components/badge/'
+          name: 'Layout',
+          to: '/components/layout/'
         },
         {
-          name: 'Card',
-          to: '/components/card/'
+          name: 'List Group',
+          to: '/components/listgroup/'
         },
         {
-          name: 'Navs',
-          to: '/components/navs/'
+          name: 'Media',
+          to: '/components/media/'
+        },
+        {
+          name: 'Modals',
+          to: '/components/modals/'
         },
         {
           name: 'Navbar',
           to: '/components/navbar/'
         },
         {
-          name: 'Tooltips',
-          to: '/components/tooltips/'
+          name: 'Navs',
+          to: '/components/navs/'
+        },
+        {
+          name: 'Pagination',
+          to: '/components/pagination/'
         },
         {
           name: 'Popovers',
@@ -78,44 +106,16 @@ class Components extends React.Component {
           to: '/components/progress/'
         },
         {
-          name: 'Modals',
-          to: '/components/modals/'
-        },
-        {
-          name: 'Layout',
-          to: '/components/layout/'
-        },
-        {
           name: 'Tables',
           to: '/components/tables/'
-        },
-        {
-          name: 'Media',
-          to: '/components/media/'
-        },
-        {
-          name: 'Pagination',
-          to: '/components/pagination/'
         },
         {
           name: 'Tabs',
           to: '/components/tabs/'
         },
         {
-          name: 'Jumbotron',
-          to: '/components/jumbotron/'
-        },
-        {
-          name: 'Alerts',
-          to: '/components/alerts/'
-        },
-        {
-          name: 'Collapse',
-          to: '/components/collapse/',
-        },
-        {
-          name: 'List Group',
-          to: '/components/listgroup/'
+          name: 'Tooltips',
+          to: '/components/tooltips/'
         }
       ]
     };
