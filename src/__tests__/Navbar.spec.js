@@ -41,13 +41,14 @@ describe('Navbar', () => {
   });
 
   it('should render prop based classes', () => {
-    const wrapper = shallow(<Navbar light inverse toggleable="sm" color="success" full fixed="top" />);
+    const wrapper = shallow(<Navbar light inverse toggleable="sm" color="success" full sticky="top" fixed="top" />);
 
     expect(wrapper.hasClass('bg-success')).toBe(true);
     expect(wrapper.hasClass('navbar')).toBe(true);
     expect(wrapper.hasClass('navbar-toggleable-sm')).toBe(true);
     expect(wrapper.hasClass('navbar-light')).toBe(true);
     expect(wrapper.hasClass('navbar-inverse')).toBe(true);
-    expect(wrapper.hasClass('navbar-fixed-top')).toBe(true);
+    expect(wrapper.hasClass('fixed-top')).toBe(true);
+    expect(wrapper.hasClass('sticky-top')).toBe(true);
   });
 });
