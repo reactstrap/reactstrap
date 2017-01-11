@@ -35,7 +35,7 @@ describe('Collapse', () => {
 
   it('should render with class "navbar"', () => {
     const wrapper = shallow(<Collapse navbar />);
-    expect(wrapper.hasClass('navbar')).toEqual(true);
+    expect(wrapper.hasClass('navbar-collapse')).toEqual(true);
   });
 
   it('should render with class "show" when isOpen is true', () => {

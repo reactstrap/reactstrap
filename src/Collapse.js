@@ -107,7 +107,7 @@ class Collapse extends Component {
     const classes = mapToCssModules(classNames(
       className,
       collapseClass,
-      { navbar }
+      navbar && 'navbar-collapse'
     ), cssModule);
     const style = height === null ? null : { height };
     return (
