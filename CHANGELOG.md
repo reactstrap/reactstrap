@@ -1,3 +1,25 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.8...v4.0.0) (2017-01-11)
+
+
+### Bug Fixes
+
+* **Col:** support disabled width props ([#283](https://github.com/reactstrap/reactstrap/issues/283)) ([2a36601](https://github.com/reactstrap/reactstrap/commit/2a36601))
+* **Collapse:** component height & navbar class ([#284](https://github.com/reactstrap/reactstrap/issues/284)) ([0237cd4](https://github.com/reactstrap/reactstrap/commit/0237cd4))
+* **Modal:** Update ModalHeader close button ([#281](https://github.com/reactstrap/reactstrap/issues/281)) ([a9dc654](https://github.com/reactstrap/reactstrap/commit/a9dc654))
+* **Navbar:** remove default toggleable class ([#285](https://github.com/reactstrap/reactstrap/issues/285)) ([19b32cd](https://github.com/reactstrap/reactstrap/commit/19b32cd))
+
+
+### Features
+
+* **Collapse:** add delay prop ([#287](https://github.com/reactstrap/reactstrap/issues/287)) ([2b69ad6](https://github.com/reactstrap/reactstrap/commit/2b69ad6))
+
+
+### BREAKING CHANGES
+
+* Navbar: - Navbar no longer applies a default `.navbar-toggleable` class, as it is not required for all Navbar configurations.
+
+
 <a name="4.0.0-alpha.8"></a>
 # [4.0.0-alpha.8](https://github.com/reactstrap/reactstrap/compare/3.9.5...v4.0.0-alpha.8) (2017-01-06)
 
