@@ -28,7 +28,12 @@ export default class CollapsePage extends React.Component {
 {`Collapse.propTypes = {
   isOpen: PropTypes.bool,
   className: PropTypes.node,
-  navbar: PropTypes.bool
+  navbar: PropTypes.bool,
+  delay: PropTypes.oneOfType([
+    PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
+    PropTypes.number
+  ]),
+  // optionally override show/hide delays - default { show: 350, hide: 350 }
 }`}
           </PrismCode>
         </pre>

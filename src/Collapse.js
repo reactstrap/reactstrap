@@ -14,11 +14,21 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   cssModule: PropTypes.object,
   navbar: PropTypes.bool,
+  delay: PropTypes.oneOfType([
+    PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
+    PropTypes.number,
+  ]),
+};
+
+const DEFAULT_DELAYS = {
+  show: 350,
+  hide: 350
 };
 
 const defaultProps = {
   isOpen: false,
-  tag: 'div'
+  tag: 'div',
+  delay: DEFAULT_DELAYS,
 };
 
 class Collapse extends Component {
@@ -45,7 +55,7 @@ class Collapse extends Component {
             collapse: SHOWN,
             height: null
           });
-        }, 350);
+        }, this.getDelay('show'));
       });
     } else if (!willOpen && collapse === SHOWN) {
       // will hide
@@ -63,13 +73,21 @@ class Collapse extends Component {
           collapse: HIDDEN,
           height: null
         });
-      }, 350);
+      }, this.getDelay('hide'));
     }
     // else: do nothing.
   }
 
   componentWillUnmount() {
     clearTimeout(this.transitionTag);
+  }
+
+  getDelay(key) {
+    const { delay } = this.props;
+    if (typeof delay === 'object') {
+      return isNaN(delay[key]) ? DEFAULT_DELAYS[key] : delay[key];
+    }
+    return delay;
   }
 
   getHeight() {
@@ -83,7 +101,7 @@ class Collapse extends Component {
       cssModule,
       tag: Tag,
       ...attributes
-    } = omit(this.props, ['isOpen']);
+    } = omit(this.props, ['isOpen', 'delay']);
     const { collapse, height } = this.state;
     let collapseClass;
     switch (collapse) {
