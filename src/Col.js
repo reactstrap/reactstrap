@@ -85,6 +85,5 @@ const Col = (props) => {
 };
 
 Col.propTypes = propTypes;
-Col.defaultProps = defaultProps;
 
 export default Col;
