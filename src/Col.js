@@ -53,14 +53,14 @@ const Col = (props) => {
   colWidths.forEach(colWidth => {
     const columnProp = props[colWidth];
 
+    delete attributes[colWidth];
+
     if (!columnProp) {
       return;
     }
 
     const isXs = colWidth === 'xs';
     let colClass;
-
-    delete attributes[colWidth];
 
     if (isobject(columnProp)) {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
