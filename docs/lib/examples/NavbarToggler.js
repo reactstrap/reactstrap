@@ -20,7 +20,7 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="faded" light>
-          <NavbarToggler className="float-sm-right hidden-lg-up collapsed" onClick={this.toggleNavbar} />
+          <NavbarToggler onClick={this.toggleNavbar} />
           <Collapse className="navbar-toggleable-md" isOpen={!this.state.collapsed}>
             <NavbarBrand href="/">reactstrap</NavbarBrand>
             <Nav navbar>
