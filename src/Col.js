@@ -29,7 +29,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-    xs: true
+  xs: true
 };
 
 const getColumnSizeClass = (isXs, colWidth, colSize) => {
