@@ -49,9 +49,9 @@ describe('Collapse', () => {
     expect(wrapper.state('height')).toBe(null);
   });
 
-  it('should set height to 0 when isOpen is false', () => {
+  it('should not set height when isOpen is false', () => {
     const wrapper = shallow(<Collapse isOpen={isOpen} />);
-    expect(wrapper.state('height')).toBe(0);
+    expect(wrapper.state('height')).toBe(null);
   });
 
   it('should render with class "collapse" with default collapse state', () => {

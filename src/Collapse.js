@@ -26,7 +26,7 @@ class Collapse extends Component {
     super(props);
     this.state = {
       collapse: props.isOpen ? SHOWN : HIDDEN,
-      height: props.isOpen ? null : 0
+      height: null
     };
     this.element = null;
   }
