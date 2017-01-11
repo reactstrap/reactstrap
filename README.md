@@ -6,23 +6,44 @@
 
 Stateless React Components for Bootstrap 4.
 
-## V4 Notes
+## Getting Started
 
-The v4 branch will be used for keeping up with the latest in the twbs/bootstrap master branch. This includes breaking changes that haven't been merged and api changes in reactstrap.
+Follow the [create-react-app instructions](https://github.com/facebookincubator/create-react-app#getting-started) up to the `Adding Bootstrap` section and instead follow the reactstrap version of [adding bootstrap](#adding-bootstrap).
 
-## Installation
+### tl;dr
 
-Install `reactstrap` and __peer dependencies__ via NPM
+```
+npm install -g create-react-app
 
-```sh
+create-react-app my-app
+cd my-app/
+npm start
+```
+
+Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The initial structure of your app is setup. Next, let's [add reactstrap and bootstrap](#adding-bootstrap).
+
+### Adding Bootstrap
+
+Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:
+
+```
+npm install bootstrap@4.0.0-alpha.6 --save
 npm install --save reactstrap react-addons-transition-group react-addons-css-transition-group react react-dom
 ```
 
-Import the components you need, example:
+Import Bootstrap CSS in the ```src/index.js``` file:
 
 ```js
-import { Button, Popover, Tooltip } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 ```
+
+Import required reactstrap components within ```src/App.js``` file or your custom component files:
+
+```js
+import { Button } from 'reactstrap';
+```
+
+Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example [`App.js`](https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d) redone using reactstrap.
 
 ## About the Project
 
