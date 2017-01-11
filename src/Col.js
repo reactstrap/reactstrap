@@ -28,6 +28,10 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
+const defaultProps = {
+    xs: true
+};
+
 const getColumnSizeClass = (isXs, colWidth, colSize) => {
   if (colSize === true || colSize === '') {
     return isXs ? 'col' : `col-${colWidth}`;
@@ -74,6 +78,10 @@ const Col = (props) => {
     }
   });
 
+  if (attributes['xs']) {
+      delete attributes['xs'];
+  }
+
   const classes = mapToCssModules(classNames(
     className,
     colClasses
@@ -85,5 +93,6 @@ const Col = (props) => {
 };
 
 Col.propTypes = propTypes;
+Col.defaultProps = defaultProps;
 
 export default Col;
