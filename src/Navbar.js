@@ -56,7 +56,7 @@ const Navbar = (props) => {
       'navbar-inverse': inverse,
       [`bg-${color}`]: color,
       'navbar-full': full,
-      [`navbar-fixed-${fixed}`]: fixed,
+      [`fixed-${fixed}`]: fixed,
       [`sticky-${sticky}`]: sticky,
     }
   ), cssModule);
