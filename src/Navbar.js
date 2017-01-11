@@ -7,6 +7,7 @@ const propTypes = {
   inverse: PropTypes.bool,
   full: PropTypes.bool,
   fixed: PropTypes.string,
+  sticky: PropTypes.string,
   color: PropTypes.string,
   role: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -40,6 +41,7 @@ const Navbar = (props) => {
     inverse,
     full,
     fixed,
+    sticky,
     color,
     tag: Tag,
     ...attributes
@@ -54,7 +56,8 @@ const Navbar = (props) => {
       'navbar-inverse': inverse,
       [`bg-${color}`]: color,
       'navbar-full': full,
-      [`navbar-fixed-${fixed}`]: fixed
+      [`navbar-fixed-${fixed}`]: fixed,
+      [`sticky-${sticky}`]: sticky,
     }
   ), cssModule);
 
