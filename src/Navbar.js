@@ -12,13 +12,23 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  toggleable: PropTypes.string,
+  toggleable: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 const defaultProps = {
   tag: 'nav',
   role: 'navigation',
-  toggleable: '',
+  toggleable: false,
+};
+
+const getToggleableClass = (toggleable) => {
+  if (toggleable === false) {
+    return false;
+  } else if (toggleable === true || toggleable === 'xs') {
+    return 'navbar-toggleable';
+  }
+
+  return `navbar-toggleable-${toggleable}`;
 };
 
 const Navbar = (props) => {
@@ -38,7 +48,7 @@ const Navbar = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     'navbar',
-    toggleable === '' ? 'navbar-toggleable' : `navbar-toggleable-${toggleable}`,
+    getToggleableClass(toggleable),
     {
       'navbar-light': light,
       'navbar-inverse': inverse,
