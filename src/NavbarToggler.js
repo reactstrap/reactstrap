@@ -8,12 +8,16 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.node,
+  right: PropTypes.bool,
+  left: PropTypes.bool,
 };
 
 const defaultProps = {
   tag: 'button',
   type: 'button'
 };
+
+const navbarToggleIcon = <span className="navbar-toggler-icon" />;
 
 const NavbarToggler = (props) => {
   const {
@@ -31,7 +35,7 @@ const NavbarToggler = (props) => {
 
   return (
     <Tag {...attributes} className={classes}>
-      {children}
+      {children || navbarToggleIcon}
     </Tag>
   );
 };

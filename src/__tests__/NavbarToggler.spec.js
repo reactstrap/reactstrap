@@ -6,16 +6,16 @@ describe('NavbarToggler', () => {
   it('should render .navbar-toggler markup', () => {
     const wrapper = shallow(<NavbarToggler />);
 
-    expect(wrapper.html()).toBe('<button type="button" class="navbar-toggler"></button>');
+    expect(wrapper.html()).toBe('<button type="button" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>');
   });
 
   it('should render custom tag', () => {
     const wrapper = shallow(<NavbarToggler tag="div" />);
 
-    expect(wrapper.html()).toBe('<div type="button" class="navbar-toggler"></div>');
+    expect(wrapper.html()).toBe('<div type="button" class="navbar-toggler"><span class="navbar-toggler-icon"></span></div>');
   });
 
-  it('sholid render children', () => {
+  it('should render children instead of navbar-toggler-icon ', () => {
     const wrapper = shallow(<NavbarToggler>Children</NavbarToggler>);
 
     expect(wrapper.html()).toBe('<button type="button" class="navbar-toggler">Children</button>');
