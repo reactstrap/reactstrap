@@ -26,7 +26,7 @@ class Collapse extends Component {
     super(props);
     this.state = {
       collapse: props.isOpen ? SHOWN : HIDDEN,
-      height: props.isOpen ? null : 0
+      height: null
     };
     this.element = null;
   }
@@ -107,7 +107,7 @@ class Collapse extends Component {
     const classes = mapToCssModules(classNames(
       className,
       collapseClass,
-      { navbar }
+      navbar && 'navbar-collapse'
     ), cssModule);
     const style = height === null ? null : { height };
     return (

@@ -35,7 +35,7 @@ describe('Collapse', () => {
 
   it('should render with class "navbar"', () => {
     const wrapper = shallow(<Collapse navbar />);
-    expect(wrapper.hasClass('navbar')).toEqual(true);
+    expect(wrapper.hasClass('navbar-collapse')).toEqual(true);
   });
 
   it('should render with class "show" when isOpen is true', () => {
@@ -49,9 +49,9 @@ describe('Collapse', () => {
     expect(wrapper.state('height')).toBe(null);
   });
 
-  it('should set height to 0 when isOpen is false', () => {
+  it('should not set height when isOpen is false', () => {
     const wrapper = shallow(<Collapse isOpen={isOpen} />);
-    expect(wrapper.state('height')).toBe(0);
+    expect(wrapper.state('height')).toBe(null);
   });
 
   it('should render with class "collapse" with default collapse state', () => {
