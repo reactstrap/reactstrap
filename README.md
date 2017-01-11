@@ -24,6 +24,70 @@ Import the components you need, example:
 import { Button, Popover, Tooltip } from 'reactstrap';
 ```
 
+## Getting Started
+
+You don’t have to use [Reactstrap](https://reactstrap.github.io) together with React but it is a popular library for integrating Bootstrap with React apps. If you need it, you can integrate it with Create React App by following these steps:
+
+Install Reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:
+
+```
+npm install reactstrap --save
+npm install bootstrap@4.0.0-alpha.5 --save
+```
+
+Import Bootstrap CSS in the ```src/index.js``` file:
+
+```js
+import 'bootstrap/dist/css/bootstrap.css';
+```
+
+Import required Reactstrap components within ```src/App.js``` file or your custom component files:
+
+```js
+import { Navbar, Jumbotron, Button } from 'reactstrap';
+```
+
+Now you are ready to use the imported Reactstrap components within your component hierarchy defined in the render method. Here is an example `App.js` redone using Reactstrap:
+
+```js
+import React, { Component } from 'react';
+import { Grid, Navbar, Jumbotron, Button } from 'reactstrap';
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar color="faded" light>
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <Nav className="pull-xs-right" navbar>
+            <NavItem>
+              <NavLink href="/components/">Components</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+            </NavItem>
+          </Nav>
+        </Navbar>
+        <Jumbotron>
+          <Grid>
+            <h1>Welcome to Reactstrap</h1>
+            <p>
+              <Button
+                color="success"
+                size="lg">
+                View Reactstrap Docs
+              </Button>{'http://reactstrap.github.io/components/buttons/'}
+            </p>
+          </Grid>
+        </Jumbotron>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
 ## About the Project
 
 This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, [Tether](http://tether.io/) is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.
