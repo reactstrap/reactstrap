@@ -1,3 +1,17 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/reactstrap/reactstrap/compare/4.0.0...v4.0.1) (2017-01-11)
+
+
+### Bug Fixes
+
+* **Navbar:** updated fixed class names ([481bc14](https://github.com/reactstrap/reactstrap/commit/481bc14))
+
+
+### Features
+
+* **Navbar:** support sticky prop on navbar ([d8a9727](https://github.com/reactstrap/reactstrap/commit/d8a9727))
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/reactstrap/reactstrap/compare/4.0.0-alpha.8...v4.0.0) (2017-01-11)
 
