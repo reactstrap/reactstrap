@@ -79,7 +79,7 @@ const Col = (props) => {
   });
 
   if (attributes['xs']) {
-      delete attributes['xs'];
+    delete attributes['xs'];
   }
 
   const classes = mapToCssModules(classNames(
