@@ -160,4 +160,45 @@ describe('Collapse', () => {
     wrapper.unmount();
     expect(Collapse.prototype.componentWillUnmount).toHaveBeenCalled();
   });
+
+  it('should call onOpened after opening', () => {
+    const onOpened = jasmine.createSpy('onOpenedSpy');
+    const onClosed = jasmine.createSpy('onClosedSpy');
+    const wrapper = mount(<Collapse isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} />);
+
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(false);
+    expect(onOpened).not.toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({ isOpen });
+    jasmine.clock().tick(380);
+    expect(isOpen).toBe(true);
+    expect(onOpened).toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
+  it('should call onClosed after closing', () => {
+    const onOpened = jasmine.createSpy('onOpenedSpy');
+    const onClosed = jasmine.createSpy('onClosedSpy');
+    toggle();
+    const wrapper = mount(<Collapse isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} />);
+
+    jasmine.clock().tick(380);
+    expect(isOpen).toBe(true);
+    expect(onOpened).not.toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({ isOpen });
+    jasmine.clock().tick(380);
+    expect(isOpen).toBe(false);
+    expect(onOpened).not.toHaveBeenCalled();
+    expect(onClosed).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
 });
