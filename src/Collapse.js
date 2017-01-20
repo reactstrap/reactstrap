@@ -18,6 +18,8 @@ const propTypes = {
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number,
   ]),
+  onOpened: PropTypes.func,
+  onClosed: PropTypes.func,
 };
 
 const DEFAULT_DELAYS = {
@@ -34,6 +36,10 @@ const defaultProps = {
 class Collapse extends Component {
   constructor(props) {
     super(props);
+
+    this.onOpened = this.onOpened.bind(this);
+    this.onClosed = this.onClosed.bind(this);
+
     this.state = {
       collapse: props.isOpen ? SHOWN : HIDDEN,
       height: null
@@ -78,8 +84,34 @@ class Collapse extends Component {
     // else: do nothing.
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.collapse === SHOWN &&
+        prevState &&
+        prevState.collapse !== SHOWN) {
+      this.onOpened();
+    }
+
+    if (this.state.collapse === HIDDEN &&
+        prevState &&
+        prevState.collapse !== HIDDEN) {
+      this.onClosed();
+    }
+  }
+
   componentWillUnmount() {
     clearTimeout(this.transitionTag);
+  }
+
+  onOpened() {
+    if (this.props.onOpened) {
+      this.props.onOpened();
+    }
+  }
+
+  onClosed() {
+    if (this.props.onClosed) {
+      this.props.onClosed();
+    }
   }
 
   getDelay(key) {
@@ -101,7 +133,7 @@ class Collapse extends Component {
       cssModule,
       tag: Tag,
       ...attributes
-    } = omit(this.props, ['isOpen', 'delay']);
+    } = omit(this.props, ['isOpen', 'delay', 'onOpened', 'onClosed']);
     const { collapse, height } = this.state;
     let collapseClass;
     switch (collapse) {
