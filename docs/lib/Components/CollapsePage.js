@@ -43,6 +43,7 @@ export default class CollapsePage extends React.Component {
         </pre>
 
         <h3>Events</h3>
+        <p>Use the onOpened and onClosed props for callbacks when the Collapse has finished opening or closing.</p>
         <div className="docs-example">
           <CollapseEventsExample />
         </div>
