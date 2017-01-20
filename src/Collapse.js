@@ -31,14 +31,13 @@ const defaultProps = {
   isOpen: false,
   tag: 'div',
   delay: DEFAULT_DELAYS,
+  onOpened: () => {},
+  onClosed: () => {},
 };
 
 class Collapse extends Component {
   constructor(props) {
     super(props);
-
-    this.onOpened = this.onOpened.bind(this);
-    this.onClosed = this.onClosed.bind(this);
 
     this.state = {
       collapse: props.isOpen ? SHOWN : HIDDEN,
@@ -88,30 +87,18 @@ class Collapse extends Component {
     if (this.state.collapse === SHOWN &&
         prevState &&
         prevState.collapse !== SHOWN) {
-      this.onOpened();
+      this.props.onOpened();
     }
 
     if (this.state.collapse === HIDDEN &&
         prevState &&
         prevState.collapse !== HIDDEN) {
-      this.onClosed();
+      this.props.onClosed();
     }
   }
 
   componentWillUnmount() {
     clearTimeout(this.transitionTag);
-  }
-
-  onOpened() {
-    if (this.props.onOpened) {
-      this.props.onOpened();
-    }
-  }
-
-  onClosed() {
-    if (this.props.onClosed) {
-      this.props.onClosed();
-    }
   }
 
   getDelay(key) {

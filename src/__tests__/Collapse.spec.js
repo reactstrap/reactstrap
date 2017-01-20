@@ -162,34 +162,26 @@ describe('Collapse', () => {
   });
 
   it('should call onOpened after opening', () => {
-    spyOn(Collapse.prototype, 'onOpened').and.callThrough();
-    spyOn(Collapse.prototype, 'onClosed').and.callThrough();
     const onOpened = jasmine.createSpy('onOpenedSpy');
     const onClosed = jasmine.createSpy('onClosedSpy');
     const wrapper = mount(<Collapse isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} />);
 
     jasmine.clock().tick(300);
     expect(isOpen).toBe(false);
-    expect(Collapse.prototype.onOpened).not.toHaveBeenCalled();
     expect(onOpened).not.toHaveBeenCalled();
-    expect(Collapse.prototype.onClosed).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({ isOpen });
     jasmine.clock().tick(380);
     expect(isOpen).toBe(true);
-    expect(Collapse.prototype.onOpened).toHaveBeenCalled();
     expect(onOpened).toHaveBeenCalled();
-    expect(Collapse.prototype.onClosed).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
 
     wrapper.unmount();
   });
 
   it('should call onClosed after closing', () => {
-    spyOn(Collapse.prototype, 'onOpened').and.callThrough();
-    spyOn(Collapse.prototype, 'onClosed').and.callThrough();
     const onOpened = jasmine.createSpy('onOpenedSpy');
     const onClosed = jasmine.createSpy('onClosedSpy');
     toggle();
@@ -197,18 +189,14 @@ describe('Collapse', () => {
 
     jasmine.clock().tick(380);
     expect(isOpen).toBe(true);
-    expect(Collapse.prototype.onOpened).not.toHaveBeenCalled();
     expect(onOpened).not.toHaveBeenCalled();
-    expect(Collapse.prototype.onClosed).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({ isOpen });
     jasmine.clock().tick(380);
     expect(isOpen).toBe(false);
-    expect(Collapse.prototype.onOpened).not.toHaveBeenCalled();
     expect(onOpened).not.toHaveBeenCalled();
-    expect(Collapse.prototype.onClosed).toHaveBeenCalled();
     expect(onClosed).toHaveBeenCalled();
 
     wrapper.unmount();
