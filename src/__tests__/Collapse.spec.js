@@ -187,7 +187,7 @@ describe('Collapse', () => {
     wrapper.unmount();
   });
 
-  it('should call onClosed after after closing', () => {
+  it('should call onClosed after closing', () => {
     spyOn(Collapse.prototype, 'onOpened').and.callThrough();
     spyOn(Collapse.prototype, 'onClosed').and.callThrough();
     const onOpened = jasmine.createSpy('onOpenedSpy');
