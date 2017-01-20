@@ -33,7 +33,7 @@ export default class NavsPage extends React.Component {
   fixed: PropTypes.string,
   color: PropTypes.string,
   role: PropTypes.string,
-  toggleable: PropTypes.string,
+  toggleable: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use
 }`}
@@ -62,6 +62,8 @@ export default class NavsPage extends React.Component {
           <PrismCode className="language-jsx">
 {`NavbarToggler.propTypes = {
   type: PropTypes.string,
+  right: PropTypes.bool,
+  left: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use
 }`}

@@ -8,6 +8,8 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.node,
+  right: PropTypes.bool,
+  left: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -15,23 +17,29 @@ const defaultProps = {
   type: 'button'
 };
 
+const navbarToggleIcon = <span className="navbar-toggler-icon" />;
+
 const NavbarToggler = (props) => {
   const {
     className,
     cssModule,
     children,
+    right,
+    left,
     tag: Tag,
     ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
     className,
-    'navbar-toggler'
+    'navbar-toggler',
+    right && 'navbar-toggler-right',
+    left && 'navbar-toggler-left'
   ), cssModule);
 
   return (
     <Tag {...attributes} className={classes}>
-      {children}
+      {children || navbarToggleIcon}
     </Tag>
   );
 };

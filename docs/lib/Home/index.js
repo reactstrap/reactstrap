@@ -33,12 +33,12 @@ export default () => {
           <Col sm={{ size: 8, offset: 2 }}>
             <h2>Installation</h2>
             <hr />
-            <h3>NPM</h3>
+            <h3 className="mt-5">NPM</h3>
             <p>Install reactstrap and peer dependencies via NPM</p>
             <pre>
               <PrismCode className="language-bash">npm install --save reactstrap react-addons-transition-group react-addons-css-transition-group react react-dom</PrismCode>
             </pre>
-            <p>ES6 - import the components you need</p>
+            <p>Import the components you need</p>
             <div className="docs-example">
               <Example />
             </div>
@@ -47,14 +47,48 @@ export default () => {
                 {importBasic}
               </PrismCode>
             </pre>
-            <h3>CDN</h3>
+            <h3 className="mt-5">Getting Started with Create React App</h3>
+            <p>Follow the <a href="https://github.com/facebookincubator/create-react-app#getting-started" target="_blank">create-react-app instructions</a> up to the <code>Adding Bootstrap</code> section and instead follow the reactstrap version of adding bootstrap.</p>
+            <h4>tl;dr</h4>
+            <pre>
+              <PrismCode className="language-bash">
+{`npm install -g create-react-app
+
+create-react-app my-app
+cd my-app/
+npm start`}
+              </PrismCode>
+            </pre>
+            <p>
+              Then open <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a> to see your app. The initial structure of your app is setup. Next, let's add reactstrap and bootstrap.
+            </p>
+            <h4>Adding Bootstrap</h4>
+            <p>Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:</p>
+            <pre>
+              <PrismCode className="language-bash">
+  {`npm install bootstrap@4.0.0-alpha.6 --save
+npm install --save reactstrap react-addons-transition-group react-addons-css-transition-group react react-dom`}
+              </PrismCode>
+            </pre>
+            <p>Import Bootstrap CSS in the <code>src/index.js</code> file:</p>
+            <pre>
+              <PrismCode className="language-bash">import 'bootstrap/dist/css/bootstrap.css';</PrismCode>
+            </pre>
+            <p>Import required reactstrap components within <code>src/App.js</code> file or your custom component files:</p>
+            <pre>
+              <PrismCode className="language-bash">
+                {`import { Button } from 'reactstrap';`}
+              </PrismCode>
+            </pre>
+            <p>Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example <a href="https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d" target="_blank"><code>App.js</code></a> redone using reactstrap.</p>
+            <h2 className="mt-5">CDN</h2>
             <pre>
               <PrismCode className="language-jsx">
                 https://unpkg.com/reactstrap/dist/reactstrap.min.js
               </PrismCode>
             </pre>
             <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>
-            <h2 className="mt-3">About the Project</h2>
+            <h2 className="mt-5">About the Project</h2>
             <hr />
             <p>This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, <a href="http://tether.io/" target="_blank">Tether</a> is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.</p>
             <p>There are a few core concepts to understand in order to make the most out of this library.</p>

@@ -33,7 +33,7 @@ const routes = (
   <Route path="/" component={UI.Layout}>
     <IndexRoute component={Home} />
     <Route path="/components/" component={Components}>
-      <IndexRedirect to="buttons/" />
+      <IndexRedirect to="alerts/" />
       <Route path="breadcrumbs/" component={BreadcrumbsPage} />
       <Route path="buttons/" component={ButtonsPage} />
       <Route path="button-group/" component={ButtonGroupPage} />

@@ -9,8 +9,11 @@ import {
   DropdownItem,
   DropdownMenu } from 'reactstrap';
 import DropdownExample from '../examples/Dropdown';
-const DropdownExampleSource = require('!!raw!../examples/Dropdown');
 import DropdownSizingExample from '../examples/DropdownSizing';
+import CustomDropdownExample from '../examples/CustomDropdown';
+
+const DropdownExampleSource = require('!!raw!../examples/Dropdown');
+const CustomDropdownExampleSource = require('!!raw!../examples/CustomDropdown');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {
@@ -170,6 +173,15 @@ DropdownToggle.propTypes = {
     ...
   </DropdownMenu>
 </Dropdown>`}
+          </PrismCode>
+        </pre>
+        <h4>Custom Dropdown</h4>
+        <div className="docs-example">
+          <CustomDropdownExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {CustomDropdownExampleSource}
           </PrismCode>
         </pre>
       </div>

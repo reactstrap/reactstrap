@@ -7,18 +7,29 @@ const propTypes = {
   inverse: PropTypes.bool,
   full: PropTypes.bool,
   fixed: PropTypes.string,
+  sticky: PropTypes.string,
   color: PropTypes.string,
   role: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  toggleable: PropTypes.string,
+  toggleable: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 const defaultProps = {
   tag: 'nav',
   role: 'navigation',
-  toggleable: '',
+  toggleable: false,
+};
+
+const getToggleableClass = (toggleable) => {
+  if (toggleable === false) {
+    return false;
+  } else if (toggleable === true || toggleable === 'xs') {
+    return 'navbar-toggleable';
+  }
+
+  return `navbar-toggleable-${toggleable}`;
 };
 
 const Navbar = (props) => {
@@ -30,6 +41,7 @@ const Navbar = (props) => {
     inverse,
     full,
     fixed,
+    sticky,
     color,
     tag: Tag,
     ...attributes
@@ -38,13 +50,14 @@ const Navbar = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     'navbar',
-    toggleable === '' ? 'navbar-toggleable' : `navbar-toggleable-${toggleable}`,
+    getToggleableClass(toggleable),
     {
       'navbar-light': light,
       'navbar-inverse': inverse,
       [`bg-${color}`]: color,
       'navbar-full': full,
-      [`navbar-fixed-${fixed}`]: fixed
+      [`fixed-${fixed}`]: fixed,
+      [`sticky-${sticky}`]: sticky,
     }
   ), cssModule);
 
