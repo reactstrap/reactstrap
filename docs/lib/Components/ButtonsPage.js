@@ -7,7 +7,10 @@ import ButtonExample from '../examples/Button';
 const ButtonExampleSource = require('!!raw!../examples/Button');
 
 import ButtonOutline from '../examples/ButtonOutline';
-const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline');
+const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline')
+
+import ButtonStateful from '../examples/ButtonStateful';
+const ButtonStatefulSource = require('!!raw!../examples/ButtonStateful');
 
 export default class ButtonsPage extends React.Component {
   render() {
@@ -102,6 +105,19 @@ export default class ButtonsPage extends React.Component {
           <PrismCode className="language-jsx">
 {`<Button color="primary" size="lg" disabled>Primary button</Button>{' '}
 <Button color="secondary" size="lg" disabled>Button</Button>`}
+          </PrismCode>
+        </pre>
+
+        <h3>Checkbox and Radio Buttons (Stateful Buttons)</h3>
+        <p>
+          In order to have checkbox and radio buttons, your component needs to manage the state of which button(s) are active/select. It is not in the opinion of this library to manage state within it's components so it is left up to you. Below is a simple example showcasing how this could be done uses the components which already exist in this library.
+        </p>
+        <div className="docs-example">
+          <ButtonStateful />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ButtonStatefulSource}
           </PrismCode>
         </pre>
       </div>
