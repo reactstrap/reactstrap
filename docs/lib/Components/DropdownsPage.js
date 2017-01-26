@@ -11,9 +11,11 @@ import {
 import DropdownExample from '../examples/Dropdown';
 import DropdownSizingExample from '../examples/DropdownSizing';
 import CustomDropdownExample from '../examples/CustomDropdown';
+import DropdownUncontrolledExample from '../examples/DropdownUncontrolled';
 
 const DropdownExampleSource = require('!!raw!../examples/Dropdown');
 const CustomDropdownExampleSource = require('!!raw!../examples/CustomDropdown');
+const DropdownUncontrolledExampleSource = require('!!raw!../examples/DropdownUncontrolled');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {
@@ -182,6 +184,19 @@ DropdownToggle.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
             {CustomDropdownExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h3>Uncontrolled Dropdown</h3>
+        <p>
+          For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledDropdown</code> does not require <code>isOpen</code> nor <code>toggle</code> props to work. For the other Dropdown flavors, <code>ButtonDropdown</code>, <code>NavDropdown</code>, uncontrolled components have been made as well; <code>UncontrolledButtonDropdown</code>, <code>UncontrolledNavDropdown</code> respectfully.
+        </p>
+        <div className="docs-example">
+          <DropdownUncontrolledExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {DropdownUncontrolledExampleSource}
           </PrismCode>
         </pre>
       </div>
