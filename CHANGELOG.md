@@ -1,3 +1,15 @@
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/reactstrap/reactstrap/compare/4.0.1...v4.1.0) (2017-01-28)
+
+
+### Features
+
+* **Col:** add custom widths ability to Col ([#309](https://github.com/reactstrap/reactstrap/issues/309)) ([8487598](https://github.com/reactstrap/reactstrap/commit/8487598)), closes [#297](https://github.com/reactstrap/reactstrap/issues/297)
+* **Collapse:** Add onOpened and onClosed events ([#277](https://github.com/reactstrap/reactstrap/issues/277)) ([#301](https://github.com/reactstrap/reactstrap/issues/301)) ([6c5621f](https://github.com/reactstrap/reactstrap/commit/6c5621f))
+* **Uncontrolled:** add uncontrolled components ([#307](https://github.com/reactstrap/reactstrap/issues/307)) ([2f648c1](https://github.com/reactstrap/reactstrap/commit/2f648c1))
+
+
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/reactstrap/reactstrap/compare/4.0.0...v4.0.1) (2017-01-11)
 
