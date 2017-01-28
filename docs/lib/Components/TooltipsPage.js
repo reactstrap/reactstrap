@@ -8,6 +8,8 @@ import TooltipAutoHideExample from '../examples/TooltipAutoHide';
 const TooltipExampleAutoHideSource = require('!!raw!../examples/TooltipAutoHide');
 import TooltipExampleMulti from '../examples/TooltipMulti';
 const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti');
+import TooltipExampleUncontrolled from '../examples/TooltipUncontrolled';
+const TooltipExampleUncontrolledSource = require('!!raw!../examples/TooltipUncontrolled');
 
 export default class TooltipsPage extends React.Component {
   render() {
@@ -84,6 +86,18 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {TooltipExampleMultiSource}
+          </PrismCode>
+        </pre>
+        <h3>Uncontrolled Tooltip</h3>
+        <p>
+          For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledTooltip</code> does not require <code>isOpen</code> nor <code>toggle</code> props to work.
+        </p>
+        <div className="docs-example">
+          <TooltipExampleUncontrolled />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {TooltipExampleUncontrolledSource}
           </PrismCode>
         </pre>
       </div>
