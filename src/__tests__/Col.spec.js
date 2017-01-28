@@ -22,6 +22,23 @@ describe('Col', () => {
     expect(wrapper.hasClass('col')).toBe(true);
   });
 
+  it('should allow custom columns to be defined', () => {
+    const wrapper = shallow(<Col widths={['base', 'jumbo']} base="4" jumbo="6" />);
+
+    expect(wrapper.hasClass('col-4')).toBe(true);
+    expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
+  });
+
+  it('should allow custom columns to be defined with objects', () => {
+    const wrapper = shallow(<Col widths={['base', 'jumbo', 'wtf']} wtf={{ size: 1, push: 2, pull: 3, offset: 4 }} />);
+
+    expect(wrapper.hasClass('col-wtf-1')).toBe(true);
+    expect(wrapper.hasClass('push-wtf-2')).toBe(true);
+    expect(wrapper.hasClass('pull-wtf-3')).toBe(true);
+    expect(wrapper.hasClass('offset-wtf-4')).toBe(true);
+    expect(wrapper.hasClass('col')).toBe(true);
+  });
+
   it('should pass col size specific classes as Strings', () => {
     const wrapper = shallow(<Col sm="6" />);
 
