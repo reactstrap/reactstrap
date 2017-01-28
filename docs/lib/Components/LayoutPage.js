@@ -61,7 +61,10 @@ Col.propTypes = {
   sm: columnProps,
   md: columnProps,
   lg: columnProps,
-  xl: columnProps
+  xl: columnProps,
+  // override the predefined width (the ones above) with your own custom widths.
+  // see https://github.com/reactstrap/reactstrap/issues/297#issuecomment-273556116
+  widths: PropTypes.array,
 }`}
           </PrismCode>
         </pre>
