@@ -125,6 +125,7 @@ Organizations and projects using `reactstrap`
 - [availity-reactstrap-validation](https://availity.github.io/availity-reactstrap-validation/)
 - [component-template](https://reactstrap.github.io/component-template/)
 - [video-react](https://video-react.github.io/)
+- [CoreUI-Free-Bootstrap-Admin-Template](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template) - [demo](http://coreui.io/demo/React_Demo/#/)
 
 Submit a PR to add to this list!
 
