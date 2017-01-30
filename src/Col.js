@@ -19,6 +19,7 @@ const columnProps = PropTypes.oneOfType([
 ]);
 
 const propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   xs: columnProps,
   sm: columnProps,
   md: columnProps,
@@ -30,6 +31,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  tag: 'div',
   widths: colWidths,
 };
 
@@ -48,6 +50,7 @@ const Col = (props) => {
     className,
     cssModule,
     widths,
+    tag: Tag,
     ...attributes
   } = props;
   const colClasses = [];
@@ -90,7 +93,7 @@ const Col = (props) => {
   ), cssModule);
 
   return (
-    <div {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} />
   );
 };
 

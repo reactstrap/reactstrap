@@ -23,4 +23,12 @@ describe('ButtonGroup', () => {
 
     expect(wrapper.hasClass('btn-group-vertical')).toBe(true);
   });
+
+  it('should render custom tag', () => {
+    const wrapper = shallow(<ButtonGroup tag="main">Yo!</ButtonGroup>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('btn-group')).toBe(true);
+    expect(wrapper.type()).toBe('main');
+  });
 });

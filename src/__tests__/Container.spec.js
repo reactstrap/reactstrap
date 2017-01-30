@@ -27,4 +27,12 @@ describe('Container', () => {
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('container')).toBe(true);
   });
+
+  it('should render custom tag', () => {
+    const wrapper = shallow(<Container tag="main">Yo!</Container>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('container')).toBe(true);
+    expect(wrapper.type()).toBe('main');
+  });
 });

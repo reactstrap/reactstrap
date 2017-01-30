@@ -3,14 +3,20 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
+};
+
+const defaultProps = {
+  tag: 'div',
 };
 
 const ModalFooter = (props) => {
   const {
     className,
     cssModule,
+    tag: Tag,
     ...attributes } = props;
   const classes = mapToCssModules(classNames(
     className,
@@ -18,10 +24,11 @@ const ModalFooter = (props) => {
   ), cssModule);
 
   return (
-    <div {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} />
   );
 };
 
 ModalFooter.propTypes = propTypes;
+ModalFooter.defaultProps = defaultProps;
 
 export default ModalFooter;

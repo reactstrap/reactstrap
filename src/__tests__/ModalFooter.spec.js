@@ -16,4 +16,12 @@ describe('ModalFooter', () => {
     expect(wrapper.hasClass('modal-footer')).toBe(true);
     expect(wrapper.hasClass('other')).toBe(true);
   });
+
+  it('should render custom tag', () => {
+    const wrapper = shallow(<ModalFooter tag="main">Yo!</ModalFooter>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('modal-footer')).toBe(true);
+    expect(wrapper.type()).toBe('main');
+  });
 });

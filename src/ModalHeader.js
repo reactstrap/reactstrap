@@ -3,13 +3,18 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  wrapTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   toggle: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.node,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  tag: 'h4',
+  wrapTag: 'div',
+};
 
 const ModalHeader = (props) => {
   let closeButton;
@@ -18,6 +23,8 @@ const ModalHeader = (props) => {
     cssModule,
     children,
     toggle,
+    tag: Tag,
+    wrapTag: WrapTag,
     ...attributes } = props;
 
   const classes = mapToCssModules(classNames(
@@ -34,12 +41,12 @@ const ModalHeader = (props) => {
   }
 
   return (
-    <div {...attributes} className={classes}>
-      <h4 className={mapToCssModules('modal-title', cssModule)}>
+    <WrapTag {...attributes} className={classes}>
+      <Tag className={mapToCssModules('modal-title', cssModule)}>
         {children}
-      </h4>
+      </Tag>
       {closeButton}
-    </div>
+    </WrapTag>
   );
 };
 
