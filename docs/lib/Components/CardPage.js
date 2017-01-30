@@ -71,9 +71,7 @@ CardColumns.propTypes = {
 CardDeck.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.string,
-  // enable flexbox version of component (removes extra classes)
-  flex: PropTypes.bool
+  className: PropTypes.string
 };
 
 CardFooter.propTypes = {
