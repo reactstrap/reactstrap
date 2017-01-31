@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { TabContent, TabPane } from '../';
 
 let activeTab = '1';
@@ -85,5 +85,26 @@ describe('Tabs', () => {
     expect(instance.setState).not.toHaveBeenCalled();
     tab1.setProps({ activeTab: 2 });
     expect(instance.setState).toHaveBeenCalled();
+  });
+
+  it('should render custom TabContent tag', () => {
+    const wrapper = shallow(
+      <TabContent tag="main" activeTab={activeTab}>
+        <TabPane tabId="1">
+          Tab Content 1
+        </TabPane>
+        <TabPane tabId="2">
+          TabContent 2
+        </TabPane>
+      </TabContent>
+    );
+
+    expect(wrapper.type()).toBe('main');
+  });
+
+  it('should render custom TabPane tag', () => {
+    const wrapper = shallow(<TabPane tag="main" tabId="1">Tab Content 1</TabPane>, { context: {} });
+
+    expect(wrapper.type()).toBe('main');
   });
 });

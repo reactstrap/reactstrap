@@ -1,12 +1,17 @@
 import React, { PropTypes, Component } from 'react';
 import classNames from 'classnames';
+import omit from 'lodash.omit';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
-  children: PropTypes.node,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   activeTab: PropTypes.any,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+};
+
+const defaultProps = {
+  tag: 'div',
 };
 
 const childContextTypes = {
@@ -33,13 +38,21 @@ export default class TabContent extends Component {
     }
   }
   render() {
-    const classes = mapToCssModules(classNames('tab-content', this.props.className), this.props.cssModule);
+    const {
+      className,
+      cssModule,
+      tag: Tag,
+    } = this.props;
+
+    const attributes = omit(this.props, Object.keys(propTypes));
+
+    const classes = mapToCssModules(classNames('tab-content', className), cssModule);
+
     return (
-      <div className={classes}>
-        {this.props.children}
-      </div>
+      <Tag {...attributes} className={classes} />
     );
   }
 }
 TabContent.propTypes = propTypes;
+TabContent.defaultProps = defaultProps;
 TabContent.childContextTypes = childContextTypes;

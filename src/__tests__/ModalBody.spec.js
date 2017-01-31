@@ -16,4 +16,12 @@ describe('ModalBody', () => {
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('modal-body')).toBe(true);
   });
+
+  it('should render custom tag', () => {
+    const wrapper = shallow(<ModalBody tag="main">Yo!</ModalBody>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('modal-body')).toBe(true);
+    expect(wrapper.type()).toBe('main');
+  });
 });

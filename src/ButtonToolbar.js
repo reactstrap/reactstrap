@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   'aria-label': PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -10,13 +11,15 @@ const propTypes = {
 };
 
 const defaultProps = {
-  role: 'toolbar'
+  tag: 'div',
+  role: 'toolbar',
 };
 
 const ButtonToolbar = (props) => {
   const {
     className,
     cssModule,
+    tag: Tag,
     ...attributes
   } = props;
 
@@ -26,7 +29,7 @@ const ButtonToolbar = (props) => {
   ), cssModule);
 
   return (
-    <div {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} />
   );
 };
 

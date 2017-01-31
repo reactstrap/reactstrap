@@ -13,10 +13,12 @@ const propTypes = {
   reflow: PropTypes.bool,
   responsive: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  responsiveTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
 const defaultProps = {
-  tag: 'table'
+  tag: 'table',
+  responsiveTag: 'div',
 };
 
 const Table = (props) => {
@@ -31,6 +33,7 @@ const Table = (props) => {
     reflow,
     responsive,
     tag: Tag,
+    responsiveTag: ResponsiveTag,
     ...attributes
   } = props;
 
@@ -49,7 +52,7 @@ const Table = (props) => {
 
   if (responsive) {
     return (
-      <div className="table-responsive">{table}</div>
+      <ResponsiveTag className="table-responsive">{table}</ResponsiveTag>
     );
   }
 

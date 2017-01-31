@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { DropdownMenu } from '../';
 
 describe('DropdownMenu', () => {
@@ -51,5 +51,13 @@ describe('DropdownMenu', () => {
     );
 
     expect(wrapper.children().length).toBe(0);
+  });
+
+  it('should render custom tag', () => {
+    const wrapper = shallow(<DropdownMenu tag="main">Yo!</DropdownMenu>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('dropdown-menu')).toBe(true);
+    expect(wrapper.type()).toBe('main');
   });
 });

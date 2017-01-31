@@ -77,4 +77,12 @@ describe('Col', () => {
 
     expect(wrapper.hasClass('col-sm-auto')).toBe(true);
   });
+
+  it('should render custom tag', () => {
+    const wrapper = shallow(<Col tag="main">Yo!</Col>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('col')).toBe(true);
+    expect(wrapper.type()).toBe('main');
+  });
 });

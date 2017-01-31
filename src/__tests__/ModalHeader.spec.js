@@ -24,4 +24,17 @@ describe('ModalHeader', () => {
     expect(wrapper.hasClass('modal-header')).toBe(true);
     expect(wrapper.find('button.close').length).toBe(1);
   });
+
+  it('should render custom tag', () => {
+    const wrapper = shallow(<ModalHeader tag="p">Yo!</ModalHeader>).childAt(0);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.type()).toBe('p');
+  });
+
+  it('should render custom wrapping tag', () => {
+    const wrapper = shallow(<ModalHeader wrapTag="main">Yo!</ModalHeader>);
+
+    expect(wrapper.type()).toBe('main');
+  });
 });
