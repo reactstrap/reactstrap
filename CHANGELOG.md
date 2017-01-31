@@ -1,3 +1,18 @@
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/reactstrap/reactstrap/compare/4.1.0...v4.1.1) (2017-01-31)
+
+
+### Bug Fixes
+
+* make sure everything can have a Tag ([#315](https://github.com/reactstrap/reactstrap/issues/315)) ([3373a90](https://github.com/reactstrap/reactstrap/commit/3373a90)), closes [#314](https://github.com/reactstrap/reactstrap/issues/314)
+
+
+### Features
+
+* **CardDeck:** set flex as only option ([#316](https://github.com/reactstrap/reactstrap/issues/316)) ([feb9a70](https://github.com/reactstrap/reactstrap/commit/feb9a70))
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/reactstrap/reactstrap/compare/4.0.1...v4.1.0) (2017-01-28)
 
