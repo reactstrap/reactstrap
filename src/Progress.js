@@ -20,6 +20,7 @@ const propTypes = {
   striped: PropTypes.bool,
   color: PropTypes.string,
   className: PropTypes.string,
+  barClassName: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
@@ -33,6 +34,7 @@ const Progress = (props) => {
   const {
     children,
     className,
+    barClassName,
     cssModule,
     value,
     max,
@@ -54,6 +56,7 @@ const Progress = (props) => {
 
   const progressBarClasses = mapToCssModules(classNames(
     'progress-bar',
+    bar ? className || barClassName : barClassName,
     animated ? 'progress-bar-animated' : null,
     color ? `bg-${color}` : null,
     striped || animated ? 'progress-bar-striped' : null
