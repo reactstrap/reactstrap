@@ -90,6 +90,62 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render with class "modal" and have custom class name if provided with modalClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} modalClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.querySelectorAll('.modal.my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with custom class name if provided with wrapClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} wrapClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal-content" and have custom class name if provided with contentClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} contentClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.querySelectorAll('.modal-content.my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal-backdrop" and have custom class name if provided with backdropClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} backdropClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.querySelectorAll('.modal-backdrop.my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
   it('should render with the class "modal-${size}" when size is passed', () => {
     isOpen = true;
     const wrapper = mount(
