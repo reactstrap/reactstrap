@@ -14,7 +14,7 @@ import {
 const propTypes = {
   isOpen: PropTypes.bool,
   size: PropTypes.string,
-  toggle: PropTypes.func.isRequired,
+  toggle: PropTypes.func,
   keyboard: PropTypes.bool,
   backdrop: PropTypes.oneOfType([
     PropTypes.bool,
