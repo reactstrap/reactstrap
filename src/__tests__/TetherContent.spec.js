@@ -190,6 +190,20 @@ describe('TetherContent', () => {
     });
   });
 
+  // helper function to check whether popover toggler is clicked
+  describe('checkTogglerTarget', () => {
+    it('should be called when the toggler is clicked', () => {
+      state = true;
+      spyOn(TetherContent.prototype, 'checkTogglerTarget').and.callThrough();
+      const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+
+      instance._element.click();
+
+      expect(TetherContent.prototype.checkTogglerTarget.calls.count()).toBe(1);
+    });
+  });
+
   describe('handleProps', () => {
     it('should call .hide when false', () => {
       spyOn(TetherContent.prototype, 'componentDidMount').and.callThrough();
