@@ -9,6 +9,7 @@ const propTypes = {
   arrow: PropTypes.string,
   disabled: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
+  closeOnClick: PropTypes.bool,
   toggle: PropTypes.func.isRequired,
   tether: PropTypes.object.isRequired,
   tetherRef: PropTypes.func,
@@ -18,6 +19,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
+  closeOnClick: false,
   tetherRef: function () {}
 };
 
@@ -26,7 +28,10 @@ class TetherContent extends React.Component {
     super(props);
 
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.checkTogglerTarget = this.checkTogglerTarget.bind(this);
     this.toggle = this.toggle.bind(this);
+
+    this.state = {togglerClicked: false};
   }
 
   componentDidMount() {
@@ -66,15 +71,35 @@ class TetherContent extends React.Component {
     return config;
   }
 
+  checkTogglerTarget(togglerID, clickTarget) {
+    if (clickTarget && clickTarget.id) {
+      return clickTarget.id === togglerID.slice(1);
+    }
+  }
+
   handleDocumentClick(e) {
     const container = this._element;
+    const togglerIsTarget = this.checkTogglerTarget(this.getTarget(), e.target);
+
     if (e.target === container || !container.contains(e.target)) {
-      this.toggle();
+      if (this.props.closeOnClick) {
+        // toggle only if we click elsewhere, or if the toggler hasn't been clicked already
+        if (!togglerIsTarget || !this.state.togglerClicked) {
+          this.toggle();
+        }
+      } else {
+        this.toggle();
+      }
+    }
+
+    if (this.props.closeOnClick) {
+      this.state.togglerClicked = false;
     }
   }
 
   handleProps() {
     if (this.props.isOpen) {
+      this.state.togglerClicked = true;
       this.show();
     } else {
       this.hide();
