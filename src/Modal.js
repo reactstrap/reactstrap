@@ -86,7 +86,7 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
-    if (this.props.keyboard && e.keyCode === 27) {
+    if (this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
       this.props.toggle();
     }
   }
@@ -96,7 +96,7 @@ class Modal extends React.Component {
 
     const container = this._dialog;
 
-    if (e.target && !container.contains(e.target)) {
+    if (e.target && !container.contains(e.target) && this.props.toggle) {
       this.props.toggle();
     }
   }
