@@ -1,3 +1,20 @@
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/reactstrap/reactstrap/compare/4.1.1...v4.2.0) (2017-02-14)
+
+
+### Bug Fixes
+
+* **Modal:** unmounting nested modals ([#321](https://github.com/reactstrap/reactstrap/issues/321)) ([ecf51b2](https://github.com/reactstrap/reactstrap/commit/ecf51b2))
+* **Progress:** add custom classNames to progress-bar ([#319](https://github.com/reactstrap/reactstrap/issues/319)) ([25fdb77](https://github.com/reactstrap/reactstrap/commit/25fdb77)), closes [#318](https://github.com/reactstrap/reactstrap/issues/318)
+
+
+### Features
+
+* **Modal:** add various className props to modal ([#320](https://github.com/reactstrap/reactstrap/issues/320)) ([c7b2b3e](https://github.com/reactstrap/reactstrap/commit/c7b2b3e)), closes [#257](https://github.com/reactstrap/reactstrap/issues/257)
+* **Modal:** Make toggle prop optional ([#325](https://github.com/reactstrap/reactstrap/issues/325)) ([5e98ea3](https://github.com/reactstrap/reactstrap/commit/5e98ea3))
+
+
+
 <a name="4.1.1"></a>
 ## [4.1.1](https://github.com/reactstrap/reactstrap/compare/4.1.0...v4.1.1) (2017-01-31)
 
