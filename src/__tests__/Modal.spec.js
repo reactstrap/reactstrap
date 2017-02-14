@@ -1,14 +1,21 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Modal } from '../';
+import { Modal, ModalBody } from '../';
 
 describe('Modal', () => {
   let isOpen;
   let toggle;
 
+  let isOpenNested;
+  let toggleNested;
+
   beforeEach(() => {
     isOpen = false;
     toggle = () => { isOpen = !isOpen; };
+
+    isOpenNested = false;
+    toggleNested = () => { isOpenNested = !isOpenNested; };
+
     jasmine.clock().install();
   });
 
@@ -451,5 +458,28 @@ describe('Modal', () => {
 
     instance.destroy();
     wrapper.unmount();
+  });
+
+  it('should render nested modals', () => {
+    isOpen = true;
+    isOpenNested = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalBody>
+          <Modal isOpen={isOpenNested} toggle={toggleNested}>
+            Yo!
+          </Modal>
+        </ModalBody>
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
+    expect(document.body.className).toBe('modal-open modal-open');
+
+    wrapper.unmount();
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(0);
+    expect(document.body.className).toBe('');
   });
 });

@@ -115,14 +115,13 @@ class Modal extends React.Component {
   }
 
   destroy() {
-    const classes = document.body.className.replace('modal-open', '');
-
     if (this._element) {
       ReactDOM.unmountComponentAtNode(this._element);
       document.body.removeChild(this._element);
       this._element = null;
     }
 
+    const classes = document.body.className.replace('modal-open', '');
     document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
     setScrollbarWidth(this.originalBodyPadding);
   }
