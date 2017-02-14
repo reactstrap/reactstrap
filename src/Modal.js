@@ -24,6 +24,10 @@ const propTypes = {
   onExit: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
+  wrapClassName: PropTypes.string,
+  modalClassName: PropTypes.string,
+  backdropClassName: PropTypes.string,
+  contentClassName: PropTypes.string,
   cssModule: PropTypes.object,
   zIndex: PropTypes.oneOfType([
     PropTypes.number,
@@ -164,6 +168,10 @@ class Modal extends React.Component {
   renderChildren() {
     const {
       className,
+      wrapClassName,
+      modalClassName,
+      backdropClassName,
+      contentClassName,
       cssModule,
       isOpen,
       size,
@@ -173,7 +181,7 @@ class Modal extends React.Component {
     } = omit(this.props, ['toggle', 'keyboard', 'onEnter', 'onExit', 'zIndex']);
 
     return (
-      <TransitionGroup component="div">
+      <TransitionGroup component="div" className={mapToCssModules(wrapClassName)}>
         {isOpen && (
           <Fade
             key="modal-dialog"
@@ -184,7 +192,7 @@ class Modal extends React.Component {
             transitionLeaveTimeout={300}
             onClickCapture={this.handleBackdropClick}
             onKeyUp={this.handleEscape}
-            className={mapToCssModules('modal', cssModule)}
+            className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
             style={{ display: 'block' }}
             tabIndex="-1"
           >
@@ -196,7 +204,7 @@ class Modal extends React.Component {
               ref={(c) => (this._dialog = c)}
               {...attributes}
             >
-              <div className={mapToCssModules('modal-content', cssModule)}>
+              <div className={mapToCssModules(classNames('modal-content', contentClassName), cssModule)}>
                 {children}
               </div>
             </div>
@@ -208,7 +216,7 @@ class Modal extends React.Component {
             transitionAppearTimeout={150}
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
-            className={mapToCssModules('modal-backdrop', cssModule)}
+            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
           />
         )}
       </TransitionGroup>

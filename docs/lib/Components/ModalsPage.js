@@ -55,6 +55,11 @@ export default class ModalsPage extends React.Component {
     PropTypes.number,
     PropTypes.string,
   ]),
+  className: PropTypes.string,
+  wrapClassName: PropTypes.string,
+  modalClassName: PropTypes.string,
+  backdropClassName: PropTypes.string,
+  contentClassName: PropTypes.string,
 }`}
           </PrismCode>
         </pre>
