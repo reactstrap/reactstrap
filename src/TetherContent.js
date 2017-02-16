@@ -28,8 +28,9 @@ class TetherContent extends React.Component {
     super(props);
 
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
-    this.checkTogglerTarget = this.checkTogglerTarget.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.checkTogglerTarget = this.checkTogglerTarget.bind(this);
+    this.shouldToggle = this.shouldToggle.bind(this);
 
     this.state = { togglerClicked: false };
   }
@@ -71,34 +72,29 @@ class TetherContent extends React.Component {
     return config;
   }
 
-  checkTogglerTarget(togglerID, clickTarget) {
-    if (clickTarget && clickTarget.id) return clickTarget.id === togglerID.slice(1);
+  checkTogglerTarget(clickTarget) {
+    const togglerID = this.getTarget();
+    if (clickTarget && clickTarget.id) return clickTarget.id === togglerID.substr(1);
     return null;
   }
 
+  // determines whether the toggle method should be called
+  shouldToggle(event, container, closeOnClick) {
+    const togglerIsTarget = this.checkTogglerTarget(event.target);
+
+    return (
+      event.target === container || (!container.contains(event.target) &&
+      (!closeOnClick || (closeOnClick && !togglerIsTarget)))
+    );
+  }
+
   handleDocumentClick(e) {
-    const container = this._element;
-    const togglerIsTarget = this.checkTogglerTarget(this.getTarget(), e.target);
-
-    if (e.target === container || !container.contains(e.target)) {
-      if (this.props.closeOnClick) {
-        // toggle only if we click elsewhere, or if the toggler hasn't been clicked already
-        if (!togglerIsTarget || !this.state.togglerClicked) {
-          this.toggle();
-        }
-      } else {
-        this.toggle();
-      }
-    }
-
-    if (this.props.closeOnClick) {
-      this.state.togglerClicked = false;
-    }
+    const { closeOnClick } = this.props;
+    if (this.shouldToggle(e, this._element, closeOnClick)) this.toggle();
   }
 
   handleProps() {
     if (this.props.isOpen) {
-      this.state.togglerClicked = true;
       this.show();
     } else {
       this.hide();
