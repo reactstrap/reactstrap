@@ -24,7 +24,7 @@ export default class Example extends React.Component {
         <Button id="Popover1" onClick={this.toggle}>
           Launch Popover
         </Button>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} closeOnClick={ true } target="Popover1" toggle={this.toggle}>
+        <Popover placement="bottom" isOpen={this.state.popoverOpen} closeOnClick target="Popover1" toggle={this.toggle}>
           <PopoverTitle>Popover Title</PopoverTitle>
           <PopoverContent>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverContent>
         </Popover>
