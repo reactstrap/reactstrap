@@ -29,8 +29,6 @@ class TetherContent extends React.Component {
 
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.checkTogglerTarget = this.checkTogglerTarget.bind(this);
-    this.shouldToggle = this.shouldToggle.bind(this);
 
     this.state = { togglerClicked: false };
   }
@@ -72,25 +70,24 @@ class TetherContent extends React.Component {
     return config;
   }
 
-  checkTogglerTarget(clickTarget) {
-    const togglerID = this.getTarget();
-    if (clickTarget && clickTarget.id) return clickTarget.id === togglerID.substr(1);
-    return null;
+  checkTogglerTarget(target, togglerID) {
+    return target && target.id && target.id === togglerID.substr(1);
   }
 
   // determines whether the toggle method should be called
-  shouldToggle(event, container, closeOnClick) {
-    const togglerIsTarget = this.checkTogglerTarget(event.target);
+  shouldToggle(target, container, closeOnClick, togglerID) {
+    const togglerIsTarget = this.checkTogglerTarget(target, togglerID);
 
     return (
-      event.target === container || (!container.contains(event.target) &&
+      target === container || (!container.contains(target) &&
       (!closeOnClick || (closeOnClick && !togglerIsTarget)))
     );
   }
 
   handleDocumentClick(e) {
     const { closeOnClick } = this.props;
-    if (this.shouldToggle(e, this._element, closeOnClick)) this.toggle();
+    const togglerID = this.getTarget();
+    if (this.shouldToggle(e.target, this._element, closeOnClick, togglerID)) this.toggle();
   }
 
   handleProps() {
