@@ -71,7 +71,13 @@ class TetherContent extends React.Component {
   }
 
   checkTogglerTarget(target, togglerID) {
-    return target && target.id && target.id === togglerID.substr(1);
+    return (
+      (target && target.id) && (
+         target.id === togglerID || (
+          target.id === togglerID.substr(1)
+        )
+      )
+    );
   }
 
   // determines whether the toggle method should be called
