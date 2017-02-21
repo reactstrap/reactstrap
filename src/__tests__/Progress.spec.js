@@ -77,6 +77,14 @@ describe('Progress', () => {
     expect(wrapper.hasClass('progress')).toBe(true);
   });
 
+  it('should render additional classes on the inner progress bar', () => {
+    const wrapper = shallow(<Progress barClassName="other" />);
+
+    expect(wrapper.hasClass('other')).toBe(false);
+    expect(wrapper.hasClass('progress')).toBe(true);
+    expect(wrapper.find('.progress-bar').hasClass('other')).toBe(true);
+  });
+
   it('should render custom tag', () => {
     const wrapper = shallow(<Progress tag="main" />);
 
@@ -95,6 +103,22 @@ describe('Progress', () => {
 
     expect(wrapper.type()).toBe('div');
     expect(wrapper.hasClass('progress-bar')).toBe(true);
+  });
+
+  it('should render additional classes', () => {
+    const wrapper = shallow(<Progress bar className="yo" />);
+
+    expect(wrapper.type()).toBe('div');
+    expect(wrapper.hasClass('progress-bar')).toBe(true);
+    expect(wrapper.hasClass('yo')).toBe(true);
+  });
+
+  it('should render additional classes using the barClassName', () => {
+    const wrapper = shallow(<Progress bar barClassName="yo" />);
+
+    expect(wrapper.type()).toBe('div');
+    expect(wrapper.hasClass('progress-bar')).toBe(true);
+    expect(wrapper.hasClass('yo')).toBe(true);
   });
 
   it('should render the children (label)', () => {

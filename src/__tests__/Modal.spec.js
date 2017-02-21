@@ -1,14 +1,21 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Modal } from '../';
+import { Modal, ModalBody } from '../';
 
 describe('Modal', () => {
   let isOpen;
   let toggle;
 
+  let isOpenNested;
+  let toggleNested;
+
   beforeEach(() => {
     isOpen = false;
     toggle = () => { isOpen = !isOpen; };
+
+    isOpenNested = false;
+    toggleNested = () => { isOpenNested = !isOpenNested; };
+
     jasmine.clock().install();
   });
 
@@ -87,6 +94,62 @@ describe('Modal', () => {
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal" and have custom class name if provided with modalClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} modalClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.querySelectorAll('.modal.my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with custom class name if provided with wrapClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} wrapClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal-content" and have custom class name if provided with contentClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} contentClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.querySelectorAll('.modal-content.my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal-backdrop" and have custom class name if provided with backdropClassName', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} backdropClassName="my-custom-modal">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.querySelectorAll('.modal-backdrop.my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
 
@@ -395,5 +458,28 @@ describe('Modal', () => {
 
     instance.destroy();
     wrapper.unmount();
+  });
+
+  it('should render nested modals', () => {
+    isOpen = true;
+    isOpenNested = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalBody>
+          <Modal isOpen={isOpenNested} toggle={toggleNested}>
+            Yo!
+          </Modal>
+        </ModalBody>
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
+    expect(document.body.className).toBe('modal-open modal-open');
+
+    wrapper.unmount();
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(0);
+    expect(document.body.className).toBe('');
   });
 });

@@ -14,7 +14,7 @@ import {
 const propTypes = {
   isOpen: PropTypes.bool,
   size: PropTypes.string,
-  toggle: PropTypes.func.isRequired,
+  toggle: PropTypes.func,
   keyboard: PropTypes.bool,
   backdrop: PropTypes.oneOfType([
     PropTypes.bool,
@@ -24,6 +24,10 @@ const propTypes = {
   onExit: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
+  wrapClassName: PropTypes.string,
+  modalClassName: PropTypes.string,
+  backdropClassName: PropTypes.string,
+  contentClassName: PropTypes.string,
   cssModule: PropTypes.object,
   zIndex: PropTypes.oneOfType([
     PropTypes.number,
@@ -86,7 +90,7 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
-    if (this.props.keyboard && e.keyCode === 27) {
+    if (this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
       this.props.toggle();
     }
   }
@@ -96,7 +100,7 @@ class Modal extends React.Component {
 
     const container = this._dialog;
 
-    if (e.target && !container.contains(e.target)) {
+    if (e.target && !container.contains(e.target) && this.props.toggle) {
       this.props.toggle();
     }
   }
@@ -111,14 +115,13 @@ class Modal extends React.Component {
   }
 
   destroy() {
-    const classes = document.body.className.replace('modal-open', '');
-
     if (this._element) {
       ReactDOM.unmountComponentAtNode(this._element);
       document.body.removeChild(this._element);
       this._element = null;
     }
 
+    const classes = document.body.className.replace('modal-open', '');
     document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
     setScrollbarWidth(this.originalBodyPadding);
   }
@@ -164,6 +167,10 @@ class Modal extends React.Component {
   renderChildren() {
     const {
       className,
+      wrapClassName,
+      modalClassName,
+      backdropClassName,
+      contentClassName,
       cssModule,
       isOpen,
       size,
@@ -173,7 +180,7 @@ class Modal extends React.Component {
     } = omit(this.props, ['toggle', 'keyboard', 'onEnter', 'onExit', 'zIndex']);
 
     return (
-      <TransitionGroup component="div">
+      <TransitionGroup component="div" className={mapToCssModules(wrapClassName)}>
         {isOpen && (
           <Fade
             key="modal-dialog"
@@ -184,7 +191,7 @@ class Modal extends React.Component {
             transitionLeaveTimeout={300}
             onClickCapture={this.handleBackdropClick}
             onKeyUp={this.handleEscape}
-            className={mapToCssModules('modal', cssModule)}
+            className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
             style={{ display: 'block' }}
             tabIndex="-1"
           >
@@ -196,7 +203,7 @@ class Modal extends React.Component {
               ref={(c) => (this._dialog = c)}
               {...attributes}
             >
-              <div className={mapToCssModules('modal-content', cssModule)}>
+              <div className={mapToCssModules(classNames('modal-content', contentClassName), cssModule)}>
                 {children}
               </div>
             </div>
@@ -208,7 +215,7 @@ class Modal extends React.Component {
             transitionAppearTimeout={150}
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
-            className={mapToCssModules('modal-backdrop', cssModule)}
+            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
           />
         )}
       </TransitionGroup>
