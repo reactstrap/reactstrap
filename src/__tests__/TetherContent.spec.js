@@ -318,7 +318,7 @@ describe('TetherContent', () => {
       state = true;
 
       spyOn(TetherContent.prototype, 'checkTogglerTarget').and.callThrough();
-      
+
       mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
       const target = Object.assign({}, { id: 'correctID' });
 
