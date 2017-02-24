@@ -28,6 +28,7 @@ const propTypes = {
   modalClassName: PropTypes.string,
   backdropClassName: PropTypes.string,
   contentClassName: PropTypes.string,
+  fade: PropTypes.bool,
   cssModule: PropTypes.object,
   zIndex: PropTypes.oneOfType([
     PropTypes.number,
@@ -40,6 +41,7 @@ const defaultProps = {
   backdrop: true,
   keyboard: true,
   zIndex: 1000,
+  fade: true
 };
 
 class Modal extends React.Component {
@@ -103,6 +105,22 @@ class Modal extends React.Component {
     if (e.target && !container.contains(e.target) && this.props.toggle) {
       this.props.toggle();
     }
+  }
+
+  hasTransition() {
+    return this.props.fade !== false;
+  }
+
+  fadeBaseClass() {
+    return this.hasTransition() ? 'fade' : '';
+  }
+
+  backdropTransitionTimeout() {
+    return this.hasTransition() ? 150 : 0;
+  }
+
+  modalTransitionTimeout() {
+    return this.hasTransition() ? 300 : 0;
   }
 
   togglePortal() {
@@ -177,7 +195,7 @@ class Modal extends React.Component {
       backdrop,
       children,
       ...attributes
-    } = omit(this.props, ['toggle', 'keyboard', 'onEnter', 'onExit', 'zIndex']);
+    } = omit(this.props, ['toggle', 'keyboard', 'onEnter', 'onExit', 'zIndex', 'fade']);
 
     return (
       <TransitionGroup component="div" className={mapToCssModules(wrapClassName)}>
@@ -186,14 +204,18 @@ class Modal extends React.Component {
             key="modal-dialog"
             onEnter={this.onEnter}
             onLeave={this.onExit}
-            transitionAppearTimeout={300}
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={300}
+            transitionAppearTimeout={this.modalTransitionTimeout()}
+            transitionEnterTimeout={this.modalTransitionTimeout()}
+            transitionLeaveTimeout={this.modalTransitionTimeout()}
+            transitionAppear={this.hasTransition()}
+            transitionEnter={this.hasTransition()}
+            transitionLeave={this.hasTransition()}
             onClickCapture={this.handleBackdropClick}
             onKeyUp={this.handleEscape}
             className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
             style={{ display: 'block' }}
             tabIndex="-1"
+            baseClass={this.fadeBaseClass()}
           >
             <div
               className={mapToCssModules(classNames('modal-dialog', className, {
@@ -212,10 +234,14 @@ class Modal extends React.Component {
         {isOpen && backdrop && (
           <Fade
             key="modal-backdrop"
-            transitionAppearTimeout={150}
-            transitionEnterTimeout={150}
-            transitionLeaveTimeout={150}
+            transitionAppearTimeout={this.backdropTransitionTimeout()}
+            transitionEnterTimeout={this.backdropTransitionTimeout()}
+            transitionLeaveTimeout={this.backdropTransitionTimeout()}
+            transitionAppear={this.hasTransition()}
+            transitionEnter={this.hasTransition()}
+            transitionLeave={this.hasTransition()}
             className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+            baseClass={this.fadeBaseClass()}
           />
         )}
       </TransitionGroup>

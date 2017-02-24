@@ -11,6 +11,9 @@ const ModalBackdropExampleSource = require('!!raw!../examples/ModalBackdrop');
 import ModalNestedExample from '../examples/ModalNested';
 const ModalNestedExampleSource = require('!!raw!../examples/ModalNested');
 
+import ModalFadelessExample from '../examples/ModalFadeless';
+const ModalFadelessExampleSource = require('!!raw!../examples/ModalFadeless');
+
 export default class ModalsPage extends React.Component {
   render() {
     return (
@@ -60,6 +63,8 @@ export default class ModalsPage extends React.Component {
   modalClassName: PropTypes.string,
   backdropClassName: PropTypes.string,
   contentClassName: PropTypes.string,
+  // boolean to control whether the fade transition occurs (default: true)
+  fade: PropTypes.bool
 }`}
           </PrismCode>
         </pre>
@@ -89,6 +94,20 @@ export default class ModalsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ModalNestedExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h4>Modals without Fade Effect</h4>
+        <div className="docs-example">
+          <div className="btn-group">
+            <div className="btn">
+              <ModalFadelessExample buttonLabel="Launch Modal without Fade Effect Example" />
+            </div>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ModalFadelessExampleSource}
           </PrismCode>
         </pre>
       </div>

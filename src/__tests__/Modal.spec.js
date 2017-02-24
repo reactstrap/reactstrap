@@ -97,6 +97,28 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render without fade transition if provided with fade={false}', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} fade={false} modalClassName="fadeless-modal">
+        Howdy!
+      </Modal>
+    );
+
+    // Modal should appear instantaneously
+    jasmine.clock().tick(1);
+    expect(wrapper.children().length).toBe(0);
+
+    const matchedModals = document.getElementsByClassName('fadeless-modal');
+    const matchedModal = matchedModals[0];
+
+    expect(matchedModals.length).toBe(1);
+    // Modal should not have the 'fade' class
+    expect(matchedModal.className.split(' ').indexOf('fade') < 0).toBe(true);
+
+    wrapper.unmount();
+  });
+
   it('should render with class "modal" and have custom class name if provided with modalClassName', () => {
     isOpen = true;
     const wrapper = mount(
