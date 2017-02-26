@@ -287,6 +287,49 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should call onExit & onEnter when fade={false}', () => {
+    spyOn(Modal.prototype, 'onEnter').and.callThrough();
+    spyOn(Modal.prototype, 'onExit').and.callThrough();
+    const onEnter = jasmine.createSpy('spy');
+    const onExit = jasmine.createSpy('spy');
+    const wrapper = mount(
+      <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle} fade={false}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(1);
+    expect(isOpen).toBe(false);
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(Modal.prototype.onEnter).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(1);
+
+    expect(isOpen).toBe(true);
+    expect(onEnter).toHaveBeenCalled();
+    expect(Modal.prototype.onEnter).toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(1);
+
+    expect(isOpen).toBe(false);
+    expect(onExit).toHaveBeenCalled();
+    expect(Modal.prototype.onExit).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
   it('should not call togglePortal when isOpen does not change', () => {
     spyOn(Modal.prototype, 'togglePortal').and.callThrough();
     spyOn(Modal.prototype, 'componentDidUpdate').and.callThrough();
