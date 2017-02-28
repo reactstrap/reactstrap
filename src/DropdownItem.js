@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
+import omit from 'lodash.omit';
 
 const propTypes = {
   children: PropTypes.node,
@@ -62,7 +63,7 @@ class DropdownItem extends React.Component {
       divider,
       tag: Tag,
       header,
-      ...props } = this.props;
+      ...props } = omit(this.props, ['toggle']);
 
     const classes = mapToCssModules(classNames(
       className,
@@ -82,10 +83,9 @@ class DropdownItem extends React.Component {
       }
     }
 
-    const {toggle, ...tagProps} = props;
     return (
       <Tag
-        {...tagProps}
+        {...props}
         tabIndex={tabIndex}
         className={classes}
         onClick={this.onClick}
