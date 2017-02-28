@@ -11,6 +11,7 @@ const propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  toggle: PropTypes.bool
 };
 
 const contextTypes = {
@@ -18,7 +19,8 @@ const contextTypes = {
 };
 
 const defaultProps = {
-  tag: 'button'
+  tag: 'button',
+  toggle: true
 };
 
 class DropdownItem extends React.Component {
@@ -39,7 +41,9 @@ class DropdownItem extends React.Component {
       this.props.onClick(e);
     }
 
-    this.context.toggle();
+    if(this.props.toggle) {
+      this.context.toggle();
+    }
   }
 
   getTabIndex() {
@@ -78,9 +82,10 @@ class DropdownItem extends React.Component {
       }
     }
 
+    const {toggle, ...tagProps} = props;
     return (
       <Tag
-        {...props}
+        {...tagProps}
         tabIndex={tabIndex}
         className={classes}
         onClick={this.onClick}
