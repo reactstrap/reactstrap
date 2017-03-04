@@ -33,6 +33,8 @@ const propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  modalTransitionTimeout: PropTypes.number,
+  backdropTransitionTimeout: PropTypes.number,
 };
 
 const defaultProps = {
@@ -40,7 +42,9 @@ const defaultProps = {
   backdrop: true,
   keyboard: true,
   zIndex: 1000,
-  fade: true
+  fade: true,
+  modalTransitionTimeout: 300,
+  backdropTransitionTimeout: 150,
 };
 
 class Modal extends React.Component {
@@ -107,7 +111,11 @@ class Modal extends React.Component {
   }
 
   hasTransition() {
-    return this.props.fade !== false;
+    if (this.props.fade === false) {
+      return false;
+    }
+
+    return this.props.modalTransitionTimeout > 0;
   }
 
   togglePortal() {
@@ -203,7 +211,9 @@ class Modal extends React.Component {
       backdropClassName,
       cssModule,
       isOpen,
-      backdrop
+      backdrop,
+      modalTransitionTimeout,
+      backdropTransitionTimeout
     } = this.props;
 
     const modalAttributes = {
@@ -214,9 +224,6 @@ class Modal extends React.Component {
     };
 
     if (this.hasTransition()) {
-      const modalTransitionTimeout = 300;
-      const backdropTransitionTimeout = 150;
-
       return (
         <TransitionGroup component="div" className={mapToCssModules(wrapClassName)}>
           {isOpen && (

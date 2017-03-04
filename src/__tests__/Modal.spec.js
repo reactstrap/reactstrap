@@ -119,6 +119,24 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render when expected when passed modalTransitionTimeout and backdropTransitionTimeout props', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} modalTransitionTimeout={20} backdropTransitionTimeout={10} modalClassName="custom-timeout-modal">
+        Hello, world!
+      </Modal>
+    );
+
+    jasmine.clock().tick(20);
+    expect(wrapper.children().length).toBe(0);
+
+    const matchedModals = document.getElementsByClassName('custom-timeout-modal');
+
+    expect(matchedModals.length).toBe(1);
+
+    wrapper.unmount();
+  });
+
   it('should render with class "modal" and have custom class name if provided with modalClassName', () => {
     isOpen = true;
     const wrapper = mount(
