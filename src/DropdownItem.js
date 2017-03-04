@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import classNames from 'classnames';
 import omit from 'lodash.omit';
+import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
