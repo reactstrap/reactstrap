@@ -68,10 +68,20 @@ export default class ModalsPage extends React.Component {
   contentClassName: PropTypes.string,
   // boolean to control whether the fade transition occurs (default: true)
   fade: PropTypes.bool,
-  // default: 300
+  // modalTransitionTimeout - controls appear, enter, and leave (default: 300)
+  // If you need different values for appear v. enter v. leave, use the more
+  // specific props like modalTransitionAppearTimeout.
   modalTransitionTimeout: PropTypes.number,
-  // default: 150
+  modalTransitionAppearTimeout: PropTypes.number,
+  modalTransitionEnterTimeout: PropTypes.number,
+  modalTransitionLeaveTimeout: PropTypes.number,
+  // backdropTransitionTimeout - controls appear, enter, and leave (default: 150)
+  // If you need different values for appear v. enter v. leave, use the more
+  // specific props like backdropTransitionAppearTimeout.
   backdropTransitionTimeout: PropTypes.number
+  backdropTransitionAppearTimeout: PropTypes.number,
+  backdropTransitionEnterTimeout: PropTypes.number,
+  backdropTransitionLeaveTimeout: PropTypes.number,
 }`}
           </PrismCode>
         </pre>

@@ -33,8 +33,14 @@ const propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  modalTransitionTimeout: PropTypes.number,
   backdropTransitionTimeout: PropTypes.number,
+  backdropTransitionAppearTimeout: PropTypes.number,
+  backdropTransitionEnterTimeout: PropTypes.number,
+  backdropTransitionLeaveTimeout: PropTypes.number,
+  modalTransitionTimeout: PropTypes.number,
+  modalTransitionAppearTimeout: PropTypes.number,
+  modalTransitionEnterTimeout: PropTypes.number,
+  modalTransitionLeaveTimeout: PropTypes.number,
 };
 
 const defaultProps = {
@@ -231,9 +237,21 @@ class Modal extends React.Component {
               key="modal-dialog"
               onEnter={this.onEnter}
               onLeave={this.onExit}
-              transitionAppearTimeout={modalTransitionTimeout}
-              transitionEnterTimeout={modalTransitionTimeout}
-              transitionLeaveTimeout={modalTransitionTimeout}
+              transitionAppearTimeout={
+                typeof this.props.modalTransitionAppearTimeout === 'number'
+                  ? this.props.modalTransitionAppearTimeout
+                  : modalTransitionTimeout
+              }
+              transitionEnterTimeout={
+                typeof this.props.modalTransitionEnterTimeout === 'number'
+                  ? this.props.modalTransitionEnterTimeout
+                  : modalTransitionTimeout
+              }
+              transitionLeaveTimeout={
+                typeof this.props.modalTransitionLeaveTimeout === 'number'
+                  ? this.props.modalTransitionLeaveTimeout
+                  : modalTransitionTimeout
+              }
               className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
               {...modalAttributes}
             >
@@ -243,9 +261,21 @@ class Modal extends React.Component {
           {isOpen && backdrop && (
             <Fade
               key="modal-backdrop"
-              transitionAppearTimeout={backdropTransitionTimeout}
-              transitionEnterTimeout={backdropTransitionTimeout}
-              transitionLeaveTimeout={backdropTransitionTimeout}
+              transitionAppearTimeout={
+                typeof this.props.backdropTransitionAppearTimeout === 'number'
+                  ? this.props.backdropTransitionAppearTimeout
+                  : backdropTransitionTimeout
+              }
+              transitionEnterTimeout={
+                typeof this.props.backdropTransitionEnterTimeout === 'number'
+                  ? this.props.backdropTransitionEnterTimeout
+                  : backdropTransitionTimeout
+              }
+              transitionLeaveTimeout={
+                typeof this.props.backdropTransitionLeaveTimeout === 'number'
+                  ? this.props.backdropTransitionLeaveTimeout
+                  : backdropTransitionTimeout
+              }
               className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
             />
           )}
