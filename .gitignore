@@ -3,3 +3,5 @@ node_modules
 /dist
 /build
 /lib
+.idea
+npm-debug.log
