@@ -34,8 +34,11 @@ export default class TooltipsPage extends React.Component {
   // boolean to control the state of the tooltip
   toggle:  PropTypes.func,
   // callback for toggling isOpen in the controlling component
-  target:  PropTypes.string.isRequired,
-  // target div ID, popover is attached to this element
+  target:  PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]).isRequired,
+  // target element or element ID, popover is attached to this element
   tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   // optionally overide tether config http://tether.io/#options
   tetherRef: PropType.function,
