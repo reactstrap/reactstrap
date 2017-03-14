@@ -47,7 +47,7 @@ const defaultProps = {
   isOpen: false,
   backdrop: true,
   keyboard: true,
-  zIndex: 1000,
+  zIndex: 1050,
   fade: true,
   modalTransitionTimeout: 300,
   backdropTransitionTimeout: 150,
