@@ -75,10 +75,10 @@ describe('Tooltip', () => {
   it('should render with target object', () => {
     isOpen = true;
     const wrapper = mount(
-        <Tooltip target={document.getElementById('target')} isOpen={isOpen} toggle={toggle}>
-          Tooltip Content
-        </Tooltip>,
-        { attachTo: container }
+      <Tooltip target={document.getElementById('target')} isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>,
+      { attachTo: container }
     );
     const instance = wrapper.instance();
     const tooltips = document.getElementsByClassName('tooltip');

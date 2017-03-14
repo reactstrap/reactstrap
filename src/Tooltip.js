@@ -7,8 +7,8 @@ import { getTetherAttachments, tetherAttachements, mapToCssModules } from './uti
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
   target: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
+    PropTypes.string,
+    PropTypes.object
   ]).isRequired,
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
