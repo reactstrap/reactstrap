@@ -1,6 +1,11 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": ["es2015-rollup", "react"],
   "plugins": [
     "transform-object-rest-spread"
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": ["babili"]
+    }
+  }
 }
