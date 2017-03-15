@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+const { PropTypes } = React;
 import ReactDOM from 'react-dom';
 import isFunction from 'lodash.isfunction';
 import Tether from 'tether';
