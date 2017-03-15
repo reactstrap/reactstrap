@@ -129,7 +129,7 @@ class Tooltip extends React.Component {
     return {
       ...defaultTetherConfig,
       ...attachments,
-      target: this.getTarget(),
+      target: this._target,
       ...this.props.tether
     };
   }
