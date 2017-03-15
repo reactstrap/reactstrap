@@ -54,7 +54,12 @@ describe('DropdownMenu', () => {
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<DropdownMenu tag="main">Yo!</DropdownMenu>);
+    const wrapper = shallow(<DropdownMenu tag="main">Yo!</DropdownMenu>,
+      {
+        context: {
+          isOpen: isOpen
+        }
+      });
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('dropdown-menu')).toBe(true);
