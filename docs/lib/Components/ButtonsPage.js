@@ -7,7 +7,7 @@ import ButtonExample from '../examples/Button';
 const ButtonExampleSource = require('!!raw!../examples/Button');
 
 import ButtonOutline from '../examples/ButtonOutline';
-const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline')
+const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline');
 
 import ButtonStateful from '../examples/ButtonStateful';
 const ButtonStatefulSource = require('!!raw!../examples/ButtonStateful');

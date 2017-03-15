@@ -39,7 +39,7 @@ const defaultProps = {
   isOpen: false,
   backdrop: true,
   keyboard: true,
-  zIndex: 1000,
+  zIndex: 1050,
 };
 
 class Modal extends React.Component {
