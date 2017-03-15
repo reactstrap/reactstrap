@@ -25,9 +25,9 @@ const config = {
     'react-addons-transition-group': 'TransitionGroup',
   },
   targets: [
-    { dest: 'lib/reactstrap.cjs.js', format: 'cjs' },
-    { dest: 'lib/reactstrap.umd.js', format: 'umd' },
-    { dest: 'lib/reactstrap.es.js', format: 'es' },
+    { dest: 'dist/reactstrap.cjs.js', format: 'cjs' },
+    { dest: 'dist/reactstrap.umd.js', format: 'umd' },
+    { dest: 'dist/reactstrap.es.js', format: 'es' },
   ],
 };
 
