@@ -1,9 +1,9 @@
 import React from 'react';
-const { PropTypes } = React;
 import ReactDOM from 'react-dom';
 import isFunction from 'lodash.isfunction';
 import Tether from 'tether';
 
+const { PropTypes } = React;
 const propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,

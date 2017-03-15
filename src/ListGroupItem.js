@@ -1,7 +1,7 @@
 import React from 'react';
-const { PropTypes } = React;
 import classNames from 'classnames';
 
+const { PropTypes } = React;
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   active: PropTypes.bool,

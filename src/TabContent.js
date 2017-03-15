@@ -4,7 +4,6 @@ import omit from 'lodash.omit';
 import { mapToCssModules } from './utils';
 
 const { PropTypes, Component } = React;
-
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   activeTab: PropTypes.any,

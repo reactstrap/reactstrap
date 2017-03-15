@@ -1,7 +1,7 @@
 import React from 'react';
-const { PropTypes } = React;
 import Dropdown from './Dropdown';
 
+const { PropTypes } = React;
 const propTypes = {
   children: PropTypes.node,
 };

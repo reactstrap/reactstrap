@@ -1,5 +1,4 @@
 import React from 'react';
-const { PropTypes } = React;
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
@@ -12,6 +11,7 @@ import {
   mapToCssModules,
 } from './utils';
 
+const { PropTypes } = React;
 const propTypes = {
   isOpen: PropTypes.bool,
   size: PropTypes.string,
