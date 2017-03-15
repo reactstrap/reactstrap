@@ -6,6 +6,12 @@
   "env": {
     "production": {
       "presets": ["babili"]
+    },
+    "webpack": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
     }
   }
 }
