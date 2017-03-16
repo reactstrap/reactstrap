@@ -54,6 +54,7 @@ class Tooltip extends React.Component {
     super(props);
 
     this.addTargetEvents = this.addTargetEvents.bind(this);
+    this.getTarget = this.getTarget.bind(this);
     this.getTetherConfig = this.getTetherConfig.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeTargetEvents = this.removeTargetEvents.bind(this);
@@ -129,7 +130,7 @@ class Tooltip extends React.Component {
     return {
       ...defaultTetherConfig,
       ...attachments,
-      target: this._target,
+      target: this.getTarget,
       ...this.props.tether
     };
   }
