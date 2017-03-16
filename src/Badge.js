@@ -23,7 +23,7 @@ const Badge = (props) => {
     cssModule,
     color,
     pill,
-    tag: Component,
+    tag: Tag,
     ...attributes
   } = props;
 
@@ -35,7 +35,7 @@ const Badge = (props) => {
   ), cssModule);
 
   return (
-    <Component {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} />
   );
 };
 
