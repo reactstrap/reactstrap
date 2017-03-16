@@ -3,11 +3,9 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
-  inline: PropTypes.bool,
-  disabled: PropTypes.bool,
   tabs: PropTypes.bool,
   pills: PropTypes.bool,
-  stacked: PropTypes.bool,
+  vertical: PropTypes.bool,
   navbar: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
@@ -24,8 +22,7 @@ const Nav = (props) => {
     cssModule,
     tabs,
     pills,
-    inline,
-    stacked,
+    vertical,
     navbar,
     tag: Tag,
     ...attributes
@@ -37,9 +34,7 @@ const Nav = (props) => {
     {
       'nav-tabs': tabs,
       'nav-pills': pills,
-      'nav-inline': inline,
-      'nav-stacked': stacked,
-      disabled: attributes.disabled
+      'flex-column': vertical
     }
   ), cssModule);
 

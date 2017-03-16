@@ -1,3 +1,14 @@
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/reactstrap/reactstrap/compare/4.2.0...v4.3.0) (2017-03-14)
+
+
+### Bug Fixes
+
+* **Modal:** default zIndex to 1050 ([#343](https://github.com/reactstrap/reactstrap/issues/343)) ([8d0f4ec](https://github.com/reactstrap/reactstrap/commit/8d0f4ec)), closes [#342](https://github.com/reactstrap/reactstrap/issues/342)
+* **Nav:** update props available ([#338](https://github.com/reactstrap/reactstrap/issues/338)) ([992e4e6](https://github.com/reactstrap/reactstrap/commit/992e4e6))
+
+
+
 <a name="4.2.0"></a>
 # [4.2.0](https://github.com/reactstrap/reactstrap/compare/4.1.1...v4.2.0) (2017-02-14)
 
