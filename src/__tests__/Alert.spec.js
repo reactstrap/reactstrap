@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Alert from '../Alert';
+import { Alert } from '../';
 
 describe('Alert', () => {
   it('should render children', () => {
