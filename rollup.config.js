@@ -1,6 +1,7 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import babili from 'rollup-plugin-babili';
 
 const config = {
   moduleName: 'ReactStrap',
@@ -32,5 +33,9 @@ const config = {
     { dest: 'dist/reactstrap.es.js', format: 'es' },
   ],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(babili({comments: false}));
+}
 
 export default config;

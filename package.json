@@ -52,6 +52,7 @@
     "lodash.isobject": "^3.0.2",
     "lodash.omit": "^4.4.1",
     "lodash.tonumber": "^4.0.3",
+    "rollup-plugin-babili": "^2.0.0",
     "tether": "balloob/tether#7e0d48e4ac2162e251dc2b69d7c13e6c29a5667f"
   },
   "peerDependencies": {
