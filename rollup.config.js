@@ -1,17 +1,12 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
-import alias from 'rollup-plugin-alias';
 
 const config = {
   moduleName: 'ReactStrap',
   entry: 'src/index.js',
   exports: 'named',
   plugins: [
-    alias({
-      // See https://github.com/HubSpot/tether/pull/240#issuecomment-286926942
-      tether: 'node_modules/tether/dist/js/tether.min.js',
-    }),
     nodeResolve(),
     commonjs(),
     babel({

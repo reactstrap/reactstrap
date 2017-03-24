@@ -52,7 +52,7 @@
     "lodash.isobject": "^3.0.2",
     "lodash.omit": "^4.4.1",
     "lodash.tonumber": "^4.0.3",
-    "tether": "^1.3.4"
+    "tether": "balloob/tether#ef50f750d73e3ea025ced154967a46d760bd404f"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
