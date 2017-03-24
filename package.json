@@ -64,7 +64,6 @@
     "babel-cli": "^6.14.0",
     "babel-loader": "^6.2.2",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-babili": "^0.0.12",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-app": "^0.2.1",
