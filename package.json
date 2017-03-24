@@ -52,7 +52,6 @@
     "lodash.isobject": "^3.0.2",
     "lodash.omit": "^4.4.1",
     "lodash.tonumber": "^4.0.3",
-    "rollup-plugin-babili": "^2.0.0",
     "tether": "balloob/tether#7e0d48e4ac2162e251dc2b69d7c13e6c29a5667f"
   },
   "peerDependencies": {
@@ -101,6 +100,7 @@
     "react-scripts": "^0.7.0",
     "rollup": "^0.41.5",
     "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-babili": "^2.0.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^2.0.0",
     "static-site-generator-webpack-plugin": "^2.0.1",
