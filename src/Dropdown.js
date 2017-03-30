@@ -4,7 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import omit from 'lodash.omit';
+import omit from 'lodash-es/omit';
 import { mapToCssModules } from './utils';
 import TetherContent from './TetherContent';
 import DropdownMenu from './DropdownMenu';

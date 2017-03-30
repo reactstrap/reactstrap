@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import omit from 'lodash.omit';
+import omit from 'lodash-es/omit';
 import { mapToCssModules } from './utils';
 
 const { PropTypes, Component } = React;

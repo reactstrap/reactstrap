@@ -6,6 +6,7 @@ import babili from 'rollup-plugin-babili';
 const config = {
   moduleName: 'ReactStrap',
   entry: 'src/index.js',
+  sourceMap: true,
   exports: 'named',
   plugins: [
     nodeResolve(),
