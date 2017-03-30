@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import toNumber from 'lodash.tonumber';
+import toNumber from 'lodash-es/toNumber';
 import { mapToCssModules } from './utils';
 
 const { PropTypes } = React;

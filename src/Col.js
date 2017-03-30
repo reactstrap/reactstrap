@@ -1,4 +1,4 @@
-import isobject from 'lodash.isobject';
+import isObject from 'lodash-es/isObject';
 import React from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
@@ -72,7 +72,7 @@ const Col = (props) => {
     const isXs = !i;
     let colClass;
 
-    if (isobject(columnProp)) {
+    if (isObject(columnProp)) {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
       colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 
