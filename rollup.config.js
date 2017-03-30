@@ -29,13 +29,12 @@ const config = {
   },
   targets: [
     { dest: 'dist/reactstrap.cjs.js', format: 'cjs' },
-    { dest: 'dist/reactstrap.umd.js', format: 'umd' },
     { dest: 'dist/reactstrap.es.js', format: 'es' },
   ],
 };
 
 if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(babili({comments: false}));
+  config.plugins.push(babili({ comments: false }));
 }
 
 export default config;
