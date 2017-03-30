@@ -192,6 +192,7 @@ class Modal extends React.Component {
             transitionLeaveTimeout={300}
             onClickCapture={this.handleBackdropClick}
             onKeyUp={this.handleEscape}
+            cssModule={cssModule}
             className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
             style={{ display: 'block' }}
             tabIndex="-1"
@@ -216,6 +217,7 @@ class Modal extends React.Component {
             transitionAppearTimeout={150}
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
+            cssModule={cssModule}
             className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
           />
         )}
