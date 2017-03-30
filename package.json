@@ -2,9 +2,9 @@
   "name": "reactstrap",
   "version": "4.3.0",
   "description": "React Bootstrap 4 components",
-  "main": "lib/reactstrap.cjs.js",
-  "jsnext:main": "lib/reactstrap.es.js",
-  "module": "lib/reactstrap.es.js",
+  "main": "dist/reactstrap.cjs.js",
+  "jsnext:main": "dist/reactstrap.es.js",
+  "module": "dist/reactstrap.es.js",
   "scripts": {
     "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "BABEL_ENV=test react-scripts test --env=jsdom",
