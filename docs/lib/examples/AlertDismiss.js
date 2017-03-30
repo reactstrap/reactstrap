@@ -7,10 +7,12 @@ class AlertExample extends React.Component {
 
     this.state = {
       visible: true
-    }
+    };
+
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
-  onDismiss = () => {
+  onDismiss() {
     this.setState({ visible: false });
   }
 
