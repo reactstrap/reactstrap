@@ -19,6 +19,27 @@ describe('DropdownItem', () => {
     expect(wrapper.find('button').length).toBe(1);
   });
 
+  it('should render type as "button" by default when tag is "button"', () => {
+    const wrapper = mount(<DropdownItem>Home</DropdownItem>);
+
+    expect(wrapper.find('button').prop('type')).toBe('button');
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should render type as user defined when defined by the user', () => {
+    const wrapper = mount(<DropdownItem type="submit">Home</DropdownItem>);
+
+    expect(wrapper.find('button').prop('type')).toBe('submit');
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should not render type by default when the type is not defined and the tag is not "button"', () => {
+    const wrapper = mount(<DropdownItem tag="a">Home</DropdownItem>);
+
+    expect(wrapper.find('a').prop('type')).toBe(undefined);
+    expect(wrapper.text()).toBe('Home');
+  });
+
   it('should render custom element', () => {
     const Link = (props) => <a href="/home" {...props}>{props.children}</a>;
     const wrapper = mount(<DropdownItem tag={Link}>Home</DropdownItem>);
