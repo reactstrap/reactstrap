@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Dropdown from './Dropdown';
 
+const { PropTypes } = React;
 const propTypes = {
   children: PropTypes.node,
 };

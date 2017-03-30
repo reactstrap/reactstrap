@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
 import { mapToCssModules } from './utils';
 
+const { PropTypes, Component } = React;
 const SHOW = 'SHOW';
 const SHOWN = 'SHOWN';
 const HIDE = 'HIDE';
