@@ -1,4 +1,5 @@
 import React from 'react';
+import omit from 'lodash.omit';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
@@ -12,6 +13,7 @@ const propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  toggle: PropTypes.bool
 };
 
 const contextTypes = {
@@ -19,7 +21,8 @@ const contextTypes = {
 };
 
 const defaultProps = {
-  tag: 'button'
+  tag: 'button',
+  toggle: true
 };
 
 class DropdownItem extends React.Component {
@@ -40,7 +43,9 @@ class DropdownItem extends React.Component {
       this.props.onClick(e);
     }
 
-    this.context.toggle();
+    if (this.props.toggle) {
+      this.context.toggle();
+    }
   }
 
   getTabIndex() {
@@ -59,7 +64,7 @@ class DropdownItem extends React.Component {
       divider,
       tag: Tag,
       header,
-      ...props } = this.props;
+      ...props } = omit(this.props, ['toggle']);
 
     const classes = mapToCssModules(classNames(
       className,
