@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
+const { PropTypes } = React;
 const propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
@@ -75,11 +76,14 @@ class DropdownItem extends React.Component {
         Tag = 'h6';
       } else if (divider) {
         Tag = 'div';
+      } else if (props.href) {
+        Tag = 'a';
       }
     }
 
     return (
       <Tag
+        type={Tag === 'button' ? 'button' : undefined}
         {...props}
         tabIndex={tabIndex}
         className={classes}

@@ -72,7 +72,6 @@ import {
   UncontrolledDropdown,
   UncontrolledNavDropdown,
   UncontrolledTooltip,
-  UncontrolledPopover,
 } from './Uncontrolled';
 
 export {
@@ -149,5 +148,4 @@ export {
   UncontrolledDropdown,
   UncontrolledNavDropdown,
   UncontrolledTooltip,
-  UncontrolledPopover,
 };

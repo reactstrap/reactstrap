@@ -39,7 +39,7 @@ export default class TablesPage extends React.Component {
         <h4>Properties</h4>
         <pre>
         <PrismCode className="language-jsx">
-{`Card.propTypes = {
+{`Table.propTypes = {
 // Pass in a Component to override default element
 tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 size: PropTypes.string,
