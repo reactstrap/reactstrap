@@ -1,6 +1,17 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": [
+    ["es2015", {"modules": false}],
+    "react"
+  ],
   "plugins": [
     "transform-object-rest-spread"
-  ]
+  ],
+  "env": {
+    "webpack": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }

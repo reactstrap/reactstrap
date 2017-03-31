@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
 import { getTetherAttachments, mapToCssModules, tetherAttachements } from './utils';
 
+const { PropTypes } = React;
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
