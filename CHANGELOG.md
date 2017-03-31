@@ -1,3 +1,22 @@
+<a name="4.4.0"></a>
+# [4.4.0](https://github.com/reactstrap/reactstrap/compare/4.3.0...v4.4.0) (2017-03-31)
+
+
+### Bug Fixes
+
+* **Col:** account for 0 col properties ([#378](https://github.com/reactstrap/reactstrap/issues/378)) ([fe48e9e](https://github.com/reactstrap/reactstrap/commit/fe48e9e))
+* **DropDownItem:** when href use `a` tag ([#377](https://github.com/reactstrap/reactstrap/issues/377)) ([96616af](https://github.com/reactstrap/reactstrap/commit/96616af)), closes [#367](https://github.com/reactstrap/reactstrap/issues/367)
+* **Modal:** pass in cssModule to Fade components ([#373](https://github.com/reactstrap/reactstrap/issues/373)) ([be34d19](https://github.com/reactstrap/reactstrap/commit/be34d19))
+
+
+### Features
+
+* **Button:** default type to button ([#376](https://github.com/reactstrap/reactstrap/issues/376)) ([ebbeba7](https://github.com/reactstrap/reactstrap/commit/ebbeba7))
+* **DropdownItem:** Add toggle switch to allow conditional toggle ([#346](https://github.com/reactstrap/reactstrap/issues/346)) ([578a61b](https://github.com/reactstrap/reactstrap/commit/578a61b))
+* **Tooltip:** enable target element option ([#356](https://github.com/reactstrap/reactstrap/issues/356)) ([2023036](https://github.com/reactstrap/reactstrap/commit/2023036))
+
+
+
 <a name="4.3.0"></a>
 # [4.3.0](https://github.com/reactstrap/reactstrap/compare/4.2.0...v4.3.0) (2017-03-14)
 

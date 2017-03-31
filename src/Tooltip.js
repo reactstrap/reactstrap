@@ -7,7 +7,10 @@ import { getTetherAttachments, tetherAttachements, mapToCssModules } from './uti
 const { PropTypes } = React;
 const propTypes = {
   placement: React.PropTypes.oneOf(tetherAttachements),
-  target: PropTypes.string.isRequired,
+  target: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]).isRequired,
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   tether: PropTypes.object,
@@ -52,6 +55,7 @@ class Tooltip extends React.Component {
     super(props);
 
     this.addTargetEvents = this.addTargetEvents.bind(this);
+    this.getTarget = this.getTarget.bind(this);
     this.getTetherConfig = this.getTetherConfig.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeTargetEvents = this.removeTargetEvents.bind(this);
@@ -65,7 +69,7 @@ class Tooltip extends React.Component {
   }
 
   componentDidMount() {
-    this._target = document.getElementById(this.props.target);
+    this._target = this.getTarget();
     this.addTargetEvents();
   }
 
@@ -114,12 +118,20 @@ class Tooltip extends React.Component {
     return delay;
   }
 
+  getTarget() {
+    const { target } = this.props;
+    if (typeof target === 'object') {
+      return target;
+    }
+    return document.getElementById(target);
+  }
+
   getTetherConfig() {
     const attachments = getTetherAttachments(this.props.placement);
     return {
       ...defaultTetherConfig,
       ...attachments,
-      target: '#' + this.props.target,
+      target: this.getTarget,
       ...this.props.tether
     };
   }

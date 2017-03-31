@@ -78,9 +78,9 @@ const Col = (props) => {
 
       colClasses.push(mapToCssModules(classNames({
         [colClass]: columnProp.size || columnProp.size === '',
-        [`push${colSizeInterfix}${columnProp.push}`]: columnProp.push,
-        [`pull${colSizeInterfix}${columnProp.pull}`]: columnProp.pull,
-        [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset
+        [`push${colSizeInterfix}${columnProp.push}`]: columnProp.push || columnProp.push === 0,
+        [`pull${colSizeInterfix}${columnProp.pull}`]: columnProp.pull || columnProp.pull === 0,
+        [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset || columnProp.offset === 0
       })), cssModule);
     } else {
       colClass = getColumnSizeClass(isXs, colWidth, columnProp);
