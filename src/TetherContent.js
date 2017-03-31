@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import isFunction from 'lodash.isfunction';
-import Tether from 'tether';
+import Tether from 'reactstrap-tether';
 
 const { PropTypes } = React;
 const propTypes = {
