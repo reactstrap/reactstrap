@@ -24,8 +24,15 @@ describe('Button', () => {
     expect(wrapper.text()).toBe('Home');
   });
 
-  it('should render type as "button" by default when tag is "button"', () => {
+  it('should render type as undefined by default when tag is "button"', () => {
     const wrapper = mount(<Button>Home</Button>);
+
+    expect(wrapper.find('button').prop('type')).toBe(undefined);
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
+    const wrapper = mount(<Button onClick={() => {}}>Home</Button>);
 
     expect(wrapper.find('button').prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');
