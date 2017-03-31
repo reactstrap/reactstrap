@@ -23,7 +23,11 @@ class Utilities extends React.Component {
       navItems: [
         {
           name: 'Colors',
-          to: '/utilities/colors'
+          to: '/utilities/colors/'
+        },
+        {
+          name: 'Clearfix',
+          to: '/utilities/clearfix/'
         }
       ]
     };
