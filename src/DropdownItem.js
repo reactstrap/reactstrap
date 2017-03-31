@@ -76,6 +76,8 @@ class DropdownItem extends React.Component {
         Tag = 'h6';
       } else if (divider) {
         Tag = 'div';
+      } else if (props.href) {
+        Tag = 'a';
       }
     }
 

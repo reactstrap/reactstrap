@@ -46,6 +46,16 @@ describe('DropdownItem', () => {
     });
   });
 
+  describe('link (with href)', () => {
+    it('should render an anchor tag', () => {
+      const wrapper = mount(<DropdownItem href="#">GO!</DropdownItem>);
+
+      expect(wrapper.find('a').length).toBe(1);
+      expect(wrapper.find('a').hasClass('dropdown-item')).toBe(true);
+      expect(wrapper.text()).toBe('GO!');
+    });
+  });
+
   describe('onClick', () => {
     it('should not be called when disabled', () => {
       const e = { preventDefault: jasmine.createSpy('preventDefault') };
