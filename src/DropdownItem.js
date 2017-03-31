@@ -83,6 +83,7 @@ class DropdownItem extends React.Component {
 
     return (
       <Tag
+        type={Tag === 'button' ? 'button' : undefined}
         {...props}
         tabIndex={tabIndex}
         className={classes}

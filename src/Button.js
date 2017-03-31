@@ -69,7 +69,13 @@ class Button extends React.Component {
     }
 
     return (
-      <Tag {...attributes} className={classes} ref={getRef} onClick={this.onClick} />
+      <Tag
+        type={Tag === 'button' ? 'button' : undefined}
+        {...attributes}
+        className={classes}
+        ref={getRef}
+        onClick={this.onClick}
+      />
     );
   }
 }
