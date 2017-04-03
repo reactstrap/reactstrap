@@ -26,6 +26,20 @@ describe('DropdownItem', () => {
     expect(wrapper.text()).toBe('Home');
   });
 
+  it('should render type as undefined by default when tag is "button" and toggle is false', () => {
+    const wrapper = mount(<DropdownItem toggle={false}>Home</DropdownItem>);
+
+    expect(wrapper.find('button').prop('type')).toBe(undefined);
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
+    const wrapper = mount(<DropdownItem onClick={() => {}}>Home</DropdownItem>);
+
+    expect(wrapper.find('button').prop('type')).toBe('button');
+    expect(wrapper.text()).toBe('Home');
+  });
+
   it('should render type as user defined when defined by the user', () => {
     const wrapper = mount(<DropdownItem type="submit">Home</DropdownItem>);
 
