@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
+const { PropTypes } = React;
 const propTypes = {
   active: PropTypes.bool,
   block: PropTypes.bool,
@@ -68,7 +69,13 @@ class Button extends React.Component {
     }
 
     return (
-      <Tag {...attributes} className={classes} ref={getRef} onClick={this.onClick} />
+      <Tag
+        type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
+        {...attributes}
+        className={classes}
+        ref={getRef}
+        onClick={this.onClick}
+      />
     );
   }
 }

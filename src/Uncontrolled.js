@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Alert from './Alert';
 import ButtonDropdown from './ButtonDropdown';
 import Dropdown from './Dropdown';
 import NavDropdown from './NavDropdown';
 import Tooltip from './Tooltip';
 
+const { Component } = React;
 const components = {
   UncontrolledAlert: Alert,
   UncontrolledButtonDropdown: ButtonDropdown,

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import TransitionGroup from 'react-addons-transition-group';
@@ -10,6 +10,7 @@ import {
   mapToCssModules,
 } from './utils';
 
+const { PropTypes } = React;
 const propTypes = {
   isOpen: PropTypes.bool,
   size: PropTypes.string,
@@ -252,6 +253,7 @@ class Modal extends React.Component {
                   ? this.props.modalTransitionLeaveTimeout
                   : modalTransitionTimeout
               }
+              cssModule={cssModule}
               className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
               {...modalAttributes}
             >
@@ -276,6 +278,7 @@ class Modal extends React.Component {
                   ? this.props.backdropTransitionLeaveTimeout
                   : backdropTransitionTimeout
               }
+              cssModule={cssModule}
               className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
             />
           )}

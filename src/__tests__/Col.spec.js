@@ -70,6 +70,16 @@ describe('Col', () => {
     expect(wrapper.hasClass('offset-sm-2')).toBe(true);
   });
 
+  it('should pass col size specific classes via Objects including 0', () => {
+    const wrapper = shallow(<Col sm={{ size: 6, push: 0, pull: 0, offset: 0 }} />);
+
+    expect(wrapper.hasClass('col-sm-6')).toBe(true);
+    expect(wrapper.hasClass('col')).toBe(true);
+    expect(wrapper.hasClass('push-sm-0')).toBe(true);
+    expect(wrapper.hasClass('pull-sm-0')).toBe(true);
+    expect(wrapper.hasClass('offset-sm-0')).toBe(true);
+  });
+
   it('should pass col size when passing via object with size "auto"', () => {
     const wrapper = shallow(<Col
       sm={{ size: 'auto', push: 2, pull: 2, offset: 2 }}
