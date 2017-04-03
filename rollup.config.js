@@ -4,6 +4,7 @@ import babel from 'rollup-plugin-babel';
 import babili from 'rollup-plugin-babili';
 
 const config = {
+  moduleName: 'Reactstrap',
   entry: 'src/index.js',
   plugins: [
     nodeResolve(),
@@ -12,15 +13,23 @@ const config = {
       plugins: ['external-helpers'],
     }),
   ],
+  sourceMap: true,
   external: [
     'react',
     'react-dom',
     'react-addons-css-transition-group',
     'react-addons-transition-group',
   ],
+  // Used for the UMD bundles
+  globals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-addons-css-transition-group': 'React.addons.CSSTransitionGroup',
+    'react-addons-transition-group': 'React.addons.TransitionGroup',
+  },
   targets: [
-    { dest: 'dist/reactstrap.cjs.js', format: 'cjs' },
     { dest: 'dist/reactstrap.es.js', format: 'es' },
+    { dest: 'dist/reactstrap.min.js', format: 'umd' },
   ],
 };
 
