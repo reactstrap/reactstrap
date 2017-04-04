@@ -14,7 +14,7 @@ import {
 const { PropTypes } = React;
 const propTypes = {
   isOpen: PropTypes.bool,
-  isFocused: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   size: PropTypes.string,
   toggle: PropTypes.func,
   keyboard: PropTypes.bool,
@@ -39,7 +39,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
-  isFocused: true,
+  autoFocus: true,
   backdrop: true,
   keyboard: true,
   zIndex: 1050,
@@ -110,7 +110,7 @@ class Modal extends React.Component {
 
   togglePortal() {
     if (this.props.isOpen) {
-      if (this.props.isFocused) {
+      if (this.props.autoFocus) {
         this._focus = true;
       }
       this.show();
@@ -182,7 +182,7 @@ class Modal extends React.Component {
       backdrop,
       children,
       ...attributes
-    } = omit(this.props, ['toggle', 'keyboard', 'onEnter', 'onExit', 'zIndex', 'isFocused']);
+    } = omit(this.props, ['toggle', 'keyboard', 'onEnter', 'onExit', 'zIndex', 'autoFocus']);
 
     return (
       <TransitionGroup component="div" className={mapToCssModules(wrapClassName)}>
