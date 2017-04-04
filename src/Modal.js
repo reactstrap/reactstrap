@@ -39,7 +39,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
-  isFocused: false,
+  isFocused: true,
   backdrop: true,
   keyboard: true,
   zIndex: 1050,
