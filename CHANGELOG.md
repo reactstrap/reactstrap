@@ -1,3 +1,44 @@
+<a name="4.5.0"></a>
+# [4.5.0](https://github.com/reactstrap/reactstrap/compare/4.4.0...v4.5.0) (2017-04-03)
+
+
+### Bug Fixes
+
+* **Button:** only default to button when click is handled ([#383](https://github.com/reactstrap/reactstrap/issues/383)) ([af3ccbe](https://github.com/reactstrap/reactstrap/commit/af3ccbe))
+* **lib:** import/export not getting transpiled in lib dir ([#384](https://github.com/reactstrap/reactstrap/issues/384)) ([2e2a5da](https://github.com/reactstrap/reactstrap/commit/2e2a5da))
+
+
+
+<a name="4.4.0"></a>
+# [4.4.0](https://github.com/reactstrap/reactstrap/compare/4.3.0...v4.4.0) (2017-03-31)
+
+
+### Bug Fixes
+
+* **Col:** account for 0 col properties ([#378](https://github.com/reactstrap/reactstrap/issues/378)) ([fe48e9e](https://github.com/reactstrap/reactstrap/commit/fe48e9e))
+* **DropDownItem:** when href use `a` tag ([#377](https://github.com/reactstrap/reactstrap/issues/377)) ([96616af](https://github.com/reactstrap/reactstrap/commit/96616af)), closes [#367](https://github.com/reactstrap/reactstrap/issues/367)
+* **Modal:** pass in cssModule to Fade components ([#373](https://github.com/reactstrap/reactstrap/issues/373)) ([be34d19](https://github.com/reactstrap/reactstrap/commit/be34d19))
+
+
+### Features
+
+* **Button:** default type to button ([#376](https://github.com/reactstrap/reactstrap/issues/376)) ([ebbeba7](https://github.com/reactstrap/reactstrap/commit/ebbeba7))
+* **DropdownItem:** Add toggle switch to allow conditional toggle ([#346](https://github.com/reactstrap/reactstrap/issues/346)) ([578a61b](https://github.com/reactstrap/reactstrap/commit/578a61b))
+* **Tooltip:** enable target element option ([#356](https://github.com/reactstrap/reactstrap/issues/356)) ([2023036](https://github.com/reactstrap/reactstrap/commit/2023036))
+
+
+
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/reactstrap/reactstrap/compare/4.2.0...v4.3.0) (2017-03-14)
+
+
+### Bug Fixes
+
+* **Modal:** default zIndex to 1050 ([#343](https://github.com/reactstrap/reactstrap/issues/343)) ([8d0f4ec](https://github.com/reactstrap/reactstrap/commit/8d0f4ec)), closes [#342](https://github.com/reactstrap/reactstrap/issues/342)
+* **Nav:** update props available ([#338](https://github.com/reactstrap/reactstrap/issues/338)) ([992e4e6](https://github.com/reactstrap/reactstrap/commit/992e4e6))
+
+
+
 <a name="4.2.0"></a>
 # [4.2.0](https://github.com/reactstrap/reactstrap/compare/4.1.1...v4.2.0) (2017-02-14)
 

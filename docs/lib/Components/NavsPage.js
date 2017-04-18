@@ -4,8 +4,8 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import NavsExample from '../examples/Navs';
 const NavsExampleSource = require('!!raw!../examples/Navs');
-import NavInlineExample from '../examples/NavInline';
-const NavInlineExampleSource = require('!!raw!../examples/NavInline');
+import NavVerticalExample from '../examples/NavVertical';
+const NavVerticalExampleSource = require('!!raw!../examples/NavVertical');
 import NavTabsExample from '../examples/NavTabs';
 const NavTabsExampleSource = require('!!raw!../examples/NavTabs');
 import NavPillsExample from '../examples/NavPills';
@@ -29,11 +29,9 @@ export default class NavssPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Nav.propTypes = {
-  inline: PropTypes.bool,
-  disabled: PropTypes.bool,
   tabs: PropTypes.bool,
   pills: PropTypes.bool,
-  stacked: PropTypes.bool,
+  vertical: PropTypes.bool,
   navbar: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use
@@ -74,13 +72,13 @@ export default class NavssPage extends React.Component {
 };`}
           </PrismCode>
         </pre>
-        <h3>Inline</h3>
+        <h3>Vertical</h3>
         <div className="docs-example">
-          <NavInlineExample />
+          <NavVerticalExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {NavInlineExampleSource}
+            {NavVerticalExampleSource}
           </PrismCode>
         </pre>
         <h3>Tabs</h3>

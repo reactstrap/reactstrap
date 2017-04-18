@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 import Dropdown from './Dropdown';
 
+const { PropTypes } = React;
 const propTypes = {
   children: PropTypes.node,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),

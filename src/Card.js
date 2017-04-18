@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
+const { PropTypes } = React;
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   inverse: PropTypes.bool,

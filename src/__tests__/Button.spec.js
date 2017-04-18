@@ -24,6 +24,41 @@ describe('Button', () => {
     expect(wrapper.text()).toBe('Home');
   });
 
+  it('should render type as undefined by default when tag is "button"', () => {
+    const wrapper = mount(<Button>Home</Button>);
+
+    expect(wrapper.find('button').prop('type')).toBe(undefined);
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
+    const wrapper = mount(<Button onClick={() => {}}>Home</Button>);
+
+    expect(wrapper.find('button').prop('type')).toBe('button');
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should render type as user defined when defined by the user', () => {
+    const wrapper = mount(<Button type="submit">Home</Button>);
+
+    expect(wrapper.find('button').prop('type')).toBe('submit');
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should not render type by default when the type is not defined and the tag is not "button"', () => {
+    const wrapper = mount(<Button tag="a">Home</Button>);
+
+    expect(wrapper.find('a').prop('type')).toBe(undefined);
+    expect(wrapper.text()).toBe('Home');
+  });
+
+  it('should not render type by default when the type is not defined and the href is defined', () => {
+    const wrapper = mount(<Button href="#">Home</Button>);
+
+    expect(wrapper.find('a').prop('type')).toBe(undefined);
+    expect(wrapper.text()).toBe('Home');
+  });
+
   it('should render buttons with default color', () => {
     const wrapper = shallow(<Button>Default Button</Button>);
 

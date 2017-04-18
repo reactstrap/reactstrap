@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
+const { PropTypes } = React;
 const propTypes = {
   color: PropTypes.string,
   pill: PropTypes.bool,
@@ -23,7 +24,7 @@ const Badge = (props) => {
     cssModule,
     color,
     pill,
-    tag: Component,
+    tag: Tag,
     ...attributes
   } = props;
 
@@ -35,7 +36,7 @@ const Badge = (props) => {
   ), cssModule);
 
   return (
-    <Component {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} />
   );
 };
 
