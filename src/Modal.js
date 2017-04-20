@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
-import TransitionGroup from 'react-addons-transition-group';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,

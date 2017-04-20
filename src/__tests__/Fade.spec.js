@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import TransitionGroup from 'react-addons-transition-group';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import { Fade } from '../';
 
 class Helper extends React.Component {

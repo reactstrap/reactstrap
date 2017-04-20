@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { mapToCssModules } from './utils';
 
 const { PropTypes } = React;
@@ -64,7 +64,7 @@ const Alert = (props) => {
   );
 
   return (
-    <ReactCSSTransitionGroup
+    <CSSTransitionGroup
       component={FirstChild}
       transitionName={{
         appear: 'fade',
@@ -82,7 +82,7 @@ const Alert = (props) => {
       transitionLeaveTimeout={transitionLeaveTimeout}
     >
       {isOpen ? alert : null}
-    </ReactCSSTransitionGroup>
+    </CSSTransitionGroup>
   );
 };
 
