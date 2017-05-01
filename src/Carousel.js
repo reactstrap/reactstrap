@@ -38,7 +38,7 @@ class Carousel extends React.Component {
   componentDidMount() {
     // Set up the cycle
     if (this.state.interval) {
-      setInterval(() => {
+      this.cycleInterval = setInterval(() => {
         if (this.state.cycle) {
           if (this.state.activeIndex === this.props.items.length - 1 && !this.state.wrap) {
             this.setState({
@@ -56,8 +56,12 @@ class Carousel extends React.Component {
             this.previous();
           }
         }
-      }, this.state.interval);
+      }, parseInt(this.state.interval, 10));
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.cycleInterval);
   }
 
   cycle() {
@@ -172,6 +176,7 @@ Carousel.propTypes = {
   wrap: PropTypes.bool,
   interval: PropTypes.oneOfType([
     PropTypes.number,
+    PropTypes.string,
     PropTypes.bool
   ]),
   hover: PropTypes.string

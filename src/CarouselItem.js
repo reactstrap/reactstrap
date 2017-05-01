@@ -25,7 +25,7 @@ class CarouselItem extends React.Component {
       animation: classes
     });
 
-    setTimeout(() => {
+    this.willEnterTimeout = setTimeout(() => {
       callBack();
     }, 500);
   }
@@ -43,8 +43,10 @@ class CarouselItem extends React.Component {
     this.setState({
       animation: classes
     });
+
     this.slide.dispatchEvent(new CustomEvent('slide.bs.carousel'));
-    setTimeout(() => {
+
+    this.willLeaveTimeout = setTimeout(() => {
       callBack();
     }, 500);
   }
@@ -54,6 +56,11 @@ class CarouselItem extends React.Component {
       animation: []
     });
     this.slide.dispatchEvent(new CustomEvent('slid.bs.carousel'));
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.willEnterTimeout);
+    clearTimeout(this.willLeaveTimeout);
   }
 
 
