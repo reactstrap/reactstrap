@@ -20,7 +20,6 @@ class Carousel extends React.Component {
       cycle: props.cycle || false,
       wrap: props.wrap !== undefined ? props.wrap : true,
       interval: props.interval !== undefined ? props.interval : 5000,
-      keyboard: props.keyboard || false,
       hover: props.hover || false
     };
 
