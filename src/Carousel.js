@@ -50,12 +50,10 @@ class Carousel extends React.Component {
               cycleDirection: 'right'
             });
             this.next();
+          } else if (this.state.cycleDirection === 'right') {
+            this.next();
           } else {
-            if (this.state.cycleDirection === 'right') {
-              this.next();
-            } else {
-              this.previous();
-            }
+            this.previous();
           }
         }
       }, this.state.interval);

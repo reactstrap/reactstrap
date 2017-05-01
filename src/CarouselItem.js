@@ -64,8 +64,6 @@ class CarouselItem extends React.Component {
         'img-fluid'
     ), cssModule);
 
-
-
     const itemClasses = mapToCssModules(classNames('carousel-item', ...this.state.animation), cssModule);
 
     return (
