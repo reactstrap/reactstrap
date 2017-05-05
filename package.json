@@ -1,8 +1,8 @@
 {
   "name": "reactstrap",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "React Bootstrap 4 components",
-  "main": "dist/reactstrap.cjs.js",
+  "main": "dist/reactstrap.min.js",
   "jsnext:main": "dist/reactstrap.es.js",
   "module": "dist/reactstrap.es.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "start": "BABEL_ENV=webpack webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "prebuild": "babel src --out-dir lib --ignore src/__tests__/",
+    "prebuild": "BABEL_ENV=dist-dir babel src --out-dir lib --ignore src/__tests__/",
     "create-release": "npm test && sh ./scripts/release",
     "publish-release": "npm test && sh ./scripts/publish",
     "lint": "eslint src"

@@ -1,3 +1,14 @@
+<a name="4.5.0"></a>
+# [4.5.0](https://github.com/reactstrap/reactstrap/compare/4.4.0...v4.5.0) (2017-04-03)
+
+
+### Bug Fixes
+
+* **Button:** only default to button when click is handled ([#383](https://github.com/reactstrap/reactstrap/issues/383)) ([af3ccbe](https://github.com/reactstrap/reactstrap/commit/af3ccbe))
+* **lib:** import/export not getting transpiled in lib dir ([#384](https://github.com/reactstrap/reactstrap/issues/384)) ([2e2a5da](https://github.com/reactstrap/reactstrap/commit/2e2a5da))
+
+
+
 <a name="4.4.0"></a>
 # [4.4.0](https://github.com/reactstrap/reactstrap/compare/4.3.0...v4.4.0) (2017-03-31)
 
