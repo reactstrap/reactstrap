@@ -22,7 +22,7 @@ const PaginationItem = (props) => {
     cssModule,
     disabled,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(

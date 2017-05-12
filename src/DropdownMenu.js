@@ -32,6 +32,7 @@ const DropdownMenu = (props, context) => {
 };
 
 DropdownMenu.propTypes = propTypes;
+DropdownMenu.defaultProps = defaultProps;
 DropdownMenu.contextTypes = contextTypes;
 
 export default DropdownMenu;

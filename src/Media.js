@@ -32,7 +32,7 @@ const Media = (props) => {
     right,
     tag,
     top,
-    ...attributes,
+    ...attributes
   } = props;
 
   let defaultTag;

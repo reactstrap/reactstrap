@@ -50,7 +50,7 @@ const Label = (props) => {
     disabled,
     size,
     for: htmlFor,
-    ...attributes,
+    ...attributes
   } = props;
 
   const colClasses = [];

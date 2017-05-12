@@ -41,7 +41,7 @@ describe('DropdownMenu', () => {
   });
 
   it('should render custom element', () => {
-    const wrapper = mount(<DropdownMenu tag="ul"></DropdownMenu>);
+    const wrapper = mount(<DropdownMenu tag="ul" />);
 
     expect(wrapper.find('ul').length).toBe(1);
     expect(wrapper.find('ul').hasClass('dropdown-item')).toBe(true);
