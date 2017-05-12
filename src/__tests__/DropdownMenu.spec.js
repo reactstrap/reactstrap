@@ -44,7 +44,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(<DropdownMenu tag="ul" />);
 
     expect(wrapper.find('ul').length).toBe(1);
-    expect(wrapper.find('ul').hasClass('dropdown-item')).toBe(true);
+    expect(wrapper.find('ul').hasClass('dropdown-menu')).toBe(true);
   });
 
   it('should not render multiple children when isOpen is false', () => {
