@@ -96,8 +96,7 @@
   },
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0",
-    "react-addons-css-transition-group": "^0.14.8 || ^15.3.0",
-    "react-addons-transition-group": "^0.14.8 || ^15.3.0",
+    "react-transition-group": "^1.1.2",
     "react-dom": "^0.14.9 || ^15.3.0"
   },
   "devDependencies": {
@@ -129,9 +128,7 @@
     "json-loader": "^0.5.4",
     "raw-loader": "^0.5.1",
     "react": "^15.3.0",
-    "react-addons-css-transition-group": "^15.3.2",
     "react-addons-test-utils": "^15.3.0",
-    "react-addons-transition-group": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-helmet": "^3.0.1",
     "react-prism": "4.0.0",
