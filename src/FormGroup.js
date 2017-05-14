@@ -27,7 +27,7 @@ const FormGroup = (props) => {
     color,
     check,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
