@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const { PropTypes } = React;
 const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
@@ -51,7 +51,7 @@ const Label = (props) => {
     disabled,
     size,
     for: htmlFor,
-    ...attributes,
+    ...attributes
   } = props;
 
   const colClasses = [];
