@@ -2,6 +2,7 @@
 // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-find-dom-node.md
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
@@ -9,7 +10,6 @@ import { mapToCssModules } from './utils';
 import TetherContent from './TetherContent';
 import DropdownMenu from './DropdownMenu';
 
-const { PropTypes } = React;
 const propTypes = {
   disabled: PropTypes.bool,
   dropup: PropTypes.bool,
