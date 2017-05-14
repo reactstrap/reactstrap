@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import TransitionGroup from 'react-addons-transition-group';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
@@ -13,6 +13,7 @@ import {
 
 const propTypes = {
   isOpen: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   size: PropTypes.string,
   toggle: PropTypes.func,
   keyboard: PropTypes.bool,
@@ -46,6 +47,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
+  autoFocus: true,
   backdrop: true,
   keyboard: true,
   zIndex: 1050,
@@ -127,7 +129,9 @@ class Modal extends React.Component {
 
   togglePortal() {
     if (this.props.isOpen) {
-      this._focus = true;
+      if (this.props.autoFocus) {
+        this._focus = true;
+      }
       this.show();
       if (!this.hasTransition()) {
         this.onEnter();

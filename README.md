@@ -28,7 +28,7 @@ Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap
 
 ```
 npm install bootstrap@4.0.0-alpha.6 --save
-npm install --save reactstrap react-addons-transition-group react-addons-css-transition-group react react-dom
+npm install --save reactstrap react-transition-group react react-dom
 ```
 
 Import Bootstrap CSS in the ```src/index.js``` file:
