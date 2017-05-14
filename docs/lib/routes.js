@@ -25,8 +25,11 @@ import JumbotronPage from './Components/JumbotronPage';
 import AlertsPage from './Components/AlertsPage';
 import CollapsePage from './Components/CollapsePage';
 import ListGroupPage from './Components/ListGroupPage';
+import ClearfixPage from './Utilities/ClearfixPage';
+import ColorsPage from './Utilities/ColorsPage';
 import NotFound from './NotFound';
 import Components from './Components';
+import Utilities from './Utilities';
 import UI from './UI';
 
 const routes = (
@@ -58,6 +61,11 @@ const routes = (
       <Route path="jumbotron/" component={JumbotronPage} />
       <Route path="collapse/" component={CollapsePage} />
       <Route path="listgroup/" component={ListGroupPage} />
+    </Route>
+    <Route path="/utilities/" component={Utilities}>
+      <IndexRedirect to="colors/" />
+      <Route path="colors/" component={ColorsPage} />
+      <Route path="clearfix/" component={ClearfixPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>
