@@ -40,6 +40,13 @@ describe('DropdownMenu', () => {
     expect(wrapper.find('.dropdown-menu').hasClass('dropdown-menu-right')).toBe(true);
   });
 
+  it('should render custom element', () => {
+    const wrapper = mount(<DropdownMenu tag="ul" />);
+
+    expect(wrapper.find('ul').length).toBe(1);
+    expect(wrapper.find('ul').hasClass('dropdown-menu')).toBe(true);
+  });
+
   it('should not render multiple children when isOpen is false', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,

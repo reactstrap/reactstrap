@@ -20,7 +20,7 @@ const Pagination = (props) => {
     cssModule,
     size,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(

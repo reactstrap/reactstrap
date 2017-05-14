@@ -22,7 +22,7 @@ const Form = (props) => {
     inline,
     tag: Tag,
     getRef,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
