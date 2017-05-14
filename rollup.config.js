@@ -17,15 +17,12 @@ const config = {
   external: [
     'react',
     'react-dom',
-    'react-addons-css-transition-group',
-    'react-addons-transition-group',
+    'react-transition-group',
   ],
   // Used for the UMD bundles
   globals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    'react-addons-css-transition-group': 'React.addons.CSSTransitionGroup',
-    'react-addons-transition-group': 'React.addons.TransitionGroup',
   },
   targets: [
     { dest: 'dist/reactstrap.es.js', format: 'es' },

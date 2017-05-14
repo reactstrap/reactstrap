@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const { PropTypes } = React;
 const propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node,
@@ -23,7 +23,7 @@ const PaginationItem = (props) => {
     cssModule,
     disabled,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
