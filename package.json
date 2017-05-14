@@ -135,6 +135,7 @@
     "react-router": "^2.6.1",
     "react-test-renderer": "^15.5.4",
     "react-scripts": "^0.9.5",
+    "react-transition-group": "^1.1.2",
     "rollup": "^0.41.5",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-babili": "^2.0.0",
