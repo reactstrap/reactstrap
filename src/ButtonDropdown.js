@@ -8,7 +8,7 @@ const propTypes = {
 
 const ButtonDropdown = (props) => {
   return (
-    <Dropdown {...props} group />
+    <Dropdown group {...props} />
   );
 };
 
