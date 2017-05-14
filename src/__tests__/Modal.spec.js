@@ -565,4 +565,47 @@ describe('Modal', () => {
     expect(document.getElementsByClassName('modal-dialog').length).toBe(0);
     expect(document.body.className).toBe('');
   });
+
+  it('should remove exactly modal-open class from body', () => {
+    // set a body class which includes modal-open
+    document.body.className = 'my-modal-opened';
+
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    // assert that the modal is closed and the body class is what was set initially
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(false);
+    expect(document.body.className).toBe('my-modal-opened');
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+
+    // assert that the modal is open and the body class is what was set initially + modal-open
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(true);
+    expect(document.body.className).toBe('my-modal-opened modal-open');
+
+    // append another body class which includes modal-open
+    // using this to test if replace will leave a space when removing modal-open
+    document.body.className += ' modal-opened';
+    expect(document.body.className).toBe('my-modal-opened modal-open modal-opened');
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+
+    // assert that the modal is closed and the body class is what was set initially
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(false);
+    expect(document.body.className).toBe('my-modal-opened modal-opened');
+
+    wrapper.unmount();
+  });
 });
