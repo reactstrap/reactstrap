@@ -35,7 +35,7 @@ class Input extends React.Component {
       addon,
       static: staticInput,
       getRef,
-      ...attributes,
+      ...attributes
     } = this.props;
 
     const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;

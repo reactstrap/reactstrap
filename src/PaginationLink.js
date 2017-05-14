@@ -24,7 +24,7 @@ const PaginationLink = (props) => {
     next,
     previous,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(

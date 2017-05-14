@@ -20,7 +20,7 @@ const Row = (props) => {
     cssModule,
     noGutters,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
