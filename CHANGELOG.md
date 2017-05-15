@@ -1,3 +1,13 @@
+<a name="4.6.1"></a>
+## [4.6.1](https://github.com/reactstrap/reactstrap/compare/4.6.0...4.6.1) (2017-05-15)
+
+
+### Bug Fixes
+
+* **PropTypes:** clean up prop-types usage ([#427](https://github.com/reactstrap/reactstrap/issues/427)) ([94bbb82](https://github.com/reactstrap/reactstrap/commit/94bbb82))
+
+
+
 <a name="4.6.0"></a>
 # [4.6.0](https://github.com/reactstrap/reactstrap/compare/4.5.0...4.6.0) (2017-05-15)
 
