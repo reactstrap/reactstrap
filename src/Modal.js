@@ -161,7 +161,9 @@ class Modal extends React.Component {
 
   hide() {
     this.renderIntoSubtree();
-    this.props.onClosed && this.props.onClosed();
+    if (this.props.onClosed) {
+      this.props.onClosed();
+    }
   }
 
   show() {
@@ -182,7 +184,9 @@ class Modal extends React.Component {
     ), this.props.cssModule);
 
     this.renderIntoSubtree();
-    this.props.onOpened && this.props.onOpened();
+    if (this.props.onOpened) {
+      this.props.onOpened();
+    }
   }
 
   renderModalDialog() {
