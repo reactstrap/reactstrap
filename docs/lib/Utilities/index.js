@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 
 const ComponentLink = (props) => {
@@ -12,7 +13,7 @@ const ComponentLink = (props) => {
   );
 };
 const propTypes = {
-  children: React.PropTypes.node
+  children: PropTypes.node
 };
 
 class Utilities extends React.Component {

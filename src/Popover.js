@@ -6,7 +6,7 @@ import TetherContent from './TetherContent';
 import { getTetherAttachments, mapToCssModules, tetherAttachements } from './utils';
 
 const propTypes = {
-  placement: React.PropTypes.oneOf(tetherAttachements),
+  placement: PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
   tether: PropTypes.object,

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 
@@ -12,7 +13,7 @@ const ComponentLink = (props) => {
   );
 };
 const propTypes = {
-  children: React.PropTypes.node
+  children: PropTypes.node
 };
 
 class Components extends React.Component {
