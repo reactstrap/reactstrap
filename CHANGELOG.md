@@ -1,3 +1,23 @@
+<a name="4.6.0"></a>
+# [4.6.0](https://github.com/reactstrap/reactstrap/compare/4.5.0...4.6.0) (2017-05-15)
+
+
+### Bug Fixes
+
+* **ButtonDropdown:** allow overwriting the group prop ([#425](https://github.com/reactstrap/reactstrap/issues/425)) ([663551b](https://github.com/reactstrap/reactstrap/commit/663551b))
+* **DropdownToggle:** add missing proptype (color) ([#402](https://github.com/reactstrap/reactstrap/issues/402)) ([c137697](https://github.com/reactstrap/reactstrap/commit/c137697))
+* **Modal:** fix bug where closing modal removed wrong modal-open string in class ([#410](https://github.com/reactstrap/reactstrap/issues/410)) ([22d5c3f](https://github.com/reactstrap/reactstrap/commit/22d5c3f))
+* **PropTypes:** import PropTypes from prop-types ([#395](https://github.com/reactstrap/reactstrap/issues/395)) ([9080217](https://github.com/reactstrap/reactstrap/commit/9080217))
+* **react-addons:** move to external react-transition-group dependency ([#399](https://github.com/reactstrap/reactstrap/issues/399)) ([a4fec3c](https://github.com/reactstrap/reactstrap/commit/a4fec3c))
+
+
+### Features
+
+* **Modal:** add autoFocus prop for disabling auto focus ([#389](https://github.com/reactstrap/reactstrap/issues/389)) ([6338fc3](https://github.com/reactstrap/reactstrap/commit/6338fc3))
+* **Modal:** Support fade and timeout props in the Modal component to allow configuring + disabling of the fade effect ([#339](https://github.com/reactstrap/reactstrap/issues/339)) ([babee0f](https://github.com/reactstrap/reactstrap/commit/babee0f))
+
+
+
 <a name="4.5.0"></a>
 # [4.5.0](https://github.com/reactstrap/reactstrap/compare/4.4.0...v4.5.0) (2017-04-03)
 
