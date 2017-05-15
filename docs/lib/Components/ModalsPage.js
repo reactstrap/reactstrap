@@ -57,7 +57,9 @@ export default class ModalsPage extends React.Component {
     PropTypes.bool,
     PropTypes.oneOf(['static'])
   ]),
+  // called on componentDidMount
   onEnter: PropTypes.func,
+  // called on componentWillUnmount
   onExit: PropTypes.func,
   onOpened: PropTypes.func,
   onClosed: PropTypes.func,

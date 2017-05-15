@@ -68,13 +68,16 @@ class Modal extends React.Component {
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
     this.destroy = this.destroy.bind(this);
-    this.onEnter = this.onEnter.bind(this);
-    this.onExit = this.onExit.bind(this);
+    this.onOpened = this.onOpened.bind(this);
+    this.onClosed = this.onClosed.bind(this);
   }
 
   componentDidMount() {
     if (this.props.isOpen) {
       this.togglePortal();
+    }
+    if (this.props.onEnter) {
+      this.props.onEnter();
     }
   }
 
@@ -89,19 +92,22 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
-    this.onExit();
-  }
-
-  onEnter() {
-    if (this.props.onEnter) {
-      this.props.onEnter();
-    }
-  }
-
-  onExit() {
     this.destroy();
     if (this.props.onExit) {
       this.props.onExit();
+    }
+  }
+
+  onOpened() {
+    if (this.props.onOpened) {
+      this.props.onOpened();
+    }
+  }
+
+  onClosed() {
+    this.destroy();
+    if (this.props.onClosed) {
+      this.props.onClosed();
     }
   }
 
@@ -136,12 +142,12 @@ class Modal extends React.Component {
       }
       this.show();
       if (!this.hasTransition()) {
-        this.onEnter();
+        this.onOpened();
       }
     } else {
       this.hide();
       if (!this.hasTransition()) {
-        this.onExit();
+        this.onClosed();
       }
     }
   }
@@ -161,9 +167,6 @@ class Modal extends React.Component {
 
   hide() {
     this.renderIntoSubtree();
-    if (this.props.onClosed) {
-      this.props.onClosed();
-    }
   }
 
   show() {
@@ -184,9 +187,6 @@ class Modal extends React.Component {
     ), this.props.cssModule);
 
     this.renderIntoSubtree();
-    if (this.props.onOpened) {
-      this.props.onOpened();
-    }
   }
 
   renderModalDialog() {
@@ -249,8 +249,8 @@ class Modal extends React.Component {
           {isOpen && (
             <Fade
               key="modal-dialog"
-              onEnter={this.onEnter}
-              onLeave={this.onExit}
+              onEnter={this.onOpened}
+              onLeave={this.onClosed}
               transitionAppearTimeout={
                 typeof this.props.modalTransitionAppearTimeout === 'number'
                   ? this.props.modalTransitionAppearTimeout
