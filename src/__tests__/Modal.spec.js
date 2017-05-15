@@ -608,4 +608,40 @@ describe('Modal', () => {
 
     wrapper.unmount();
   });
+
+  it('should call onOpened & onClosed props if provided', () => {
+    const onOpened = jasmine.createSpy('spy');
+    const onClosed = jasmine.createSpy('spy');
+    const wrapper = mount(
+      <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(false);
+    expect(onOpened).not.toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+    expect(onOpened).toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(false);
+    expect(onClosed).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
 });

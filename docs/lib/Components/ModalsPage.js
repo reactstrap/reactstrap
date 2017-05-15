@@ -45,22 +45,22 @@ export default class ModalsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Modal.propTypes = {
-  isOpen:  PropTypes.bool,
   // boolean to control the state of the popover
-  toggle:  PropTypes.func,
-  // callback for toggling isOpen in the controlling component
+  isOpen:  PropTypes.bool,
+  autoFocus: PropTypes.bool,
   size: PropTypes.string,
+  // callback for toggling isOpen in the controlling component
+  toggle:  PropTypes.func,
+  keyboard: PropTypes.bool,
   // control backdrop, see http://v4-alpha.getbootstrap.com/components/modal/#options
   backdrop: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(['static'])
   ]),
-  keyboard: PropTypes.bool,
-  // zIndex defaults to 1000.
-  zIndex: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  onEnter: PropTypes.func,
+  onExit: PropTypes.func,
+  onOpened: PropTypes.func,
+  onClosed: PropTypes.func,
   className: PropTypes.string,
   wrapClassName: PropTypes.string,
   modalClassName: PropTypes.string,
@@ -68,13 +68,12 @@ export default class ModalsPage extends React.Component {
   contentClassName: PropTypes.string,
   // boolean to control whether the fade transition occurs (default: true)
   fade: PropTypes.bool,
-  // modalTransitionTimeout - controls appear, enter, and leave (default: 300)
-  // If you need different values for appear v. enter v. leave, use the more
-  // specific props like modalTransitionAppearTimeout.
-  modalTransitionTimeout: PropTypes.number,
-  modalTransitionAppearTimeout: PropTypes.number,
-  modalTransitionEnterTimeout: PropTypes.number,
-  modalTransitionLeaveTimeout: PropTypes.number,
+  cssModule: PropTypes.object,
+  // zIndex defaults to 1000.
+  zIndex: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   // backdropTransitionTimeout - controls appear, enter, and leave (default: 150)
   // If you need different values for appear v. enter v. leave, use the more
   // specific props like backdropTransitionAppearTimeout.
@@ -82,6 +81,13 @@ export default class ModalsPage extends React.Component {
   backdropTransitionAppearTimeout: PropTypes.number,
   backdropTransitionEnterTimeout: PropTypes.number,
   backdropTransitionLeaveTimeout: PropTypes.number,
+  // modalTransitionTimeout - controls appear, enter, and leave (default: 300)
+  // If you need different values for appear v. enter v. leave, use the more
+  // specific props like modalTransitionAppearTimeout.
+  modalTransitionTimeout: PropTypes.number,
+  modalTransitionAppearTimeout: PropTypes.number,
+  modalTransitionEnterTimeout: PropTypes.number,
+  modalTransitionLeaveTimeout: PropTypes.number,
 }`}
           </PrismCode>
         </pre>
