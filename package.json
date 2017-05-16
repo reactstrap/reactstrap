@@ -2,7 +2,7 @@
   "name": "reactstrap",
   "version": "4.6.1",
   "description": "React Bootstrap 4 components",
-  "main": "dist/reactstrap.min.js",
+  "main": "lib/index.js",
   "jsnext:main": "dist/reactstrap.es.js",
   "module": "dist/reactstrap.es.js",
   "scripts": {
