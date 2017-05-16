@@ -20,6 +20,7 @@ const propTypes = {
   animated: PropTypes.bool,
   striped: PropTypes.bool,
   color: PropTypes.string,
+  customColor: PropTypes.string,
   className: PropTypes.string,
   barClassName: PropTypes.string,
   cssModule: PropTypes.object,
@@ -42,6 +43,7 @@ const Progress = (props) => {
     animated,
     striped,
     color,
+    customColor,
     bar,
     multi,
     tag: Tag,
@@ -66,7 +68,7 @@ const Progress = (props) => {
   const ProgressBar = multi ? children : (
     <div
       className={progressBarClasses}
-      style={{ width: `${percent}%` }}
+      style={{ width: `${percent}%`, backgroundColor: customColor || null }}
       role="progressbar"
       aria-valuenow={value}
       aria-valuemin="0"
