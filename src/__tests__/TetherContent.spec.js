@@ -4,6 +4,7 @@ import { TetherContent } from '../';
 
 describe('TetherContent', () => {
   let state;
+  let closeOnClick;
   let toggle;
   let tetherConfig;
 
@@ -187,6 +188,142 @@ describe('TetherContent', () => {
 
       expect(TetherContent.prototype.handleDocumentClick.calls.count()).toBe(1);
       expect(TetherContent.prototype.toggle.calls.count()).toBe(0);
+    });
+  });
+
+  describe('shouldToggle', () => {
+    describe('when the closeOnClick attribute is not applied', () => {
+      it('should return true when the container is clicked', () => {
+        state = true;
+
+        spyOn(TetherContent.prototype, 'handleDocumentClick').and.callThrough();
+        spyOn(TetherContent.prototype, 'shouldToggle').and.callThrough();
+
+        const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+        const instance = wrapper.instance();
+        const event = Object.assign({}, { target: instance._element.id });
+
+        instance._element.click();
+
+        expect(TetherContent.prototype.handleDocumentClick.calls.count()).toBe(1);
+        expect(TetherContent.prototype.shouldToggle(event, instance._element, closeOnClick, instance._element.id)).toBe(true);
+      });
+
+      it('should return true when the document is clicked', () => {
+        state = true;
+
+        spyOn(TetherContent.prototype, 'handleDocumentClick').and.callThrough();
+        spyOn(TetherContent.prototype, 'shouldToggle').and.callThrough();
+
+        const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+        const instance = wrapper.instance();
+        const event = Object.assign({}, { target: instance._element.id });
+
+        document.body.click();
+
+        expect(TetherContent.prototype.handleDocumentClick.calls.count()).toBe(1);
+        expect(TetherContent.prototype.shouldToggle(event, instance._element, closeOnClick, instance._element.id)).toBe(true);
+      });
+    });
+
+    describe('when the closeOnClick attribute is applied', () => {
+      it('should return false when the container is clicked', () => {
+        state = true;
+        closeOnClick = true;
+
+        spyOn(TetherContent.prototype, 'handleDocumentClick').and.callThrough();
+        spyOn(TetherContent.prototype, 'shouldToggle').and.callThrough();
+        spyOn(TetherContent.prototype, 'checkTogglerTarget').and.returnValue(true);
+
+        const wrapper = mount(<TetherContent tether={tetherConfig} closeOnClick isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+        const instance = wrapper.instance();
+        const event = Object.assign({}, { target: instance._element.id });
+
+        instance._element.click();
+
+        expect(TetherContent.prototype.handleDocumentClick.calls.count()).toBe(1);
+        expect(TetherContent.prototype.shouldToggle(event.target, instance._element, closeOnClick, instance._element.id)).toBe(false);
+      });
+
+      it('should return true when the document is clicked', () => {
+        state = true;
+        closeOnClick = true;
+
+        spyOn(TetherContent.prototype, 'handleDocumentClick').and.callThrough();
+        spyOn(TetherContent.prototype, 'shouldToggle').and.callThrough();
+
+        const wrapper = mount(<TetherContent tether={tetherConfig} closeOnClick isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+        const instance = wrapper.instance();
+        const event = Object.assign({}, { target: instance._element.id });
+
+        document.body.click();
+
+        expect(TetherContent.prototype.handleDocumentClick.calls.count()).toBe(1);
+        expect(TetherContent.prototype.shouldToggle(event, instance._element, closeOnClick, instance._element.id)).toBe(true);
+      });
+    });
+  });
+
+  describe('checkTogglerTarget', () => {
+    it('should be called when shouldToggle gets called', () => {
+      state = true;
+
+      spyOn(TetherContent.prototype, 'shouldToggle').and.callThrough();
+      spyOn(TetherContent.prototype, 'checkTogglerTarget').and.callThrough();
+
+      const wrapper = mount(<TetherContent tether={tetherConfig} closeOnClick isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+      const event = Object.assign({}, { target: instance._element.id });
+
+      TetherContent.prototype.shouldToggle(event, instance._element, closeOnClick, instance._element.id);
+      expect(TetherContent.prototype.checkTogglerTarget).toHaveBeenCalled();
+    });
+
+    it('should return falsy when the target is undefined', () => {
+      state = true;
+
+      spyOn(TetherContent.prototype, 'checkTogglerTarget').and.callThrough();
+
+      const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+
+      expect(TetherContent.prototype.checkTogglerTarget(undefined, instance._element.id)).toBeFalsy();
+    });
+
+    it('should return falsy when the target has no id', () => {
+      state = true;
+
+      spyOn(TetherContent.prototype, 'checkTogglerTarget').and.callThrough();
+
+      const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+      const target = { id: undefined };
+
+      expect(TetherContent.prototype.checkTogglerTarget(target, instance._element.id)).toBeFalsy();
+    });
+
+    it("should return false when the target does not match the toggler's id", () => {
+      state = true;
+
+      spyOn(TetherContent.prototype, 'checkTogglerTarget').and.callThrough();
+
+      const wrapper = mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const instance = wrapper.instance();
+      const target = Object.assign({}, { id: 'someOtherID' });
+
+      expect(TetherContent.prototype.checkTogglerTarget(target, instance._element.id)).toBe(false);
+    });
+
+    it("should return true when the target matches the toggler's id", () => {
+      state = true;
+
+      spyOn(TetherContent.prototype, 'checkTogglerTarget').and.callThrough();
+
+      mount(<TetherContent tether={tetherConfig} isOpen={state} toggle={toggle}><p>Content</p></TetherContent>);
+      const target = Object.assign({}, { id: 'correctID' });
+
+      expect(TetherContent.prototype.checkTogglerTarget(target, 'correctID')).toBe(true);
+      expect(TetherContent.prototype.checkTogglerTarget(target, '#correctID')).toBe(true);
     });
   });
 

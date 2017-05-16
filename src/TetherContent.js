@@ -10,6 +10,7 @@ const propTypes = {
   arrow: PropTypes.string,
   disabled: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
+  closeOnClick: PropTypes.bool,
   toggle: PropTypes.func.isRequired,
   tether: PropTypes.object.isRequired,
   tetherRef: PropTypes.func,
@@ -19,6 +20,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
+  closeOnClick: false,
   tetherRef: function () {}
 };
 
@@ -28,6 +30,8 @@ class TetherContent extends React.Component {
 
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.toggle = this.toggle.bind(this);
+
+    this.state = { togglerClicked: false };
   }
 
   componentDidMount() {
@@ -67,11 +71,30 @@ class TetherContent extends React.Component {
     return config;
   }
 
+  checkTogglerTarget(target, togglerID) {
+    return (
+      (target && target.id) && (
+         target.id === togglerID || (
+          target.id === togglerID.substr(1)
+        )
+      )
+    );
+  }
+
+  // determines whether the toggle method should be called
+  shouldToggle(target, container, closeOnClick, togglerID) {
+    const togglerIsTarget = this.checkTogglerTarget(target, togglerID);
+
+    return (
+      target === container || (!container.contains(target) &&
+      (!closeOnClick || (closeOnClick && !togglerIsTarget)))
+    );
+  }
+
   handleDocumentClick(e) {
-    const container = this._element;
-    if (e.target === container || !container.contains(e.target)) {
-      this.toggle();
-    }
+    const { closeOnClick } = this.props;
+    const togglerID = this.getTarget();
+    if (this.shouldToggle(e.target, this._element, closeOnClick, togglerID)) this.toggle();
   }
 
   handleProps() {
