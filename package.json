@@ -141,6 +141,7 @@
     "rollup-plugin-babili": "^3.0.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^1.1.1",
     "static-site-generator-webpack-plugin": "^2.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13",
