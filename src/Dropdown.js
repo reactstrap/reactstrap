@@ -122,7 +122,7 @@ class Dropdown extends React.Component {
       return;
     }
 
-    this.toggle();
+    this.toggle(e);
   }
 
   handleProps() {
@@ -142,7 +142,7 @@ class Dropdown extends React.Component {
       return e && e.preventDefault();
     }
 
-    return this.props.toggle();
+    return this.props.toggle(e);
   }
 
   renderChildren() {
