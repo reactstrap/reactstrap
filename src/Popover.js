@@ -9,6 +9,8 @@ const propTypes = {
   placement: PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
+  // close popover when clicking toggler
+  closeOnClick: PropTypes.bool,
   tether: PropTypes.object,
   tetherRef: PropTypes.func,
   className: PropTypes.string,
@@ -18,6 +20,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
+  closeOnClick: false,
   placement: 'bottom',
   toggle: () => {}
 };
@@ -71,6 +74,7 @@ class Popover extends React.Component {
         tether={tetherConfig}
         tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
+        closeOnClick={this.props.closeOnClick}
         toggle={this.props.toggle}
       >
         <div {...attributes} className={classes} />
