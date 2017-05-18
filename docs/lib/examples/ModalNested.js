@@ -13,6 +13,7 @@ class ModalExample extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
+    this.closeAllModals = this.closeAllModals.bind(this);
   }
 
   toggle() {
@@ -24,6 +25,12 @@ class ModalExample extends React.Component {
   toggleNested() {
     this.setState({
       nestedModal: !this.state.nestedModal
+    });
+  }
+
+  closeAllModals() {
+    this.setState({ nestedModal: !this.state.nestedModal }, () => {
+      this.setState({ modal: !this.state.modal });
     });
   }
 
@@ -42,7 +49,7 @@ class ModalExample extends React.Component {
               <ModalBody>Stuff and things</ModalBody>
               <ModalFooter>
                 <Button color="primary" onClick={this.toggleNested}>Done</Button>{' '}
-                <Button color="secondary" onClick={this.toggle}>All Done</Button>
+                <Button color="secondary" onClick={this.closeAllModals}>All Done</Button>
               </ModalFooter>
             </Modal>
           </ModalBody>
