@@ -97,6 +97,46 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render without fade transition if provided with fade={false}', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} fade={false} modalClassName="fadeless-modal">
+        Howdy!
+      </Modal>
+    );
+
+    // Modal should appear instantaneously
+    jasmine.clock().tick(1);
+    expect(wrapper.children().length).toBe(0);
+
+    const matchedModals = document.getElementsByClassName('fadeless-modal');
+    const matchedModal = matchedModals[0];
+
+    expect(matchedModals.length).toBe(1);
+    // Modal should not have the 'fade' class
+    expect(matchedModal.className.split(' ').indexOf('fade') < 0).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should render when expected when passed modalTransitionTimeout and backdropTransitionTimeout props', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} modalTransitionTimeout={20} backdropTransitionTimeout={10} modalClassName="custom-timeout-modal">
+        Hello, world!
+      </Modal>
+    );
+
+    jasmine.clock().tick(20);
+    expect(wrapper.children().length).toBe(0);
+
+    const matchedModals = document.getElementsByClassName('custom-timeout-modal');
+
+    expect(matchedModals.length).toBe(1);
+
+    wrapper.unmount();
+  });
+
   it('should render with class "modal" and have custom class name if provided with modalClassName', () => {
     isOpen = true;
     const wrapper = mount(
@@ -257,6 +297,49 @@ describe('Modal', () => {
       isOpen: isOpen
     });
     jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(false);
+    expect(onExit).toHaveBeenCalled();
+    expect(Modal.prototype.onExit).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
+  it('should call onExit & onEnter when fade={false}', () => {
+    spyOn(Modal.prototype, 'onEnter').and.callThrough();
+    spyOn(Modal.prototype, 'onExit').and.callThrough();
+    const onEnter = jasmine.createSpy('spy');
+    const onExit = jasmine.createSpy('spy');
+    const wrapper = mount(
+      <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle} fade={false}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(1);
+    expect(isOpen).toBe(false);
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(Modal.prototype.onEnter).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(1);
+
+    expect(isOpen).toBe(true);
+    expect(onEnter).toHaveBeenCalled();
+    expect(Modal.prototype.onEnter).toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(1);
 
     expect(isOpen).toBe(false);
     expect(onExit).toHaveBeenCalled();
@@ -481,5 +564,48 @@ describe('Modal', () => {
     wrapper.unmount();
     expect(document.getElementsByClassName('modal-dialog').length).toBe(0);
     expect(document.body.className).toBe('');
+  });
+
+  it('should remove exactly modal-open class from body', () => {
+    // set a body class which includes modal-open
+    document.body.className = 'my-modal-opened';
+
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    // assert that the modal is closed and the body class is what was set initially
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(false);
+    expect(document.body.className).toBe('my-modal-opened');
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+
+    // assert that the modal is open and the body class is what was set initially + modal-open
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(true);
+    expect(document.body.className).toBe('my-modal-opened modal-open');
+
+    // append another body class which includes modal-open
+    // using this to test if replace will leave a space when removing modal-open
+    document.body.className += ' modal-opened';
+    expect(document.body.className).toBe('my-modal-opened modal-open modal-opened');
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+
+    // assert that the modal is closed and the body class is what was set initially
+    jasmine.clock().tick(300);
+    expect(isOpen).toBe(false);
+    expect(document.body.className).toBe('my-modal-opened modal-opened');
+
+    wrapper.unmount();
   });
 });

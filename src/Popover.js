@@ -1,12 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import omit from 'lodash.omit';
 import TetherContent from './TetherContent';
 import { getTetherAttachments, mapToCssModules, tetherAttachements } from './utils';
 
-const { PropTypes } = React;
 const propTypes = {
-  placement: React.PropTypes.oneOf(tetherAttachements),
+  placement: PropTypes.oneOf(tetherAttachements),
   target: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
   tether: PropTypes.object,

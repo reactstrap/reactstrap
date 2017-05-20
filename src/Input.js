@@ -1,10 +1,10 @@
 /* eslint react/prefer-stateless-function: 0 */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const { PropTypes } = React;
 const propTypes = {
   children: PropTypes.node,
   type: PropTypes.string,
@@ -35,7 +35,7 @@ class Input extends React.Component {
       addon,
       static: staticInput,
       getRef,
-      ...attributes,
+      ...attributes
     } = this.props;
 
     const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
