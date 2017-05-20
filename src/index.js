@@ -30,6 +30,7 @@ import CardFooter from './CardFooter';
 import CardHeader from './CardHeader';
 import CardImg from './CardImg';
 import CardImgOverlay from './CardImgOverlay';
+import Carousel from './Carousel';
 import CardSubtitle from './CardSubtitle';
 import CardText from './CardText';
 import CardTitle from './CardTitle';
@@ -108,6 +109,7 @@ export {
   CardHeader,
   CardImg,
   CardImgOverlay,
+  Carousel,
   CardSubtitle,
   CardText,
   CardTitle,

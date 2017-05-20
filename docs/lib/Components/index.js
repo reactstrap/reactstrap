@@ -55,6 +55,10 @@ class Components extends React.Component {
           to: '/components/collapse/',
         },
         {
+          name: 'Carousel',
+          to: '/components/carousel/'
+        },
+        {
           name: 'Dropdowns',
           to: '/components/dropdowns/'
         },
