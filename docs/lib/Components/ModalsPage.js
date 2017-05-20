@@ -11,6 +11,12 @@ const ModalBackdropExampleSource = require('!!raw!../examples/ModalBackdrop');
 import ModalNestedExample from '../examples/ModalNested';
 const ModalNestedExampleSource = require('!!raw!../examples/ModalNested');
 
+import ModalCustomTimeoutExample from '../examples/ModalCustomTimeout';
+const ModalCustomTimeoutExampleSource = require('!!raw!../examples/ModalCustomTimeout');
+
+import ModalFadelessExample from '../examples/ModalFadeless';
+const ModalFadelessExampleSource = require('!!raw!../examples/ModalFadeless');
+
 export default class ModalsPage extends React.Component {
   render() {
     return (
@@ -60,6 +66,22 @@ export default class ModalsPage extends React.Component {
   modalClassName: PropTypes.string,
   backdropClassName: PropTypes.string,
   contentClassName: PropTypes.string,
+  // boolean to control whether the fade transition occurs (default: true)
+  fade: PropTypes.bool,
+  // modalTransitionTimeout - controls appear, enter, and leave (default: 300)
+  // If you need different values for appear v. enter v. leave, use the more
+  // specific props like modalTransitionAppearTimeout.
+  modalTransitionTimeout: PropTypes.number,
+  modalTransitionAppearTimeout: PropTypes.number,
+  modalTransitionEnterTimeout: PropTypes.number,
+  modalTransitionLeaveTimeout: PropTypes.number,
+  // backdropTransitionTimeout - controls appear, enter, and leave (default: 150)
+  // If you need different values for appear v. enter v. leave, use the more
+  // specific props like backdropTransitionAppearTimeout.
+  backdropTransitionTimeout: PropTypes.number
+  backdropTransitionAppearTimeout: PropTypes.number,
+  backdropTransitionEnterTimeout: PropTypes.number,
+  backdropTransitionLeaveTimeout: PropTypes.number,
 }`}
           </PrismCode>
         </pre>
@@ -89,6 +111,34 @@ export default class ModalsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ModalNestedExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h4>Modals with Custom Transition Timeouts</h4>
+        <div className="docs-example">
+          <div className="btn-group">
+            <div className="btn">
+              <ModalCustomTimeoutExample buttonLabel="Launch Modal with Custom Transition Timeouts Example" />
+            </div>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ModalCustomTimeoutExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h4>Modals without Fade Effect</h4>
+        <div className="docs-example">
+          <div className="btn-group">
+            <div className="btn">
+              <ModalFadelessExample buttonLabel="Launch Modal without Fade Effect Example" />
+            </div>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ModalFadelessExampleSource}
           </PrismCode>
         </pre>
       </div>

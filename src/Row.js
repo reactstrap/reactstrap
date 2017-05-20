@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const { PropTypes } = React;
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   noGutters: PropTypes.bool,
@@ -20,7 +20,7 @@ const Row = (props) => {
     cssModule,
     noGutters,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
