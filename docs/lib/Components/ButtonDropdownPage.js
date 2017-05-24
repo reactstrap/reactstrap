@@ -73,7 +73,7 @@ DropdownToggle.propTypes = {
             <Example color="success" text="Success" />
             <Example color="info" text="Info" />
             <Example color="warning" text="Warning" />
-            <Example color="danger" text="Darning" />
+            <Example color="danger" text="Danger" />
           </div>
         </div>
         <pre>
@@ -100,7 +100,7 @@ DropdownToggle.propTypes = {
             <ExampleSplit color="success" text="Success" />
             <ExampleSplit color="info" text="Info" />
             <ExampleSplit color="warning" text="Warning" />
-            <ExampleSplit color="danger" text="Darning" />
+            <ExampleSplit color="danger" text="Danger" />
           </div>
         </div>
         <pre>
