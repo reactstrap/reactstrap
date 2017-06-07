@@ -83,7 +83,9 @@ class TetherContent extends React.Component {
   }
 
   hide() {
-    document.removeEventListener('click', this.handleDocumentClick, true);
+    ['click', 'touchstart'].forEach(event =>
+      document.removeEventListener(event, this.handleDocumentClick, true)
+    );
 
     if (this._element) {
       document.body.removeChild(this._element);
@@ -99,7 +101,9 @@ class TetherContent extends React.Component {
   }
 
   show() {
-    document.addEventListener('click', this.handleDocumentClick, true);
+    ['click', 'touchstart'].forEach(event =>
+      document.addEventListener(event, this.handleDocumentClick, true)
+    );
 
     this._element = document.createElement('div');
     this._element.className = this.props.className;
