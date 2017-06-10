@@ -26,7 +26,7 @@ describe('Navbar', () => {
 
     expect(wrapper.html()).toBe('<div class="navbar"></div>');
   });
-    
+
   it('should render role', () => {
     const wrapper = shallow(<Navbar role="navigation" />);
 
