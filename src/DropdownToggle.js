@@ -6,7 +6,6 @@ import Button from './Button';
 
 const propTypes = {
   caret: PropTypes.bool,
-  color: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -22,7 +21,6 @@ const propTypes = {
 const defaultProps = {
   'data-toggle': 'dropdown',
   'aria-haspopup': true,
-  color: 'secondary',
 };
 
 const contextTypes = {
