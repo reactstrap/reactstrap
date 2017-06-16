@@ -100,7 +100,7 @@ describe('DropdownToggle', () => {
       expect(wrapper.find('button').length).toBe(1);
       expect(wrapper.find('button').hasClass('btn-secondary')).toBe(true);
     });
-  
+
     it('should render the dropdown as a BUTTON element with explicit color success', () => {
       const wrapper = mount(
         <DropdownToggle color="success" />,
@@ -115,7 +115,7 @@ describe('DropdownToggle', () => {
       expect(wrapper.find('button').length).toBe(1);
       expect(wrapper.find('button').hasClass('btn-success')).toBe(true);
     });
-    
+
     it('should render the dropdown as an A element with no color attribute', () => {
       const wrapper = mount(
         <DropdownToggle tag="a" />,
@@ -130,7 +130,7 @@ describe('DropdownToggle', () => {
       expect(wrapper.find('a').length).toBe(1);
       expect(wrapper.find('a[color]').length).toBe(0);
     });
-    
+
     it('should render the dropdown as a DIV element with no color attribute', () => {
       const wrapper = mount(
         <DropdownToggle tag="div" color="success"/>,
@@ -146,7 +146,7 @@ describe('DropdownToggle', () => {
       expect(wrapper.find('div[color]').length).toBe(0);
     });
   });
-   
+
   it('should render a split', () => {
     const wrapper = mount(
       <DropdownToggle split>Ello world</DropdownToggle>,
