@@ -133,7 +133,7 @@ describe('DropdownToggle', () => {
 
     it('should render the dropdown as a DIV element with no color attribute', () => {
       const wrapper = mount(
-        <DropdownToggle tag="div" color="success"/>,
+        <DropdownToggle tag="div" color="success" />,
         {
           context: {
             isOpen: isOpen,
