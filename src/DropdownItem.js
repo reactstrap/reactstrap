@@ -6,6 +6,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
+  active: PropTypes.bool,
   disabled: PropTypes.bool,
   divider: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -64,6 +65,7 @@ class DropdownItem extends React.Component {
       divider,
       tag: Tag,
       header,
+      active,
       ...props } = omit(this.props, ['toggle']);
 
     const classes = mapToCssModules(classNames(
@@ -71,6 +73,7 @@ class DropdownItem extends React.Component {
       {
         disabled: props.disabled,
         'dropdown-item': !divider && !header,
+        active: active,
         'dropdown-header': header,
         'dropdown-divider': divider
       }
