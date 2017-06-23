@@ -19,16 +19,12 @@ const config = {
     'react',
     'react-dom',
     'react-transition-group',
-    'react-transition-group/CSSTransitionGroup',
-    'react-transition-group/TransitionGroup'
   ],
   // Used for the UMD bundles
   globals: {
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-transition-group': 'ReactTransitionGroup',
-    'react-transition-group/CSSTransitionGroup': 'ReactTransitionGroup.CSSTransitionGroup',
-    'react-transition-group/TransitionGroup': 'ReactTransitionGroup.TransitionGroup',
   },
   targets: [
     { dest: 'dist/reactstrap.es.js', format: 'es' },
