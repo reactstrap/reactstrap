@@ -19,8 +19,6 @@ const config = {
     'react',
     'react-dom',
     'react-transition-group',
-    'react-transition-group/CSSTransitionGroup',
-    'react-transition-group/TransitionGroup'
   ],
   // Used for the UMD bundles
   globals: {
