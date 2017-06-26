@@ -89,7 +89,6 @@
     "classnames": "^2.2.3",
     "lodash.isfunction": "^3.0.8",
     "lodash.isobject": "^3.0.2",
-    "lodash.omit": "^4.4.1",
     "lodash.tonumber": "^4.0.3",
     "prop-types": "^15.5.8",
     "reactstrap-tether": "1.3.4"

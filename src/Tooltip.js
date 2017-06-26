@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import omit from 'lodash.omit';
+import { omit } from './utils';
 import TetherContent from './TetherContent';
 import { getTetherAttachments, tetherAttachements, mapToCssModules } from './utils';
 
