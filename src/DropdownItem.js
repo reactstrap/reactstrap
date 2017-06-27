@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import omit from 'lodash.omit';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, omit } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
