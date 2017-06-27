@@ -55,7 +55,7 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, cssModule, caret, split, nav, tag, ...props } = this.props;
+    const { className, color, cssModule, caret, split, nav, tag, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
       className,
@@ -75,6 +75,7 @@ class DropdownToggle extends React.Component {
       props.href = '#';
     } else if (!tag) {
       Tag = Button;
+      props.color = color;
     } else {
       Tag = tag;
     }
