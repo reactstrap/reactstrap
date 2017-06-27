@@ -24,6 +24,7 @@ const config = {
   globals: {
     react: 'React',
     'react-dom': 'ReactDOM',
+    'react-transition-group': 'ReactTransitionGroup',
   },
   targets: [
     { dest: 'dist/reactstrap.es.js', format: 'es' },
