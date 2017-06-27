@@ -34,6 +34,7 @@ export default class AlertsPage extends React.Component {
           <PrismCode className="language-jsx">
 {`Alert.propTypes = {
   className: PropTypes.string,
+  closeClassName: PropTypes.string,
   color: PropTypes.string, // default: 'success'
   isOpen: PropTypes.bool,  // default: true
   toggle: PropTypes.func,
