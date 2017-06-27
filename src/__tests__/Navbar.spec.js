@@ -6,31 +6,37 @@ describe('Navbar', () => {
   it('should render .navbar markup', () => {
     const wrapper = shallow(<Navbar />);
 
-    expect(wrapper.html()).toBe('<nav role="navigation" class="navbar"></nav>');
+    expect(wrapper.html()).toBe('<nav class="navbar"></nav>');
   });
 
   it('should render default .navbar-toggleable class', () => {
     const wrapper = shallow(<Navbar toggleable />);
 
-    expect(wrapper.html()).toBe('<nav role="navigation" class="navbar navbar-toggleable"></nav>');
+    expect(wrapper.html()).toBe('<nav class="navbar navbar-toggleable"></nav>');
   });
 
   it('should render size based .navbar-toggleable-* classes', () => {
     const wrapper = shallow(<Navbar toggleable="md" />);
 
-    expect(wrapper.html()).toBe('<nav role="navigation" class="navbar navbar-toggleable-md"></nav>');
+    expect(wrapper.html()).toBe('<nav class="navbar navbar-toggleable-md"></nav>');
   });
 
   it('should render custom tag', () => {
     const wrapper = shallow(<Navbar tag="div" />);
 
-    expect(wrapper.html()).toBe('<div role="navigation" class="navbar"></div>');
+    expect(wrapper.html()).toBe('<div class="navbar"></div>');
   });
 
-  it('sholid render children', () => {
+  it('should render role', () => {
+    const wrapper = shallow(<Navbar role="navigation" />);
+
+    expect(wrapper.html()).toBe('<nav role="navigation" class="navbar"></nav>');
+  });
+
+  it('should render children', () => {
     const wrapper = shallow(<Navbar>Children</Navbar>);
 
-    expect(wrapper.html()).toBe('<nav role="navigation" class="navbar">Children</nav>');
+    expect(wrapper.html()).toBe('<nav class="navbar">Children</nav>');
   });
 
   it('should pass additional classNames', () => {
