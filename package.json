@@ -2,7 +2,7 @@
   "name": "reactstrap",
   "version": "4.7.0",
   "description": "React Bootstrap 4 components",
-  "main": "lib/index.js",
+  "main": "dist/reactstrap.cjs.js",
   "jsnext:main": "dist/reactstrap.es.js",
   "module": "dist/reactstrap.es.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "cover": "npm test -- --coverage",
     "start": "BABEL_ENV=webpack webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
-    "build": "cross-env NODE_ENV=production rollup -c",
-    "prebuild": "BABEL_ENV=dist-dir babel src --out-dir lib --ignore src/__tests__/",
+    "build": "rollup -c",
+    "prebuild": "BABEL_ENV=lib-dir babel src --out-dir lib --ignore src/__tests__/",
     "create-release": "npm test && sh ./scripts/release",
     "publish-release": "npm test && sh ./scripts/publish",
     "lint": "eslint src"
@@ -95,8 +95,8 @@
   },
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0",
-    "react-transition-group": "^1.1.2",
-    "react-dom": "^0.14.9 || ^15.3.0"
+    "react-dom": "^0.14.9 || ^15.3.0",
+    "react-transition-group": "^1.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
@@ -135,9 +135,9 @@
     "react-scripts": "^0.9.5",
     "react-test-renderer": "^15.5.4",
     "react-transition-group": "^1.1.2",
-    "rollup": "^0.41.5",
+    "rollup": "^0.43.0",
     "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-babili": "^3.0.0",
+    "rollup-plugin-babili": "^3.1.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
