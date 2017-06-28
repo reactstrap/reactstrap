@@ -1,3 +1,13 @@
+<a name="4.8.0"></a>
+# [4.8.0](https://github.com/reactstrap/reactstrap/compare/4.7.0...4.8.0) (2017-06-28)
+
+
+### Features
+
+* **DropdownItem:** support the "active" property for dropdown items ([#469](https://github.com/reactstrap/reactstrap/issues/469)) ([83df86e](https://github.com/reactstrap/reactstrap/commit/83df86e))
+
+
+
 <a name="4.7.0"></a>
 # [4.7.0](https://github.com/reactstrap/reactstrap/compare/4.6.2...4.7.0) (2017-06-27)
 
