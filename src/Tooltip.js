@@ -206,7 +206,7 @@ class Tooltip extends React.Component {
 
     return (
       <TetherContent
-        className="tooltip"
+        className={mapToCssModules('tooltip', this.props.cssModule)}
         tether={tetherConfig}
         tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}
