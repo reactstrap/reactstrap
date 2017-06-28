@@ -54,16 +54,9 @@ npm run build
 
 echo "==> Committing changes"
 
-if ! [ -z "$TRAVIS" ]; then
-  git remote rm origin
-  git remote add origin https://${GITHUB_TOKEN}@github.com/reactstrap/reactstrap.git > /dev/null 2>&1
-  git config user.name "Travis-CI"
-  git config user.email "reactstrap@github.io"
-fi
-
 git checkout -b "release-$VERSION"
 git add --all
 git commit --message "chore(release): adding $VERSION"
 git push --set-upstream origin "release-$VERSION" > /dev/null 2>&1
 
-success "release-$VERSION branch has been pushed"
+success "release-$VERSION branch has been pushed. Verify at https://github.com/reactstrap/reactstrap/tree/release-$VERSION"

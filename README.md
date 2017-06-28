@@ -118,6 +118,32 @@ Watch tests:
 npm run test-watch
 ```
 
+## Releasing
+
+#### Create Release Branch
+
+To create a release branch and changelog, run the following command with a semantic release type (major, minor, patch):
+
+```
+./scripts/release <release-type>
+```
+
+Verify changelog in branch. Create a PR if everything looks good. Merge when tests are green.
+
+#### Tagging and Publishing
+
+Once the release branch is merged, checkout master and run:
+
+```
+./scripts/publish
+```
+
+This will build the current state of master, tag it based on the release version and push the tag up to GitHub. If that all looks good, the final command to run is:
+
+```
+npm publish
+```
+
 ## In the wild
 
 Organizations and projects using `reactstrap`
