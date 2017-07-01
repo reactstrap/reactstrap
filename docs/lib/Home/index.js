@@ -82,11 +82,21 @@ npm install --save reactstrap react-addons-transition-group react-addons-css-tra
             </pre>
             <p>Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example <a href="https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d" target="_blank"><code>App.js</code></a> redone using reactstrap.</p>
             <h2 className="mt-5">CDN</h2>
+            <p>Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN.</p>
             <pre>
               <PrismCode className="language-jsx">
-                https://unpkg.com/reactstrap/dist/reactstrap.min.js
+                https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js
               </PrismCode>
             </pre>
+            <blockquote className="blockquote">
+              <p>
+                <strong>Note</strong>: When using the external CDN library, be sure to include the required dependencies as necessary <strong>prior</strong> to the Reactstrap library:
+              </p>
+              <ul>
+                <li><a href="//cdnjs.com/libraries/react" target="_blank">React</a></li>
+                <li><a href="//unpkg.com/react-transition-group/dist/react-transition-group.min.js" target="_blank">ReactTransitionGroup</a></li>
+              </ul>
+            </blockquote>
             <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>
             <h2 className="mt-5">About the Project</h2>
             <hr />
