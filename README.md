@@ -1,6 +1,6 @@
 [![reactstrap](https://cloud.githubusercontent.com/assets/399776/13906899/1de62f0c-ee9f-11e5-95c0-c515fee8e918.png)](https://reactstrap.github.io)
 
-[![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master)
+[![CDNJS](https://img.shields.io/cdnjs/v/reactstrap.svg)](https://cdnjs.com/libraries/reactstrap) [![NPM Version](https://img.shields.io/npm/v/reactstrap.svg?branch=master)](https://www.npmjs.com/package/reactstrap) [![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master) [![License](https://img.shields.io/npm/l/reactstrap.svg)](https://github.com/reactstrap/reactstrap/blob/master/LICENSE)
 
 # reactstrap
 
@@ -44,6 +44,19 @@ import { Button } from 'reactstrap';
 ```
 
 Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example [`App.js`](https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d) redone using reactstrap.
+
+### CDN
+
+Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN. 
+
+```html
+https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js
+```
+
+> Note: When using the external CDN library, be sure to include the required dependencies as necessary **prior** to the Reactstrap library:
+>  * [React](https://cdnjs.com/libraries/react)
+>  * [ReactTransitionGroup](https://unpkg.com/react-transition-group/dist/react-transition-group.min.js)
+
 
 ## About the Project
 
