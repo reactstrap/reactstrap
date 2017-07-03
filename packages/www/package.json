@@ -1,0 +1,40 @@
+{
+  "name": "reactstrap-github-io",
+  "description": "reactstrap website",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "classnames": "^2.2.5",
+    "date-fns": "^1.28.5",
+    "gatsby": "next",
+    "gatsby-link": "next",
+    "gatsby-plugin-google-analytics": "next",
+    "gatsby-plugin-manifest": "next",
+    "gatsby-plugin-offline": "next",
+    "gatsby-remark-copy-linked-files": "next",
+    "gatsby-remark-prismjs": "next",
+    "gatsby-remark-responsive-iframe": "next",
+    "gatsby-remark-smartypants": "next",
+    "gatsby-source-filesystem": "next",
+    "gatsby-transformer-remark": "next",
+    "lodash": "^4.16.4",
+    "prism": "git+https://github.com/eddywashere/prism.git#gh-pages",
+    "react-helmet": "^5.1.3",
+    "react-transition-group": "^1.2.0",
+    "reactstrap": "^4.8.0",
+    "slash": "^1.0.0",
+    "slugify": "^1.1.0",
+    "typeface-lato": "^0.0.25"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "start": "rm -rf ./.cache && gatsby develop",
+    "test": "echo \"Skipping tests\" && exit 0",
+    "prebuild": "rm -rf ./public",
+    "build": "rm -rf ./public && gatsby build",
+    "deploy:preview": "surge ./public reactstrap.surge.sh"
+  }
+}

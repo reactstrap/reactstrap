@@ -1,0 +1,171 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+  font-family: "Lato",sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 800px) {
+  html {
+    line-height: 1.5;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 22.4px;
+    line-height: 1.6;
+  }
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #0089BB;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: normal;
+}
+
+article.markdown {
+  position: relative;
+}
+
+article.markdown > *:not(pre):not(code):not(.stretch):not(.gatsby-highlight) {
+  max-width: 820px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+article.markdown > .stretch {
+  max-width: 900px;
+  margin: 1.5rem auto;
+}
+
+article.markdown img {
+  height: auto;
+  width: 100%;
+  display: block;
+}
+
+article.markdown > ul > li > p,
+article.markdown > ol > li > p {
+  margin: 0;
+}
+
+article.markdown > ul li,
+article.markdown > ol li {
+  /*margin-left: 1rem;*/
+  padding-left: 0.2rem;
+  margin: .75rem 0 .75rem 1.2rem;
+}
+
+article.markdown > ul ul,
+article.markdown > ul ol,
+article.markdown > ol ol,
+article.markdown > ol ul {
+  margin-left: 0;
+  padding-left: 0rem;
+}
+
+article.markdown hr {
+  position: relative;
+  height: 1rem;
+  margin: 1.5rem 0;
+  border: none;
+}
+
+article.markdown hr:after {
+  clear: both;
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 3%, rgba(0,0,0,0.08) 97%, transparent 100%);
+  background-image: -webkit-linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 3%, rgba(0,0,0,0.08) 97%, transparent 100%)
+}
+
+article.markdown h2 {
+  color: #3AA3C1;
+  font-weight: 400;
+  line-height: 3rem;
+  font-size: 2.46869rem;
+}
+
+article.markdown h3 {
+  font-size: 2.14rem;
+  font-weight: 300;
+  margin: 1rem 0;
+}
+
+article.markdown h4 {
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin: .5rem 0;
+}
+
+article.markdown h4 a {
+    color: #3AA3C1
+}
+
+article.markdown h4 a:hover,article.markdown h4 a:focus {
+    color: #333
+}
+
+article.markdown a .content-title {
+    color: #3AA3C1;
+    margin-top: 0
+}
+
+article.markdown a:hover .content-title,article.markdown a:focus .content-title {
+    color: #3AA3C1;
+    margin-top: 0
+}
+
+article.markdown a:hover .content-title,article.markdown a:focus .content-title {
+    color: #333
+}
+
+article.markdown .content-date {
+    color: #999;
+    font-weight: 600;
+    font-size: .77519rem
+}
+
+article.markdown .content-summary {
+    color: #666
+}
+
+article.markdown a:first-of-type:hover {
+    text-decoration: none
+}
+
+article.markdown .gatsby-resp-image-image {
+  padding-bottom: 1px;
+}

@@ -47,7 +47,7 @@ Now you are ready to use the imported reactstrap components within your componen
 
 ### CDN
 
-Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN. 
+Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN.
 
 ```html
 https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js
@@ -110,7 +110,7 @@ https://reactstrap.github.io
 Install dependencies:
 
 ```sh
-npm install
+npm run lerna:bootstrap
 ```
 
 Run examples at [http://localhost:8080/](http://localhost:8080/) with webpack dev server:

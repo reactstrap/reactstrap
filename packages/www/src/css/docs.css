@@ -67,6 +67,7 @@
 .navbar-collapse .text-muted, .navbar-collapse h4 {
   color: #818a91
 }
+
 .about {
   float: left;
   max-width: 30rem;
@@ -104,14 +105,22 @@ h1,h2,h3 {
   margin-bottom: 1rem;
 }
 
-.docs-example {
+.gatsby-highlight {
+  margin: 1.5em 0;
+}
+
+.gatsby-highlight-example {
   position: relative;
   padding: 3em 1em 1em;
   border: 1px solid #d8d8d8;
   margin: 1.5rem 0 0;
 }
 
-.docs-example::before {
+.gatsby-highlight-example iframe {
+  border: 0;
+}
+
+.gatsby-highlight-example::before {
   position: absolute;
   left: 0;
   top: 0;
@@ -122,13 +131,13 @@ h1,h2,h3 {
   content: 'EXAMPLE';
 }
 
-.docs-example::after {
+.gatsby-highlight-example::after {
   clear: both;
   content: " ";
   display: table;
 }
 
-.docs-example .card {
+.gatsby-highlight-example .card {
   max-width: 320px;
 }
 
@@ -139,10 +148,10 @@ pre, code {
   margin: 0;
 }
 
-.docs-example + pre {
+.gatsby-highlight-example + .gatsby-highlight {
   border: 1px solid #d8d8d8;
   border-top: none;
-  padding: 1em;
+  padding: 0;
   margin-top: 0 !important;
   clear: both;
 }
@@ -166,11 +175,11 @@ pre, code {
   border-left: 2px solid #d9534f;
 }
 
-.docs-example > .container .row {
+.gatsby-highlight-example > .container .row {
   margin-bottom: 1rem;
 }
 
-.docs-example > .container .row > [class^="col"] {
+.gatsby-highlight-example > .container .row > [class^="col"] {
   padding-top: .75rem;
   padding-bottom: .75rem;
   background-color: #E5EDF5;
@@ -178,15 +187,15 @@ pre, code {
   color: #5F5F5F;
 }
 
-.docs-example .form-control + .form-control {
+.gatsby-highlight-example .form-control + .form-control {
     margin-top: .5rem;
 }
 
-.docs-example .nav-tabs {
+.gatsby-highlight-example .nav-tabs {
   margin-bottom: 1rem;
 }
 
-.docs-example .progress {
+.gatsby-highlight-example .progress {
   margin-bottom: 1rem;
 }
 
@@ -223,6 +232,7 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
+	margin: 0;
 	overflow: auto;
 }
 
