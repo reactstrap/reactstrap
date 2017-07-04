@@ -97,6 +97,21 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render with additional props if provided', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} style={{ maxWidth: '95%' }}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-dialog')[0].style.maxWidth).toBe('95%');
+    wrapper.unmount();
+  });
+
   it('should render without fade transition if provided with fade={false}', () => {
     isOpen = true;
     const wrapper = mount(

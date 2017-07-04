@@ -20,11 +20,6 @@ if [ -z "$TRAVIS" ]; then
   npm run build
 fi
 
-if [ -z "$GITHUB_TOKEN" ]; then
-  error "Environment variable GITHUB_TOKEN does not exist. Stopping deploy."
-  exit 1
-fi
-
 if [ -z "$CURRENT_BRANCH" ]; then
   error "Not in a branch. Stopping deploy."
   exit 1
@@ -35,15 +30,8 @@ if [ -z "$VERSION" ]; then
   exit 1
 fi
 
-if ! [ -z "$TRAVIS" ]; then
-  git remote rm origin
-  git remote add origin https://${GITHUB_TOKEN}@github.com/reactstrap/reactstrap.git > /dev/null 2>&1
-  git config user.name "Travis-CI"
-  git config user.email "reactstrap@github.io"
-fi
-
 git tag -a $VERSION -m "release $VERSION"
 git push --set-upstream origin $CURRENT_BRANCH > /dev/null 2>&1
 git push --tags > /dev/null 2>&1
 
-success "pushed $VERSION tag to GitHub"
+success "pushed $VERSION tag to GitHub. If everything looks good, run: npm publish"

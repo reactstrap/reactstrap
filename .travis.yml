@@ -2,34 +2,23 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-  - 6
+- 6
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_script:
-  - chmod +x scripts/docs
+- chmod +x scripts/docs
 script:
-  - npm run lint
-  - npm run cover -- --runInBand
+- npm run lint
+- npm run cover -- --runInBand
 after_script:
-  - npm run report-coverage
+- npm run report-coverage
 after_success:
-  - scripts/docs
+- scripts/docs
 env:
   global:
-    secure: GKu1vrkY7RWrrp0VOyxBjGSyTOGdU9jNT+oYR7P12PbCX4yzZ2mbsPpxWWs7Uh8ZXm5VEEfkrF80v/ccUEMvf1MD/q95nqLcQRoN/31yDhiJ66uW+mZk0C6OqUUZJlcSt1Ta6oLmLVmkJUu2euOo4ZTGQ1iwV9EOS+auPYUjXF7df8JE9sTof4YM3jUiQ+3ABIG8cOcsf81AyS9TOcpH6xPEs71Hz0uXta3TAAYpLgJSuuCciQn5Sr/9UIh9w10zAasSZBy27+A5mTf0C0xk3vN95cHfyS25r5x/zC3++YS//6MQASruT05Hf7STpF9Dy/6mdg6tMfGr+85zDqpMaF1dP5Rm9f8KHqZzYD52PtwLEkHpWwi/gqHY5vc+wHla5FEXiqawtBTRMj/hlvkvdN55qZnnFmsVEPrhHAIm1a8ECngzkZhG9QblszGgc55RtAtgGSlVsS5VWStsj29xLs2VJb6gYj69cMDSIND4e5VYzmrnaO/qRbzvRWJUIWFo/nmpSnAQbq5yV8K1+VukbxX/hF7+mE55ieeVww8tnC2bkxuQF1CbzTul5kPgAD7Hf8YdsSczvdZpSRHtN6OXGCotw4DRAiXZRb5TLFvEQFvbrNGciN5/Z1rXxlMr8WWwckAFxVW1EQd+kKg8abjCOLE+YY04a+h3W/+XOgDPUlA=
+    secure: Jb9Q9+XnCh+n5uNJuqUmLmPG6mUUv7iTi5bNeK6TpLdrVKk+2mLdobV3iRUy/DEqNLwt2lxwzp1oq4YI/lZ0vlUam7HpFWpSf4PAI8ckGRqFdus7K45o+zxHLJ2zBQwXacsZB204qtO8RDdXaNb9PjRGNFdKm3ZuqZTv6PkO+hS05EFxmcW95HiSHpV/qPxKjEsDdCpoTNEA3MP0dNtSKygeht2nFQVr7WkOhkjDvUtU9EypkGbJeBCd0AckqXM0Qvmdi++csyz5VRQhhUwI/2BKSjbBVUZ6Q3m8sX2p4G/wFEbhXl5eKTzAYLuf+9kT9Jg+gKdT30PoChx2NPKHv0XS8BOrKQScs6KIwOVH2/CNCKqAxh3HkCMSONmqEQRqBK1V/gSCZ4zDX9PgrfyE23FLN/GM4YtBlkVCMLh8Y/hiapXUaDobxh/o2tfOoQkeoZWZeoeIydhwULTDSG2R3PKV7rkGYas0VQ+qtU+i8VG+PzjPT4DRf4xIKzNzJbFIq9oTNYBTasWi6+OKzNw0uH3ydmRzf+GxaTwOIdR3nRQMQN60dH+6qeJkrIvpfrGAB5gqTutXPfe0xf2rMrW6dyipnSgGlk1JOgA+cU4CPyHql1OA+ox/kIQ4I3PIJBu5YYE3amFmKLu3vnDHELSzM1CYeOs0sDasRyiDkKE79l0=
 branches:
   only:
   - master
   - v4
-before_deploy:
-  - npm run build
-deploy:
-  skip_cleanup: true
-  provider: npm
-  email: edward.d.hernandez@gmail.com
-  api_key:
-    secure: FFlZtXFtzHE0mnYlYPnv5g7CE3IYj4DdO28qxSLV1sa1UC/FJOAY6no5iiQ62aL0CH66B9sgXjvOvRDYoSfIWjOxYS49OcYQ1U6cW4x3azI34FTVCkjfsmoOrnsiBkNjYkKbz+XW7rsdN/u4CA9womdqHq4v4dNroB8mgrHKli5/CK7PhodRf9JYq758cc/cwZjnIQ3ioZ9vcsgsBcYO+705kh0x6HNEYQyhDMm++DMEupa7OtzZTeZbeDFxDCVlFWCxMJCbwkjqK4tqxXJglBbr2SPZ+LKi2EMHaILUoYwFsMimBFy+rYjCCe55zYnuYw2z+6lPeqbJ7pvhodTYcf/kUVpHzUKBMrCW4oJXlQ7MjaX9gaiiD8K+pnP7IF3N+j7iiroxsRa7floYTjDLstxNwrawfrIajL1C0wRTZ9g7CUX/Pbxjs818zOAloHqzlVQewIt3Jcj0CyXeVgZSQvcHvU1ROSJkN9qYyBXbb9rou4j+mgYvLLy+aql91dvmSjQIuDGqG9x+Acyz5Zl5N36JNjNAwJxF1NV1E/Vks8TPdgU3O6zylP+tg9HAzu7jG9gnIAusC7vkE/9RZ1TFQPAMTVrL+sqHmliDBHWBmMRibbkEsTl2vvV2ZSriHqQGqRFqv7jhON96RdzU6uxDtoRJb4ZGZrqEmt7l8n5USAU=
-  on:
-    tags: true
-    repo: reactstrap/reactstrap

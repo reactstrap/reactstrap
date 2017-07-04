@@ -7,7 +7,7 @@
     "transform-object-rest-spread"
   ],
   "env": {
-    "dist-dir": {
+    "lib-dir": {
       "plugins": ["transform-es2015-modules-commonjs"]
     },
     "webpack": {
