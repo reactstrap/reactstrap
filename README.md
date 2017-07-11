@@ -27,8 +27,8 @@ Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The 
 Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:
 
 ```
-npm install bootstrap@4.0.0-alpha.6 --save
-npm install --save reactstrap react-transition-group react react-dom
+npm install --save bootstrap@4.0.0-alpha.6
+npm install --save reactstrap react-transition-group@^1.1.2 react@^15.3.0 react-dom@^15.3.0
 ```
 
 Import Bootstrap CSS in the ```src/index.js``` file:
