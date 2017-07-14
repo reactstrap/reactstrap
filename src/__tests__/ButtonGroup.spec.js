@@ -18,6 +18,12 @@ describe('ButtonGroup', () => {
     expect(large.hasClass('btn-group-lg')).toBe(true);
   });
 
+  it('should render justified class', () => {
+    const wrapper = shallow(<ButtonGroup justified>Justified Group</ButtonGroup>);
+
+    expect(wrapper.hasClass('btn-group-justified')).toBe(true);
+  });
+
   it('should render vertical class', () => {
     const wrapper = shallow(<ButtonGroup vertical>Vertical Group</ButtonGroup>);
 
