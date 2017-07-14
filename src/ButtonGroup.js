@@ -23,6 +23,7 @@ const ButtonGroup = (props) => {
     className,
     cssModule,
     size,
+    justified,
     vertical,
     tag: Tag,
     ...attributes
@@ -31,6 +32,7 @@ const ButtonGroup = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     size ? 'btn-group-' + size : false,
+    justified ? 'btn-group-justified' : false,
     vertical ? 'btn-group-vertical' : 'btn-group'
   ), cssModule);
 
