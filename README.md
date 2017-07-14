@@ -1,6 +1,6 @@
 [![reactstrap](https://cloud.githubusercontent.com/assets/399776/13906899/1de62f0c-ee9f-11e5-95c0-c515fee8e918.png)](https://reactstrap.github.io)
 
-[![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master)
+[![CDNJS](https://img.shields.io/cdnjs/v/reactstrap.svg)](https://cdnjs.com/libraries/reactstrap) [![NPM Version](https://img.shields.io/npm/v/reactstrap.svg?branch=master)](https://www.npmjs.com/package/reactstrap) [![Build Status](https://travis-ci.org/reactstrap/reactstrap.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master) [![License](https://img.shields.io/npm/l/reactstrap.svg)](https://github.com/reactstrap/reactstrap/blob/master/LICENSE)
 
 # reactstrap
 
@@ -27,8 +27,8 @@ Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The 
 Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:
 
 ```
-npm install bootstrap@4.0.0-alpha.6 --save
-npm install --save reactstrap react-transition-group react react-dom
+npm install --save bootstrap@4.0.0-alpha.6
+npm install --save reactstrap react-transition-group@^1.1.2 react@^15.3.0 react-dom@^15.3.0
 ```
 
 Import Bootstrap CSS in the ```src/index.js``` file:
@@ -44,6 +44,19 @@ import { Button } from 'reactstrap';
 ```
 
 Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example [`App.js`](https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d) redone using reactstrap.
+
+### CDN
+
+Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN. 
+
+```html
+https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js
+```
+
+> Note: When using the external CDN library, be sure to include the required dependencies as necessary **prior** to the Reactstrap library:
+>  * [React](https://cdnjs.com/libraries/react)
+>  * [ReactTransitionGroup](https://unpkg.com/react-transition-group/dist/react-transition-group.min.js)
+
 
 ## About the Project
 
@@ -116,6 +129,32 @@ Watch tests:
 
 ```sh
 npm run test-watch
+```
+
+## Releasing
+
+#### Create Release Branch
+
+To create a release branch and changelog, run the following command with a semantic release type (major, minor, patch):
+
+```
+./scripts/release <release-type>
+```
+
+Verify changelog in branch. Create a PR if everything looks good. Merge when tests are green.
+
+#### Tagging and Publishing
+
+Once the release branch is merged, checkout master and run:
+
+```
+./scripts/publish
+```
+
+This will build the current state of master, tag it based on the release version and push the tag up to GitHub. If that all looks good, the final command to run is:
+
+```
+npm publish
 ```
 
 ## In the wild

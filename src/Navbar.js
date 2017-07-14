@@ -19,7 +19,6 @@ const propTypes = {
 
 const defaultProps = {
   tag: 'nav',
-  role: 'navigation',
   toggleable: false,
 };
 

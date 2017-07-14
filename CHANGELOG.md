@@ -1,3 +1,37 @@
+<a name="4.8.0"></a>
+# [4.8.0](https://github.com/reactstrap/reactstrap/compare/4.7.0...4.8.0) (2017-06-28)
+
+
+### Features
+
+* **DropdownItem:** support the "active" property for dropdown items ([#469](https://github.com/reactstrap/reactstrap/issues/469)) ([83df86e](https://github.com/reactstrap/reactstrap/commit/83df86e))
+
+
+
+<a name="4.7.0"></a>
+# [4.7.0](https://github.com/reactstrap/reactstrap/compare/4.6.2...4.7.0) (2017-06-27)
+
+
+### Bug Fixes
+
+* **Alert:** map close class css modules ([#471](https://github.com/reactstrap/reactstrap/issues/471)) ([2e3c687](https://github.com/reactstrap/reactstrap/commit/2e3c687)), closes [#470](https://github.com/reactstrap/reactstrap/issues/470)
+* **DropdownToggle:** ensures color attribute is not leaked ([d1448e0](https://github.com/reactstrap/reactstrap/commit/d1448e0)), closes [#461](https://github.com/reactstrap/reactstrap/issues/461) [PR#402](https://github.com/PR/issues/402)
+* **Label:** add form-control-label to appropriate Label components ([#452](https://github.com/reactstrap/reactstrap/issues/452)) ([2e86132](https://github.com/reactstrap/reactstrap/commit/2e86132))
+* **Modal:** add back attribute passthrough ([#444](https://github.com/reactstrap/reactstrap/issues/444)) ([b598a40](https://github.com/reactstrap/reactstrap/commit/b598a40)), closes [#443](https://github.com/reactstrap/reactstrap/issues/443)
+* **Navbar:** remove default navigation role ([f607b2c](https://github.com/reactstrap/reactstrap/commit/f607b2c)), closes [#463](https://github.com/reactstrap/reactstrap/issues/463)
+
+
+
+<a name="4.6.2"></a>
+## [4.6.2](https://github.com/reactstrap/reactstrap/compare/4.6.1...4.6.2) (2017-05-16)
+
+
+### Bug Fixes
+
+* **build:** replace process.env in builds ([#429](https://github.com/reactstrap/reactstrap/issues/429)) ([#435](https://github.com/reactstrap/reactstrap/issues/435)) ([fcc5264](https://github.com/reactstrap/reactstrap/commit/fcc5264))
+
+
+
 <a name="4.6.1"></a>
 ## [4.6.1](https://github.com/reactstrap/reactstrap/compare/4.6.0...4.6.1) (2017-05-15)
 

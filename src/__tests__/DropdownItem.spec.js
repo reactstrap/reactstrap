@@ -73,6 +73,14 @@ describe('DropdownItem', () => {
     });
   });
 
+  describe('active', () => {
+    it('should render an active class', () => {
+      const wrapper = mount(<DropdownItem active />);
+
+      expect(wrapper.find('.active').length).toBe(1);
+    });
+  });
+
   describe('divider', () => {
     it('should render a divider element', () => {
       const wrapper = mount(<DropdownItem divider />);

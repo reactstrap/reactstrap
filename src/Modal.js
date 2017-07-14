@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { TransitionGroup } from 'react-transition-group';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
   conditionallyUpdateScrollbar,
   setScrollbarWidth,
   mapToCssModules,
+  omit
 } from './utils';
 
 const propTypes = {
@@ -46,6 +47,8 @@ const propTypes = {
   modalTransitionEnterTimeout: PropTypes.number,
   modalTransitionLeaveTimeout: PropTypes.number,
 };
+
+const propsToOmit = Object.keys(propTypes);
 
 const defaultProps = {
   isOpen: false,
@@ -190,6 +193,8 @@ class Modal extends React.Component {
   }
 
   renderModalDialog() {
+    const attributes = omit(this.props, propsToOmit);
+
     return (
       <div
         className={mapToCssModules(classNames('modal-dialog', this.props.className, {
@@ -197,6 +202,7 @@ class Modal extends React.Component {
         }), this.props.cssModule)}
         role="document"
         ref={(c) => (this._dialog = c)}
+        {...attributes}
       >
         <div
           className={mapToCssModules(
