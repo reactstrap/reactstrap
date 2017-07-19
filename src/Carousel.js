@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
+import { TransitionGroup } from 'react-transition-group';
 import { mapToCssModules } from './utils';
 
 class Carousel extends React.Component {
@@ -76,9 +76,9 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <ReactTransitionGroup component="div" role="listbox" className={innerClasses}>
+          <TransitionGroup component="div" role="listbox" className={innerClasses}>
             {children[activeIndex]}
-          </ReactTransitionGroup>
+          </TransitionGroup>
         </div>
       );
     }
@@ -91,9 +91,9 @@ class Carousel extends React.Component {
 
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <ReactTransitionGroup component="div" role="listbox" className={innerClasses}>
+          <TransitionGroup component="div" role="listbox" className={innerClasses}>
             {carouselItems[activeIndex]}
-          </ReactTransitionGroup>
+          </TransitionGroup>
           {controlLeft}
           {controlRight}
         </div>
@@ -109,9 +109,9 @@ class Carousel extends React.Component {
     return (
       <div ref={(carousel) => { this.carousel = carousel; }} className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
         {indicators}
-        <ReactTransitionGroup component="div" role="listbox" className={innerClasses}>
+        <TransitionGroup component="div" role="listbox" className={innerClasses}>
           {carouselItems[activeIndex]}
-        </ReactTransitionGroup>
+        </TransitionGroup>
         {controlLeft}
         {controlRight}
       </div>
