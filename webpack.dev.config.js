@@ -36,6 +36,7 @@ var paths = [
   '/components/jumbotron/',
   '/components/alerts/',
   '/components/collapse/',
+  '/components/carousel/',
   '/components/listgroup/',
   '/404.html'
 ];
