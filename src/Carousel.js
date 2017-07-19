@@ -7,6 +7,7 @@ class Carousel extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = { direction: 'right' };
   }
 
@@ -22,6 +23,10 @@ class Carousel extends React.Component {
           this.props.next();
         }
       }, parseInt(this.props.interval, 10));
+    }
+
+    if (this.props.keyboard) {
+      document.addEventListener('keyup', this.handleKeyPress);
     }
   }
 
@@ -40,6 +45,15 @@ class Carousel extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.cycleInterval);
+    document.removeEventListener('key', this.handleKeyPress);
+  }
+
+  handleKeyPress(evt) {
+    if (this.props.keyboard && evt.keyCode === 37) {
+      this.props.previous();
+    } else if (this.props.keyboard && evt.keyCode === 39) {
+      this.props.next();
+    }
   }
 
   render() {
@@ -93,7 +107,7 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
+      <div ref={(carousel) => { this.carousel = carousel; }} className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
         {indicators}
         <ReactTransitionGroup component="div" role="listbox" className={innerClasses}>
           {carouselItems[activeIndex]}
@@ -109,6 +123,8 @@ class Carousel extends React.Component {
 Carousel.propTypes = {
   paused: PropTypes.bool,
   next: PropTypes.func.isRequired,
+  previous: PropTypes.func.isRequired,
+  keyboard: PropTypes.bool,
   cssModule: PropTypes.object,
   activeIndex: PropTypes.number,
   interval: PropTypes.oneOfType([
@@ -124,7 +140,8 @@ Carousel.propTypes = {
 Carousel.defaultProps = {
   interval: 5000,
   hover: false,
-  paused: false
+  paused: false,
+  keyboard: true
 };
 
 Carousel.childContextTypes = {
