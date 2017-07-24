@@ -61,7 +61,7 @@ class CarouselItem extends React.Component {
     this.setState({
       animation: []
     });
-    this.slide.dispatchEvent(new CustomEvent('slid.bs.carousel'));
+    this.slide.dispatchEvent(new CustomEvent('slide.bs.carousel'));
   }
 
 
