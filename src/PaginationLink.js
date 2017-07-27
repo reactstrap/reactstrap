@@ -48,6 +48,10 @@ const PaginationLink = (props) => {
   }
 
   let children = props.children;
+  if (children && !children.length) {
+    children = null;
+  }
+
   if (previous || next) {
     children = [
       <span
