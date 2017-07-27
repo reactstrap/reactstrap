@@ -76,6 +76,7 @@ class DropdownToggle extends React.Component {
     } else if (!tag) {
       Tag = Button;
       props.color = color;
+      props.cssModule = cssModule;
     } else {
       Tag = tag;
     }
