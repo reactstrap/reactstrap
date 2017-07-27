@@ -97,6 +97,21 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render with additional props if provided', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} style={{ maxWidth: '95%' }}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-dialog')[0].style.maxWidth).toBe('95%');
+    wrapper.unmount();
+  });
+
   it('should render without fade transition if provided with fade={false}', () => {
     isOpen = true;
     const wrapper = mount(
@@ -262,23 +277,23 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should call onExit & onEnter', () => {
-    spyOn(Modal.prototype, 'onEnter').and.callThrough();
-    spyOn(Modal.prototype, 'onExit').and.callThrough();
-    const onEnter = jasmine.createSpy('spy');
-    const onExit = jasmine.createSpy('spy');
+  it('should call onClosed & onOpened', () => {
+    spyOn(Modal.prototype, 'onOpened').and.callThrough();
+    spyOn(Modal.prototype, 'onClosed').and.callThrough();
+    const onOpened = jasmine.createSpy('spy');
+    const onClosed = jasmine.createSpy('spy');
     const wrapper = mount(
-      <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle}>
+      <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
         Yo!
       </Modal>
     );
 
     jasmine.clock().tick(300);
     expect(isOpen).toBe(false);
-    expect(onEnter).not.toHaveBeenCalled();
-    expect(Modal.prototype.onEnter).not.toHaveBeenCalled();
-    expect(onExit).not.toHaveBeenCalled();
-    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+    expect(onOpened).not.toHaveBeenCalled();
+    expect(Modal.prototype.onOpened).not.toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({
@@ -287,10 +302,10 @@ describe('Modal', () => {
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(true);
-    expect(onEnter).toHaveBeenCalled();
-    expect(Modal.prototype.onEnter).toHaveBeenCalled();
-    expect(onExit).not.toHaveBeenCalled();
-    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+    expect(onOpened).toHaveBeenCalled();
+    expect(Modal.prototype.onOpened).toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({
@@ -299,29 +314,29 @@ describe('Modal', () => {
     jasmine.clock().tick(300);
 
     expect(isOpen).toBe(false);
-    expect(onExit).toHaveBeenCalled();
-    expect(Modal.prototype.onExit).toHaveBeenCalled();
+    expect(onClosed).toHaveBeenCalled();
+    expect(Modal.prototype.onClosed).toHaveBeenCalled();
 
     wrapper.unmount();
   });
 
-  it('should call onExit & onEnter when fade={false}', () => {
-    spyOn(Modal.prototype, 'onEnter').and.callThrough();
-    spyOn(Modal.prototype, 'onExit').and.callThrough();
-    const onEnter = jasmine.createSpy('spy');
-    const onExit = jasmine.createSpy('spy');
+  it('should call onClosed & onOpened when fade={false}', () => {
+    spyOn(Modal.prototype, 'onOpened').and.callThrough();
+    spyOn(Modal.prototype, 'onClosed').and.callThrough();
+    const onOpened = jasmine.createSpy('spy');
+    const onClosed = jasmine.createSpy('spy');
     const wrapper = mount(
-      <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle} fade={false}>
+      <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle} fade={false}>
         Yo!
       </Modal>
     );
 
     jasmine.clock().tick(1);
     expect(isOpen).toBe(false);
-    expect(onEnter).not.toHaveBeenCalled();
-    expect(Modal.prototype.onEnter).not.toHaveBeenCalled();
-    expect(onExit).not.toHaveBeenCalled();
-    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+    expect(onOpened).not.toHaveBeenCalled();
+    expect(Modal.prototype.onOpened).not.toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({
@@ -330,10 +345,10 @@ describe('Modal', () => {
     jasmine.clock().tick(1);
 
     expect(isOpen).toBe(true);
-    expect(onEnter).toHaveBeenCalled();
-    expect(Modal.prototype.onEnter).toHaveBeenCalled();
-    expect(onExit).not.toHaveBeenCalled();
-    expect(Modal.prototype.onExit).not.toHaveBeenCalled();
+    expect(onOpened).toHaveBeenCalled();
+    expect(Modal.prototype.onOpened).toHaveBeenCalled();
+    expect(onClosed).not.toHaveBeenCalled();
+    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({
@@ -342,8 +357,8 @@ describe('Modal', () => {
     jasmine.clock().tick(1);
 
     expect(isOpen).toBe(false);
-    expect(onExit).toHaveBeenCalled();
-    expect(Modal.prototype.onExit).toHaveBeenCalled();
+    expect(onClosed).toHaveBeenCalled();
+    expect(Modal.prototype.onClosed).toHaveBeenCalled();
 
     wrapper.unmount();
   });
@@ -607,5 +622,45 @@ describe('Modal', () => {
     expect(document.body.className).toBe('my-modal-opened modal-opened');
 
     wrapper.unmount();
+  });
+
+  it('should call onEnter & onExit props if provided', () => {
+    const onEnter = jasmine.createSpy('spy');
+    const onExit = jasmine.createSpy('spy');
+    const wrapper = mount(
+      <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    expect(isOpen).toBe(false);
+    expect(onEnter).toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+
+    onEnter.calls.reset();
+    onExit.calls.reset();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(300);
+
+    expect(isOpen).toBe(true);
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onExit).not.toHaveBeenCalled();
+
+    onEnter.calls.reset();
+    onExit.calls.reset();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jasmine.clock().tick(300);
+
+    wrapper.unmount();
+    expect(onEnter).not.toHaveBeenCalled();
+    expect(onExit).toHaveBeenCalled();
   });
 });

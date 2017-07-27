@@ -154,6 +154,48 @@ describe('Utils', () => {
     });
   });
 
+  describe('omit', () => {
+    it('should omit keys', () => {
+      const input = {
+        hello: 'world',
+        speed: 'fast',
+        size: 'small'
+      };
+      expect(Utils.omit(input, ['hello'])).toEqual({ speed: 'fast', size: 'small' });
+    });
+
+    it('should not alter source object', () => {
+      const input = {
+        hello: 'world',
+        speed: 'fast',
+        size: 'small'
+      };
+      expect(Utils.omit(input, ['hello'])).toEqual({ speed: 'fast', size: 'small' });
+      expect(input).toEqual({
+        hello: 'world',
+        speed: 'fast',
+        size: 'small'
+      });
+    });
+
+    it('should ignore non-existing keys', () => {
+      const input = {
+        hello: 'world',
+        speed: 'fast',
+        size: 'small'
+      };
+      expect(Utils.omit(input, ['non-existing', 'hello'])).toEqual({ speed: 'fast', size: 'small' });
+    });
+
+    it('should return a new object', () => {
+      const input = {
+        hello: 'world'
+      };
+      // toBe tests equality using `===` and so will test if it's not the same object.
+      expect(Utils.omit(input, [])).not.toBe(input);
+    });
+  });
+
   // TODO
   // describe('getScrollbarWidth', () => {
   //   // jsdom workaround https://github.com/tmpvar/jsdom/issues/135#issuecomment-68191941

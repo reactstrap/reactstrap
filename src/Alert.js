@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { CSSTransitionGroup } from 'react-transition-group';
 import { mapToCssModules } from './utils';
 
 const FirstChild = ({ children }) => (
@@ -11,6 +11,7 @@ const FirstChild = ({ children }) => (
 const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  closeClassName: PropTypes.string,
   cssModule: PropTypes.object,
   color: PropTypes.string,
   isOpen: PropTypes.bool,
@@ -33,6 +34,7 @@ const defaultProps = {
 const Alert = (props) => {
   const {
     className,
+    closeClassName,
     cssModule,
     tag: Tag,
     color,
@@ -52,10 +54,12 @@ const Alert = (props) => {
     { 'alert-dismissible': toggle }
   ), cssModule);
 
+  const closeClasses = mapToCssModules(classNames('close', closeClassName), cssModule);
+
   const alert = (
     <Tag {...attributes} className={classes} role="alert">
       { toggle ?
-        <button type="button" className="close" aria-label="Close" onClick={toggle}>
+        <button type="button" className={closeClasses} aria-label="Close" onClick={toggle}>
           <span aria-hidden="true">&times;</span>
         </button>
         : null }

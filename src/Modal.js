@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { TransitionGroup } from 'react-transition-group';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
   conditionallyUpdateScrollbar,
   setScrollbarWidth,
   mapToCssModules,
+  omit
 } from './utils';
 
 const propTypes = {
@@ -23,6 +24,8 @@ const propTypes = {
   ]),
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
+  onOpened: PropTypes.func,
+  onClosed: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
   wrapClassName: PropTypes.string,
@@ -45,6 +48,8 @@ const propTypes = {
   modalTransitionLeaveTimeout: PropTypes.number,
 };
 
+const propsToOmit = Object.keys(propTypes);
+
 const defaultProps = {
   isOpen: false,
   autoFocus: true,
@@ -66,13 +71,16 @@ class Modal extends React.Component {
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
     this.destroy = this.destroy.bind(this);
-    this.onEnter = this.onEnter.bind(this);
-    this.onExit = this.onExit.bind(this);
+    this.onOpened = this.onOpened.bind(this);
+    this.onClosed = this.onClosed.bind(this);
   }
 
   componentDidMount() {
     if (this.props.isOpen) {
       this.togglePortal();
+    }
+    if (this.props.onEnter) {
+      this.props.onEnter();
     }
   }
 
@@ -87,19 +95,22 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
-    this.onExit();
-  }
-
-  onEnter() {
-    if (this.props.onEnter) {
-      this.props.onEnter();
-    }
-  }
-
-  onExit() {
     this.destroy();
     if (this.props.onExit) {
       this.props.onExit();
+    }
+  }
+
+  onOpened() {
+    if (this.props.onOpened) {
+      this.props.onOpened();
+    }
+  }
+
+  onClosed() {
+    this.destroy();
+    if (this.props.onClosed) {
+      this.props.onClosed();
     }
   }
 
@@ -134,12 +145,12 @@ class Modal extends React.Component {
       }
       this.show();
       if (!this.hasTransition()) {
-        this.onEnter();
+        this.onOpened();
       }
     } else {
       this.hide();
       if (!this.hasTransition()) {
-        this.onExit();
+        this.onClosed();
       }
     }
   }
@@ -182,6 +193,8 @@ class Modal extends React.Component {
   }
 
   renderModalDialog() {
+    const attributes = omit(this.props, propsToOmit);
+
     return (
       <div
         className={mapToCssModules(classNames('modal-dialog', this.props.className, {
@@ -189,6 +202,7 @@ class Modal extends React.Component {
         }), this.props.cssModule)}
         role="document"
         ref={(c) => (this._dialog = c)}
+        {...attributes}
       >
         <div
           className={mapToCssModules(
@@ -241,8 +255,8 @@ class Modal extends React.Component {
           {isOpen && (
             <Fade
               key="modal-dialog"
-              onEnter={this.onEnter}
-              onLeave={this.onExit}
+              onEnter={this.onOpened}
+              onLeave={this.onClosed}
               transitionAppearTimeout={
                 typeof this.props.modalTransitionAppearTimeout === 'number'
                   ? this.props.modalTransitionAppearTimeout

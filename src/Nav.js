@@ -7,6 +7,7 @@ const propTypes = {
   tabs: PropTypes.bool,
   pills: PropTypes.bool,
   vertical: PropTypes.bool,
+  justified: PropTypes.bool,
   navbar: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
@@ -24,6 +25,7 @@ const Nav = (props) => {
     tabs,
     pills,
     vertical,
+    justified,
     navbar,
     tag: Tag,
     ...attributes
@@ -35,6 +37,7 @@ const Nav = (props) => {
     {
       'nav-tabs': tabs,
       'nav-pills': pills,
+      'nav-justified': justified,
       'flex-column': vertical
     }
   ), cssModule);

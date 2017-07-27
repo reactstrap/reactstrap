@@ -37,6 +37,22 @@ describe('PaginationLink', () => {
     expect(wrapper.find('.sr-only').text()).toBe('Next');
   });
 
+  it('should render default previous caret with children as an empty array', () => {
+    const wrapper = shallow(<PaginationLink previous children={[]} />);
+
+    expect(wrapper.prop('aria-label')).toBe('Previous');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00ab');
+    expect(wrapper.find('.sr-only').text()).toBe('Previous');
+  });
+
+  it('should render default next caret with children as an empty array', () => {
+    const wrapper = shallow(<PaginationLink next children={[]} />);
+
+    expect(wrapper.prop('aria-label')).toBe('Next');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
+    expect(wrapper.find('.sr-only').text()).toBe('Next');
+  });
+
   it('should render custom aria label', () => {
     const wrapper = shallow(<PaginationLink next aria-label="Yo" />);
 
