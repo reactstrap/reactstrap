@@ -51,7 +51,7 @@ const PaginationLink = (props) => {
   if (children && !children.length) {
     children = null;
   }
-  
+
   if (previous || next) {
     children = [
       <span
