@@ -38,6 +38,9 @@ class TetherContent extends React.Component {
     if (this.props.isOpen !== prevProps.isOpen) {
       this.handleProps();
     } else if (this._element) {
+      if (this.props.className !== prevProps.className) {
+        this._element.className = this._element.className.replace(prevProps.className, this.props.className);
+      }
       // rerender
       this.renderIntoSubtree();
     }

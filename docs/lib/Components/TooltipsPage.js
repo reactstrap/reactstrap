@@ -43,11 +43,13 @@ export default class TooltipsPage extends React.Component {
   // optionally overide tether config http://tether.io/#options
   tetherRef: PropType.function,
   // function which is passed a reference to the instance of tether for manually \`position()\`ing
+  animation: PropTypes.bool, // defaults true; controls fade animation.
+  animationDuration: PropTypes.number, // default 150; controls how long the animation takes before removing the tooltip
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
   ]),
-  // optionally override show/hide delays - default { show: 0, hide: 250 }
+  // optionally override show/hide delays - default { show: 0, hide: 0 }
   autohide: PropTypes.bool,
   // optionally hide tooltip when hovering over tooltip content - default true
   placement: PropTypes.oneOf([
