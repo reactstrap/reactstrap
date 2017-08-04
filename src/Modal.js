@@ -18,6 +18,8 @@ const propTypes = {
   size: PropTypes.string,
   toggle: PropTypes.func,
   keyboard: PropTypes.bool,
+  role: PropTypes.string,
+  labelledBy: PropTypes.string,
   backdrop: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(['static'])
@@ -53,6 +55,7 @@ const propsToOmit = Object.keys(propTypes);
 const defaultProps = {
   isOpen: false,
   autoFocus: true,
+  role: 'dialog',
   backdrop: true,
   keyboard: true,
   zIndex: 1050,
@@ -239,13 +242,17 @@ class Modal extends React.Component {
       isOpen,
       backdrop,
       modalTransitionTimeout,
-      backdropTransitionTimeout
+      backdropTransitionTimeout,
+      role,
+      labelledBy
     } = this.props;
 
     const modalAttributes = {
       onClickCapture: this.handleBackdropClick,
       onKeyUp: this.handleEscape,
       style: { display: 'block' },
+      'aria-labelledby': labelledBy,
+      role,
       tabIndex: '-1'
     };
 
