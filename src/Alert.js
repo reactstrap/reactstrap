@@ -12,6 +12,7 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   closeClassName: PropTypes.string,
+  closeAriaLabel: PropTypes.string,
   cssModule: PropTypes.object,
   color: PropTypes.string,
   isOpen: PropTypes.bool,
@@ -28,13 +29,15 @@ const defaultProps = {
   tag: 'div',
   transitionAppearTimeout: 150,
   transitionEnterTimeout: 150,
-  transitionLeaveTimeout: 150
+  transitionLeaveTimeout: 150,
+  closeAriaLabel: 'Close'
 };
 
 const Alert = (props) => {
   const {
     className,
     closeClassName,
+    closeAriaLabel,
     cssModule,
     tag: Tag,
     color,
@@ -59,7 +62,7 @@ const Alert = (props) => {
   const alert = (
     <Tag {...attributes} className={classes} role="alert">
       { toggle ?
-        <button type="button" className={closeClasses} aria-label="Close" onClick={toggle}>
+        <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle}>
           <span aria-hidden="true">&times;</span>
         </button>
         : null }
