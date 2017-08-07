@@ -94,4 +94,10 @@ describe('Alert', () => {
     alert.find('button').simulate('click');
     expect(onClick).toHaveBeenCalled();
   });
+
+  it('should render close button with custom aria-label', () => {
+    const alert = shallow(<Alert toggle={() => {}} closeAriaLabel="oseclay">Yo!</Alert>).find('div');
+    const closeButton = alert.find('button').first();
+    expect(closeButton.prop('aria-label')).toBe('oseclay');
+  });
 });
