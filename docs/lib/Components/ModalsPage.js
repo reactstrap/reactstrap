@@ -51,6 +51,9 @@ export default class ModalsPage extends React.Component {
   size: PropTypes.string,
   // callback for toggling isOpen in the controlling component
   toggle:  PropTypes.func,
+  role: PropTypes.string, // defaults to "dialog"
+  // used to reference the ID of the title element in the modal
+  labelledBy: PropTypes.string,
   keyboard: PropTypes.bool,
   // control backdrop, see http://v4-alpha.getbootstrap.com/components/modal/#options
   backdrop: PropTypes.oneOfType([

@@ -239,6 +239,48 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render modal with default role of "dialog"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('dialog');
+    wrapper.unmount();
+  });
+
+  it('should render modal with provided role', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} role="alert">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('alert');
+    wrapper.unmount();
+  });
+
+  it('should render modal with aria-labelledby provided labelledBy', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} labelledBy="myModalTitle">
+        Yo!
+      </Modal>
+    );
+
+    jasmine.clock().tick(300);
+    expect(wrapper.children().length).toBe(0);
+    expect(document.getElementsByClassName('modal')[0].getAttribute('aria-labelledby')).toBe('myModalTitle');
+    wrapper.unmount();
+  });
+
   it('should not render modal when isOpen is false', () => {
     const wrapper = mount(
       <Modal isOpen={isOpen} toggle={toggle}>
