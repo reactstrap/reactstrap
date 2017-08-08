@@ -37,4 +37,11 @@ describe('ModalHeader', () => {
 
     expect(wrapper.type()).toBe('main');
   });
+
+  it('should render close button with custom aria-label', () => {
+    const wrapper = shallow(<ModalHeader toggle={() => {}} className="other" closeAriaLabel="oseclay">Yo!</ModalHeader>);
+
+    const closeButton = wrapper.find('button.close').first();
+    expect(closeButton.prop('aria-label')).toBe('oseclay');
+  });
 });
