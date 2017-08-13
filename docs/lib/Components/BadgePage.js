@@ -6,6 +6,9 @@ import Helmet from 'react-helmet';
 import BadgeExample from '../examples/Badge';
 const BadgeExampleSource = require('!!raw!../examples/Badge');
 
+import BadgeButtonExample from '../examples/BadgeButton';
+const BadgeButtonExampleSource = require('!!raw!../examples/BadgeButton');
+
 import BadgePillsExample from '../examples/BadgePills';
 const BadgePillsExampleSource = require('!!raw!../examples/BadgePills');
 
@@ -28,7 +31,16 @@ export default class BadgesPage extends React.Component {
             {BadgeExampleSource}
           </PrismCode>
         </pre>
-        <h3>Variations</h3>
+        <p>Badges can be used as part of links or buttons to provide a counter.</p>
+        <div className="docs-example">
+          <BadgeButtonExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {BadgeButtonExampleSource}
+          </PrismCode>
+        </pre>
+        <h3>Contextual variations</h3>
         <div className="docs-example">
           <BadgeVariationsExample />
         </div>
