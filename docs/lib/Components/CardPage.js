@@ -1,33 +1,33 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-import React from 'react';
-import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import React from 'react'
+import { PrismCode } from 'react-prism'
+import Helmet from 'react-helmet'
 
-import CardExample from '../examples/Card';
-import CardContentExample from '../examples/CardContentTypes';
-import CardSizingExample from '../examples/CardSizing';
-import CardAlignmentExample from '../examples/CardAlignment';
-import CardHeaderFooterExample from '../examples/CardHeaderFooter';
-import CardImageCapsExample from '../examples/CardImageCaps';
-import CardImageOverlayExample from '../examples/CardImageOverlay';
-import CardBackgroundsExample from '../examples/CardBackgrounds';
-import CardOutlineExample from '../examples/CardOutline';
-import CardGroupsExample from '../examples/CardGroups';
-import CardDecksExample from '../examples/CardDecks';
-import CardColumnsExample from '../examples/CardColumns';
+import CardExample from '../examples/Card'
+import CardContentExample from '../examples/CardContentTypes'
+import CardSizingExample from '../examples/CardSizing'
+import CardAlignmentExample from '../examples/CardAlignment'
+import CardHeaderFooterExample from '../examples/CardHeaderFooter'
+import CardImageCapsExample from '../examples/CardImageCaps'
+import CardImageOverlayExample from '../examples/CardImageOverlay'
+import CardBackgroundsExample from '../examples/CardBackgrounds'
+import CardOutlineExample from '../examples/CardOutline'
+import CardGroupsExample from '../examples/CardGroups'
+import CardDecksExample from '../examples/CardDecks'
+import CardColumnsExample from '../examples/CardColumns'
 
-const CardExampleSource = require('!!raw!../examples/Card');
-const CardContentExampleSource = require('!!raw!../examples/CardContentTypes');
-const CardSizingExampleSource = require('!!raw!../examples/CardSizing');
-const CardAlignmentExampleSource = require('!!raw!../examples/CardAlignment');
-const CardHeaderFooterExampleSource = require('!!raw!../examples/CardHeaderFooter');
-const CardImageCapsExampleSource = require('!!raw!../examples/CardImageCaps');
-const CardImageOverlayExampleSource = require('!!raw!../examples/CardImageOverlay');
-const CardBackgroundsExampleSource = require('!!raw!../examples/CardBackgrounds');
-const CardOutlineExampleSource = require('!!raw!../examples/CardOutline');
-const CardGroupsExampleSource = require('!!raw!../examples/CardGroups');
-const CardDecksExampleSource = require('!!raw!../examples/CardDecks');
-const CardColumnsExampleSource = require('!!raw!../examples/CardColumns');
+const CardExampleSource = require('!!raw!../examples/Card')
+const CardContentExampleSource = require('!!raw!../examples/CardContentTypes')
+const CardSizingExampleSource = require('!!raw!../examples/CardSizing')
+const CardAlignmentExampleSource = require('!!raw!../examples/CardAlignment')
+const CardHeaderFooterExampleSource = require('!!raw!../examples/CardHeaderFooter')
+const CardImageCapsExampleSource = require('!!raw!../examples/CardImageCaps')
+const CardImageOverlayExampleSource = require('!!raw!../examples/CardImageOverlay')
+const CardBackgroundsExampleSource = require('!!raw!../examples/CardBackgrounds')
+const CardOutlineExampleSource = require('!!raw!../examples/CardOutline')
+const CardGroupsExampleSource = require('!!raw!../examples/CardGroups')
+const CardDecksExampleSource = require('!!raw!../examples/CardDecks')
+const CardColumnsExampleSource = require('!!raw!../examples/CardColumns')
 
 export default class CardPage extends React.Component {
   render() {
@@ -47,7 +47,7 @@ export default class CardPage extends React.Component {
         <h4>Properties</h4>
         <pre>
           <PrismCode className="language-jsx">
-{`Card.propTypes = {
+            {`Card.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   inverse: PropTypes.bool,
@@ -56,7 +56,7 @@ export default class CardPage extends React.Component {
   className: PropTypes.string
 };
 
-CardBlock.propTypes = {
+CardBody.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string
@@ -232,6 +232,6 @@ CardTitle.propTypes = {
           </PrismCode>
         </pre>
       </div>
-    );
+    )
   }
 }
