@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardBlock = (props) => {
+const CardBody = (props) => {
   const {
     className,
     cssModule,
@@ -22,7 +22,7 @@ const CardBlock = (props) => {
   } = props;
   const classes = mapToCssModules(classNames(
     className,
-    'card-block'
+    'card-body'
   ), cssModule);
 
   return (
@@ -30,7 +30,7 @@ const CardBlock = (props) => {
   );
 };
 
-CardBlock.propTypes = propTypes;
-CardBlock.defaultProps = defaultProps;
+CardBody.propTypes = propTypes;
+CardBody.defaultProps = defaultProps;
 
-export default CardBlock;
+export default CardBody;
