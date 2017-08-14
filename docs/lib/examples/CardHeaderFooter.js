@@ -1,31 +1,44 @@
-import React from 'react';
-import { Card, Button, CardHeader, CardFooter, CardBlock,
-  CardTitle, CardText } from 'reactstrap';
+import React from 'react'
+import {
+  Card,
+  Button,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  CardTitle,
+  CardText
+} from 'reactstrap'
 
-const Example = (props) => {
+const Example = props => {
   return (
     <div>
       <Card>
         <CardHeader>Header</CardHeader>
-        <CardBlock>
+        <CardBody>
           <CardTitle>Special Title Treatment</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+          <CardText>
+            With supporting text below as a natural lead-in to additional
+            content.
+          </CardText>
           <Button>Go somewhere</Button>
-        </CardBlock>
+        </CardBody>
         <CardFooter>Footer</CardFooter>
       </Card>
 
       <Card>
         <CardHeader tag="h3">Featured</CardHeader>
-        <CardBlock>
+        <CardBody>
           <CardTitle>Special Title Treatment</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+          <CardText>
+            With supporting text below as a natural lead-in to additional
+            content.
+          </CardText>
           <Button>Go somewhere</Button>
-        </CardBlock>
+        </CardBody>
         <CardFooter className="text-muted">Footer</CardFooter>
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default Example;
+export default Example
