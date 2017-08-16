@@ -31,7 +31,11 @@ export default class NavssPage extends React.Component {
 {`Nav.propTypes = {
   tabs: PropTypes.bool,
   pills: PropTypes.bool,
-  vertical: PropTypes.bool,
+  card: PropTypes.bool,
+  justified: PropTypes.bool,
+  fill: PropTypes.bool,
+  vertical: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  horizontal: PropTypes.string,
   navbar: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use

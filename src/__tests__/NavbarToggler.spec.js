@@ -27,16 +27,4 @@ describe('NavbarToggler', () => {
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('navbar-toggler')).toBe(true);
   });
-
-  it('should apply .navbar-toggler-right when right prop is true', () => {
-    const wrapper = shallow(<NavbarToggler right />);
-
-    expect(wrapper.hasClass('navbar-toggler-right')).toBe(true);
-  });
-
-  it('should apply .navbar-toggler-left when left prop is true', () => {
-    const wrapper = shallow(<NavbarToggler left />);
-
-    expect(wrapper.hasClass('navbar-toggler-left')).toBe(true);
-  });
 });

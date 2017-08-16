@@ -9,8 +9,6 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.node,
-  right: PropTypes.bool,
-  left: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -23,8 +21,6 @@ const NavbarToggler = (props) => {
     className,
     cssModule,
     children,
-    right,
-    left,
     tag: Tag,
     ...attributes
   } = props;
@@ -32,8 +28,6 @@ const NavbarToggler = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     'navbar-toggler',
-    right && 'navbar-toggler-right',
-    left && 'navbar-toggler-left'
   ), cssModule);
 
   return (
