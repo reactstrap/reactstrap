@@ -228,7 +228,9 @@ class Modal extends React.Component {
 
     // check if modal should receive focus
     if (this._focus) {
-      this._dialog.parentNode.focus();
+      if (this._dialog && this._dialog.parentNode && typeof this._dialog.parentNode.focus === 'function') {
+        this._dialog.parentNode.focus();
+      }
       this._focus = false;
     }
   }
