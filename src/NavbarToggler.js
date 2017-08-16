@@ -27,7 +27,7 @@ const NavbarToggler = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    'navbar-toggler',
+    'navbar-toggler'
   ), cssModule);
 
   return (
