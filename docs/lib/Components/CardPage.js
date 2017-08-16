@@ -52,11 +52,11 @@ export default class CardPage extends React.Component {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   inverse: PropTypes.bool,
   color: PropTypes.string,
-  block: PropTypes.bool,
+  body: PropTypes.bool,
   className: PropTypes.string
 };
 
-CardBlock.propTypes = {
+CardBody.propTypes = {
   // Pass in a Component to override default element
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string

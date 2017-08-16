@@ -95,7 +95,7 @@
   },
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0",
-    "react-dom": "^0.14.9 || ^15.3.0",
+    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0",
     "react-transition-group": "^1.1.2"
   },
   "devDependencies": {
@@ -105,7 +105,7 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-app": "^0.2.1",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "4.0.0-beta",
     "clean-webpack-plugin": "^0.1.8",
     "conventional-changelog-cli": "^1.1.1",
     "conventional-recommended-bump": "^0.3.0",

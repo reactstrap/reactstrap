@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Button, CardBlock, Card } from 'reactstrap';
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 class Example extends Component {
   constructor(props) {
@@ -30,12 +30,12 @@ class Example extends Component {
         <h5>Current state: {this.state.status}</h5>
         <Collapse isOpen={this.state.collapse} onOpened={this.onOpened} onClosed={this.onClosed}>
           <Card>
-            <CardBlock>
+            <CardBody>
             Anim pariatur cliche reprehenderit,
              enim eiusmod high life accusamus terry richardson ad squid. Nihil
              anim keffiyeh helvetica, craft beer labore wes anderson cred
              nesciunt sapiente ea proident.
-            </CardBlock>
+            </CardBody>
           </Card>
         </Collapse>
       </div>

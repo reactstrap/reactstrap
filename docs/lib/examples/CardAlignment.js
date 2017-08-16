@@ -4,17 +4,17 @@ import { Card, Button, CardTitle, CardText } from 'reactstrap';
 const Example = (props) => {
   return (
     <div>
-      <Card block>
+      <Card body>
         <CardTitle>Special Title Treatment</CardTitle>
         <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
         <Button>Go somewhere</Button>
       </Card>
-      <Card block className="text-center">
+      <Card body className="text-center">
         <CardTitle>Special Title Treatment</CardTitle>
         <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
         <Button>Go somewhere</Button>
       </Card>
-      <Card block className="text-right">
+      <Card body className="text-right">
         <CardTitle>Special Title Treatment</CardTitle>
         <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
         <Button>Go somewhere</Button>

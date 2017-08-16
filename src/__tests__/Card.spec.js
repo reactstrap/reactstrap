@@ -15,9 +15,9 @@ describe('Card', () => {
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('card')).toBe(true);
-    expect(wrapper.hasClass('card-block')).toBe(true);
-    expect(wrapper.hasClass('card-primary')).toBe(true);
-    expect(wrapper.hasClass('card-inverse')).toBe(true);
+    expect(wrapper.hasClass('card-body')).toBe(true);
+    expect(wrapper.hasClass('bg-primary')).toBe(true);
+    expect(wrapper.hasClass('text-white')).toBe(true);
   });
 
   it('should render with "outline" class when a color is provided', () => {
@@ -25,8 +25,8 @@ describe('Card', () => {
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('card')).toBe(true);
-    expect(wrapper.hasClass('card-block')).toBe(true);
-    expect(wrapper.hasClass('card-outline-primary')).toBe(true);
+    expect(wrapper.hasClass('card-body')).toBe(true);
+    expect(wrapper.hasClass('border-primary')).toBe(true);
   });
 
   it('should not render with "outline" class when a color is not provided (no default)', () => {
@@ -34,8 +34,8 @@ describe('Card', () => {
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('card')).toBe(true);
-    expect(wrapper.hasClass('card-block')).toBe(true);
-    expect(wrapper.html()).not.toContain('card-outline');
+    expect(wrapper.hasClass('card-body')).toBe(true);
+    expect(wrapper.html()).not.toContain('border');
   });
 
   it('should render additional classes', () => {

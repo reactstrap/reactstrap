@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, deprecated } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   inverse: PropTypes.bool,
   color: PropTypes.string,
-  block: PropTypes.bool,
+  block: deprecated(PropTypes.bool, 'Please use the props "body"'),
+  body: PropTypes.bool,
   outline: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -23,6 +24,7 @@ const Card = (props) => {
     cssModule,
     color,
     block,
+    body,
     inverse,
     outline,
     tag: Tag,
@@ -31,9 +33,9 @@ const Card = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     'card',
-    inverse ? 'card-inverse' : false,
-    block ? 'card-block' : false,
-    color ? `card${outline ? '-outline' : ''}-${color}` : false
+    inverse ? 'text-white' : false,
+    block || body ? 'card-body' : false,
+    color ? `${outline ? 'border' : 'bg'}-${color}` : false
   ), cssModule);
 
   return (

@@ -24,6 +24,7 @@ import Card from './Card';
 import CardGroup from './CardGroup';
 import CardDeck from './CardDeck';
 import CardColumns from './CardColumns';
+import CardBody from './CardBody';
 import CardBlock from './CardBlock';
 import CardLink from './CardLink';
 import CardFooter from './CardFooter';
@@ -108,6 +109,7 @@ export {
   CardGroup,
   CardDeck,
   CardColumns,
+  CardBody,
   CardBlock,
   CardFooter,
   CardHeader,

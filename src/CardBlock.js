@@ -1,36 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import CardBody from './CardBody';
+import { warnOnce } from './utils';
 
-const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
-};
-
-const defaultProps = {
-  tag: 'div'
-};
-
-const CardBlock = (props) => {
-  const {
-    className,
-    cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'card-block'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
-  );
-};
-
-CardBlock.propTypes = propTypes;
-CardBlock.defaultProps = defaultProps;
-
-export default CardBlock;
+export default function CardBlock(props) {
+  warnOnce('The "CardBlock" component has been deprecated.\nPlease use component "CardBody".');
+  return <CardBody {...props} />;
+}
