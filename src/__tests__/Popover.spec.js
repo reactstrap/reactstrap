@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Popover, PopoverTitle, PopoverContent, TetherContent } from '../';
+import { Popover, PopoverHeader, PopoverBody, TetherContent } from '../';
 
 describe('Popover', () => {
   let element;
@@ -28,40 +28,40 @@ describe('Popover', () => {
     isOpen = true;
     const wrapper = mount(
       <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="popover-target">
-        <PopoverTitle>Title</PopoverTitle>
-        <PopoverContent>Content</PopoverContent>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
       </Popover>
     );
 
     expect(wrapper.find(TetherContent).length).toBe(1);
     expect(document.getElementsByClassName('popover').length).toBe(1);
     expect(document.getElementsByClassName('popover-inner').length).toBe(1);
-    expect(document.getElementsByClassName('popover-title').length).toBe(1);
-    expect(document.getElementsByClassName('popover-content').length).toBe(1);
+    expect(document.getElementsByClassName('popover-header').length).toBe(1);
+    expect(document.getElementsByClassName('popover-body').length).toBe(1);
     wrapper.unmount();
   });
 
   it('should not render inner TetherContent when not isOpen', () => {
     const wrapper = mount(
       <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="popover-target">
-        <PopoverTitle>Title</PopoverTitle>
-        <PopoverContent>Content</PopoverContent>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
       </Popover>
     );
 
     expect(wrapper.find(TetherContent).length).toBe(0);
     expect(document.getElementsByClassName('popover').length).toBe(0);
     expect(document.getElementsByClassName('popover-inner').length).toBe(0);
-    expect(document.getElementsByClassName('popover-title').length).toBe(0);
-    expect(document.getElementsByClassName('popover-content').length).toBe(0);
+    expect(document.getElementsByClassName('popover-header').length).toBe(0);
+    expect(document.getElementsByClassName('popover-body').length).toBe(0);
     wrapper.unmount();
   });
 
   it('should be able to show the popover', () => {
     const wrapper = mount(
       <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="popover-target">
-        <PopoverTitle>Title</PopoverTitle>
-        <PopoverContent>Content</PopoverContent>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
       </Popover>
     );
 
@@ -71,8 +71,8 @@ describe('Popover', () => {
     expect(document.body.querySelectorAll('.popover.show').length).toBe(0);
     expect(document.getElementsByClassName('popover').length).toBe(0);
     expect(document.getElementsByClassName('popover-inner').length).toBe(0);
-    expect(document.getElementsByClassName('popover-title').length).toBe(0);
-    expect(document.getElementsByClassName('popover-content').length).toBe(0);
+    expect(document.getElementsByClassName('popover-header').length).toBe(0);
+    expect(document.getElementsByClassName('popover-body').length).toBe(0);
 
     toggle();
     wrapper.setProps({
@@ -84,8 +84,8 @@ describe('Popover', () => {
     expect(document.body.querySelectorAll('.popover.show').length).toBe(1);
     expect(document.getElementsByClassName('popover').length).toBe(1);
     expect(document.getElementsByClassName('popover-inner').length).toBe(1);
-    expect(document.getElementsByClassName('popover-title').length).toBe(1);
-    expect(document.getElementsByClassName('popover-content').length).toBe(1);
+    expect(document.getElementsByClassName('popover-header').length).toBe(1);
+    expect(document.getElementsByClassName('popover-body').length).toBe(1);
 
     wrapper.unmount();
   });
@@ -94,8 +94,8 @@ describe('Popover', () => {
     isOpen = true;
     const wrapper = mount(
       <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="popover-target">
-        <PopoverTitle>Title</PopoverTitle>
-        <PopoverContent>Content</PopoverContent>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
       </Popover>
     );
 
@@ -103,8 +103,8 @@ describe('Popover', () => {
     expect(wrapper.find(TetherContent).length).toBe(1);
     expect(document.getElementsByClassName('popover').length).toBe(1);
     expect(document.getElementsByClassName('popover-inner').length).toBe(1);
-    expect(document.getElementsByClassName('popover-title').length).toBe(1);
-    expect(document.getElementsByClassName('popover-content').length).toBe(1);
+    expect(document.getElementsByClassName('popover-header').length).toBe(1);
+    expect(document.getElementsByClassName('popover-body').length).toBe(1);
 
     toggle();
     wrapper.setProps({
@@ -115,8 +115,8 @@ describe('Popover', () => {
     expect(wrapper.find(TetherContent).length).toBe(0);
     expect(document.getElementsByClassName('popover').length).toBe(0);
     expect(document.getElementsByClassName('popover-inner').length).toBe(0);
-    expect(document.getElementsByClassName('popover-title').length).toBe(0);
-    expect(document.getElementsByClassName('popover-content').length).toBe(0);
+    expect(document.getElementsByClassName('popover-header').length).toBe(0);
+    expect(document.getElementsByClassName('popover-body').length).toBe(0);
 
     wrapper.unmount();
   });
@@ -124,8 +124,8 @@ describe('Popover', () => {
   it('default toggle prop does nothing', () => {
     const wrapper = mount(
       <Popover isOpen={isOpen} placement={placement} target="popover-target">
-        <PopoverTitle>Title</PopoverTitle>
-        <PopoverContent>Content</PopoverContent>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
       </Popover>
     );
     const instance = wrapper.instance();
@@ -140,8 +140,8 @@ describe('Popover', () => {
   it('should allow custom classes to be added to the popover-inner', () => {
     const wrapper = mount(
       <Popover isOpen placement={placement} target="popover-target" className="popover-special">
-        <PopoverTitle>Title</PopoverTitle>
-        <PopoverContent>Content</PopoverContent>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
       </Popover>
     );
 

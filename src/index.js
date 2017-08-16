@@ -40,7 +40,9 @@ import CardSubtitle from './CardSubtitle';
 import CardText from './CardText';
 import CardTitle from './CardTitle';
 import Popover from './Popover';
+import PopoverHeader from './PopoverHeader';
 import PopoverTitle from './PopoverTitle';
+import PopoverBody from './PopoverBody';
 import PopoverContent from './PopoverContent';
 import Progress from './Progress';
 import Modal from './Modal';
@@ -125,7 +127,9 @@ export {
   CardTitle,
   Popover,
   PopoverContent,
+  PopoverBody,
   PopoverTitle,
+  PopoverHeader,
   Progress,
   Modal,
   ModalHeader,

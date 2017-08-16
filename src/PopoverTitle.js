@@ -1,37 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import PopoverHeader from './PopoverHeader';
+import { warnOnce } from './utils';
 
-const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
-};
-
-const defaultProps = {
-  tag: 'h3'
-};
-
-const PopoverTitle = (props) => {
-  const {
-    className,
-    cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  const classes = mapToCssModules(classNames(
-    className,
-    'popover-title'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
-  );
-};
-
-PopoverTitle.propTypes = propTypes;
-PopoverTitle.defaultProps = defaultProps;
-
-export default PopoverTitle;
+export default function PopoverTitle(props) {
+  warnOnce('The "PopoverTitle" component has been deprecated.\nPlease use component "PopoverHeader".');
+  return <PopoverHeader {...props} />;
+}
