@@ -26,6 +26,40 @@ describe('DropdownMenu', () => {
     expect(wrapper.find('.dropdown-menu').length).toBe(1);
   });
 
+  it('should not have the class "show" when isOpen context is false', () => {
+    isOpen = false;
+    const wrapper = mount(
+      <DropdownMenu>
+        <p>Content</p>
+      </DropdownMenu>,
+      {
+        context: {
+          isOpen: isOpen
+        }
+      }
+    );
+
+    expect(wrapper.find('.dropdown-menu').hasClass('show')).toBe(false);
+    expect(wrapper.find('.show').length).toBe(0);
+  });
+
+  it('should have the class "show" when isOpen context is true', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <DropdownMenu>
+        <p>Content</p>
+      </DropdownMenu>,
+      {
+        context: {
+          isOpen: isOpen
+        }
+      }
+    );
+
+    expect(wrapper.find('.dropdown-menu').hasClass('show')).toBe(true);
+    expect(wrapper.find('.show').length).toBe(1);
+  });
+
   it('should render right aligned menus', () => {
     isOpen = true;
     const wrapper = mount(

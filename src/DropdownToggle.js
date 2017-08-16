@@ -62,7 +62,6 @@ class DropdownToggle extends React.Component {
       {
         'dropdown-toggle': caret || split,
         'dropdown-toggle-split': split,
-        active: this.context.isOpen,
         'nav-link': nav
       }
     ), cssModule);
