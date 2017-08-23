@@ -6,12 +6,15 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { mapToCssModules, omit } from './utils';
-import TetherContent from './TetherContent';
+import PopperContent from './PopperContent';
 import DropdownMenu from './DropdownMenu';
+import DropdownToggle from './DropdownToggle';
 
 const propTypes = {
   disabled: PropTypes.bool,
   dropup: PropTypes.bool,
+  right: PropTypes.bool,
+  placementPrefix: PropTypes.string,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   size: PropTypes.string,
@@ -25,7 +28,8 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
-  tag: 'div'
+  tag: 'div',
+  placementPrefix: 'dropdown-menu',
 };
 
 const childContextTypes = {
@@ -33,21 +37,13 @@ const childContextTypes = {
   isOpen: PropTypes.bool.isRequired,
 };
 
-const defaultTetherConfig = {
-  classPrefix: 'bs-tether',
-  classes: { element: 'dropdown', enabled: 'show' },
-  constraints: [
-    { to: 'scrollParent', attachment: 'together none' },
-    { to: 'window', attachment: 'together none' }
-  ]
-};
+let i = 0;
 
 class Dropdown extends React.Component {
   constructor(props) {
     super(props);
 
     this.addEvents = this.addEvents.bind(this);
-    this.getTetherConfig = this.getTetherConfig.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -72,38 +68,6 @@ class Dropdown extends React.Component {
 
   componentWillUnmount() {
     this.removeEvents();
-  }
-
-  getTetherTarget() {
-    const container = ReactDOM.findDOMNode(this);
-
-    return container.querySelector('[data-toggle="dropdown"]');
-  }
-
-  getTetherConfig(childProps) {
-    const target = () => this.getTetherTarget();
-    let vElementAttach = 'top';
-    let hElementAttach = 'left';
-    let vTargetAttach = 'bottom';
-    let hTargetAttach = 'left';
-
-    if (childProps.right) {
-      hElementAttach = 'right';
-      hTargetAttach = 'right';
-    }
-
-    if (this.props.dropup) {
-      vElementAttach = 'bottom';
-      vTargetAttach = 'top';
-    }
-
-    return {
-      ...defaultTetherConfig,
-      attachment: vElementAttach + ' ' + hElementAttach,
-      targetAttachment: vTargetAttach + ' ' + hTargetAttach,
-      target,
-      ...this.props.tether
-    };
   }
 
   addEvents() {
@@ -145,14 +109,28 @@ class Dropdown extends React.Component {
   }
 
   renderChildren() {
-    const { tether, children, ...attrs } = this.props;
-    attrs.toggle = this.toggle;
+    const { children, dropup, right, ...attrs } = omit(this.props, ['toggle', 'tag']);
 
     return React.Children.map(React.Children.toArray(children), (child) => {
-      if (tether && child.type === DropdownMenu) {
-        let tetherConfig = this.getTetherConfig(child.props);
+      if (child.type === DropdownToggle || child.props['data-toggle'] === 'dropdown') {
+        this.id = this.id || child.props.id || `dropdown-${++i}`;
+        return React.cloneElement(child, { id: this.id });
+      }
+      if (child.type === DropdownMenu) {
+        let position1 = 'bottom';
+        let position2 = 'start';
+        if (dropup) {
+          position1 = 'top';
+        }
+        if (right) {
+          position2 = 'end';
+        }
+        attrs.placement = `${position1}-${position2}`;
         return (
-          <TetherContent {...attrs} tether={tetherConfig}>{child}</TetherContent>
+          <PopperContent
+            {...attrs}
+            target={this.id}
+          >{child}</PopperContent>
         );
       }
 
@@ -170,7 +148,7 @@ class Dropdown extends React.Component {
       tag: Tag,
       isOpen,
       ...attributes
-    } = omit(this.props, ['toggle', 'tether']);
+    } = omit(this.props, ['toggle', 'placementPrefix', 'right']);
 
     const classes = mapToCssModules(classNames(
       className,

@@ -82,14 +82,14 @@ DropdownToggle.propTypes = {
           </PrismCode>
         </pre>
         <h3>Alignment</h3>
-        <p>To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to it.</p>
+        <p>To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to <code>Dropdown</code>.</p>
         <div className="docs-example">
           <div style={{ display: 'inline-block' }}>
-            <Dropdown isOpen={this.state.example2} toggle={this.toggleExample2}>
+            <Dropdown right isOpen={this.state.example2} toggle={this.toggleExample2}>
               <DropdownToggle caret>
                 Dropdown
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu>
                 <DropdownItem header>Header</DropdownItem>
                 <DropdownItem disabled>Action</DropdownItem>
                 <DropdownItem>Another Action</DropdownItem>
@@ -101,11 +101,11 @@ DropdownToggle.propTypes = {
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+{`<Dropdown right isOpen={this.state.dropdownOpen} toggle={this.toggle}>
   <DropdownToggle caret>
     Dropdown
   </DropdownToggle>
-  <DropdownMenu right>
+  <DropdownMenu>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>
     <DropdownItem>Another Action</DropdownItem>

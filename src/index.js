@@ -49,7 +49,7 @@ import Modal from './Modal';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
-import TetherContent from './TetherContent';
+import PopperContent from './PopperContent';
 import Tooltip from './Tooltip';
 import Table from './Table';
 import ListGroup from './ListGroup';
@@ -135,7 +135,7 @@ export {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  TetherContent,
+  PopperContent,
   Tooltip,
   Table,
   ListGroup,

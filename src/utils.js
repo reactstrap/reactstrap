@@ -1,3 +1,5 @@
+import isFunction from 'lodash.isfunction';
+
 export function getTetherAttachments(placement) {
   let attachments = {};
   switch (placement) {
@@ -106,6 +108,24 @@ export const tetherAttachements = [
   'left bottom'
 ];
 
+export const popperAttachments = [
+  'auto',
+  'auto-start',
+  'auto-end',
+  'top',
+  'top-start',
+  'top-end',
+  'right',
+  'right-start',
+  'right-end',
+  'bottom',
+  'bottom-start',
+  'bottom-end',
+  'left',
+  'left-start',
+  'left-end',
+];
+
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
 export function getScrollbarWidth() {
   let scrollDiv = document.createElement('div');
@@ -187,4 +207,29 @@ export function deprecated(propType, explanation) {
 
     return propType(props, propName, componentName, ...rest);
   };
+}
+
+export function DOMElement(props, propName, componentName) {
+  if (!(props[propName] instanceof Element)) {
+    return new Error(
+      'Invalid prop `' + propName + '` supplied to' +
+      ' `' + componentName + '`. Validation failed.'
+    );
+  }
+}
+
+export function getTarget(target) {
+  if (isFunction(target)) {
+    return target();
+  }
+
+  if (typeof target === 'string' && document) {
+    const selection = document.querySelector(target);
+    if (selection === null) {
+      return document.querySelector(`#${target}`);
+    }
+    return selection;
+  }
+
+  return target;
 }
