@@ -114,7 +114,7 @@ class Modal extends React.Component {
 
   onClosed() {
     // so all methods get called before it is unmounted
-    setImmediate(() => this.destroy());
+    setTimeout(() => this.destroy(), 0);
     if (this.props.onClosed) {
       this.props.onClosed();
     }
