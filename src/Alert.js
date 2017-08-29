@@ -75,7 +75,8 @@ const Alert = (props) => {
       timeout={{
         enter: transitionEnterTimeout,
         exit: transitionExitTimeout,
-      }}>
+      }}
+    >
       <Tag {...attributes} className={classes} role="alert">
         {toggle ?
           <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle}>

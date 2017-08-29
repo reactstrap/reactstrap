@@ -10,7 +10,7 @@ describe('Alert', () => {
 
   it('should transition on appear, enter, and leave using fade', () => {
     const alert = mount(<Alert>Yo!</Alert>);
-    expect(alert.find("CSSTransition").prop('classNames')).toEqual({
+    expect(alert.find('CSSTransition').prop('classNames')).toEqual({
       appear: 'fade',
       appearActive: 'show',
       enter: 'fade',
@@ -23,7 +23,7 @@ describe('Alert', () => {
   it('should have default transitionTimeouts', () => {
     const alert = mount(<Alert>Yo!</Alert>);
 
-    const transition = alert.find("CSSTransition");
+    const transition = alert.find('CSSTransition');
     expect(transition.prop('timeout')).toEqual({ enter: 150, exit: 150 });
     expect(transition.prop('appear')).toBe(true);
     expect(transition.prop('enter')).toBe(true);
@@ -41,7 +41,7 @@ describe('Alert', () => {
       </Alert>
     );
 
-    const transition = alert.find("CSSTransition");
+    const transition = alert.find('CSSTransition');
     expect(transition.prop('timeout')).toEqual({ enter: 0, exit: 0 });
     expect(transition.prop('appear')).toBe(false);
     expect(transition.prop('enter')).toBe(false);
@@ -59,7 +59,8 @@ describe('Alert', () => {
   });
 
   it('should use a div tag by default', () => {
-    const alert = shallow(<Alert>Yo!</Alert>).children().first().children().first();
+    const alert = shallow(<Alert>Yo!</Alert>).children().first().children()
+      .first();
     expect(alert.type()).toBe('div');
   });
 
@@ -76,7 +77,8 @@ describe('Alert', () => {
   });
 
   it('should support custom tag', () => {
-    const alert = shallow(<Alert tag="p">Yo!</Alert>).children().first().children().first();
+    const alert = shallow(<Alert tag="p">Yo!</Alert>).children().first().children()
+      .first();
     expect(alert.type()).toBe('p');
   });
 
