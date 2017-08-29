@@ -41,9 +41,11 @@ export default class AlertsPage extends React.Component {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
   // Set any of the timeouts to 0 to disable animation
-  transitionAppearTimeout: PropTypes.number,
-  transitionEnterTimeout: PropTypes.number,
-  transitionLeaveTimeout: PropTypes.number
+  // For more information, please reference the react-transition-group docs
+  // https://reactcommunity.org/react-transition-group/
+  transitionAppear: PropTypes.bool,         // default: true
+  transitionEnterTimeout: PropTypes.number, // in ms, default: 150
+  transitionExitTimeout: PropTypes.number,  // in ms, default: 150
 }`}
           </PrismCode>
         </pre>
