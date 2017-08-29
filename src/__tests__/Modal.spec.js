@@ -137,8 +137,10 @@ describe('Modal', () => {
   it('should render when expected when passed modalTransition and backdropTransition props', () => {
     isOpen = true;
     const wrapper = mount(
-      <Modal isOpen={isOpen} toggle={toggle} modalTransition={{ timeout: 2 }}
-        backdropTransition={{ timeout: 10 }} modalClassName="custom-timeout-modal">
+      <Modal
+        isOpen={isOpen} toggle={toggle} modalTransition={{ timeout: 2 }}
+        backdropTransition={{ timeout: 10 }} modalClassName="custom-timeout-modal"
+      >
         Hello, world!
       </Modal>
     );
