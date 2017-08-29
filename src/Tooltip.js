@@ -6,6 +6,8 @@ import { getTetherAttachments, mapToCssModules, omit, tetherAttachements } from 
 
 const propTypes = {
   placement: PropTypes.oneOf(tetherAttachements),
+  animation: PropTypes.bool,
+  animationDuration: PropTypes.number,
   target: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
@@ -13,6 +15,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   tether: PropTypes.object,
+  tetherClassName: PropTypes.string,
   tetherRef: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -26,11 +29,13 @@ const propTypes = {
 
 const DEFAULT_DELAYS = {
   show: 0,
-  hide: 250
+  hide: 0
 };
 
 const defaultProps = {
   isOpen: false,
+  animation: true,
+  animationDuration: 150,
   placement: 'bottom',
   delay: DEFAULT_DELAYS,
   autohide: true,
@@ -52,6 +57,8 @@ const defaultTetherConfig = {
 class Tooltip extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {};
 
     this.addTargetEvents = this.addTargetEvents.bind(this);
     this.getTarget = this.getTarget.bind(this);
@@ -80,14 +87,14 @@ class Tooltip extends React.Component {
     if (this._hideTimeout) {
       this.clearHideTimeout();
     }
-    this._showTimeout = setTimeout(this.show, this.getDelay('show'));
+    this._show();
   }
 
   onMouseLeaveTooltip() {
     if (this._showTimeout) {
       this.clearShowTimeout();
     }
-    this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
+    this._hide();
   }
 
   onMouseOverTooltipContent() {
@@ -106,7 +113,7 @@ class Tooltip extends React.Component {
     if (this._showTimeout) {
       this.clearShowTimeout();
     }
-    this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
+    this._hide();
   }
 
   getDelay(key) {
@@ -135,11 +142,30 @@ class Tooltip extends React.Component {
     };
   }
 
+  _show() {
+    this._showTimeout = setTimeout(this.show, this.getDelay('show'));
+    if (this.props.animation) {
+      this.setState({ show: true });
+    }
+  }
+
   show() {
     if (!this.props.isOpen) {
       this.clearShowTimeout();
       this.toggle();
     }
+  }
+
+  _hide() {
+    this._hideTimeout = setTimeout(() => {
+      if (this.props.animation) {
+        this.setState({ show: false }, () => {
+          this._hideTimeout = setTimeout(this.hide, this.props.animationDuration);
+        });
+      } else {
+        this.hide();
+      }
+    }, this.getDelay('hide'));
   }
 
   hide() {
@@ -204,9 +230,15 @@ class Tooltip extends React.Component {
 
     let tetherConfig = this.getTetherConfig();
 
+    const tetherClasses = mapToCssModules(classNames(
+      'tooltip',
+      this.props.animation ? 'fade' : false,
+      this.props.animation && this.state.show ? 'show' : false,
+      this.props.tetherClassName
+    ), this.props.cssModule);
     return (
       <TetherContent
-        className={mapToCssModules('tooltip', this.props.cssModule)}
+        className={tetherClasses}
         tether={tetherConfig}
         tetherRef={this.props.tetherRef}
         isOpen={this.props.isOpen}

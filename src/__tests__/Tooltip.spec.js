@@ -226,7 +226,7 @@ describe('Tooltip', () => {
 
       instance.onMouseLeaveTooltip();
       expect(isOpen).toBe(true);
-      jasmine.clock().tick(200);
+      jasmine.clock().tick(350); // delay + animation time
       expect(isOpen).toBe(false);
     });
 
@@ -242,7 +242,7 @@ describe('Tooltip', () => {
 
       instance.onMouseLeaveTooltip();
       expect(isOpen).toBe(true);
-      jasmine.clock().tick(200);
+      jasmine.clock().tick(350); // delay + animation time
       expect(isOpen).toBe(false);
     });
 
@@ -258,7 +258,57 @@ describe('Tooltip', () => {
 
       instance.onMouseLeaveTooltip();
       expect(isOpen).toBe(true);
-      jasmine.clock().tick(250);  // Default hide value: 250
+      jasmine.clock().tick(150);  // Default animationTime value: 150
+      expect(isOpen).toBe(false);
+    });
+  });
+
+  describe('animation', () => {
+    it('should be enabled by default', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      instance.onMouseLeaveTooltip();
+      expect(isOpen).toBe(true);
+      jasmine.clock().tick(150);
+      expect(isOpen).toBe(false);
+    });
+
+    it('bre able to be disabled', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} animation={false}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      instance.onMouseLeaveTooltip();
+      expect(isOpen).toBe(true);
+      jasmine.clock().tick(0);
+      expect(isOpen).toBe(false);
+    });
+
+    it('should be able to set the animation duration', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Tooltip target="target" isOpen={isOpen} toggle={toggle} animationDuration={1000}>
+          Tooltip Content
+        </Tooltip>,
+        { attachTo: container }
+      );
+      const instance = wrapper.instance();
+
+      instance.onMouseLeaveTooltip();
+      expect(isOpen).toBe(true);
+      jasmine.clock().tick(1000);
       expect(isOpen).toBe(false);
     });
   });
@@ -362,7 +412,7 @@ describe('Tooltip', () => {
       expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
 
       instance.onMouseOverTooltip();
-      jasmine.clock().tick(200);
+      jasmine.clock().tick(350); // delay + animation time
 
       expect(Tooltip.prototype.toggle).toHaveBeenCalled();
 
@@ -408,7 +458,7 @@ describe('Tooltip', () => {
       expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
 
       instance.onMouseLeaveTooltip();
-      jasmine.clock().tick(200);
+      jasmine.clock().tick(350); // delay + animation time
 
       expect(Tooltip.prototype.toggle).toHaveBeenCalled();
 
@@ -454,7 +504,7 @@ describe('Tooltip', () => {
       instance.onMouseLeaveTooltipContent();
       jasmine.clock().tick(100);
       expect(Tooltip.prototype.toggle).not.toHaveBeenCalled();
-      jasmine.clock().tick(200);
+      jasmine.clock().tick(350);  // delay + animation time
       expect(Tooltip.prototype.toggle).toHaveBeenCalled();
 
       wrapper.detach();
@@ -516,7 +566,7 @@ describe('Tooltip', () => {
       instance.onMouseLeaveTooltip();
       jasmine.clock().tick(100);
       instance.onMouseOverTooltipContent();
-      jasmine.clock().tick(200);
+      jasmine.clock().tick(350); // delay + animation time
       expect(Tooltip.prototype.toggle).toHaveBeenCalled();
       instance.onMouseLeaveTooltipContent();
       expect(instance._hideTimeout).toBeFalsy();
