@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { mapToCssModules } from './utils';
 
 const FirstChild = ({ children }) => (
@@ -18,18 +18,18 @@ const propTypes = {
   isOpen: PropTypes.bool,
   toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  transitionAppearTimeout: PropTypes.number,
+  transitionAppear: PropTypes.bool,
   transitionEnterTimeout: PropTypes.number,
-  transitionLeaveTimeout: PropTypes.number,
+  transitionExitTimeout: PropTypes.number,
 };
 
 const defaultProps = {
   color: 'success',
   isOpen: true,
   tag: 'div',
-  transitionAppearTimeout: 150,
+  transitionAppear: true,
   transitionEnterTimeout: 150,
-  transitionLeaveTimeout: 150,
+  transitionExitTimeout: 150,
   closeAriaLabel: 'Close'
 };
 
@@ -44,9 +44,9 @@ const Alert = (props) => {
     isOpen,
     toggle,
     children,
-    transitionAppearTimeout,
+    transitionAppear,
     transitionEnterTimeout,
-    transitionLeaveTimeout,
+    transitionExitTimeout,
     ...attributes
   } = props;
 
@@ -60,36 +60,37 @@ const Alert = (props) => {
   const closeClasses = mapToCssModules(classNames('close', closeClassName), cssModule);
 
   const alert = (
-    <Tag {...attributes} className={classes} role="alert">
-      { toggle ?
-        <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle}>
-          <span aria-hidden="true">&times;</span>
-        </button>
-        : null }
-      { children }
-    </Tag>
-  );
-
-  return (
-    <CSSTransitionGroup
-      component={FirstChild}
-      transitionName={{
+    <CSSTransition
+      classNames={{
         appear: 'fade',
         appearActive: 'show',
         enter: 'fade',
         enterActive: 'show',
-        leave: 'fade',
-        leaveActive: 'out'
+        exit: 'fade',
+        exitActive: 'out'
       }}
-      transitionAppear={transitionAppearTimeout > 0}
-      transitionAppearTimeout={transitionAppearTimeout}
-      transitionEnter={transitionEnterTimeout > 0}
-      transitionEnterTimeout={transitionEnterTimeout}
-      transitionLeave={transitionLeaveTimeout > 0}
-      transitionLeaveTimeout={transitionLeaveTimeout}
-    >
+      appear={transitionAppear}
+      enter={transitionEnterTimeout > 0}
+      exit={transitionExitTimeout > 0}
+      timeout={{
+        enter: transitionEnterTimeout,
+        exit: transitionExitTimeout,
+      }}>
+      <Tag {...attributes} className={classes} role="alert">
+        {toggle ?
+          <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+          : null}
+        {children}
+      </Tag>
+    </CSSTransition>
+  );
+
+  return (
+    <TransitionGroup component={FirstChild}>
       {isOpen ? alert : null}
-    </CSSTransitionGroup>
+    </TransitionGroup>
   );
 };
 
