@@ -49,9 +49,11 @@ function Fade(props) {
           baseClass,
           isActive ? baseClassActive : false
         ), cssModule);
-        return <Tag className={classes} {...otherProps}>
-          {children}
-        </Tag>;
+        return (
+          <Tag className={classes} {...otherProps}>
+            {children}
+          </Tag>
+        );
       }}
     </Transition>
   );
