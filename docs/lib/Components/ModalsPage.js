@@ -79,20 +79,24 @@ export default class ModalsPage extends React.Component {
     PropTypes.number,
     PropTypes.string,
   ]),
-  // backdropTransitionTimeout - controls appear, enter, and leave (default: 150)
-  // If you need different values for appear v. enter v. leave, use the more
-  // specific props like backdropTransitionAppearTimeout.
-  backdropTransitionTimeout: PropTypes.number
-  backdropTransitionAppearTimeout: PropTypes.number,
-  backdropTransitionEnterTimeout: PropTypes.number,
-  backdropTransitionLeaveTimeout: PropTypes.number,
-  // modalTransitionTimeout - controls appear, enter, and leave (default: 300)
-  // If you need different values for appear v. enter v. leave, use the more
-  // specific props like modalTransitionAppearTimeout.
-  modalTransitionTimeout: PropTypes.number,
-  modalTransitionAppearTimeout: PropTypes.number,
-  modalTransitionEnterTimeout: PropTypes.number,
-  modalTransitionLeaveTimeout: PropTypes.number,
+  // backdropTransition - controls backdrop transition
+  backdropTransition: PropTypes.shape({
+    // timeout specifies how long the enter and exit transitions last (default: 150 to match bootstrap $transition-fade)
+    timeout: PropTypes.number,
+    // Can be used to disable backdrop appear, enter and exit transitions (defaults: true)
+    appear: PropType.boolean,
+    enter: PropType.boolean,
+    exit: PropTypes.boolean
+  }),
+  // modalTransitionTimeout - controls modal transition 
+  modalTransition: PropTypes.shape({
+    // timeout specifies how long the enter and exit transitions last (default: 300 to match bootstrap $transition-modal)
+    timeout: PropTypes.number,
+    // Can be used to disable backdrop appear, enter and exit transitions (defaults: true)
+    appear: PropType.boolean,
+    enter: PropType.boolean,
+    exit: PropTypes.boolean
+  }),
 }`}
           </PrismCode>
         </pre>
