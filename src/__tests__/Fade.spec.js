@@ -44,12 +44,12 @@ describe('Fade', () => {
     const wrapper = mount(
       <Helper showItem={isOpen} >
         <Fade key={Math.random()}>Yo!</Fade>
-        <Fade appear={false} enter={false} exit={false} key={Math.random()}>Yo 2!</Fade>
+        <Fade in={false} key={Math.random()}>Yo 2!</Fade>
       </Helper>
     );
 
     expect(wrapper.find('div.fade').length).toBe(2);
-    expect(wrapper.find('div.fade.show').length).toBe(1);
+    expect(wrapper.find('div.fade.show').length).toBe(2);
 
     jest.runTimersToTime(300);
 
@@ -65,8 +65,8 @@ describe('Fade', () => {
     let isOpen = false;
     const wrapper = mount(
       <Helper showItem={isOpen} >
-        <Fade onEnter={onEnter} onExit={onExit} key={Math.random()}>Yo!</Fade>
-        <Fade appear={false} enter={false} exit={false} key={Math.random()}>Yo 2!</Fade>
+        <Fade onEnter={onEnter} onExit={onExit} key={Math.random()}>Yo 3!</Fade>
+        <Fade appear={false} enter={false} exit={false} key={Math.random()}>Yo 4!</Fade>
       </Helper>
     );
 
@@ -76,8 +76,8 @@ describe('Fade', () => {
     wrapper.find('.trigger').simulate('click');
 
     expect(wrapper.find('div.fade').length).toBe(2);
-    expect(wrapper.find('div.fade.show').length).toBe(1);
-    expect(onEnter).not.toHaveBeenCalled();
+    expect(wrapper.find('div.fade.show').length).toBe(2);
+    expect(onEnter).toHaveBeenCalled();
 
     jest.runTimersToTime(300);
 
@@ -87,5 +87,6 @@ describe('Fade', () => {
 
     wrapper.find('.trigger').simulate('click');
     expect(wrapper.find('div.fade.show').length).toBe(0);
+    expect(onExit).toHaveBeenCalled();
   });
 });
