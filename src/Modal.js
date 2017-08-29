@@ -12,6 +12,8 @@ import {
   omit
 } from './utils';
 
+const FadePropTypes = PropTypes.shape(Fade.propTypes);
+
 const propTypes = {
   isOpen: PropTypes.bool,
   autoFocus: PropTypes.bool,
@@ -40,14 +42,8 @@ const propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  backdropTransitionTimeout: PropTypes.number,
-  backdropTransitionAppearTimeout: PropTypes.number,
-  backdropTransitionEnterTimeout: PropTypes.number,
-  backdropTransitionLeaveTimeout: PropTypes.number,
-  modalTransitionTimeout: PropTypes.number,
-  modalTransitionAppearTimeout: PropTypes.number,
-  modalTransitionEnterTimeout: PropTypes.number,
-  modalTransitionLeaveTimeout: PropTypes.number,
+  backdropTransition: FadePropTypes,
+  modalTransition: FadePropTypes,
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -60,8 +56,14 @@ const defaultProps = {
   keyboard: true,
   zIndex: 1050,
   fade: true,
-  modalTransitionTimeout: 300,
-  backdropTransitionTimeout: 150,
+  modalTransition: {
+    ...Fade.defaultProps,
+    timeout: 300,
+  },
+  backdropTransition: {
+    ...Fade.defaultProps,
+    timeout: 150,
+  },
 };
 
 class Modal extends React.Component {
@@ -137,8 +139,7 @@ class Modal extends React.Component {
     if (this.props.fade === false) {
       return false;
     }
-
-    return this.props.modalTransitionTimeout > 0;
+    return true;
   }
 
   togglePortal() {
@@ -245,8 +246,6 @@ class Modal extends React.Component {
       cssModule,
       isOpen,
       backdrop,
-      modalTransitionTimeout,
-      backdropTransitionTimeout,
       role,
       labelledBy
     } = this.props;
@@ -267,22 +266,8 @@ class Modal extends React.Component {
             <Fade
               key="modal-dialog"
               onEnter={this.onOpened}
-              onLeave={this.onClosed}
-              transitionAppearTimeout={
-                typeof this.props.modalTransitionAppearTimeout === 'number'
-                  ? this.props.modalTransitionAppearTimeout
-                  : modalTransitionTimeout
-              }
-              transitionEnterTimeout={
-                typeof this.props.modalTransitionEnterTimeout === 'number'
-                  ? this.props.modalTransitionEnterTimeout
-                  : modalTransitionTimeout
-              }
-              transitionLeaveTimeout={
-                typeof this.props.modalTransitionLeaveTimeout === 'number'
-                  ? this.props.modalTransitionLeaveTimeout
-                  : modalTransitionTimeout
-              }
+              onExit={this.onClosed}
+              {...this.props.modalTransition}
               cssModule={cssModule}
               className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
               {...modalAttributes}
@@ -293,21 +278,7 @@ class Modal extends React.Component {
           {isOpen && backdrop && (
             <Fade
               key="modal-backdrop"
-              transitionAppearTimeout={
-                typeof this.props.backdropTransitionAppearTimeout === 'number'
-                  ? this.props.backdropTransitionAppearTimeout
-                  : backdropTransitionTimeout
-              }
-              transitionEnterTimeout={
-                typeof this.props.backdropTransitionEnterTimeout === 'number'
-                  ? this.props.backdropTransitionEnterTimeout
-                  : backdropTransitionTimeout
-              }
-              transitionLeaveTimeout={
-                typeof this.props.backdropTransitionLeaveTimeout === 'number'
-                  ? this.props.backdropTransitionLeaveTimeout
-                  : backdropTransitionTimeout
-              }
+              {...this.props.backdropTransition}
               cssModule={cssModule}
               className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
             />
