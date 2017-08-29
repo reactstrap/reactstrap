@@ -10,9 +10,9 @@ const propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-  baseClass: PropTypes.string.isRequired,
-  baseClassActive: PropTypes.string.isRequired,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  baseClass: PropTypes.string,
+  baseClassActive: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };

@@ -113,7 +113,8 @@ class Modal extends React.Component {
   }
 
   onClosed() {
-    this.destroy();
+    // so all methods get called before it is unmounted
+    setImmediate(() => this.destroy())
     if (this.props.onClosed) {
       this.props.onClosed();
     }
@@ -265,8 +266,8 @@ class Modal extends React.Component {
           {isOpen && (
             <Fade
               key="modal-dialog"
-              onEnter={this.onOpened}
-              onExit={this.onClosed}
+              onEntered={this.onOpened}
+              onExited={this.onClosed}
               {...this.props.modalTransition}
               cssModule={cssModule}
               className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
