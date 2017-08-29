@@ -7,12 +7,12 @@
   "module": "dist/reactstrap.es.js",
   "scripts": {
     "report-coverage": "coveralls < ./coverage/lcov.info",
-    "test": "BABEL_ENV=test react-scripts test --env=jsdom",
+    "test": "cross-env BABEL_ENV=test react-scripts test --env=jsdom",
     "cover": "npm test -- --coverage",
-    "start": "BABEL_ENV=webpack webpack-dev-server --config ./webpack.dev.config.js --watch",
+    "start": "cross-env BABEL_ENV=webpack webpack-dev-server --config ./webpack.dev.config.js --watch",
     "build-docs": "cross-env WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
     "build": "rollup -c",
-    "prebuild": "BABEL_ENV=lib-dir babel src --out-dir lib --ignore src/__tests__/",
+    "prebuild": "cross-env BABEL_ENV=lib-dir babel src --out-dir lib --ignore src/__tests__/",
     "create-release": "npm test && sh ./scripts/release",
     "publish-release": "npm test && sh ./scripts/publish",
     "lint": "eslint src"
