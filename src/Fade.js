@@ -41,7 +41,7 @@ function Fade(props) {
   const otherProps = omit(transitionProps, Object.keys(propTypes));
 
   return (
-    <Transition {...props}>
+    <Transition {...transitionProps}>
       {(status) => {
         const isActive = status === 'entering' || status === 'entered';
         const classes = mapToCssModules(classNames(
