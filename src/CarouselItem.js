@@ -1,88 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Transition from 'react-transition-group/Transition'
 import { mapToCssModules } from './utils';
 import CarouselCaption from './CarouselCaption';
 
 class CarouselItem extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { animation: [] };
+    super(props)
+    
+    this.componentWillExit = this.componentWillExit.bind(this);
+    this.componentDidExit = this.componentDidExit.bind(this);
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.willEnterTimeout);
-    clearTimeout(this.willLeaveTimeout);
-  }
-
-  componentWillAppear(callBack) {
-    this.setState({
-      animation: ['active']
-    });
-    callBack();
-  }
-
-  componentWillEnter(callBack) {
-    const classes = this.context.direction === 'right' ?
-      ['carousel-item-next', 'carousel-item-left'] :
-      ['carousel-item-prev', 'carousel-item-right'];
-    this.setState({
-      animation: classes
-    });
-
-    this.willEnterTimeout = setTimeout(() => {
-      callBack();
-    }, 500);
-  }
-
-  componentDidEnter() {
-    this.setState({
-      animation: ['active']
-    });
-  }
-
-  componentWillLeave(callBack) {
-    const classes = this.context.direction === 'right' ?
-      ['carousel-item-left', 'active'] :
-      ['carousel-item-right', 'active'];
-    this.setState({
-      animation: classes
-    });
-
+  componentWillExit() {
     this.slide.dispatchEvent(new CustomEvent('slide.bs.carousel'));
-
-    this.willLeaveTimeout = setTimeout(() => {
-      callBack();
-    }, 500);
   }
 
-  componentDidLeave() {
-    this.setState({
-      animation: []
-    });
+  componentDidExit() {
     this.slide.dispatchEvent(new CustomEvent('slid.bs.carousel'));
   }
 
-
   render() {
     const { src, altText, children, cssModule } = this.props;
-    const classes = mapToCssModules(classNames(
-      'd-block',
-      'img-fluid'
+    const imgClasses = mapToCssModules(classNames(
+        'd-block',
+        'img-fluid'
     ), cssModule);
 
-    const itemClasses = mapToCssModules(classNames('carousel-item', ...this.state.animation), cssModule);
 
     return (
-      <div
-        className={itemClasses}
-        ref={(slide) => {
-          this.slide = slide;
-        }}
+      <Transition
+        in={true}
+        onExiting={this.componentWillExit}
+        onExited={this.componentDidExit}
+        timeout={500}
       >
-        <img className={classes} src={src} alt={altText} />
-        {children}
-      </div>
+        {(status) => {
+          console.log("altText: ", altText, ", status: ", status);
+          const { direction } = this.context;
+          const isActive = (status === 'entering') || (status === 'entered') || (status === 'exiting')
+          const itemClasses = mapToCssModules(classNames(
+            'carousel-item',
+            isActive && 'active',
+            (status === 'entering' || status === 'exiting') &&
+              (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right'),   
+            (status === 'entering') &&
+              (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev'),
+          ), cssModule);
+
+          return (
+            <div className={itemClasses} ref={(slide) => { this.slide = slide; }}>
+              <img className={imgClasses} src={src} alt={altText} />
+              {children}
+            </div>
+          );
+        }}
+      </Transition>
     );
   }
 }
