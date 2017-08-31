@@ -8,7 +8,7 @@ import CarouselCaption from './CarouselCaption';
 class CarouselItem extends React.Component {
   constructor(props) {
     super(props)
-    
+
     this.componentWillExit = this.componentWillExit.bind(this);
     this.componentDidExit = this.componentDidExit.bind(this);
   }
@@ -22,31 +22,30 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-    const { src, altText, children, cssModule } = this.props;
+    const { src, altText, in: isIn, children, cssModule } = this.props;
     const imgClasses = mapToCssModules(classNames(
-        'd-block',
-        'img-fluid'
+      'd-block',
+      'img-fluid'
     ), cssModule);
-
 
     return (
       <Transition
-        in={true}
+        in={isIn}
         onExiting={this.componentWillExit}
         onExited={this.componentDidExit}
         timeout={500}
       >
         {(status) => {
-          console.log("altText: ", altText, ", status: ", status);
           const { direction } = this.context;
-          const isActive = (status === 'entering') || (status === 'entered') || (status === 'exiting')
+          console.log("altText: ", altText, ", status: ", status, ", direction: ", direction);
+          const isActive = (status === 'enterings') || (status === 'entered') || (status === 'exiting');
           const itemClasses = mapToCssModules(classNames(
             'carousel-item',
             isActive && 'active',
             (status === 'entering' || status === 'exiting') &&
-              (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right'),   
+            (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right'),
             (status === 'entering') &&
-              (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev'),
+            (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev'),
           ), cssModule);
 
           return (
@@ -62,10 +61,13 @@ class CarouselItem extends React.Component {
 }
 
 CarouselItem.propTypes = {
+  in: PropTypes.bool,
   src: PropTypes.string.isRequired,
   altText: PropTypes.string,
   cssModule: PropTypes.object,
-  children: PropTypes.instanceOf(CarouselCaption)
+  children: PropTypes.shape({
+    type: PropTypes.oneOf([CarouselCaption]),
+  }),
 };
 
 CarouselItem.contextTypes = {

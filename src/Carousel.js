@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { TransitionGroup } from 'react-transition-group';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import { mapToCssModules } from './utils';
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.renderItems = this.renderItems.bind(this);
     this.state = { direction: 'right' };
   }
 
@@ -56,6 +57,13 @@ class Carousel extends React.Component {
     }
   }
 
+  renderItems(carouselItems) {
+    return carouselItems.map((item, index) => {
+      const isIn = (this.props.activeIndex === index);
+      return React.cloneElement(item, { in: isIn });
+    })
+  }
+
   render() {
     const { children, cssModule, activeIndex, hoverStart, hoverEnd } = this.props;
     const outerClasses = mapToCssModules(classNames(
@@ -76,9 +84,9 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <TransitionGroup component="div" role="listbox" className={innerClasses}>
-            {children[activeIndex]}
-          </TransitionGroup>
+          <div role="listbox" className={innerClasses}>
+            {this.renderItems(children)}
+          </div>
         </div>
       );
     }
@@ -91,9 +99,9 @@ class Carousel extends React.Component {
 
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <TransitionGroup component="div" role="listbox" className={innerClasses}>
-            {carouselItems[activeIndex]}
-          </TransitionGroup>
+          <div role="listbox" className={innerClasses}>
+            {this.renderItems(carouselItems)}
+          </div>
           {controlLeft}
           {controlRight}
         </div>
@@ -116,9 +124,9 @@ class Carousel extends React.Component {
         onMouseLeave={hoverEnd}
       >
         {indicators}
-        <TransitionGroup component="div" role="listbox" className={innerClasses}>
-          {carouselItems[activeIndex]}
-        </TransitionGroup>
+        <div role="listbox" className={innerClasses}>
+          {this.renderItems(carouselItems)}
+        </div>
         {controlLeft}
         {controlRight}
       </div>
