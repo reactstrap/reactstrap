@@ -75,7 +75,7 @@ const Label = (props) => {
 
     delete attributes[colWidth];
 
-    if (!columnProp) {
+    if (!columnProp && columnProp !== '') {
       return;
     }
 

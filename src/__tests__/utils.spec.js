@@ -83,6 +83,65 @@ describe('Utils', () => {
     });
   });
 
+  describe('DOMElement', () => {
+    it('should not return an error when the prop is an instance of an Element', () => {
+      const props = {
+        dom: document.createElement('div'),
+      };
+      const propName = 'dom';
+      const componentName = 'ComponentName';
+
+      expect(Utils.DOMElement(props, propName, componentName)).toBeUndefined();
+    });
+
+    it('should return an error when the prop is NOT an instance of an Element', () => {
+      const props = {
+        dom: 'not an Element',
+      };
+      const propName = 'dom';
+      const componentName = 'ComponentName';
+
+      expect(Utils.DOMElement(props, propName, componentName)).toEqual(new Error(
+        'Invalid prop `' + propName + '` supplied to `' + componentName +
+        '`. Expected prop to be an instance of Element. Validation failed.'
+      ));
+    });
+  });
+
+  describe('getTarget', () => {
+    it('should return the result of target if target is a function', () => {
+      const data = {};
+      const spy = jest.fn(() => data);
+      expect(Utils.getTarget(spy)).toEqual(data);
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should query the document for the target if the target is a string', () => {
+      const element = document.createElement('div');
+      element.className = 'thing';
+      document.body.appendChild(element);
+      jest.spyOn(document, 'querySelector');
+      expect(Utils.getTarget('.thing')).toEqual(element);
+      expect(document.querySelector).toHaveBeenCalledWith('.thing');
+      document.querySelector.mockRestore();
+    });
+
+    it('should query the document for the id target if the target is a string and could not be found normally', () => {
+      const element = document.createElement('div');
+      element.setAttribute('id', 'thing');
+      document.body.appendChild(element);
+      jest.spyOn(document, 'querySelector');
+      expect(Utils.getTarget('thing')).toEqual(element);
+      expect(document.querySelector).toHaveBeenCalledWith('#thing');
+      document.querySelector.mockRestore();
+    });
+
+    it('should return the input target if it is not a function nor a string', () => {
+      const target = {};
+      expect(Utils.getTarget(target)).toEqual(target);
+    });
+  });
+
   // TODO
   // describe('getScrollbarWidth', () => {
   //   // jsdom workaround https://github.com/tmpvar/jsdom/issues/135#issuecomment-68191941

@@ -188,6 +188,26 @@ describe('Popover', () => {
     wrapper.detach();
   });
 
+  it('should clear the hide timeout when handling outside of target clicks when isOpen is true', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Popover target="innerTarget" isOpen={isOpen} toggle={toggle}>
+        Popover Content
+      </Popover>,
+      { attachTo: container }
+    );
+    const instance = wrapper.instance();
+
+    expect(isOpen).toBe(true);
+    instance._hideTimeout = 1;
+    instance.handleDocumentClick({ target: outerTarget });
+    jest.runTimersToTime(0); // toggle is still async
+    expect(instance._hideTimeout).toBeUndefined();
+    expect(isOpen).toBe(false);
+
+    wrapper.detach();
+  });
+
   it('should NOT handle inner target clicks', () => {
     const wrapper = mount(
       <Popover target="innerTarget" isOpen={isOpen} toggle={toggle}>

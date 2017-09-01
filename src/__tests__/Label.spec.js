@@ -63,10 +63,46 @@ describe('Label', () => {
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
   });
 
+  it('should pass col size specific classes as Strings (auto)', () => {
+    const wrapper = shallow(<Label sm="auto">Yo!</Label>);
+
+    expect(wrapper.hasClass('col-sm-auto')).toBe(true);
+  });
+
+  it('should pass col size specific classes as Strings ("")', () => {
+    const wrapper = shallow(<Label sm="">Yo!</Label>);
+
+    expect(wrapper.hasClass('col-sm')).toBe(true);
+  });
+
+  it('should pass col size specific classes as Strings (true)', () => {
+    const wrapper = shallow(<Label sm>Yo!</Label>);
+
+    expect(wrapper.hasClass('col-sm')).toBe(true);
+  });
+
   it('should pass col size specific classes as Strings (xs)', () => {
     const wrapper = shallow(<Label xs="6">Yo!</Label>);
 
     expect(wrapper.hasClass('col-6')).toBe(true);
+  });
+
+  it('should pass col size specific classes as Strings (xs="")', () => {
+    const wrapper = shallow(<Label xs="">Yo!</Label>);
+
+    expect(wrapper.hasClass('col')).toBe(true);
+  });
+
+  it('should pass col size specific classes as Strings (xs (true))', () => {
+    const wrapper = shallow(<Label xs>Yo!</Label>);
+
+    expect(wrapper.hasClass('col')).toBe(true);
+  });
+
+  it('should pass col size specific classes as Strings (xs="auto")', () => {
+    const wrapper = shallow(<Label xs="auto">Yo!</Label>);
+
+    expect(wrapper.hasClass('col-auto')).toBe(true);
   });
 
   it('should render with "sr-only" class when hidden prop is truthy', () => {

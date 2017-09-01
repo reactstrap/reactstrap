@@ -39,6 +39,8 @@ import CarouselCaption from './CarouselCaption';
 import CardSubtitle from './CardSubtitle';
 import CardText from './CardText';
 import CardTitle from './CardTitle';
+import PopperContent from './PopperContent';
+import PopperTargetHelper from './PopperTargetHelper';
 import Popover from './Popover';
 import PopoverHeader from './PopoverHeader';
 import PopoverTitle from './PopoverTitle';
@@ -49,7 +51,6 @@ import Modal from './Modal';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
-import PopperContent from './PopperContent';
 import Tooltip from './Tooltip';
 import Table from './Table';
 import ListGroup from './ListGroup';
@@ -136,6 +137,7 @@ export {
   ModalBody,
   ModalFooter,
   PopperContent,
+  PopperTargetHelper,
   Tooltip,
   Table,
   ListGroup,

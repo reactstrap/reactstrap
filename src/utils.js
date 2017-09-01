@@ -84,6 +84,7 @@ let warned = {};
 
 export function warnOnce(message) {
   if (!warned[message]) {
+    /* istanbul ignore else */
     if (typeof console !== 'undefined') {
       console.error(message); // eslint-disable-line no-console
     }
@@ -104,8 +105,8 @@ export function deprecated(propType, explanation) {
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
-      'Invalid prop `' + propName + '` supplied to' +
-      ' `' + componentName + '`. Validation failed.'
+      'Invalid prop `' + propName + '` supplied to `' + componentName +
+      '`. Expected prop to be an instance of Element. Validation failed.'
     );
   }
 }

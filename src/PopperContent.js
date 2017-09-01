@@ -13,6 +13,8 @@ const propTypes = {
   tag: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   cssModule: PropTypes.object,
+  wrapTag: PropTypes.string,
+  wrapClassName: PropTypes.string,
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   fallbackPlacement: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   target: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]).isRequired,
@@ -23,7 +25,7 @@ const defaultProps = {
   isOpen: false,
   offset: 0,
   fallbackPlacement: 'flip',
-  tag: 'span',
+  wrapTag: 'span',
 };
 
 class PopperContent extends React.Component {
@@ -51,10 +53,13 @@ class PopperContent extends React.Component {
       fallbackPlacement,
       placementPrefix,
       className,
+      wrapTag,
+      wrapClassName,
       tag,
       ...attrs } = this.props;
     const arrowClassName = mapToCssModules('arrow', cssModule);
     const placement = (this.state.placement || attrs.placement).split('-')[0];
+    const managerClass = mapToCssModules(wrapClassName, this.props.cssModule);
     const popperClassName = mapToCssModules(classNames(
       className,
       placementPrefix ? `${placementPrefix}-${placement}` : placement
@@ -71,9 +76,9 @@ class PopperContent extends React.Component {
     };
 
     return (
-      <Manager tag={tag}>
+      <Manager tag={wrapTag} className={managerClass}>
         <PopperTargetHelper target={target} />
-        {isOpen && <ReactPopper modifiers={modifiers} {...attrs} className={popperClassName}>
+        {isOpen && <ReactPopper modifiers={modifiers} {...attrs} component={tag} className={popperClassName}>
           {children}
           <Arrow className={arrowClassName} />
         </ReactPopper>}
