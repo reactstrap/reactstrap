@@ -5,7 +5,6 @@ import { TransitionGroup } from 'react-transition-group';
 import { mapToCssModules } from './utils';
 
 class Carousel extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -60,13 +59,13 @@ class Carousel extends React.Component {
   render() {
     const { children, cssModule, activeIndex, hoverStart, hoverEnd } = this.props;
     const outerClasses = mapToCssModules(classNames(
-          'carousel',
-          'slide'
-      ), cssModule);
+      'carousel',
+      'slide'
+    ), cssModule);
 
     const innerClasses = mapToCssModules(classNames(
-          'carousel-inner'
-      ), cssModule);
+      'carousel-inner'
+    ), cssModule);
 
 
     const slidesOnly = children.every((child) => {
@@ -108,7 +107,14 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div ref={(carousel) => { this.carousel = carousel; }} className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
+      <div
+        ref={(carousel) => {
+          this.carousel = carousel;
+        }}
+        className={outerClasses}
+        onMouseEnter={hoverStart}
+        onMouseLeave={hoverEnd}
+      >
         {indicators}
         <TransitionGroup component="div" role="listbox" className={innerClasses}>
           {carouselItems[activeIndex]}
@@ -118,7 +124,6 @@ class Carousel extends React.Component {
       </div>
     );
   }
-
 }
 
 Carousel.propTypes = {

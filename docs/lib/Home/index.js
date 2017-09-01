@@ -100,7 +100,7 @@ npm install --save reactstrap react-addons-transition-group react-addons-css-tra
             <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>
             <h2 className="mt-5">About the Project</h2>
             <hr />
-            <p>This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, <a href="http://tether.io/" target="_blank">Tether</a> is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.</p>
+            <p>This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a> is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.</p>
             <p>There are a few core concepts to understand in order to make the most out of this library.</p>
             <p>1) Your content is expected to be composed via props.children rather than using named props to pass in Components.</p>
             <pre>
@@ -126,7 +126,7 @@ const PreferredExample = (props) => {
               </PrismCode>
             </pre>
             <p>
-              2) Attributes in this library are used to pass in state, conveniently apply modifier classes, enable advanced functionality (like tether), or automatically include non-content based elements.
+              2) Attributes in this library are used to pass in state, conveniently apply modifier classes, enable advanced functionality (like popperjs), or automatically include non-content based elements.
             </p>
             <p>Examples:</p>
             <ul>

@@ -17,7 +17,7 @@ export default class TooltipsPage extends React.Component {
       <div>
         <Helmet title="Tooltips" />
         <h3>Tooltips</h3>
-        <p>Tooltips are built with <a href="http://tether.io/">http://tether.io</a>.</p>
+        <p>Tooltips are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
         <div className="docs-example">
           <TooltipExample />
         </div>
@@ -39,10 +39,6 @@ export default class TooltipsPage extends React.Component {
     PropTypes.object
   ]).isRequired,
   // target element or element ID, popover is attached to this element
-  tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  // optionally overide tether config http://tether.io/#options
-  tetherRef: PropType.function,
-  // function which is passed a reference to the instance of tether for manually \`position()\`ing
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
@@ -51,22 +47,21 @@ export default class TooltipsPage extends React.Component {
   autohide: PropTypes.bool,
   // optionally hide tooltip when hovering over tooltip content - default true
   placement: PropTypes.oneOf([
+    'auto',
+    'auto-start',
+    'auto-end',
     'top',
-    'bottom',
-    'left',
+    'top-start',
+    'top-end',
     'right',
-    'top left',
-    'top center',
-    'top right',
-    'right top',
-    'right middle',
-    'right bottom',
-    'bottom right',
-    'bottom center',
-    'bottom left',
-    'left top',
-    'left middle',
-    'left bottom'
+    'right-start',
+    'right-end',
+    'bottom',
+    'bottom-start',
+    'bottom-end',
+    'left',
+    'left-start',
+    'left-end',
   ])
   // convenience attachments for popover
   // examples http://github.hubspot.com/tooltip/docs/welcome/

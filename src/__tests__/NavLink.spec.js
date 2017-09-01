@@ -41,8 +41,8 @@ describe('NavLink', () => {
   });
 
   it('handles onClick prop', () => {
-    const onClick = jasmine.createSpy('onClick');
-    const e = jasmine.createSpyObj('e', ['preventDefault']);
+    const onClick = jest.fn();
+    const e = createSpyObj('e', ['preventDefault']);
     const wrapper = shallow(
       <NavLink onClick={onClick} />
     );
@@ -53,7 +53,7 @@ describe('NavLink', () => {
   });
 
   it('handles onClick events', () => {
-    const e = jasmine.createSpyObj('e', ['preventDefault']);
+    const e = createSpyObj('e', ['preventDefault']);
     const wrapper = shallow(
       <NavLink />
     );
@@ -63,7 +63,7 @@ describe('NavLink', () => {
   });
 
   it('prevents link clicks via onClick for dropdown nav-items', () => {
-    const e = jasmine.createSpyObj('e', ['preventDefault']);
+    const e = createSpyObj('e', ['preventDefault']);
     const wrapper = shallow(
       <NavLink href="#" />
     );
@@ -73,8 +73,8 @@ describe('NavLink', () => {
   });
 
   it('is not called when disabled', () => {
-    const onClick = jasmine.createSpy('onClick');
-    const e = jasmine.createSpyObj('e', ['preventDefault']);
+    const onClick = jest.fn();
+    const e = createSpyObj('e', ['preventDefault']);
     const wrapper = shallow(
       <NavLink disabled onClick={onClick} />
     );

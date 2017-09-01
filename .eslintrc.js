@@ -33,7 +33,11 @@ var rules = {
   'prefer-const': 0,
   'react/jsx-filename-extension': 0,
   'linebreak-style': 0,
-  'react/require-extension': 0
+  'react/require-extension': 0,
+  'react/no-children-prop': 0,
+  'react/require-default-props': 0,
+  'react/forbid-prop-types': 0,
+  'jsx-a11y/no-noninteractive-element-interactions': 1
 };
 
 module.exports = {
@@ -55,6 +59,5 @@ module.exports = {
     'ecmaFeatures': ecmaFeatures
   },
   'ecmaFeatures': ecmaFeatures,
-  rules: rules,
-  extensions: ['', '.js', '.jsx']
+  rules: rules
 };

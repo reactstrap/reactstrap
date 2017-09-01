@@ -53,7 +53,7 @@ describe('Tabs', () => {
   it('should not setState when the active tab does not change during a prop update', () => {
     const tab1 = mount(<TabContent activeTab={1} />);
     const instance = tab1.instance();
-    spyOn(instance, 'setState').and.callThrough();
+    jest.spyOn(instance, 'setState');
     tab1.setProps({ style: { textAlign: 'left' } });
     expect(instance.setState).not.toHaveBeenCalled();
   });
@@ -81,7 +81,7 @@ describe('Tabs', () => {
   it('should call setState when the active tab does change during a prop update', () => {
     const tab1 = mount(<TabContent activeTab={1} />);
     const instance = tab1.instance();
-    spyOn(instance, 'setState').and.callThrough();
+    jest.spyOn(instance, 'setState');
     expect(instance.setState).not.toHaveBeenCalled();
     tab1.setProps({ activeTab: 2 });
     expect(instance.setState).toHaveBeenCalled();

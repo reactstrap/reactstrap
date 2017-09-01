@@ -4,21 +4,25 @@ import { DropdownToggle } from '../';
 
 describe('DropdownToggle', () => {
   let isOpen;
+  let popperManager;
   let toggle;
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => { isOpen = !isOpen; };
+    popperManager = {
+      setTargetNode: () => {}
+    };
+    toggle = () => {
+      isOpen = !isOpen;
+    };
   });
 
   it('should wrap text', () => {
     const wrapper = mount(
       <DropdownToggle>Ello world</DropdownToggle>,
       {
-        context: {
-          isOpen: isOpen,
-          toggle: toggle
-        }
+        context: { isOpen, toggle, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -30,10 +34,8 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle />,
       {
-        context: {
-          isOpen: isOpen,
-          toggle: toggle
-        }
+        context: { isOpen, toggle, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -45,10 +47,8 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle aria-label="Dropup Toggle" />,
       {
-        context: {
-          isOpen: isOpen,
-          toggle: toggle
-        }
+        context: { isOpen, toggle, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -60,10 +60,8 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle>Click Me</DropdownToggle>,
       {
-        context: {
-          isOpen: isOpen,
-          toggle: toggle
-        }
+        context: { isOpen, toggle, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -75,10 +73,8 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle caret>Ello world</DropdownToggle>,
       {
-        context: {
-          isOpen: isOpen,
-          toggle: toggle
-        }
+        context: { isOpen, toggle, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -90,10 +86,8 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle />,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
 
@@ -105,10 +99,8 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle color="success" />,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
 
@@ -120,10 +112,8 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle tag="a" />,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
 
@@ -135,10 +125,8 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle tag="div" color="success" />,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
 
@@ -151,10 +139,8 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle split>Ello world</DropdownToggle>,
       {
-        context: {
-          isOpen: isOpen,
-          toggle: toggle
-        }
+        context: { isOpen, toggle, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -163,14 +149,12 @@ describe('DropdownToggle', () => {
 
   describe('onClick', () => {
     it('should call props.onClick if it exists', () => {
-      const onClick = jasmine.createSpy('onClick');
+      const onClick = jest.fn();
       const wrapper = mount(
         <DropdownToggle onClick={() => onClick()}>Ello world</DropdownToggle>,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
       const instance = wrapper.instance();
@@ -180,33 +164,32 @@ describe('DropdownToggle', () => {
     });
 
     it('should call context.toggle when present ', () => {
-      toggle = jasmine.createSpy('toggle');
+      toggle = jest.fn();
       const wrapper = mount(
         <DropdownToggle>Ello world</DropdownToggle>,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
       const instance = wrapper.instance();
 
-      instance.onClick({ preventDefault: () => { } });
+      instance.onClick({
+        preventDefault: () => {
+        }
+      });
       expect(toggle).toHaveBeenCalled();
     });
   });
 
   describe('disabled', () => {
     it('should preventDefault when disabled', () => {
-      const e = { preventDefault: jasmine.createSpy('preventDefault') };
+      const e = { preventDefault: jest.fn() };
       const wrapper = mount(
         <DropdownToggle disabled>Ello world</DropdownToggle>,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
       const instance = wrapper.instance();
@@ -221,10 +204,8 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle nav>Ello world</DropdownToggle>,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
 
@@ -236,10 +217,8 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle nav tag="span">Ello world</DropdownToggle>,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
 
@@ -247,14 +226,12 @@ describe('DropdownToggle', () => {
     });
 
     it('should preventDefault', () => {
-      const e = { preventDefault: jasmine.createSpy('preventDefault') };
+      const e = { preventDefault: jest.fn() };
       const wrapper = mount(
         <DropdownToggle nav>Ello world</DropdownToggle>,
         {
-          context: {
-            isOpen: isOpen,
-            toggle: toggle
-          }
+          context: { isOpen, toggle, popperManager },
+          childContextTypes: { popperManager }
         }
       );
       const instance = wrapper.instance();

@@ -14,7 +14,7 @@ const components = {
   UncontrolledTooltip: Tooltip,
 };
 
-Object.keys(components).forEach(key => {
+Object.keys(components).forEach((key) => {
   const Tag = components[key];
   const defaultValue = Tag === Alert;
 

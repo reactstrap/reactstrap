@@ -9,13 +9,13 @@ describe('Collapse', () => {
   beforeEach(() => {
     isOpen = false;
     toggle = () => { isOpen = !isOpen; };
-    jasmine.clock().install();
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
     // fast forward time for collapse to fade out
-    jasmine.clock().tick(400);
-    jasmine.clock().uninstall();
+    jest.runTimersToTime(400);
+    jest.clearAllTimers();
   });
 
   describe('delay', () => {
@@ -23,7 +23,7 @@ describe('Collapse', () => {
       const wrapper = mount(<Collapse isOpen={isOpen} delay={200} />);
       toggle();
       wrapper.setProps({ isOpen: isOpen });
-      jasmine.clock().tick(200);
+      jest.runTimersToTime(200);
       expect(wrapper.state('collapse')).toEqual('SHOWN');
       wrapper.unmount();
     });
@@ -32,12 +32,12 @@ describe('Collapse', () => {
       const wrapper = mount(<Collapse isOpen={isOpen} delay={{ show: 110, hide: 120 }} />);
       toggle();
       wrapper.setProps({ isOpen: isOpen });
-      jasmine.clock().tick(110);
+      jest.runTimersToTime(110);
       expect(wrapper.state('collapse')).toEqual('SHOWN');
 
       toggle();
       wrapper.setProps({ isOpen: isOpen });
-      jasmine.clock().tick(120);
+      jest.runTimersToTime(120);
       expect(wrapper.state('collapse')).toEqual('HIDDEN');
     });
 
@@ -45,12 +45,12 @@ describe('Collapse', () => {
       const wrapper = mount(<Collapse isOpen={isOpen} delay={{ show: 110 }} />);
       toggle();
       wrapper.setProps({ isOpen: isOpen });
-      jasmine.clock().tick(110);
+      jest.runTimersToTime(110);
       expect(wrapper.state('collapse')).toEqual('SHOWN');
 
       toggle();
       wrapper.setProps({ isOpen: isOpen });
-      jasmine.clock().tick(350);
+      jest.runTimersToTime(350);
       expect(wrapper.state('collapse')).toEqual('HIDDEN');
     });
   });
@@ -94,7 +94,7 @@ describe('Collapse', () => {
   it('should render with class "collapse" with default collapse state', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     wrapper.setState({ collapse: null });
-    jasmine.clock().tick(360);
+    jest.runTimersToTime(360);
     wrapper.update();
     expect(wrapper.find('.collapse').length).toBe(1);
     wrapper.unmount();
@@ -112,7 +112,7 @@ describe('Collapse', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
     wrapper.setProps({ isOpen: isOpen });
-    jasmine.clock().tick(350);
+    jest.runTimersToTime(350);
     expect(wrapper.state('collapse')).toEqual('SHOWN');
     wrapper.unmount();
   });
@@ -131,7 +131,7 @@ describe('Collapse', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
     wrapper.setProps({ isOpen: isOpen });
-    jasmine.clock().tick(360);
+    jest.runTimersToTime(360);
     expect(wrapper.state('collapse')).toEqual('HIDDEN');
     wrapper.unmount();
   });
@@ -149,31 +149,31 @@ describe('Collapse', () => {
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
     wrapper.setProps({ isOpen: isOpen });
-    jasmine.clock().tick(380);
+    jest.runTimersToTime(380);
     expect(wrapper.state('height')).toBe(null);
     wrapper.unmount();
   });
 
   it('should remove timeout tag after unmount', () => {
-    spyOn(Collapse.prototype, 'componentWillUnmount').and.callThrough();
+    jest.spyOn(Collapse.prototype, 'componentWillUnmount');
     const wrapper = mount(<Collapse isOpen={isOpen} />);
     wrapper.unmount();
     expect(Collapse.prototype.componentWillUnmount).toHaveBeenCalled();
   });
 
   it('should call onOpened after opening', () => {
-    const onOpened = jasmine.createSpy('onOpenedSpy');
-    const onClosed = jasmine.createSpy('onClosedSpy');
+    const onOpened = jest.fn();
+    const onClosed = jest.fn();
     const wrapper = mount(<Collapse isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} />);
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(onOpened).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({ isOpen });
-    jasmine.clock().tick(380);
+    jest.runTimersToTime(380);
     expect(isOpen).toBe(true);
     expect(onOpened).toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
@@ -182,19 +182,19 @@ describe('Collapse', () => {
   });
 
   it('should call onClosed after closing', () => {
-    const onOpened = jasmine.createSpy('onOpenedSpy');
-    const onClosed = jasmine.createSpy('onClosedSpy');
+    const onOpened = jest.fn();
+    const onClosed = jest.fn();
     toggle();
     const wrapper = mount(<Collapse isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} />);
 
-    jasmine.clock().tick(380);
+    jest.runTimersToTime(380);
     expect(isOpen).toBe(true);
     expect(onOpened).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({ isOpen });
-    jasmine.clock().tick(380);
+    jest.runTimersToTime(380);
     expect(isOpen).toBe(false);
     expect(onOpened).not.toHaveBeenCalled();
     expect(onClosed).toHaveBeenCalled();

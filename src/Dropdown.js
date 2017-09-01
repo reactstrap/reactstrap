@@ -4,22 +4,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { mapToCssModules, omit } from './utils';
-import PopperContent from './PopperContent';
-import DropdownMenu from './DropdownMenu';
-import DropdownToggle from './DropdownToggle';
 
 const propTypes = {
   disabled: PropTypes.bool,
   dropup: PropTypes.bool,
   right: PropTypes.bool,
-  placementPrefix: PropTypes.string,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   size: PropTypes.string,
   tag: PropTypes.string,
-  tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
@@ -28,16 +24,15 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
+  dropup: false,
   tag: 'div',
-  placementPrefix: 'dropdown-menu',
 };
 
 const childContextTypes = {
   toggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  dropup: PropTypes.bool.isRequired,
 };
-
-let i = 0;
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -52,7 +47,8 @@ class Dropdown extends React.Component {
   getChildContext() {
     return {
       toggle: this.props.toggle,
-      isOpen: this.props.isOpen
+      isOpen: this.props.isOpen,
+      dropup: this.props.dropup,
     };
   }
 
@@ -89,10 +85,6 @@ class Dropdown extends React.Component {
   }
 
   handleProps() {
-    if (this.props.tether) {
-      return;
-    }
-
     if (this.props.isOpen) {
       this.addEvents();
     } else {
@@ -105,37 +97,7 @@ class Dropdown extends React.Component {
       return e && e.preventDefault();
     }
 
-    return this.props.toggle();
-  }
-
-  renderChildren() {
-    const { children, dropup, right, ...attrs } = omit(this.props, ['toggle', 'tag']);
-
-    return React.Children.map(React.Children.toArray(children), (child) => {
-      if (child.type === DropdownToggle || child.props['data-toggle'] === 'dropdown') {
-        this.id = this.id || child.props.id || `dropdown-${++i}`;
-        return React.cloneElement(child, { id: this.id });
-      }
-      if (child.type === DropdownMenu) {
-        let position1 = 'bottom';
-        let position2 = 'start';
-        if (dropup) {
-          position1 = 'top';
-        }
-        if (right) {
-          position2 = 'end';
-        }
-        attrs.placement = `${position1}-${position2}`;
-        return (
-          <PopperContent
-            {...attrs}
-            target={this.id}
-          >{child}</PopperContent>
-        );
-      }
-
-      return child;
-    });
+    return this.props.toggle(e);
   }
 
   render() {
@@ -143,12 +105,11 @@ class Dropdown extends React.Component {
       className,
       cssModule,
       dropup,
+      isOpen,
       group,
       size,
-      tag: Tag,
-      isOpen,
-      ...attributes
-    } = omit(this.props, ['toggle', 'placementPrefix', 'right']);
+      ...attrs
+    } = omit(this.props, ['toggle', 'disabled']);
 
     const classes = mapToCssModules(classNames(
       className,
@@ -160,15 +121,7 @@ class Dropdown extends React.Component {
         dropup: dropup
       }
     ), cssModule);
-
-    return (
-      <Tag
-        {...attributes}
-        className={classes}
-      >
-        {this.renderChildren()}
-      </Tag>
-    );
+    return <Manager {...attrs} className={classes}>{}</Manager>;
   }
 }
 

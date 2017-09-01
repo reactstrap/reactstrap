@@ -44,7 +44,7 @@ class DropdownItem extends React.Component {
     }
 
     if (this.props.toggle) {
-      this.context.toggle();
+      this.context.toggle(e);
     }
   }
 

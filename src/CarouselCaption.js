@@ -6,10 +6,10 @@ import { mapToCssModules } from './utils';
 const CarouselCaption = (props) => {
   const { captionHeader, captionText, cssModule } = props;
   const classes = mapToCssModules(classNames(
-        'carousel-caption',
-        'd-none',
-        'd-md-block'
-    ), cssModule);
+    'carousel-caption',
+    'd-none',
+    'd-md-block'
+  ), cssModule);
 
   return (
     <div className={classes}>

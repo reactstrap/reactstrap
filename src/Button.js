@@ -10,7 +10,7 @@ const propTypes = {
   disabled: PropTypes.bool,
   outline: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
   size: PropTypes.string,
   children: PropTypes.node,
@@ -51,7 +51,7 @@ class Button extends React.Component {
       outline,
       size,
       tag: Tag,
-      getRef,
+      innerRef,
       ...attributes
     } = this.props;
 
@@ -73,7 +73,7 @@ class Button extends React.Component {
         type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
         {...attributes}
         className={classes}
-        ref={getRef}
+        ref={innerRef}
         onClick={this.onClick}
       />
     );

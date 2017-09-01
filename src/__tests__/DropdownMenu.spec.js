@@ -1,12 +1,18 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { DropdownMenu } from '../';
 
 describe('DropdownMenu', () => {
   let isOpen;
+  let dropup;
+  let popperManager;
 
   beforeEach(() => {
     isOpen = false;
+    dropup = false;
+    popperManager = {
+      getTargetNode: () => ({}),
+    };
   });
 
   it('should render children', () => {
@@ -16,9 +22,8 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: {
-          isOpen: isOpen
-        }
+        context: { isOpen, dropup, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -33,9 +38,8 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: {
-          isOpen: isOpen
-        }
+        context: { isOpen, dropup, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -50,9 +54,8 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: {
-          isOpen: isOpen
-        }
+        context: { isOpen, dropup, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -65,9 +68,8 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: {
-          isOpen: isOpen
-        }
+        context: { isOpen, dropup, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -78,9 +80,8 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: {
-          isOpen: isOpen
-        }
+        context: { isOpen, dropup, popperManager },
+        childContextTypes: { popperManager }
       }
     );
 
@@ -88,15 +89,14 @@ describe('DropdownMenu', () => {
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<DropdownMenu tag="main">Yo!</DropdownMenu>,
+    const wrapper = mount(<DropdownMenu tag="main">Yo!</DropdownMenu>,
       {
-        context: {
-          isOpen: isOpen
-        }
+        context: { isOpen, dropup, popperManager },
+        childContextTypes: { popperManager }
       });
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('dropdown-menu')).toBe(true);
-    expect(wrapper.type()).toBe('main');
+    expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
   });
 });
