@@ -5,12 +5,17 @@ import Transition from 'react-transition-group/Transition'
 import { mapToCssModules } from './utils';
 import CarouselCaption from './CarouselCaption';
 
+// to match bootstrap $carousel-transition
+// https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss#L790
+const DEFAULT_TIMEOUT = 600;
+
 class CarouselItem extends React.Component {
   constructor(props) {
     super(props)
 
     this.componentWillExit = this.componentWillExit.bind(this);
     this.componentDidExit = this.componentDidExit.bind(this);
+    this.doReflow = false;
   }
 
   componentWillExit() {
@@ -19,6 +24,14 @@ class CarouselItem extends React.Component {
 
   componentDidExit() {
     this.slide.dispatchEvent(new CustomEvent('slid.bs.carousel'));
+  }
+
+  componentDidUpdate() {
+    if (this.doReflow) {
+      // getting this variable triggers a reflow
+      this.slide.offsetHeight;
+      this.doReflow = false;
+    }
   }
 
   render() {
@@ -33,19 +46,24 @@ class CarouselItem extends React.Component {
         in={isIn}
         onExiting={this.componentWillExit}
         onExited={this.componentDidExit}
-        timeout={500}
+        timeout={DEFAULT_TIMEOUT}
       >
         {(status) => {
           const { direction } = this.context;
           console.log("altText: ", altText, ", status: ", status, ", direction: ", direction);
-          const isActive = (status === 'enterings') || (status === 'entered') || (status === 'exiting');
+          const isActive = (status === 'entered') || (status === 'exiting');
+          const directionClassName = (status === 'entering' || status === 'exiting') &&
+            (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right');
+          const orderClassName = (status === 'entering') &&
+            (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev');
+          if (direction === 'entering') {
+            this.doReflow = true;
+          } 
           const itemClasses = mapToCssModules(classNames(
             'carousel-item',
             isActive && 'active',
-            (status === 'entering' || status === 'exiting') &&
-            (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right'),
-            (status === 'entering') &&
-            (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev'),
+            directionClassName,
+            orderClassName,
           ), cssModule);
 
           return (
