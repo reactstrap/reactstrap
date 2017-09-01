@@ -11,7 +11,6 @@ import { mapToCssModules, omit } from './utils';
 const propTypes = {
   disabled: PropTypes.bool,
   dropup: PropTypes.bool,
-  right: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   size: PropTypes.string,
