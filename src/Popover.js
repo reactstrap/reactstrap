@@ -60,7 +60,7 @@ class Popover extends React.Component {
   componentWillUnmount() {
     this.clearShowTimeout();
     this.clearHideTimeout();
-    this.addTargetEvents();
+    this.removeTargetEvents();
   }
 
   getDelay(key) {
@@ -80,18 +80,20 @@ class Popover extends React.Component {
   }
 
   show() {
-    this.clearShowTimeout();
+    this.clearHideTimeout();
     this.addTargetEvents();
     if (!this.props.isOpen) {
-      this.toggle();
+      this.clearShowTimeout();
+      this._showTimeout = setTimeout(this.toggle, this.getDelay('show'));
     }
   }
 
   hide() {
-    this.clearHideTimeout();
+    this.clearShowTimeout();
     this.removeTargetEvents();
     if (this.props.isOpen) {
-      this.toggle();
+      this.clearHideTimeout();
+      this._hideTimeout = setTimeout(this.toggle, this.getDelay('hide'));
     }
   }
 

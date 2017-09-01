@@ -43,7 +43,7 @@ describe('Tooltip', () => {
       </Tooltip>,
       { attachTo: container }
     );
-    const instance = wrapper.instance();
+
     const tooltips = document.getElementsByClassName('tooltip');
 
     expect(wrapper.find('.tooltip.show').length).toBe(0);
@@ -60,7 +60,7 @@ describe('Tooltip', () => {
       </Tooltip>,
       { attachTo: container }
     );
-    const instance = wrapper.instance();
+
     const tooltips = document.getElementsByClassName('tooltip');
 
     expect(wrapper.find('.tooltip.show').length).toBe(1);
@@ -77,7 +77,7 @@ describe('Tooltip', () => {
       </Tooltip>,
       { attachTo: container }
     );
-    const instance = wrapper.instance();
+
     const tooltips = document.getElementsByClassName('tooltip');
 
     expect(wrapper.find('.tooltip.show').length).toBe(1);

@@ -16,9 +16,10 @@ describe('Dropdown', () => {
   });
 
   afterEach(() => {
-    if (Dropdown.prototype.componentDidUpdate.mockReset) Dropdown.prototype.componentDidUpdate.mockReset();
-    if (Dropdown.prototype.handleProps.mockReset) Dropdown.prototype.handleProps.mockReset();
-    if (Dropdown.prototype.toggle.mockReset) Dropdown.prototype.toggle.mockReset();
+    if (jest.isMockFunction(Dropdown.prototype.componentDidUpdate)) Dropdown.prototype.componentDidUpdate.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.handleProps)) Dropdown.prototype.handleProps.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.toggle)) Dropdown.prototype.toggle.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.handleDocumentClick)) Dropdown.prototype.handleDocumentClick.mockRestore();
     document.body.removeChild(element);
     element = null;
   });
