@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { TransitionGroup } from 'react-transition-group';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
@@ -106,17 +105,23 @@ class Modal extends React.Component {
     }
   }
 
-  onOpened() {
+  onOpened(node, isAppearing) {
     if (this.props.onOpened) {
       this.props.onOpened();
     }
+    if (this.props.modalTransition.onEntered) {
+      this.props.modalTransition.onEntered(node, isAppearing);
+    }
   }
 
-  onClosed() {
+  onClosed(node) {
     // so all methods get called before it is unmounted
     setTimeout(() => this.destroy(), 0);
     if (this.props.onClosed) {
       this.props.onClosed();
+    }
+    if (this.props.modalTransition.onExited) {
+      this.props.modalTransition.onExited(node);
     }
   }
 
@@ -262,29 +267,25 @@ class Modal extends React.Component {
 
     if (this.hasTransition()) {
       return (
-        <TransitionGroup component="div" className={mapToCssModules(wrapClassName)}>
-          {isOpen && (
-            <Fade
-              key="modal-dialog"
-              onEntered={this.onOpened}
-              onExited={this.onClosed}
-              {...this.props.modalTransition}
-              cssModule={cssModule}
-              className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
-              {...modalAttributes}
-            >
-              {this.renderModalDialog()}
-            </Fade>
-          )}
-          {isOpen && backdrop && (
-            <Fade
-              key="modal-backdrop"
-              {...this.props.backdropTransition}
-              cssModule={cssModule}
-              className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
-            />
-          )}
-        </TransitionGroup>
+        <div className={mapToCssModules(wrapClassName)}>
+          <Fade
+            in={isOpen}
+            {...modalAttributes}
+            {...this.props.modalTransition}
+            onEntered={this.onOpened}
+            onExited={this.onClosed}
+            cssModule={cssModule}
+            className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
+          >
+            {this.renderModalDialog()}
+          </Fade>
+          <Fade
+            in={isOpen && backdrop}
+            {...this.props.backdropTransition}
+            cssModule={cssModule}
+            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+          />
+        </div>
       );
     }
 
