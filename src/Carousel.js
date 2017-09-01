@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { TransitionGroup } from 'react-transition-group';
 import { mapToCssModules } from './utils';
 
 class Carousel extends React.Component {
