@@ -113,7 +113,6 @@ CarouselItem.propTypes = {
 CarouselItem.defaultProps = {
   ...Transition.defaultProps,
   timeout: TransitionTimeouts.Carousel,
-  onEnter: noop, onEntering: noop, onExit: noop, onExiting: noop, onExited: noop,
   slide: true,
 };
 
