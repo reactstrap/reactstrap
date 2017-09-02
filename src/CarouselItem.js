@@ -67,8 +67,6 @@ class CarouselItem extends React.Component {
       'img-fluid'
     ), cssModule);
 
-    console.log("carouselitem: ", altText, ", slide:", slide);
-
     return (
       <Transition
         {...transitionProps}
