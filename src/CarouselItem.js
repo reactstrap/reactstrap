@@ -5,6 +5,8 @@ import Transition, { EXITED, ENTERING, ENTERED, EXITING } from 'react-transition
 import { mapToCssModules } from './utils';
 import CarouselCaption from './CarouselCaption';
 
+function noop() { }
+
 // to match bootstrap $carousel-transition
 // https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss#L790
 const DEFAULT_TIMEOUT = 600;
@@ -13,53 +15,79 @@ class CarouselItem extends React.Component {
   constructor(props) {
     super(props)
 
-    this.componentWillExit = this.componentWillExit.bind(this);
-    this.componentDidExit = this.componentDidExit.bind(this);
-    this.doReflow = false;
+    this.status = null;
+    this.state = {
+      startAnimation: false,
+    };
+
+    this.onEntering = this.onEntering.bind(this);
+    this.onExiting = this.onExiting.bind(this);
+    this.onExited = this.onExited.bind(this);
   }
 
-  componentWillExit() {
-    this.slide.dispatchEvent(new CustomEvent('slide.bs.carousel'));
+  onEntering(node, appearing) {
+    this.slide = node;
+    this.setState({
+      startAnimation: false
+    });
+    this.props.onEntering(node, appearing);
   }
 
-  componentDidExit() {
-    this.slide.dispatchEvent(new CustomEvent('slid.bs.carousel'));
+  onExiting(node) {
+    this.setState({
+      startAnimation: false
+    });
+    node.dispatchEvent(new CustomEvent('slide.bs.carousel'));
+    this.props.onExiting(node);
+  }
+
+  onExited(node) {
+    node.dispatchEvent(new CustomEvent('slid.bs.carousel'));
+    this.props.onExited(node);
   }
 
   componentDidUpdate() {
-    if (this.doReflow) {
+    if (this.status === ENTERING && !this.state.startAnimation) {
       // getting this variable triggers a reflow
       this.slide.offsetHeight;
-      console.log("altText:", this.props.altText, ", reflowed carousel")
-      this.doReflow = false;
+      this.setState({
+        startAnimation: true,
+      });
+    } else if (this.status === EXITING && !this.state.startAnimation) {
+      this.setState({
+        startAnimation: true,
+      });
     }
   }
 
   render() {
-    const { src, altText, in: isIn, children, cssModule } = this.props;
+    const { src, altText, in: isIn, children, cssModule, slide, ...transitionProps } = this.props;
     const imgClasses = mapToCssModules(classNames(
       'd-block',
       'img-fluid'
     ), cssModule);
 
+    console.log("carouselitem: ", altText, ", slide:", slide);
+
     return (
       <Transition
+        {...transitionProps}
+        enter={slide}
+        exit={slide}
         in={isIn}
-        onExiting={this.componentWillExit}
-        onExited={this.componentDidExit}
-        timeout={DEFAULT_TIMEOUT}
+        onEntering={this.onEntering}
+        onExiting={this.onExiting}
+        onExited={this.onExited}
       >
         {(status) => {
+          this.status = status;
           const { direction } = this.context;
-          console.log("altText:", altText, ", status:", status, ", direction:", direction);
           const isActive = (status === ENTERED) || (status === EXITING);
           const directionClassName = (status === ENTERING || status === EXITING) &&
+            this.state.startAnimation &&
             (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right');
           const orderClassName = (status === ENTERING) &&
             (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev');
-          if (status === ENTERING) {
-            this.doReflow = true;
-          } 
           const itemClasses = mapToCssModules(classNames(
             'carousel-item',
             isActive && 'active',
@@ -68,7 +96,7 @@ class CarouselItem extends React.Component {
           ), cssModule);
 
           return (
-            <div className={itemClasses} ref={(slide) => { this.slide = slide; }}>
+            <div className={itemClasses}>
               <img className={imgClasses} src={src} alt={altText} />
               {children}
             </div>
@@ -80,6 +108,7 @@ class CarouselItem extends React.Component {
 }
 
 CarouselItem.propTypes = {
+  ...Transition.propTypes,
   in: PropTypes.bool,
   src: PropTypes.string.isRequired,
   altText: PropTypes.string,
@@ -87,6 +116,14 @@ CarouselItem.propTypes = {
   children: PropTypes.shape({
     type: PropTypes.oneOf([CarouselCaption]),
   }),
+  slide: PropTypes.bool,
+};
+
+CarouselItem.defaultProps = {
+  ...Transition.defaultProps,
+  timeout: DEFAULT_TIMEOUT,
+  onEntering: noop, onExiting: noop, onExited: noop,
+  slide: true,
 };
 
 CarouselItem.contextTypes = {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { TransitionGroup } from 'react-transition-group';
 import { mapToCssModules } from './utils';
 
 class Carousel extends React.Component {
@@ -57,18 +56,26 @@ class Carousel extends React.Component {
     }
   }
 
-  renderItems(carouselItems) {
-    return carouselItems.map((item, index) => {
-      const isIn = (this.props.activeIndex === index);
-      return React.cloneElement(item, { in: isIn });
-    })
+  renderItems(carouselItems, className) {
+    const { slide } = this.props;
+    return (
+      <div role="listbox" className={className}>
+        {carouselItems.map((item, index) => {
+          const isIn = (index === this.props.activeIndex);
+          return React.cloneElement(item, {
+            in: isIn,
+            slide: slide,
+          });
+        })}
+      </div>
+    );
   }
 
   render() {
-    const { children, cssModule, activeIndex, hoverStart, hoverEnd } = this.props;
+    const { children, cssModule, activeIndex, hoverStart, hoverEnd, slide } = this.props;
     const outerClasses = mapToCssModules(classNames(
       'carousel',
-      'slide'
+      slide && 'slide',
     ), cssModule);
 
     const innerClasses = mapToCssModules(classNames(
@@ -84,9 +91,7 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <div role="listbox" className={innerClasses}>
-            {this.renderItems(children)}
-          </div>
+          {this.renderItems(carouselItems, innerClasses)}
         </div>
       );
     }
@@ -99,9 +104,7 @@ class Carousel extends React.Component {
 
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <div role="listbox" className={innerClasses}>
-            {this.renderItems(carouselItems)}
-          </div>
+          {this.renderItems(carouselItems, innerClasses)}
           {controlLeft}
           {controlRight}
         </div>
@@ -124,9 +127,7 @@ class Carousel extends React.Component {
         onMouseLeave={hoverEnd}
       >
         {indicators}
-        <div role="listbox" className={innerClasses}>
-          {this.renderItems(carouselItems)}
-        </div>
+        {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
         {controlRight}
       </div>
@@ -148,14 +149,16 @@ Carousel.propTypes = {
   ]),
   children: PropTypes.array,
   hoverStart: PropTypes.func,
-  hoverEnd: PropTypes.func
+  hoverEnd: PropTypes.func,
+  slide: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
   interval: 5000,
   hover: false,
   paused: false,
-  keyboard: true
+  keyboard: true,
+  slide: true,
 };
 
 Carousel.childContextTypes = {
