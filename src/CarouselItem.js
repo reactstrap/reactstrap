@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition, { EXITED, ENTERING, ENTERED, EXITING } from 'react-transition-group/Transition';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, TransitionTimeouts } from './utils';
 import CarouselCaption from './CarouselCaption';
 
 function noop() { }
-
-// to match bootstrap $carousel-transition
-// https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss#L790
-const DEFAULT_TIMEOUT = 600;
 
 class CarouselItem extends React.Component {
   constructor(props) {
@@ -119,7 +115,7 @@ CarouselItem.propTypes = {
 
 CarouselItem.defaultProps = {
   ...Transition.defaultProps,
-  timeout: DEFAULT_TIMEOUT,
+  timeout: TransitionTimeouts.Carousel,
   onEntering: noop, onExiting: noop, onExited: noop,
   slide: true,
 };

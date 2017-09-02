@@ -8,7 +8,8 @@ import {
   conditionallyUpdateScrollbar,
   setScrollbarWidth,
   mapToCssModules,
-  omit
+  omit,
+  TransitionTimeouts
 } from './utils';
 
 const FadePropTypes = PropTypes.shape(Fade.propTypes);
@@ -57,11 +58,11 @@ const defaultProps = {
   fade: true,
   modalTransition: {
     ...Fade.defaultProps,
-    timeout: 300,
+    timeout: TransitionTimeouts.Modal,
   },
   backdropTransition: {
     ...Fade.defaultProps,
-    timeout: 150,
+    timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
 };
 

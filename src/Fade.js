@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition, { EXITED, ENTERING, ENTERED, EXITING } from 'react-transition-group/Transition';
-import { mapToCssModules, omit } from './utils';
+import { mapToCssModules, omit, TransitionTimeouts } from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
@@ -21,7 +21,7 @@ const defaultProps = {
   tag: 'div',
   baseClass: 'fade',
   baseClassActive: 'show',
-  timeout: 150,
+  timeout: TransitionTimeouts.Fade,
   appear: true,
   enter: true,
   exit: true,
