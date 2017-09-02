@@ -44,7 +44,7 @@ describe('Fade', () => {
     const wrapper = mount(
       <Helper showItem={isOpen} >
         <Fade key={Math.random()}>Yo!</Fade>
-        <Fade in={false} key={Math.random()}>Yo 2!</Fade>
+        <Fade appear={false} key={Math.random()}>Yo 2!</Fade>
       </Helper>
     );
 
