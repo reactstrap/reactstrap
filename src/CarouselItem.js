@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Transition } from 'react-transition-group'
+import Transition, { EXITED, ENTERING, ENTERED, EXITING } from 'react-transition-group/Transition';
 import { mapToCssModules } from './utils';
 import CarouselCaption from './CarouselCaption';
 
@@ -52,12 +52,12 @@ class CarouselItem extends React.Component {
         {(status) => {
           const { direction } = this.context;
           console.log("altText:", altText, ", status:", status, ", direction:", direction);
-          const isActive = (status === 'entered') || (status === 'exiting');
-          const directionClassName = (status === 'entering' || status === 'exiting') &&
+          const isActive = (status === ENTERED) || (status === EXITING);
+          const directionClassName = (status === ENTERING || status === EXITING) &&
             (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right');
-          const orderClassName = (status === 'entering') &&
+          const orderClassName = (status === ENTERING) &&
             (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev');
-          if (status === 'entering') {
+          if (status === ENTERING) {
             this.doReflow = true;
           } 
           const itemClasses = mapToCssModules(classNames(

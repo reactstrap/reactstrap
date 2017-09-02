@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Transition } from 'react-transition-group';
+import Transition, { EXITED, ENTERING, ENTERED, EXITING } from 'react-transition-group/Transition';
 import { mapToCssModules, omit } from './utils';
 
 const propTypes = {
@@ -43,7 +43,7 @@ function Fade(props) {
   return (
     <Transition {...transitionProps}>
       {(status) => {
-        const isActive = status === 'entering' || status === 'entered';
+        const isActive = status === ENTERING || status === ENTERED;
         const classes = mapToCssModules(classNames(
           className,
           baseClass,
