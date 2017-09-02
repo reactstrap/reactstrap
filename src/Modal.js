@@ -62,6 +62,7 @@ const defaultProps = {
   },
   backdropTransition: {
     ...Fade.defaultProps,
+    mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
 };
