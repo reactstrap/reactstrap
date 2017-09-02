@@ -16,23 +16,32 @@ class CarouselItem extends React.Component {
       startAnimation: false,
     };
 
+    this.onEnter = this.onEnter.bind(this);
     this.onEntering = this.onEntering.bind(this);
+    this.onExit = this.onExit.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
   }
 
-  onEntering(node, appearing) {
-    this.slide = node;
-    this.setState({
-      startAnimation: false
-    });
-    this.props.onEntering(node, appearing);
+  onEnter(node, isAppearing) {
+    this.setState({ startAnimation: false });
+    this.props.onEnter(node, isAppearing);
+  }
+
+  onEntering(node, isAppearing) {
+    // getting this variable triggers a reflow
+    node.offsetHeight;
+    this.setState({ startAnimation: true });
+    this.props.onEntering(node, isAppearing);
+  }
+
+  onExit(node) {
+    this.setState({ startAnimation: false });
+    this.props.onExit(node);
   }
 
   onExiting(node) {
-    this.setState({
-      startAnimation: false
-    });
+    this.setState({ startAnimation: true });
     node.dispatchEvent(new CustomEvent('slide.bs.carousel'));
     this.props.onExiting(node);
   }
@@ -40,20 +49,6 @@ class CarouselItem extends React.Component {
   onExited(node) {
     node.dispatchEvent(new CustomEvent('slid.bs.carousel'));
     this.props.onExited(node);
-  }
-
-  componentDidUpdate() {
-    if (this.status === ENTERING && !this.state.startAnimation) {
-      // getting this variable triggers a reflow
-      this.slide.offsetHeight;
-      this.setState({
-        startAnimation: true,
-      });
-    } else if (this.status === EXITING && !this.state.startAnimation) {
-      this.setState({
-        startAnimation: true,
-      });
-    }
   }
 
   render() {
@@ -69,7 +64,9 @@ class CarouselItem extends React.Component {
         enter={slide}
         exit={slide}
         in={isIn}
+        onEnter={this.onEnter}
         onEntering={this.onEntering}
+        onExit={this.onExit}
         onExiting={this.onExiting}
         onExited={this.onExited}
       >
@@ -116,7 +113,7 @@ CarouselItem.propTypes = {
 CarouselItem.defaultProps = {
   ...Transition.defaultProps,
   timeout: TransitionTimeouts.Carousel,
-  onEntering: noop, onExiting: noop, onExited: noop,
+  onEnter: noop, onEntering: noop, onExit: noop, onExiting: noop, onExited: noop,
   slide: true,
 };
 
