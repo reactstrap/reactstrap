@@ -141,27 +141,14 @@ class Modal extends React.Component {
     }
   }
 
-  hasTransition() {
-    if (this.props.fade === false) {
-      return false;
-    }
-    return true;
-  }
-
   togglePortal() {
     if (this.props.isOpen) {
       if (this.props.autoFocus) {
         this._focus = true;
       }
       this.show();
-      if (!this.hasTransition()) {
-        this.onOpened();
-      }
     } else {
       this.hide();
-      if (!this.hasTransition()) {
-        this.onClosed();
-      }
     }
   }
 
@@ -265,45 +252,36 @@ class Modal extends React.Component {
       tabIndex: '-1'
     };
 
-    if (this.hasTransition()) {
-      return (
-        <div className={mapToCssModules(wrapClassName)}>
-          <Fade
-            in={isOpen}
-            {...modalAttributes}
-            {...this.props.modalTransition}
-            onEntered={this.onOpened}
-            onExited={this.onClosed}
-            cssModule={cssModule}
-            className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
-          >
-            {this.renderModalDialog()}
-          </Fade>
-          <Fade
-            in={isOpen && backdrop}
-            {...this.props.backdropTransition}
-            cssModule={cssModule}
-            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
-          />
-        </div>
-      );
-    }
-
+    const hasTransition = this.props.fade;
+    const modalTransition = {
+      ...this.props.modalTransition,
+      baseClass: hasTransition ? this.props.modalTransition.baseClass : '',
+      timeout: hasTransition ? this.props.modalTransition.timeout : 0,
+    };
+    const backdropTransition = {
+      ...this.props.backdropTransition,
+      baseClass: hasTransition ? this.props.backdropTransition.baseClass : '',
+      timeout: hasTransition ? this.props.backdropTransition.timeout : 0,
+    };
     return (
       <div className={mapToCssModules(wrapClassName)}>
-        {isOpen && (
-          <div
-            className={mapToCssModules(classNames('modal', 'show', modalClassName), cssModule)}
-            {...modalAttributes}
-          >
-            {this.renderModalDialog()}
-          </div>
-        )}
-        {isOpen && backdrop && (
-          <div
-            className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)}
-          />
-        )}
+        <Fade
+          {...modalAttributes}
+          {...modalTransition}
+          in={isOpen}
+          onEntered={this.onOpened}
+          onExited={this.onClosed}
+          cssModule={cssModule}
+          className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
+        >
+          {this.renderModalDialog()}
+        </Fade>
+        <Fade
+          {...backdropTransition}
+          in={isOpen && backdrop}
+          cssModule={cssModule}
+          className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+        />
       </div>
     );
   }
