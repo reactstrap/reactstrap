@@ -11,7 +11,6 @@ class CarouselItem extends React.Component {
   constructor(props) {
     super(props)
 
-    this.status = null;
     this.state = {
       startAnimation: false,
     };
@@ -71,7 +70,6 @@ class CarouselItem extends React.Component {
         onExited={this.onExited}
       >
         {(status) => {
-          this.status = status;
           const { direction } = this.context;
           const isActive = (status === ENTERED) || (status === EXITING);
           const directionClassName = (status === ENTERING || status === EXITING) &&
