@@ -30,6 +30,7 @@ class CarouselItem extends React.Component {
     if (this.doReflow) {
       // getting this variable triggers a reflow
       this.slide.offsetHeight;
+      console.log("altText:", this.props.altText, ", reflowed carousel")
       this.doReflow = false;
     }
   }
@@ -50,13 +51,13 @@ class CarouselItem extends React.Component {
       >
         {(status) => {
           const { direction } = this.context;
-          console.log("altText: ", altText, ", status: ", status, ", direction: ", direction);
+          console.log("altText:", altText, ", status:", status, ", direction:", direction);
           const isActive = (status === 'entered') || (status === 'exiting');
           const directionClassName = (status === 'entering' || status === 'exiting') &&
             (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right');
           const orderClassName = (status === 'entering') &&
             (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev');
-          if (direction === 'entering') {
+          if (status === 'entering') {
             this.doReflow = true;
           } 
           const itemClasses = mapToCssModules(classNames(
