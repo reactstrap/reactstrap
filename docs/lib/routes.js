@@ -9,6 +9,7 @@ import ButtonsPage from './Components/ButtonsPage';
 import ButtonGroupPage from './Components/ButtonGroupPage';
 import ButtonDropdownPage from './Components/ButtonDropdownPage';
 import DropdownsPage from './Components/DropdownsPage';
+import FadePage from './Components/FadePage';
 import FormPage from './Components/FormPage';
 import InputGroupPage from './Components/InputGroupPage';
 import PopoversPage from './Components/PopoversPage';
@@ -43,6 +44,7 @@ const routes = (
       <Route path="button-group/" component={ButtonGroupPage} />
       <Route path="button-dropdown/" component={ButtonDropdownPage} />
       <Route path="dropdowns/" component={DropdownsPage} />
+      <Route path="fade/" component={FadePage} />
       <Route path="form/" component={FormPage} />
       <Route path="input-group/" component={InputGroupPage} />
       <Route path="popovers/" component={PopoversPage} />

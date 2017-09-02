@@ -63,6 +63,10 @@ class Components extends React.Component {
           to: '/components/dropdowns/'
         },
         {
+          name: 'Fade',
+          to: '/components/fade/'
+        },
+        {
           name: 'Form',
           to: '/components/form/'
         },
