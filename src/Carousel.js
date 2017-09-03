@@ -72,7 +72,7 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { children, cssModule, activeIndex, hoverStart, hoverEnd, slide } = this.props;
+    const { children, cssModule, hoverStart, hoverEnd, slide } = this.props;
     const outerClasses = mapToCssModules(classNames(
       'carousel',
       slide && 'slide',
@@ -91,7 +91,7 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          {this.renderItems(carouselItems, innerClasses)}
+          {this.renderItems(children, innerClasses)}
         </div>
       );
     }

@@ -62,7 +62,7 @@ function Alert(props) {
       {children}
     </Fade>
   );
-};
+}
 
 Alert.propTypes = propTypes;
 Alert.defaultProps = defaultProps;

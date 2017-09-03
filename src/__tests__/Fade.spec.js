@@ -61,7 +61,7 @@ describe('Fade', () => {
 
   it('should transition classes from "fade" to "fade show" on enter', () => {
     const onEnter = jest.fn();
-    const onLeave = jest.fn();
+    const onExit = jest.fn();
     let isOpen = false;
     const wrapper = mount(
       <Helper showItem={isOpen} >

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Transition, { EXITED, ENTERING, ENTERED, EXITING } from 'react-transition-group/Transition';
+import Transition, { ENTERING, ENTERED } from 'react-transition-group/Transition';
 import { mapToCssModules, omit, TransitionTimeouts } from './utils';
 
 const propTypes = {

@@ -138,8 +138,11 @@ describe('Modal', () => {
     isOpen = true;
     const wrapper = mount(
       <Modal
-        isOpen={isOpen} toggle={toggle} modalTransition={{ timeout: 2 }}
-        backdropTransition={{ timeout: 10 }} modalClassName="custom-timeout-modal"
+        isOpen={isOpen}
+        toggle={toggle}
+        modalTransition={{ timeout: 2 }}
+        backdropTransition={{ timeout: 10 }}
+        modalClassName="custom-timeout-modal"
       >
         Hello, world!
       </Modal>

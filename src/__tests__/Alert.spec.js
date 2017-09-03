@@ -20,7 +20,7 @@ describe('Alert', () => {
 
   it('should have support configurable transitionTimeouts', () => {
     const alert = mount(
-      <Alert transition={{timeout: 0, appear: false, enter: false, exit: false}}>
+      <Alert transition={{ timeout: 0, appear: false, enter: false, exit: false }}>
         Yo!
       </Alert>
     );

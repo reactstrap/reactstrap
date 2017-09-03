@@ -109,6 +109,8 @@ export function getTarget(target) {
   return target;
 }
 
+
+/* eslint key-spacing: ["error", { afterColon: true, align: "value" }] */
 // These are all setup to match what is in the bootstrap _variables.scss
 // https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
 export const TransitionTimeouts = {
@@ -116,4 +118,4 @@ export const TransitionTimeouts = {
   Collapse: 350, // $transition-collapse
   Modal:    300, // $modal-transition
   Carousel: 600, // $carousel-transition
-}
+};

@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Transition, { EXITED, ENTERING, ENTERED, EXITING } from 'react-transition-group/Transition';
+import Transition, { ENTERING, ENTERED, EXITING } from 'react-transition-group/Transition';
 import { mapToCssModules, TransitionTimeouts } from './utils';
 import CarouselCaption from './CarouselCaption';
 
-function noop() { }
-
 class CarouselItem extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       startAnimation: false,
@@ -29,7 +27,7 @@ class CarouselItem extends React.Component {
 
   onEntering(node, isAppearing) {
     // getting this variable triggers a reflow
-    node.offsetHeight;
+    const _unused = node.offsetHeight; // eslint-disable-line no-unused-vars
     this.setState({ startAnimation: true });
     this.props.onEntering(node, isAppearing);
   }
