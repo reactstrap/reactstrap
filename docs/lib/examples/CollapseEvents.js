@@ -28,7 +28,7 @@ class Example extends Component {
       <div>
         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
         <h5>Current state: {this.state.status}</h5>
-        <Collapse isOpen={this.state.collapse} onOpened={this.onOpened} onClosed={this.onClosed}>
+        <Collapse isOpen={this.state.collapse} onEntered={this.onOpened} onExited={this.onClosed}>
           <Card>
             <CardBody>
             Anim pariatur cliche reprehenderit,

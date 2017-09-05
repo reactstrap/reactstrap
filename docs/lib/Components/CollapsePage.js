@@ -29,16 +29,17 @@ export default class CollapsePage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Collapse.propTypes = {
+  ...Transition.propTypes,
   isOpen: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.node,
   navbar: PropTypes.bool,
-  delay: PropTypes.oneOfType([
-    PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
-    PropTypes.number
-  ]), // optionally override show/hide delays - default { show: 350, hide: 350 }
-  onOpened: PropTypes.func,
-  onClosed: PropTypes.func,
-}`}
+  cssModule: PropTypes.object,
+};`}
           </PrismCode>
         </pre>
 
