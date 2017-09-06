@@ -8,12 +8,14 @@ const propTypes = {
   tag: PropTypes.string,
   children: PropTypes.node.isRequired,
   right: PropTypes.bool,
+  flip: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
 const defaultProps = {
   tag: 'div',
+  flip: true,
 };
 
 const contextTypes = {
@@ -21,8 +23,10 @@ const contextTypes = {
   dropup: PropTypes.bool.isRequired,
 };
 
+const noFlipModifier = { flip: { enabled: false } };
+
 const DropdownMenu = (props, context) => {
-  const { className, cssModule, right, tag, ...attrs } = props;
+  const { className, cssModule, right, tag, flip, ...attrs } = props;
   const position1 = context.dropup ? 'top' : 'bottom';
   const position2 = right ? 'end' : 'start';
   const classes = mapToCssModules(classNames(
@@ -37,7 +41,15 @@ const DropdownMenu = (props, context) => {
   attrs.placement = `${position1}-${position2}`;
 
   return (
-    <Popper {...attrs} component={tag} tabIndex="-1" aria-hidden={!context.isOpen} role="menu" className={classes} />
+    <Popper
+      tabIndex="-1"
+      role="menu"
+      {...attrs}
+      component={tag}
+      aria-hidden={!context.isOpen}
+      className={classes}
+      modifiers={!flip ? noFlipModifier : undefined}
+    />
   );
 };
 

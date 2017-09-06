@@ -57,7 +57,6 @@ export default class DropdownPage extends React.Component {
   dropup: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
-  flip: PropTypes.bool, // default: true
   tag: PropTypes.string, // default: 'div'
   toggle: PropTypes.func
 };
@@ -74,6 +73,15 @@ DropdownToggle.propTypes = {
   nav: PropTypes.bool,
   // Defaults to Button component
   tag: PropTypes.any
+};
+
+DropdownMenu.propTypes = {
+  tag: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  right: PropTypes.bool,
+  flip: PropTypes.bool, // default: true,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
 };`}
           </PrismCode>
         </pre>
