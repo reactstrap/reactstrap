@@ -7,7 +7,7 @@ const propTypes = {
   children: PropTypes.node,
   inline: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -22,7 +22,7 @@ const Form = (props) => {
     cssModule,
     inline,
     tag: Tag,
-    getRef,
+    innerRef,
     ...attributes
   } = props;
 
@@ -32,7 +32,7 @@ const Form = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} ref={getRef} className={classes} />
+    <Tag {...attributes} ref={innerRef} className={classes} />
   );
 };
 
