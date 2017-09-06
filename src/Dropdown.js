@@ -13,6 +13,7 @@ const propTypes = {
   dropup: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
+  flip: PropTypes.bool,
   size: PropTypes.string,
   tag: PropTypes.string,
   toggle: PropTypes.func,
@@ -24,6 +25,7 @@ const propTypes = {
 const defaultProps = {
   isOpen: false,
   dropup: false,
+  flip: true,
   tag: 'div',
 };
 

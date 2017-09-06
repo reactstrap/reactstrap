@@ -17,6 +17,7 @@ const propTypes = {
   wrapClassName: PropTypes.string,
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   fallbackPlacement: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  flip: PropTypes.bool,
   target: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]).isRequired,
 };
 
@@ -26,6 +27,7 @@ const defaultProps = {
   offset: 0,
   fallbackPlacement: 'flip',
   wrapTag: 'span',
+  flip: true,
 };
 
 class PopperContent extends React.Component {
@@ -48,6 +50,7 @@ class PopperContent extends React.Component {
       cssModule,
       children,
       isOpen,
+      flip,
       target,
       offset,
       fallbackPlacement,
@@ -67,7 +70,7 @@ class PopperContent extends React.Component {
 
     const modifiers = {
       offset: { offset },
-      flip: { behavior: fallbackPlacement },
+      flip: { enabled: flip, behavior: fallbackPlacement },
       update: {
         enabled: true,
         order: 950,

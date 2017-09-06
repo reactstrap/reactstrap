@@ -1,23 +1,5 @@
 import isFunction from 'lodash.isfunction';
 
-export const popperAttachments = [
-  'auto',
-  'auto-start',
-  'auto-end',
-  'top',
-  'top-start',
-  'top-end',
-  'right',
-  'right-start',
-  'right-end',
-  'bottom',
-  'bottom-start',
-  'bottom-end',
-  'left',
-  'left-start',
-  'left-end',
-];
-
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
 export function getScrollbarWidth() {
   let scrollDiv = document.createElement('div');

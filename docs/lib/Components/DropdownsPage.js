@@ -57,6 +57,7 @@ export default class DropdownPage extends React.Component {
   dropup: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
+  flip: PropTypes.bool, // default: true
   tag: PropTypes.string, // default: 'div'
   toggle: PropTypes.func
 };
