@@ -28,6 +28,7 @@ export default class NavsPage extends React.Component {
           <PrismCode className="language-jsx">
 {`Navbar.propTypes = {
   light: PropTypes.bool,
+  dark: PropTypes.bool,
   inverse: PropTypes.bool,
   full: PropTypes.bool,
   fixed: PropTypes.string,
