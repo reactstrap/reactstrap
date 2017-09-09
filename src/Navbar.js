@@ -5,6 +5,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   light: PropTypes.bool,
+  dark: PropTypes.bool,
   inverse: PropTypes.bool,
   full: PropTypes.bool,
   fixed: PropTypes.string,
@@ -38,6 +39,7 @@ const Navbar = (props) => {
     className,
     cssModule,
     light,
+    dark,
     inverse,
     full,
     fixed,
@@ -53,6 +55,7 @@ const Navbar = (props) => {
     getToggleableClass(toggleable),
     {
       'navbar-light': light,
+      'navbar-dark': dark,
       'navbar-inverse': inverse,
       [`bg-${color}`]: color,
       'navbar-full': full,
