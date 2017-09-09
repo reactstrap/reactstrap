@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, DropdownMenu } from 'reactstrap';
+import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -20,14 +20,15 @@ export default class Example extends React.Component {
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <span
+        <DropdownToggle
+          tag="span"
           onClick={this.toggle}
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded={this.state.dropdownOpen}
         >
           Custom Dropdown Content
-        </span>
+        </DropdownToggle>
         <DropdownMenu>
           <div onClick={this.toggle}>Custom dropdown item</div>
           <div onClick={this.toggle}>Custom dropdown item</div>

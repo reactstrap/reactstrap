@@ -1,123 +1,10 @@
 import * as Utils from '../utils';
 
 describe('Utils', () => {
-  describe('getTetherAttachments', () => {
-    let expectedConfig;
-
-    beforeEach(() => {
-      expectedConfig = {
-        attachment: '',
-        targetAttachment: ''
-      };
-    });
-
-    it('should return a default config when placement is not matched', () => {
-      expectedConfig.attachment = 'top center';
-      expectedConfig.targetAttachment = 'bottom center';
-
-      expect(Utils.getTetherAttachments()).toEqual(expectedConfig);
-    });
-
-    it('should return config for "top" & "top center"', () => {
-      expectedConfig.attachment = 'bottom center';
-      expectedConfig.targetAttachment = 'top center';
-
-      expect(Utils.getTetherAttachments('top')).toEqual(expectedConfig);
-      expect(Utils.getTetherAttachments('top center')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "bottom" & "bottom center"', () => {
-      expectedConfig.attachment = 'top center';
-      expectedConfig.targetAttachment = 'bottom center';
-
-      expect(Utils.getTetherAttachments('bottom')).toEqual(expectedConfig);
-      expect(Utils.getTetherAttachments('bottom center')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "left" & "left center"', () => {
-      expectedConfig.attachment = 'middle right';
-      expectedConfig.targetAttachment = 'middle left';
-
-      expect(Utils.getTetherAttachments('left')).toEqual(expectedConfig);
-      expect(Utils.getTetherAttachments('left center')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "right" & "right center"', () => {
-      expectedConfig.attachment = 'middle left';
-      expectedConfig.targetAttachment = 'middle right';
-
-      expect(Utils.getTetherAttachments('right')).toEqual(expectedConfig);
-      expect(Utils.getTetherAttachments('right center')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "top left"', () => {
-      expectedConfig.attachment = 'bottom left';
-      expectedConfig.targetAttachment = 'top left';
-
-      expect(Utils.getTetherAttachments('top left')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "top left"', () => {
-      expectedConfig.attachment = 'bottom left';
-      expectedConfig.targetAttachment = 'top left';
-
-      expect(Utils.getTetherAttachments('top left')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "top right"', () => {
-      expectedConfig.attachment = 'bottom right';
-      expectedConfig.targetAttachment = 'top right';
-
-      expect(Utils.getTetherAttachments('top right')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "bottom left"', () => {
-      expectedConfig.attachment = 'top left';
-      expectedConfig.targetAttachment = 'bottom left';
-
-      expect(Utils.getTetherAttachments('bottom left')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "bottom right"', () => {
-      expectedConfig.attachment = 'top right';
-      expectedConfig.targetAttachment = 'bottom right';
-
-      expect(Utils.getTetherAttachments('bottom right')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "right top"', () => {
-      expectedConfig.attachment = 'top left';
-      expectedConfig.targetAttachment = 'top right';
-
-      expect(Utils.getTetherAttachments('right top')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "right bottom"', () => {
-      expectedConfig.attachment = 'bottom left';
-      expectedConfig.targetAttachment = 'bottom right';
-
-      expect(Utils.getTetherAttachments('right bottom')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "left top"', () => {
-      expectedConfig.attachment = 'top right';
-      expectedConfig.targetAttachment = 'top left';
-
-      expect(Utils.getTetherAttachments('left top')).toEqual(expectedConfig);
-    });
-
-    it('should return config for "left bottom"', () => {
-      expectedConfig.attachment = 'bottom right';
-      expectedConfig.targetAttachment = 'bottom left';
-
-      expect(Utils.getTetherAttachments('left bottom')).toEqual(expectedConfig);
-    });
-  });
-
   describe('mapToCssModules', () => {
     describe('without css module', () => {
       it('should return a string', () => {
-        expect(Utils.mapToCssModules('btn btn-primary')).toEqual(jasmine.any(String));
+        expect(Utils.mapToCssModules('btn btn-primary')).toEqual(expect.any(String));
       });
 
       it('should return the classnames it was given, unchanged', () => {
@@ -132,7 +19,7 @@ describe('Utils', () => {
           'btn-success': 'b1',
           'btn-primary': 'c2',
         };
-        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toEqual(jasmine.any(String));
+        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toEqual(expect.any(String));
       });
 
       it('should return the mapped classnames', () => {
@@ -196,6 +83,65 @@ describe('Utils', () => {
     });
   });
 
+  describe('DOMElement', () => {
+    it('should not return an error when the prop is an instance of an Element', () => {
+      const props = {
+        dom: document.createElement('div'),
+      };
+      const propName = 'dom';
+      const componentName = 'ComponentName';
+
+      expect(Utils.DOMElement(props, propName, componentName)).toBeUndefined();
+    });
+
+    it('should return an error when the prop is NOT an instance of an Element', () => {
+      const props = {
+        dom: 'not an Element',
+      };
+      const propName = 'dom';
+      const componentName = 'ComponentName';
+
+      expect(Utils.DOMElement(props, propName, componentName)).toEqual(new Error(
+        'Invalid prop `' + propName + '` supplied to `' + componentName +
+        '`. Expected prop to be an instance of Element. Validation failed.'
+      ));
+    });
+  });
+
+  describe('getTarget', () => {
+    it('should return the result of target if target is a function', () => {
+      const data = {};
+      const spy = jest.fn(() => data);
+      expect(Utils.getTarget(spy)).toEqual(data);
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should query the document for the target if the target is a string', () => {
+      const element = document.createElement('div');
+      element.className = 'thing';
+      document.body.appendChild(element);
+      jest.spyOn(document, 'querySelector');
+      expect(Utils.getTarget('.thing')).toEqual(element);
+      expect(document.querySelector).toHaveBeenCalledWith('.thing');
+      document.querySelector.mockRestore();
+    });
+
+    it('should query the document for the id target if the target is a string and could not be found normally', () => {
+      const element = document.createElement('div');
+      element.setAttribute('id', 'thing');
+      document.body.appendChild(element);
+      jest.spyOn(document, 'querySelector');
+      expect(Utils.getTarget('thing')).toEqual(element);
+      expect(document.querySelector).toHaveBeenCalledWith('#thing');
+      document.querySelector.mockRestore();
+    });
+
+    it('should return the input target if it is not a function nor a string', () => {
+      const target = {};
+      expect(Utils.getTarget(target)).toEqual(target);
+    });
+  });
+
   // TODO
   // describe('getScrollbarWidth', () => {
   //   // jsdom workaround https://github.com/tmpvar/jsdom/issues/135#issuecomment-68191941
@@ -221,7 +167,7 @@ describe('Utils', () => {
 
   // TODO verify setScrollbarWidth is called with values when body overflows
   // it('should conditionallyUpdateScrollbar when isBodyOverflowing is true', () => {
-  //   const stubbedSetScrollbarWidth = jasmine.createSpy('Utils', setScrollbarWidth).and.callThrough();
+  //   const stubbedSetScrollbarWidth = jest.fn().and.callThrough();
   //   const prevClientWidth = document.body.clientWidth;
   //   const prevWindowInnerWidth = window.innerWidth;
   //   document.body.clientWidth = 100;

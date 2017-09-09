@@ -9,14 +9,16 @@ const CarouselIndicators = (props) => {
   const listClasses = mapToCssModules('carousel-indicators', cssModule);
   const indicators = items.map((item, idx) => {
     const indicatorClasses = mapToCssModules(classNames(
-          { active: activeIndex === idx }
-      ), cssModule);
+      { active: activeIndex === idx }
+    ), cssModule);
     return (
       <li
-        key={idx} onClick={(e) => {
+        key={`${item.src}${item.caption}${item.altText}`}
+        onClick={(e) => {
           e.preventDefault();
           onClickHandler(idx);
-        }} className={indicatorClasses}
+        }}
+        className={indicatorClasses}
       />);
   });
 

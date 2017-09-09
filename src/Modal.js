@@ -204,7 +204,9 @@ class Modal extends React.Component {
           [`modal-${this.props.size}`]: this.props.size
         }), this.props.cssModule)}
         role="document"
-        ref={(c) => (this._dialog = c)}
+        ref={(c) => {
+          this._dialog = c;
+        }}
         {...attributes}
       >
         <div

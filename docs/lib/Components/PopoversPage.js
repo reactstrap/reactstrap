@@ -13,7 +13,7 @@ export default class PopoversPage extends React.Component {
       <div>
         <Helmet title="Popovers" />
         <h3>Popovers</h3>
-        <p>Popovers are built with <a href="http://tether.io/">http://tether.io</a>.</p>
+        <p>Popovers are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
         <div className="docs-example">
           <PopoverExample />
         </div>
@@ -30,32 +30,34 @@ export default class PopoversPage extends React.Component {
   // boolean to control the state of the popover
   toggle:  PropTypes.func,
   // callback for toggling isOpen in the controlling component
-  target:  PropTypes.string.isRequired,
-  // target div ID, popover is attached to this element
-  tether: PropTypes.object,
-  // optionally overide tether config http://tether.io/#options
-  tetherRef: PropType.function,
-  // function which is passed a reference to the instance of tether for manually \`position()\`ing
+  target:  PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    DOMElement, // instanceof Element (https://developer.mozilla.org/en-US/docs/Web/API/Element)
+  ]).isRequired,
+  disabled: PropTypes.bool,
+  placementPrefix: PropTypes.string,
+  delay: PropTypes.oneOfType([
+    PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
+    PropTypes.number,
+  ]),
   placement: PropTypes.oneOf([
+    'auto',
+    'auto-start',
+    'auto-end',
     'top',
-    'bottom',
-    'left',
+    'top-start',
+    'top-end',
     'right',
-    'top left',
-    'top center',
-    'top right',
-    'right top',
-    'right middle',
-    'right bottom',
-    'bottom right',
-    'bottom center',
-    'bottom left',
-    'left top',
-    'left middle',
-    'left bottom'
+    'right-start',
+    'right-end',
+    'bottom',
+    'bottom-start',
+    'bottom-end',
+    'left',
+    'left-start',
+    'left-end',
   ])
-  // convenience attachments for popover
-  // examples http://github.hubspot.com/tooltip/docs/welcome/
 }`}
           </PrismCode>
         </pre>

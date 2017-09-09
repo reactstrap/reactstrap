@@ -51,7 +51,6 @@ export default class ButtonDropdownPage extends React.Component {
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   tag: PropTypes.string,
-  tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func
 };
 

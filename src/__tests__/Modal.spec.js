@@ -16,13 +16,13 @@ describe('Modal', () => {
     isOpenNested = false;
     toggleNested = () => { isOpenNested = !isOpenNested; };
 
-    jasmine.clock().install();
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
     // fast forward time for modal to fade out
-    jasmine.clock().tick(300);
-    jasmine.clock().uninstall();
+    jest.runTimersToTime(300);
+    jest.clearAllTimers();
   });
 
   it('should render with the class "modal-dialog"', () => {
@@ -33,7 +33,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     wrapper.unmount();
@@ -47,7 +47,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
@@ -61,7 +61,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
@@ -75,7 +75,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
@@ -90,7 +90,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
@@ -105,7 +105,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-dialog')[0].style.maxWidth).toBe('95%');
@@ -121,7 +121,7 @@ describe('Modal', () => {
     );
 
     // Modal should appear instantaneously
-    jasmine.clock().tick(1);
+    jest.runTimersToTime(1);
     expect(wrapper.children().length).toBe(0);
 
     const matchedModals = document.getElementsByClassName('fadeless-modal');
@@ -142,7 +142,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(20);
+    jest.runTimersToTime(20);
     expect(wrapper.children().length).toBe(0);
 
     const matchedModals = document.getElementsByClassName('custom-timeout-modal');
@@ -160,7 +160,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.querySelectorAll('.modal.my-custom-modal').length).toBe(1);
     wrapper.unmount();
@@ -174,7 +174,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
     wrapper.unmount();
@@ -188,7 +188,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.querySelectorAll('.modal-content.my-custom-modal').length).toBe(1);
     wrapper.unmount();
@@ -202,7 +202,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.querySelectorAll('.modal-backdrop.my-custom-modal').length).toBe(1);
     wrapper.unmount();
@@ -216,7 +216,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-crazy').length).toBe(1);
@@ -232,7 +232,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
@@ -247,7 +247,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('dialog');
     wrapper.unmount();
@@ -261,7 +261,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('alert');
     wrapper.unmount();
@@ -275,7 +275,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('aria-labelledby')).toBe('myModalTitle');
     wrapper.unmount();
@@ -288,7 +288,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
@@ -302,7 +302,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(document.getElementsByClassName('modal').length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
@@ -312,7 +312,7 @@ describe('Modal', () => {
       isOpen: isOpen
     });
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
@@ -320,17 +320,17 @@ describe('Modal', () => {
   });
 
   it('should call onClosed & onOpened', () => {
-    spyOn(Modal.prototype, 'onOpened').and.callThrough();
-    spyOn(Modal.prototype, 'onClosed').and.callThrough();
-    const onOpened = jasmine.createSpy('spy');
-    const onClosed = jasmine.createSpy('spy');
+    jest.spyOn(Modal.prototype, 'onOpened');
+    jest.spyOn(Modal.prototype, 'onClosed');
+    const onOpened = jest.fn();
+    const onClosed = jest.fn();
     const wrapper = mount(
       <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
         Yo!
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(onOpened).not.toHaveBeenCalled();
     expect(Modal.prototype.onOpened).not.toHaveBeenCalled();
@@ -341,7 +341,7 @@ describe('Modal', () => {
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(onOpened).toHaveBeenCalled();
@@ -353,7 +353,7 @@ describe('Modal', () => {
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(false);
     expect(onClosed).toHaveBeenCalled();
@@ -363,58 +363,51 @@ describe('Modal', () => {
   });
 
   it('should call onClosed & onOpened when fade={false}', () => {
-    spyOn(Modal.prototype, 'onOpened').and.callThrough();
-    spyOn(Modal.prototype, 'onClosed').and.callThrough();
-    const onOpened = jasmine.createSpy('spy');
-    const onClosed = jasmine.createSpy('spy');
+    const onOpened = jest.fn();
+    const onClosed = jest.fn();
     const wrapper = mount(
       <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle} fade={false}>
         Yo!
       </Modal>
     );
 
-    jasmine.clock().tick(1);
+    jest.runTimersToTime(1);
     expect(isOpen).toBe(false);
     expect(onOpened).not.toHaveBeenCalled();
-    expect(Modal.prototype.onOpened).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
-    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(1);
+    jest.runTimersToTime(1);
 
     expect(isOpen).toBe(true);
     expect(onOpened).toHaveBeenCalled();
-    expect(Modal.prototype.onOpened).toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
-    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(1);
+    jest.runTimersToTime(1);
 
     expect(isOpen).toBe(false);
     expect(onClosed).toHaveBeenCalled();
-    expect(Modal.prototype.onClosed).toHaveBeenCalled();
 
     wrapper.unmount();
   });
 
   it('should not call togglePortal when isOpen does not change', () => {
-    spyOn(Modal.prototype, 'togglePortal').and.callThrough();
-    spyOn(Modal.prototype, 'componentDidUpdate').and.callThrough();
+    jest.spyOn(Modal.prototype, 'togglePortal');
+    jest.spyOn(Modal.prototype, 'componentDidUpdate');
     const wrapper = mount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
     expect(Modal.prototype.componentDidUpdate).not.toHaveBeenCalled();
@@ -422,7 +415,7 @@ describe('Modal', () => {
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(false);
     expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
@@ -433,27 +426,27 @@ describe('Modal', () => {
 
   it('should renderIntoSubtree when props updated', () => {
     isOpen = true;
-    spyOn(Modal.prototype, 'togglePortal').and.callThrough();
-    spyOn(Modal.prototype, 'renderIntoSubtree').and.callThrough();
+    jest.spyOn(Modal.prototype, 'togglePortal');
+    jest.spyOn(Modal.prototype, 'renderIntoSubtree');
     const wrapper = mount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(true);
-    expect(Modal.prototype.togglePortal.calls.count()).toEqual(1);
-    expect(Modal.prototype.renderIntoSubtree.calls.count()).toEqual(1);
+    expect(Modal.prototype.togglePortal.mock.calls.length).toEqual(1);
+    expect(Modal.prototype.renderIntoSubtree.mock.calls.length).toEqual(1);
 
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
-    expect(Modal.prototype.togglePortal.calls.count()).toEqual(1);
-    expect(Modal.prototype.renderIntoSubtree.calls.count()).toEqual(2);
+    expect(Modal.prototype.togglePortal.mock.calls.length).toEqual(1);
+    expect(Modal.prototype.renderIntoSubtree.mock.calls.length).toEqual(2);
 
     wrapper.unmount();
   });
@@ -467,26 +460,26 @@ describe('Modal', () => {
     );
     const instance = wrapper.instance();
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
     instance.handleEscape({ keyCode: 13 });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
     instance.handleEscape({ keyCode: 27 });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(false);
 
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(document.getElementsByClassName('modal').length).toBe(0);
 
@@ -502,26 +495,26 @@ describe('Modal', () => {
     );
     const instance = wrapper.instance();
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
     instance.handleEscape({ keyCode: 13 });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
     instance.handleEscape({ keyCode: 27 });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
 
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
@@ -536,18 +529,18 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     //
     document.getElementById('clicker').click();
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
 
     document.getElementsByClassName('modal')[0].click();
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(false);
 
@@ -562,18 +555,18 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
     document.getElementById('clicker').click();
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
 
     document.getElementsByClassName('modal-backdrop')[0].click();
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
 
@@ -589,7 +582,7 @@ describe('Modal', () => {
     );
     const instance = wrapper.instance();
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(instance._element).toBeTruthy();
 
     instance.destroy();
@@ -613,7 +606,7 @@ describe('Modal', () => {
       </Modal>
     );
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(wrapper.children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
     expect(document.body.className).toBe('modal-open modal-open');
@@ -634,7 +627,7 @@ describe('Modal', () => {
     );
 
     // assert that the modal is closed and the body class is what was set initially
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(document.body.className).toBe('my-modal-opened');
 
@@ -644,7 +637,7 @@ describe('Modal', () => {
     });
 
     // assert that the modal is open and the body class is what was set initially + modal-open
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(true);
     expect(document.body.className).toBe('my-modal-opened modal-open');
 
@@ -659,7 +652,7 @@ describe('Modal', () => {
     });
 
     // assert that the modal is closed and the body class is what was set initially
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(document.body.className).toBe('my-modal-opened modal-opened');
 
@@ -667,8 +660,8 @@ describe('Modal', () => {
   });
 
   it('should call onEnter & onExit props if provided', () => {
-    const onEnter = jasmine.createSpy('spy');
-    const onExit = jasmine.createSpy('spy');
+    const onEnter = jest.fn();
+    const onExit = jest.fn();
     const wrapper = mount(
       <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle}>
         Yo!
@@ -679,27 +672,27 @@ describe('Modal', () => {
     expect(onEnter).toHaveBeenCalled();
     expect(onExit).not.toHaveBeenCalled();
 
-    onEnter.calls.reset();
-    onExit.calls.reset();
+    onEnter.mockReset();
+    onExit.mockReset();
 
     toggle();
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
     expect(onEnter).not.toHaveBeenCalled();
     expect(onExit).not.toHaveBeenCalled();
 
-    onEnter.calls.reset();
-    onExit.calls.reset();
+    onEnter.mockReset();
+    onExit.mockReset();
 
     toggle();
     wrapper.setProps({
       isOpen: isOpen
     });
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     wrapper.unmount();
     expect(onEnter).not.toHaveBeenCalled();

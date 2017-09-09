@@ -8,17 +8,17 @@ import CarouselCaption from '../CarouselCaption';
 
 describe('Carousel', () => {
   beforeEach(() => {
-    jasmine.clock().install();
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
-    jasmine.clock().uninstall();
+    jest.clearAllTimers();
   });
 
   const items = [
-      { src: '', altText: 'a', caption: 'caption 1' },
-      { src: '', altText: 'b', caption: 'caption 2' },
-      { src: '', altText: 'c', caption: 'caption 3' }
+    { src: '', altText: 'a', caption: 'caption 1' },
+    { src: '', altText: 'b', caption: 'caption 2' },
+    { src: '', altText: 'c', caption: 'caption 3' }
   ];
 
   describe('captions', () => {
@@ -55,10 +55,10 @@ describe('Carousel', () => {
       });
 
       it('should call the callback after 500 when componentWillEnter is called', () => {
-        const callback = jasmine.createSpy('callback');
+        const callback = jest.fn();
         const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
         wrapper.instance().componentWillEnter(callback);
-        jasmine.clock().tick(500);
+        jest.runTimersToTime(500);
         expect(callback).toHaveBeenCalled();
       });
 
@@ -78,10 +78,10 @@ describe('Carousel', () => {
       });
 
       it('should call the callback after 500 when componentWillLeave is called', () => {
-        const callback = jasmine.createSpy('callback');
+        const callback = jest.fn();
         const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
         wrapper.instance().componentWillLeave(callback);
-        jasmine.clock().tick(500);
+        jest.runTimersToTime(500);
         expect(callback).toHaveBeenCalled();
       });
 
@@ -112,7 +112,7 @@ describe('Carousel', () => {
     });
 
     it('should call the click hanlder', () => {
-      const onClick = jasmine.createSpy('onClick');
+      const onClick = jest.fn();
       const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={onClick} />);
       wrapper.find('li').first().simulate('click');
       expect(onClick).toHaveBeenCalled();
@@ -126,7 +126,7 @@ describe('Carousel', () => {
     });
 
     it('should call the onClickHandler', () => {
-      const onClick = jasmine.createSpy('onClick');
+      const onClick = jest.fn();
       const wrapper = mount(<CarouselControl onClickHandler={onClick} />);
       wrapper.find('a').first().simulate('click');
       expect(onClick).toHaveBeenCalled();
@@ -325,7 +325,7 @@ describe('Carousel', () => {
 
   describe('interval', () => {
     it('should not cycle when paused', () => {
-      const next = jasmine.createSpy('next');
+      const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
           <CarouselItem
@@ -343,13 +343,13 @@ describe('Carousel', () => {
           {slides}
         </Carousel>
       );
-      jasmine.clock().tick(1000);
+      jest.runTimersToTime(1000);
       expect(next).not.toHaveBeenCalled();
       wrapper.unmount();
     });
 
     it('should accept a number', () => {
-      const next = jasmine.createSpy('next');
+      const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
           <CarouselItem
@@ -367,13 +367,13 @@ describe('Carousel', () => {
           {slides}
         </Carousel>
       );
-      jasmine.clock().tick(1000);
+      jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();
       wrapper.unmount();
     });
 
     it('should accept a boolean', () => {
-      const next = jasmine.createSpy('next');
+      const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
           <CarouselItem
@@ -391,13 +391,13 @@ describe('Carousel', () => {
           {slides}
         </Carousel>
       );
-      jasmine.clock().tick(5000);
+      jest.runTimersToTime(5000);
       expect(next).not.toHaveBeenCalled();
       wrapper.unmount();
     });
 
     it('should default to 5000', () => {
-      const next = jasmine.createSpy('next');
+      const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
           <CarouselItem
@@ -415,13 +415,13 @@ describe('Carousel', () => {
           {slides}
         </Carousel>
       );
-      jasmine.clock().tick(5000);
+      jest.runTimersToTime(5000);
       expect(next).toHaveBeenCalled();
       wrapper.unmount();
     });
 
     it('it should accept a string', () => {
-      const next = jasmine.createSpy('next');
+      const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
           <CarouselItem
@@ -438,7 +438,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>
       );
-      jasmine.clock().tick(1000);
+      jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();
       wrapper.unmount();
     });

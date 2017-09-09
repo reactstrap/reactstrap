@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import TetherContent from './TetherContent';
-import { getTetherAttachments, mapToCssModules, omit, tetherAttachements } from './utils';
+import { placements } from 'popper.js';
+import Popper from './PopperContent';
+import { getTarget, DOMElement, mapToCssModules, omit } from './utils';
 
 const propTypes = {
-  placement: PropTypes.oneOf(tetherAttachements),
+  placement: PropTypes.oneOf(placements),
   target: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object
+    PropTypes.func,
+    DOMElement,
   ]).isRequired,
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
-  tether: PropTypes.object,
-  tetherRef: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
   autohide: PropTypes.bool,
+  placementPrefix: PropTypes.string,
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number,
@@ -31,22 +32,11 @@ const DEFAULT_DELAYS = {
 
 const defaultProps = {
   isOpen: false,
-  placement: 'bottom',
+  placement: 'top',
+  placementPrefix: 'bs-tooltip',
   delay: DEFAULT_DELAYS,
   autohide: true,
   toggle: function () {}
-};
-
-const defaultTetherConfig = {
-  classPrefix: 'bs-tether',
-  classes: {
-    element: false,
-    enabled: 'show',
-  },
-  constraints: [
-    { to: 'scrollParent', attachment: 'together none' },
-    { to: 'window', attachment: 'together none' }
-  ]
 };
 
 class Tooltip extends React.Component {
@@ -54,8 +44,6 @@ class Tooltip extends React.Component {
     super(props);
 
     this.addTargetEvents = this.addTargetEvents.bind(this);
-    this.getTarget = this.getTarget.bind(this);
-    this.getTetherConfig = this.getTetherConfig.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeTargetEvents = this.removeTargetEvents.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -68,7 +56,7 @@ class Tooltip extends React.Component {
   }
 
   componentDidMount() {
-    this._target = this.getTarget();
+    this._target = getTarget(this.props.target);
     this.addTargetEvents();
   }
 
@@ -115,24 +103,6 @@ class Tooltip extends React.Component {
       return isNaN(delay[key]) ? DEFAULT_DELAYS[key] : delay[key];
     }
     return delay;
-  }
-
-  getTarget() {
-    const { target } = this.props;
-    if (typeof target === 'object') {
-      return target;
-    }
-    return document.getElementById(target);
-  }
-
-  getTetherConfig() {
-    const attachments = getTetherAttachments(this.props.placement);
-    return {
-      ...defaultTetherConfig,
-      ...attachments,
-      target: this.getTarget,
-      ...this.props.tether
-    };
   }
 
   show() {
@@ -202,15 +172,18 @@ class Tooltip extends React.Component {
       this.props.className
     ), this.props.cssModule);
 
-    let tetherConfig = this.getTetherConfig();
+    const popperClasses = mapToCssModules(classNames(
+      'tooltip',
+      'show'
+    ), this.props.cssModule);
 
     return (
-      <TetherContent
-        className={mapToCssModules('tooltip', this.props.cssModule)}
-        tether={tetherConfig}
-        tetherRef={this.props.tetherRef}
+      <Popper
+        className={popperClasses}
+        target={this.props.target}
         isOpen={this.props.isOpen}
-        toggle={this.toggle}
+        placement={this.props.placement}
+        placementPrefix={this.props.placementPrefix}
       >
         <div
           {...attributes}
@@ -218,7 +191,7 @@ class Tooltip extends React.Component {
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
         />
-      </TetherContent>
+      </Popper>
     );
   }
 }

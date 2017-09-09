@@ -26,7 +26,7 @@ describe('UncontrolledAlert', () => {
 
   it('should have toggle function', () => {
     const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
-    expect(alert.prop('toggle')).toEqual(jasmine.any(Function));
+    expect(alert.prop('toggle')).toEqual(expect.any(Function));
   });
 
   it('should toggle isOpen when toggle is called', () => {
@@ -50,7 +50,7 @@ describe('UncontrolledButtonDropdown', () => {
 
   it('should have toggle function', () => {
     const buttonDropdown = shallow(<UncontrolledButtonDropdown>Yo!</UncontrolledButtonDropdown>);
-    expect(buttonDropdown.prop('toggle')).toEqual(jasmine.any(Function));
+    expect(buttonDropdown.prop('toggle')).toEqual(expect.any(Function));
   });
 
   it('should toggle isOpen when toggle is called', () => {
@@ -74,7 +74,7 @@ describe('UncontrolledDropdown', () => {
 
   it('should have toggle function', () => {
     const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
-    expect(dropdown.prop('toggle')).toEqual(jasmine.any(Function));
+    expect(dropdown.prop('toggle')).toEqual(expect.any(Function));
   });
 
   it('should toggle isOpen when toggle is called', () => {
@@ -98,7 +98,7 @@ describe('UncontrolledNavDropdown', () => {
 
   it('should have toggle function', () => {
     const navDropdown = shallow(<UncontrolledNavDropdown>Yo!</UncontrolledNavDropdown>);
-    expect(navDropdown.prop('toggle')).toEqual(jasmine.any(Function));
+    expect(navDropdown.prop('toggle')).toEqual(expect.any(Function));
   });
 
   it('should toggle isOpen when toggle is called', () => {
@@ -122,7 +122,7 @@ describe('UncontrolledTooltip', () => {
 
   it('should have toggle function', () => {
     const tooltip = shallow(<UncontrolledTooltip target="blah">Yo!</UncontrolledTooltip>);
-    expect(tooltip.prop('toggle')).toEqual(jasmine.any(Function));
+    expect(tooltip.prop('toggle')).toEqual(expect.any(Function));
   });
 
   it('should toggle isOpen when toggle is called', () => {

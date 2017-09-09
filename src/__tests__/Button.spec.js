@@ -10,7 +10,7 @@ describe('Button', () => {
   });
 
   it('should render custom element', () => {
-    const Link = (props) => <a href="/home" {...props}>{props.children}</a>;
+    const Link = props => <a href="/home" {...props}>{props.children}</a>;
     const wrapper = mount(<Button tag={Link}>Home</Button>);
 
     expect(wrapper.find('a').length).toBe(1);
@@ -99,7 +99,7 @@ describe('Button', () => {
 
   describe('onClick', () => {
     it('calls props.onClick if it exists', () => {
-      const onClick = jasmine.createSpy('onClick');
+      const onClick = jest.fn();
       const wrapper = mount(<Button onClick={onClick}>Testing Click</Button>);
 
       wrapper.find('button').simulate('click');
@@ -107,7 +107,7 @@ describe('Button', () => {
     });
 
     it('is not called when disabled', () => {
-      const e = jasmine.createSpyObj('e', ['preventDefault']);
+      const e = createSpyObj('e', ['preventDefault']);
       const wrapper = mount(<Button>Testing Click</Button>);
 
       wrapper.instance().onClick(e);

@@ -88,7 +88,7 @@ describe('Alert', () => {
   });
 
   it('should be dismissible', () => {
-    const onClick = jasmine.createSpy('onClick');
+    const onClick = jest.fn();
     const alert = shallow(<Alert color="danger" toggle={onClick}>Yo!</Alert>);
 
     alert.find('button').simulate('click');

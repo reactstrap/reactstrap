@@ -11,7 +11,7 @@ const propTypes = {
   size: PropTypes.string,
   state: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   static: PropTypes.bool,
   addon: PropTypes.bool,
   className: PropTypes.string,
@@ -34,7 +34,7 @@ class Input extends React.Component {
       tag,
       addon,
       static: staticInput,
-      getRef,
+      innerRef,
       ...attributes
     } = this.props;
 
@@ -72,7 +72,7 @@ class Input extends React.Component {
     }
 
     return (
-      <Tag {...attributes} ref={getRef} className={classes} />
+      <Tag {...attributes} ref={innerRef} className={classes} />
     );
   }
 }

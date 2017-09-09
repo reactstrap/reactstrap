@@ -4,10 +4,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { mapToCssModules, omit } from './utils';
-import TetherContent from './TetherContent';
-import DropdownMenu from './DropdownMenu';
 
 const propTypes = {
   disabled: PropTypes.bool,
@@ -16,7 +15,6 @@ const propTypes = {
   isOpen: PropTypes.bool,
   size: PropTypes.string,
   tag: PropTypes.string,
-  tether: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   toggle: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
@@ -25,21 +23,14 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
-  tag: 'div'
+  dropup: false,
+  tag: 'div',
 };
 
 const childContextTypes = {
   toggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-};
-
-const defaultTetherConfig = {
-  classPrefix: 'bs-tether',
-  classes: { element: 'dropdown', enabled: 'show' },
-  constraints: [
-    { to: 'scrollParent', attachment: 'together none' },
-    { to: 'window', attachment: 'together none' }
-  ]
+  dropup: PropTypes.bool.isRequired,
 };
 
 class Dropdown extends React.Component {
@@ -47,7 +38,6 @@ class Dropdown extends React.Component {
     super(props);
 
     this.addEvents = this.addEvents.bind(this);
-    this.getTetherConfig = this.getTetherConfig.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -56,7 +46,8 @@ class Dropdown extends React.Component {
   getChildContext() {
     return {
       toggle: this.props.toggle,
-      isOpen: this.props.isOpen
+      isOpen: this.props.isOpen,
+      dropup: this.props.dropup,
     };
   }
 
@@ -72,38 +63,6 @@ class Dropdown extends React.Component {
 
   componentWillUnmount() {
     this.removeEvents();
-  }
-
-  getTetherTarget() {
-    const container = ReactDOM.findDOMNode(this);
-
-    return container.querySelector('[data-toggle="dropdown"]');
-  }
-
-  getTetherConfig(childProps) {
-    const target = () => this.getTetherTarget();
-    let vElementAttach = 'top';
-    let hElementAttach = 'left';
-    let vTargetAttach = 'bottom';
-    let hTargetAttach = 'left';
-
-    if (childProps.right) {
-      hElementAttach = 'right';
-      hTargetAttach = 'right';
-    }
-
-    if (this.props.dropup) {
-      vElementAttach = 'bottom';
-      vTargetAttach = 'top';
-    }
-
-    return {
-      ...defaultTetherConfig,
-      attachment: vElementAttach + ' ' + hElementAttach,
-      targetAttachment: vTargetAttach + ' ' + hTargetAttach,
-      target,
-      ...this.props.tether
-    };
   }
 
   addEvents() {
@@ -125,10 +84,6 @@ class Dropdown extends React.Component {
   }
 
   handleProps() {
-    if (this.props.tether) {
-      return;
-    }
-
     if (this.props.isOpen) {
       this.addEvents();
     } else {
@@ -141,23 +96,7 @@ class Dropdown extends React.Component {
       return e && e.preventDefault();
     }
 
-    return this.props.toggle();
-  }
-
-  renderChildren() {
-    const { tether, children, ...attrs } = this.props;
-    attrs.toggle = this.toggle;
-
-    return React.Children.map(React.Children.toArray(children), (child) => {
-      if (tether && child.type === DropdownMenu) {
-        let tetherConfig = this.getTetherConfig(child.props);
-        return (
-          <TetherContent {...attrs} tether={tetherConfig}>{child}</TetherContent>
-        );
-      }
-
-      return child;
-    });
+    return this.props.toggle(e);
   }
 
   render() {
@@ -165,12 +104,11 @@ class Dropdown extends React.Component {
       className,
       cssModule,
       dropup,
+      isOpen,
       group,
       size,
-      tag: Tag,
-      isOpen,
-      ...attributes
-    } = omit(this.props, ['toggle', 'tether']);
+      ...attrs
+    } = omit(this.props, ['toggle', 'disabled']);
 
     const classes = mapToCssModules(classNames(
       className,
@@ -182,15 +120,7 @@ class Dropdown extends React.Component {
         dropup: dropup
       }
     ), cssModule);
-
-    return (
-      <Tag
-        {...attributes}
-        className={classes}
-      >
-        {this.renderChildren()}
-      </Tag>
-    );
+    return <Manager {...attrs} className={classes}>{}</Manager>;
   }
 }
 

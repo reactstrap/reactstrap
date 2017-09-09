@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, TetherContent } from '../';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../';
 
 
 describe('Dropdown', () => {
@@ -16,6 +16,10 @@ describe('Dropdown', () => {
   });
 
   afterEach(() => {
+    if (jest.isMockFunction(Dropdown.prototype.componentDidUpdate)) Dropdown.prototype.componentDidUpdate.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.handleProps)) Dropdown.prototype.handleProps.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.toggle)) Dropdown.prototype.toggle.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.handleDocumentClick)) Dropdown.prototype.handleDocumentClick.mockRestore();
     document.body.removeChild(element);
     element = null;
   });
@@ -46,7 +50,7 @@ describe('Dropdown', () => {
 
   it('should not call props.toggle when disabled ', () => {
     isOpen = true;
-    let props = jasmine.createSpyObj('props', ['toggle']);
+    let props = createSpyObj('props', ['toggle']);
     const wrapper = mount(
       <Dropdown isOpen={isOpen} toggle={props.toggle} disabled>
         <DropdownToggle>Toggle</DropdownToggle>
@@ -63,8 +67,8 @@ describe('Dropdown', () => {
 
   describe('handleProps', () => {
     it('should be called on componentDidUpdate when isOpen changed', () => {
-      spyOn(Dropdown.prototype, 'componentDidUpdate').and.callThrough();
-      spyOn(Dropdown.prototype, 'handleProps').and.callThrough();
+      jest.spyOn(Dropdown.prototype, 'componentDidUpdate');
+      jest.spyOn(Dropdown.prototype, 'handleProps');
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
@@ -76,21 +80,21 @@ describe('Dropdown', () => {
 
       const instance = wrapper.instance();
 
-      expect(Dropdown.prototype.componentDidUpdate.calls.count()).toBe(0);
-      expect(Dropdown.prototype.handleProps.calls.count()).toBe(1);
+      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(1);
       expect(instance.props.isOpen).toBe(false);
 
       isOpen = true;
       wrapper.setProps({ isOpen: isOpen });
 
-      expect(Dropdown.prototype.componentDidUpdate.calls.count()).toBe(1);
-      expect(Dropdown.prototype.handleProps.calls.count()).toBe(2);
+      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(2);
       expect(instance.props.isOpen).toBe(true);
     });
 
     it('should not be called on componentDidUpdate when isOpen did not change', () => {
-      spyOn(Dropdown.prototype, 'componentDidUpdate').and.callThrough();
-      spyOn(Dropdown.prototype, 'handleProps').and.callThrough();
+      jest.spyOn(Dropdown.prototype, 'componentDidUpdate');
+      jest.spyOn(Dropdown.prototype, 'handleProps');
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
@@ -101,25 +105,25 @@ describe('Dropdown', () => {
       );
       const instance = wrapper.instance();
 
-      expect(Dropdown.prototype.componentDidUpdate.calls.count()).toBe(0);
-      expect(Dropdown.prototype.handleProps.calls.count()).toBe(1);
+      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(1);
       expect(instance.props.isOpen).toBe(false);
 
       wrapper.setProps({ 'data-foo': 'bar' });
 
-      expect(Dropdown.prototype.componentDidUpdate.calls.count()).toBe(1);
-      expect(Dropdown.prototype.handleProps.calls.count()).toBe(1);
+      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(1);
       expect(instance.props.isOpen).toBe(false);
     });
   });
 
   describe('removeEvents', () => {
     it('should be called on componentWillUnmount', () => {
-      spyOn(Dropdown.prototype, 'componentWillUnmount').and.callThrough();
-      spyOn(Dropdown.prototype, 'removeEvents').and.callThrough();
+      jest.spyOn(Dropdown.prototype, 'componentWillUnmount');
+      jest.spyOn(Dropdown.prototype, 'removeEvents');
       isOpen = true;
       const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle} tether>
+        <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
@@ -127,55 +131,21 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      expect(Dropdown.prototype.componentWillUnmount.calls.count()).toBe(0);
-      expect(Dropdown.prototype.removeEvents.calls.count()).toBe(0);
+      expect(Dropdown.prototype.componentWillUnmount.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.removeEvents.mock.calls.length).toBe(0);
 
       wrapper.unmount();
 
-      expect(Dropdown.prototype.componentWillUnmount.calls.count()).toBe(1);
-      expect(Dropdown.prototype.removeEvents.calls.count()).toBe(1);
-    });
-  });
-
-  describe('getTetherConfig', () => {
-    it('should be called when tether is enabled', () => {
-      isOpen = true;
-      spyOn(Dropdown.prototype, 'getTetherConfig').and.callThrough();
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle} tether>
-          <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      );
-
-      expect(Dropdown.prototype.getTetherConfig).toHaveBeenCalled();
-      wrapper.unmount();
-    });
-
-    it('should apply dropup tether values', () => {
-      isOpen = true;
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle} tether dropup>
-          <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      );
-
-      expect(wrapper.find(TetherContent).props().tether.attachment).toBe('bottom right');
-      expect(wrapper.find(TetherContent).props().tether.targetAttachment).toBe('top right');
-      wrapper.unmount();
+      expect(Dropdown.prototype.componentWillUnmount.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.removeEvents.mock.calls.length).toBe(1);
     });
   });
 
   describe('handleDocumentClick', () => {
     it('should call toggle on document click', () => {
       isOpen = true;
-      spyOn(Dropdown.prototype, 'handleDocumentClick').and.callThrough();
-      spyOn(Dropdown.prototype, 'toggle').and.callThrough();
+      jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
+      jest.spyOn(Dropdown.prototype, 'toggle');
 
       mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
@@ -186,19 +156,19 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      expect(Dropdown.prototype.handleDocumentClick.calls.count()).toBe(0);
-      expect(Dropdown.prototype.toggle.calls.count()).toBe(0);
+      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
       document.body.click();
 
-      expect(Dropdown.prototype.handleDocumentClick.calls.count()).toBe(1);
-      expect(Dropdown.prototype.toggle.calls.count()).toBe(1);
+      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
     });
 
     it('should call toggle on container click', () => {
       isOpen = true;
-      spyOn(Dropdown.prototype, 'handleDocumentClick').and.callThrough();
-      spyOn(Dropdown.prototype, 'toggle').and.callThrough();
+      jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
+      jest.spyOn(Dropdown.prototype, 'toggle');
 
       const wrapper = mount(
         <Dropdown id="test" isOpen={isOpen} toggle={toggle}>
@@ -208,21 +178,21 @@ describe('Dropdown', () => {
           </DropdownMenu>
         </Dropdown>, { attachTo: element });
 
-      expect(Dropdown.prototype.handleDocumentClick.calls.count()).toBe(0);
-      expect(Dropdown.prototype.toggle.calls.count()).toBe(0);
+      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
       document.getElementById('test').click();
 
-      expect(Dropdown.prototype.handleDocumentClick.calls.count()).toBe(1);
-      expect(Dropdown.prototype.toggle.calls.count()).toBe(1);
+      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
       wrapper.detach();
     });
 
     it('should not call toggle on inner container click', () => {
       isOpen = true;
-      spyOn(Dropdown.prototype, 'handleDocumentClick').and.callThrough();
-      spyOn(Dropdown.prototype, 'toggle').and.callThrough();
+      jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
+      jest.spyOn(Dropdown.prototype, 'toggle');
 
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
@@ -233,13 +203,13 @@ describe('Dropdown', () => {
           </DropdownMenu>
         </Dropdown>, { attachTo: element });
 
-      expect(Dropdown.prototype.handleDocumentClick.calls.count()).toBe(0);
-      expect(Dropdown.prototype.toggle.calls.count()).toBe(0);
+      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
       document.getElementById('divider').click();
 
-      expect(Dropdown.prototype.handleDocumentClick.calls.count()).toBe(1);
-      expect(Dropdown.prototype.toggle.calls.count()).toBe(0);
+      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
       wrapper.detach();
     });

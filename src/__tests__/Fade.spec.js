@@ -32,11 +32,11 @@ class Helper extends React.Component {
 
 describe('Fade', () => {
   beforeEach(() => {
-    jasmine.clock().install();
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
-    jasmine.clock().uninstall();
+    jest.clearAllTimers();
   });
 
   it('should transition classes from "fade" to "fade show" on appear', () => {
@@ -51,7 +51,7 @@ describe('Fade', () => {
     expect(wrapper.find('div.fade').length).toBe(2);
     expect(wrapper.find('div.fade.show').length).toBe(1);
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(wrapper.find('div.fade.show').length).toBe(2);
 
@@ -60,8 +60,8 @@ describe('Fade', () => {
   });
 
   it('should transition classes from "fade" to "fade show" on enter', () => {
-    const onEnter = jasmine.createSpy('spy');
-    const onLeave = jasmine.createSpy('spy');
+    const onEnter = jest.fn();
+    const onLeave = jest.fn();
     let isOpen = false;
     const wrapper = mount(
       <Helper showItem={isOpen} >
@@ -79,7 +79,7 @@ describe('Fade', () => {
     expect(wrapper.find('div.fade.show').length).toBe(1);
     expect(onEnter).not.toHaveBeenCalled();
 
-    jasmine.clock().tick(300);
+    jest.runTimersToTime(300);
 
     expect(onEnter).toHaveBeenCalled();
     expect(onLeave).not.toHaveBeenCalled();

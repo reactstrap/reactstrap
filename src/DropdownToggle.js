@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Target } from 'react-popper';
 import { mapToCssModules } from './utils';
 import Button from './Button';
 
@@ -27,7 +28,7 @@ const defaultProps = {
 
 const contextTypes = {
   isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired
+  toggle: PropTypes.func.isRequired,
 };
 
 class DropdownToggle extends React.Component {
@@ -51,7 +52,7 @@ class DropdownToggle extends React.Component {
       this.props.onClick(e);
     }
 
-    this.context.toggle();
+    this.context.toggle(e);
   }
 
   render() {
@@ -81,9 +82,10 @@ class DropdownToggle extends React.Component {
     }
 
     return (
-      <Tag
+      <Target
         {...props}
         className={classes}
+        component={Tag}
         onClick={this.onClick}
         aria-haspopup="true"
         aria-expanded={this.context.isOpen}
