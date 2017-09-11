@@ -12,6 +12,8 @@ import {
   TransitionTimeouts
 } from './utils';
 
+function noop() {}
+
 const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
 const propTypes = {
@@ -56,6 +58,8 @@ const defaultProps = {
   keyboard: true,
   zIndex: 1050,
   fade: true,
+  onOpened: noop,
+  onClosed: noop,
   modalTransition: {
     ...Fade.defaultProps,
     timeout: TransitionTimeouts.Modal,
@@ -85,9 +89,6 @@ class Modal extends React.Component {
     if (this.props.isOpen) {
       this.togglePortal();
     }
-    if (this.props.onEnter) {
-      this.props.onEnter();
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -102,29 +103,18 @@ class Modal extends React.Component {
 
   componentWillUnmount() {
     this.destroy();
-    if (this.props.onExit) {
-      this.props.onExit();
-    }
   }
 
   onOpened(node, isAppearing) {
-    if (this.props.onOpened) {
-      this.props.onOpened();
-    }
-    if (this.props.modalTransition.onEntered) {
-      this.props.modalTransition.onEntered(node, isAppearing);
-    }
+    this.props.onOpened();
+    this.props.modalTransition.onEntered(node, isAppearing);
   }
 
   onClosed(node) {
     // so all methods get called before it is unmounted
     setTimeout(() => this.destroy(), 0);
-    if (this.props.onClosed) {
-      this.props.onClosed();
-    }
-    if (this.props.modalTransition.onExited) {
-      this.props.modalTransition.onExited(node);
-    }
+    this.props.onClosed();
+    this.props.modalTransition.onExited(node);
   }
 
   handleEscape(e) {
