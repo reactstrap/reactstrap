@@ -19,7 +19,7 @@ const propTypes = {
 
 const defaultProps = {
   ...Transition.defaultProps,
-  in: true,
+  isOpen: false,
   appear: false,
   enter: true,
   exit: true,
@@ -100,8 +100,8 @@ class Collapse extends Component {
       <Transition
         {...transitionProps}
         in={isOpen}
-        onEnter={this.onEnter}
         onEntering={this.onEntering}
+        onEntered={this.onEntered}
         onExit={this.onExit}
         onExiting={this.onExiting}
         onExited={this.onExited}

@@ -4,11 +4,16 @@ import { Collapse } from '../';
 
 describe('Collapse', () => {
   let isOpen;
-  let toggle;
+  let wrapper;
+  const toggle = () => {
+    isOpen = !isOpen;
+    if (wrapper != null) {
+      wrapper.setProps({ isOpen });
+    }
+  };
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => { isOpen = !isOpen; };
     jest.useFakeTimers();
   });
 
@@ -18,186 +23,121 @@ describe('Collapse', () => {
     jest.clearAllTimers();
   });
 
-  describe('delay', () => {
-    it('should accept a number', () => {
-      const wrapper = mount(<Collapse isOpen={isOpen} delay={200} />);
-      toggle();
-      wrapper.setProps({ isOpen: isOpen });
-      jest.runTimersToTime(200);
-      expect(wrapper.state('collapse')).toEqual('SHOWN');
-      wrapper.unmount();
-    });
-
-    it('should accept an object', () => {
-      const wrapper = mount(<Collapse isOpen={isOpen} delay={{ show: 110, hide: 120 }} />);
-      toggle();
-      wrapper.setProps({ isOpen: isOpen });
-      jest.runTimersToTime(110);
-      expect(wrapper.state('collapse')).toEqual('SHOWN');
-
-      toggle();
-      wrapper.setProps({ isOpen: isOpen });
-      jest.runTimersToTime(120);
-      expect(wrapper.state('collapse')).toEqual('HIDDEN');
-    });
-
-    it('should use default value if value is missing from object', () => {
-      const wrapper = mount(<Collapse isOpen={isOpen} delay={{ show: 110 }} />);
-      toggle();
-      wrapper.setProps({ isOpen: isOpen });
-      jest.runTimersToTime(110);
-      expect(wrapper.state('collapse')).toEqual('SHOWN');
-
-      toggle();
-      wrapper.setProps({ isOpen: isOpen });
-      jest.runTimersToTime(350);
-      expect(wrapper.state('collapse')).toEqual('HIDDEN');
-    });
-  });
-
   it('should render children', () => {
-    const wrapper = shallow(<Collapse><p>hello</p></Collapse>).find('p');
-    expect(wrapper.text()).toBe('hello');
+    wrapper = mount(<Collapse><p>hello</p></Collapse>);
+    expect(wrapper.find('p').text()).toBe('hello');
   });
 
   it('should have default isOpen value', () => {
-    const wrapper = shallow(<Collapse />);
+    wrapper = shallow(<Collapse />);
     expect(wrapper.instance().props.isOpen).toEqual(false);
   });
 
   it('should render with class "collapse"', () => {
-    const wrapper = shallow(<Collapse />);
-    expect(wrapper.hasClass('collapse')).toEqual(true);
+    wrapper = mount(<Collapse />);
+    expect(wrapper.find("div").hasClass('collapse')).toEqual(true);
   });
 
-  it('should render with class "navbar"', () => {
-    const wrapper = shallow(<Collapse navbar />);
-    expect(wrapper.hasClass('navbar-collapse')).toEqual(true);
+  it('should render with class "navbar-collapse" if it has prop navbar', () => {
+    wrapper = mount(<Collapse navbar />);
+    expect(wrapper.find("div").hasClass('navbar-collapse')).toEqual(true);
   });
 
   it('should render with class "show" when isOpen is true', () => {
-    const wrapper = shallow(<Collapse isOpen />);
-    expect(wrapper.hasClass('show')).toEqual(true);
+    wrapper = mount(<Collapse isOpen />);
+    expect(wrapper.find("div").hasClass('show')).toEqual(true);
   });
 
   it('should set height to null when isOpen is true', () => {
-    isOpen = true;
-    const wrapper = shallow(<Collapse isOpen={isOpen} />);
+    wrapper = shallow(<Collapse isOpen={true} />);
     expect(wrapper.state('height')).toBe(null);
   });
 
   it('should not set height when isOpen is false', () => {
-    const wrapper = shallow(<Collapse isOpen={isOpen} />);
+    wrapper = shallow(<Collapse isOpen={false} />);
     expect(wrapper.state('height')).toBe(null);
   });
 
-  it('should render with class "collapse" with default collapse state', () => {
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
-    wrapper.setState({ collapse: null });
-    jest.runTimersToTime(360);
-    wrapper.update();
-    expect(wrapper.find('.collapse').length).toBe(1);
-    wrapper.unmount();
-  });
-
-  it('should change state with { collapse: ${State} } when isOpen change to true before transition', () => {
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
+  it('should forward all callbacks', () => {
+    const callbacks = {
+      onEnter: jest.fn(),
+      onEntering: jest.fn(),
+      onEntered: jest.fn(),
+      onExit: jest.fn(),
+      onExiting: jest.fn(),
+      onExited: jest.fn(),
+    }
+    wrapper = mount(<Collapse isOpen={isOpen} {...callbacks} />);
     toggle();
-    wrapper.setProps({ isOpen: isOpen });
-    expect(wrapper.state('collapse')).toEqual('SHOW');
-    wrapper.unmount();
-  });
-
-  it('should change state with { collapse: ${State} } when isOpen change to true after transition', () => {
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
-    toggle();
-    wrapper.setProps({ isOpen: isOpen });
+    expect(callbacks.onEnter).toHaveBeenCalled();
+    expect(callbacks.onEntering).toHaveBeenCalled();
+    expect(callbacks.onEntered).not.toHaveBeenCalled();
     jest.runTimersToTime(350);
-    expect(wrapper.state('collapse')).toEqual('SHOWN');
-    wrapper.unmount();
-  });
+    expect(callbacks.onEntered).toHaveBeenCalled();
+    expect(callbacks.onExit).not.toHaveBeenCalled();
 
-  it('should change state with { collapse: ${State} } when isOpen change to false before transition', () => {
-    isOpen = true;
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
-    wrapper.setProps({ isOpen: isOpen });
-    expect(wrapper.state('collapse')).toEqual('HIDE');
-    wrapper.unmount();
-  });
+    expect(callbacks.onExit).toHaveBeenCalled();
+    expect(callbacks.onExiting).not.toHaveBeenCalled();
+    expect(callbacks.onExited).not.toHaveBeenCalled();
+    jest.runTimersToTime(350);
+    expect(callbacks.onExited).toHaveBeenCalled();
 
-  it('should change state with { collapse: ${State} } when isOpen change to false after transition', () => {
-    isOpen = true;
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
-    toggle();
-    wrapper.setProps({ isOpen: isOpen });
-    jest.runTimersToTime(360);
-    expect(wrapper.state('collapse')).toEqual('HIDDEN');
     wrapper.unmount();
   });
 
   it('should set inline style to 0 when isOpen change to false', () => {
     isOpen = true;
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
+    wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
-    wrapper.setProps({ isOpen: isOpen });
     expect(wrapper.state('height')).toBe(0);
     wrapper.unmount();
   });
 
   it('should remove inline style when isOpen change to true after transition', () => {
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
+    wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
-    wrapper.setProps({ isOpen: isOpen });
     jest.runTimersToTime(380);
     expect(wrapper.state('height')).toBe(null);
     wrapper.unmount();
   });
 
-  it('should remove timeout tag after unmount', () => {
-    jest.spyOn(Collapse.prototype, 'componentWillUnmount');
-    const wrapper = mount(<Collapse isOpen={isOpen} />);
-    wrapper.unmount();
-    expect(Collapse.prototype.componentWillUnmount).toHaveBeenCalled();
-  });
-
-  it('should call onOpened after opening', () => {
-    const onOpened = jest.fn();
-    const onClosed = jest.fn();
-    const wrapper = mount(<Collapse isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} />);
+  it('should call onEntered after opening', () => {
+    const onEntered = jest.fn();
+    const onExited = jest.fn();
+    wrapper = mount(<Collapse isOpen={isOpen} onEntered={onEntered} onExited={onExited} />);
 
     jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
-    expect(onOpened).not.toHaveBeenCalled();
-    expect(onClosed).not.toHaveBeenCalled();
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     toggle();
-    wrapper.setProps({ isOpen });
     jest.runTimersToTime(380);
     expect(isOpen).toBe(true);
-    expect(onOpened).toHaveBeenCalled();
-    expect(onClosed).not.toHaveBeenCalled();
+    expect(onEntered).toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     wrapper.unmount();
   });
 
-  it('should call onClosed after closing', () => {
-    const onOpened = jest.fn();
-    const onClosed = jest.fn();
+  it('should call onExited after closing', () => {
+    const onEntered = jest.fn();
+    const onExited = jest.fn();
     toggle();
-    const wrapper = mount(<Collapse isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} />);
+    wrapper = mount(<Collapse isOpen={isOpen} onEntered={onEntered} onExited={onExited} />);
 
     jest.runTimersToTime(380);
     expect(isOpen).toBe(true);
-    expect(onOpened).not.toHaveBeenCalled();
-    expect(onClosed).not.toHaveBeenCalled();
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExited).not.toHaveBeenCalled();
 
     toggle();
     wrapper.setProps({ isOpen });
     jest.runTimersToTime(380);
     expect(isOpen).toBe(false);
-    expect(onOpened).not.toHaveBeenCalled();
-    expect(onClosed).toHaveBeenCalled();
+    expect(onEntered).not.toHaveBeenCalled();
+    expect(onExited).toHaveBeenCalled();
 
     wrapper.unmount();
   });
