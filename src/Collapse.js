@@ -74,7 +74,7 @@ class Collapse extends Component {
 
   onExiting(node) {
     this.setState({ height: 0 });
-    this.props.onExit(node);
+    this.props.onExiting(node);
   }
 
   onExited(node) {

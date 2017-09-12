@@ -78,9 +78,10 @@ describe('Collapse', () => {
 
     toggle();
     expect(callbacks.onExit).toHaveBeenCalled();
-    expect(callbacks.onExiting).not.toHaveBeenCalled();
+    expect(callbacks.onExiting).toHaveBeenCalled();
     expect(callbacks.onExited).not.toHaveBeenCalled();
     jest.runTimersToTime(350);
+    expect(callbacks.onExiting).toHaveBeenCalled();
     expect(callbacks.onExited).toHaveBeenCalled();
 
     wrapper.unmount();
