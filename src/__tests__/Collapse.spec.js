@@ -35,21 +35,21 @@ describe('Collapse', () => {
 
   it('should render with class "collapse"', () => {
     wrapper = mount(<Collapse />);
-    expect(wrapper.find("div").hasClass('collapse')).toEqual(true);
+    expect(wrapper.find('div').hasClass('collapse')).toEqual(true);
   });
 
   it('should render with class "navbar-collapse" if it has prop navbar', () => {
     wrapper = mount(<Collapse navbar />);
-    expect(wrapper.find("div").hasClass('navbar-collapse')).toEqual(true);
+    expect(wrapper.find('div').hasClass('navbar-collapse')).toEqual(true);
   });
 
   it('should render with class "show" when isOpen is true', () => {
     wrapper = mount(<Collapse isOpen />);
-    expect(wrapper.find("div").hasClass('show')).toEqual(true);
+    expect(wrapper.find('div').hasClass('show')).toEqual(true);
   });
 
   it('should set height to null when isOpen is true', () => {
-    wrapper = shallow(<Collapse isOpen={true} />);
+    wrapper = shallow(<Collapse isOpen />);
     expect(wrapper.state('height')).toBe(null);
   });
 
@@ -66,7 +66,7 @@ describe('Collapse', () => {
       onExit: jest.fn(),
       onExiting: jest.fn(),
       onExited: jest.fn(),
-    }
+    };
     wrapper = mount(<Collapse isOpen={isOpen} {...callbacks} />);
     toggle();
     expect(callbacks.onEnter).toHaveBeenCalled();
