@@ -7,6 +7,12 @@ import Helmet from 'react-helmet';
 import AlertExample from '../examples/Alert';
 const AlertExampleSource = require('!!raw!../examples/Alert');
 
+import AlertLinkExample from '../examples/AlertLink';
+const AlertLinkExampleSource = require('!!raw!../examples/AlertLink');
+
+import AlertContentExample from '../examples/AlertContent';
+const AlertContentExampleSource = require('!!raw!../examples/AlertContent');
+
 import AlertDismissExample from '../examples/AlertDismiss';
 const AlertDismissExampleSource = require('!!raw!../examples/AlertDismiss');
 
@@ -45,6 +51,26 @@ export default class AlertsPage extends React.Component {
   transitionEnterTimeout: PropTypes.number,
   transitionLeaveTimeout: PropTypes.number
 }`}
+          </PrismCode>
+        </pre>
+
+        <h3>Link color</h3>
+        <div className="docs-example">
+          <AlertLinkExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {AlertLinkExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h3>Additional content</h3>
+        <div className="docs-example">
+          <AlertContentExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {AlertContentExampleSource}
           </PrismCode>
         </pre>
 
