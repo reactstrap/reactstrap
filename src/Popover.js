@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { placements } from 'popper.js';
+import PopperJS from 'popper.js';
 import PopperContent from './PopperContent';
 import { getTarget, DOMElement, mapToCssModules, omit } from './utils';
 
 const propTypes = {
-  placement: PropTypes.oneOf(placements),
+  placement: PropTypes.oneOf(PopperJS.placements),
   target: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,

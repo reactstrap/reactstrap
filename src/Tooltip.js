@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { placements } from 'popper.js';
-import Popper from './PopperContent';
+import PopperJS from 'popper.js';
+import PopperContent from './PopperContent';
 import { getTarget, DOMElement, mapToCssModules, omit } from './utils';
 
 const propTypes = {
-  placement: PropTypes.oneOf(placements),
+  placement: PropTypes.oneOf(PopperJS.placements),
   target: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
@@ -178,7 +178,7 @@ class Tooltip extends React.Component {
     ), this.props.cssModule);
 
     return (
-      <Popper
+      <PopperContent
         className={popperClasses}
         target={this.props.target}
         isOpen={this.props.isOpen}
@@ -191,7 +191,7 @@ class Tooltip extends React.Component {
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
         />
-      </Popper>
+      </PopperContent>
     );
   }
 }
