@@ -8,6 +8,22 @@ describe('Alert', () => {
     expect(alert.text()).toBe('Yo!');
   });
 
+  it('should pass className down', () => {
+    const alert = mount(<Alert className="test-class-name">Yo!</Alert>);
+    expect(alert.find('.alert').prop('className')).toContain('test-class-name');
+  });
+
+  it('should pass close className down', () => {
+    function noop() { }
+    const alert = mount(<Alert toggle={noop} closeClassName="test-class-name">Yo!</Alert>);
+    expect(alert.find('.close').prop('className')).toContain('test-class-name');
+  });
+
+  it('should pass other props down', () => {
+    const alert = mount(<Alert data-testprop="testvalue">Yo!</Alert>);
+    expect(alert.find('.alert').prop('data-testprop')).toContain('testvalue');
+  });
+
   it('should have default transitionTimeouts', () => {
     const alert = mount(<Alert>Yo!</Alert>);
 
