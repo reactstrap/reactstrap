@@ -58,6 +58,11 @@ describe('Collapse', () => {
     expect(wrapper.state('height')).toBe(null);
   });
 
+  it('should forward all styles', () => {
+    wrapper = mount(<Collapse isOpen style={{ backgroundColor: 'black' }} />);
+    expect(wrapper.find('div').prop('style').backgroundColor).toBe('black');
+  });
+
   it('should forward all callbacks', () => {
     const callbacks = {
       onEnter: jest.fn(),
@@ -87,6 +92,22 @@ describe('Collapse', () => {
     wrapper.unmount();
   });
 
+  it('should apply correct bootstrap classes', () => {
+    wrapper = mount(<Collapse isOpen={isOpen} />);
+    const elem = wrapper.find('div');
+    toggle();
+    expect(elem.prop('className')).toBe('collapsing');
+    jest.runTimersToTime(350);
+    expect(elem.prop('className')).toBe('collapse show');
+
+    toggle();
+    expect(elem.prop('className')).toBe('collapsing');
+    jest.runTimersToTime(350);
+    expect(elem.prop('className')).toBe('collapse');
+
+    wrapper.unmount();
+  });
+
   it('should set inline style to 0 when isOpen change to false', () => {
     isOpen = true;
     wrapper = mount(<Collapse isOpen={isOpen} />);
@@ -100,46 +121,6 @@ describe('Collapse', () => {
     toggle();
     jest.runTimersToTime(380);
     expect(wrapper.state('height')).toBe(null);
-    wrapper.unmount();
-  });
-
-  it('should call onEntered after opening', () => {
-    const onEntered = jest.fn();
-    const onExited = jest.fn();
-    wrapper = mount(<Collapse isOpen={isOpen} onEntered={onEntered} onExited={onExited} />);
-
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(false);
-    expect(onEntered).not.toHaveBeenCalled();
-    expect(onExited).not.toHaveBeenCalled();
-
-    toggle();
-    jest.runTimersToTime(380);
-    expect(isOpen).toBe(true);
-    expect(onEntered).toHaveBeenCalled();
-    expect(onExited).not.toHaveBeenCalled();
-
-    wrapper.unmount();
-  });
-
-  it('should call onExited after closing', () => {
-    const onEntered = jest.fn();
-    const onExited = jest.fn();
-    toggle();
-    wrapper = mount(<Collapse isOpen={isOpen} onEntered={onEntered} onExited={onExited} />);
-
-    jest.runTimersToTime(380);
-    expect(isOpen).toBe(true);
-    expect(onEntered).not.toHaveBeenCalled();
-    expect(onExited).not.toHaveBeenCalled();
-
-    toggle();
-    wrapper.setProps({ isOpen });
-    jest.runTimersToTime(380);
-    expect(isOpen).toBe(false);
-    expect(onEntered).not.toHaveBeenCalled();
-    expect(onExited).toHaveBeenCalled();
-
     wrapper.unmount();
   });
 });

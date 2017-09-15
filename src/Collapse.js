@@ -73,6 +73,8 @@ class Collapse extends Component {
   }
 
   onExiting(node) {
+    // getting this variable triggers a reflow
+    const _unused = node.offsetHeight; // eslint-disable-line no-unused-vars
     this.setState({ height: 0 });
     this.props.onExiting(node);
   }
@@ -94,7 +96,6 @@ class Collapse extends Component {
     } = this.props;
     const otherProps = omit(transitionProps, Object.keys(propTypes));
     const { height } = this.state;
-
 
     return (
       <Transition
