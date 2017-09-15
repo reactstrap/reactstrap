@@ -28,7 +28,7 @@ export default class CollapsePage extends React.Component {
         <h3>Properties</h3>
         <pre>
           <PrismCode className="language-jsx">
-{`Collapse.propTypes = {
+            {`Collapse.propTypes = {
   ...Transition.propTypes,
   isOpen: PropTypes.bool,
   children: PropTypes.oneOfType([
@@ -44,7 +44,10 @@ export default class CollapsePage extends React.Component {
         </pre>
 
         <h3>Events</h3>
-        <p>Use the onOpened and onClosed props for callbacks when the Collapse has finished opening or closing.</p>
+        <p>
+          Use the <code>onEnter</code>, onEntering, onEntered, onExit, onExiting and onExited props for callbacks when the
+          Collapse has finished opening (entering) or closing (exiting).
+        </p>
         <div className="docs-example">
           <CollapseEventsExample />
         </div>
