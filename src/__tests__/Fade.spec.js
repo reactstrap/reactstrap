@@ -23,7 +23,7 @@ class Helper extends React.Component {
       <div>
         <div className="trigger" onClick={this.toggle}>Toggle</div>
         <TransitionGroup component="div">
-          { this.state.showItem ? this.props.children : null }
+          {this.state.showItem ? this.props.children : null}
         </TransitionGroup>
       </div>
     );
@@ -88,5 +88,20 @@ describe('Fade', () => {
     wrapper.find('.trigger').simulate('click');
     expect(wrapper.find('div.fade.show').length).toBe(0);
     expect(onExit).toHaveBeenCalled();
+  });
+
+  it('should pass className down', () => {
+    const alert = mount(<Fade className="test-class-name">Yo!</Fade>);
+    expect(alert.find('.fade').prop('className')).toContain('test-class-name');
+  });
+
+  it('should pass other props down', () => {
+    const alert = mount(<Fade data-testprop="testvalue">Yo!</Fade>);
+    expect(alert.find('.fade').prop('data-testprop')).toContain('testvalue');
+  });
+
+  it('should support custom tag', () => {
+    const alert = mount(<Fade tag="p">Yo!</Fade>);
+    expect(alert.find('p').length).toBe(1);
   });
 });
