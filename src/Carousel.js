@@ -150,6 +150,7 @@ Carousel.propTypes = {
   interval: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
+    PropTypes.bool,
   ]),
   children: PropTypes.array,
   // called when the mouse enters the Carousel
