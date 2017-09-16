@@ -24,7 +24,6 @@ export default class Example extends React.Component {
           tag="span"
           onClick={this.toggle}
           data-toggle="dropdown"
-          aria-haspopup="true"
           aria-expanded={this.state.dropdownOpen}
         >
           Custom Dropdown Content

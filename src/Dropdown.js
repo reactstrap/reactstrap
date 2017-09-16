@@ -120,7 +120,7 @@ class Dropdown extends React.Component {
         dropup: dropup
       }
     ), cssModule);
-    return <Manager {...attrs} className={classes}>{}</Manager>;
+    return <Manager {...attrs} className={classes} />;
   }
 }
 

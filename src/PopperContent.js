@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { Arrow, Manager, Popper as ReactPopper } from 'react-popper';
-import PopperTargetHelper from './PopperTargetHelper';
-import { DOMElement, mapToCssModules } from './utils';
+import { Arrow, Popper as ReactPopper } from 'react-popper';
+import { getTarget, DOMElement, mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -13,11 +13,10 @@ const propTypes = {
   tag: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   cssModule: PropTypes.object,
-  wrapTag: PropTypes.string,
-  wrapClassName: PropTypes.string,
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   fallbackPlacement: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   flip: PropTypes.bool,
+  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
   target: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]).isRequired,
 };
 
@@ -26,8 +25,12 @@ const defaultProps = {
   isOpen: false,
   offset: 0,
   fallbackPlacement: 'flip',
-  wrapTag: 'span',
   flip: true,
+  container: 'body',
+};
+
+const childContextTypes = {
+  popperManager: PropTypes.object.isRequired,
 };
 
 class PopperContent extends React.Component {
@@ -35,7 +38,47 @@ class PopperContent extends React.Component {
     super(props);
 
     this.handlePlacementChange = this.handlePlacementChange.bind(this);
+    this.setTargetNode = this.setTargetNode.bind(this);
+    this.getTargetNode = this.getTargetNode.bind(this);
     this.state = {};
+  }
+
+  getChildContext() {
+    return {
+      popperManager: {
+        setTargetNode: this.setTargetNode,
+        getTargetNode: this.getTargetNode,
+      },
+    };
+  }
+
+  componentDidMount() {
+    this.handleProps();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpen !== prevProps.isOpen) {
+      this.handleProps();
+    } else if (this._element) {
+      // rerender
+      this.renderIntoSubtree();
+    }
+  }
+
+  componentWillUnmount() {
+    this.hide();
+  }
+
+  setTargetNode(node) {
+    this.targetNode = node;
+  }
+
+  getTargetNode() {
+    return this.targetNode;
+  }
+
+  getContainerNode() {
+    return getTarget(this.props.container);
   }
 
   handlePlacementChange(data) {
@@ -45,7 +88,42 @@ class PopperContent extends React.Component {
     return data;
   }
 
-  render() {
+  handleProps() {
+    if (this.props.container !== 'inline') {
+      if (this.props.isOpen) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    }
+  }
+
+  hide() {
+    if (this._element) {
+      this.getContainerNode().removeChild(this._element);
+      ReactDOM.unmountComponentAtNode(this._element);
+      this._element = null;
+    }
+  }
+
+  show() {
+    this._element = document.createElement('div');
+    this.getContainerNode().appendChild(this._element);
+    this.renderIntoSubtree();
+    if (this._element.childNodes && this._element.childNodes[0] && this._element.childNodes[0].focus) {
+      this._element.childNodes[0].focus();
+    }
+  }
+
+  renderIntoSubtree() {
+    ReactDOM.unstable_renderSubtreeIntoContainer(
+      this,
+      this.renderChildren(),
+      this._element
+    );
+  }
+
+  renderChildren() {
     const {
       cssModule,
       children,
@@ -56,13 +134,12 @@ class PopperContent extends React.Component {
       fallbackPlacement,
       placementPrefix,
       className,
-      wrapTag,
-      wrapClassName,
       tag,
-      ...attrs } = this.props;
+      container,
+      ...attrs
+    } = this.props;
     const arrowClassName = mapToCssModules('arrow', cssModule);
     const placement = (this.state.placement || attrs.placement).split('-')[0];
-    const managerClass = mapToCssModules(wrapClassName, this.props.cssModule);
     const popperClassName = mapToCssModules(classNames(
       className,
       placementPrefix ? `${placementPrefix}-${placement}` : placement
@@ -79,18 +156,26 @@ class PopperContent extends React.Component {
     };
 
     return (
-      <Manager tag={wrapTag} className={managerClass}>
-        <PopperTargetHelper target={target} />
-        {isOpen && <ReactPopper modifiers={modifiers} {...attrs} component={tag} className={popperClassName}>
-          {children}
-          <Arrow className={arrowClassName} />
-        </ReactPopper>}
-      </Manager>
+      <ReactPopper modifiers={modifiers} {...attrs} component={tag} className={popperClassName}>
+        {children}
+        <Arrow className={arrowClassName} />
+      </ReactPopper>
     );
+  }
+
+  render() {
+    this.setTargetNode(getTarget(this.props.target));
+
+    if (this.props.container === 'inline') {
+      return this.props.isOpen ? this.renderChildren() : null;
+    }
+
+    return null;
   }
 }
 
 PopperContent.propTypes = propTypes;
 PopperContent.defaultProps = defaultProps;
+PopperContent.childContextTypes = childContextTypes;
 
 export default PopperContent;

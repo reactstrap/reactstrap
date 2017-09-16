@@ -26,15 +26,17 @@ export default class PopoversPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Popover.propTypes = {
-  isOpen:  PropTypes.bool,
   // boolean to control the state of the popover
-  toggle:  PropTypes.func,
+  isOpen:  PropTypes.bool,
   // callback for toggling isOpen in the controlling component
+  toggle:  PropTypes.func,
   target:  PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
     DOMElement, // instanceof Element (https://developer.mozilla.org/en-US/docs/Web/API/Element)
   ]).isRequired,
+  // Where to inject the popper DOM node, default to body
+  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
   disabled: PropTypes.bool,
   placementPrefix: PropTypes.string,
   delay: PropTypes.oneOfType([

@@ -30,22 +30,26 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Tooltip.propTypes = {
-  isOpen:  PropTypes.bool,
   // boolean to control the state of the tooltip
-  toggle:  PropTypes.func,
+  isOpen: PropTypes.bool,
   // callback for toggling isOpen in the controlling component
+  toggle: PropTypes.func,
+  // target element or element ID, popover is attached to this element
   target:  PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object
+    PropTypes.func,
+    DOMElement, // instanceof Element (https://developer.mozilla.org/en-US/docs/Web/API/Element)
   ]).isRequired,
-  // target element or element ID, popover is attached to this element
+  // Where to inject the popper DOM node, default to body
+  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
+  // optionally override show/hide delays - default { show: 0, hide: 250 }
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
   ]),
-  // optionally override show/hide delays - default { show: 0, hide: 250 }
-  autohide: PropTypes.bool,
   // optionally hide tooltip when hovering over tooltip content - default true
+  autohide: PropTypes.bool,
+  // convenience attachments for popover
   placement: PropTypes.oneOf([
     'auto',
     'auto-start',
@@ -63,8 +67,6 @@ export default class TooltipsPage extends React.Component {
     'left-start',
     'left-end',
   ])
-  // convenience attachments for popover
-  // examples http://github.hubspot.com/tooltip/docs/welcome/
 }`}
           </PrismCode>
         </pre>

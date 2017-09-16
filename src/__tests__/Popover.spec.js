@@ -42,10 +42,10 @@ describe('Popover', () => {
       </Popover>
     );
 
-    expect(wrapper.find('.popover').length).toBe(1);
-    expect(wrapper.find('.popover-inner').length).toBe(1);
-    expect(wrapper.find('.popover-header').length).toBe(1);
-    expect(wrapper.find('.popover-body').length).toBe(1);
+    expect(document.getElementsByClassName('popover').length).toBe(1);
+    expect(document.getElementsByClassName('popover-inner').length).toBe(1);
+    expect(document.getElementsByClassName('popover-header').length).toBe(1);
+    expect(document.getElementsByClassName('popover-body').length).toBe(1);
     wrapper.unmount();
   });
 
@@ -57,10 +57,10 @@ describe('Popover', () => {
       </Popover>
     );
 
-    expect(wrapper.find('.popover').length).toBe(0);
-    expect(wrapper.find('.popover-inner').length).toBe(0);
-    expect(wrapper.find('.popover-header').length).toBe(0);
-    expect(wrapper.find('.popover-body').length).toBe(0);
+    expect(document.getElementsByClassName('popover').length).toBe(0);
+    expect(document.getElementsByClassName('popover-inner').length).toBe(0);
+    expect(document.getElementsByClassName('popover-header').length).toBe(0);
+    expect(document.getElementsByClassName('popover-body').length).toBe(0);
     wrapper.unmount();
   });
 
@@ -74,11 +74,11 @@ describe('Popover', () => {
 
     expect(isOpen).toBe(false);
 
-    expect(wrapper.find('.popover.show').length).toBe(0);
-    expect(wrapper.find('.popover').length).toBe(0);
-    expect(wrapper.find('.popover-inner').length).toBe(0);
-    expect(wrapper.find('.popover-header').length).toBe(0);
-    expect(wrapper.find('.popover-body').length).toBe(0);
+    expect(document.getElementsByClassName('show').length).toBe(0);
+    expect(document.getElementsByClassName('popover').length).toBe(0);
+    expect(document.getElementsByClassName('popover-inner').length).toBe(0);
+    expect(document.getElementsByClassName('popover-header').length).toBe(0);
+    expect(document.getElementsByClassName('popover-body').length).toBe(0);
 
     toggle();
     wrapper.setProps({
@@ -86,11 +86,11 @@ describe('Popover', () => {
     });
 
     expect(isOpen).toBe(true);
-    expect(wrapper.find('.popover.show').length).toBe(1);
-    expect(wrapper.find('.popover').length).toBe(1);
-    expect(wrapper.find('.popover-inner').length).toBe(1);
-    expect(wrapper.find('.popover-header').length).toBe(1);
-    expect(wrapper.find('.popover-body').length).toBe(1);
+    expect(document.getElementsByClassName('show').length).toBe(1);
+    expect(document.getElementsByClassName('popover').length).toBe(1);
+    expect(document.getElementsByClassName('popover-inner').length).toBe(1);
+    expect(document.getElementsByClassName('popover-header').length).toBe(1);
+    expect(document.getElementsByClassName('popover-body').length).toBe(1);
 
     wrapper.unmount();
   });
@@ -105,10 +105,10 @@ describe('Popover', () => {
     );
 
     expect(isOpen).toBe(true);
-    expect(wrapper.find('.popover').length).toBe(1);
-    expect(wrapper.find('.popover-inner').length).toBe(1);
-    expect(wrapper.find('.popover-header').length).toBe(1);
-    expect(wrapper.find('.popover-body').length).toBe(1);
+    expect(document.getElementsByClassName('popover').length).toBe(1);
+    expect(document.getElementsByClassName('popover-inner').length).toBe(1);
+    expect(document.getElementsByClassName('popover-header').length).toBe(1);
+    expect(document.getElementsByClassName('popover-body').length).toBe(1);
 
     toggle();
     wrapper.setProps({
@@ -116,10 +116,10 @@ describe('Popover', () => {
     });
 
     expect(isOpen).toBe(false);
-    expect(wrapper.find('.popover').length).toBe(0);
-    expect(wrapper.find('.popover-inner').length).toBe(0);
-    expect(wrapper.find('.popover-header').length).toBe(0);
-    expect(wrapper.find('.popover-body').length).toBe(0);
+    expect(document.getElementsByClassName('popover').length).toBe(0);
+    expect(document.getElementsByClassName('popover-inner').length).toBe(0);
+    expect(document.getElementsByClassName('popover-header').length).toBe(0);
+    expect(document.getElementsByClassName('popover-body').length).toBe(0);
 
     wrapper.unmount();
   });
@@ -148,7 +148,7 @@ describe('Popover', () => {
       </Popover>
     );
 
-    expect(wrapper.find('.popover-inner').hasClass('popover-special')).toBe(true);
+    expect(document.getElementsByClassName('popover-inner')[0].className.indexOf('popover-special') > -1).toBe(true);
 
     wrapper.unmount();
   });
