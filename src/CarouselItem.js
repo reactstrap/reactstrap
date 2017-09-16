@@ -27,9 +27,10 @@ class CarouselItem extends React.Component {
 
   onEntering(node, isAppearing) {
     // getting this variable triggers a reflow
-    const _unused = node.offsetHeight; // eslint-disable-line no-unused-vars
+    const offsetHeight = node.offsetHeight;
     this.setState({ startAnimation: true });
     this.props.onEntering(node, isAppearing);
+    return offsetHeight;
   }
 
   onExit(node) {

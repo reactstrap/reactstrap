@@ -327,7 +327,7 @@ describe('Carousel', () => {
   });
 
   describe('interval', () => {
-    it('should not cycle when paused', () => {
+    it('should not autoplay by default', () => {
       const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
@@ -342,12 +342,36 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0} paused>
+        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0}>
           {slides}
         </Carousel>
       );
       jest.runTimersToTime(1000);
       expect(next).not.toHaveBeenCalled();
+      wrapper.unmount();
+    });
+
+    it('should autoplay when ride is carousel', () => {
+      const next = jest.fn();
+      const slides = items.map((item, idx) => {
+        return (
+          <CarouselItem
+            key={idx}
+            src={item.src}
+            altText={item.altText}
+          >
+            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          </CarouselItem>
+        );
+      });
+
+      const wrapper = mount(
+        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0} ride="carousel">
+          {slides}
+        </Carousel>
+      );
+      jest.runTimersToTime(1000);
+      expect(next).toHaveBeenCalled();
       wrapper.unmount();
     });
 
@@ -366,7 +390,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0}>
+        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0} ride="carousel">
           {slides}
         </Carousel>
       );
@@ -414,7 +438,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} activeIndex={0}>
+        <Carousel next={next} previous={() => { }} activeIndex={0} ride="carousel">
           {slides}
         </Carousel>
       );
@@ -437,7 +461,7 @@ describe('Carousel', () => {
         );
       });
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} interval="1000" activeIndex={0}>
+        <Carousel next={next} previous={() => { }} interval="1000" activeIndex={0} ride="carousel">
           {slides}
         </Carousel>
       );

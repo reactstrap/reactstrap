@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import CarouselItem from './CarouselItem';
 import { mapToCssModules } from './utils';
 
 class Carousel extends React.Component {
@@ -8,6 +9,8 @@ class Carousel extends React.Component {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.renderItems = this.renderItems.bind(this);
+    this.hoverStart = this.hoverStart.bind(this);
+    this.hoverEnd = this.hoverEnd.bind(this);
     this.state = { direction: 'right' };
   }
 
@@ -17,20 +20,16 @@ class Carousel extends React.Component {
 
   componentDidMount() {
     // Set up the cycle
-    if (this.props.interval) {
-      this.cycleInterval = setInterval(() => {
-        if (!this.props.paused) {
-          this.props.next();
-        }
-      }, parseInt(this.props.interval, 10));
+    if (this.props.ride === 'carousel') {
+      this.setInterval();
     }
 
-    if (this.props.keyboard) {
-      document.addEventListener('keyup', this.handleKeyPress);
-    }
+    // TODO: move this to the specific carousel like bootstrap. Currently it will trigger ALL carousels on the page.
+    document.addEventListener('keyup', this.handleKeyPress);
   }
 
   componentWillReceiveProps(nextProps) {
+    this.setInterval(nextProps);
     // Calculate the direction to turn
     if (this.props.activeIndex + 1 === nextProps.activeIndex) {
       this.setState({ direction: 'right' });
@@ -38,21 +37,55 @@ class Carousel extends React.Component {
       this.setState({ direction: 'left' });
     } else if (this.props.activeIndex > nextProps.activeIndex) {
       this.setState({ direction: 'right' });
-    } else {
+    } else if (this.props.activeIndex !== nextProps.activeIndex) {
       this.setState({ direction: 'left' });
     }
   }
 
   componentWillUnmount() {
+    this.clearInterval();
+    document.removeEventListener('keyup', this.handleKeyPress);
+  }
+
+  setInterval(props = this.props) {
+    // make sure not to have multiple intervals going...
+    this.clearInterval();
+    if (props.interval) {
+      this.cycleInterval = setInterval(() => {
+        props.next();
+      }, parseInt(props.interval, 10));
+    }
+  }
+
+  clearInterval() {
     clearInterval(this.cycleInterval);
-    document.removeEventListener('key', this.handleKeyPress);
+  }
+
+  hoverStart(...args) {
+    if (this.props.pause === 'hover') {
+      this.clearInterval();
+    }
+    if (this.props.mouseEnter) {
+      this.props.mouseEnter(...args);
+    }
+  }
+
+  hoverEnd(...args) {
+    if (this.props.pause === 'hover') {
+      this.setInterval();
+    }
+    if (this.props.mouseLeave) {
+      this.props.mouseLeave(...args);
+    }
   }
 
   handleKeyPress(evt) {
-    if (this.props.keyboard && evt.keyCode === 37) {
-      this.props.previous();
-    } else if (this.props.keyboard && evt.keyCode === 39) {
-      this.props.next();
+    if (this.props.keyboard) {
+      if (evt.keyCode === 37) {
+        this.props.previous();
+      } else if (evt.keyCode === 39) {
+        this.props.next();
+      }
     }
   }
 
@@ -72,7 +105,7 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { children, cssModule, hoverStart, hoverEnd, slide } = this.props;
+    const { children, cssModule, slide } = this.props;
     const outerClasses = mapToCssModules(classNames(
       'carousel',
       slide && 'slide',
@@ -83,14 +116,12 @@ class Carousel extends React.Component {
     ), cssModule);
 
 
-    const slidesOnly = children.every((child) => {
-      return child.type && child.type.name === 'CarouselItem';
-    });
+    const slidesOnly = children.every(child => child.type === CarouselItem);
 
     // Rendering only slides
     if (slidesOnly) {
       return (
-        <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
+        <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
           {this.renderItems(children, innerClasses)}
         </div>
       );
@@ -103,7 +134,7 @@ class Carousel extends React.Component {
       const controlRight = children[2];
 
       return (
-        <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
+        <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
           {this.renderItems(carouselItems, innerClasses)}
           {controlLeft}
           {controlRight}
@@ -118,14 +149,7 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div
-        ref={(carousel) => {
-          this.carousel = carousel;
-        }}
-        className={outerClasses}
-        onMouseEnter={hoverStart}
-        onMouseLeave={hoverEnd}
-      >
+      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
         {indicators}
         {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
@@ -144,8 +168,13 @@ Carousel.propTypes = {
   previous: PropTypes.func.isRequired,
   // controls if the left and right arrow keys should control the carousel
   keyboard: PropTypes.bool,
-  // controls if the carousel should not automatically cycle (default: false)
-  paused: PropTypes.bool,
+  /* If set to "hover", pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on
+   * mouseleave. If set to false, hovering over the carousel won't pause it. (default: "hover")
+   */
+  pause: PropTypes.oneOf(['hover', false]),
+  // Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load.
+  // This is how bootstrap defines it... I would prefer a bool named autoplay or something...
+  ride: PropTypes.oneOf(['carousel']),
   // the interval at which the carousel automatically cycles (default: 5000) 
   interval: PropTypes.oneOfType([
     PropTypes.number,
@@ -154,9 +183,9 @@ Carousel.propTypes = {
   ]),
   children: PropTypes.array,
   // called when the mouse enters the Carousel
-  hoverStart: PropTypes.func,
+  mouseEnter: PropTypes.func,
   // called when the mouse exits the Carousel
-  hoverEnd: PropTypes.func,
+  mouseLeave: PropTypes.func,
   // controls whether the slide animation on the Carousel works or not
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
@@ -164,8 +193,7 @@ Carousel.propTypes = {
 
 Carousel.defaultProps = {
   interval: 5000,
-  hover: false,
-  paused: false,
+  pause: 'hover',
   keyboard: true,
   slide: true,
 };

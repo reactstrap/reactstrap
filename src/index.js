@@ -32,6 +32,7 @@ import CardHeader from './CardHeader';
 import CardImg from './CardImg';
 import CardImgOverlay from './CardImgOverlay';
 import Carousel from './Carousel';
+import UncontrolledCarousel from './UncontrolledCarousel';
 import CarouselControl from './CarouselControl';
 import CarouselItem from './CarouselItem';
 import CarouselIndicators from './CarouselIndicators';
@@ -119,6 +120,7 @@ export {
   CardImg,
   CardImgOverlay,
   Carousel,
+  UncontrolledCarousel,
   CarouselControl,
   CarouselItem,
   CarouselIndicators,
