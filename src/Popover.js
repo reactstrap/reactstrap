@@ -121,11 +121,15 @@ class Popover extends React.Component {
   }
 
   addTargetEvents() {
-    document.addEventListener('click', this.handleDocumentClick, true);
+    ['click', 'touchstart'].forEach(event =>
+      document.addEventListener(event, this.handleDocumentClick, true)
+    );
   }
 
   removeTargetEvents() {
-    document.removeEventListener('click', this.handleDocumentClick, true);
+    ['click', 'touchstart'].forEach(event =>
+      document.removeEventListener(event, this.handleDocumentClick, true)
+    );
   }
 
   toggle(e) {
