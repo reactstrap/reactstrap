@@ -63,10 +63,35 @@ describe('Input', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render with "form-control-${state}" class when state is provided', () => {
+  it('should render with "is-invalid" class when state is "danger" [DEPRECATED]', () => {
     const wrapper = shallow(<Input state="danger" />);
 
-    expect(wrapper.hasClass('form-control-danger')).toBe(true);
+    expect(wrapper.hasClass('is-invalid')).toBe(true);
+  });
+
+  it('should render with "is-valid" class when state is "success" [DEPRECATED]', () => {
+    const wrapper = shallow(<Input state="success" />);
+
+    expect(wrapper.hasClass('is-valid')).toBe(true);
+  });
+
+  it('should not render with "is-valid" nor "is-invalid" class when state is "warning" [DEPRECATED]', () => {
+    const wrapper = shallow(<Input state="warning" />);
+
+    expect(wrapper.hasClass('is-valid')).toBe(false);
+    expect(wrapper.hasClass('is-invalid')).toBe(false);
+  });
+
+  it('should render with "is-invalid" class when valid is false', () => {
+    const wrapper = shallow(<Input valid={false} />);
+
+    expect(wrapper.hasClass('is-invalid')).toBe(true);
+  });
+
+  it('should render with "is-valid" class when valid is true', () => {
+    const wrapper = shallow(<Input valid />);
+
+    expect(wrapper.hasClass('is-valid')).toBe(true);
   });
 
   it('should render with "form-control-${size}" class when size is provided', () => {

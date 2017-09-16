@@ -14,6 +14,7 @@ const propTypes = {
 
 const defaultProps = {
   tag: 'small',
+  color: 'muted',
 };
 
 const FormText = (props) => {

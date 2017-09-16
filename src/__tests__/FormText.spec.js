@@ -27,6 +27,19 @@ describe('FormText', () => {
     expect(wrapper.hasClass('form-text')).toBe(false);
   });
 
+  it('should render with "text-muted" class by default', () => {
+    const wrapper = shallow(<FormText>Yo!</FormText>);
+
+    expect(wrapper.hasClass('text-muted')).toBe(true);
+  });
+
+  it('should render without "text-*" class when color is and empty string', () => {
+    const wrapper = shallow(<FormText color="">Yo!</FormText>);
+
+    expect(wrapper.hasClass('text-muted')).toBe(false);
+    expect(wrapper.hasClass('text-')).toBe(false);
+  });
+
   it('should render with "text-${color}" class when color is provided', () => {
     const wrapper = shallow(<FormText color="yoyo">Yo!</FormText>);
 

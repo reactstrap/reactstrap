@@ -64,12 +64,6 @@ describe('FormGroup', () => {
     expect(wrapper.hasClass('row')).toBe(false);
   });
 
-  it('should render with "has-${color}" class when color prop is provided', () => {
-    const wrapper = shallow(<FormGroup color="yoyo">Yo!</FormGroup>);
-
-    expect(wrapper.hasClass('has-yoyo')).toBe(true);
-  });
-
   it('should render additional classes', () => {
     const wrapper = shallow(<FormGroup className="other">Yo!</FormGroup>);
 

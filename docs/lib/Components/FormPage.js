@@ -62,7 +62,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Form Feedback</h3>
+        <h3>Form Validation</h3>
         <div className="docs-example">
           <FormFeedbackExample />
         </div>

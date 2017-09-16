@@ -15,10 +15,10 @@ describe('FormFeedback', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render with "form-control-feedback" class', () => {
+  it('should render with "invalid-feedback" class', () => {
     const wrapper = shallow(<FormFeedback>Yo!</FormFeedback>);
 
-    expect(wrapper.hasClass('form-control-feedback')).toBe(true);
+    expect(wrapper.hasClass('invalid-feedback')).toBe(true);
   });
 
   it('should render additional classes', () => {

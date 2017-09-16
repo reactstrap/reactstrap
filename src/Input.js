@@ -3,13 +3,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, deprecated } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   type: PropTypes.string,
   size: PropTypes.string,
-  state: PropTypes.string,
+  state: deprecated(PropTypes.string, 'Please use the prop "valid"'),
+  valid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   static: PropTypes.bool,
@@ -25,12 +26,13 @@ const defaultProps = {
 
 class Input extends React.Component {
   render() {
-    const {
+    let {
       className,
       cssModule,
       type,
       size,
       state,
+      valid,
       tag,
       addon,
       static: staticInput,
@@ -60,9 +62,18 @@ class Input extends React.Component {
       }
     }
 
+    if (state && typeof valid === 'undefined') {
+      if (state === 'danger') {
+        valid = false;
+      } else if (state === 'success') {
+        valid = true;
+      }
+    }
+
     const classes = mapToCssModules(classNames(
       className,
-      state ? `form-control-${state}` : false,
+      valid === false && 'is-invalid',
+      valid && 'is-valid',
       size ? `form-control-${size}` : false,
       formControlClass
     ), cssModule);

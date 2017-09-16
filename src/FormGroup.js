@@ -9,7 +9,6 @@ const propTypes = {
   check: PropTypes.bool,
   disabled: PropTypes.bool,
   tag: PropTypes.string,
-  color: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -24,7 +23,6 @@ const FormGroup = (props) => {
     cssModule,
     row,
     disabled,
-    color,
     check,
     tag: Tag,
     ...attributes
@@ -32,7 +30,6 @@ const FormGroup = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    color ? `has-${color}` : false,
     row ? 'row' : false,
     check ? 'form-check' : 'form-group',
     check && disabled ? 'disabled' : false

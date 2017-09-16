@@ -24,7 +24,7 @@ const FormFeedback = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    'form-control-feedback'
+    'invalid-feedback'
   ), cssModule);
 
   return (
