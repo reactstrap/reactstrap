@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Arrow, Popper } from 'react-popper';
-import { PopperContent, PopperTargetHelper } from '../';
+import { Arrow } from 'react-popper';
+import { PopperContent } from '../';
 
 describe('PopperContent', () => {
   let element;

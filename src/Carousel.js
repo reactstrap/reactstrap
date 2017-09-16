@@ -175,7 +175,8 @@ Carousel.propTypes = {
   // Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load.
   // This is how bootstrap defines it... I would prefer a bool named autoplay or something...
   ride: PropTypes.oneOf(['carousel']),
-  // the interval at which the carousel automatically cycles (default: 5000) 
+  // the interval at which the carousel automatically cycles (default: 5000)
+  // eslint-disable-next-line react/no-unused-prop-types
   interval: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
