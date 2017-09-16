@@ -64,7 +64,9 @@ export default class ModalsPage extends React.Component {
   onEnter: PropTypes.func,
   // called on componentWillUnmount
   onExit: PropTypes.func,
+  // called when done transitioning in
   onOpened: PropTypes.func,
+  // called when done transitioning out
   onClosed: PropTypes.func,
   className: PropTypes.string,
   wrapClassName: PropTypes.string,
@@ -79,20 +81,14 @@ export default class ModalsPage extends React.Component {
     PropTypes.number,
     PropTypes.string,
   ]),
-  // backdropTransitionTimeout - controls appear, enter, and leave (default: 150)
-  // If you need different values for appear v. enter v. leave, use the more
-  // specific props like backdropTransitionAppearTimeout.
-  backdropTransitionTimeout: PropTypes.number
-  backdropTransitionAppearTimeout: PropTypes.number,
-  backdropTransitionEnterTimeout: PropTypes.number,
-  backdropTransitionLeaveTimeout: PropTypes.number,
-  // modalTransitionTimeout - controls appear, enter, and leave (default: 300)
-  // If you need different values for appear v. enter v. leave, use the more
-  // specific props like modalTransitionAppearTimeout.
-  modalTransitionTimeout: PropTypes.number,
-  modalTransitionAppearTimeout: PropTypes.number,
-  modalTransitionEnterTimeout: PropTypes.number,
-  modalTransitionLeaveTimeout: PropTypes.number,
+  // backdropTransition - controls backdrop transition
+  // timeout is 150ms by default to match bootstrap
+  // see [Fade](/components/fade/) for more details
+  backdropTransition: PropTypes.shape(Fade.propTypes),
+  // modalTransition - controls modal transition 
+  // timeout is 300ms by default to match bootstrap
+  // see [Fade](/components/fade/) for more details
+  modalTransition: PropTypes.shape(Fade.propTypes),
 }`}
           </PrismCode>
         </pre>

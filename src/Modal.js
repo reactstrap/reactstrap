@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { TransitionGroup } from 'react-transition-group';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
   conditionallyUpdateScrollbar,
   setScrollbarWidth,
   mapToCssModules,
-  omit
+  omit,
+  TransitionTimeouts
 } from './utils';
+
+function noop() { }
+
+const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
 const propTypes = {
   isOpen: PropTypes.bool,
@@ -40,14 +44,8 @@ const propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  backdropTransitionTimeout: PropTypes.number,
-  backdropTransitionAppearTimeout: PropTypes.number,
-  backdropTransitionEnterTimeout: PropTypes.number,
-  backdropTransitionLeaveTimeout: PropTypes.number,
-  modalTransitionTimeout: PropTypes.number,
-  modalTransitionAppearTimeout: PropTypes.number,
-  modalTransitionEnterTimeout: PropTypes.number,
-  modalTransitionLeaveTimeout: PropTypes.number,
+  backdropTransition: FadePropTypes,
+  modalTransition: FadePropTypes,
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -60,8 +58,15 @@ const defaultProps = {
   keyboard: true,
   zIndex: 1050,
   fade: true,
-  modalTransitionTimeout: 300,
-  backdropTransitionTimeout: 150,
+  onOpened: noop,
+  onClosed: noop,
+  modalTransition: {
+    timeout: TransitionTimeouts.Modal,
+  },
+  backdropTransition: {
+    mountOnEnter: true,
+    timeout: TransitionTimeouts.Fade, // uses standard fade transition
+  },
 };
 
 class Modal extends React.Component {
@@ -104,17 +109,16 @@ class Modal extends React.Component {
     }
   }
 
-  onOpened() {
-    if (this.props.onOpened) {
-      this.props.onOpened();
-    }
+  onOpened(node, isAppearing) {
+    this.props.onOpened();
+    (this.props.modalTransition.onEntered || noop)(node, isAppearing);
   }
 
-  onClosed() {
-    this.destroy();
-    if (this.props.onClosed) {
-      this.props.onClosed();
-    }
+  onClosed(node) {
+    // so all methods get called before it is unmounted
+    setTimeout(() => this.destroy(), 0);
+    this.props.onClosed();
+    (this.props.modalTransition.onExited || noop)(node);
   }
 
   handleEscape(e) {
@@ -133,28 +137,14 @@ class Modal extends React.Component {
     }
   }
 
-  hasTransition() {
-    if (this.props.fade === false) {
-      return false;
-    }
-
-    return this.props.modalTransitionTimeout > 0;
-  }
-
   togglePortal() {
     if (this.props.isOpen) {
       if (this.props.autoFocus) {
         this._focus = true;
       }
       this.show();
-      if (!this.hasTransition()) {
-        this.onOpened();
-      }
     } else {
       this.hide();
-      if (!this.hasTransition()) {
-        this.onClosed();
-      }
     }
   }
 
@@ -245,8 +235,6 @@ class Modal extends React.Component {
       cssModule,
       isOpen,
       backdrop,
-      modalTransitionTimeout,
-      backdropTransitionTimeout,
       role,
       labelledBy
     } = this.props;
@@ -260,77 +248,38 @@ class Modal extends React.Component {
       tabIndex: '-1'
     };
 
-    if (this.hasTransition()) {
-      return (
-        <TransitionGroup component="div" className={mapToCssModules(wrapClassName)}>
-          {isOpen && (
-            <Fade
-              key="modal-dialog"
-              onEnter={this.onOpened}
-              onLeave={this.onClosed}
-              transitionAppearTimeout={
-                typeof this.props.modalTransitionAppearTimeout === 'number'
-                  ? this.props.modalTransitionAppearTimeout
-                  : modalTransitionTimeout
-              }
-              transitionEnterTimeout={
-                typeof this.props.modalTransitionEnterTimeout === 'number'
-                  ? this.props.modalTransitionEnterTimeout
-                  : modalTransitionTimeout
-              }
-              transitionLeaveTimeout={
-                typeof this.props.modalTransitionLeaveTimeout === 'number'
-                  ? this.props.modalTransitionLeaveTimeout
-                  : modalTransitionTimeout
-              }
-              cssModule={cssModule}
-              className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
-              {...modalAttributes}
-            >
-              {this.renderModalDialog()}
-            </Fade>
-          )}
-          {isOpen && backdrop && (
-            <Fade
-              key="modal-backdrop"
-              transitionAppearTimeout={
-                typeof this.props.backdropTransitionAppearTimeout === 'number'
-                  ? this.props.backdropTransitionAppearTimeout
-                  : backdropTransitionTimeout
-              }
-              transitionEnterTimeout={
-                typeof this.props.backdropTransitionEnterTimeout === 'number'
-                  ? this.props.backdropTransitionEnterTimeout
-                  : backdropTransitionTimeout
-              }
-              transitionLeaveTimeout={
-                typeof this.props.backdropTransitionLeaveTimeout === 'number'
-                  ? this.props.backdropTransitionLeaveTimeout
-                  : backdropTransitionTimeout
-              }
-              cssModule={cssModule}
-              className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
-            />
-          )}
-        </TransitionGroup>
-      );
-    }
-
+    const hasTransition = this.props.fade;
+    const modalTransition = {
+      ...Fade.defaultProps,
+      ...this.props.modalTransition,
+      baseClass: hasTransition ? this.props.modalTransition.baseClass : '',
+      timeout: hasTransition ? this.props.modalTransition.timeout : 0,
+    };
+    const backdropTransition = {
+      ...Fade.defaultProps,
+      ...this.props.backdropTransition,
+      baseClass: hasTransition ? this.props.backdropTransition.baseClass : '',
+      timeout: hasTransition ? this.props.backdropTransition.timeout : 0,
+    };
     return (
       <div className={mapToCssModules(wrapClassName)}>
-        {isOpen && (
-          <div
-            className={mapToCssModules(classNames('modal', 'show', modalClassName), cssModule)}
-            {...modalAttributes}
-          >
-            {this.renderModalDialog()}
-          </div>
-        )}
-        {isOpen && backdrop && (
-          <div
-            className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)}
-          />
-        )}
+        <Fade
+          {...modalAttributes}
+          {...modalTransition}
+          in={isOpen}
+          onEntered={this.onOpened}
+          onExited={this.onClosed}
+          cssModule={cssModule}
+          className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
+        >
+          {this.renderModalDialog()}
+        </Fade>
+        <Fade
+          {...backdropTransition}
+          in={isOpen && !!backdrop}
+          cssModule={cssModule}
+          className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+        />
       </div>
     );
   }

@@ -134,10 +134,16 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should render when expected when passed modalTransitionTimeout and backdropTransitionTimeout props', () => {
+  it('should render when expected when passed modalTransition and backdropTransition props', () => {
     isOpen = true;
     const wrapper = mount(
-      <Modal isOpen={isOpen} toggle={toggle} modalTransitionTimeout={20} backdropTransitionTimeout={10} modalClassName="custom-timeout-modal">
+      <Modal
+        isOpen={isOpen}
+        toggle={toggle}
+        modalTransition={{ timeout: 2 }}
+        backdropTransition={{ timeout: 10 }}
+        modalClassName="custom-timeout-modal"
+      >
         Hello, world!
       </Modal>
     );
@@ -652,7 +658,7 @@ describe('Modal', () => {
     });
 
     // assert that the modal is closed and the body class is what was set initially
-    jest.runTimersToTime(300);
+    jest.runTimersToTime(301);
     expect(isOpen).toBe(false);
     expect(document.body.className).toBe('my-modal-opened modal-opened');
 

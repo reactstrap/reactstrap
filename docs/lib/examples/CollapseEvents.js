@@ -4,23 +4,32 @@ import { Collapse, Button, CardBody, Card } from 'reactstrap';
 class Example extends Component {
   constructor(props) {
     super(props);
-    this.onOpened = this.onOpened.bind(this);
-    this.onClosed = this.onClosed.bind(this);
+    this.onEntering = this.onEntering.bind(this);
+    this.onEntered = this.onEntered.bind(this);
+    this.onExiting = this.onExiting.bind(this);
+    this.onExited = this.onExited.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = { collapse: false, status: 'Closed' };
   }
 
-  onOpened() {
-    this.setState({ ...this.state, status: 'Opened' });
+  onEntering() {
+    this.setState({ status: 'Opening...' });
   }
 
-  onClosed() {
-    this.setState({ ...this.state, status: 'Closed' });
+  onEntered() {
+    this.setState({ status: 'Opened' });
+  }
+
+  onExiting() {
+    this.setState({ status: 'Closing...' });
+  }
+
+  onExited() {
+    this.setState({ status: 'Closed' });
   }
 
   toggle() {
-    const status = !this.state.collapse ? 'Opening...' : 'Closing...';
-    this.setState({ collapse: !this.state.collapse, status });
+    this.setState({ collapse: !this.state.collapse });
   }
 
   render() {
@@ -28,10 +37,16 @@ class Example extends Component {
       <div>
         <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
         <h5>Current state: {this.state.status}</h5>
-        <Collapse isOpen={this.state.collapse} onOpened={this.onOpened} onClosed={this.onClosed}>
+        <Collapse
+          isOpen={this.state.collapse}
+          onEntering={this.onEntering}
+          onEntered={this.onEntered}
+          onExiting={this.onExiting}
+          onExited={this.onExited}
+        >
           <Card>
             <CardBody>
-            Anim pariatur cliche reprehenderit,
+              Anim pariatur cliche reprehenderit,
              enim eiusmod high life accusamus terry richardson ad squid. Nihil
              anim keffiyeh helvetica, craft beer labore wes anderson cred
              nesciunt sapiente ea proident.

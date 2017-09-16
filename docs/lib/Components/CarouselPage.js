@@ -25,17 +25,30 @@ export default class CarouselPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Carousel.propTypes = {
-  items: PropTypes.array.isRequired,
-  cssModule: PropTypes.object,
+  // the current active slide of the carousel
   activeIndex: PropTypes.number,
-  cycle: PropTypes.bool,
-  wrap: PropTypes.bool,
+  // a function which should advance the carousel to the next slide (via activeIndex)
+  next: PropTypes.func.isRequired,
+  // a function which should advance the carousel to the previous slide (via activeIndex)
+  previous: PropTypes.func.isRequired,
+  // controls if the left and right arrow keys should control the carousel
+  keyboard: PropTypes.bool,
+  // controls if the carousel should not automatically cycle (default: false)
+  paused: PropTypes.bool,
+  // the interval at which the carousel automatically cycles (default: 5000) 
   interval: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.bool
+    PropTypes.string,
+    PropTypes.bool,
   ]),
-  keyboard: PropTypes.bool,
-  hover: PropTypes.string
+  children: PropTypes.array,
+  // called when the mouse enters the Carousel
+  hoverStart: PropTypes.func,
+  // called when the mouse exits the Carousel
+  hoverEnd: PropTypes.func,
+  // controls whether the slide animation on the Carousel works or not
+  slide: PropTypes.bool,
+  cssModule: PropTypes.object,
 };`}
           </PrismCode>
         </pre>

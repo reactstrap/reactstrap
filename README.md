@@ -28,7 +28,7 @@ Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap
 
 ```
 npm install --save bootstrap@4.0.0-alpha.6
-npm install --save reactstrap react-transition-group@^1.1.2 react@^15.3.0 react-dom@^15.3.0
+npm install --save reactstrap react@^15.3.0 react-dom@^15.3.0
 ```
 
 Import Bootstrap CSS in the ```src/index.js``` file:
@@ -55,7 +55,6 @@ https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js
 
 > Note: When using the external CDN library, be sure to include the required dependencies as necessary **prior** to the Reactstrap library:
 >  * [React](https://cdnjs.com/libraries/react)
->  * [ReactTransitionGroup](https://unpkg.com/react-transition-group/dist/react-transition-group.min.js)
 
 
 ## About the Project

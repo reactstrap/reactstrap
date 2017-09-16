@@ -45,69 +45,72 @@ describe('Carousel', () => {
     });
 
     describe('transitions', () => {
-      it('should add the appropriate classes when componentWillEnter is fired', () => {
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
-        wrapper.instance().componentWillEnter();
-        expect(wrapper.state('animation')).toEqual(['carousel-item-next', 'carousel-item-left']);
-        wrapper.setContext({ direction: 'left' });
-        wrapper.instance().componentWillEnter();
-        expect(wrapper.state('animation')).toEqual(['carousel-item-prev', 'carousel-item-right']);
+      it('should add the appropriate classes when entering right', () => {
+        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} in={false} />, { context: { direction: 'right' } });
+
+        wrapper.setProps({ in: true });
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item carousel-item-left carousel-item-next');
+        jest.runTimersToTime(600);
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active');
+        wrapper.setProps({ in: false });
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active carousel-item-left');
+        jest.runTimersToTime(600);
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item');
       });
 
-      it('should call the callback after 500 when componentWillEnter is called', () => {
-        const callback = jest.fn();
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
-        wrapper.instance().componentWillEnter(callback);
-        jest.runTimersToTime(500);
-        expect(callback).toHaveBeenCalled();
+      it('should add the appropriate classes when entering left', () => {
+        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} in={false} />, { context: { direction: 'left' } });
+
+        wrapper.setProps({ in: true });
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item carousel-item-right carousel-item-prev');
+        jest.runTimersToTime(600);
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active');
+        wrapper.setProps({ in: false });
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active carousel-item-right');
+        jest.runTimersToTime(600);
+        expect(wrapper.find('div').prop('className')).toEqual('carousel-item');
       });
 
-      it('should add the appropriate classes when componentDidEnter is fired', () => {
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
-        wrapper.instance().componentDidEnter();
-        expect(wrapper.state('animation')).toEqual(['active']);
-      });
+      it('should call all callbacks when transitioning in and out', () => {
+        const callbacks = {
+          onEnter: jest.fn(),
+          onEntering: jest.fn(),
+          onEntered: jest.fn(),
+          onExit: jest.fn(),
+          onExiting: jest.fn(),
+          onExited: jest.fn(),
+        };
+        const wrapper = mount(<CarouselItem src={items[0].src} in={false} {...callbacks} />);
+        wrapper.setProps({ in: true });
+        expect(callbacks.onEnter).toHaveBeenCalled();
+        expect(callbacks.onEntering).toHaveBeenCalled();
+        expect(callbacks.onEntered).not.toHaveBeenCalled();
+        jest.runTimersToTime(600);
+        expect(callbacks.onEntered).toHaveBeenCalled();
+        expect(callbacks.onExit).not.toHaveBeenCalled();
 
-      it('should add the appropriate classes when componentWillLeave is fired', () => {
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
-        wrapper.instance().componentWillLeave();
-        expect(wrapper.state('animation')).toEqual(['carousel-item-left', 'active']);
-        wrapper.setContext({ direction: 'left' });
-        wrapper.instance().componentWillLeave();
-        expect(wrapper.state('animation')).toEqual(['carousel-item-right', 'active']);
-      });
+        wrapper.setProps({ in: false });
+        expect(callbacks.onExit).toHaveBeenCalled();
+        expect(callbacks.onExiting).toHaveBeenCalled();
+        expect(callbacks.onExited).not.toHaveBeenCalled();
+        jest.runTimersToTime(600);
+        expect(callbacks.onExiting).toHaveBeenCalled();
+        expect(callbacks.onExited).toHaveBeenCalled();
 
-      it('should call the callback after 500 when componentWillLeave is called', () => {
-        const callback = jest.fn();
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
-        wrapper.instance().componentWillLeave(callback);
-        jest.runTimersToTime(500);
-        expect(callback).toHaveBeenCalled();
-      });
-
-      it('should add the appropriate classes when componentDidLeave is fired', () => {
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
-        wrapper.instance().componentDidLeave();
-        expect(wrapper.state('animation')).toEqual([]);
-      });
-
-      it('should add the appropriate classes when componentWillAppear is fired', () => {
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />, { context: { direction: 'right' } });
-        wrapper.instance().componentWillAppear(() => {});
-        expect(wrapper.state('animation')).toEqual(['active']);
+        wrapper.unmount();
       });
     });
   });
 
   describe('indicators', () => {
     it('should render a list with the right number of items', () => {
-      const wrapper = mount(<CarouselIndicators items={items} />);
+      const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />);
       expect(wrapper.find('ol').length).toEqual(1);
       expect(wrapper.find('li').length).toEqual(3);
     });
 
     it('should append the correct active class', () => {
-      const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} />);
+      const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />);
       expect(wrapper.find('.active').length).toEqual(1);
     });
 
@@ -121,13 +124,13 @@ describe('Carousel', () => {
 
   describe('controls', () => {
     it('should render an anchor tag', () => {
-      const wrapper = mount(<CarouselControl />);
+      const wrapper = mount(<CarouselControl direction="next" onClickHandler={() => { }} />);
       expect(wrapper.find('a').length).toEqual(1);
     });
 
     it('should call the onClickHandler', () => {
       const onClick = jest.fn();
-      const wrapper = mount(<CarouselControl onClickHandler={onClick} />);
+      const wrapper = mount(<CarouselControl direction="next" onClickHandler={onClick} />);
       wrapper.find('a').first().simulate('click');
       expect(onClick).toHaveBeenCalled();
     });
@@ -148,8 +151,8 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0}>
-          <CarouselIndicators items={slides} activeIndex={0} />
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
           {slides}
         </Carousel>
       );
@@ -171,10 +174,10 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
-          <CarouselControl direction="prev" directionText="Previous" />
-          <CarouselControl direction="next" directionText="Next" />
+          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
+          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
         </Carousel>
       );
 
@@ -195,11 +198,11 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>
       );
-      expect(wrapper.find(CarouselItem).length).toEqual(1);
+      expect(wrapper.find('.carousel-item.active').length).toEqual(1);
     });
 
     it('should show indicators and controls', () => {
@@ -216,11 +219,11 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0}>
-          <CarouselIndicators items={slides} activeIndex={0} />
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
           {slides}
-          <CarouselControl direction="prev" directionText="Previous" />
-          <CarouselControl direction="next" directionText="Next" />
+          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
+          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
         </Carousel>
       );
 
@@ -244,7 +247,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={0}>
+        <Carousel interval={1000} activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>
       );
@@ -267,7 +270,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={1}>
+        <Carousel interval={1000} activeIndex={1} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>
       );
@@ -290,7 +293,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={2}>
+        <Carousel interval={1000} activeIndex={2} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>
       );
@@ -313,7 +316,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={0}>
+        <Carousel interval={1000} activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>
       );
@@ -339,7 +342,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel next={next} interval={1000} activeIndex={0} paused>
+        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0} paused>
           {slides}
         </Carousel>
       );
@@ -363,7 +366,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel next={next} interval={1000} activeIndex={0}>
+        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0}>
           {slides}
         </Carousel>
       );
@@ -387,7 +390,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel next={next} activeIndex={0} interval={false}>
+        <Carousel next={next} previous={() => { }} activeIndex={0} interval={false}>
           {slides}
         </Carousel>
       );
@@ -411,7 +414,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel next={next} activeIndex={0}>
+        <Carousel next={next} previous={() => { }} activeIndex={0}>
           {slides}
         </Carousel>
       );
@@ -434,7 +437,7 @@ describe('Carousel', () => {
         );
       });
       const wrapper = mount(
-        <Carousel next={next} interval="1000" activeIndex={0}>
+        <Carousel next={next} previous={() => { }} interval="1000" activeIndex={0}>
           {slides}
         </Carousel>
       );

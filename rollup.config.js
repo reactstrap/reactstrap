@@ -62,7 +62,6 @@ umdConfig.targets = [
 umdConfig.globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
-  'react-transition-group': 'ReactTransitionGroup',
 };
 const missingGlobals = peerDependencies.filter(dep => !(dep in umdConfig.globals));
 if (missingGlobals.length) {

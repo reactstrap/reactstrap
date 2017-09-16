@@ -45,11 +45,9 @@ export default class AlertsPage extends React.Component {
   isOpen: PropTypes.bool,  // default: true
   toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
-  // Set any of the timeouts to 0 to disable animation
-  transitionAppearTimeout: PropTypes.number,
-  transitionEnterTimeout: PropTypes.number,
-  transitionLeaveTimeout: PropTypes.number
+  // Controls the transition of the alert fading in and out
+  // See [Fade](/components/fade/) for more details
+  transition: PropTypes.shape(Fade.propTypes),
 }`}
           </PrismCode>
         </pre>

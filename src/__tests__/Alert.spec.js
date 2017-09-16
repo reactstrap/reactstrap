@@ -1,85 +1,83 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Alert } from '../';
 
 describe('Alert', () => {
   it('should render children', () => {
-    const alert = shallow(<Alert>Yo!</Alert>).find('div');
+    const alert = mount(<Alert>Yo!</Alert>);
     expect(alert.text()).toBe('Yo!');
   });
 
-  it('should transition on appear, enter, and leave using fade', () => {
-    const alert = shallow(<Alert>Yo!</Alert>);
-    expect(alert.prop('transitionName')).toEqual({
-      appear: 'fade',
-      appearActive: 'show',
-      enter: 'fade',
-      enterActive: 'show',
-      leave: 'fade',
-      leaveActive: 'out'
-    });
+  it('should pass className down', () => {
+    const alert = mount(<Alert className="test-class-name">Yo!</Alert>);
+    expect(alert.find('.alert').prop('className')).toContain('test-class-name');
+  });
+
+  it('should pass close className down', () => {
+    function noop() { }
+    const alert = mount(<Alert toggle={noop} closeClassName="test-class-name">Yo!</Alert>);
+    expect(alert.find('.close').prop('className')).toContain('test-class-name');
+  });
+
+  it('should pass other props down', () => {
+    const alert = mount(<Alert data-testprop="testvalue">Yo!</Alert>);
+    expect(alert.find('.alert').prop('data-testprop')).toContain('testvalue');
   });
 
   it('should have default transitionTimeouts', () => {
-    const alert = shallow(<Alert>Yo!</Alert>);
+    const alert = mount(<Alert>Yo!</Alert>);
 
-    expect(alert.prop('transitionAppearTimeout')).toBe(150);
-    expect(alert.prop('transitionAppear')).toBe(true);
-    expect(alert.prop('transitionEnterTimeout')).toBe(150);
-    expect(alert.prop('transitionEnter')).toBe(true);
-    expect(alert.prop('transitionLeaveTimeout')).toBe(150);
-    expect(alert.prop('transitionLeave')).toBe(true);
+    const transition = alert.find('Transition');
+    expect(transition.prop('timeout')).toEqual(150);
+    expect(transition.prop('appear')).toBe(true);
+    expect(transition.prop('enter')).toBe(true);
+    expect(transition.prop('exit')).toBe(true);
   });
 
   it('should have support configurable transitionTimeouts', () => {
-    const alert = shallow(
-      <Alert
-        transitionAppearTimeout={0}
-        transitionEnterTimeout={0}
-        transitionLeaveTimeout={0}
-      >
+    const alert = mount(
+      <Alert transition={{ timeout: 0, appear: false, enter: false, exit: false }}>
         Yo!
       </Alert>
     );
 
-    expect(alert.prop('transitionAppearTimeout')).toBe(0);
-    expect(alert.prop('transitionAppear')).toBe(false);
-    expect(alert.prop('transitionEnterTimeout')).toBe(0);
-    expect(alert.prop('transitionEnter')).toBe(false);
-    expect(alert.prop('transitionLeaveTimeout')).toBe(0);
-    expect(alert.prop('transitionLeave')).toBe(false);
+    const transition = alert.find('Transition');
+    expect(transition.prop('timeout')).toEqual(0);
+    expect(transition.prop('appear')).toBe(false);
+    expect(transition.prop('enter')).toBe(false);
+    expect(transition.prop('exit')).toBe(false);
   });
 
   it('should have "success" as default color', () => {
-    const alert = shallow(<Alert>Yo!</Alert>).find('div');
+    const alert = mount(<Alert>Yo!</Alert>).find('div');
     expect(alert.hasClass('alert-success')).toBe(true);
   });
 
   it('should accept color prop', () => {
-    const alert = shallow(<Alert color="warning">Yo!</Alert>).find('div');
+    const alert = mount(<Alert color="warning">Yo!</Alert>).find('div');
     expect(alert.hasClass('alert-warning')).toBe(true);
   });
 
   it('should use a div tag by default', () => {
-    const alert = shallow(<Alert>Yo!</Alert>).children().first();
-    expect(alert.type()).toBe('div');
+    const alert = mount(<Alert>Yo!</Alert>);
+    expect(alert.find('div').length).toBe(1);
   });
 
   it('should be non dismissible by default', () => {
-    const alert = shallow(<Alert>Yo!</Alert>).find('div');
+    const alert = mount(<Alert>Yo!</Alert>).find('div');
     expect(alert.find('button').length).toEqual(0);
     expect(alert.hasClass('alert-dismissible')).toBe(false);
   });
 
   it('should show dismiss button if passed toggle', () => {
-    const alert = shallow(<Alert color="danger" toggle={() => {}}>Yo!</Alert>).find('div');
+    const alert = mount(<Alert color="danger" toggle={() => { }}>Yo!</Alert>).find('div');
     expect(alert.find('button').length).toEqual(1);
     expect(alert.hasClass('alert-dismissible')).toBe(true);
   });
 
   it('should support custom tag', () => {
-    const alert = shallow(<Alert tag="p">Yo!</Alert>).children().first();
-    expect(alert.type()).toBe('p');
+    const alert = mount(<Alert tag="p">Yo!</Alert>);
+    expect(alert.find('p').length).toBe(1);
   });
 
   it('should be empty if not isOpen', () => {
@@ -96,7 +94,7 @@ describe('Alert', () => {
   });
 
   it('should render close button with custom aria-label', () => {
-    const alert = shallow(<Alert toggle={() => {}} closeAriaLabel="oseclay">Yo!</Alert>).find('div');
+    const alert = mount(<Alert toggle={() => { }} closeAriaLabel="oseclay">Yo!</Alert>).find('div');
     const closeButton = alert.find('button').first();
     expect(closeButton.prop('aria-label')).toBe('oseclay');
   });

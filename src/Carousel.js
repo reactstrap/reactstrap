@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { TransitionGroup } from 'react-transition-group';
 import { mapToCssModules } from './utils';
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.renderItems = this.renderItems.bind(this);
     this.state = { direction: 'right' };
   }
 
@@ -56,11 +56,26 @@ class Carousel extends React.Component {
     }
   }
 
+  renderItems(carouselItems, className) {
+    const { slide } = this.props;
+    return (
+      <div role="listbox" className={className}>
+        {carouselItems.map((item, index) => {
+          const isIn = (index === this.props.activeIndex);
+          return React.cloneElement(item, {
+            in: isIn,
+            slide: slide,
+          });
+        })}
+      </div>
+    );
+  }
+
   render() {
-    const { children, cssModule, activeIndex, hoverStart, hoverEnd } = this.props;
+    const { children, cssModule, hoverStart, hoverEnd, slide } = this.props;
     const outerClasses = mapToCssModules(classNames(
       'carousel',
-      'slide'
+      slide && 'slide',
     ), cssModule);
 
     const innerClasses = mapToCssModules(classNames(
@@ -76,9 +91,7 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <TransitionGroup component="div" role="listbox" className={innerClasses}>
-            {children[activeIndex]}
-          </TransitionGroup>
+          {this.renderItems(children, innerClasses)}
         </div>
       );
     }
@@ -91,9 +104,7 @@ class Carousel extends React.Component {
 
       return (
         <div className={outerClasses} onMouseEnter={hoverStart} onMouseLeave={hoverEnd}>
-          <TransitionGroup component="div" role="listbox" className={innerClasses}>
-            {carouselItems[activeIndex]}
-          </TransitionGroup>
+          {this.renderItems(carouselItems, innerClasses)}
           {controlLeft}
           {controlRight}
         </div>
@@ -116,9 +127,7 @@ class Carousel extends React.Component {
         onMouseLeave={hoverEnd}
       >
         {indicators}
-        <TransitionGroup component="div" role="listbox" className={innerClasses}>
-          {carouselItems[activeIndex]}
-        </TransitionGroup>
+        {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
         {controlRight}
       </div>
@@ -127,27 +136,38 @@ class Carousel extends React.Component {
 }
 
 Carousel.propTypes = {
-  paused: PropTypes.bool,
-  next: PropTypes.func.isRequired,
-  previous: PropTypes.func.isRequired,
-  keyboard: PropTypes.bool,
-  cssModule: PropTypes.object,
+  // the current active slide of the carousel
   activeIndex: PropTypes.number,
+  // a function which should advance the carousel to the next slide (via activeIndex)
+  next: PropTypes.func.isRequired,
+  // a function which should advance the carousel to the previous slide (via activeIndex)
+  previous: PropTypes.func.isRequired,
+  // controls if the left and right arrow keys should control the carousel
+  keyboard: PropTypes.bool,
+  // controls if the carousel should not automatically cycle (default: false)
+  paused: PropTypes.bool,
+  // the interval at which the carousel automatically cycles (default: 5000) 
   interval: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-    PropTypes.bool
+    PropTypes.bool,
   ]),
   children: PropTypes.array,
+  // called when the mouse enters the Carousel
   hoverStart: PropTypes.func,
-  hoverEnd: PropTypes.func
+  // called when the mouse exits the Carousel
+  hoverEnd: PropTypes.func,
+  // controls whether the slide animation on the Carousel works or not
+  slide: PropTypes.bool,
+  cssModule: PropTypes.object,
 };
 
 Carousel.defaultProps = {
   interval: 5000,
   hover: false,
   paused: false,
-  keyboard: true
+  keyboard: true,
+  slide: true,
 };
 
 Carousel.childContextTypes = {
