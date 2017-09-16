@@ -15,6 +15,9 @@ const BadgePillsExampleSource = require('!!raw!../examples/BadgePills');
 import BadgeVariationsExample from '../examples/BadgeVariations';
 const BadgeVariationsExampleSource = require('!!raw!../examples/BadgeVariations');
 
+import BadgeLinksExample from '../examples/BadgeLinks';
+const BadgeLinksExampleSource = require('!!raw!../examples/BadgeLinks');
+
 export default class BadgesPage extends React.Component {
   render() {
     return (
@@ -56,6 +59,16 @@ export default class BadgesPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {BadgePillsExampleSource}
+          </PrismCode>
+        </pre>
+        <h3>Links</h3>
+        <p>Adding the <code>href</code> prop (without specifying a <code>tag</code> prop) will default the badge to a link.</p>
+        <div className="docs-example">
+          <BadgeLinksExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {BadgeLinksExampleSource}
           </PrismCode>
         </pre>
       </div>

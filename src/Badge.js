@@ -13,13 +13,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-  color: 'default',
+  color: 'secondary',
   pill: false,
   tag: 'span'
 };
 
 const Badge = (props) => {
-  const {
+  let {
     className,
     cssModule,
     color,
@@ -34,6 +34,10 @@ const Badge = (props) => {
     'badge-' + color,
     pill ? 'badge-pill' : false
   ), cssModule);
+
+  if (attributes.href && Tag === 'span') {
+    Tag = 'a';
+  }
 
   return (
     <Tag {...attributes} className={classes} />
