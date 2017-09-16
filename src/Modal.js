@@ -12,7 +12,7 @@ import {
   TransitionTimeouts
 } from './utils';
 
-function noop() {}
+function noop() { }
 
 const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
@@ -61,11 +61,9 @@ const defaultProps = {
   onOpened: noop,
   onClosed: noop,
   modalTransition: {
-    ...Fade.defaultProps,
     timeout: TransitionTimeouts.Modal,
   },
   backdropTransition: {
-    ...Fade.defaultProps,
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
@@ -89,6 +87,9 @@ class Modal extends React.Component {
     if (this.props.isOpen) {
       this.togglePortal();
     }
+    if (this.props.onEnter) {
+      this.props.onEnter();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -103,18 +104,21 @@ class Modal extends React.Component {
 
   componentWillUnmount() {
     this.destroy();
+    if (this.props.onExit) {
+      this.props.onExit();
+    }
   }
 
   onOpened(node, isAppearing) {
     this.props.onOpened();
-    this.props.modalTransition.onEntered(node, isAppearing);
+    (this.props.modalTransition.onEntered || noop)(node, isAppearing);
   }
 
   onClosed(node) {
     // so all methods get called before it is unmounted
     setTimeout(() => this.destroy(), 0);
     this.props.onClosed();
-    this.props.modalTransition.onExited(node);
+    (this.props.modalTransition.onExited || noop)(node);
   }
 
   handleEscape(e) {
@@ -246,11 +250,13 @@ class Modal extends React.Component {
 
     const hasTransition = this.props.fade;
     const modalTransition = {
+      ...Fade.defaultProps,
       ...this.props.modalTransition,
       baseClass: hasTransition ? this.props.modalTransition.baseClass : '',
       timeout: hasTransition ? this.props.modalTransition.timeout : 0,
     };
     const backdropTransition = {
+      ...Fade.defaultProps,
       ...this.props.backdropTransition,
       baseClass: hasTransition ? this.props.backdropTransition.baseClass : '',
       timeout: hasTransition ? this.props.backdropTransition.timeout : 0,
@@ -270,7 +276,7 @@ class Modal extends React.Component {
         </Fade>
         <Fade
           {...backdropTransition}
-          in={isOpen && backdrop}
+          in={isOpen && !!backdrop}
           cssModule={cssModule}
           className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
         />

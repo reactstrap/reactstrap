@@ -18,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  ...Transition.defaultProps,
   tag: 'div',
   baseClass: 'fade',
   baseClassActive: 'show',
