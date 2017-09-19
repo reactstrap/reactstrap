@@ -12,6 +12,11 @@ const propTypes = {
     PropTypes.func,
     DOMElement,
   ]).isRequired,
+  container: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    DOMElement,
+  ]),
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,
@@ -188,6 +193,7 @@ class Tooltip extends React.Component {
         isOpen={this.props.isOpen}
         placement={this.props.placement}
         placementPrefix={this.props.placementPrefix}
+        container={this.props.container}
       >
         <div
           {...attributes}
