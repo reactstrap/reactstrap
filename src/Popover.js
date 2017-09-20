@@ -20,6 +20,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  innerClassName: PropTypes.string,
   placementPrefix: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
@@ -153,12 +154,13 @@ class Popover extends React.Component {
     const attributes = omit(this.props, Object.keys(propTypes));
     const classes = mapToCssModules(classNames(
       'popover-inner',
-      this.props.className
+      this.props.innerClassName
     ), this.props.cssModule);
 
     const popperClasses = mapToCssModules(classNames(
       'popover',
-      'show'
+      'show',
+      this.props.className
     ), this.props.cssModule);
 
     return (

@@ -20,6 +20,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  innerClassName: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
   autohide: PropTypes.bool,
@@ -178,12 +179,13 @@ class Tooltip extends React.Component {
     const attributes = omit(this.props, Object.keys(propTypes));
     const classes = mapToCssModules(classNames(
       'tooltip-inner',
-      this.props.className
+      this.props.innerClassName
     ), this.props.cssModule);
 
     const popperClasses = mapToCssModules(classNames(
       'tooltip',
-      'show'
+      'show',
+      this.props.className
     ), this.props.cssModule);
 
     return (

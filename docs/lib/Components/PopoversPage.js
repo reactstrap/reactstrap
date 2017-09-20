@@ -37,6 +37,9 @@ export default class PopoversPage extends React.Component {
   ]).isRequired,
   // Where to inject the popper DOM node, default to body
   container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
+  className: PropTypes.string,
+  // Apply class to the inner-popover
+  innerClassName: PropTypes.string,
   disabled: PropTypes.bool,
   placementPrefix: PropTypes.string,
   delay: PropTypes.oneOfType([

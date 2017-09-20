@@ -47,6 +47,9 @@ export default class TooltipsPage extends React.Component {
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
   ]),
+  className: PropTypes.string,
+  // Apply class to the inner-tooltip
+  innerClassName: PropTypes.string,
   // optionally hide tooltip when hovering over tooltip content - default true
   autohide: PropTypes.bool,
   // convenience attachments for popover

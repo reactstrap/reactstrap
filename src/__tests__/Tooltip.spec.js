@@ -171,6 +171,30 @@ describe('Tooltip', () => {
     wrapper.detach();
   });
 
+  it('should allow custom classes to be added to the tooltip-inner', () => {
+    const wrapper = mount(
+      <Tooltip isOpen target="target" innerClassName="tooltip-special">
+        Tooltip Content
+      </Tooltip>
+    );
+
+    expect(document.getElementsByClassName('tooltip-inner')[0].className.indexOf('tooltip-special') > -1).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should allow custom classes to be added to the tooltip', () => {
+    const wrapper = mount(
+      <Tooltip isOpen target="target" className="tooltip-special">
+        Tooltip Content
+      </Tooltip>
+    );
+
+    expect(document.getElementsByClassName('tooltip')[0].className.indexOf('tooltip-special') > -1).toBe(true);
+
+    wrapper.unmount();
+  });
+
   it('should not call props.toggle when disabled ', () => {
     const props = createSpyObj('props', ['toggle']);
     const event = createSpyObj('event', ['preventDefault']);
