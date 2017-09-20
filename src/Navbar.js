@@ -15,30 +15,48 @@ const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  toggleable: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  expandable: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  toggleable: deprecated(PropTypes.oneOfType([PropTypes.bool, PropTypes.string]), 'Please use the prop "expand"'),
+  expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 const defaultProps = {
   tag: 'nav',
-  toggleable: false,
-  expandable: false,
+  expand: false,
 };
 
-const getToggleableClass = (toggleable) => {
-  if (toggleable === false) {
+const getExpandClass = (expand) => {
+  if (expand === false) {
     return false;
-  } else if (toggleable === true || toggleable === 'xs') {
+  } else if (expand === true || expand === 'xs') {
     return 'navbar-expand';
   }
 
-  return `navbar-expand-${toggleable}`;
+  return `navbar-expand-${expand}`;
+};
+
+// To better maintain backwards compatibility while toggleable is deprecated.
+// We must map breakpoints to the next breakpoint so that toggleable and expand do the same things at the same breakpoint.
+const toggleableToExpand = {
+  xs: 'sm',
+  sm: 'md',
+  md: 'lg',
+  lg: 'xl',
+};
+
+const getToggleableClass = (toggleable) => {
+  if (toggleable === undefined || toggleable === 'xl') {
+    return false;
+  } else if (toggleable === false) {
+    return 'navbar-expand';
+  }
+
+  return `navbar-expand-${toggleable === true ? 'sm' : (toggleableToExpand[toggleable] || toggleable)}`;
 };
 
 const Navbar = (props) => {
   const {
     toggleable,
-    expandable,
+    expand,
     className,
     cssModule,
     light,
@@ -54,7 +72,7 @@ const Navbar = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     'navbar',
-    getToggleableClass(toggleable || expandable),
+    getExpandClass(expand) || getToggleableClass(toggleable),
     {
       'navbar-light': light,
       'navbar-dark': inverse || dark,
