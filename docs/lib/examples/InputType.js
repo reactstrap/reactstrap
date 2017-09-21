@@ -6,8 +6,8 @@ export default class Example extends React.Component {
     return (
       <Form>
         <FormGroup>
-          <Label for="exampleEmail">Static</Label>
-          <Input static>Some static value</Input>
+          <Label for="exampleEmail">Plain Text (Static)</Label>
+          <Input plaintext>Some plain text/ static value</Input>
         </FormGroup>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>

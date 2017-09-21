@@ -13,7 +13,8 @@ const propTypes = {
   valid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  static: PropTypes.bool,
+  static: deprecated(PropTypes.bool, 'Please use the prop "plaintext"'),
+  plaintext: PropTypes.bool,
   addon: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -36,6 +37,7 @@ class Input extends React.Component {
       tag,
       addon,
       static: staticInput,
+      plaintext,
       innerRef,
       ...attributes
     } = this.props;
@@ -49,8 +51,8 @@ class Input extends React.Component {
 
     let formControlClass = 'form-control';
 
-    if (staticInput) {
-      formControlClass = `${formControlClass}-static`;
+    if (plaintext || staticInput) {
+      formControlClass = `${formControlClass}-plaintext`;
       Tag = tag;
     } else if (fileInput) {
       formControlClass = `${formControlClass}-file`;
