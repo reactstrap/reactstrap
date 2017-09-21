@@ -1,3 +1,46 @@
+<a name="5.0.0-alpha.0"></a>
+# [5.0.0-alpha.0](https://github.com/reactstrap/reactstrap/compare/4.8.0...5.0.0-alpha.0) (2017-09-21)
+
+
+### Bug Fixes
+
+* Add container to Popover and Tooltip ([759934b](https://github.com/reactstrap/reactstrap/commit/759934b))
+* **Carousel:** use prop-types in carousel ([#503](https://github.com/reactstrap/reactstrap/issues/503)) ([e1bdadb](https://github.com/reactstrap/reactstrap/commit/e1bdadb))
+* **CSSModules:** pass modules to child components ([#483](https://github.com/reactstrap/reactstrap/issues/483)) ([12270d0](https://github.com/reactstrap/reactstrap/commit/12270d0))
+* **Label:** fix xs col class ([#512](https://github.com/reactstrap/reactstrap/issues/512)) ([683dbdb](https://github.com/reactstrap/reactstrap/commit/683dbdb)), closes [#510](https://github.com/reactstrap/reactstrap/issues/510)
+* **Modal:** add workaround for Modal auto focus ([f12057d](https://github.com/reactstrap/reactstrap/commit/f12057d))
+* **Navbar:** better backwards compatibility ([aefbdd7](https://github.com/reactstrap/reactstrap/commit/aefbdd7))
+* **NavbarToggler:** fix syntax error ([a460912](https://github.com/reactstrap/reactstrap/commit/a460912))
+* **PaginationLink:** handle empty children array ([#511](https://github.com/reactstrap/reactstrap/issues/511)) ([72d82a3](https://github.com/reactstrap/reactstrap/commit/72d82a3)), closes [#494](https://github.com/reactstrap/reactstrap/issues/494)
+* **popper:** account for touchstart ([9b80d11](https://github.com/reactstrap/reactstrap/commit/9b80d11)), closes [#456](https://github.com/reactstrap/reactstrap/issues/456) [#458](https://github.com/reactstrap/reactstrap/issues/458)
+* **popperjs:** fixed error in build ([#571](https://github.com/reactstrap/reactstrap/issues/571)) ([0a9394d](https://github.com/reactstrap/reactstrap/commit/0a9394d))
+* **Tooltip/Popover:** fix className/add innerClassName ([a2a33e3](https://github.com/reactstrap/reactstrap/commit/a2a33e3))
+
+
+### Features
+
+* **aria:** add closeAriaLabel ([#525](https://github.com/reactstrap/reactstrap/issues/525)) ([3b4c0e6](https://github.com/reactstrap/reactstrap/commit/3b4c0e6)), closes [#524](https://github.com/reactstrap/reactstrap/issues/524)
+* **Badge:** handle links ([9b32cee](https://github.com/reactstrap/reactstrap/commit/9b32cee))
+* **Card:** update Card for bs v4 beta ([c4609e2](https://github.com/reactstrap/reactstrap/commit/c4609e2))
+* **Dropdown:** update Dropdown for bs v4 beta ([53687fa](https://github.com/reactstrap/reactstrap/commit/53687fa))
+* **Modal:** onOpened and onClosed callbacks for modals ([#434](https://github.com/reactstrap/reactstrap/issues/434)) ([87c6c4e](https://github.com/reactstrap/reactstrap/commit/87c6c4e)), closes [#306](https://github.com/reactstrap/reactstrap/issues/306)
+* **Nav/Navbar:** update to bs v4 beta ([5395e8d](https://github.com/reactstrap/reactstrap/commit/5395e8d))
+* **Popover:** update popovers to bs v4 beta ([bb00f4c](https://github.com/reactstrap/reactstrap/commit/bb00f4c))
+* **popper:** add container prop to popper ([fd59d37](https://github.com/reactstrap/reactstrap/commit/fd59d37))
+* **popperjs:** use popperjs instead of tether ([#561](https://github.com/reactstrap/reactstrap/issues/561)) ([5413022](https://github.com/reactstrap/reactstrap/commit/5413022))
+* **UncontrolledCarousel:** add UncontrolledCarousel ([627a73e](https://github.com/reactstrap/reactstrap/commit/627a73e))
+* **util:** add warnOnce and deprecated fns ([5faa94d](https://github.com/reactstrap/reactstrap/commit/5faa94d))
+* **validation:** add/update form validation ([8b2386f](https://github.com/reactstrap/reactstrap/commit/8b2386f))
+
+
+### BREAKING CHANGES
+
+* **validation:** The color prop has been removed from FromGroup, see the valid prop on Input.
+* **popperjs:** getRef has been renamed to innerRef to line up with other libraries.
+* **popperjs:** tether props have been removed. 
+
+
+
 <a name="4.8.0"></a>
 # [4.8.0](https://github.com/reactstrap/reactstrap/compare/4.7.0...4.8.0) (2017-06-28)
 

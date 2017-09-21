@@ -5,7 +5,7 @@ set -e
 BUMP_TYPE=$1
 
 if [ -z "$TRAVIS" ]; then
-  git checkout master
+  git checkout v5
   git pull
   npm install
 fi
