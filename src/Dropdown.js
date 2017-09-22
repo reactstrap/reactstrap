@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
-import { mapToCssModules, omit } from './utils';
+import { mapToCssModules, omit, keyCodes } from './utils';
 
 const propTypes = {
   disabled: PropTypes.bool,
@@ -39,6 +39,7 @@ class Dropdown extends React.Component {
 
     this.addEvents = this.addEvents.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
   }
@@ -65,26 +66,84 @@ class Dropdown extends React.Component {
     this.removeEvents();
   }
 
+  getContainer() {
+    return ReactDOM.findDOMNode(this);
+  }
+
   addEvents() {
-    ['click', 'touchstart'].forEach(event =>
+    ['click', 'touchstart', 'keyup'].forEach(event =>
       document.addEventListener(event, this.handleDocumentClick, true)
     );
   }
 
   removeEvents() {
-    ['click', 'touchstart'].forEach(event =>
+    ['click', 'touchstart', 'keyup'].forEach(event =>
       document.removeEventListener(event, this.handleDocumentClick, true)
     );
   }
 
   handleDocumentClick(e) {
-    const container = ReactDOM.findDOMNode(this);
+    if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
+    const container = this.getContainer();
 
-    if (container.contains(e.target) && container !== e.target) {
+    if (container.contains(e.target) && container !== e.target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
       return;
     }
 
-    this.toggle();
+    this.toggle(e);
+  }
+
+  handleKeyDown(e) {
+    if ([keyCodes.esc, keyCodes.up, keyCodes.down, keyCodes.space].indexOf(e.which) === -1 ||
+      (/button/i.test(e.target.tagName) && e.which === keyCodes.space) ||
+      /input|textarea/i.test(e.target.tagName)) {
+      return;
+    }
+
+    e.preventDefault();
+    if (this.props.disabled) return;
+
+    const container = this.getContainer();
+
+    if (e.which === keyCodes.space && this.props.isOpen && container !== e.target) {
+      e.target.click();
+    }
+
+    if (e.which === keyCodes.esc || !this.props.isOpen) {
+      this.toggle(e);
+      container.querySelector('[aria-expanded]').focus();
+      return;
+    }
+
+    const menuClass = mapToCssModules('dropdown-menu', this.props.cssModule);
+    const itemClass = mapToCssModules('dropdown-item', this.props.cssModule);
+    const disabledClass = mapToCssModules('disabled', this.props.cssModule);
+
+    const items = container.querySelectorAll(`.${menuClass} .${itemClass}:not(.${disabledClass})`);
+
+    if (!items.length) return;
+
+    let index = -1;
+    for (let i = 0; i < items.length; i += 1) {
+      if (items[i] === e.target) {
+        index = i;
+        break;
+      }
+    }
+
+    if (e.which === keyCodes.up && index > 0) {
+      index -= 1;
+    }
+
+    if (e.which === keyCodes.down && index < items.length - 1) {
+      index += 1;
+    }
+
+    if (index < 0) {
+      index = 0;
+    }
+
+    items[index].focus();
   }
 
   handleProps() {
@@ -124,7 +183,7 @@ class Dropdown extends React.Component {
         dropup: dropup
       }
     ), cssModule);
-    return <Manager {...attrs} className={classes} />;
+    return <Manager {...attrs} className={classes} onKeyDown={this.handleKeyDown} />;
   }
 }
 

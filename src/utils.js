@@ -119,3 +119,11 @@ export const TransitionTimeouts = {
   Modal:    300, // $modal-transition
   Carousel: 600, // $carousel-transition
 };
+
+export const keyCodes = {
+  esc:   27,
+  space: 32,
+  tab:   9,
+  up:    38,
+  down:  40,
+};
