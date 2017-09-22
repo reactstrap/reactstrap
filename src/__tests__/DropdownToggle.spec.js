@@ -27,7 +27,6 @@ describe('DropdownToggle', () => {
     );
 
     expect(wrapper.text()).toBe('Ello world');
-    expect(wrapper.find('[data-toggle="dropdown"]').length).toBe(1);
   });
 
   it('should add default sr-only content', () => {
@@ -78,7 +77,7 @@ describe('DropdownToggle', () => {
       }
     );
 
-    expect(wrapper.find('[data-toggle="dropdown"]').hasClass('dropdown-toggle')).toBe(true);
+    expect(wrapper.hasClass('dropdown-toggle')).toBe(true);
   });
 
   describe('color', () => {
@@ -144,7 +143,7 @@ describe('DropdownToggle', () => {
       }
     );
 
-    expect(wrapper.find('[data-toggle="dropdown"]').hasClass('dropdown-toggle-split')).toBe(true);
+    expect(wrapper.hasClass('dropdown-toggle-split')).toBe(true);
   });
 
   describe('onClick', () => {
@@ -215,14 +214,14 @@ describe('DropdownToggle', () => {
 
     it('should not set the tag prop when the tag is defined', () => {
       const wrapper = mount(
-        <DropdownToggle nav tag="span">Ello world</DropdownToggle>,
+        <DropdownToggle nav>Ello world</DropdownToggle>,
         {
           context: { isOpen, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
 
-      expect(wrapper.find('[aria-haspopup="true"]').prop('tag')).toBe(undefined);
+      expect(wrapper.prop('tag')).toBe(undefined);
     });
 
     it('should preventDefault', () => {

@@ -13,7 +13,6 @@ const propTypes = {
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  'data-toggle': PropTypes.string,
   'aria-haspopup': PropTypes.bool,
   split: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -21,7 +20,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  'data-toggle': 'dropdown',
   'aria-haspopup': true,
   color: 'secondary',
 };
@@ -56,7 +54,7 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, color, cssModule, caret, split, nav, tag, 'aria-haspopup': ariaHaspopup, ...props } = this.props;
+    const { className, color, cssModule, caret, split, nav, tag, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
       className,
@@ -87,7 +85,6 @@ class DropdownToggle extends React.Component {
         className={classes}
         component={Tag}
         onClick={this.onClick}
-        aria-haspopup={ariaHaspopup ? 'true' : 'false'}
         aria-expanded={this.context.isOpen}
         children={children}
       />

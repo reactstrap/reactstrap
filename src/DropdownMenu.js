@@ -27,8 +27,6 @@ const noFlipModifier = { flip: { enabled: false } };
 
 const DropdownMenu = (props, context) => {
   const { className, cssModule, right, tag, flip, ...attrs } = props;
-  const position1 = context.dropup ? 'top' : 'bottom';
-  const position2 = right ? 'end' : 'start';
   const classes = mapToCssModules(classNames(
     className,
     'dropdown-menu',
@@ -38,17 +36,24 @@ const DropdownMenu = (props, context) => {
     }
   ), cssModule);
 
-  attrs.placement = `${position1}-${position2}`;
+  let Tag = tag;
+
+  if (context.isOpen) {
+    Tag = Popper;
+    const position1 = context.dropup ? 'top' : 'bottom';
+    const position2 = right ? 'end' : 'start';
+    attrs.placement = `${position1}-${position2}`;
+    attrs.component = tag;
+    attrs.modifiers = !flip ? noFlipModifier : undefined;
+  }
 
   return (
-    <Popper
+    <Tag
       tabIndex="-1"
       role="menu"
       {...attrs}
-      component={tag}
       aria-hidden={!context.isOpen}
       className={classes}
-      modifiers={!flip ? noFlipModifier : undefined}
     />
   );
 };
