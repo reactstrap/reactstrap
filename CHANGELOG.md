@@ -1,3 +1,19 @@
+<a name="5.0.0-alpha.1"></a>
+# [5.0.0-alpha.1](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.0...5.0.0-alpha.1) (2017-09-23)
+
+
+### Bug Fixes
+
+* **Dropdown:** fix perf issue ([e4479aa](https://github.com/reactstrap/reactstrap/commit/e4479aa)), closes [#584](https://github.com/reactstrap/reactstrap/issues/584)
+
+
+### Features
+
+* **Dropdown:** keyboard control/navigation ([ac90f51](https://github.com/reactstrap/reactstrap/commit/ac90f51)), closes [#580](https://github.com/reactstrap/reactstrap/issues/580)
+* **Input:** add plaintext prop ([d0c6e82](https://github.com/reactstrap/reactstrap/commit/d0c6e82)), closes [#485](https://github.com/reactstrap/reactstrap/issues/485)
+
+
+
 <a name="5.0.0-alpha.0"></a>
 # [5.0.0-alpha.0](https://github.com/reactstrap/reactstrap/compare/4.8.0...5.0.0-alpha.0) (2017-09-21)
 
