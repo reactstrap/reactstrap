@@ -16,10 +16,10 @@ describe('Popover', () => {
     container = document.createElement('div');
     element.innerHTML = '<p id="outerTarget">This is the popover <span id="innerTarget">target</span>.</p>';
     container.setAttribute('id', 'container');
-    outerTarget = document.getElementById('outerTarget');
-    innerTarget = document.getElementById('innerTarget');
     element.appendChild(container);
     document.body.appendChild(element);
+    outerTarget = document.getElementById('outerTarget');
+    innerTarget = document.getElementById('innerTarget');
     isOpen = false;
     toggle = () => { isOpen = !isOpen; };
     placement = 'top';
@@ -221,7 +221,7 @@ describe('Popover', () => {
     wrapper.detach();
   });
 
-  it('should NOT handle inner target clicks', () => {
+  it('should NOT handle inner target clicks when isOpen is false (user is responsible)', () => {
     const wrapper = mount(
       <Popover target="innerTarget" isOpen={isOpen} toggle={toggle}>
         Popover Content
@@ -234,6 +234,42 @@ describe('Popover', () => {
     instance.handleDocumentClick({ target: innerTarget });
     jest.runTimersToTime(0); // toggle is still async
     expect(isOpen).toBe(false);
+
+    wrapper.detach();
+  });
+
+  it('should NOT handle inner target clicks when isOpen is true (user is responsible)', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Popover target="innerTarget" isOpen={isOpen} toggle={toggle}>
+        Popover Content
+      </Popover>,
+      { attachTo: container }
+    );
+    const instance = wrapper.instance();
+
+    expect(isOpen).toBe(true);
+    instance.handleDocumentClick({ target: innerTarget });
+    jest.runTimersToTime(0); // toggle is still async
+    expect(isOpen).toBe(true);
+
+    wrapper.detach();
+  });
+
+  it('should NOT handle popover target clicks', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Popover target="innerTarget" isOpen={isOpen} toggle={toggle}>
+        Popover Content
+      </Popover>,
+      { attachTo: container }
+    );
+    const instance = wrapper.instance();
+
+    expect(isOpen).toBe(true);
+    instance.handleDocumentClick({ target: instance._popover });
+    jest.runTimersToTime(0); // toggle is still async
+    expect(isOpen).toBe(true);
 
     wrapper.detach();
   });

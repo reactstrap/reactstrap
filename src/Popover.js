@@ -50,6 +50,7 @@ class Popover extends React.Component {
     this.addTargetEvents = this.addTargetEvents.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeTargetEvents = this.removeTargetEvents.bind(this);
+    this.getRef = this.getRef.bind(this);
     this.toggle = this.toggle.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
@@ -68,6 +69,10 @@ class Popover extends React.Component {
     this.clearShowTimeout();
     this.clearHideTimeout();
     this.removeTargetEvents();
+  }
+
+  getRef(ref) {
+    this._popover = ref;
   }
 
   getDelay(key) {
@@ -115,7 +120,7 @@ class Popover extends React.Component {
   }
 
   handleDocumentClick(e) {
-    if (e.target !== this._target && !this._target.contains(e.target)) {
+    if (e.target !== this._target && !this._target.contains(e.target) && e.target !== this._popover && !(this._popover && this._popover.contains(e.target))) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
       }
@@ -172,7 +177,7 @@ class Popover extends React.Component {
         placementPrefix={this.props.placementPrefix}
         container={this.props.container}
       >
-        <div {...attributes} className={classes} />
+        <div {...attributes} className={classes} ref={this.getRef} />
       </PopperContent>
     );
   }
