@@ -1,3 +1,13 @@
+<a name="5.0.0-alpha.2"></a>
+# [5.0.0-alpha.2](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.1...5.0.0-alpha.2) (2017-09-28)
+
+
+### Bug Fixes
+
+* **Popover:** do not trigger toggle on popover click ([50a8fd4](https://github.com/reactstrap/reactstrap/commit/50a8fd4)), closes [#594](https://github.com/reactstrap/reactstrap/issues/594)
+
+
+
 <a name="5.0.0-alpha.1"></a>
 # [5.0.0-alpha.1](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.0...5.0.0-alpha.1) (2017-09-23)
 
