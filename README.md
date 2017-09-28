@@ -27,8 +27,8 @@ Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The 
 Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:
 
 ```
-npm install --save bootstrap@4.0.0-alpha.6
-npm install --save reactstrap react@^15.3.0 react-dom@^15.3.0
+npm install --save bootstrap@4.0.0-beta
+npm install --save reactstrap react@^16.0.0 react-dom@^16.0.0
 ```
 
 Import Bootstrap CSS in the ```src/index.js``` file:
@@ -59,7 +59,7 @@ https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js
 
 ## About the Project
 
-This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, [Tether](http://tether.io/) is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.
+This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, [Poppers.js](https://popper.js.org/) via [react-popper](https://github.com/souporserious/react-popper) is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.
 
 There are a few core concepts to understand in order to make the most out of this library.
 
