@@ -138,8 +138,8 @@ export function getOriginalBodyPadding() {
 
 export function conditionallyUpdateScrollbar() {
   const scrollbarWidth = getScrollbarWidth();
-  // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L420
-  const fixedContent = document.querySelectorAll('.navbar-fixed-top, .navbar-fixed-bottom, .is-fixed')[0];
+  // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/js/src/modal.js#L433
+  const fixedContent = document.querySelectorAll('.fixed-top, .fixed-bottom, .is-fixed, .sticky-top')[0];
   const bodyPadding = fixedContent ? parseInt(
     fixedContent.style.paddingRight || 0,
     10
