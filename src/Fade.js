@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Transition, { ENTERING, ENTERED } from 'react-transition-group/Transition';
-import { mapToCssModules, omit, TransitionTimeouts } from './utils';
+import Transition from 'react-transition-group/Transition';
+import { mapToCssModules, omit, pick, TransitionPropTypeKeys, TransitionTimeouts } from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
@@ -37,21 +37,34 @@ function Fade(props) {
     className,
     cssModule,
     children,
-    ...transitionProps
+    ...otherProps
   } = props;
-  const otherProps = omit(transitionProps, Object.keys(propTypes));
+
+  // In NODE_ENV=production the Transition.propTypes are wrapped which results in an
+  // empty object "{}". This is the result of the `react-transition-group` babel
+  // configuration settings. Therefore, to ensure that production builds work without
+  // error, we can either explicitly define keys or use the Transition.defaultProps.
+  // Using the Transition.defaultProps excludes any required props. Thus, the best
+  // solution is to explicitly define required props in our utilities and reference these.
+  // This also gives us more flexibility in the future to remove the prop-types
+  // dependency in distribution builds (Similar to how `react-transition-group` does).
+  // Note: Without omitting the `react-transition-group` props, the resulting child
+  // Tag component would inherit the Transition properties as attributes for the HTML
+  // element which results in errors/warnings for non-valid attributes.
+  const transitionProps = pick(otherProps, TransitionPropTypeKeys);
+  const childProps = omit(otherProps, TransitionPropTypeKeys);
 
   return (
     <Transition {...transitionProps}>
       {(status) => {
-        const isActive = status === ENTERING || status === ENTERED;
+        const isActive = status === 'entering' || status === 'entered';
         const classes = mapToCssModules(classNames(
           className,
           baseClass,
-          isActive ? baseClassActive : false
+          isActive && baseClassActive
         ), cssModule);
         return (
-          <Tag className={classes} {...otherProps}>
+          <Tag className={classes} {...childProps}>
             {children}
           </Tag>
         );
