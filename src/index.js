@@ -14,6 +14,7 @@ import Button from './Button';
 import ButtonDropdown from './ButtonDropdown';
 import ButtonGroup from './ButtonGroup';
 import ButtonToolbar from './ButtonToolbar';
+import CustomControl from './CustomControl';
 import Dropdown from './Dropdown';
 import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
@@ -137,6 +138,7 @@ export {
   FormFeedback,
   FormGroup,
   FormText,
+  CustomControl,
   Input,
   InputGroup,
   InputGroupAddon,

@@ -27,6 +27,9 @@ const InputGridSizingExampleSource = require('!!raw!../examples/InputGridSizing'
 import LabelHiddenExample from '../examples/LabelHidden';
 const LabelHiddenExampleSource = require('!!raw!../examples/LabelHidden');
 
+import CustomControlExample from '../examples/CustomControl';
+const CustomControlExampleSource = require('!!raw!../examples/CustomControl');
+
 export default class FormPage extends React.Component {
   render() {
     return (
@@ -109,6 +112,16 @@ export default class FormPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {LabelHiddenExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h3>Custom Controls</h3>
+        <div className="docs-example">
+          <CustomControlExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {CustomControlExampleSource}
           </PrismCode>
         </pre>
       </div>
