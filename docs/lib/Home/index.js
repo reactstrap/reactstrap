@@ -67,7 +67,7 @@ npm start`}
             <pre>
               <PrismCode className="language-bash">
   {`npm install bootstrap@4.0.0-alpha.6 --save
-npm install --save reactstrap react-addons-transition-group react-addons-css-transition-group react react-dom`}
+npm install --save reactstrap react-addons-transition-group react react-dom`}
               </PrismCode>
             </pre>
             <p>Import Bootstrap CSS in the <code>src/index.js</code> file:</p>
