@@ -49,21 +49,33 @@ libConfig.targets = [
 
   Defining this config will also check that all peer dependencies are set up
   correctly in the globals entry.
+
+  Reactstrap has two versions:
+
+  1) `reactstrap.min.js`
+      This file excludes `react-popper` and `react-transition-group` from
+      the dist build where they need to be manually required if any
+      application uses components that require these features.
+
+  2) `reactstrap.full.min.js`
+      This file includes all dependencies.
+
 */
-const umdConfig = baseConfig();
-umdConfig.external = peerDependencies;
-umdConfig.plugins.push(replace({
+const umdFullConfig = baseConfig();
+umdFullConfig.external = peerDependencies;
+umdFullConfig.plugins.push(replace({
   'process.env.NODE_ENV': JSON.stringify('production'),
 }));
-umdConfig.plugins.push(babili({ comments: false }));
-umdConfig.targets = [
-  { dest: 'dist/reactstrap.min.js', format: 'umd' },
+umdFullConfig.plugins.push(babili({ comments: false }));
+umdFullConfig.targets = [
+  { dest: 'dist/reactstrap.full.min.js', format: 'umd' },
 ];
-umdConfig.globals = {
+umdFullConfig.globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
 };
-const missingGlobals = peerDependencies.filter(dep => !(dep in umdConfig.globals));
+
+const missingGlobals = peerDependencies.filter(dep => !(dep in umdFullConfig .globals));
 if (missingGlobals.length) {
   console.error('All peer dependencies need to be mentioned in globals, please update rollup.config.js.');
   console.error('Missing: ' + missingGlobals.join(', '));
@@ -71,7 +83,22 @@ if (missingGlobals.length) {
   process.exit(1);
 }
 
+const external = umdFullConfig.external.slice();
+external.push('react-transition-group/Transition');
+
+const umdConfig = Object.assign({}, umdFullConfig , {
+  targets: [
+    { dest: 'dist/reactstrap.min.js', format: 'umd' },
+  ],
+  external: external,
+  globals: Object.assign({}, umdFullConfig.globals, {
+    'react-transition-group/Transition': 'ReactTransitionGroup.Transition'
+  })
+});
+
+
 export default [
   libConfig,
+  umdFullConfig,
   umdConfig,
 ];

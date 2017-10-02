@@ -47,14 +47,65 @@ Now you are ready to use the imported reactstrap components within your componen
 
 ### CDN
 
-Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN. 
+If you prefer to include Reactstrap globally by marking `reactstrap` as external in your application, the `reactstrap` library provides various single-file distributions, which are hosted on the following CDNs: 
 
+* [**cdnjs**](https://cdnjs.com/libraries/reactstrap)
 ```html
-https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js
+<!-- main version -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.min.js"></script>
+
+<!-- all dependencies version -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.full.min.js"></script>
 ```
 
-> Note: When using the external CDN library, be sure to include the required dependencies as necessary **prior** to the Reactstrap library:
->  * [React](https://cdnjs.com/libraries/react)
+* [**unpkg**](https://unpkg.com/reactstrap/)
+```html
+<!-- main version -->
+<script src="https://unpkg.com/reactstrap@5.0.0-alpha.3/reactstrap.min.js"></script>
+
+<!-- all dependencies version -->
+<script src="https://unpkg.com/reactstrap@5.0.0-alpha.3/reactstrap.full.min.js"></script>
+```
+
+To load a specific version of Reactstrap replace `5.0.0-alpha.3` with the version number.
+
+Reactstrap has two primary versions that can be included directly: 
+
+1) `reactstrap.min.js` - This file excludes `react-popper` and `react-transition-group` from
+    the build. This is similar to Bootstrap and results in the smallest file size possible for
+    Reactstrap. Using any components that require `Popper` or transitions will not work unless
+    the required dependencies are included. This is the recommended approach for including
+    Reactstrap as it allows the user to only include the optional dependencies once and re-use
+    those dependencies in your application as well.
+
+ 2) `reactstrap.full.min.js`
+     This file includes all optional dependencies. (PropTypes, React, and ReactDOM must 
+     still be included)
+
+#### Example
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required dependencies -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
+    <!-- Most apps require transitions, so include transition dependency -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.0/react-transition-group.min.js"></script>
+    <!-- Reactstrap -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.min.js"></script>
+    <!-- Lastly, include your app's bundle 
+    <script type="text/javascript" src="/assets/bundle.js"></script>
+    -->
+  </head>
+  <body>
+    <div id="my-app" />
+  </body>
+</html>
+
+```
 
 
 ## About the Project

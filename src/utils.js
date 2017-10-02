@@ -62,6 +62,23 @@ export function omit(obj, omitKeys) {
   return result;
 }
 
+/**
+ * Returns a filtered copy of an object with only the specified keys.
+ */
+export function pick(obj, keys) {
+  const pickKeys = Array.isArray(keys) ? keys : [keys];
+  let length = pickKeys.length;
+  let key;
+  const result = {};
+
+  while (length > 0) {
+    length -= 1;
+    key = pickKeys[length];
+    result[key] = obj[key];
+  }
+  return result;
+}
+
 let warned = {};
 
 export function warnOnce(message) {
@@ -119,6 +136,25 @@ export const TransitionTimeouts = {
   Modal:    300, // $modal-transition
   Carousel: 600, // $carousel-transition
 };
+
+// Duplicated Transition.propType keys to ensure that Reactstrap builds
+// for distribution properly exclude these keys for nested child HTML attributes
+// since `react-transition-group` removes propTypes in production builds.
+export const TransitionPropTypeKeys = [
+  'in',
+  'mountOnEnter',
+  'unmountOnExit',
+  'appear',
+  'enter',
+  'exit',
+  'timeout',
+  'onEnter',
+  'onEntering',
+  'onEntered',
+  'onExit',
+  'onExiting',
+  'onExited',
+];
 
 export const keyCodes = {
   esc:   27,
