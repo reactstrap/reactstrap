@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
-import { mapToCssModules, TransitionTimeouts } from './utils';
+import { mapToCssModules, TransitionTimeouts, TransitionStatuses } from './utils';
 import CarouselCaption from './CarouselCaption';
 
 class CarouselItem extends React.Component {
@@ -70,11 +70,11 @@ class CarouselItem extends React.Component {
       >
         {(status) => {
           const { direction } = this.context;
-          const isActive = (status === 'entered') || (status === 'exiting');
-          const directionClassName = (status === 'entering' || status === 'exiting') &&
+          const isActive = (status === TransitionStatuses.ENTERED) || (status === TransitionStatuses.EXITING);
+          const directionClassName = (status === TransitionStatuses.ENTERING || status === TransitionStatuses.EXITING) &&
             this.state.startAnimation &&
             (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right');
-          const orderClassName = (status === 'entering') &&
+          const orderClassName = (status === TransitionStatuses.ENTERING) &&
             (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev');
           const itemClasses = mapToCssModules(classNames(
             'carousel-item',

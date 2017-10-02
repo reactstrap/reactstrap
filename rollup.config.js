@@ -1,11 +1,11 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
-import babili from 'rollup-plugin-babili';
+import minify from 'rollup-plugin-babel-minify';
 import replace from 'rollup-plugin-replace';
-
 // Require understands JSON files.
 const packageJson = require('./package.json');
+
 const peerDependencies = Object.keys(packageJson.peerDependencies);
 const dependencies = Object.keys(packageJson.dependencies);
 
@@ -66,7 +66,7 @@ umdFullConfig.external = peerDependencies;
 umdFullConfig.plugins.push(replace({
   'process.env.NODE_ENV': JSON.stringify('production'),
 }));
-umdFullConfig.plugins.push(babili({ comments: false }));
+umdFullConfig.plugins.push(minify({ comments: false }));
 umdFullConfig.targets = [
   { dest: 'dist/reactstrap.full.min.js', format: 'umd' },
 ];
@@ -75,7 +75,7 @@ umdFullConfig.globals = {
   'react-dom': 'ReactDOM',
 };
 
-const missingGlobals = peerDependencies.filter(dep => !(dep in umdFullConfig .globals));
+const missingGlobals = peerDependencies.filter(dep => !(dep in umdFullConfig.globals));
 if (missingGlobals.length) {
   console.error('All peer dependencies need to be mentioned in globals, please update rollup.config.js.');
   console.error('Missing: ' + missingGlobals.join(', '));
@@ -86,7 +86,7 @@ if (missingGlobals.length) {
 const external = umdFullConfig.external.slice();
 external.push('react-transition-group/Transition');
 
-const umdConfig = Object.assign({}, umdFullConfig , {
+const umdConfig = Object.assign({}, umdFullConfig, {
   targets: [
     { dest: 'dist/reactstrap.min.js', format: 'umd' },
   ],

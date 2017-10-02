@@ -91,13 +91,12 @@
     "lodash.isfunction": "^3.0.8",
     "lodash.isobject": "^3.0.2",
     "lodash.tonumber": "^4.0.3",
-    "popper.js": "^1.10.8",
     "prop-types": "^15.5.8",
     "react-popper": "^0.7.2",
     "react-transition-group": "^2.2.0"
   },
   "peerDependencies": {
-    "react": "^0.14.9 || ^15.3.0",
+    "react": "^0.14.9 || ^15.3.0 || ^16.0.0",
     "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0"
   },
   "devDependencies": {
@@ -138,7 +137,7 @@
     "react-test-renderer": "^15.5.4",
     "rollup": "^0.43.0",
     "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-babili": "^3.1.0",
+    "rollup-plugin-babel-minify": "^3.1.2",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",

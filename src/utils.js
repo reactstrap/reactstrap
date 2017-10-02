@@ -156,6 +156,13 @@ export const TransitionPropTypeKeys = [
   'onExited',
 ];
 
+export const TransitionStatuses = {
+  ENTERING: 'entering',
+  ENTERED:  'entered',
+  EXITING:  'exiting',
+  EXITED:   'exited',
+};
+
 export const keyCodes = {
   esc:   27,
   space: 32,
@@ -163,3 +170,21 @@ export const keyCodes = {
   up:    38,
   down:  40,
 };
+
+export const PopperPlacements = [
+  'auto-start',
+  'auto',
+  'auto-end',
+  'top-start',
+  'top',
+  'top-end',
+  'right-start',
+  'right',
+  'right-end',
+  'bottom-end',
+  'bottom',
+  'bottom-start',
+  'left-end',
+  'left',
+  'left-start',
+];

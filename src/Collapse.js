@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
-import { mapToCssModules, omit, pick, TransitionTimeouts, TransitionPropTypeKeys } from './utils';
+import { mapToCssModules, omit, pick, TransitionTimeouts, TransitionPropTypeKeys, TransitionStatuses } from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
@@ -28,10 +28,10 @@ const defaultProps = {
 };
 
 const transitionStatusToClassHash = {
-  entering: 'collapsing',
-  entered: 'collapse show',
-  exiting: 'collapsing',
-  exited: 'collapse',
+  [TransitionStatuses.ENTERING]: 'collapsing',
+  [TransitionStatuses.ENTERED]: 'collapse show',
+  [TransitionStatuses.EXITING]: 'collapsing',
+  [TransitionStatuses.EXITED]: 'collapse',
 };
 
 function getTransitionClass(status) {
