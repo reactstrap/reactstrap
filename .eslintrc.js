@@ -58,6 +58,5 @@ module.exports = {
     'sourceType': 'module',
     'ecmaFeatures': ecmaFeatures
   },
-  'ecmaFeatures': ecmaFeatures,
   rules: rules
 };

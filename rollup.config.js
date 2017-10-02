@@ -45,7 +45,7 @@ libConfig.targets = [
 
   Goal of this configuration is to be directly included on web pages.
   This configuration is minimized and will include dependencies that are not
-  marked as peer dependencies.
+  marked as peer dependencies. ** See below
 
   Defining this config will also check that all peer dependencies are set up
   correctly in the globals entry.
@@ -59,6 +59,9 @@ libConfig.targets = [
 
   2) `reactstrap.full.min.js`
       This file includes all dependencies.
+
+  For both versions the peer dependencies are always excluded and must be manually
+  included - `react` and `react-dom`.
 
 */
 const umdFullConfig = baseConfig();
@@ -85,6 +88,7 @@ if (missingGlobals.length) {
 
 const external = umdFullConfig.external.slice();
 external.push('react-transition-group/Transition');
+external.push('react-popper');
 
 const umdConfig = Object.assign({}, umdFullConfig, {
   targets: [
@@ -92,7 +96,8 @@ const umdConfig = Object.assign({}, umdFullConfig, {
   ],
   external: external,
   globals: Object.assign({}, umdFullConfig.globals, {
-    'react-transition-group/Transition': 'ReactTransitionGroup.Transition'
+    'react-popper': 'ReactPopper',
+    'react-transition-group/Transition': 'ReactTransitionGroup.Transition',
   })
 });
 
