@@ -60,8 +60,14 @@ describe('PaginationLink', () => {
     expect(wrapper.find('.sr-only').text()).toBe('Yo');
   });
 
-  it('should render custom caret', () => {
+  it('should render custom caret specified as a string', () => {
     const wrapper = shallow(<PaginationLink next>Yo</PaginationLink>);
+
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('Yo');
+  });
+
+  it('should render custom caret specified as a component', () => {
+    const wrapper = shallow(<PaginationLink next><span>Yo</span></PaginationLink>);
 
     expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('Yo');
   });
