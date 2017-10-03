@@ -29,6 +29,7 @@ describe('Tooltip', () => {
   afterEach(() => {
     jest.clearAllTimers();
     document.body.removeChild(element);
+    document.body.innerHTML = '';
     element = null;
     container = null;
     target = null;
@@ -45,7 +46,7 @@ describe('Tooltip', () => {
 
     const tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.tooltip.show').length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
     expect(target.className).toBe('');
     expect(tooltips.length).toBe(0);
     wrapper.detach();
@@ -62,7 +63,7 @@ describe('Tooltip', () => {
 
     const tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.tooltip.show').length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
     expect(tooltips.length).toBe(1);
     expect(tooltips[0].textContent).toBe('Tooltip Content');
     wrapper.detach();
@@ -79,7 +80,7 @@ describe('Tooltip', () => {
 
     const tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.tooltip.show').length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
     expect(tooltips.length).toBe(1);
     expect(tooltips[0].textContent).toBe('Tooltip Content');
     wrapper.detach();

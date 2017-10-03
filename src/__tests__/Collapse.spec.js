@@ -25,7 +25,7 @@ describe('Collapse', () => {
 
   it('should render children', () => {
     wrapper = mount(<Collapse><p>hello</p></Collapse>);
-    expect(wrapper.find('p').text()).toBe('hello');
+    expect(wrapper.find('p').hostNodes().text()).toBe('hello');
   });
 
   it('should have default isOpen value', () => {
@@ -35,17 +35,17 @@ describe('Collapse', () => {
 
   it('should render with class "collapse"', () => {
     wrapper = mount(<Collapse />);
-    expect(wrapper.find('div').hasClass('collapse')).toEqual(true);
+    expect(wrapper.find('div').hostNodes().hasClass('collapse')).toEqual(true);
   });
 
   it('should render with class "navbar-collapse" if it has prop navbar', () => {
     wrapper = mount(<Collapse navbar />);
-    expect(wrapper.find('div').hasClass('navbar-collapse')).toEqual(true);
+    expect(wrapper.find('div').hostNodes().hasClass('navbar-collapse')).toEqual(true);
   });
 
   it('should render with class "show" when isOpen is true', () => {
     wrapper = mount(<Collapse isOpen />);
-    expect(wrapper.find('div').hasClass('show')).toEqual(true);
+    expect(wrapper.find('div').hostNodes().hasClass('show')).toEqual(true);
   });
 
   it('should set height to null when isOpen is true', () => {
@@ -60,7 +60,7 @@ describe('Collapse', () => {
 
   it('should forward all styles', () => {
     wrapper = mount(<Collapse isOpen style={{ backgroundColor: 'black' }} />);
-    expect(wrapper.find('div').prop('style').backgroundColor).toBe('black');
+    expect(wrapper.find('div').hostNodes().prop('style').backgroundColor).toBe('black');
   });
 
   it('should forward all callbacks', () => {

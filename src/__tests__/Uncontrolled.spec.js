@@ -33,6 +33,7 @@ describe('UncontrolledAlert', () => {
     const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
     const instance = alert.instance();
     instance.toggle();
+    alert.update();
     expect(alert.prop('isOpen')).toBe(false);
   });
 });
@@ -57,6 +58,7 @@ describe('UncontrolledButtonDropdown', () => {
     const buttonDropdown = shallow(<UncontrolledButtonDropdown>Yo!</UncontrolledButtonDropdown>);
     const instance = buttonDropdown.instance();
     instance.toggle();
+    buttonDropdown.update();
     expect(buttonDropdown.prop('isOpen')).toBe(true);
   });
 });
@@ -81,6 +83,7 @@ describe('UncontrolledDropdown', () => {
     const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
     const instance = dropdown.instance();
     instance.toggle();
+    dropdown.update();
     expect(dropdown.prop('isOpen')).toBe(true);
   });
 });
@@ -105,6 +108,7 @@ describe('UncontrolledNavDropdown', () => {
     const navDropdown = shallow(<UncontrolledNavDropdown>Yo!</UncontrolledNavDropdown>);
     const instance = navDropdown.instance();
     instance.toggle();
+    navDropdown.update();
     expect(navDropdown.prop('isOpen')).toBe(true);
   });
 });
@@ -129,6 +133,7 @@ describe('UncontrolledTooltip', () => {
     const tooltip = shallow(<UncontrolledTooltip target="blah">Yo!</UncontrolledTooltip>);
     const instance = tooltip.instance();
     instance.toggle();
+    tooltip.update();
     expect(tooltip.prop('isOpen')).toBe(true);
   });
 });

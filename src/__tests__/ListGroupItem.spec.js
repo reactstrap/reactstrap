@@ -36,7 +36,7 @@ describe('ListGroupItem', () => {
   it('should prevent click event when disabled is passed', () => {
     const onDisableClick = jest.fn();
     const wrapper = mount(<ListGroupItem disabled onClick={onDisableClick}>Yo!</ListGroupItem>);
-    wrapper.find('li').simulate('click');
+    wrapper.find('li').hostNodes().simulate('click');
     expect(onDisableClick).not.toHaveBeenCalled();
   });
 });
