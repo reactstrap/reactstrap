@@ -21,4 +21,3 @@ env:
 branches:
   only:
   - master
-  - v5
