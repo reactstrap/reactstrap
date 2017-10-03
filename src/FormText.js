@@ -6,7 +6,7 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   children: PropTypes.node,
   inline: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   color: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
