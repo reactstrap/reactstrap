@@ -67,7 +67,7 @@ npm start`}
             <pre>
               <PrismCode className="language-bash">
   {`npm install bootstrap@4.0.0-beta --save
-npm install --save reactstrap react react-dom`}
+npm install --save reactstrap@next react react-dom`}
               </PrismCode>
             </pre>
             <p>Import Bootstrap CSS in the <code>src/index.js</code> file:</p>
