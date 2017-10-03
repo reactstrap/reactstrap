@@ -18,9 +18,9 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light toggleable>
-          <NavbarToggler onClick={this.toggle} />
+        <Navbar color="faded" light expand="md">
           <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
