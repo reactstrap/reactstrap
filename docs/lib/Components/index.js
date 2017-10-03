@@ -133,7 +133,7 @@ class Components extends React.Component {
     return (
       <Container className="content">
         <Row>
-          <Col md={{ size: 3, push: 9 }}>
+          <Col md={3} className="order-md-12">
             <div className="docs-sidebar mb-3">
               <h5>Components</h5>
               <Nav className="flex-column">
@@ -146,7 +146,7 @@ class Components extends React.Component {
               </Nav>
             </div>
           </Col>
-          <Col md={{ size: 9, pull: 3 }}>
+          <Col md={9} className="order-md-1">
             {this.props.children}
           </Col>
         </Row>

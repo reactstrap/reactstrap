@@ -29,8 +29,8 @@ export default () => {
         </Container>
       </Jumbotron>
       <Container>
-        <Row>
-          <Col sm={{ size: 8, offset: 2 }}>
+        <Row className="justify-content-sm-center">
+          <Col sm={8}>
             <h2>Installation</h2>
             <hr />
             <h3 className="mt-5">NPM</h3>
@@ -66,8 +66,8 @@ npm start`}
             <p>Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:</p>
             <pre>
               <PrismCode className="language-bash">
-  {`npm install bootstrap@4.0.0-alpha.6 --save
-npm install --save reactstrap react-addons-transition-group react react-dom`}
+  {`npm install bootstrap@4.0.0-beta --save
+npm install --save reactstrap@next react react-dom`}
               </PrismCode>
             </pre>
             <p>Import Bootstrap CSS in the <code>src/index.js</code> file:</p>
