@@ -42,6 +42,9 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
+        <h3>Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
 {`Input.propTypes = {
   children: PropTypes.node,
   // type can be things like text, password, (typical input types) as well as select and textarea, providing children as you normally would to those.
@@ -58,6 +61,8 @@ export default class FormPage extends React.Component {
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };`}
+          </PrismCode>
+        </pre>
 
         <h3>Form Grid</h3>
         <div className="docs-example">
