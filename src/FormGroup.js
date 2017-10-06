@@ -7,6 +7,7 @@ const propTypes = {
   children: PropTypes.node,
   row: PropTypes.bool,
   check: PropTypes.bool,
+  inline: PropTypes.bool,
   disabled: PropTypes.bool,
   tag: PropTypes.string,
   className: PropTypes.string,
@@ -24,6 +25,7 @@ const FormGroup = (props) => {
     row,
     disabled,
     check,
+    inline,
     tag: Tag,
     ...attributes
   } = props;
@@ -32,6 +34,7 @@ const FormGroup = (props) => {
     className,
     row ? 'row' : false,
     check ? 'form-check' : 'form-group',
+    check && inline ? 'form-check-inline' : false,
     check && disabled ? 'disabled' : false
   ), cssModule);
 
