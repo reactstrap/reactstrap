@@ -120,6 +120,9 @@ export function getTarget(target) {
     if (selection === null) {
       return document.querySelector(`#${target}`);
     }
+    if (selection === null) {
+      throw new Error(`The target '${target}' could not be identified in the dom, tip: check spelling`);
+    }
     return selection;
   }
 
