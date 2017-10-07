@@ -23,7 +23,6 @@ const propTypes = {
   children: PropTypes.node,
   hidden: PropTypes.bool,
   check: PropTypes.bool,
-  disabled: PropTypes.bool,
   size: PropTypes.string,
   for: PropTypes.string,
   tag: PropTypes.string,
@@ -60,7 +59,6 @@ const Label = (props) => {
     widths,
     tag: Tag,
     check,
-    disabled,
     size,
     for: htmlFor,
     ...attributes
@@ -100,7 +98,6 @@ const Label = (props) => {
     className,
     hidden ? 'sr-only' : false,
     check ? 'form-check-label' : false,
-    check && disabled ? 'disabled' : false,
     size ? `col-form-label-${size}` : false,
     colClasses,
     colClasses.length ? 'col-form-label' : false,
