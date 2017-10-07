@@ -21,16 +21,36 @@ describe('FormGroup', () => {
     expect(wrapper.hasClass('form-group')).toBe(true);
   });
 
-  it('should not render with "form-check" class by default', () => {
+  it('should not render with "form-check" nor "form-check-inline"  class by default', () => {
     const wrapper = shallow(<FormGroup>Yo!</FormGroup>);
 
     expect(wrapper.hasClass('form-check')).toBe(false);
+    expect(wrapper.hasClass('form-check-inline')).toBe(false);
   });
 
   it('should render with "form-check" class when check prop is truthy', () => {
     const wrapper = shallow(<FormGroup check>Yo!</FormGroup>);
 
     expect(wrapper.hasClass('form-check')).toBe(true);
+  });
+
+  it('should not render with "form-check-inline" class when check prop is truthy and inline prop is falsy', () => {
+    const wrapper = shallow(<FormGroup check>Yo!</FormGroup>);
+
+    expect(wrapper.hasClass('form-check-inline')).toBe(false);
+  });
+
+  it('should render with "form-check" and "form-check-inline" classes when check prop and inline prop are both truthy', () => {
+    const wrapper = shallow(<FormGroup check inline>Yo!</FormGroup>);
+
+    expect(wrapper.hasClass('form-check')).toBe(true);
+    expect(wrapper.hasClass('form-check-inline')).toBe(true);
+  });
+
+  it('should not render with "form-check-inline" class when check prop is falsy and inline prop is truthy', () => {
+    const wrapper = shallow(<FormGroup inline>Yo!</FormGroup>);
+
+    expect(wrapper.hasClass('form-check-inline')).toBe(false);
   });
 
   it('should not render with "form-group" class when check prop is truthy', () => {
