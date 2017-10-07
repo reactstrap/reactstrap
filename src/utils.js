@@ -116,9 +116,9 @@ export function getTarget(target) {
   }
 
   if (typeof target === 'string' && document) {
-    const selection = document.querySelector(target);
+    let selection = document.querySelector(target);
     if (selection === null) {
-      return document.querySelector(`#${target}`);
+      selection = document.querySelector(`#${target}`);
     }
     if (selection === null) {
       throw new Error(`The target '${target}' could not be identified in the dom, tip: check spelling`);
