@@ -57,7 +57,7 @@ function Fade(props) {
   return (
     <Transition {...transitionProps}>
       {(status) => {
-        const isActive = status === 'entering' || status === 'entered';
+        const isActive = status === 'entered';
         const classes = mapToCssModules(classNames(
           className,
           baseClass,
