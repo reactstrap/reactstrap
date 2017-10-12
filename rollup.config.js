@@ -24,6 +24,25 @@ function baseConfig() {
   };
 }
 
+function baseUmdConfig(minified) {
+  const config = Object.assign(baseConfig(), {
+    globals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
+    external: peerDependencies,
+  });
+  config.plugins.push(replace({
+    'process.env.NODE_ENV': JSON.stringify('production'),
+  }));
+
+  if (minified) {
+    config.plugins.push(minify({ comments: false }));
+  }
+
+  return config;
+}
+
 /*
   COMMONJS / MODULE CONFIG
   ------------------------
@@ -64,20 +83,12 @@ libConfig.targets = [
   included - `react` and `react-dom`.
 
 */
-const umdFullConfig = baseConfig();
-umdFullConfig.external = peerDependencies;
-umdFullConfig.plugins.push(replace({
-  'process.env.NODE_ENV': JSON.stringify('production'),
-}));
-umdFullConfig.plugins.push(minify({ comments: false }));
+const umdFullConfig = baseUmdConfig(false);
 umdFullConfig.targets = [
-  { dest: 'dist/reactstrap.full.min.js', format: 'umd' },
+  { dest: 'dist/reactstrap.full.js', format: 'umd' },
 ];
-umdFullConfig.globals = {
-  react: 'React',
-  'react-dom': 'ReactDOM',
-};
 
+// Validate globals in main UMD config
 const missingGlobals = peerDependencies.filter(dep => !(dep in umdFullConfig.globals));
 if (missingGlobals.length) {
   console.error('All peer dependencies need to be mentioned in globals, please update rollup.config.js.');
@@ -86,24 +97,39 @@ if (missingGlobals.length) {
   process.exit(1);
 }
 
+const umdFullConfigMin = baseUmdConfig(true);
+umdFullConfigMin.targets = [
+  { dest: 'dist/reactstrap.full.min.js', format: 'umd' },
+];
+
 const external = umdFullConfig.external.slice();
 external.push('react-transition-group/Transition');
 external.push('react-popper');
 
-const umdConfig = Object.assign({}, umdFullConfig, {
-  targets: [
-    { dest: 'dist/reactstrap.min.js', format: 'umd' },
-  ],
-  external: external,
-  globals: Object.assign({}, umdFullConfig.globals, {
-    'react-popper': 'ReactPopper',
-    'react-transition-group/Transition': 'ReactTransitionGroup.Transition',
-  })
+const globals = Object.assign({}, umdFullConfig.globals, {
+  'react-popper': 'ReactPopper',
+  'react-transition-group/Transition': 'ReactTransitionGroup.Transition',
 });
+
+const umdConfig = baseUmdConfig(false);
+umdConfig.external = external;
+umdConfig.globals = globals;
+umdConfig.targets = [
+    { dest: 'dist/reactstrap.js', format: 'umd' },
+];
+
+const umdConfigMin = baseUmdConfig(true);
+umdConfigMin.external = external;
+umdConfigMin.globals = globals;
+umdConfigMin.targets = [
+    { dest: 'dist/reactstrap.min.js', format: 'umd' },
+];
 
 
 export default [
   libConfig,
   umdFullConfig,
+  umdFullConfigMin,
   umdConfig,
+  umdConfigMin,
 ];

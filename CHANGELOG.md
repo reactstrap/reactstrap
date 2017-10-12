@@ -1,3 +1,16 @@
+<a name="5.0.0-alpha.3"></a>
+# [5.0.0-alpha.3](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.2...5.0.0-alpha.3) (2017-10-03)
+
+
+### Bug Fixes
+
+* **Build:** Cross-platform postbuild support, improved Readme documentation, updated dependencies. ([#608](https://github.com/reactstrap/reactstrap/issues/608)) ([681738c](https://github.com/reactstrap/reactstrap/commit/681738c))
+* **Collapse,Fade:** Ensuring props don't leak to child ([#598](https://github.com/reactstrap/reactstrap/issues/598)) ([1a94b0f](https://github.com/reactstrap/reactstrap/commit/1a94b0f)), closes [#597](https://github.com/reactstrap/reactstrap/issues/597)
+* **Modal:** Update classes for fixed content detection ([#600](https://github.com/reactstrap/reactstrap/issues/600)) ([9b41e13](https://github.com/reactstrap/reactstrap/commit/9b41e13))
+* **PaginationLink:** handle empty children array correctly ([#511](https://github.com/reactstrap/reactstrap/issues/511)) ([#604](https://github.com/reactstrap/reactstrap/issues/604)) ([c090ea7](https://github.com/reactstrap/reactstrap/commit/c090ea7))
+
+
+
 <a name="5.0.0-alpha.2"></a>
 # [5.0.0-alpha.2](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.1...5.0.0-alpha.2) (2017-09-28)
 

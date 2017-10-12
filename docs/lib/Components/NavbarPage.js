@@ -32,8 +32,7 @@ export default class NavsPage extends React.Component {
   fixed: PropTypes.string,
   color: PropTypes.string,
   role: PropTypes.string,
-  toggleable: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  expandable: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]), // alias for toggleable
+  expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use
 }`}
@@ -49,6 +48,10 @@ export default class NavsPage extends React.Component {
           </PrismCode>
         </pre>
         <h3>NavbarToggler</h3>
+        <p>
+          Place the <code>NavbarToggler</code> <b>after</b> <code>NavbarBrand</code> to have it appear on the right (typical setup).
+          Reverse the order to have it appear on the left
+        </p>
         <div className="docs-example">
           <NavbarTogglerExample />
         </div>

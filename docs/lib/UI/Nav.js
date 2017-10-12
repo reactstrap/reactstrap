@@ -20,10 +20,10 @@ export default class UINav extends React.Component {
   }
   render() {
     return (
-      <Navbar className="header" color="faded" light toggleable>
+      <Navbar className="header" color="faded" light expand="md">
         <Container>
-          <NavbarToggler onClick={this.toggleNavbar} />
           <NavbarBrand className="mr-auto" tag={Link} to="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} />
           <Collapse navbar isOpen={this.state.showNavbar}>
             <Nav navbar className="ml-sm-auto">
               <NavItem>

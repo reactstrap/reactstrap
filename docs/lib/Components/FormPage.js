@@ -18,6 +18,9 @@ const FormFeedbackExampleSource = require('!!raw!../examples/FormFeedback');
 import InputTypeExample from '../examples/InputType';
 const InputTypeExampleSource = require('!!raw!../examples/InputType');
 
+import InlineCheckboxesExample from '../examples/InlineCheckboxes';
+const InlineCheckboxesExampleSource = require('!!raw!../examples/InlineCheckboxes');
+
 import InputSizingExample from '../examples/InputSizing';
 const InputSizingExampleSource = require('!!raw!../examples/InputSizing');
 
@@ -42,6 +45,9 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
+        <h3>Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
 {`Input.propTypes = {
   children: PropTypes.node,
   // type can be things like text, password, (typical input types) as well as select and textarea, providing children as you normally would to those.
@@ -58,6 +64,8 @@ export default class FormPage extends React.Component {
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };`}
+          </PrismCode>
+        </pre>
 
         <h3>Form Grid</h3>
         <div className="docs-example">
@@ -96,6 +104,16 @@ export default class FormPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {InputTypeExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h3>Inline checkboxes</h3>
+        <div className="docs-example">
+          <InlineCheckboxesExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {InlineCheckboxesExampleSource}
           </PrismCode>
         </pre>
 

@@ -38,7 +38,7 @@ const ModalHeader = (props) => {
 
   if (toggle) {
     closeButton = (
-      <button type="button" onClick={toggle} className="close" aria-label={closeAriaLabel}>
+      <button type="button" onClick={toggle} className={mapToCssModules('close', cssModule)} aria-label={closeAriaLabel}>
         <span aria-hidden="true">{String.fromCharCode(215)}</span>
       </button>
     );
