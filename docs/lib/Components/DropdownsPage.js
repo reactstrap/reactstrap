@@ -82,6 +82,19 @@ DropdownMenu.propTypes = {
   flip: PropTypes.bool, // default: true,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+};
+
+DropdownItem.propTypes = {
+  children: PropTypes.node,
+  active: PropTypes.bool,
+  disabled: PropTypes.bool,
+  divider: PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  header: PropTypes.bool,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  toggle: PropTypes.bool // default: true
 };`}
           </PrismCode>
         </pre>
