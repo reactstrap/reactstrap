@@ -57,7 +57,9 @@ export default class DropdownPage extends React.Component {
   dropup: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
-  tag: PropTypes.string, // default: 'div'
+  // For Dropdown usage inside a Nav
+  nav: PropTypes.bool,
+  tag: PropTypes.string, // default: 'div' unless nav=true, then 'li'
   toggle: PropTypes.func
 };
 
@@ -206,7 +208,7 @@ DropdownItem.propTypes = {
 
         <h3>Uncontrolled Dropdown</h3>
         <p>
-          For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledDropdown</code> does not require <code>isOpen</code> nor <code>toggle</code> props to work. For the other Dropdown flavors, <code>ButtonDropdown</code>, <code>NavDropdown</code>, uncontrolled components have been made as well; <code>UncontrolledButtonDropdown</code>, <code>UncontrolledNavDropdown</code> respectfully.
+          For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledDropdown</code> does not require <code>isOpen</code> nor <code>toggle</code> props to work. For the <code>ButtonDropdown</code> flavor, an uncontrolled component have been made as well; <code>UncontrolledButtonDropdown</code>.
         </p>
         <div className="docs-example">
           <DropdownUncontrolledExample />

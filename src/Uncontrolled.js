@@ -2,7 +2,6 @@ import React from 'react';
 import Alert from './Alert';
 import ButtonDropdown from './ButtonDropdown';
 import Dropdown from './Dropdown';
-import NavDropdown from './NavDropdown';
 import Tooltip from './Tooltip';
 
 const { Component } = React;
@@ -10,7 +9,6 @@ const components = {
   UncontrolledAlert: Alert,
   UncontrolledButtonDropdown: ButtonDropdown,
   UncontrolledDropdown: Dropdown,
-  UncontrolledNavDropdown: NavDropdown,
   UncontrolledTooltip: Tooltip,
 };
 
@@ -44,13 +42,11 @@ Object.keys(components).forEach((key) => {
 const UncontrolledAlert = components.UncontrolledAlert;
 const UncontrolledButtonDropdown = components.UncontrolledButtonDropdown;
 const UncontrolledDropdown = components.UncontrolledDropdown;
-const UncontrolledNavDropdown = components.UncontrolledNavDropdown;
 const UncontrolledTooltip = components.UncontrolledTooltip;
 
 export {
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
-  UncontrolledNavDropdown,
   UncontrolledTooltip,
 };

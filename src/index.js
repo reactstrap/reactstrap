@@ -6,7 +6,6 @@ import NavbarBrand from './NavbarBrand';
 import NavbarToggler from './NavbarToggler';
 import Nav from './Nav';
 import NavItem from './NavItem';
-import NavDropdown from './NavDropdown';
 import NavLink from './NavLink';
 import Breadcrumb from './Breadcrumb';
 import BreadcrumbItem from './BreadcrumbItem';
@@ -80,7 +79,6 @@ import {
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
-  UncontrolledNavDropdown,
   UncontrolledTooltip,
 } from './Uncontrolled';
 
@@ -94,7 +92,6 @@ export {
   NavbarToggler,
   Nav,
   NavItem,
-  NavDropdown,
   NavLink,
   Breadcrumb,
   BreadcrumbItem,
@@ -166,6 +163,5 @@ export {
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
-  UncontrolledNavDropdown,
   UncontrolledTooltip,
 };
