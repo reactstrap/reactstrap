@@ -212,11 +212,15 @@ class Modal extends React.Component {
   }
 
   renderIntoSubtree() {
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this,
-      this.renderChildren(),
-      this._element
-    );
+    if (ReactDOM.unstable_createPortal) {
+      ReactDOM.unstable_createPortal(this.renderChildren(), this._element);
+    } else {
+      ReactDOM.unstable_renderSubtreeIntoContainer(
+        this,
+        this.renderChildren(),
+        this._element
+      );
+    }
 
     // check if modal should receive focus
     if (this._focus) {
