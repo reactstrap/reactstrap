@@ -3,12 +3,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, deprecated } from './utils';
+import { mapToCssModules, deprecated, warnOnce } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   type: PropTypes.string,
   size: PropTypes.string,
+  bsSize: PropTypes.oneOf(['lg', 'sm']),
   state: deprecated(PropTypes.string, 'Please use the prop "valid"'),
   valid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -31,7 +32,7 @@ class Input extends React.Component {
       className,
       cssModule,
       type,
-      size,
+      bsSize,
       state,
       valid,
       tag,
@@ -72,11 +73,16 @@ class Input extends React.Component {
       }
     }
 
+    if (['lg', 'sm'].indexOf(attributes.size) > -1) {
+      warnOnce('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
+      bsSize = attributes.size;
+    }
+
     const classes = mapToCssModules(classNames(
       className,
       valid === false && 'is-invalid',
       valid && 'is-valid',
-      size ? `form-control-${size}` : false,
+      bsSize ? `form-control-${bsSize}` : false,
       formControlClass
     ), cssModule);
 

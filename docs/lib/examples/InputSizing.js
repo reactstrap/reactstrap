@@ -5,16 +5,16 @@ export default class Example extends React.Component {
   render() {
     return (
       <Form>
-        <Input placeholder="lg" size="lg" />
+        <Input placeholder="lg" bsSize="lg" />
         <Input placeholder="default" />
-        <Input placeholder="sm" size="sm" />
-        <Input type="select" size="lg">
+        <Input placeholder="sm" bsSize="sm" />
+        <Input type="select" bsSize="lg">
           <option>Large Select</option>
         </Input>
         <Input type="select">
           <option>Default Select</option>
         </Input>
-        <Input type="select" size="sm">
+        <Input type="select" bsSize="sm">
           <option>Small Select</option>
         </Input>
       </Form>
