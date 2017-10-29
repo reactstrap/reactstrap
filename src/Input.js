@@ -9,7 +9,7 @@ const propTypes = {
   children: PropTypes.node,
   type: PropTypes.string,
   size: PropTypes.string,
-  bsSize: PropTypes.oneOf(['lg', 'sm']),
+  bsSize: PropTypes.string,
   state: deprecated(PropTypes.string, 'Please use the prop "valid"'),
   valid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -44,6 +44,7 @@ class Input extends React.Component {
     } = this.props;
 
     const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
+    const isNotaNumber = new RegExp('(?!^\\d+$)^.+$');
 
     const fileInput = type === 'file';
     const textareaInput = type === 'textarea';
@@ -73,9 +74,10 @@ class Input extends React.Component {
       }
     }
 
-    if (['lg', 'sm'].indexOf(attributes.size) > -1) {
+    if (attributes.size && isNotaNumber.test(attributes.size)) {
       warnOnce('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
       bsSize = attributes.size;
+      delete attributes.size;
     }
 
     const classes = mapToCssModules(classNames(
