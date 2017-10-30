@@ -94,10 +94,24 @@ describe('Input', () => {
     expect(wrapper.hasClass('is-valid')).toBe(true);
   });
 
-  it('should render with "form-control-${size}" class when size is provided', () => {
+  it('should render with "form-control-${size}" class when size is "lg" or "sm"', () => {
     const wrapper = shallow(<Input size="lg" />);
 
     expect(wrapper.hasClass('form-control-lg')).toBe(true);
+  });
+
+  it('should render with "form-control" class when size is nor "lg" nor "sm"', () => {
+    const wrapper = shallow(<Input size="5" />);
+
+    expect(wrapper.hasClass('form-control-sm')).toBe(false);
+    expect(wrapper.hasClass('form-control-lg')).toBe(false);
+    expect(wrapper.hasClass('form-control')).toBe(true);
+  });
+
+  it('should render with "form-control-${bsSize}" class when bsSize is provided', () => {
+    const wrapper = shallow(<Input bsSize="sm" />);
+
+    expect(wrapper.hasClass('form-control-sm')).toBe(true);
   });
 
   it('should render with "form-control" class by default', () => {

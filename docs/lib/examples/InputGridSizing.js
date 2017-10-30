@@ -8,7 +8,7 @@ export default class Example extends React.Component {
         <FormGroup row>
           <Label for="exampleEmail" sm={2} size="lg">Email</Label>
           <Col sm={10}>
-            <Input type="email" name="email" id="exampleEmail" placeholder="lg" size="lg" />
+            <Input type="email" name="email" id="exampleEmail" placeholder="lg" bsSize="lg" />
           </Col>
         </FormGroup>
         <FormGroup row>
