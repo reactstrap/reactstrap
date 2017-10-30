@@ -44,7 +44,7 @@ class Input extends React.Component {
     } = this.props;
 
     const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
-    const isNotaNumber = new RegExp('(?!^\\d+$)^.+$');
+    const isNotaNumber = new RegExp('\\D', 'g');
 
     const fileInput = type === 'file';
     const textareaInput = type === 'textarea';
