@@ -128,7 +128,7 @@ Reactstrap has two primary distribution versions:
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
     <!-- Optional dependencies -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.1/react-transition-group.min.js"></script>
-    <script type="text/javascript" src="//unpkg.com/react-popper@0.7.3/dist/react-popper.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.7.4/react-popper.min.js"></script>
     <!-- Reactstrap -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.min.js"></script>
     <!-- Lastly, include your app's bundle -->
