@@ -53,6 +53,7 @@ export default class FormPage extends React.Component {
   // type can be things like text, password, (typical input types) as well as select and textarea, providing children as you normally would to those.
   type: PropTypes.string,
   size: PropTypes.string,
+  bsSize: PropTypes.string,
   state: deprecated(PropTypes.string, 'Please use the prop "valid"'),
   valid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
