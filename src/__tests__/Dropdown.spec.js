@@ -746,4 +746,30 @@ describe('Dropdown', () => {
     expect(small.find('.btn-group-sm').length).toBe(1);
     expect(large.find('.btn-group-lg').length).toBe(1);
   });
+
+  describe('Dropdown with nav', () => {
+    it('should render a single child', () => {
+      const wrapper = mount(<Dropdown nav isOpen={isOpen} toggle={toggle}>Ello world</Dropdown>);
+
+      expect(wrapper.find('.nav-item').text()).toBe('Ello world');
+      expect(wrapper.find('.nav-item').length).toBe(1);
+    });
+
+    it('should render multiple children when isOpen', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Dropdown nav isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.find('.btn').text()).toBe('Toggle');
+      expect(wrapper.find('.nav-item').length).toBe(1);
+      expect(wrapper.find('.dropdown-item').length).toBe(1);
+      expect(wrapper.children().length).toBe(2);
+    });
+  });
 });

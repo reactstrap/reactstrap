@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, NavItem, NavDropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class Example extends React.Component {
           <NavItem>
             <NavLink href="#" active>Link</NavLink>
           </NavItem>
-          <NavDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
             <DropdownToggle nav caret>
               Dropdown
             </DropdownToggle>
@@ -35,7 +35,7 @@ export default class Example extends React.Component {
               <DropdownItem divider />
               <DropdownItem>Another Action</DropdownItem>
             </DropdownMenu>
-          </NavDropdown>
+          </Dropdown>
           <NavItem>
             <NavLink href="#">Link</NavLink>
           </NavItem>
