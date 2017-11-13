@@ -30,9 +30,14 @@ describe('Carousel', () => {
   });
 
   describe('items', () => {
-    it('should render an img tag', () => {
+    it('should render an img tag by default', () => {
       const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />);
       expect(wrapper.find('img').length).toEqual(1);
+    });
+
+    it('should render custom tag', () => {
+      const wrapper = mount(<CarouselItem tag="image" />);
+      expect(wrapper.find('image').length).toBe(1);
     });
 
     it('should render a caption if one is passed in', () => {
