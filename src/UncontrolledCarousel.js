@@ -77,7 +77,7 @@ class UncontrolledCarousel extends Component {
         activeIndex={activeIndex}
         next={this.next}
         previous={this.previous}
-        ride={autoPlay && 'carousel'}
+        ride={autoPlay ? 'carousel' : undefined}
         {...props}
       >
         {indicators && <CarouselIndicators

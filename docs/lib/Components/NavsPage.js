@@ -62,19 +62,6 @@ export default class NavssPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h4>NavDropdown Properties</h4>
-        <pre>
-          <PrismCode className="language-jsx">
-{`NavDropdown.propTypes = {
-  disabled: PropTypes.bool,
-  dropup: PropTypes.bool,
-  group: PropTypes.bool,
-  isOpen: PropTypes.bool,
-  tag: PropTypes.string,
-  toggle: PropTypes.func
-};`}
-          </PrismCode>
-        </pre>
         <h3>Vertical</h3>
         <div className="docs-example">
           <NavVerticalExample />

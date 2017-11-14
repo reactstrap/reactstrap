@@ -50,7 +50,7 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-    const { src, altText, in: isIn, children, cssModule, slide, ...transitionProps } = this.props;
+    const { src, altText, in: isIn, children, cssModule, slide, tag: Tag, ...transitionProps } = this.props;
     const imgClasses = mapToCssModules(classNames(
       'd-block',
       'img-fluid'
@@ -85,7 +85,7 @@ class CarouselItem extends React.Component {
 
           return (
             <div className={itemClasses}>
-              <img className={imgClasses} src={src} alt={altText} />
+              <Tag className={imgClasses} src={src} alt={altText} />
               {children}
             </div>
           );
@@ -97,8 +97,9 @@ class CarouselItem extends React.Component {
 
 CarouselItem.propTypes = {
   ...Transition.propTypes,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   in: PropTypes.bool,
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   altText: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.shape({
@@ -109,6 +110,7 @@ CarouselItem.propTypes = {
 
 CarouselItem.defaultProps = {
   ...Transition.defaultProps,
+  tag: 'img',
   timeout: TransitionTimeouts.Carousel,
   slide: true,
 };

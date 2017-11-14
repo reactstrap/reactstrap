@@ -13,6 +13,7 @@ const propTypes = {
   dropup: PropTypes.bool,
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
+  nav: PropTypes.bool,
   size: PropTypes.string,
   tag: PropTypes.string,
   toggle: PropTypes.func,
@@ -24,7 +25,7 @@ const propTypes = {
 const defaultProps = {
   isOpen: false,
   dropup: false,
-  tag: 'div',
+  nav: false,
 };
 
 const childContextTypes = {
@@ -170,8 +171,11 @@ class Dropdown extends React.Component {
       isOpen,
       group,
       size,
+      nav,
       ...attrs
     } = omit(this.props, ['toggle', 'disabled']);
+
+    attrs.tag = attrs.tag || (nav ? 'li' : 'div');
 
     const classes = mapToCssModules(classNames(
       className,
@@ -180,7 +184,8 @@ class Dropdown extends React.Component {
         [`btn-group-${size}`]: !!size,
         dropdown: !group,
         show: isOpen,
-        dropup: dropup
+        dropup: dropup,
+        'nav-item': nav
       }
     ), cssModule);
     return <Manager {...attrs} className={classes} onKeyDown={this.handleKeyDown} />;

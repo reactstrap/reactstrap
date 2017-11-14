@@ -23,7 +23,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Properties</h3>
+        <h3>Carousel Properties</h3>
         <pre>
           <PrismCode className="language-jsx">
 {`Carousel.propTypes = {
@@ -56,6 +56,59 @@ export default class CarouselPage extends React.Component {
   // controls whether the slide animation on the Carousel works or not
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
+};`}
+          </PrismCode>
+        </pre>
+
+        <h3>CarouselItem Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselItem.propTypes = {
+  ...Transition.propTypes,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  in: PropTypes.bool,
+  src: PropTypes.string,
+  altText: PropTypes.string,
+  cssModule: PropTypes.object,
+  children: PropTypes.shape({
+    type: PropTypes.oneOf([CarouselCaption]),
+  }),
+  slide: PropTypes.bool,
+};`}
+          </PrismCode>
+        </pre>
+
+        <h3>CarouselControl Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselControl.propTypes = {
+  direction: PropTypes.oneOf(['prev', 'next']).isRequired,
+  onClickHandler: PropTypes.func.isRequired,
+  cssModule: PropTypes.object,
+  directionText: PropTypes.string
+};`}
+          </PrismCode>
+        </pre>
+
+        <h3>CarouselIndicators Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselIndicators.propTypes = {
+  items: PropTypes.array.isRequired,
+  activeIndex: PropTypes.number.isRequired,
+  cssModule: PropTypes.object,
+  onClickHandler: PropTypes.func.isRequired
+};`}
+          </PrismCode>
+        </pre>
+
+        <h3>CarouselCaption Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselCaption.propTypes = {
+  captionHeader: PropTypes.string,
+  captionText: PropTypes.string.isRequired,
+  cssModule: PropTypes.object
 };`}
           </PrismCode>
         </pre>
