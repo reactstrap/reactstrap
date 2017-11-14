@@ -9,7 +9,7 @@ const CarouselCaption = (props) => {
     className,
     'carousel-caption',
     'd-none',
-    'd-md-block',
+    'd-md-block'
   ), cssModule);
 
   return (
