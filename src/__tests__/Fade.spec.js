@@ -48,15 +48,15 @@ describe('Fade', () => {
       </Helper>
     );
 
-    expect(wrapper.find('div.fade').hostNodes().length).toBe(2);
-    expect(wrapper.find('div.fade.show').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(1);
 
     jest.runTimersToTime(300);
 
-    expect(wrapper.find('div.fade.show').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(2);
 
     wrapper.find('.trigger').hostNodes().simulate('click');
-    expect(wrapper.find('div.fade.show').hostNodes().length).toBe(0);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(0);
   });
 
   it('should transition classes from "fade" to "fade show" on enter', () => {
@@ -70,23 +70,23 @@ describe('Fade', () => {
       </Helper>
     );
 
-    expect(wrapper.find('div.fade').hostNodes().length).toBe(0);
-    expect(wrapper.find('div.fade.show').hostNodes().length).toBe(0);
+    expect(wrapper.update().find('div.fade').hostNodes().length).toBe(0);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(0);
 
     wrapper.find('.trigger').hostNodes().simulate('click');
 
-    expect(wrapper.find('div.fade').hostNodes().length).toBe(2);
-    expect(wrapper.find('div.fade.show').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(1);
     expect(onEnter).toHaveBeenCalled();
 
     jest.runTimersToTime(300);
 
     expect(onEnter).toHaveBeenCalled();
     expect(onExit).not.toHaveBeenCalled();
-    expect(wrapper.find('div.fade.show').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(2);
 
     wrapper.find('.trigger').hostNodes().simulate('click');
-    expect(wrapper.find('div.fade.show').hostNodes().length).toBe(0);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(0);
     expect(onExit).toHaveBeenCalled();
   });
 
