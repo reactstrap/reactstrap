@@ -109,7 +109,7 @@ class Carousel extends React.Component {
     const outerClasses = mapToCssModules(classNames(
       className,
       'carousel',
-      slide && 'slide',
+      slide && 'slide'
     ), cssModule);
 
     const innerClasses = mapToCssModules(classNames(
@@ -199,7 +199,6 @@ Carousel.defaultProps = {
   pause: 'hover',
   keyboard: true,
   slide: true,
-  className: PropTypes.string,
 };
 
 Carousel.childContextTypes = {
