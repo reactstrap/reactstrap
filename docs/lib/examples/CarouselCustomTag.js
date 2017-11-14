@@ -76,14 +76,13 @@ class Example extends Component {
   
       return (
         <div>
-          <style dangerouslySetInnerHTML={{__html: `
+          <style>{`
             .custom-tag { 
-                max-width: 100%px;
+                max-width: 100%;
                 height: 500px;
                 background: black;
             }
-          `}} 
-          />
+          `}</style>
           <Carousel
             activeIndex={activeIndex}
             next={this.next}
