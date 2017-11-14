@@ -4,11 +4,12 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const CarouselCaption = (props) => {
-  const { captionHeader, captionText, cssModule } = props;
+  const { captionHeader, captionText, cssModule, className } = props;
   const classes = mapToCssModules(classNames(
+    className,
     'carousel-caption',
     'd-none',
-    'd-md-block'
+    'd-md-block',
   ), cssModule);
 
   return (
@@ -22,7 +23,8 @@ const CarouselCaption = (props) => {
 CarouselCaption.propTypes = {
   captionHeader: PropTypes.string,
   captionText: PropTypes.string.isRequired,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default CarouselCaption;

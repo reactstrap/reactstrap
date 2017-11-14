@@ -6,6 +6,8 @@ import CarouselExample from '../examples/Carousel';
 const CarouselExampleSource = require('!!raw!../examples/Carousel');
 import CarouselUncontrolledExample from '../examples/CarouselUncontrolled';
 const CarouselUncontrolledExampleSource = require('!!raw!../examples/CarouselUncontrolled');
+import CarouselCustomTagExample from '../examples/CarouselCustomTag';
+const CarouselCustomTagExampleSource = require('!!raw!../examples/CarouselCustomTag');
 
 export default class CarouselPage extends React.Component {
   render() {
@@ -138,6 +140,16 @@ export default class CarouselPage extends React.Component {
   controls: PropTypes.bool, // default: true
   autoPlay: PropTypes.bool, // default: true
 };`}
+          </PrismCode>
+        </pre>
+
+        <h3>Carousel using a tag and classname</h3>
+        <div className="docs-example">
+          <CarouselCustomTagExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {CarouselCustomTagExampleSource}
           </PrismCode>
         </pre>
       </div>

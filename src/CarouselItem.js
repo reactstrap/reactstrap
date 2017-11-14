@@ -50,10 +50,11 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-    const { src, altText, in: isIn, children, cssModule, slide, tag: Tag, ...transitionProps } = this.props;
+    const { src, altText, in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps } = this.props;
     const imgClasses = mapToCssModules(classNames(
+      className,
       'd-block',
-      'img-fluid'
+      'img-fluid',
     ), cssModule);
 
     return (
@@ -106,6 +107,7 @@ CarouselItem.propTypes = {
     type: PropTypes.oneOf([CarouselCaption]),
   }),
   slide: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 CarouselItem.defaultProps = {
