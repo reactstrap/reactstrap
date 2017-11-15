@@ -105,10 +105,11 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { children, cssModule, slide } = this.props;
+    const { children, cssModule, slide, className } = this.props;
     const outerClasses = mapToCssModules(classNames(
+      className,
       'carousel',
-      slide && 'slide',
+      slide && 'slide'
     ), cssModule);
 
     const innerClasses = mapToCssModules(classNames(
@@ -190,6 +191,7 @@ Carousel.propTypes = {
   // controls whether the slide animation on the Carousel works or not
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
+  className: PropTypes.string,
 };
 
 Carousel.defaultProps = {
