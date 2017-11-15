@@ -12,8 +12,8 @@ describe('Jumbotron', () => {
   it('should render elements as children', () => {
     const wrapper = mount(<Jumbotron><h1>Hello from h1</h1></Jumbotron>);
 
-    expect(wrapper.find('h1').length).toBe(1);
-    expect(wrapper.find('h1').text()).toBe('Hello from h1');
+    expect(wrapper.find('h1').hostNodes().length).toBe(1);
+    expect(wrapper.find('h1').hostNodes().text()).toBe('Hello from h1');
   });
 
   it('should have class jumbotron', () => {

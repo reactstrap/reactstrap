@@ -16,8 +16,8 @@ describe('Tabs', () => {
         </TabPane>
       </TabContent>
     );
-    expect(tab1.find('.tab-content').length).toBe(1);
-    expect(tab1.find('.tab-pane').length).toBe(2);
+    expect(tab1.find('.tab-content').hostNodes().length).toBe(1);
+    expect(tab1.find('.tab-pane').hostNodes().length).toBe(2);
   });
 
   it('should have tab1 as active', () => {
@@ -32,7 +32,7 @@ describe('Tabs', () => {
         </TabPane>
       </TabContent>
     );
-    expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(true);
+    expect(tab1.find('.tab-content .tab-pane').hostNodes().at(0).hasClass('active')).toBe(true);
   });
 
   it('should switch to tab2 as active when clicked', () => {
@@ -47,7 +47,7 @@ describe('Tabs', () => {
         </TabPane>
       </TabContent>
     );
-    expect(tab1.find('.tab-content .tab-pane').at(1).hasClass('active')).toBe(true);
+    expect(tab1.find('.tab-content .tab-pane').hostNodes().at(1).hasClass('active')).toBe(true);
   });
 
   it('should not setState when the active tab does not change during a prop update', () => {
@@ -75,8 +75,8 @@ describe('Tabs', () => {
       This could be a warning during development that the user is not having a proper tab ids.
       NOTE: Should this be different?
     */
-    expect(tab1.find('.tab-content .tab-pane').at(0).hasClass('active')).toBe(false);
-    expect(tab1.find('.tab-content .tab-pane').at(1).hasClass('active')).toBe(false);
+    expect(tab1.find('.tab-content .tab-pane').hostNodes().at(0).hasClass('active')).toBe(false);
+    expect(tab1.find('.tab-content .tab-pane').hostNodes().at(1).hasClass('active')).toBe(false);
   });
   it('should call setState when the active tab does change during a prop update', () => {
     const tab1 = mount(<TabContent activeTab={1} />);

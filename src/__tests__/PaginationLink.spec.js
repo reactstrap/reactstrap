@@ -6,13 +6,13 @@ describe('PaginationLink', () => {
   it('should render default tag', () => {
     const wrapper = mount(<PaginationLink />);
 
-    expect(wrapper.find('a').length).toBe(1);
+    expect(wrapper.find('a').hostNodes().length).toBe(1);
   });
 
   it('should render custom tag', () => {
     const wrapper = mount(<PaginationLink tag="span" />);
 
-    expect(wrapper.find('span').length).toBe(1);
+    expect(wrapper.find('span').hostNodes().length).toBe(1);
   });
 
   it('should render with "page-link" class', () => {

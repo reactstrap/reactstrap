@@ -38,6 +38,7 @@ describe('UncontrolledCarousel', () => {
     const carousel = shallow(<UncontrolledCarousel items={items} />);
     const instance = carousel.instance();
     instance.next();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(1);
   });
 
@@ -53,12 +54,16 @@ describe('UncontrolledCarousel', () => {
     const carousel = shallow(<UncontrolledCarousel items={items} />);
     const instance = carousel.instance();
     instance.next();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(1);
     instance.next();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(2);
     instance.next();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(0);
     instance.next();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(1);
   });
 
@@ -66,8 +71,10 @@ describe('UncontrolledCarousel', () => {
     const carousel = shallow(<UncontrolledCarousel items={items} />);
     const instance = carousel.instance();
     instance.next();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(1);
     instance.previous();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(0);
   });
 
@@ -75,9 +82,11 @@ describe('UncontrolledCarousel', () => {
     const carousel = shallow(<UncontrolledCarousel items={items} />);
     const instance = carousel.instance();
     instance.next();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(1);
     instance.animating = true;
     instance.previous();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(1);
   });
 
@@ -85,6 +94,7 @@ describe('UncontrolledCarousel', () => {
     const carousel = shallow(<UncontrolledCarousel items={items} />);
     const instance = carousel.instance();
     instance.previous();
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(2);
   });
 
@@ -92,6 +102,7 @@ describe('UncontrolledCarousel', () => {
     const carousel = shallow(<UncontrolledCarousel items={items} />);
     const instance = carousel.instance();
     instance.goToIndex(2);
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(2);
   });
 
@@ -100,6 +111,7 @@ describe('UncontrolledCarousel', () => {
     const instance = carousel.instance();
     instance.animating = true;
     instance.goToIndex(2);
+    carousel.update();
     expect(carousel.prop('activeIndex')).toBe(0);
   });
 

@@ -94,16 +94,15 @@ describe('Collapse', () => {
 
   it('should apply correct bootstrap classes', () => {
     wrapper = mount(<Collapse isOpen={isOpen} />);
-    const elem = wrapper.find('div');
     toggle();
-    expect(elem.prop('className')).toBe('collapsing');
+    expect(wrapper.update().find('div').prop('className')).toBe('collapsing');
     jest.runTimersToTime(350);
-    expect(elem.prop('className')).toBe('collapse show');
+    expect(wrapper.update().find('div').prop('className')).toBe('collapse show');
 
     toggle();
-    expect(elem.prop('className')).toBe('collapsing');
+    expect(wrapper.update().find('div').prop('className')).toBe('collapsing');
     jest.runTimersToTime(350);
-    expect(elem.prop('className')).toBe('collapse');
+    expect(wrapper.update().find('div').prop('className')).toBe('collapse');
 
     wrapper.unmount();
   });

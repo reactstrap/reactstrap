@@ -166,6 +166,10 @@ class Modal extends React.Component {
   }
 
   show() {
+    if (this._dialog) {
+      this.props.toggle(true);
+      return;
+    }
     const classes = document.body.className;
     this._element = document.createElement('div');
     this._element.setAttribute('tabindex', '-1');

@@ -32,7 +32,7 @@ describe('Carousel', () => {
   describe('items', () => {
     it('should render an img tag by default', () => {
       const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />);
-      expect(wrapper.find('img').length).toEqual(1);
+      expect(wrapper.find('img').hostNodes().length).toEqual(1);
     });
 
     it('should render custom tag', () => {
@@ -54,26 +54,26 @@ describe('Carousel', () => {
         const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} in={false} />, { context: { direction: 'right' } });
 
         wrapper.setProps({ in: true });
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item carousel-item-left carousel-item-next');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-left carousel-item-next');
         jest.runTimersToTime(600);
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active');
         wrapper.setProps({ in: false });
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active carousel-item-left');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-left');
         jest.runTimersToTime(600);
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item');
       });
 
       it('should add the appropriate classes when entering left', () => {
         const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} in={false} />, { context: { direction: 'left' } });
 
         wrapper.setProps({ in: true });
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item carousel-item-right carousel-item-prev');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-right carousel-item-prev');
         jest.runTimersToTime(600);
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active');
         wrapper.setProps({ in: false });
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item active carousel-item-right');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-right');
         jest.runTimersToTime(600);
-        expect(wrapper.find('div').prop('className')).toEqual('carousel-item');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item');
       });
 
       it('should call all callbacks when transitioning in and out', () => {
@@ -116,7 +116,7 @@ describe('Carousel', () => {
 
     it('should append the correct active class', () => {
       const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />);
-      expect(wrapper.find('.active').length).toEqual(1);
+      expect(wrapper.find('.active').hostNodes().length).toEqual(1);
     });
 
     it('should call the click hanlder', () => {
@@ -207,7 +207,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>
       );
-      expect(wrapper.find('.carousel-item.active').length).toEqual(1);
+      expect(wrapper.find('.carousel-item.active').hostNodes().length).toEqual(1);
     });
 
     it('should show indicators and controls', () => {
