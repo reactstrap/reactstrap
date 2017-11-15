@@ -1,3 +1,4 @@
+import debounce from 'lodash.debounce';
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -78,6 +79,7 @@ class Modal extends React.Component {
     this.togglePortal = this.togglePortal.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
+    this.handleEscapeDebounced = debounce(this.handleEscape, 250, { leading: true, trailing: false });
     this.destroy = this.destroy.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
@@ -122,6 +124,10 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
+    // If the modal should not be open, but the listener is alive,
+    // we're already transitioning to close the modal.
+    if (this.props.isOpen !== true) return;
+
     if (this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
       this.props.toggle();
     }
@@ -129,6 +135,9 @@ class Modal extends React.Component {
 
   handleBackdropClick(e) {
     if (this.props.backdrop !== true) return;
+    // If the modal should not be open, but we can click the backdrop,
+    // we're already transitioning to close the modal.
+    if (this.props.isOpen !== true) return;
 
     const container = this._dialog;
 
@@ -241,7 +250,7 @@ class Modal extends React.Component {
 
     const modalAttributes = {
       onClickCapture: this.handleBackdropClick,
-      onKeyUp: this.handleEscape,
+      onKeyUp: this.handleEscapeDebounced,
       style: { display: 'block' },
       'aria-labelledby': labelledBy,
       role,
