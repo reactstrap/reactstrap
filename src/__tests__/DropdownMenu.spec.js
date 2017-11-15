@@ -140,7 +140,7 @@ describe('DropdownMenu', () => {
       }
     );
 
-    expect(wrapper.find(Popper).prop('modifiers').flip).toBe(undefined);
+    expect(wrapper.find(Popper).prop('modifiers')).toBe(undefined);
   });
 
   it('should disable flip modifier when flip is false', () => {
