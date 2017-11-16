@@ -48,15 +48,15 @@ describe('Fade', () => {
       </Helper>
     );
 
-    expect(wrapper.find('div.fade').length).toBe(2);
-    expect(wrapper.find('div.fade.show').length).toBe(2);
+    expect(wrapper.update().find('div.fade').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(1);
 
     jest.runTimersToTime(300);
 
-    expect(wrapper.find('div.fade.show').length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(2);
 
-    wrapper.find('.trigger').simulate('click');
-    expect(wrapper.find('div.fade.show').length).toBe(0);
+    wrapper.find('.trigger').hostNodes().simulate('click');
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(0);
   });
 
   it('should transition classes from "fade" to "fade show" on enter', () => {
@@ -70,38 +70,38 @@ describe('Fade', () => {
       </Helper>
     );
 
-    expect(wrapper.find('div.fade').length).toBe(0);
-    expect(wrapper.find('div.fade.show').length).toBe(0);
+    expect(wrapper.update().find('div.fade').hostNodes().length).toBe(0);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(0);
 
-    wrapper.find('.trigger').simulate('click');
+    wrapper.find('.trigger').hostNodes().simulate('click');
 
-    expect(wrapper.find('div.fade').length).toBe(2);
-    expect(wrapper.find('div.fade.show').length).toBe(2);
+    expect(wrapper.update().find('div.fade').hostNodes().length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(1);
     expect(onEnter).toHaveBeenCalled();
 
     jest.runTimersToTime(300);
 
     expect(onEnter).toHaveBeenCalled();
     expect(onExit).not.toHaveBeenCalled();
-    expect(wrapper.find('div.fade.show').length).toBe(2);
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(2);
 
-    wrapper.find('.trigger').simulate('click');
-    expect(wrapper.find('div.fade.show').length).toBe(0);
+    wrapper.find('.trigger').hostNodes().simulate('click');
+    expect(wrapper.update().find('div.fade.show').hostNodes().length).toBe(0);
     expect(onExit).toHaveBeenCalled();
   });
 
   it('should pass className down', () => {
     const alert = mount(<Fade className="test-class-name">Yo!</Fade>);
-    expect(alert.find('.fade').prop('className')).toContain('test-class-name');
+    expect(alert.find('.fade').hostNodes().prop('className')).toContain('test-class-name');
   });
 
   it('should pass other props down', () => {
     const alert = mount(<Fade data-testprop="testvalue">Yo!</Fade>);
-    expect(alert.find('.fade').prop('data-testprop')).toContain('testvalue');
+    expect(alert.find('.fade').hostNodes().prop('data-testprop')).toContain('testvalue');
   });
 
   it('should support custom tag', () => {
     const alert = mount(<Fade tag="p">Yo!</Fade>);
-    expect(alert.find('p').length).toBe(1);
+    expect(alert.find('p').hostNodes().length).toBe(1);
   });
 });

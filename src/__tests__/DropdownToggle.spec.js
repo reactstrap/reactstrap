@@ -39,7 +39,7 @@ describe('DropdownToggle', () => {
     );
 
     expect(wrapper.text()).toBe('Toggle Dropdown');
-    expect(wrapper.find('.sr-only').length).toBe(1);
+    expect(wrapper.find('.sr-only').hostNodes().length).toBe(1);
   });
 
   it('should add default sr-only content', () => {
@@ -52,7 +52,7 @@ describe('DropdownToggle', () => {
     );
 
     expect(wrapper.text()).toBe('Dropup Toggle');
-    expect(wrapper.find('.sr-only').length).toBe(1);
+    expect(wrapper.find('.sr-only').hostNodes().length).toBe(1);
   });
 
   it('should render elements', () => {
@@ -65,7 +65,7 @@ describe('DropdownToggle', () => {
     );
 
     expect(wrapper.text()).toBe('Click Me');
-    expect(wrapper.find('button').length).toBe(1);
+    expect(wrapper.find('button').hostNodes().length).toBe(1);
   });
 
   it('should render a caret', () => {
@@ -77,7 +77,7 @@ describe('DropdownToggle', () => {
       }
     );
 
-    expect(wrapper.hasClass('dropdown-toggle')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('dropdown-toggle')).toBe(true);
   });
 
   describe('color', () => {
@@ -90,8 +90,8 @@ describe('DropdownToggle', () => {
         }
       );
 
-      expect(wrapper.find('button').length).toBe(1);
-      expect(wrapper.find('button').hasClass('btn-secondary')).toBe(true);
+      expect(wrapper.find('button').hostNodes().length).toBe(1);
+      expect(wrapper.find('button').hostNodes().hasClass('btn-secondary')).toBe(true);
     });
 
     it('should render the dropdown as a BUTTON element with explicit color success', () => {
@@ -103,8 +103,8 @@ describe('DropdownToggle', () => {
         }
       );
 
-      expect(wrapper.find('button').length).toBe(1);
-      expect(wrapper.find('button').hasClass('btn-success')).toBe(true);
+      expect(wrapper.find('button').hostNodes().length).toBe(1);
+      expect(wrapper.find('button').hostNodes().hasClass('btn-success')).toBe(true);
     });
 
     it('should render the dropdown as an A element with no color attribute', () => {
@@ -116,8 +116,8 @@ describe('DropdownToggle', () => {
         }
       );
 
-      expect(wrapper.find('a').length).toBe(1);
-      expect(wrapper.find('a[color]').length).toBe(0);
+      expect(wrapper.find('a').hostNodes().length).toBe(1);
+      expect(wrapper.find('a[color]').hostNodes().length).toBe(0);
     });
 
     it('should render the dropdown as a DIV element with no color attribute', () => {
@@ -129,8 +129,8 @@ describe('DropdownToggle', () => {
         }
       );
 
-      expect(wrapper.find('div').length).toBe(1);
-      expect(wrapper.find('div[color]').length).toBe(0);
+      expect(wrapper.find('div').hostNodes().length).toBe(1);
+      expect(wrapper.find('div[color]').hostNodes().length).toBe(0);
     });
   });
 
@@ -143,7 +143,7 @@ describe('DropdownToggle', () => {
       }
     );
 
-    expect(wrapper.hasClass('dropdown-toggle-split')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('dropdown-toggle-split')).toBe(true);
   });
 
   describe('onClick', () => {
@@ -208,8 +208,8 @@ describe('DropdownToggle', () => {
         }
       );
 
-      expect(wrapper.find('a').length).toBe(1);
-      expect(wrapper.find('.nav-link').length).toBe(1);
+      expect(wrapper.find('a').hostNodes().length).toBe(1);
+      expect(wrapper.find('.nav-link').hostNodes().length).toBe(1);
     });
 
     it('should not set the tag prop when the tag is defined', () => {

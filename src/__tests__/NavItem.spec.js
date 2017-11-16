@@ -27,4 +27,10 @@ describe('NavItem', () => {
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('nav-item')).toBe(true);
   });
+
+  it('should render active class', () => {
+    const wrapper = shallow(<NavItem active />);
+
+    expect(wrapper.hasClass('active')).toBe(true);
+  });
 });

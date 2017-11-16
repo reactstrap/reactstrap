@@ -22,6 +22,7 @@ describe('Dropdown', () => {
     if (jest.isMockFunction(Dropdown.prototype.toggle)) Dropdown.prototype.toggle.mockRestore();
     if (jest.isMockFunction(Dropdown.prototype.handleDocumentClick)) Dropdown.prototype.handleDocumentClick.mockRestore();
     document.body.removeChild(element);
+    document.body.innerHTML = '';
     element = null;
   });
 
@@ -29,7 +30,7 @@ describe('Dropdown', () => {
     const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>Ello world</Dropdown>);
 
     expect(wrapper.text()).toBe('Ello world');
-    expect(wrapper.find('.dropdown').length).toBe(1);
+    expect(wrapper.find('.dropdown').hostNodes().length).toBe(1);
   });
 
   it('should render multiple children when isOpen is true', () => {
@@ -43,10 +44,10 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(wrapper.find('.btn').text()).toBe('Toggle');
-    expect(wrapper.find('.dropdown').length).toBe(1);
-    expect(wrapper.find('.dropdown-item').length).toBe(1);
-    expect(wrapper.children().length).toBe(2);
+    expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');
+    expect(wrapper.find('.dropdown').hostNodes().length).toBe(1);
+    expect(wrapper.find('.dropdown-item').hostNodes().length).toBe(1);
+    expect(wrapper.childAt(0).childAt(0).children().length).toBe(2);
   });
 
   it('should not call props.toggle when disabled ', () => {
@@ -421,7 +422,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.down });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -451,7 +452,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#second').simulate('keydown', { which: keyCodes.down });
+      wrapper.find('#second').hostNodes().simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -481,7 +482,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#second').simulate('keydown', { which: keyCodes.up });
+      wrapper.find('#second').hostNodes().simulate('keydown', { which: keyCodes.up });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(1);
@@ -511,7 +512,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#third').simulate('keydown', { which: keyCodes.down });
+      wrapper.find('#third').hostNodes().simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -541,7 +542,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.up });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.up });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(1);
@@ -569,7 +570,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.space });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(1);
@@ -595,7 +596,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.space });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -622,9 +623,9 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#input').simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#input').simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#input').simulate('keydown', { which: keyCodes.space });
+      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -652,9 +653,9 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#input').simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#input').simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#input').simulate('keydown', { which: keyCodes.space });
+      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -682,9 +683,9 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.space });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -712,9 +713,9 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#first').simulate('keydown', { which: keyCodes.space });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -743,16 +744,16 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(small.find('.btn-group-sm').length).toBe(1);
-    expect(large.find('.btn-group-lg').length).toBe(1);
+    expect(small.find('.btn-group-sm').hostNodes().length).toBe(1);
+    expect(large.find('.btn-group-lg').hostNodes().length).toBe(1);
   });
 
   describe('Dropdown with nav', () => {
     it('should render a single child', () => {
       const wrapper = mount(<Dropdown nav isOpen={isOpen} toggle={toggle}>Ello world</Dropdown>);
 
-      expect(wrapper.find('.nav-item').text()).toBe('Ello world');
-      expect(wrapper.find('.nav-item').length).toBe(1);
+      expect(wrapper.find('.nav-item').hostNodes().text()).toBe('Ello world');
+      expect(wrapper.find('.nav-item').hostNodes().length).toBe(1);
     });
 
     it('should render multiple children when isOpen', () => {
@@ -766,10 +767,10 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      expect(wrapper.find('.btn').text()).toBe('Toggle');
-      expect(wrapper.find('.nav-item').length).toBe(1);
-      expect(wrapper.find('.dropdown-item').length).toBe(1);
-      expect(wrapper.children().length).toBe(2);
+      expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');
+      expect(wrapper.find('.nav-item').hostNodes().length).toBe(1);
+      expect(wrapper.find('.dropdown-item').hostNodes().length).toBe(1);
+      expect(wrapper.find('.nav-item').hostNodes().children().length).toBe(2);
     });
   });
 });

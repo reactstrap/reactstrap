@@ -6,13 +6,13 @@ describe('PaginationItem', () => {
   it('should render default tag', () => {
     const wrapper = mount(<PaginationItem />);
 
-    expect(wrapper.find('li').length).toBe(1);
+    expect(wrapper.find('li').hostNodes().length).toBe(1);
   });
 
   it('should render custom tag', () => {
     const wrapper = mount(<PaginationItem tag="main" />);
 
-    expect(wrapper.find('main').length).toBe(1);
+    expect(wrapper.find('main').hostNodes().length).toBe(1);
   });
 
   it('should render with "page-item" class', () => {

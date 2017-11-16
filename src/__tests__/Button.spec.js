@@ -13,49 +13,49 @@ describe('Button', () => {
     const Link = props => <a href="/home" {...props}>{props.children}</a>;
     const wrapper = mount(<Button tag={Link}>Home</Button>);
 
-    expect(wrapper.find('a').length).toBe(1);
+    expect(wrapper.find('a').hostNodes().length).toBe(1);
     expect(wrapper.text()).toBe('Home');
   });
 
   it('should render an anchor element if href exists', () => {
     const wrapper = mount(<Button href="/home">Home</Button>);
 
-    expect(wrapper.find('a').length).toBe(1);
+    expect(wrapper.find('a').hostNodes().length).toBe(1);
     expect(wrapper.text()).toBe('Home');
   });
 
   it('should render type as undefined by default when tag is "button"', () => {
     const wrapper = mount(<Button>Home</Button>);
 
-    expect(wrapper.find('button').prop('type')).toBe(undefined);
+    expect(wrapper.find('button').hostNodes().prop('type')).toBe(undefined);
     expect(wrapper.text()).toBe('Home');
   });
 
   it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
     const wrapper = mount(<Button onClick={() => {}}>Home</Button>);
 
-    expect(wrapper.find('button').prop('type')).toBe('button');
+    expect(wrapper.find('button').hostNodes().prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');
   });
 
   it('should render type as user defined when defined by the user', () => {
     const wrapper = mount(<Button type="submit">Home</Button>);
 
-    expect(wrapper.find('button').prop('type')).toBe('submit');
+    expect(wrapper.find('button').hostNodes().prop('type')).toBe('submit');
     expect(wrapper.text()).toBe('Home');
   });
 
   it('should not render type by default when the type is not defined and the tag is not "button"', () => {
     const wrapper = mount(<Button tag="a">Home</Button>);
 
-    expect(wrapper.find('a').prop('type')).toBe(undefined);
+    expect(wrapper.find('a').hostNodes().prop('type')).toBe(undefined);
     expect(wrapper.text()).toBe('Home');
   });
 
   it('should not render type by default when the type is not defined and the href is defined', () => {
     const wrapper = mount(<Button href="#">Home</Button>);
 
-    expect(wrapper.find('a').prop('type')).toBe(undefined);
+    expect(wrapper.find('a').hostNodes().prop('type')).toBe(undefined);
     expect(wrapper.text()).toBe('Home');
   });
 
@@ -102,7 +102,7 @@ describe('Button', () => {
       const onClick = jest.fn();
       const wrapper = mount(<Button onClick={onClick}>Testing Click</Button>);
 
-      wrapper.find('button').simulate('click');
+      wrapper.find('button').hostNodes().simulate('click');
       expect(onClick).toHaveBeenCalled();
     });
 
