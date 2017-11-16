@@ -15,7 +15,9 @@ function baseConfig() {
     entry: 'src/index.js',
     plugins: [
       nodeResolve(),
-      commonjs(),
+      commonjs({
+        include: 'node_modules/**'
+      }),
       babel({
         plugins: ['external-helpers'],
       }),
@@ -115,14 +117,14 @@ const umdConfig = baseUmdConfig(false);
 umdConfig.external = external;
 umdConfig.globals = globals;
 umdConfig.targets = [
-    { dest: 'dist/reactstrap.js', format: 'umd' },
+  { dest: 'dist/reactstrap.js', format: 'umd' },
 ];
 
 const umdConfigMin = baseUmdConfig(true);
 umdConfigMin.external = external;
 umdConfigMin.globals = globals;
 umdConfigMin.targets = [
-    { dest: 'dist/reactstrap.min.js', format: 'umd' },
+  { dest: 'dist/reactstrap.min.js', format: 'umd' },
 ];
 
 
