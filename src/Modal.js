@@ -18,6 +18,7 @@ const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
 const propTypes = {
   isOpen: PropTypes.bool,
+  addEndListener: PropTypes.func,
   autoFocus: PropTypes.bool,
   size: PropTypes.string,
   toggle: PropTypes.func,
@@ -81,6 +82,11 @@ class Modal extends React.Component {
     this.destroy = this.destroy.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
+    this.addEndListener = this.addEndListener.bind(this);
+    this.startTransition = this.startTransition.bind(this);
+    this.state = {
+      isTransitioning: false
+    };
   }
 
   componentDidMount() {
@@ -92,12 +98,14 @@ class Modal extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpen !== prevProps.isOpen) {
       // handle portal events/dom updates
-      this.togglePortal();
-    } else if (this._element) {
-      // rerender portal
+      if (!this.state.isTransitioning) {
+        this.togglePortal();
+      }
+    } else if (this._element && this.state.isTransitioning === prevState.isTransitioning) {
+      // rerender portal\
       this.renderIntoSubtree();
     }
   }
@@ -128,13 +136,15 @@ class Modal extends React.Component {
   }
 
   handleBackdropClick(e) {
-    if (this.props.backdrop !== true) return;
+    if (this.props.backdrop !== true || this.state.isTransitioning) return;
+    e.persist();
+    setTimeout(() => {
+      const container = this._dialog;
 
-    const container = this._dialog;
-
-    if (e.target && !container.contains(e.target) && this.props.toggle) {
-      this.props.toggle();
-    }
+      if (e.target && !container.contains(e.target) && this.props.toggle) {
+        this.props.toggle();
+      }
+    }, TransitionTimeouts.Fade);
   }
 
   togglePortal() {
@@ -187,6 +197,21 @@ class Modal extends React.Component {
     ), this.props.cssModule);
 
     this.renderIntoSubtree();
+  }
+
+  startTransition() {
+    this.setState({
+      isTransitioning: true
+    });
+  }
+
+  addEndListener(node) {
+    const callback = () => {
+      this.setState({
+        isTransitioning: false
+      });
+    };
+    node.addEventListener('transitionend', callback, false);
   }
 
   renderModalDialog() {
@@ -280,6 +305,9 @@ class Modal extends React.Component {
         </Fade>
         <Fade
           {...backdropTransition}
+          addEndListener={this.addEndListener}
+          onEntering={this.startTransition}
+          onExiting={this.startTransition}
           in={isOpen && !!backdrop}
           cssModule={cssModule}
           className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}

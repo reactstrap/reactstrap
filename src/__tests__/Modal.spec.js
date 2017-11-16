@@ -355,6 +355,9 @@ describe('Modal', () => {
     expect(onClosed).not.toHaveBeenCalled();
     expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
 
+    wrapper.setState({
+      isTransitioning: false
+    });
     toggle();
     wrapper.setProps({
       isOpen: isOpen
@@ -392,6 +395,9 @@ describe('Modal', () => {
     expect(onOpened).toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
 
+    wrapper.setState({
+      isTransitioning: false
+    });
     toggle();
     wrapper.setProps({
       isOpen: isOpen
@@ -413,6 +419,9 @@ describe('Modal', () => {
       </Modal>
     );
 
+    // wrapper.setState({
+    //   isTransitioning: false
+    // });
     jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
@@ -420,6 +429,9 @@ describe('Modal', () => {
 
     wrapper.setProps({
       isOpen: isOpen
+    });
+    wrapper.setState({
+      isTransitioning: false
     });
     jest.runTimersToTime(300);
 
@@ -439,7 +451,6 @@ describe('Modal', () => {
         Yo!
       </Modal>
     );
-
     jest.runTimersToTime(300);
     expect(isOpen).toBe(true);
     expect(Modal.prototype.togglePortal.mock.calls.length).toEqual(1);
@@ -477,6 +488,9 @@ describe('Modal', () => {
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
+    wrapper.setState({
+      isTransitioning: false
+    });
     instance.handleEscape({ keyCode: 27 });
     jest.runTimersToTime(300);
 
@@ -544,7 +558,9 @@ describe('Modal', () => {
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
-
+    wrapper.setState({
+      isTransitioning: false
+    });
     document.getElementsByClassName('modal')[0].click();
     jest.runTimersToTime(300);
 
@@ -651,7 +667,9 @@ describe('Modal', () => {
     // using this to test if replace will leave a space when removing modal-open
     document.body.className += ' modal-opened';
     expect(document.body.className).toBe('my-modal-opened modal-open modal-opened');
-
+    wrapper.setState({
+      isTransitioning: false
+    });
     toggle();
     wrapper.setProps({
       isOpen: isOpen
