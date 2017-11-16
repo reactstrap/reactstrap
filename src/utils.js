@@ -147,6 +147,7 @@ export const TransitionPropTypeKeys = [
   'in',
   'mountOnEnter',
   'unmountOnExit',
+  'addEndListener',
   'appear',
   'enter',
   'exit',
