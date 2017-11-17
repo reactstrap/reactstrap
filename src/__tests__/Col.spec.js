@@ -30,11 +30,10 @@ describe('Col', () => {
   });
 
   it('should allow custom columns to be defined with objects', () => {
-    const wrapper = shallow(<Col widths={['base', 'jumbo', 'wtf']} wtf={{ size: 1, push: 2, pull: 3, offset: 4 }} />);
+    const wrapper = shallow(<Col widths={['base', 'jumbo', 'wtf']} wtf={{ size: 1, order: 2, offset: 4 }} />);
 
     expect(wrapper.hasClass('col-wtf-1')).toBe(true);
-    expect(wrapper.hasClass('push-wtf-2')).toBe(true);
-    expect(wrapper.hasClass('pull-wtf-3')).toBe(true);
+    expect(wrapper.hasClass('order-wtf-2')).toBe(true);
     expect(wrapper.hasClass('offset-wtf-4')).toBe(true);
     expect(wrapper.hasClass('col')).toBe(true);
   });
@@ -61,28 +60,26 @@ describe('Col', () => {
   });
 
   it('should pass col size specific classes via Objects', () => {
-    const wrapper = shallow(<Col sm={{ size: 6, push: 2, pull: 2, offset: 2 }} />);
+    const wrapper = shallow(<Col sm={{ size: 6, order: 2, offset: 2 }} />);
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
     expect(wrapper.hasClass('col')).toBe(true);
-    expect(wrapper.hasClass('push-sm-2')).toBe(true);
-    expect(wrapper.hasClass('pull-sm-2')).toBe(true);
+    expect(wrapper.hasClass('order-sm-2')).toBe(true);
     expect(wrapper.hasClass('offset-sm-2')).toBe(true);
   });
 
   it('should pass col size specific classes via Objects including 0', () => {
-    const wrapper = shallow(<Col sm={{ size: 6, push: 0, pull: 0, offset: 0 }} />);
+    const wrapper = shallow(<Col sm={{ size: 6, order: 0, offset: 0 }} />);
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
     expect(wrapper.hasClass('col')).toBe(true);
-    expect(wrapper.hasClass('push-sm-0')).toBe(true);
-    expect(wrapper.hasClass('pull-sm-0')).toBe(true);
+    expect(wrapper.hasClass('order-sm-0')).toBe(true);
     expect(wrapper.hasClass('offset-sm-0')).toBe(true);
   });
 
   it('should pass col size when passing via object with size "auto"', () => {
     const wrapper = shallow(<Col
-      sm={{ size: 'auto', push: 2, pull: 2, offset: 2 }}
+      sm={{ size: 'auto', offset: 2 }}
     />);
 
     expect(wrapper.hasClass('col-sm-auto')).toBe(true);
