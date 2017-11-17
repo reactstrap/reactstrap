@@ -13,7 +13,7 @@ const propTypes = {
   dark: PropTypes.bool,
   hover: PropTypes.bool,
   reflow: PropTypes.bool,
-  responsive: PropTypes.bool,
+  responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['sm', 'md', 'lg', 'xl'])]),
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   responsiveTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
@@ -54,8 +54,9 @@ const Table = (props) => {
   const table = <Tag {...attributes} className={classes} />;
 
   if (responsive) {
+    const responsiveClassName = responsive === true ? 'table-responsive' : `table-${responsive}-responsive`;
     return (
-      <ResponsiveTag className="table-responsive">{table}</ResponsiveTag>
+      <ResponsiveTag className={responsiveClassName}>{table}</ResponsiveTag>
     );
   }
 

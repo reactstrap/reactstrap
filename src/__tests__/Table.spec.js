@@ -45,4 +45,12 @@ describe('Table', () => {
     expect(wrapper.hasClass('table-responsive')).toBe(true);
     expect(wrapper.find('.table').length).toBe(1);
   });
+
+  it('should render responsive wrapper class for md', () => {
+    const wrapper = shallow(<Table responsive="md">Yo!</Table>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table-md-responsive')).toBe(true);
+    expect(wrapper.find('.table').length).toBe(1);
+  });
 });
