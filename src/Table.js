@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, deprecated } from './utils';
 
 const propTypes = {
   className: PropTypes.string,
@@ -9,7 +9,8 @@ const propTypes = {
   size: PropTypes.string,
   bordered: PropTypes.bool,
   striped: PropTypes.bool,
-  inverse: PropTypes.bool,
+  inverse: deprecated(PropTypes.bool, 'Please use the prop "dark"'),
+  dark: PropTypes.bool,
   hover: PropTypes.bool,
   reflow: PropTypes.bool,
   responsive: PropTypes.bool,
@@ -30,6 +31,7 @@ const Table = (props) => {
     bordered,
     striped,
     inverse,
+    dark,
     hover,
     reflow,
     responsive,
@@ -44,7 +46,7 @@ const Table = (props) => {
     size ? 'table-' + size : false,
     bordered ? 'table-bordered' : false,
     striped ? 'table-striped' : false,
-    inverse ? 'table-inverse' : false,
+    (dark || inverse) ? 'table-dark' : false,
     hover ? 'table-hover' : false,
     reflow ? 'table-reflow' : false
   ), cssModule);

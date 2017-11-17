@@ -4,7 +4,7 @@ import { Table } from 'reactstrap';
 export default class Example extends React.Component {
   render() {
     return (
-      <Table inverse>
+      <Table dark>
         <thead>
           <tr>
             <th>#</th>
