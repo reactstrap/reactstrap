@@ -34,9 +34,13 @@ const Table = (props) => {
     hover,
     responsive,
     tag: Tag,
-    responsiveTag: ResponsiveTag,
     ...attributes
   } = props;
+
+  let responsiveClassName = false;
+  if (responsive) {
+    responsiveClassName = responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
+  }
 
   const classes = mapToCssModules(classNames(
     className,
@@ -45,17 +49,11 @@ const Table = (props) => {
     bordered ? 'table-bordered' : false,
     striped ? 'table-striped' : false,
     (dark || inverse) ? 'table-dark' : false,
-    hover ? 'table-hover' : false
+    hover ? 'table-hover' : false,
+    responsiveClassName
   ), cssModule);
 
   const table = <Tag {...attributes} className={classes} />;
-
-  if (responsive) {
-    const responsiveClassName = responsive === true ? 'table-responsive' : `table-${responsive}-responsive`;
-    return (
-      <ResponsiveTag className={responsiveClassName}>{table}</ResponsiveTag>
-    );
-  }
 
   return table;
 };
