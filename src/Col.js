@@ -2,7 +2,7 @@ import isobject from 'lodash.isobject';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, deprecated } from './utils';
 
 const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
@@ -13,8 +13,9 @@ const columnProps = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.shape({
     size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-    push: stringOrNumberProp,
-    pull: stringOrNumberProp,
+    push: deprecated(stringOrNumberProp, 'Please use the prop "order"'),
+    pull: deprecated(stringOrNumberProp, 'Please use the prop "order"'),
+    order: stringOrNumberProp,
     offset: stringOrNumberProp
   })
 ]);
@@ -78,8 +79,7 @@ const Col = (props) => {
 
       colClasses.push(mapToCssModules(classNames({
         [colClass]: columnProp.size || columnProp.size === '',
-        [`push${colSizeInterfix}${columnProp.push}`]: columnProp.push || columnProp.push === 0,
-        [`pull${colSizeInterfix}${columnProp.pull}`]: columnProp.pull || columnProp.pull === 0,
+        [`order${colSizeInterfix}${columnProp.order}`]: columnProp.order || columnProp.order === 0,
         [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset || columnProp.offset === 0
       })), cssModule);
     } else {
