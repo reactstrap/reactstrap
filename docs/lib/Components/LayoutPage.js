@@ -50,8 +50,7 @@ const columnProps = PropTypes.oneOfType([
     // 12 || "12" => col-12 or col-\`width\`-12
     // auto => col-auto or col-\`width\`-auto
     // true => col or col-\`width\`
-    push: stringOrNumberProp,
-    pull: stringOrNumberProp,
+    order: stringOrNumberProp,
     offset: stringOrNumberProp
   })
 ]);
