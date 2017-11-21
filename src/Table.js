@@ -13,7 +13,7 @@ const propTypes = {
   dark: PropTypes.bool,
   hover: PropTypes.bool,
   reflow: PropTypes.bool,
-  responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['sm', 'md', 'lg', 'xl'])]),
+  responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   responsiveTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
