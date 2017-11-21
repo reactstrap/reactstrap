@@ -21,30 +21,6 @@ describe('Label', () => {
     expect(wrapper.hasClass('extra')).toBe(true);
   });
 
-  it('should render with "form-control-label" class', () => {
-    const wrapper = shallow(<Label>Yo!</Label>);
-
-    expect(wrapper.hasClass('form-control-label')).toBe(true);
-  });
-
-  it('should render with "form-control-label" class when inline prop is truthy', () => {
-    const wrapper = shallow(<Label inline>Yo!</Label>);
-
-    expect(wrapper.hasClass('form-control-label')).toBe(true);
-  });
-
-  it('should not render with "form-control-label" class when a col is provided', () => {
-    const wrapper = shallow(<Label sm="6">Yo!</Label>);
-
-    expect(wrapper.hasClass('form-control-label')).toBe(false);
-  });
-
-  it('should not render with "form-control-label" class when check prop is truthy', () => {
-    const wrapper = shallow(<Label check>Yo!</Label>);
-
-    expect(wrapper.hasClass('form-control-label')).toBe(false);
-  });
-
   it('should render with "col-form-label" class when a col is provided', () => {
     const wrapper = shallow(<Label sm="6">Yo!</Label>);
 
