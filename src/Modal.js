@@ -167,7 +167,9 @@ class Modal extends React.Component {
 
   show() {
     if (this._dialog) {
-      this.props.toggle(true);
+      if (this.props.toggle) {
+        this.props.toggle(true);
+      }
       return;
     }
     const classes = document.body.className;
