@@ -11,11 +11,13 @@ const propTypes = {
   flip: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  inNavbar: PropTypes.bool,
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
+  inNavbar: false,
 };
 
 const contextTypes = {
@@ -26,7 +28,7 @@ const contextTypes = {
 const noFlipModifier = { flip: { enabled: false } };
 
 const DropdownMenu = (props, context) => {
-  const { className, cssModule, right, tag, flip, ...attrs } = props;
+  const { className, cssModule, right, tag, flip, inNavbar, ...attrs } = props;
   const classes = mapToCssModules(classNames(
     className,
     'dropdown-menu',
@@ -38,7 +40,7 @@ const DropdownMenu = (props, context) => {
 
   let Tag = tag;
 
-  if (context.isOpen) {
+  if (context.isOpen && !inNavbar) {
     Tag = Popper;
     const position1 = context.dropup ? 'top' : 'bottom';
     const position2 = right ? 'end' : 'start';
