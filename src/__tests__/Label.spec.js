@@ -106,37 +106,32 @@ describe('Label', () => {
   });
 
   it('should pass col size specific classes via Objects', () => {
-    const wrapper = shallow(<Label sm={{ size: 6, push: 2, pull: 2, offset: 2 }}>Yo!</Label>);
+    const wrapper = shallow(<Label sm={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>);
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('push-sm-2')).toBe(true);
-    expect(wrapper.hasClass('pull-sm-2')).toBe(true);
+    expect(wrapper.hasClass('order-sm-2')).toBe(true);
     expect(wrapper.hasClass('offset-sm-2')).toBe(true);
   });
 
   it('should pass col size specific classes via Objects (xs)', () => {
-    const wrapper = shallow(<Label xs={{ size: 6, push: 2, pull: 2, offset: 2 }}>Yo!</Label>);
+    const wrapper = shallow(<Label xs={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>);
 
     expect(wrapper.hasClass('col-6')).toBe(true);
-    expect(wrapper.hasClass('push-2')).toBe(true);
-    expect(wrapper.hasClass('pull-2')).toBe(true);
+    expect(wrapper.hasClass('order-2')).toBe(true);
     expect(wrapper.hasClass('offset-2')).toBe(true);
   });
 
   it('should pass multiple col size specific classes via Objects', () => {
-    const wrapper = shallow(<Label xs={{ size: 4, push: 3, pull: 3, offset: 3 }} sm={{ size: 6, push: 2, pull: 2, offset: 2 }} md={{ size: 7, push: 1, pull: 1, offset: 1 }}>Yo!</Label>);
+    const wrapper = shallow(<Label xs={{ size: 4, order: 3, offset: 3 }} sm={{ size: 6, order: 2, offset: 2 }} md={{ size: 7, order: 1, offset: 1 }}>Yo!</Label>);
 
     expect(wrapper.hasClass('col-4')).toBe(true);
-    expect(wrapper.hasClass('push-3')).toBe(true);
-    expect(wrapper.hasClass('pull-3')).toBe(true);
+    expect(wrapper.hasClass('order-3')).toBe(true);
     expect(wrapper.hasClass('offset-3')).toBe(true);
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('push-sm-2')).toBe(true);
-    expect(wrapper.hasClass('pull-sm-2')).toBe(true);
+    expect(wrapper.hasClass('order-sm-2')).toBe(true);
     expect(wrapper.hasClass('offset-sm-2')).toBe(true);
     expect(wrapper.hasClass('col-md-7')).toBe(true);
-    expect(wrapper.hasClass('push-md-1')).toBe(true);
-    expect(wrapper.hasClass('pull-md-1')).toBe(true);
+    expect(wrapper.hasClass('order-md-1')).toBe(true);
     expect(wrapper.hasClass('offset-md-1')).toBe(true);
   });
 
