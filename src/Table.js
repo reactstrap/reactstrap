@@ -12,7 +12,6 @@ const propTypes = {
   inverse: deprecated(PropTypes.bool, 'Please use the prop "dark"'),
   dark: PropTypes.bool,
   hover: PropTypes.bool,
-  reflow: PropTypes.bool,
   responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   responsiveTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -33,7 +32,6 @@ const Table = (props) => {
     inverse,
     dark,
     hover,
-    reflow,
     responsive,
     tag: Tag,
     responsiveTag: ResponsiveTag,
@@ -47,8 +45,7 @@ const Table = (props) => {
     bordered ? 'table-bordered' : false,
     striped ? 'table-striped' : false,
     (dark || inverse) ? 'table-dark' : false,
-    hover ? 'table-hover' : false,
-    reflow ? 'table-reflow' : false
+    hover ? 'table-hover' : false
   ), cssModule);
 
   const table = <Tag {...attributes} className={classes} />;

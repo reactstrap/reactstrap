@@ -7,7 +7,6 @@ import TableExample from '../examples/Table';
 import TableBorderedExample from '../examples/TableBordered';
 import TableHoverExample from '../examples/TableHover';
 import TableDarkExample from '../examples/TableDark';
-import TableReflowExample from '../examples/TableReflow';
 import TableResponsiveExample from '../examples/TableResponsive';
 import TableSizingExample from '../examples/TableSizing';
 import TableStripedExample from '../examples/TableStriped';
@@ -16,7 +15,6 @@ const TableExampleSource = require('!!raw!../examples/Table');
 const TableBorderedExampleSource = require('!!raw!../examples/TableBordered');
 const TableHoverExampleSource = require('!!raw!../examples/TableHover');
 const TableDarkExampleSource = require('!!raw!../examples/TableDark');
-const TableReflowExampleSource = require('!!raw!../examples/TableReflow');
 const TableResponsiveExampleSource = require('!!raw!../examples/TableResponsive');
 const TableSizingExampleSource = require('!!raw!../examples/TableSizing');
 const TableStripedExampleSource = require('!!raw!../examples/TableStriped');
@@ -47,7 +45,6 @@ bordered: PropTypes.bool,
 striped: PropTypes.bool,
 dark: PropTypes.bool,
 hover: PropTypes.bool,
-reflow: PropTypes.bool,
 responsive: PropTypes.bool
 };`}
         </PrismCode>
@@ -104,15 +101,6 @@ responsive: PropTypes.bool
         <pre>
           <PrismCode className="language-jsx">
             {TableResponsiveExampleSource}
-          </PrismCode>
-        </pre>
-        <h3>Reflow</h3>
-        <div className="docs-example">
-          <TableReflowExample />
-        </div>
-        <pre>
-          <PrismCode className="language-jsx">
-            {TableReflowExampleSource}
           </PrismCode>
         </pre>
       </div>

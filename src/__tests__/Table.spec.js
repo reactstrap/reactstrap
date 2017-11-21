@@ -26,7 +26,7 @@ describe('Table', () => {
   });
 
   it('should render modifier classes', () => {
-    const wrapper = shallow(<Table size="sm" bordered striped reflow dark hover>Yo!</Table>);
+    const wrapper = shallow(<Table size="sm" bordered striped dark hover>Yo!</Table>);
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('table')).toBe(true);
@@ -34,7 +34,6 @@ describe('Table', () => {
     expect(wrapper.hasClass('table-bordered')).toBe(true);
     expect(wrapper.hasClass('table-striped')).toBe(true);
     expect(wrapper.hasClass('table-hover')).toBe(true);
-    expect(wrapper.hasClass('table-reflow')).toBe(true);
     expect(wrapper.hasClass('table-dark')).toBe(true);
   });
 
