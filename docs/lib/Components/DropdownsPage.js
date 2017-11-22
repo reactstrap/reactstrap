@@ -39,7 +39,7 @@ export default class DropdownPage extends React.Component {
         <Helmet title="Dropdowns" />
         <h3>Dropdowns</h3>
         <p>
-          The <code>Dropdown</code> component is used to pass the <code>isOpen</code> & <code>toggle</code> props via context to the following components: <code>DropdownToggle</code>, <code>DropdownMenu</code>. The <code>DropdownToggle</code> uses the <code>Button</code> component internally, meaning it also accepts all the props the <Link to="/components/buttons/">Button component</Link> accepts.
+          The <code>Dropdown</code> component is used to pass the <code>isOpen</code> &amp; <code>toggle</code> props via context to the following components: <code>DropdownToggle</code>, <code>DropdownMenu</code>. The <code>DropdownToggle</code> uses the <code>Button</code> component internally, meaning it also accepts all the props the <Link to="/components/buttons/">Button component</Link> accepts.
         </p>
         <div className="docs-example">
           <DropdownExample />
@@ -59,6 +59,8 @@ export default class DropdownPage extends React.Component {
   isOpen: PropTypes.bool,
   // For Dropdown usage inside a Nav
   nav: PropTypes.bool,
+  // For Dropdown usage inside a Navbar (disables popper)
+  inNavbar: PropTypes.bool,
   tag: PropTypes.string, // default: 'div' unless nav=true, then 'li'
   toggle: PropTypes.func
 };
