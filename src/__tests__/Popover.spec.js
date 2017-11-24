@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Popover, PopoverHeader, PopoverBody } from '../';
+import { Popover, PopoverHeader, PopoverBody, PopperContent } from '../';
 
 describe('Popover', () => {
   let element;
@@ -162,6 +162,30 @@ describe('Popover', () => {
     );
 
     expect(document.getElementsByClassName('popover')[0].className.indexOf('popover-special') > -1).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should pass down custom modifiers', () => {
+    const wrapper = mount(
+      <Popover
+        isOpen
+        placement={placement}
+        target="innerTarget"
+        modifiers={{
+          preventOverflow: { boundariesElement: 'viewport' },
+          offset: { offset: 2 },
+        }}
+      >
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
+      </Popover>
+    );
+
+    expect(wrapper.find(PopperContent).props().modifiers).toEqual({
+      preventOverflow: { boundariesElement: 'viewport' },
+      offset: { offset: 2 },
+    });
 
     wrapper.unmount();
   });

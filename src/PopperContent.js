@@ -18,6 +18,7 @@ const propTypes = {
   flip: PropTypes.bool,
   container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
   target: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]).isRequired,
+  modifiers: PropTypes.object,
 };
 
 const defaultProps = {
@@ -27,6 +28,7 @@ const defaultProps = {
   fallbackPlacement: 'flip',
   flip: true,
   container: 'body',
+  modifiers: {},
 };
 
 const childContextTypes = {
@@ -136,6 +138,7 @@ class PopperContent extends React.Component {
       className,
       tag,
       container,
+      modifiers,
       ...attrs
     } = this.props;
     const arrowClassName = mapToCssModules('arrow', cssModule);
@@ -145,7 +148,7 @@ class PopperContent extends React.Component {
       placementPrefix ? `${placementPrefix}-${placement}` : placement
     ), this.props.cssModule);
 
-    const modifiers = {
+    const extendedModifiers = {
       offset: { offset },
       flip: { enabled: flip, behavior: fallbackPlacement },
       update: {
@@ -153,10 +156,11 @@ class PopperContent extends React.Component {
         order: 950,
         fn: this.handlePlacementChange,
       },
+      ...modifiers,
     };
 
     return (
-      <ReactPopper modifiers={modifiers} {...attrs} component={tag} className={popperClassName}>
+      <ReactPopper modifiers={extendedModifiers} {...attrs} component={tag} className={popperClassName}>
         {children}
         <Arrow className={arrowClassName} />
       </ReactPopper>
