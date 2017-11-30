@@ -9,7 +9,7 @@ const propTypes = {
   size: PropTypes.string,
   bordered: PropTypes.bool,
   striped: PropTypes.bool,
-  inverse: PropTypes.bool,
+  dark: PropTypes.bool,
   hover: PropTypes.bool,
   reflow: PropTypes.bool,
   responsive: PropTypes.bool,
@@ -29,7 +29,7 @@ const Table = (props) => {
     size,
     bordered,
     striped,
-    inverse,
+    dark,
     hover,
     reflow,
     responsive,
@@ -44,7 +44,7 @@ const Table = (props) => {
     size ? 'table-' + size : false,
     bordered ? 'table-bordered' : false,
     striped ? 'table-striped' : false,
-    inverse ? 'table-inverse' : false,
+    dark ? 'table-dark' : false,
     hover ? 'table-hover' : false,
     reflow ? 'table-reflow' : false
   ), cssModule);
