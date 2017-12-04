@@ -28,6 +28,7 @@ const propTypes = {
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number,
   ]),
+  modifiers: PropTypes.object,
 };
 
 const DEFAULT_DELAYS = {
@@ -195,6 +196,7 @@ class Tooltip extends React.Component {
         placement={this.props.placement}
         placementPrefix={this.props.placementPrefix}
         container={this.props.container}
+        modifiers={this.props.modifiers}
       >
         <div
           {...attributes}

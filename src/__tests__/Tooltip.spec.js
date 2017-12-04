@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Tooltip } from '../';
+import { Tooltip, PopperContent } from '../';
 
 describe('Tooltip', () => {
   let isOpen;
@@ -192,6 +192,28 @@ describe('Tooltip', () => {
     );
 
     expect(document.getElementsByClassName('tooltip')[0].className.indexOf('tooltip-special') > -1).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should pass down custom modifiers', () => {
+    const wrapper = mount(
+      <Tooltip
+        isOpen
+        target="target"
+        modifiers={{
+          preventOverflow: { boundariesElement: 'viewport' },
+          offset: { offset: 2 },
+        }}
+      >
+        Tooltip Content
+      </Tooltip>
+    );
+
+    expect(wrapper.find(PopperContent).props().modifiers).toEqual({
+      preventOverflow: { boundariesElement: 'viewport' },
+      offset: { offset: 2 },
+    });
 
     wrapper.unmount();
   });
