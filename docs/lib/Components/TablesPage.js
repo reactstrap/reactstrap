@@ -6,8 +6,7 @@ import Helmet from 'react-helmet';
 import TableExample from '../examples/Table';
 import TableBorderedExample from '../examples/TableBordered';
 import TableHoverExample from '../examples/TableHover';
-import TableInverseExample from '../examples/TableInverse';
-import TableReflowExample from '../examples/TableReflow';
+import TableDarkExample from '../examples/TableDark';
 import TableResponsiveExample from '../examples/TableResponsive';
 import TableSizingExample from '../examples/TableSizing';
 import TableStripedExample from '../examples/TableStriped';
@@ -15,8 +14,7 @@ import TableStripedExample from '../examples/TableStriped';
 const TableExampleSource = require('!!raw!../examples/Table');
 const TableBorderedExampleSource = require('!!raw!../examples/TableBordered');
 const TableHoverExampleSource = require('!!raw!../examples/TableHover');
-const TableInverseExampleSource = require('!!raw!../examples/TableInverse');
-const TableReflowExampleSource = require('!!raw!../examples/TableReflow');
+const TableDarkExampleSource = require('!!raw!../examples/TableDark');
 const TableResponsiveExampleSource = require('!!raw!../examples/TableResponsive');
 const TableSizingExampleSource = require('!!raw!../examples/TableSizing');
 const TableStripedExampleSource = require('!!raw!../examples/TableStriped');
@@ -45,20 +43,19 @@ tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 size: PropTypes.string,
 bordered: PropTypes.bool,
 striped: PropTypes.bool,
-inverse: PropTypes.bool,
+dark: PropTypes.bool,
 hover: PropTypes.bool,
-reflow: PropTypes.bool,
 responsive: PropTypes.bool
 };`}
         </PrismCode>
         </pre>
-        <h3>Inverse table</h3>
+        <h3>Dark table</h3>
         <div className="docs-example">
-          <TableInverseExample />
+          <TableDarkExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {TableInverseExampleSource}
+            {TableDarkExampleSource}
           </PrismCode>
         </pre>
         <h3>Striped rows</h3>
@@ -104,15 +101,6 @@ responsive: PropTypes.bool
         <pre>
           <PrismCode className="language-jsx">
             {TableResponsiveExampleSource}
-          </PrismCode>
-        </pre>
-        <h3>Reflow</h3>
-        <div className="docs-example">
-          <TableReflowExample />
-        </div>
-        <pre>
-          <PrismCode className="language-jsx">
-            {TableReflowExampleSource}
           </PrismCode>
         </pre>
       </div>
