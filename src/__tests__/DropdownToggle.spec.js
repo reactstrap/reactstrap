@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Target } from 'react-popper';
 import { DropdownToggle } from '../';
 
 describe('DropdownToggle', () => {
