@@ -6,11 +6,13 @@ import { DropdownMenu } from '../';
 describe('DropdownMenu', () => {
   let isOpen;
   let dropup;
+  let inNavbar;
   let popperManager;
 
   beforeEach(() => {
     isOpen = false;
     dropup = false;
+    inNavbar = false;
     popperManager = {
       getTargetNode: () => ({}),
     };
@@ -23,7 +25,7 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -39,7 +41,7 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -55,7 +57,7 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -69,7 +71,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -82,7 +84,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -95,7 +97,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -109,7 +111,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -122,7 +124,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -135,7 +137,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -148,7 +150,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu flip={false}>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -160,7 +162,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -171,7 +173,7 @@ describe('DropdownMenu', () => {
   it('should render custom tag', () => {
     const wrapper = mount(<DropdownMenu tag="main">Yo!</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       });
 
