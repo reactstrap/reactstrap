@@ -4,11 +4,13 @@ import { DropdownToggle } from '../';
 
 describe('DropdownToggle', () => {
   let isOpen;
+  let inNavbar;
   let popperManager;
   let toggle;
 
   beforeEach(() => {
     isOpen = false;
+    inNavbar = false;
     popperManager = {
       setTargetNode: () => {}
     };
@@ -21,7 +23,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle>Ello world</DropdownToggle>,
       {
-        context: { isOpen, toggle, popperManager },
+        context: { isOpen, inNavbar, toggle, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -33,7 +35,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle />,
       {
-        context: { isOpen, toggle, popperManager },
+        context: { isOpen, inNavbar, toggle, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -46,7 +48,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle aria-label="Dropup Toggle" />,
       {
-        context: { isOpen, toggle, popperManager },
+        context: { isOpen, inNavbar, toggle, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -59,7 +61,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle>Click Me</DropdownToggle>,
       {
-        context: { isOpen, toggle, popperManager },
+        context: { isOpen, inNavbar, toggle, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -72,7 +74,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle caret>Ello world</DropdownToggle>,
       {
-        context: { isOpen, toggle, popperManager },
+        context: { isOpen, inNavbar, toggle, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -85,7 +87,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle />,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -98,7 +100,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle color="success" />,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -111,7 +113,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle tag="a" />,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -124,7 +126,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle tag="div" color="success" />,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -138,7 +140,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownToggle split>Ello world</DropdownToggle>,
       {
-        context: { isOpen, toggle, popperManager },
+        context: { isOpen, inNavbar, toggle, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -152,7 +154,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle onClick={() => onClick()}>Ello world</DropdownToggle>,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -167,7 +169,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle>Ello world</DropdownToggle>,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -187,7 +189,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle disabled>Ello world</DropdownToggle>,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -203,7 +205,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle nav>Ello world</DropdownToggle>,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -216,7 +218,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle nav>Ello world</DropdownToggle>,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );
@@ -229,7 +231,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownToggle nav>Ello world</DropdownToggle>,
         {
-          context: { isOpen, toggle, popperManager },
+          context: { isOpen, inNavbar, toggle, popperManager },
           childContextTypes: { popperManager }
         }
       );

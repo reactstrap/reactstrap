@@ -20,18 +20,21 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  inNavbar: PropTypes.bool,
 };
 
 const defaultProps = {
   isOpen: false,
   dropup: false,
   nav: false,
+  inNavbar: false,
 };
 
 const childContextTypes = {
   toggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   dropup: PropTypes.bool.isRequired,
+  inNavbar: PropTypes.bool.isRequired,
 };
 
 class Dropdown extends React.Component {
@@ -50,6 +53,7 @@ class Dropdown extends React.Component {
       toggle: this.props.toggle,
       isOpen: this.props.isOpen,
       dropup: this.props.dropup,
+      inNavbar: this.props.inNavbar,
     };
   }
 
@@ -173,7 +177,7 @@ class Dropdown extends React.Component {
       size,
       nav,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled']);
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar']);
 
     attrs.tag = attrs.tag || (nav ? 'li' : 'div');
 

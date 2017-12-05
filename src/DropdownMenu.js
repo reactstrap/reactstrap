@@ -21,6 +21,7 @@ const defaultProps = {
 const contextTypes = {
   isOpen: PropTypes.bool.isRequired,
   dropup: PropTypes.bool.isRequired,
+  inNavbar: PropTypes.bool.isRequired,
 };
 
 const noFlipModifier = { flip: { enabled: false } };
@@ -38,7 +39,7 @@ const DropdownMenu = (props, context) => {
 
   let Tag = tag;
 
-  if (context.isOpen) {
+  if (context.isOpen && !context.inNavbar) {
     Tag = Popper;
     const position1 = context.dropup ? 'top' : 'bottom';
     const position2 = right ? 'end' : 'start';
