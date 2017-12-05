@@ -81,8 +81,9 @@ import {
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
   UncontrolledNavDropdown,
-  UncontrolledTooltip,
+  UncontrolledTooltip
 } from './Uncontrolled';
+import * as Util from './utils';
 
 export {
   Alert,
@@ -168,4 +169,5 @@ export {
   UncontrolledDropdown,
   UncontrolledNavDropdown,
   UncontrolledTooltip,
+  Util,
 };
