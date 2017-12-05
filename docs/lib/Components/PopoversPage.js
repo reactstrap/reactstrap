@@ -62,7 +62,9 @@ export default class PopoversPage extends React.Component {
     'left',
     'left-start',
     'left-end',
-  ])
+  ]),
+  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/popper-documentation.html#modifiers
+  modifiers: PropTypes.object
 }`}
           </PrismCode>
         </pre>
