@@ -48,7 +48,7 @@ export default class ProgressPage extends React.Component {
     PropTypes.number,
   ]),
   animated: PropTypes.bool,
-  stripped: PropTypes.bool,
+  striped: PropTypes.bool,
   color: PropTypes.string,
   className: PropTypes.string,
   barClassName: PropTypes.string // used to add class to the inner progress-bar element
