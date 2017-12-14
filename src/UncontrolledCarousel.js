@@ -64,9 +64,8 @@ class UncontrolledCarousel extends Component {
           onExiting={this.onExiting}
           onExited={this.onExited}
           key={item.src}
-          src={item.src}
-          altText={item.altText}
         >
+          <img src={item.src} alt={item.altText} />
           <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
       );

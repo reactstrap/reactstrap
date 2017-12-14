@@ -30,19 +30,23 @@ describe('Carousel', () => {
   });
 
   describe('items', () => {
-    it('should render an img tag by default', () => {
-      const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} />);
-      expect(wrapper.find('img').hostNodes().length).toEqual(1);
-    });
-
     it('should render custom tag', () => {
       const wrapper = mount(<CarouselItem tag="image" />);
       expect(wrapper.find('image').length).toBe(1);
     });
 
+    it('should render an image if one is passed in', () => {
+      const wrapper = mount(
+        <CarouselItem>
+          <img src={items[0].src} alt={items[0].src} />
+        </CarouselItem>
+      );
+      expect(wrapper.find('img').length).toEqual(1);
+    });
+
     it('should render a caption if one is passed in', () => {
       const wrapper = mount(
-        <CarouselItem src={items[0].src} altText={items[0].src}>
+        <CarouselItem>
           <CarouselCaption captionHeader="text" captionText="text" />
         </CarouselItem>
       );
@@ -51,7 +55,7 @@ describe('Carousel', () => {
 
     describe('transitions', () => {
       it('should add the appropriate classes when entering right', () => {
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} in={false} />, { context: { direction: 'right' } });
+        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'right' } });
 
         wrapper.setProps({ in: true });
         expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-left carousel-item-next');
@@ -64,7 +68,7 @@ describe('Carousel', () => {
       });
 
       it('should add the appropriate classes when entering left', () => {
-        const wrapper = mount(<CarouselItem src={items[0].src} altText={items[0].src} in={false} />, { context: { direction: 'left' } });
+        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'left' } });
 
         wrapper.setProps({ in: true });
         expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-right carousel-item-prev');
@@ -85,7 +89,7 @@ describe('Carousel', () => {
           onExiting: jest.fn(),
           onExited: jest.fn(),
         };
-        const wrapper = mount(<CarouselItem src={items[0].src} in={false} {...callbacks} />);
+        const wrapper = mount(<CarouselItem in={false} {...callbacks} />);
         wrapper.setProps({ in: true });
         expect(callbacks.onEnter).toHaveBeenCalled();
         expect(callbacks.onEntering).toHaveBeenCalled();
@@ -147,8 +151,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -170,8 +172,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -194,8 +194,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -215,8 +213,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -243,8 +239,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -266,8 +260,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -289,8 +281,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -312,8 +302,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -338,8 +326,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -362,8 +348,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -386,8 +370,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -410,8 +392,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -434,8 +414,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>
@@ -458,8 +436,6 @@ describe('Carousel', () => {
         return (
           <CarouselItem
             key={idx}
-            src={item.src}
-            altText={item.altText}
           >
             <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
           </CarouselItem>

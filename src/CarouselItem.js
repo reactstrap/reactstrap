@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
 import { mapToCssModules, TransitionTimeouts, TransitionStatuses } from './utils';
-import CarouselCaption from './CarouselCaption';
 
 class CarouselItem extends React.Component {
   constructor(props) {
@@ -50,12 +49,7 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-    const { src, altText, in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps } = this.props;
-    const imgClasses = mapToCssModules(classNames(
-      className,
-      'd-block',
-      'img-fluid',
-    ), cssModule);
+    const { in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps } = this.props;
 
     return (
       <Transition
@@ -78,6 +72,7 @@ class CarouselItem extends React.Component {
           const orderClassName = (status === TransitionStatuses.ENTERING) &&
             (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev');
           const itemClasses = mapToCssModules(classNames(
+            className,
             'carousel-item',
             isActive && 'active',
             directionClassName,
@@ -85,10 +80,9 @@ class CarouselItem extends React.Component {
           ), cssModule);
 
           return (
-            <div className={itemClasses}>
-              <Tag className={imgClasses} src={src} alt={altText} />
+            <Tag className={itemClasses}>
               {children}
-            </div>
+            </Tag>
           );
         }}
       </Transition>
@@ -100,19 +94,15 @@ CarouselItem.propTypes = {
   ...Transition.propTypes,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   in: PropTypes.bool,
-  src: PropTypes.string,
-  altText: PropTypes.string,
   cssModule: PropTypes.object,
-  children: PropTypes.shape({
-    type: PropTypes.oneOf([CarouselCaption]),
-  }),
+  children: PropTypes.node,
   slide: PropTypes.bool,
   className: PropTypes.string,
 };
 
 CarouselItem.defaultProps = {
   ...Transition.defaultProps,
-  tag: 'img',
+  tag: 'div',
   timeout: TransitionTimeouts.Carousel,
   slide: true,
 };
