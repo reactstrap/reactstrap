@@ -234,6 +234,30 @@ describe('Carousel', () => {
   });
 
   describe('carouseling', () => {
+    it('should set indicatorClicked to true if indicator clicked', () => {
+      const slides = items.map((item, idx) => {
+        return (
+          <CarouselItem
+            key={idx}
+          >
+            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          </CarouselItem>
+        );
+      });
+
+      const wrapper = mount(
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => function () {}} />
+          {slides}
+          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
+          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
+        </Carousel>
+      );
+
+      wrapper.find(CarouselIndicators).find('li').first().simulate('click');
+      expect(wrapper.state().indicatorClicked).toEqual(true);
+    });
+
     it('should go right when the index increases', () => {
       const slides = items.map((item, idx) => {
         return (
@@ -276,7 +300,7 @@ describe('Carousel', () => {
       expect(wrapper.state().direction).toEqual('left');
     });
 
-    it('should go right if transitioning from the last to first slide', () => {
+    it('should go right if transitioning from the last to first slide by non-indicator', () => {
       const slides = items.map((item, idx) => {
         return (
           <CarouselItem
@@ -297,7 +321,32 @@ describe('Carousel', () => {
       expect(wrapper.state().direction).toEqual('right');
     });
 
-    it('should go left if transitioning from the first to last slide', () => {
+    it('should go left if transitioning from the last to first slide by indicator', () => {
+      const slides = items.map((item, idx) => {
+        return (
+          <CarouselItem
+            key={idx}
+          >
+            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          </CarouselItem>
+        );
+      });
+
+      const wrapper = mount(
+        <Carousel interval={1000} activeIndex={2} next={() => { }} previous={() => { }}>
+          <CarouselIndicators items={items} activeIndex={2} onClickHandler={() => { }} />
+          {slides}
+          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
+          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
+        </Carousel>
+      );
+
+      wrapper.setState({ indicatorClicked: true });
+      wrapper.setProps({ activeIndex: 0 });
+      expect(wrapper.state().direction).toEqual('left');
+    });
+
+    it('should go left if transitioning from the first to last slide by non-indicator', () => {
       const slides = items.map((item, idx) => {
         return (
           <CarouselItem
@@ -317,6 +366,31 @@ describe('Carousel', () => {
       wrapper.setProps({ activeIndex: 2 });
       expect(wrapper.state().direction).toEqual('left');
     });
+  });
+
+  it('should go right if transitioning from the first to last slide by indicator', () => {
+    const slides = items.map((item, idx) => {
+      return (
+        <CarouselItem
+          key={idx}
+        >
+          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+        </CarouselItem>
+      );
+    });
+
+    const wrapper = mount(
+      <Carousel interval={1000} activeIndex={0} next={() => { }} previous={() => { }}>
+        <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
+        {slides}
+        <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
+        <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
+      </Carousel>
+    );
+
+    wrapper.setState({ indicatorClicked: true });
+    wrapper.setProps({ activeIndex: 2 });
+    expect(wrapper.state().direction).toEqual('right');
   });
 
   describe('interval', () => {

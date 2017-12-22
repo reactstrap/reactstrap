@@ -11,7 +11,10 @@ class Carousel extends React.Component {
     this.renderItems = this.renderItems.bind(this);
     this.hoverStart = this.hoverStart.bind(this);
     this.hoverEnd = this.hoverEnd.bind(this);
-    this.state = { direction: 'right' };
+    this.state = {
+      direction: 'right',
+      indicatorClicked: false,
+    };
   }
 
   getChildContext() {
@@ -36,10 +39,11 @@ class Carousel extends React.Component {
     } else if (this.props.activeIndex - 1 === nextProps.activeIndex) {
       this.setState({ direction: 'left' });
     } else if (this.props.activeIndex > nextProps.activeIndex) {
-      this.setState({ direction: 'right' });
+      this.setState({ direction: this.state.indicatorClicked ? 'left' : 'right' });
     } else if (this.props.activeIndex !== nextProps.activeIndex) {
-      this.setState({ direction: 'left' });
+      this.setState({ direction: this.state.indicatorClicked ? 'right' : 'left' });
     }
+    this.setState({ indicatorClicked: false });
   }
 
   componentWillUnmount() {
@@ -145,13 +149,19 @@ class Carousel extends React.Component {
 
     // Rendering indicators, slides and controls
     const indicators = children[0];
+    const wrappedOnClick = (e) => {
+      if (typeof indicators.props.onClickHandler === 'function') {
+        this.setState({ indicatorClicked: true }, () => indicators.props.onClickHandler(e));
+      }
+    };
+    const wrappedIndicators = React.cloneElement(indicators, { onClickHandler: wrappedOnClick });
     const carouselItems = children[1];
     const controlLeft = children[2];
     const controlRight = children[3];
 
     return (
       <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
-        {indicators}
+        {wrappedIndicators}
         {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
         {controlRight}
