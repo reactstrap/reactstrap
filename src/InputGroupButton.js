@@ -6,7 +6,7 @@ import Button from './Button';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  addonType: PropTypes.oneOf(['prepend', 'append']),
+  addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   children: PropTypes.node,
   groupClassName: PropTypes.string,
   groupAttributes: PropTypes.object,

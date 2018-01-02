@@ -6,7 +6,7 @@ import InputGroupText from './InputGroupText';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  addonType: PropTypes.oneOf(['prepend', 'append']),
+  addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,

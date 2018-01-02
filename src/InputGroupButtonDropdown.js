@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Dropdown from './Dropdown';
 
 const propTypes = {
-  addonType: PropTypes.oneOf(['prepend', 'append']),
+  addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   children: PropTypes.node,
 };
 

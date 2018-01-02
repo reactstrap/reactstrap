@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { InputGroupButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 const propTypes = {
-  addonType: PropTypes.oneOf(['prepend', 'append']),
+  addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
 };
 
 class Example extends React.Component {
