@@ -5,19 +5,19 @@ const Example = (props) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupButton>To the Left!</InputGroupButton>
+        <InputGroupButton addonType="prepend">To the Left!</InputGroupButton>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
-        <InputGroupButton color="secondary">To the Right!</InputGroupButton>
+        <InputGroupButton addonType="append" color="secondary">To the Right!</InputGroupButton>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupButton color="danger">To the Left!</InputGroupButton>
+        <InputGroupButton addonType="prepend" color="danger">To the Left!</InputGroupButton>
         <Input placeholder="and..." />
-        <InputGroupButton color="success">To the Right!</InputGroupButton>
+        <InputGroupButton addonType="append" color="success">To the Right!</InputGroupButton>
       </InputGroup>
     </div>
   );

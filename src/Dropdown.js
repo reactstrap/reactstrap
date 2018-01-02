@@ -14,6 +14,7 @@ const propTypes = {
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
+  addonType: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['prepend', 'append'])]),
   size: PropTypes.string,
   tag: PropTypes.string,
   toggle: PropTypes.func,
@@ -27,6 +28,7 @@ const defaultProps = {
   isOpen: false,
   dropup: false,
   nav: false,
+  addonType: false,
   inNavbar: false,
 };
 
@@ -176,6 +178,7 @@ class Dropdown extends React.Component {
       group,
       size,
       nav,
+      addonType,
       ...attrs
     } = omit(this.props, ['toggle', 'disabled', 'inNavbar']);
 
@@ -184,9 +187,10 @@ class Dropdown extends React.Component {
     const classes = mapToCssModules(classNames(
       className,
       {
+        [`input-group-${addonType}`]: addonType,
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
-        dropdown: !group,
+        dropdown: !group && !addonType,
         show: isOpen,
         dropup: dropup,
         'nav-item': nav
