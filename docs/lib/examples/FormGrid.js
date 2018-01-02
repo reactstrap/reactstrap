@@ -46,7 +46,7 @@ export default class Example extends React.Component {
           </Col>
         </FormGroup>
         <FormGroup tag="fieldset" row>
-          <legend className="col-form-legend col-sm-2">Radio Buttons</legend>
+          <legend className="col-form-label col-sm-2">Radio Buttons</legend>
           <Col sm={10}>
             <FormGroup check>
               <Label check>
