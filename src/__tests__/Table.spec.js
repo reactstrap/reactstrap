@@ -26,7 +26,7 @@ describe('Table', () => {
   });
 
   it('should render modifier classes', () => {
-    const wrapper = shallow(<Table size="sm" bordered striped dark hover responsive>Yo!</Table>);
+    const wrapper = shallow(<Table size="sm" bordered striped dark hover>Yo!</Table>);
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('table')).toBe(true);
@@ -35,13 +35,21 @@ describe('Table', () => {
     expect(wrapper.hasClass('table-striped')).toBe(true);
     expect(wrapper.hasClass('table-hover')).toBe(true);
     expect(wrapper.hasClass('table-dark')).toBe(true);
-    expect(wrapper.hasClass('table-responsive')).toBe(true);
   });
 
-  it('should render responsive class for md', () => {
+  it('should render responsive wrapper class', () => {
+    const wrapper = shallow(<Table responsive>Yo!</Table>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table-responsive')).toBe(true);
+    expect(wrapper.find('.table').length).toBe(1);
+  });
+
+  it('should render responsive wrapper class for md', () => {
     const wrapper = shallow(<Table responsive="md">Yo!</Table>);
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('table-responsive-md')).toBe(true);
+    expect(wrapper.find('.table').length).toBe(1);
   });
 });
