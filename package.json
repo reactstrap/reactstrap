@@ -107,7 +107,7 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-app": "^0.2.1",
-    "bootstrap": "4.0.0-beta.2",
+    "bootstrap": "4.0.0-beta.3",
     "clean-webpack-plugin": "^0.1.8",
     "conventional-changelog-cli": "^1.1.1",
     "conventional-recommended-bump": "^0.3.0",
