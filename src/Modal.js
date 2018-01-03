@@ -155,10 +155,12 @@ class Modal extends React.Component {
       this._element = null;
     }
 
-    // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
-    const classes = document.body.className.replace(/(^| )modal-open( |$)/, ' ');
-    document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
-    setScrollbarWidth(this.originalBodyPadding);
+    if (this.props.isOpen) {
+      // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
+      const classes = document.body.className.replace(/(^| )modal-open( |$)/, ' ');
+      document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
+      setScrollbarWidth(this.originalBodyPadding);
+    }
   }
 
   hide() {
