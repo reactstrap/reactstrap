@@ -101,8 +101,12 @@ InputGroupButton.propTypes = {
           </PrismCode>
         </pre>
 
-        <h3>Button Shorthand</h3>
+        <h3>Button Shorthand (DEPRECATED)</h3>
         <p>
+          Button shorthand is deprecated. Below are the updated examples of how to use <code>InputGroupAddon</code> to
+          accomplish the same output.
+        </p>
+        <p style={{ textDecoration: 'line-through' }}>
           Button shorthand is a convenience method for adding just a button. It is triggered when only a single string
           is the child. A Button will be created and all of the props will be passed to it with the exception of
           <code>groupClassName</code> and <code>groupAttributes</code>, which are used to added classes and attributes

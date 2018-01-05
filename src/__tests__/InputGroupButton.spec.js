@@ -1,24 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { InputGroupButton, Button } from '../';
+import { InputGroupButton, Button, InputGroupAddon } from '../';
 
 describe('InputGroupButton', () => {
-  it('should render with "div" tag', () => {
+  it('should render InputGroupAddon', () => {
     const wrapper = shallow(<InputGroupButton addonType="append">Yo!</InputGroupButton>);
 
-    expect(wrapper.type()).toBe('div');
-  });
-
-  it('should render with "input-group-append" class', () => {
-    const wrapper = shallow(<InputGroupButton addonType="append">Yo!</InputGroupButton>);
-
-    expect(wrapper.hasClass('input-group-append')).toBe(true);
-  });
-
-  it('should render custom tag', () => {
-    const wrapper = shallow(<InputGroupButton addonType="append" tag="main">Yo!</InputGroupButton>);
-
-    expect(wrapper.type()).toBe('main');
+    expect(wrapper.type()).toBe(InputGroupAddon);
   });
 
   describe('Standard usage', () => {
@@ -26,13 +14,6 @@ describe('InputGroupButton', () => {
       const wrapper = shallow(<InputGroupButton addonType="append"><span>Yo!</span></InputGroupButton>);
 
       expect(wrapper.childAt(0).type()).toBe('span');
-    });
-
-    it('should render additional classes', () => {
-      const wrapper = shallow(<InputGroupButton addonType="append" className="other"><span>Yo!</span></InputGroupButton>);
-
-      expect(wrapper.hasClass('other')).toBe(true);
-      expect(wrapper.hasClass('input-group-append')).toBe(true);
     });
   });
 
@@ -65,7 +46,6 @@ describe('InputGroupButton', () => {
       const wrapper = shallow(<InputGroupButton addonType="append" groupClassName="other">Yo!</InputGroupButton>);
 
       expect(wrapper.hasClass('other')).toBe(true);
-      expect(wrapper.hasClass('input-group-append')).toBe(true);
     });
 
     it('should render groupAttributes as additional attributes on the input-group-btn wrapper', () => {

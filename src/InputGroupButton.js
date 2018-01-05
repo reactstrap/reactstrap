@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { mapToCssModules } from './utils';
 import Button from './Button';
+import InputGroupAddon from './InputGroupAddon';
+import { warnOnce } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -14,46 +14,43 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  tag: 'div'
-};
-
 const InputGroupButton = (props) => {
+  warnOnce('The "InputGroupButton" component has been deprecated.\nPlease use component "InputGroupAddon".');
+
   let {
-    className,
-    cssModule,
-    tag: Tag,
-    addonType,
     children,
     groupClassName,
     groupAttributes,
-    ...attributes
+    ...propsWithoutGroup
   } = props;
 
   if (typeof children === 'string') {
-    const groupClasses = mapToCssModules(classNames(
-      groupClassName,
-      'input-group-' + addonType
-    ), cssModule);
+    let {
+      cssModule,
+      tag,
+      addonType,
+      ...attributes
+    } = propsWithoutGroup;
+
+    const allGroupAttributes = {
+      ...groupAttributes,
+      cssModule,
+      tag,
+      addonType
+    };
 
     return (
-      <Tag {...groupAttributes} className={groupClasses}>
-        <Button {...attributes} className={className} children={children} />
-      </Tag>
+      <InputGroupAddon {...allGroupAttributes} className={groupClassName}>
+        <Button {...attributes} children={children} />
+      </InputGroupAddon>
     );
   }
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'input-group-' + addonType
-  ), cssModule);
-
   return (
-    <Tag {...attributes} className={classes} children={children} />
+    <InputGroupAddon {...props} children={children} />
   );
 };
 
 InputGroupButton.propTypes = propTypes;
-InputGroupButton.defaultProps = defaultProps;
 
 export default InputGroupButton;
