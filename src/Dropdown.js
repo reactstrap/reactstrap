@@ -14,24 +14,29 @@ const propTypes = {
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
+  addonType: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['prepend', 'append'])]),
   size: PropTypes.string,
   tag: PropTypes.string,
   toggle: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  inNavbar: PropTypes.bool,
 };
 
 const defaultProps = {
   isOpen: false,
   dropup: false,
   nav: false,
+  addonType: false,
+  inNavbar: false,
 };
 
 const childContextTypes = {
   toggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   dropup: PropTypes.bool.isRequired,
+  inNavbar: PropTypes.bool.isRequired,
 };
 
 class Dropdown extends React.Component {
@@ -50,6 +55,7 @@ class Dropdown extends React.Component {
       toggle: this.props.toggle,
       isOpen: this.props.isOpen,
       dropup: this.props.dropup,
+      inNavbar: this.props.inNavbar,
     };
   }
 
@@ -172,17 +178,19 @@ class Dropdown extends React.Component {
       group,
       size,
       nav,
+      addonType,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled']);
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar']);
 
     attrs.tag = attrs.tag || (nav ? 'li' : 'div');
 
     const classes = mapToCssModules(classNames(
       className,
       {
+        [`input-group-${addonType}`]: addonType,
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
-        dropdown: !group,
+        dropdown: !group && !addonType,
         show: isOpen,
         dropup: dropup,
         'nav-item': nav

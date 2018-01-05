@@ -6,13 +6,13 @@ describe('Pagination', () => {
   it('should render default tag', () => {
     const wrapper = mount(<Pagination />);
 
-    expect(wrapper.find('ul').length).toBe(1);
+    expect(wrapper.find('ul').hostNodes().length).toBe(1);
   });
 
   it('should render custom tag', () => {
     const wrapper = mount(<Pagination tag="main" />);
 
-    expect(wrapper.find('main').length).toBe(1);
+    expect(wrapper.find('main').hostNodes().length).toBe(1);
   });
 
   it('should render with "pagination" class', () => {

@@ -8,13 +8,6 @@ export default class Example extends React.Component {
         <FormGroup>
           <Label for="exampleEmail">Input with success</Label>
           <Input valid />
-          <FormFeedback>
-            <a href="https://github.com/twbs/bootstrap/issues/23372">A bug</a> fixed in (the currently
-            unreleased) (
-            <a href="https://github.com/twbs/bootstrap/pull/23377">PR</a>
-            ) bootstrap <a href="https://github.com/twbs/bootstrap/issues/23278">v4 beta-2</a> shows invalid-feedback
-            with is-valid inputs.
-          </FormFeedback>
           <FormText>Example help text that remains unchanged.</FormText>
         </FormGroup>
         <FormGroup>

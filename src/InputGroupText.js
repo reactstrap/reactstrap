@@ -5,28 +5,25 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  active: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
 const defaultProps = {
-  tag: 'li'
+  tag: 'span'
 };
 
-const NavItem = (props) => {
+const InputGroupText = (props) => {
   const {
     className,
     cssModule,
-    active,
     tag: Tag,
     ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
     className,
-    'nav-item',
-    active ? 'active' : false
+    'input-group-text'
   ), cssModule);
 
   return (
@@ -34,7 +31,7 @@ const NavItem = (props) => {
   );
 };
 
-NavItem.propTypes = propTypes;
-NavItem.defaultProps = defaultProps;
+InputGroupText.propTypes = propTypes;
+InputGroupText.defaultProps = defaultProps;
 
-export default NavItem;
+export default InputGroupText;

@@ -1,3 +1,27 @@
+<a name="5.0.0-alpha.4"></a>
+# [5.0.0-alpha.4](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.3...5.0.0-alpha.4) (2017-11-16)
+
+
+### Bug Fixes
+
+* **FormGroup,Label:** Fix inline radio- and checkboxes ([#624](https://github.com/reactstrap/reactstrap/issues/624)) ([e9b7803](https://github.com/reactstrap/reactstrap/commit/e9b7803))
+* **getTarget:** do not return null; throw ([#623](https://github.com/reactstrap/reactstrap/issues/623)) ([e1d3b5f](https://github.com/reactstrap/reactstrap/commit/e1d3b5f))
+* **Input:** fix size prop ([#662](https://github.com/reactstrap/reactstrap/issues/662)) ([cc2bd13](https://github.com/reactstrap/reactstrap/commit/cc2bd13)), closes [#660](https://github.com/reactstrap/reactstrap/issues/660)
+* **Label:** remove disabled prop ([#626](https://github.com/reactstrap/reactstrap/issues/626)) ([25c1e38](https://github.com/reactstrap/reactstrap/commit/25c1e38))
+* **ModalHeader:** Use css modules in close button ([#629](https://github.com/reactstrap/reactstrap/issues/629)) ([2cd6f21](https://github.com/reactstrap/reactstrap/commit/2cd6f21)), closes [#628](https://github.com/reactstrap/reactstrap/issues/628)
+* **UncontrolledCarousel:** fix autoPlay={false} ([#654](https://github.com/reactstrap/reactstrap/issues/654)) ([839419e](https://github.com/reactstrap/reactstrap/commit/839419e)), closes [#653](https://github.com/reactstrap/reactstrap/issues/653)
+
+
+### Features
+
+* **Carousel:** add className to carousel components ([#682](https://github.com/reactstrap/reactstrap/issues/682)) ([d23b28a](https://github.com/reactstrap/reactstrap/commit/d23b28a)), closes [#669](https://github.com/reactstrap/reactstrap/issues/669)
+* **CarouselItem:** support tag prop on carousel item ([#681](https://github.com/reactstrap/reactstrap/issues/681)) ([1e70e64](https://github.com/reactstrap/reactstrap/commit/1e70e64))
+* **Dropdown:** Add nav prop to Dropdown ([#636](https://github.com/reactstrap/reactstrap/issues/636)) ([48edd6b](https://github.com/reactstrap/reactstrap/commit/48edd6b))
+* **getTarget:** throw when string not in DOM ([#622](https://github.com/reactstrap/reactstrap/issues/622)) ([e71c427](https://github.com/reactstrap/reactstrap/commit/e71c427)), closes [#620](https://github.com/reactstrap/reactstrap/issues/620)
+* **NavItem:** add active prop to NavItem ([#688](https://github.com/reactstrap/reactstrap/issues/688)) ([2a8bffb](https://github.com/reactstrap/reactstrap/commit/2a8bffb)), closes [#678](https://github.com/reactstrap/reactstrap/issues/678)
+
+
+
 <a name="5.0.0-alpha.3"></a>
 # [5.0.0-alpha.3](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.2...5.0.0-alpha.3) (2017-10-03)
 

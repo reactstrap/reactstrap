@@ -15,8 +15,8 @@ describe('ButtonDropdown', () => {
   it('should render a single child', () => {
     const wrapper = mount(<ButtonDropdown isOpen={isOpen} toggle={toggle}>Ello world</ButtonDropdown>);
 
-    expect(wrapper.find('.btn-group').text()).toBe('Ello world');
-    expect(wrapper.find('.btn-group').length).toBe(1);
+    expect(wrapper.find('.btn-group').hostNodes().text()).toBe('Ello world');
+    expect(wrapper.find('.btn-group').hostNodes().length).toBe(1);
   });
 
   it('should render multiple children when isOpen', () => {
@@ -30,9 +30,9 @@ describe('ButtonDropdown', () => {
       </ButtonDropdown>
     );
 
-    expect(wrapper.find('.btn').text()).toBe('Toggle');
-    expect(wrapper.find('.btn-group').length).toBe(1);
-    expect(wrapper.find('.dropdown-item').length).toBe(1);
-    expect(wrapper.children().length).toBe(2);
+    expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');
+    expect(wrapper.find('.btn-group').hostNodes().length).toBe(1);
+    expect(wrapper.find('.dropdown-item').hostNodes().length).toBe(1);
+    expect(wrapper.childAt(0).childAt(0).childAt(0).children().length).toBe(2);
   });
 });

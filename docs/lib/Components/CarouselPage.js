@@ -6,6 +6,8 @@ import CarouselExample from '../examples/Carousel';
 const CarouselExampleSource = require('!!raw!../examples/Carousel');
 import CarouselUncontrolledExample from '../examples/CarouselUncontrolled';
 const CarouselUncontrolledExampleSource = require('!!raw!../examples/CarouselUncontrolled');
+import CarouselCustomTagExample from '../examples/CarouselCustomTag';
+const CarouselCustomTagExampleSource = require('!!raw!../examples/CarouselCustomTag');
 
 export default class CarouselPage extends React.Component {
   render() {
@@ -23,7 +25,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Properties</h3>
+        <h3>Carousel Properties</h3>
         <pre>
           <PrismCode className="language-jsx">
 {`Carousel.propTypes = {
@@ -60,6 +62,55 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
+        <h3>CarouselItem Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselItem.propTypes = {
+  ...Transition.propTypes,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  in: PropTypes.bool,
+  cssModule: PropTypes.object,
+  children: PropTypes.node,
+  slide: PropTypes.bool,
+};`}
+          </PrismCode>
+        </pre>
+
+        <h3>CarouselControl Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselControl.propTypes = {
+  direction: PropTypes.oneOf(['prev', 'next']).isRequired,
+  onClickHandler: PropTypes.func.isRequired,
+  cssModule: PropTypes.object,
+  directionText: PropTypes.string
+};`}
+          </PrismCode>
+        </pre>
+
+        <h3>CarouselIndicators Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselIndicators.propTypes = {
+  items: PropTypes.array.isRequired,
+  activeIndex: PropTypes.number.isRequired,
+  cssModule: PropTypes.object,
+  onClickHandler: PropTypes.func.isRequired
+};`}
+          </PrismCode>
+        </pre>
+
+        <h3>CarouselCaption Properties</h3>
+        <pre>
+          <PrismCode className="language-jsx">
+{`CarouselCaption.propTypes = {
+  captionHeader: PropTypes.string,
+  captionText: PropTypes.string.isRequired,
+  cssModule: PropTypes.object
+};`}
+          </PrismCode>
+        </pre>
+
         <h3>Uncontrolled Carousel</h3>
         <p>
           For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledCarousel</code> does not require <code>previous</code>, <code>next</code> nor <code>activeIndex</code> props to work.
@@ -85,6 +136,16 @@ export default class CarouselPage extends React.Component {
   controls: PropTypes.bool, // default: true
   autoPlay: PropTypes.bool, // default: true
 };`}
+          </PrismCode>
+        </pre>
+
+        <h3>Carousel using a tag and classname</h3>
+        <div className="docs-example">
+          <CarouselCustomTagExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {CarouselCustomTagExampleSource}
           </PrismCode>
         </pre>
       </div>

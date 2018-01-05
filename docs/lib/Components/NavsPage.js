@@ -46,7 +46,8 @@ export default class NavssPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`NavItem.propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  active: PropTypes.bool,
   // pass in custom element to use
 }`}
           </PrismCode>

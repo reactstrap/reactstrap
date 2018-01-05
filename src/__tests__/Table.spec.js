@@ -26,7 +26,7 @@ describe('Table', () => {
   });
 
   it('should render modifier classes', () => {
-    const wrapper = shallow(<Table size="sm" bordered striped reflow inverse hover>Yo!</Table>);
+    const wrapper = shallow(<Table size="sm" bordered striped dark hover>Yo!</Table>);
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('table')).toBe(true);
@@ -34,8 +34,7 @@ describe('Table', () => {
     expect(wrapper.hasClass('table-bordered')).toBe(true);
     expect(wrapper.hasClass('table-striped')).toBe(true);
     expect(wrapper.hasClass('table-hover')).toBe(true);
-    expect(wrapper.hasClass('table-reflow')).toBe(true);
-    expect(wrapper.hasClass('table-inverse')).toBe(true);
+    expect(wrapper.hasClass('table-dark')).toBe(true);
   });
 
   it('should render responsive wrapper class', () => {
@@ -43,6 +42,14 @@ describe('Table', () => {
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('table-responsive')).toBe(true);
+    expect(wrapper.find('.table').length).toBe(1);
+  });
+
+  it('should render responsive wrapper class for md', () => {
+    const wrapper = shallow(<Table responsive="md">Yo!</Table>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table-responsive-md')).toBe(true);
     expect(wrapper.find('.table').length).toBe(1);
   });
 });

@@ -16,39 +16,39 @@ describe('Progress', () => {
   });
 
   it('should render with "value" 0 by default', () => {
-    const wrapper = shallow(<Progress />);
+    const wrapper = mount(<Progress />);
 
-    expect(wrapper.instance().props['value']).toBe(0);
+    expect(wrapper.prop('value')).toBe(0);
   });
 
   it('should render with "max" 100 by default', () => {
-    const wrapper = shallow(<Progress />);
+    const wrapper = mount(<Progress />);
 
-    expect(wrapper.instance().props['max']).toBe(100);
+    expect(wrapper.prop('max')).toBe(100);
   });
 
   it('should render with the given "value" when passed as string prop', () => {
-    const wrapper = shallow(<Progress value="10" />);
+    const wrapper = mount(<Progress value="10" />);
 
-    expect(wrapper.instance().props['value']).toBe('10');
+    expect(wrapper.prop('value')).toBe('10');
   });
 
   it('should render with the given "value" when passed as number prop', () => {
-    const wrapper = shallow(<Progress value={10} />);
+    const wrapper = mount(<Progress value={10} />);
 
-    expect(wrapper.instance().props['value']).toBe(10);
+    expect(wrapper.prop('value')).toBe(10);
   });
 
   it('should render with the given "max" when passed as string prop', () => {
-    const wrapper = shallow(<Progress max="10" />);
+    const wrapper = mount(<Progress max="10" />);
 
-    expect(wrapper.instance().props['max']).toBe('10');
+    expect(wrapper.prop('max')).toBe('10');
   });
 
   it('should render with the given "max" when passed as number prop', () => {
-    const wrapper = shallow(<Progress max={10} />);
+    const wrapper = mount(<Progress max={10} />);
 
-    expect(wrapper.instance().props['max']).toBe(10);
+    expect(wrapper.prop('max')).toBe(10);
   });
 
   it('should render with "progress-bar-striped" class when striped prop is truthy', () => {
@@ -152,7 +152,7 @@ describe('Progress', () => {
       </Progress>
     );
 
-    expect(wrapper.find('.progress').length).toBe(1);
-    expect(wrapper.find('.progress-bar').length).toBe(5);
+    expect(wrapper.find('.progress').hostNodes().length).toBe(1);
+    expect(wrapper.find('.progress-bar').hostNodes().length).toBe(5);
   });
 });

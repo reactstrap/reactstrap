@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Tooltip } from '../';
+import { Tooltip, PopperContent } from '../';
 
 describe('Tooltip', () => {
   let isOpen;
@@ -29,6 +29,7 @@ describe('Tooltip', () => {
   afterEach(() => {
     jest.clearAllTimers();
     document.body.removeChild(element);
+    document.body.innerHTML = '';
     element = null;
     container = null;
     target = null;
@@ -45,7 +46,7 @@ describe('Tooltip', () => {
 
     const tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.tooltip.show').length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
     expect(target.className).toBe('');
     expect(tooltips.length).toBe(0);
     wrapper.detach();
@@ -62,7 +63,7 @@ describe('Tooltip', () => {
 
     const tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.tooltip.show').length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
     expect(tooltips.length).toBe(1);
     expect(tooltips[0].textContent).toBe('Tooltip Content');
     wrapper.detach();
@@ -79,7 +80,7 @@ describe('Tooltip', () => {
 
     const tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.tooltip.show').length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
     expect(tooltips.length).toBe(1);
     expect(tooltips[0].textContent).toBe('Tooltip Content');
     wrapper.detach();
@@ -191,6 +192,28 @@ describe('Tooltip', () => {
     );
 
     expect(document.getElementsByClassName('tooltip')[0].className.indexOf('tooltip-special') > -1).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should pass down custom modifiers', () => {
+    const wrapper = mount(
+      <Tooltip
+        isOpen
+        target="target"
+        modifiers={{
+          preventOverflow: { boundariesElement: 'viewport' },
+          offset: { offset: 2 },
+        }}
+      >
+        Tooltip Content
+      </Tooltip>
+    );
+
+    expect(wrapper.find(PopperContent).props().modifiers).toEqual({
+      preventOverflow: { boundariesElement: 'viewport' },
+      offset: { offset: 2 },
+    });
 
     wrapper.unmount();
   });

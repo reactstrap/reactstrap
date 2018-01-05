@@ -6,6 +6,7 @@ import Button from './Button';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   children: PropTypes.node,
   groupClassName: PropTypes.string,
   groupAttributes: PropTypes.object,
@@ -22,6 +23,7 @@ const InputGroupButton = (props) => {
     className,
     cssModule,
     tag: Tag,
+    addonType,
     children,
     groupClassName,
     groupAttributes,
@@ -31,7 +33,7 @@ const InputGroupButton = (props) => {
   if (typeof children === 'string') {
     const groupClasses = mapToCssModules(classNames(
       groupClassName,
-      'input-group-btn'
+      'input-group-' + addonType
     ), cssModule);
 
     return (
@@ -43,7 +45,7 @@ const InputGroupButton = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    'input-group-btn'
+    'input-group-' + addonType
   ), cssModule);
 
   return (

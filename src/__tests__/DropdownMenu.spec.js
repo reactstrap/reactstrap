@@ -6,11 +6,13 @@ import { DropdownMenu } from '../';
 describe('DropdownMenu', () => {
   let isOpen;
   let dropup;
+  let inNavbar;
   let popperManager;
 
   beforeEach(() => {
     isOpen = false;
     dropup = false;
+    inNavbar = false;
     popperManager = {
       getTargetNode: () => ({}),
     };
@@ -23,13 +25,13 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.find('.dropdown-menu').text()).toBe('Content');
-    expect(wrapper.find('.dropdown-menu').length).toBe(1);
+    expect(wrapper.find('.dropdown-menu').hostNodes().text()).toBe('Content');
+    expect(wrapper.find('.dropdown-menu').hostNodes().length).toBe(1);
   });
 
   it('should not have the class "show" when isOpen context is false', () => {
@@ -39,13 +41,13 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.find('.dropdown-menu').hasClass('show')).toBe(false);
-    expect(wrapper.find('.show').length).toBe(0);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('show')).toBe(false);
+    expect(wrapper.find('.show').hostNodes().length).toBe(0);
   });
 
   it('should have the class "show" when isOpen context is true', () => {
@@ -55,13 +57,13 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.find('.dropdown-menu').hasClass('show')).toBe(true);
-    expect(wrapper.find('.show').length).toBe(1);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('show')).toBe(true);
+    expect(wrapper.find('.show').hostNodes().length).toBe(1);
   });
 
   it('should render left aligned menus by default', () => {
@@ -69,12 +71,12 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.find('.dropdown-menu').hasClass('dropdown-menu-right')).toBe(false);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-right')).toBe(false);
   });
 
   it('should render right aligned menus', () => {
@@ -82,12 +84,12 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.find('.dropdown-menu').hasClass('dropdown-menu-right')).toBe(true);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-right')).toBe(true);
   });
 
   it('should render down when dropup is false on the context', () => {
@@ -95,7 +97,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -109,7 +111,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -122,7 +124,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -135,12 +137,12 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.find(Popper).prop('modifiers').flip).toBe(undefined);
+    expect(wrapper.find(Popper).prop('modifiers')).toBe(undefined);
   });
 
   it('should disable flip modifier when flip is false', () => {
@@ -148,7 +150,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu flip={false}>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -160,23 +162,23 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.children().length).toBe(0);
+    expect(wrapper.childAt(0).children().length).toBe(0);
   });
 
   it('should render custom tag', () => {
     const wrapper = mount(<DropdownMenu tag="main">Yo!</DropdownMenu>,
       {
-        context: { isOpen, dropup, popperManager },
+        context: { isOpen, dropup, inNavbar, popperManager },
         childContextTypes: { popperManager }
       });
 
     expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('dropdown-menu')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('dropdown-menu')).toBe(true);
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
   });
 });

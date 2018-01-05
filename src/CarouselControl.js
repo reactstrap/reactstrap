@@ -4,9 +4,10 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const CarouselControl = (props) => {
-  const { direction, onClickHandler, cssModule, directionText } = props;
+  const { direction, onClickHandler, cssModule, directionText, className } = props;
 
   const anchorClasses = mapToCssModules(classNames(
+    className,
     `carousel-control-${direction}`
   ), cssModule);
 
@@ -39,7 +40,8 @@ CarouselControl.propTypes = {
   direction: PropTypes.oneOf(['prev', 'next']).isRequired,
   onClickHandler: PropTypes.func.isRequired,
   cssModule: PropTypes.object,
-  directionText: PropTypes.string
+  directionText: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default CarouselControl;
