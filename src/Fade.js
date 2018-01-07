@@ -29,7 +29,7 @@ const defaultProps = {
   in: true,
 };
 
-function Fade(props) {
+const Fade = (props) => {
   const {
     tag: Tag,
     baseClass,
@@ -71,7 +71,7 @@ function Fade(props) {
       }}
     </Transition>
   );
-}
+};
 
 Fade.propTypes = propTypes;
 Fade.defaultProps = defaultProps;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
@@ -42,7 +42,7 @@ function getHeight(node) {
   return node.scrollHeight;
 }
 
-class Collapse extends Component {
+class Collapse extends React.PureComponent {
   constructor(props) {
     super(props);
 

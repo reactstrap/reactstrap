@@ -18,7 +18,7 @@ const contextTypes = {
   activeTabId: PropTypes.any
 };
 
-export default function TabPane(props, context) {
+const TabPane = (props, context) => {
   const {
     className,
     cssModule,
@@ -30,7 +30,10 @@ export default function TabPane(props, context) {
   return (
     <Tag {...attributes} className={classes} />
   );
-}
+};
+
 TabPane.propTypes = propTypes;
 TabPane.defaultProps = defaultProps;
 TabPane.contextTypes = contextTypes;
+
+export default TabPane;

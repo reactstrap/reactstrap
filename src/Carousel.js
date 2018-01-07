@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
 import { mapToCssModules } from './utils';
 
-class Carousel extends React.Component {
+class Carousel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);

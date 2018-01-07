@@ -6,7 +6,6 @@ import Dropdown from './Dropdown';
 import NavDropdown from './NavDropdown';
 import Tooltip from './Tooltip';
 
-const { Component } = React;
 const components = {
   UncontrolledAlert: Alert,
   UncontrolledButtonDropdown: ButtonDropdown,
@@ -19,7 +18,7 @@ Object.keys(components).forEach((key) => {
   const Tag = components[key];
   const defaultValue = Tag === Alert;
 
-  class Uncontrolled extends Component {
+  class Uncontrolled extends React.PureComponent {
     constructor(props) {
       super(props);
 

@@ -23,7 +23,7 @@ const defaultProps = {
   tag: 'button',
 };
 
-class Button extends React.Component {
+class Button extends React.PureComponent {
   constructor(props) {
     super(props);
 
