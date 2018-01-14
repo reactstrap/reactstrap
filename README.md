@@ -44,7 +44,7 @@ import { Button } from 'reactstrap';
 ```
 
 Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render 
-method. Here is an example [`App.js`](https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d) redone
+method. Here is an example [`App.js`](https://gist.github.com/Thomas-Smyth/006fd507a7295f17a8473451938f9935) redone
 using reactstrap.
 
 ### Dependencies
