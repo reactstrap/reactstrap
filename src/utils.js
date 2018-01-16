@@ -24,8 +24,10 @@ export function isBodyOverflowing() {
 }
 
 export function getOriginalBodyPadding() {
+  const style = window.getComputedStyle(document.body, null);
+
   return parseInt(
-    window.getComputedStyle(document.body, null).getPropertyValue('padding-right') || 0,
+    (style && style.getPropertyValue('padding-right')) || 0,
     10
   );
 }
