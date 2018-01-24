@@ -425,12 +425,12 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(false);
     expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
-    expect(Modal.prototype.componentDidUpdate).toHaveBeenCalled();
+    expect(Modal.prototype.componentDidUpdate).not.toHaveBeenCalled();
 
     wrapper.unmount();
   });
 
-  it('should renderIntoSubtree when props updated', () => {
+  it('should togglePortal and renderIntoSubtree when props changed', () => {
     isOpen = true;
     jest.spyOn(Modal.prototype, 'togglePortal');
     jest.spyOn(Modal.prototype, 'renderIntoSubtree');
@@ -446,12 +446,12 @@ describe('Modal', () => {
     expect(Modal.prototype.renderIntoSubtree.mock.calls.length).toEqual(1);
 
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: false
     });
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
-    expect(Modal.prototype.togglePortal.mock.calls.length).toEqual(1);
+    expect(Modal.prototype.togglePortal.mock.calls.length).toEqual(2);
     expect(Modal.prototype.renderIntoSubtree.mock.calls.length).toEqual(2);
 
     wrapper.unmount();

@@ -30,7 +30,7 @@ const contextTypes = {
   inNavbar: PropTypes.bool.isRequired,
 };
 
-class DropdownToggle extends React.Component {
+class DropdownToggle extends React.PureComponent {
   constructor(props) {
     super(props);
 

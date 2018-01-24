@@ -45,7 +45,7 @@ const defaultProps = {
   toggle: function () {}
 };
 
-class Tooltip extends React.Component {
+class Tooltip extends React.PureComponent {
   constructor(props) {
     super(props);
 

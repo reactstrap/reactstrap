@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from './Carousel';
 import CarouselItem from './CarouselItem';
@@ -17,7 +17,7 @@ const propTypes = {
   goToIndex: PropTypes.func,
 };
 
-class UncontrolledCarousel extends Component {
+class UncontrolledCarousel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.animating = false;

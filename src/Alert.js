@@ -28,7 +28,7 @@ const defaultProps = {
   },
 };
 
-function Alert(props) {
+const Alert = (props) => {
   const {
     className,
     closeClassName,
@@ -62,7 +62,7 @@ function Alert(props) {
       {children}
     </Fade>
   );
-}
+};
 
 Alert.propTypes = propTypes;
 Alert.defaultProps = defaultProps;

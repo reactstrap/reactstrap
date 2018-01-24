@@ -39,7 +39,7 @@ const childContextTypes = {
   inNavbar: PropTypes.bool.isRequired,
 };
 
-class Dropdown extends React.Component {
+class Dropdown extends React.PureComponent {
   constructor(props) {
     super(props);
 

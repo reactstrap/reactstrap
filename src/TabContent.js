@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, omit } from './utils';
@@ -18,7 +18,7 @@ const childContextTypes = {
   activeTabId: PropTypes.any
 };
 
-export default class TabContent extends Component {
+export default class TabContent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

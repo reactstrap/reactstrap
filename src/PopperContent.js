@@ -35,7 +35,7 @@ const childContextTypes = {
   popperManager: PropTypes.object.isRequired,
 };
 
-class PopperContent extends React.Component {
+class PopperContent extends React.PureComponent {
   constructor(props) {
     super(props);
 
