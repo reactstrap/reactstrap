@@ -78,13 +78,11 @@ import Collapse from './Collapse';
 import ListGroupItem from './ListGroupItem';
 import ListGroupItemHeading from './ListGroupItemHeading';
 import ListGroupItemText from './ListGroupItemText';
-import {
-  UncontrolledAlert,
-  UncontrolledButtonDropdown,
-  UncontrolledDropdown,
-  UncontrolledNavDropdown,
-  UncontrolledTooltip
-} from './Uncontrolled';
+import UncontrolledAlert from './UncontrolledAlert';
+import UncontrolledButtonDropdown from './UncontrolledButtonDropdown';
+import UncontrolledDropdown from './UncontrolledDropdown';
+import UncontrolledNavDropdown from './UncontrolledNavDropdown';
+import UncontrolledTooltip from './UncontrolledTooltip';
 import * as Util from './utils';
 
 export {
