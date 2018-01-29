@@ -24,4 +24,10 @@ describe('CardTitle', () => {
     expect(wrapper.hasClass('card-title')).toBe(true);
     expect(wrapper.find('h1').length).toBe(1);
   });
+
+  it('should render a "h5" tag by default', () => {
+    const wrapper = shallow(<CardTitle>Yo!</CardTitle>);
+
+    expect(wrapper.find('h5').length).toBe(1);
+  });
 });
