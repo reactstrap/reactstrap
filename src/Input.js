@@ -22,7 +22,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'p',
   type: 'text',
 };
 
@@ -49,13 +48,13 @@ class Input extends React.Component {
     const fileInput = type === 'file';
     const textareaInput = type === 'textarea';
     const selectInput = type === 'select';
-    let Tag = selectInput || textareaInput ? type : 'input';
+    let Tag = tag || ((selectInput || textareaInput) ? type : 'input');
 
     let formControlClass = 'form-control';
 
     if (plaintext || staticInput) {
       formControlClass = `${formControlClass}-plaintext`;
-      Tag = tag;
+      Tag = tag || 'p';
     } else if (fileInput) {
       formControlClass = `${formControlClass}-file`;
     } else if (checkInput) {
@@ -88,7 +87,7 @@ class Input extends React.Component {
       formControlClass
     ), cssModule);
 
-    if (Tag === 'input') {
+    if (Tag === 'input' || typeof tag !== 'string') {
       attributes.type = type;
     }
 
