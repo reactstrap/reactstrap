@@ -1,3 +1,39 @@
+<a name="5.0.0-beta"></a>
+# [5.0.0-beta](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.4...5.0.0-beta) (2018-01-31)
+
+
+### Bug Fixes
+
+* **CardTitle:** default tag to h5 ([#794](https://github.com/reactstrap/reactstrap/issues/794)) ([65194c1](https://github.com/reactstrap/reactstrap/commit/65194c1))
+* **CarouselIndicators`:** fix class name when using `cssModule` ([#726](https://github.com/reactstrap/reactstrap/issues/726)) ([57d07e3](https://github.com/reactstrap/reactstrap/commit/57d07e3))
+* **Input:** honor Tag prop ([#795](https://github.com/reactstrap/reactstrap/issues/795)) ([bcefdaa](https://github.com/reactstrap/reactstrap/commit/bcefdaa)), closes [#783](https://github.com/reactstrap/reactstrap/issues/783)
+* **Label:** remove unused `form-control-label` class ([#695](https://github.com/reactstrap/reactstrap/issues/695)) ([b7567c7](https://github.com/reactstrap/reactstrap/commit/b7567c7))
+* **Modal:** check this.props.toggle exists before using it ([#700](https://github.com/reactstrap/reactstrap/issues/700)) ([80c0cde](https://github.com/reactstrap/reactstrap/commit/80c0cde))
+* **ModalHeader:** default tag to h5 ([#793](https://github.com/reactstrap/reactstrap/issues/793)) ([6a5fe7e](https://github.com/reactstrap/reactstrap/commit/6a5fe7e))
+* **Util:** window.getComputedStyle can return null in Firefox ([#782](https://github.com/reactstrap/reactstrap/issues/782)) ([6914f73](https://github.com/reactstrap/reactstrap/commit/6914f73))
+
+
+### Features
+
+* **CarouselItem:** Make CarouselItem accept children of any type ([#735](https://github.com/reactstrap/reactstrap/issues/735)) ([eea7d1b](https://github.com/reactstrap/reactstrap/commit/eea7d1b)), closes [#641](https://github.com/reactstrap/reactstrap/issues/641) [#719](https://github.com/reactstrap/reactstrap/issues/719)
+* **Col/Label:** Removed pull/push and added order ([#696](https://github.com/reactstrap/reactstrap/issues/696)) ([7c5e690](https://github.com/reactstrap/reactstrap/commit/7c5e690))
+* **cssModule:** expose global cssModule setter ([#729](https://github.com/reactstrap/reactstrap/issues/729)) ([adc8736](https://github.com/reactstrap/reactstrap/commit/adc8736))
+* **Dropdown:** disable popper when inNavbar ([#692](https://github.com/reactstrap/reactstrap/issues/692)) ([b5c7612](https://github.com/reactstrap/reactstrap/commit/b5c7612)), closes [#637](https://github.com/reactstrap/reactstrap/issues/637)
+* **InputGroup:** Deprecate InputGroupButton ([#769](https://github.com/reactstrap/reactstrap/issues/769)) ([5c5c205](https://github.com/reactstrap/reactstrap/commit/5c5c205))
+* **InputGroup:** Update for BS 4-beta.3 ([#762](https://github.com/reactstrap/reactstrap/issues/762)) ([fa3555f](https://github.com/reactstrap/reactstrap/commit/fa3555f)), closes [#759](https://github.com/reactstrap/reactstrap/issues/759)
+* **ListGroup*:** Added missing cssModule support ([#784](https://github.com/reactstrap/reactstrap/issues/784)) ([df264a8](https://github.com/reactstrap/reactstrap/commit/df264a8))
+* **Popover/Tooltip:** add ability to pass modifiers to Popper.js ([#710](https://github.com/reactstrap/reactstrap/issues/710)) ([bc6518e](https://github.com/reactstrap/reactstrap/commit/bc6518e)), closes [#709](https://github.com/reactstrap/reactstrap/issues/709)
+* **Table:** BS4 beta 2 updates for Table ([#694](https://github.com/reactstrap/reactstrap/issues/694)) ([3377cdc](https://github.com/reactstrap/reactstrap/commit/3377cdc))
+* **Table:** BS4 beta 3 revert responsive table ([#757](https://github.com/reactstrap/reactstrap/issues/757)) ([ee08d21](https://github.com/reactstrap/reactstrap/commit/ee08d21))
+
+
+### BREAKING CHANGES
+
+* **CardTitle:** CardTitle now defaults to h5 instead of h4. If you still need h4 add tag="h4"
+* **ModalHeader:** ModalHeader now defaults to h5 instead of h4. If you still need h4 add tag="h4"
+
+
+
 <a name="5.0.0-alpha.4"></a>
 # [5.0.0-alpha.4](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.3...5.0.0-alpha.4) (2017-11-16)
 
