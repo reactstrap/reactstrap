@@ -8,7 +8,7 @@ describe('UncontrolledNavDropdown', () => {
 
     expect(wrapper.type()).toBe(NavDropdown);
   });
-  
+
   it('should have isOpen default to false', () => {
     const dropdown = shallow(<UncontrolledNavDropdown>Yo!</UncontrolledNavDropdown>);
     expect(dropdown.prop('isOpen')).toBe(false);
@@ -26,5 +26,4 @@ describe('UncontrolledNavDropdown', () => {
     dropdown.update();
     expect(dropdown.prop('isOpen')).toBe(true);
   });
-  
 });
