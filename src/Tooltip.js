@@ -49,16 +49,19 @@ class Tooltip extends React.Component {
   constructor(props) {
     super(props);
 
-    this.addTargetEvents = this.addTargetEvents.bind(this);
-    this.handleDocumentClick = this.handleDocumentClick.bind(this);
-    this.removeTargetEvents = this.removeTargetEvents.bind(this);
-    this.toggle = this.toggle.bind(this);
     this.onMouseOverTooltip = this.onMouseOverTooltip.bind(this);
     this.onMouseLeaveTooltip = this.onMouseLeaveTooltip.bind(this);
     this.onMouseOverTooltipContent = this.onMouseOverTooltipContent.bind(this);
     this.onMouseLeaveTooltipContent = this.onMouseLeaveTooltipContent.bind(this);
+    this.getDelay = this.getDelay.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
+    this.cleaerShowTimeout = this.clearShowTimeout.bind(this);
+    this.clearHideTimeout = this.clearHideTimeout.bind(this);
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.addTargetEvents = this.addTargetEvents.bind(this);
+    this.removeTargetEvents = this.removeTargetEvents.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {

@@ -47,13 +47,17 @@ class Popover extends React.Component {
   constructor(props) {
     super(props);
 
-    this.addTargetEvents = this.addTargetEvents.bind(this);
-    this.handleDocumentClick = this.handleDocumentClick.bind(this);
-    this.removeTargetEvents = this.removeTargetEvents.bind(this);
     this.getRef = this.getRef.bind(this);
-    this.toggle = this.toggle.bind(this);
+    this.getDelay = this.getDelay.bind(this);
+    this.handleProps = this.handleProps.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
+    this.clearShowTimeout = this.clearShowTimeout.bind(this);
+    this.clearHideTimeout = this.clearHideTimeout.bind(this);
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.addTargetEvents = this.addTargetEvents.bind(this);
+    this.removeTargetEvents = this.removeTargetEvents.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
