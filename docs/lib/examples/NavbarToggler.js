@@ -12,7 +12,7 @@ export default class Example extends React.Component {
   }
 
   toggleNavbar() {
-    this.setState((prevState, props) => ({
+    this.setState(prevState => ({
       collapsed: !prevState.collapsed
     }));
   }
