@@ -5,13 +5,13 @@ import { DropdownMenu } from '../';
 
 describe('DropdownMenu', () => {
   let isOpen;
-  let dropup;
+  let dropDirection;
   let inNavbar;
   let popperManager;
 
   beforeEach(() => {
     isOpen = false;
-    dropup = false;
+    dropDirection = 'down';
     inNavbar = false;
     popperManager = {
       getTargetNode: () => ({}),
@@ -25,7 +25,7 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -41,7 +41,7 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -57,7 +57,7 @@ describe('DropdownMenu', () => {
         <p>Content</p>
       </DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -71,7 +71,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -84,7 +84,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -92,12 +92,12 @@ describe('DropdownMenu', () => {
     expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-right')).toBe(true);
   });
 
-  it('should render down when dropup is false on the context', () => {
+  it('should render down when dropDirection is "down" on the context', () => {
     isOpen = true;
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -105,13 +105,13 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(Popper).prop('placement')).toBe('bottom-start');
   });
 
-  it('should render up when dropup is true on the context', () => {
+  it('should render up when dropDirection is "up" on the context', () => {
     isOpen = true;
-    dropup = true;
+    dropDirection = 'up';
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -119,17 +119,32 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(Popper).prop('placement')).toBe('top-start');
   });
 
-  it('should render down when dropup is false on the context', () => {
+  it('should render left when dropDirection is "left" on the context', () => {
     isOpen = true;
+    dropDirection = 'left';
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
 
-    expect(wrapper.find(Popper).prop('placement')).toBe('bottom-start');
+    expect(wrapper.find(Popper).prop('placement')).toBe('left-start');
+  });
+
+  it('should render right when dropDirection is "right" on the context', () => {
+    isOpen = true;
+    dropDirection = 'right';
+    const wrapper = shallow(
+      <DropdownMenu>Ello world</DropdownMenu>,
+      {
+        context: { isOpen, dropDirection, inNavbar, popperManager },
+        childContextTypes: { popperManager }
+      }
+    );
+
+    expect(wrapper.find(Popper).prop('placement')).toBe('right-start');
   });
 
   it('should not disable flip modifier by default', () => {
@@ -137,7 +152,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -150,7 +165,7 @@ describe('DropdownMenu', () => {
     const wrapper = shallow(
       <DropdownMenu flip={false}>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -162,7 +177,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownMenu right>Ello world</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       }
     );
@@ -173,7 +188,7 @@ describe('DropdownMenu', () => {
   it('should render custom tag', () => {
     const wrapper = mount(<DropdownMenu tag="main">Yo!</DropdownMenu>,
       {
-        context: { isOpen, dropup, inNavbar, popperManager },
+        context: { isOpen, dropDirection, inNavbar, popperManager },
         childContextTypes: { popperManager }
       });
 

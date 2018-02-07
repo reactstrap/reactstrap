@@ -20,7 +20,7 @@ const defaultProps = {
 
 const contextTypes = {
   isOpen: PropTypes.bool.isRequired,
-  dropup: PropTypes.bool.isRequired,
+  dropDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
   inNavbar: PropTypes.bool.isRequired,
 };
 
@@ -41,7 +41,23 @@ const DropdownMenu = (props, context) => {
 
   if (context.isOpen && !context.inNavbar) {
     Tag = Popper;
-    const position1 = context.dropup ? 'top' : 'bottom';
+
+    let position1;
+    switch (context.dropDirection) {
+      case 'up':
+        position1 = 'top';
+        break;
+      case 'left':
+        position1 = 'left';
+        break;
+      case 'right':
+        position1 = 'right';
+        break;
+      default: // down
+        position1 = 'bottom';
+        break;
+    }
+
     const position2 = right ? 'end' : 'start';
     attrs.placement = `${position1}-${position2}`;
     attrs.component = tag;

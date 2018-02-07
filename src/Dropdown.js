@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
-import { mapToCssModules, omit, keyCodes } from './utils';
+import { mapToCssModules, omit, keyCodes, deprecated } from './utils';
 
 const propTypes = {
   disabled: PropTypes.bool,
-  dropup: PropTypes.bool,
+  dropup: deprecated(PropTypes.bool, 'Please use the prop "dropDirection"'),
+  dropDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
@@ -26,7 +27,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
-  dropup: false,
+  dropDirection: 'down',
   nav: false,
   addonType: false,
   inNavbar: false,
@@ -35,7 +36,7 @@ const defaultProps = {
 const childContextTypes = {
   toggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  dropup: PropTypes.bool.isRequired,
+  dropDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
   inNavbar: PropTypes.bool.isRequired,
 };
 
@@ -54,7 +55,7 @@ class Dropdown extends React.Component {
     return {
       toggle: this.props.toggle,
       isOpen: this.props.isOpen,
-      dropup: this.props.dropup,
+      dropDirection: (this.props.dropDirection === 'down' && this.props.dropup) ? 'up' : this.props.dropDirection,
       inNavbar: this.props.inNavbar,
     };
   }
@@ -180,7 +181,9 @@ class Dropdown extends React.Component {
       nav,
       addonType,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled', 'inNavbar']);
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'dropDirection']);
+
+    const dropDirection = (this.props.dropDirection === 'down' && dropup) ? 'up' : this.props.dropDirection;
 
     attrs.tag = attrs.tag || (nav ? 'li' : 'div');
 
@@ -192,7 +195,9 @@ class Dropdown extends React.Component {
         [`btn-group-${size}`]: !!size,
         dropdown: !group && !addonType,
         show: isOpen,
-        dropup: dropup,
+        dropup: dropDirection === 'up',
+        dropleft: dropDirection === 'left',
+        dropright: dropDirection === 'right',
         'nav-item': nav
       }
     ), cssModule);
