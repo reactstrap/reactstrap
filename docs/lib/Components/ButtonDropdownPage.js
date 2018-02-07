@@ -47,7 +47,7 @@ export default class ButtonDropdownPage extends React.Component {
           <PrismCode className="language-jsx">
 {`ButtonDropdown.propTypes = {
   disabled: PropTypes.bool,
-  dropDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   tag: PropTypes.string,
@@ -168,7 +168,7 @@ DropdownToggle.propTypes = {
         <h3>Drop direction variations</h3>
         <div className="docs-example">
           <div>
-            <ButtonDropdown dropDirection="up" isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>
+            <ButtonDropdown direction="up" isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>
               <DropdownToggle caret>
                 Dropup
               </DropdownToggle>
@@ -178,7 +178,7 @@ DropdownToggle.propTypes = {
               </DropdownMenu>
             </ButtonDropdown>
             {' '}
-            <ButtonDropdown dropDirection="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
+            <ButtonDropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
               <DropdownToggle caret>
                 Dropleft
               </DropdownToggle>
@@ -188,7 +188,7 @@ DropdownToggle.propTypes = {
               </DropdownMenu>
             </ButtonDropdown>
             {' '}
-            <ButtonDropdown dropDirection="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+            <ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
               <DropdownToggle caret>
                 Dropright
               </DropdownToggle>
@@ -201,7 +201,7 @@ DropdownToggle.propTypes = {
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<ButtonDropdown dropDirection="up" isOpen={isOpen} toggle={toggle}>
+{`<ButtonDropdown direction="up" isOpen={isOpen} toggle={toggle}>
   <DropdownToggle caret>
     Dropup
   </DropdownToggle>
@@ -211,7 +211,7 @@ DropdownToggle.propTypes = {
   </DropdownMenu>
 </ButtonDropdown>
 
-<ButtonDropdown dropDirection="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
+<ButtonDropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
   <DropdownToggle caret>
     Dropleft
   </DropdownToggle>
@@ -221,7 +221,7 @@ DropdownToggle.propTypes = {
   </DropdownMenu>
 </ButtonDropdown>
 
-<ButtonDropdown dropDirection="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+<ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
   <DropdownToggle caret>
     Dropright
   </DropdownToggle>

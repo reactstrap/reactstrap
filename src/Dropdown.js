@@ -10,8 +10,8 @@ import { mapToCssModules, omit, keyCodes, deprecated } from './utils';
 
 const propTypes = {
   disabled: PropTypes.bool,
-  dropup: deprecated(PropTypes.bool, 'Please use the prop "dropDirection"'),
-  dropDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+  dropup: deprecated(PropTypes.bool, 'Please use the prop "direction"'),
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
@@ -27,7 +27,7 @@ const propTypes = {
 
 const defaultProps = {
   isOpen: false,
-  dropDirection: 'down',
+  direction: 'down',
   nav: false,
   addonType: false,
   inNavbar: false,
@@ -36,7 +36,7 @@ const defaultProps = {
 const childContextTypes = {
   toggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  dropDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
   inNavbar: PropTypes.bool.isRequired,
 };
 
@@ -55,7 +55,7 @@ class Dropdown extends React.Component {
     return {
       toggle: this.props.toggle,
       isOpen: this.props.isOpen,
-      dropDirection: (this.props.dropDirection === 'down' && this.props.dropup) ? 'up' : this.props.dropDirection,
+      direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
     };
   }
@@ -181,9 +181,9 @@ class Dropdown extends React.Component {
       nav,
       addonType,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'dropDirection']);
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'direction']);
 
-    const dropDirection = (this.props.dropDirection === 'down' && dropup) ? 'up' : this.props.dropDirection;
+    const direction = (this.props.direction === 'down' && dropup) ? 'up' : this.props.direction;
 
     attrs.tag = attrs.tag || (nav ? 'li' : 'div');
 
@@ -195,9 +195,9 @@ class Dropdown extends React.Component {
         [`btn-group-${size}`]: !!size,
         dropdown: !group && !addonType,
         show: isOpen,
-        dropup: dropDirection === 'up',
-        dropleft: dropDirection === 'left',
-        dropright: dropDirection === 'right',
+        dropup: direction === 'up',
+        dropleft: direction === 'left',
+        dropright: direction === 'right',
         'nav-item': nav
       }
     ), cssModule);
