@@ -36,6 +36,24 @@ describe('Tooltip', () => {
     innerTarget = null;
   });
 
+  it('should render with "hideArrow" false by default', () => {
+    const wrapper = mount(
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </Tooltip>);
+
+    expect(wrapper.prop('hideArrow')).toBe(false);
+  });
+
+  it('should render with "hideArrow" true when "hideArrow" prop is truthy', () => {
+    const wrapper = mount(
+      <Tooltip target="target" isOpen={isOpen} toggle={toggle} hideArrow>
+        Tooltip Content
+      </Tooltip>);
+
+    expect(wrapper.prop('hideArrow')).toBe(true);
+  });
+
   it('should not render children if isOpen is false', () => {
     const wrapper = mount(
       <Tooltip target="target" isOpen={isOpen} toggle={toggle}>
