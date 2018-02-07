@@ -10,7 +10,7 @@ import { mapToCssModules, omit, keyCodes, deprecated } from './utils';
 
 const propTypes = {
   disabled: PropTypes.bool,
-  dropup: deprecated(PropTypes.bool, 'Please use the prop "direction"'),
+  dropup: deprecated(PropTypes.bool, 'Please use the prop "direction" with the value "up".'),
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
@@ -189,15 +189,13 @@ class Dropdown extends React.Component {
 
     const classes = mapToCssModules(classNames(
       className,
+      direction !== 'down' && `drop${direction}`,
       {
         [`input-group-${addonType}`]: addonType,
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
         dropdown: !group && !addonType,
         show: isOpen,
-        dropup: direction === 'up',
-        dropleft: direction === 'left',
-        dropright: direction === 'right',
         'nav-item': nav
       }
     ), cssModule);

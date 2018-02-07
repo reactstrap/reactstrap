@@ -26,6 +26,13 @@ const contextTypes = {
 
 const noFlipModifier = { flip: { enabled: false } };
 
+const directionPositionMap = {
+  up: 'top',
+  left: 'left',
+  right: 'right',
+  down: 'bottom',
+};
+
 const DropdownMenu = (props, context) => {
   const { className, cssModule, right, tag, flip, ...attrs } = props;
   const classes = mapToCssModules(classNames(
@@ -42,22 +49,7 @@ const DropdownMenu = (props, context) => {
   if (context.isOpen && !context.inNavbar) {
     Tag = Popper;
 
-    let position1;
-    switch (context.direction) {
-      case 'up':
-        position1 = 'top';
-        break;
-      case 'left':
-        position1 = 'left';
-        break;
-      case 'right':
-        position1 = 'right';
-        break;
-      default: // down
-        position1 = 'bottom';
-        break;
-    }
-
+    const position1 = directionPositionMap[context.direction] || 'bottom';
     const position2 = right ? 'end' : 'start';
     attrs.placement = `${position1}-${position2}`;
     attrs.component = tag;
