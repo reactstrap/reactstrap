@@ -75,6 +75,7 @@ class Modal extends React.Component {
 
     this.originalBodyPadding = null;
     this.isBodyOverflowing = false;
+    this.modalIsOpened = false;
     this.togglePortal = this.togglePortal.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
@@ -154,11 +155,12 @@ class Modal extends React.Component {
       document.body.removeChild(this._element);
       this._element = null;
     }
-
+    if (this.modalIsOpened) {
     // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
-    const classes = document.body.className.replace(/(^| )modal-open( |$)/, ' ');
-    document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
-    setScrollbarWidth(this.originalBodyPadding);
+      const classes = document.body.className.replace(/(^| )modal-open( |$)/, ' ');
+      document.body.className = mapToCssModules(classNames(classes).trim(), this.props.cssModule);
+      setScrollbarWidth(this.originalBodyPadding);
+    }
   }
 
   hide() {
@@ -172,6 +174,7 @@ class Modal extends React.Component {
       }
       return;
     }
+    this.modalIsOpened = true;
     const classes = document.body.className;
     this._element = document.createElement('div');
     this._element.setAttribute('tabindex', '-1');

@@ -661,7 +661,6 @@ describe('Modal', () => {
     jest.runTimersToTime(301);
     expect(isOpen).toBe(false);
     expect(document.body.className).toBe('my-modal-opened modal-opened');
-
     wrapper.unmount();
   });
 
