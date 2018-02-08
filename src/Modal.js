@@ -154,7 +154,7 @@ class Modal extends React.Component {
       document.body.removeChild(this._element);
       this._element = null;
     }
-    
+
     if (!this.props.isOpen) {
       const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
       // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
