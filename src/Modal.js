@@ -155,7 +155,7 @@ class Modal extends React.Component {
 
   handleBackdropClick(e) {
     e.stopPropagation();
-    if (this.props.backdrop !== true) return;
+    if (!this.props.isOpen || this.props.backdrop !== true) return;
 
     const container = this._dialog;
 
@@ -165,7 +165,7 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
-    if (this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
+    if (this.props.isOpen && this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
       this.props.toggle();
     }
   }
