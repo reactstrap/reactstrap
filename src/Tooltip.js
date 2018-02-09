@@ -18,6 +18,7 @@ const propTypes = {
   ]),
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
+  hideArrow: PropTypes.bool,
   className: PropTypes.string,
   innerClassName: PropTypes.string,
   cssModule: PropTypes.object,
@@ -38,6 +39,7 @@ const DEFAULT_DELAYS = {
 
 const defaultProps = {
   isOpen: false,
+  hideArrow: false,
   placement: 'top',
   placementPrefix: 'bs-tooltip',
   delay: DEFAULT_DELAYS,
@@ -193,6 +195,7 @@ class Tooltip extends React.Component {
         className={popperClasses}
         target={this.props.target}
         isOpen={this.props.isOpen}
+        hideArrow={this.props.hideArrow}
         placement={this.props.placement}
         placementPrefix={this.props.placementPrefix}
         container={this.props.container}

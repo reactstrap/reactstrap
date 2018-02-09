@@ -18,6 +18,7 @@ const propTypes = {
   ]),
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
+  hideArrow: PropTypes.bool,
   className: PropTypes.string,
   innerClassName: PropTypes.string,
   placementPrefix: PropTypes.string,
@@ -37,6 +38,7 @@ const DEFAULT_DELAYS = {
 
 const defaultProps = {
   isOpen: false,
+  hideArrow: false,
   placement: 'right',
   placementPrefix: 'bs-popover',
   delay: DEFAULT_DELAYS,
@@ -173,6 +175,7 @@ class Popover extends React.Component {
         className={popperClasses}
         target={this.props.target}
         isOpen={this.props.isOpen}
+        hideArrow={this.props.hideArrow}
         placement={this.props.placement}
         placementPrefix={this.props.placementPrefix}
         container={this.props.container}
