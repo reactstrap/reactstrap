@@ -161,8 +161,8 @@ class Modal extends React.Component {
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
       this.bodyClassAdded = false;
-      setScrollbarWidth(this.originalBodyPadding);
     }
+    setScrollbarWidth(this.originalBodyPadding);
   }
 
   hide() {
