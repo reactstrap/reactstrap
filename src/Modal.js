@@ -80,6 +80,10 @@ class Modal extends React.Component {
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
 
+    this.state = {
+      isOpen: props.isOpen,
+    };
+
     if (props.isOpen) {
       this.init();
     }
@@ -89,20 +93,28 @@ class Modal extends React.Component {
     if (this.props.onEnter) {
       this.props.onEnter();
     }
+
+    if (this.state.isOpen && this.props.autoFocus) {
+      this.setFocus();
+    }
+
+    this._isMounted = true;
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.isOpen && !this.props.isOpen) {
+      this.setState({ isOpen: nextProps.isOpen });
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isOpen && !this.state.isOpen) {
       this.init();
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (!this.props.isOpen && prevProps.isOpen) {
-      this.destroy();
-    }
-
-    if (this.props.autoFocus && this.props.isOpen && !prevProps.isOpen) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.autoFocus && this.state.isOpen && !prevState.isOpen) {
       this.setFocus();
     }
   }
@@ -112,9 +124,11 @@ class Modal extends React.Component {
       this.props.onExit();
     }
 
-    if (this.props.isOpen) {
+    if (this.state.isOpen) {
       this.destroy();
     }
+
+    this._isMounted = false;
   }
 
   onOpened(node, isAppearing) {
@@ -126,6 +140,11 @@ class Modal extends React.Component {
     // so all methods get called before it is unmounted
     this.props.onClosed();
     (this.props.modalTransition.onExited || noop)(node);
+    this.destroy();
+
+    if (this._isMounted) {
+      this.setState({ isOpen: false });
+    }
   }
 
   setFocus() {
@@ -135,6 +154,7 @@ class Modal extends React.Component {
   }
 
   handleBackdropClick(e) {
+    e.stopPropagation();
     if (this.props.backdrop !== true) return;
 
     const container = this._dialog;
@@ -205,7 +225,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    if (this.props.isOpen) {
+    if (this.state.isOpen) {
       const {
         wrapClassName,
         modalClassName,
@@ -218,7 +238,7 @@ class Modal extends React.Component {
       } = this.props;
 
       const modalAttributes = {
-        onClickCapture: this.handleBackdropClick,
+        onClick: this.handleBackdropClick,
         onKeyUp: this.handleEscape,
         style: { display: 'block' },
         'aria-labelledby': labelledBy,
