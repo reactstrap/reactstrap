@@ -45,10 +45,10 @@ describe('Input', () => {
     expect(wrapper.type()).toBe('div');
   });
 
-  it('should not render with custom tag when plaintext prop is not truthy and tag is provided', () => {
-    const wrapper = shallow(<Input type="select" tag="div" />);
+  it('should render with custom tag when plaintext prop is not truthy and tag is provided', () => {
+    const wrapper = shallow(<Input tag="div" />);
 
-    expect(wrapper.type()).toBe('select');
+    expect(wrapper.type()).toBe('div');
   });
 
   it('should render with "input" tag when type is not a special case', () => {

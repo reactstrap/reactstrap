@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Popper, Target } from 'react-popper';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../';
 import { keyCodes } from '../utils';
@@ -804,5 +804,17 @@ describe('Dropdown', () => {
       expect(wrapper.find('.dropdown-toggle').first().type()).toEqual(Target);
       expect(wrapper.find('.dropdown-menu').first().type()).toEqual(Popper);
     });
+  });
+
+  it('should render with correct class when direction is set', () => {
+    const dropup = shallow(<Dropdown direction="up" />);
+    const dropupProp = shallow(<Dropdown dropup />);
+    const dropleft = shallow(<Dropdown direction="left" />);
+    const dropright = shallow(<Dropdown direction="right" />);
+
+    expect(dropup.hasClass('dropup')).toBe(true);
+    expect(dropupProp.hasClass('dropup')).toBe(true);
+    expect(dropleft.hasClass('dropleft')).toBe(true);
+    expect(dropright.hasClass('dropright')).toBe(true);
   });
 });

@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import {
+  Row,
+  Col,
   Dropdown,
   DropdownToggle,
   DropdownItem,
@@ -54,7 +56,7 @@ export default class DropdownPage extends React.Component {
           <PrismCode className="language-jsx">
 {`Dropdown.propTypes = {
   disabled: PropTypes.bool,
-  dropup: PropTypes.bool,
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   // For Dropdown usage inside a Nav
@@ -218,6 +220,77 @@ DropdownItem.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
             {DropdownUncontrolledExampleSource}
+          </PrismCode>
+        </pre>
+        <h3>Drop direction variations</h3>
+        <div className="docs-example">
+          <Row>
+            <Col>
+              <Dropdown direction="up" isOpen={this.state.ddDropup} toggle={() => { this.setState({ ddDropup: !this.state.ddDropup }); }}>
+                <DropdownToggle caret>
+                  Dropup
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+            <Col>
+              <Dropdown direction="left" isOpen={this.state.ddDropleft} toggle={() => { this.setState({ ddDropleft: !this.state.ddDropleft }); }}>
+                <DropdownToggle caret>
+                  Dropleft
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+            <Col>
+              <Dropdown direction="right" isOpen={this.state.ddDropright} toggle={() => { this.setState({ ddDropright: !this.state.ddDropright }); }}>
+                <DropdownToggle caret>
+                  Dropright
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+          </Row>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+{`<Dropdown direction="up" isOpen={isOpen} toggle={toggle}>
+  <DropdownToggle caret>
+    Dropup
+  </DropdownToggle>
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+
+<Dropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
+  <DropdownToggle caret>
+    Dropleft
+  </DropdownToggle>
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+
+<Dropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+  <DropdownToggle caret>
+    Dropright
+  </DropdownToggle>
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>`}
           </PrismCode>
         </pre>
       </div>
