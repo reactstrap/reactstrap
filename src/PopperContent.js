@@ -10,6 +10,7 @@ const propTypes = {
   className: PropTypes.string,
   placement: PropTypes.string,
   placementPrefix: PropTypes.string,
+  hideArrow: PropTypes.bool,
   tag: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   cssModule: PropTypes.object,
@@ -23,6 +24,7 @@ const propTypes = {
 
 const defaultProps = {
   placement: 'auto',
+  hideArrow: false,
   isOpen: false,
   offset: 0,
   fallbackPlacement: 'flip',
@@ -135,6 +137,7 @@ class PopperContent extends React.Component {
       offset,
       fallbackPlacement,
       placementPrefix,
+      hideArrow,
       className,
       tag,
       container,
@@ -162,7 +165,7 @@ class PopperContent extends React.Component {
     return (
       <ReactPopper modifiers={extendedModifiers} {...attrs} component={tag} className={popperClassName}>
         {children}
-        <Arrow className={arrowClassName} />
+        {!hideArrow && <Arrow className={arrowClassName} />}
       </ReactPopper>
     );
   }
