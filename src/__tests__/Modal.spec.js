@@ -25,6 +25,19 @@ describe('Modal', () => {
     jest.clearAllTimers();
   });
 
+  it('should render modal portal into DOM', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(wrapper.childAt(0).children().length).not.toBe(0);
+    wrapper.unmount();
+  });
+
   it('should render with the class "modal-dialog"', () => {
     isOpen = true;
     const wrapper = mount(
@@ -34,7 +47,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     wrapper.unmount();
   });
@@ -48,7 +60,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
   });
@@ -62,7 +73,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
   });
@@ -76,7 +86,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
     wrapper.unmount();
@@ -91,7 +100,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
     wrapper.unmount();
@@ -106,7 +114,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-dialog')[0].style.maxWidth).toBe('95%');
     wrapper.unmount();
@@ -122,7 +129,6 @@ describe('Modal', () => {
 
     // Modal should appear instantaneously
     jest.runTimersToTime(1);
-    expect(wrapper.childAt(0).children().length).toBe(0);
 
     const matchedModals = document.getElementsByClassName('fadeless-modal');
     const matchedModal = matchedModals[0];
@@ -149,7 +155,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(20);
-    expect(wrapper.childAt(0).children().length).toBe(0);
 
     const matchedModals = document.getElementsByClassName('custom-timeout-modal');
 
@@ -167,7 +172,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.querySelectorAll('.modal.my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -181,7 +185,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -195,7 +198,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.querySelectorAll('.modal-content.my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -209,7 +211,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.querySelectorAll('.modal-backdrop.my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -223,7 +224,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-crazy').length).toBe(1);
     wrapper.unmount();
@@ -239,7 +239,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
@@ -254,7 +253,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('dialog');
     wrapper.unmount();
   });
@@ -268,7 +266,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('alert');
     wrapper.unmount();
   });
@@ -282,7 +279,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('aria-labelledby')).toBe('myModalTitle');
     wrapper.unmount();
   });
@@ -310,6 +306,7 @@ describe('Modal', () => {
 
     jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
+    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
 
@@ -404,8 +401,8 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should not call togglePortal when isOpen does not change', () => {
-    jest.spyOn(Modal.prototype, 'togglePortal');
+  it('should not call init when isOpen does not change', () => {
+    jest.spyOn(Modal.prototype, 'init');
     jest.spyOn(Modal.prototype, 'componentDidUpdate');
     const wrapper = mount(
       <Modal isOpen={isOpen} toggle={toggle}>
@@ -415,7 +412,7 @@ describe('Modal', () => {
 
     jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
-    expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
+    expect(Modal.prototype.init).not.toHaveBeenCalled();
     expect(Modal.prototype.componentDidUpdate).not.toHaveBeenCalled();
 
     wrapper.setProps({
@@ -424,35 +421,8 @@ describe('Modal', () => {
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(false);
-    expect(Modal.prototype.togglePortal).not.toHaveBeenCalled();
+    expect(Modal.prototype.init).not.toHaveBeenCalled();
     expect(Modal.prototype.componentDidUpdate).toHaveBeenCalled();
-
-    wrapper.unmount();
-  });
-
-  it('should renderIntoSubtree when props updated', () => {
-    isOpen = true;
-    jest.spyOn(Modal.prototype, 'togglePortal');
-    jest.spyOn(Modal.prototype, 'renderIntoSubtree');
-    const wrapper = mount(
-      <Modal isOpen={isOpen} toggle={toggle}>
-        Yo!
-      </Modal>
-    );
-
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(true);
-    expect(Modal.prototype.togglePortal.mock.calls.length).toEqual(1);
-    expect(Modal.prototype.renderIntoSubtree.mock.calls.length).toEqual(1);
-
-    wrapper.setProps({
-      isOpen: isOpen
-    });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(Modal.prototype.togglePortal.mock.calls.length).toEqual(1);
-    expect(Modal.prototype.renderIntoSubtree.mock.calls.length).toEqual(2);
 
     wrapper.unmount();
   });
@@ -591,12 +561,34 @@ describe('Modal', () => {
     jest.runTimersToTime(300);
     expect(instance._element).toBeTruthy();
 
-    instance.destroy();
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jest.runTimersToTime(300);
 
+    expect(isOpen).toBe(false);
     expect(instance._element).toBe(null);
 
-    instance.destroy();
     wrapper.unmount();
+  });
+
+  it('should destroy this._element on unmount', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jest.runTimersToTime(300);
+    expect(instance._element).toBeTruthy();
+
+    wrapper.unmount();
+    jest.runTimersToTime(300);
+
+    expect(instance._element).toBe(null);
   });
 
   it('should render nested modals', () => {
@@ -613,7 +605,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
     expect(document.body.className).toBe('modal-open modal-open');
 

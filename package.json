@@ -94,7 +94,8 @@
     "lodash.tonumber": "^4.0.3",
     "prop-types": "^15.5.8",
     "react-popper": "^0.7.2",
-    "react-transition-group": "^2.2.0"
+    "react-portal": "^4.1.2",
+    "react-transition-group": "^2.2.1"
   },
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0 || ^16.0.0",
@@ -117,7 +118,7 @@
     "css-loader": "^0.25.0",
     "ejs": "^2.5.1",
     "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.1.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.6.0",
