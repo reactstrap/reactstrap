@@ -25,7 +25,7 @@ describe('Modal', () => {
     jest.clearAllTimers();
   });
 
-  it('should render with the class "modal-dialog"', () => {
+  it('should render modal portal into DOM', () => {
     isOpen = true;
     const wrapper = mount(
       <Modal isOpen={isOpen} toggle={toggle}>
@@ -35,6 +35,18 @@ describe('Modal', () => {
 
     jest.runTimersToTime(300);
     expect(wrapper.childAt(0).children().length).not.toBe(0);
+    wrapper.unmount();
+  });
+
+  it('should render with the class "modal-dialog"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     wrapper.unmount();
   });
@@ -48,7 +60,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
   });
@@ -62,7 +73,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
   });
@@ -76,7 +86,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
     wrapper.unmount();
@@ -91,7 +100,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
     wrapper.unmount();
@@ -106,7 +114,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-dialog')[0].style.maxWidth).toBe('95%');
     wrapper.unmount();
@@ -122,7 +129,6 @@ describe('Modal', () => {
 
     // Modal should appear instantaneously
     jest.runTimersToTime(1);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
 
     const matchedModals = document.getElementsByClassName('fadeless-modal');
     const matchedModal = matchedModals[0];
@@ -149,7 +155,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(20);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
 
     const matchedModals = document.getElementsByClassName('custom-timeout-modal');
 
@@ -167,7 +172,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.querySelectorAll('.modal.my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -181,7 +185,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -195,7 +198,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.querySelectorAll('.modal-content.my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -209,7 +211,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.querySelectorAll('.modal-backdrop.my-custom-modal').length).toBe(1);
     wrapper.unmount();
   });
@@ -223,7 +224,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-crazy').length).toBe(1);
     wrapper.unmount();
@@ -239,7 +239,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
@@ -254,7 +253,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('dialog');
     wrapper.unmount();
   });
@@ -268,7 +266,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('alert');
     wrapper.unmount();
   });
@@ -282,7 +279,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal')[0].getAttribute('aria-labelledby')).toBe('myModalTitle');
     wrapper.unmount();
   });
@@ -321,7 +317,6 @@ describe('Modal', () => {
 
     jest.runTimersToTime(300);
     expect(isOpen).toBe(true);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
     wrapper.unmount();
@@ -610,7 +605,6 @@ describe('Modal', () => {
     );
 
     jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
     expect(document.body.className).toBe('modal-open modal-open');
 
