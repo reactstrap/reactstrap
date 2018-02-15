@@ -8,23 +8,27 @@ const propTypes = {
   tag: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  valid: PropTypes.bool
 };
 
 const defaultProps = {
   tag: 'div',
+  valid: undefined
 };
 
 const FormFeedback = (props) => {
   const {
     className,
     cssModule,
+    valid,
     tag: Tag,
     ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
     className,
-    'invalid-feedback'
+    !valid && 'invalid-feedback',
+    valid && 'valid-feedback'
   ), cssModule);
 
   return (

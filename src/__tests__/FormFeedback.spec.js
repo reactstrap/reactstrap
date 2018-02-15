@@ -21,6 +21,12 @@ describe('FormFeedback', () => {
     expect(wrapper.hasClass('invalid-feedback')).toBe(true);
   });
 
+  it('should render with "valid-feedback" class', () => {
+    const wrapper = shallow(<FormFeedback valid>Yo!</FormFeedback>);
+
+    expect(wrapper.hasClass('valid-feedback')).toBe(true);
+  });
+
   it('should render additional classes', () => {
     const wrapper = shallow(<FormFeedback className="other">Yo!</FormFeedback>);
 

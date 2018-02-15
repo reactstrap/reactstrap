@@ -8,6 +8,7 @@ export default class Example extends React.Component {
         <FormGroup>
           <Label for="exampleEmail">Input with success</Label>
           <Input valid />
+          <FormFeedback valid>Oh noes! that name is already taken</FormFeedback>
           <FormText>Example help text that remains unchanged.</FormText>
         </FormGroup>
         <FormGroup>
