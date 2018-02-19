@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Col } from '../';
 
 describe('Col', () => {
-  it('should render default .col-* markup', () => {
+  it('should render default .col markup', () => {
     const wrapper = shallow(<Col />);
 
     expect(wrapper.html()).toBe('<div class="col"></div>');
@@ -27,6 +27,7 @@ describe('Col', () => {
 
     expect(wrapper.hasClass('col-4')).toBe(true);
     expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
+    expect(wrapper.hasClass('col')).toBe(false);
   });
 
   it('should allow custom columns to be defined with objects', () => {
@@ -55,6 +56,7 @@ describe('Col', () => {
   it('should pass col size as flex with values "auto" or without value', () => {
     const wrapper = shallow(<Col xs="auto" sm />);
 
+    expect(wrapper.hasClass('col')).toBe(false);
     expect(wrapper.hasClass('col-auto')).toBe(true);
     expect(wrapper.hasClass('col-sm')).toBe(true);
   });
@@ -82,6 +84,7 @@ describe('Col', () => {
       sm={{ size: 'auto', offset: 2 }}
     />);
 
+    expect(wrapper.hasClass('col')).toBe(false);
     expect(wrapper.hasClass('col-sm-auto')).toBe(true);
   });
 
