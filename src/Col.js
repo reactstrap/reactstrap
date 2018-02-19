@@ -84,7 +84,7 @@ const Col = (props) => {
   });
 
   if (!colClasses.length) {
-    colClasses.push("col")
+    colClasses.push('col');
   }
 
   const classes = mapToCssModules(classNames(
