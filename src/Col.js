@@ -60,10 +60,6 @@ const Col = (props) => {
   widths.forEach((colWidth, i) => {
     let columnProp = props[colWidth];
 
-    if (!i && columnProp === undefined) {
-      columnProp = true;
-    }
-
     delete attributes[colWidth];
 
     if (!columnProp && columnProp !== '') {
@@ -86,6 +82,10 @@ const Col = (props) => {
       colClasses.push(colClass);
     }
   });
+
+  if (!colClasses.length) {
+    colClasses.push("col")
+  }
 
   const classes = mapToCssModules(classNames(
     className,
