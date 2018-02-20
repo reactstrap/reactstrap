@@ -12,9 +12,9 @@ export default class Example extends React.Component {
   }
 
   toggleNavbar() {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
+    this.setState(prevState => ({
+      collapsed: !prevState.collapsed
+    }));
   }
   render() {
     return (
