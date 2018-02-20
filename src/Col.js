@@ -60,10 +60,6 @@ const Col = (props) => {
   widths.forEach((colWidth, i) => {
     let columnProp = props[colWidth];
 
-    if (!i && columnProp === undefined) {
-      columnProp = true;
-    }
-
     delete attributes[colWidth];
 
     if (!columnProp && columnProp !== '') {
@@ -71,11 +67,10 @@ const Col = (props) => {
     }
 
     const isXs = !i;
-    let colClass;
 
     if (isobject(columnProp)) {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
-      colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
+      const colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 
       colClasses.push(mapToCssModules(classNames({
         [colClass]: columnProp.size || columnProp.size === '',
@@ -83,10 +78,14 @@ const Col = (props) => {
         [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset || columnProp.offset === 0
       })), cssModule);
     } else {
-      colClass = getColumnSizeClass(isXs, colWidth, columnProp);
+      const colClass = getColumnSizeClass(isXs, colWidth, columnProp);
       colClasses.push(colClass);
     }
   });
+
+  if (!colClasses.length) {
+    colClasses.push('col');
+  }
 
   const classes = mapToCssModules(classNames(
     className,
