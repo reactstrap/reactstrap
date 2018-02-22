@@ -10,8 +10,9 @@ const propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   bsSize: PropTypes.string,
-  state: deprecated(PropTypes.string, 'Please use the prop "valid"'),
+  state: deprecated(PropTypes.string, 'Please use the props "valid" and "invalid" to indicate the state.'),
   valid: PropTypes.bool,
+  invalid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   static: deprecated(PropTypes.bool, 'Please use the prop "plaintext"'),
@@ -34,6 +35,7 @@ class Input extends React.Component {
       bsSize,
       state,
       valid,
+      invalid,
       tag,
       addon,
       static: staticInput,
@@ -65,9 +67,9 @@ class Input extends React.Component {
       }
     }
 
-    if (state && typeof valid === 'undefined') {
+    if (state && typeof valid === 'undefined' && typeof invalid === 'undefined') {
       if (state === 'danger') {
-        valid = false;
+        invalid = true;
       } else if (state === 'success') {
         valid = true;
       }
@@ -81,7 +83,7 @@ class Input extends React.Component {
 
     const classes = mapToCssModules(classNames(
       className,
-      valid === false && 'is-invalid',
+      invalid && 'is-invalid',
       valid && 'is-valid',
       bsSize ? `form-control-${bsSize}` : false,
       formControlClass
