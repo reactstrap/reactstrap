@@ -51,6 +51,20 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render external content when present', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} external={<button className="cool-close-button">&times;</button>}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(document.getElementsByClassName('cool-close-button').length).toBe(1);
+    expect(document.getElementsByClassName('cool-close-button')[0].nextElementSibling.className.split(' ').indexOf('modal-dialog') > -1).toBe(true);
+    wrapper.unmount();
+  });
+
   it('should render with the backdrop with the class "modal-backdrop" by default', () => {
     isOpen = true;
     const wrapper = mount(
@@ -102,6 +116,34 @@ describe('Modal', () => {
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal-dialog" w/o centered class if not provided', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-dialog-centered').length).toBe(0);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal-dialog" and centered class if provided', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} centered>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-dialog-centered').length).toBe(1);
     wrapper.unmount();
   });
 

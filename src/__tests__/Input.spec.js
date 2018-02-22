@@ -82,8 +82,20 @@ describe('Input', () => {
     expect(wrapper.hasClass('is-invalid')).toBe(false);
   });
 
-  it('should render with "is-invalid" class when valid is false', () => {
+  it('should not render with "is-invalid" class when valid is false', () => {
     const wrapper = shallow(<Input valid={false} />);
+
+    expect(wrapper.hasClass('is-invalid')).toBe(false);
+  });
+
+  it('should not render with "is-valid" class when invalid is false', () => {
+    const wrapper = shallow(<Input invalid={false} />);
+
+    expect(wrapper.hasClass('is-valid')).toBe(false);
+  });
+
+  it('should render with "is-invalid" class when invalid is true', () => {
+    const wrapper = shallow(<Input invalid />);
 
     expect(wrapper.hasClass('is-invalid')).toBe(true);
   });
