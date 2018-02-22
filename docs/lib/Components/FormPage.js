@@ -55,7 +55,8 @@ export default class FormPage extends React.Component {
   size: PropTypes.string,
   bsSize: PropTypes.string,
   state: deprecated(PropTypes.string, 'Please use the prop "valid"'),
-  valid: PropTypes.bool,
+  valid: PropTypes.bool, // applied the is-valid class when true, does nothing when false
+  invalid: PropTypes.bool, // applied the is-invalid class when true, does nothing when false
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   // ref will only get you a reference to the Input component, use innerRef to get a reference to the DOM input (for things like focus management).
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
