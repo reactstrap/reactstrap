@@ -105,6 +105,34 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render with class "modal-dialog" w/o centered class if not provided', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-dialog-centered').length).toBe(0);
+    wrapper.unmount();
+  });
+
+  it('should render with class "modal-dialog" and centered class if provided', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} centered>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
+    expect(document.getElementsByClassName('modal-dialog-centered').length).toBe(1);
+    wrapper.unmount();
+  });
+
   it('should render with additional props if provided', () => {
     isOpen = true;
     const wrapper = mount(
