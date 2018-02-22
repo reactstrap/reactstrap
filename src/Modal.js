@@ -19,6 +19,7 @@ const FadePropTypes = PropTypes.shape(Fade.propTypes);
 const propTypes = {
   isOpen: PropTypes.bool,
   autoFocus: PropTypes.bool,
+  centered: PropTypes.bool,
   size: PropTypes.string,
   toggle: PropTypes.func,
   keyboard: PropTypes.bool,
@@ -53,6 +54,7 @@ const propsToOmit = Object.keys(propTypes);
 const defaultProps = {
   isOpen: false,
   autoFocus: true,
+  centered: false,
   role: 'dialog',
   backdrop: true,
   keyboard: true,
@@ -201,12 +203,14 @@ class Modal extends React.Component {
 
   renderModalDialog() {
     const attributes = omit(this.props, propsToOmit);
+    const dialogBaseClass = 'modal-dialog';
 
     return (
       <div
         {...attributes}
-        className={mapToCssModules(classNames('modal-dialog', this.props.className, {
-          [`modal-${this.props.size}`]: this.props.size
+        className={mapToCssModules(classNames(dialogBaseClass, this.props.className, {
+          [`modal-${this.props.size}`]: this.props.size,
+          [`${dialogBaseClass}-centered`]: this.props.centered,
         }), this.props.cssModule)}
         role="document"
         ref={(c) => {

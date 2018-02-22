@@ -48,6 +48,8 @@ export default class ModalsPage extends React.Component {
   // boolean to control the state of the popover
   isOpen:  PropTypes.bool,
   autoFocus: PropTypes.bool,
+  // if modal should be centered vertically in viewport
+  centered: PropTypes.bool,
   size: PropTypes.string,
   // callback for toggling isOpen in the controlling component
   toggle:  PropTypes.func,
