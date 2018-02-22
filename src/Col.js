@@ -76,7 +76,7 @@ const Col = (props) => {
         [colClass]: columnProp.size || columnProp.size === '',
         [`order${colSizeInterfix}${columnProp.order}`]: columnProp.order || columnProp.order === 0,
         [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset || columnProp.offset === 0
-      })), cssModule);
+      }), cssModule));
     } else {
       const colClass = getColumnSizeClass(isXs, colWidth, columnProp);
       colClasses.push(colClass);
