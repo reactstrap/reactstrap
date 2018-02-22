@@ -17,6 +17,9 @@ const ModalCustomTimeoutExampleSource = require('!!raw!../examples/ModalCustomTi
 import ModalFadelessExample from '../examples/ModalFadeless';
 const ModalFadelessExampleSource = require('!!raw!../examples/ModalFadeless');
 
+import ModalExternalExample from '../examples/ModalExternal';
+const ModalExternalExampleSource = require('!!raw!../examples/ModalExternal');
+
 export default class ModalsPage extends React.Component {
   render() {
     return (
@@ -62,6 +65,8 @@ export default class ModalsPage extends React.Component {
     PropTypes.bool,
     PropTypes.oneOf(['static'])
   ]),
+  // allows for a node/componet to exist next to the modal (outside of it). Useful for external close buttons
+  // external: PropTypes.node,
   // called on componentDidMount
   onEnter: PropTypes.func,
   // called on componentWillUnmount
@@ -148,6 +153,20 @@ export default class ModalsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ModalFadelessExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h4>Modals with external button</h4>
+        <div className="docs-example">
+          <div className="btn-group">
+            <div className="btn">
+              <ModalExternalExample buttonLabel="Launch Modal with external close button" />
+            </div>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ModalExternalExampleSource}
           </PrismCode>
         </pre>
       </div>
