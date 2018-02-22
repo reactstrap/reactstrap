@@ -39,6 +39,7 @@ const propTypes = {
   modalClassName: PropTypes.string,
   backdropClassName: PropTypes.string,
   contentClassName: PropTypes.string,
+  external: PropTypes.node,
   fade: PropTypes.bool,
   cssModule: PropTypes.object,
   zIndex: PropTypes.oneOfType([
@@ -239,7 +240,8 @@ class Modal extends React.Component {
         isOpen,
         backdrop,
         role,
-        labelledBy
+        labelledBy,
+        external,
       } = this.props;
 
       const modalAttributes = {
@@ -277,6 +279,7 @@ class Modal extends React.Component {
               cssModule={cssModule}
               className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
             >
+              {external}
               {this.renderModalDialog()}
             </Fade>
             <Fade
