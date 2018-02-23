@@ -53,11 +53,13 @@ export default class InputGroupPage extends React.Component {
 
 InputGroupAddOn.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   className: PropTypes.string
 };
 
 InputGroupButton.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   children: PropTypes.node,
   groupClassName: PropTypes.string, // only used in shorthand
   groupAttributes: PropTypes.object, // only used in shorthand
