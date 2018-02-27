@@ -6,7 +6,7 @@ export default class Example extends React.Component {
     return (
       <Form>
         <FormGroup>
-          <Label for="exampleEmail">Input wihtout validation</Label>
+          <Label for="exampleEmail">Input without validation</Label>
           <Input />
           <FormFeedback>You will not be able to see this</FormFeedback>
           <FormText>Example help text that remains unchanged.</FormText>
