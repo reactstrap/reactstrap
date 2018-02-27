@@ -1,3 +1,32 @@
+<a name="5.0.0-beta.2"></a>
+# [5.0.0-beta.2](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta...5.0.0-beta.2) (2018-02-27)
+
+
+### Bug Fixes
+
+* **Col:** pass cssModule to mapToCSSModules not push ([#857](https://github.com/reactstrap/reactstrap/issues/857)) ([7887364](https://github.com/reactstrap/reactstrap/commit/7887364)), closes [#856](https://github.com/reactstrap/reactstrap/issues/856)
+* **Modal:** map body class name before removing ([#817](https://github.com/reactstrap/reactstrap/issues/817)) ([f099d31](https://github.com/reactstrap/reactstrap/commit/f099d31)), closes [#665](https://github.com/reactstrap/reactstrap/issues/665) [#763](https://github.com/reactstrap/reactstrap/issues/763)
+* **UncontrolledNavDropdown:** add missing props param ([#812](https://github.com/reactstrap/reactstrap/issues/812)) ([b35cdcb](https://github.com/reactstrap/reactstrap/commit/b35cdcb))
+
+
+### Features
+
+* **Col:** Set col class only if no other cols are specified ([#842](https://github.com/reactstrap/reactstrap/issues/842)) ([5a9aa63](https://github.com/reactstrap/reactstrap/commit/5a9aa63)), closes [#750](https://github.com/reactstrap/reactstrap/issues/750)
+* **Dropdown:** Add support for dropleft and dropright ([#813](https://github.com/reactstrap/reactstrap/issues/813)) ([2b71fd6](https://github.com/reactstrap/reactstrap/commit/2b71fd6)), closes [#785](https://github.com/reactstrap/reactstrap/issues/785)
+* **FormFeedback:** Support valid feedback. ([#840](https://github.com/reactstrap/reactstrap/issues/840)) ([9b49091](https://github.com/reactstrap/reactstrap/commit/9b49091))
+* **Input:** add invalid prop ([#858](https://github.com/reactstrap/reactstrap/issues/858)) ([ba8fc39](https://github.com/reactstrap/reactstrap/commit/ba8fc39)), closes [#850](https://github.com/reactstrap/reactstrap/issues/850)
+* **Modal:** add ability to have external content ([#854](https://github.com/reactstrap/reactstrap/issues/854)) ([9c1b71a](https://github.com/reactstrap/reactstrap/commit/9c1b71a)), closes [#853](https://github.com/reactstrap/reactstrap/issues/853)
+* **Modal:** added support for React Portal ([#796](https://github.com/reactstrap/reactstrap/issues/796)) ([49a7f99](https://github.com/reactstrap/reactstrap/commit/49a7f99)), closes [#601](https://github.com/reactstrap/reactstrap/issues/601) [#761](https://github.com/reactstrap/reactstrap/issues/761) [#645](https://github.com/reactstrap/reactstrap/issues/645)
+* **Popover/Tooltip:** add ability to hide arrow ([#814](https://github.com/reactstrap/reactstrap/issues/814)) ([#815](https://github.com/reactstrap/reactstrap/issues/815)) ([43efe8b](https://github.com/reactstrap/reactstrap/commit/43efe8b))
+
+
+### BREAKING CHANGES
+
+* **Col:** Col no longer adds .col class by default when you have other columns specified. To get this class back, simply add the prop xs.
+* **Input:** the valid prop no longer applies the is-invalid class when false. Use the new invalid prop to apply that class.
+
+
+
 <a name="5.0.0-beta"></a>
 # [5.0.0-beta](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.4...5.0.0-beta) (2018-01-31)
 
