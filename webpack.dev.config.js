@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 var StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 var env = process.env.WEBPACK_BUILD || 'development';
-
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -58,7 +57,7 @@ var config = [{
   },
   output: {
     filename: 'bundle.js',
-    path: './build',
+    path: path.resolve(__dirname, 'build'),
     libraryTarget: 'umd'
   },
   plugins: [
@@ -67,36 +66,37 @@ var config = [{
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new StaticSiteGeneratorPlugin('main', paths, {}),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin("/assets/style.css")
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.json$/,
-        loaders: [
+        use: [
           'json-loader?cacheDirectory'
         ]
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: [
+        use: [
           'babel-loader?cacheDirectory'
         ]
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       },
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.json'],
+    extensions: ['.js', '.json'],
     alias: {
-      'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css'),
       reactstrap: path.resolve('./src')
     }
   }

@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug WDS",
+            "runtimeExecutable": null,
+            "program": "${workspaceRoot}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+            "args": [
+                "-d",
+                "--config",
+                "./webpack.dev.config.js"
+            ],
+            "runtimeArgs": [],
+            "env": {
+                "BABEL_ENV": "webpack",
+                "NODE_ENV": "development"
+            },
+            "cwd": "${workspaceRoot}",
+            "autoAttachChildProcesses": true,
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}\\dist\\reactstrap.cjs.js"
+        }
+    ]
+}

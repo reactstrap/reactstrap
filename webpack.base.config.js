@@ -10,8 +10,7 @@ module.exports = function (env) {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env)
-    }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    })
   ];
 
   if (env === 'production') {
@@ -58,17 +57,17 @@ module.exports = function (env) {
       }
     ],
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.(json)$/,
-          loaders: [
+          use: [
             'json-loader?cacheDirectory'
           ]
         },
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loaders: [
+          use: [
             'babel-loader?cacheDirectory'
           ]
         },
@@ -78,10 +77,11 @@ module.exports = function (env) {
       alias: {
         reactstrap: 'src/index'
       },
-      extensions: ['', '.js', '.json'],
-      root: [
-        path.resolve('./src')
-      ]
+      extensions: ['.js', '.json'],
+      modules: [
+             path.resolve('./src'),
+             "node_modules"
+           ]
     },
     plugins: plugins
   };

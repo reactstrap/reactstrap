@@ -4,16 +4,16 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
 import MediaExample from '../examples/Media';
-const MediaExampleSource = require('!!raw!../examples/Media');
+const MediaExampleSource = require('!!raw-loader!../examples/Media');
 
 import MediaNestedExample from '../examples/MediaNested';
-const MediaNestedExampleSource = require('!!raw!../examples/MediaNested');
+const MediaNestedExampleSource = require('!!raw-loader!../examples/MediaNested');
 
 import MediaAlignmentExample from '../examples/MediaAlignment';
-const MediaAlignmentExampleSource = require('!!raw!../examples/MediaAlignment');
+const MediaAlignmentExampleSource = require('!!raw-loader!../examples/MediaAlignment');
 
 import MediaListExample from '../examples/MediaList';
-const MediaListExampleSource = require('!!raw!../examples/MediaList');
+const MediaListExampleSource = require('!!raw-loader!../examples/MediaList');
 
 export default class MediaPage extends React.Component {
   render() {

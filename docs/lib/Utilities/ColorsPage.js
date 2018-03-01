@@ -4,7 +4,7 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
 import ColorExample from '../examples/Color';
-const ColorExampleSource = require('!!raw!../examples/Color');
+const ColorExampleSource = require('!!raw-loader!../examples/Color');
 
 export default class ColorsPage extends React.Component {
   render() {

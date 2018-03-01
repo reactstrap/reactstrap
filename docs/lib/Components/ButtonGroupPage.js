@@ -13,10 +13,10 @@ import { Link } from 'react-router';
 import UI from '../UI';
 
 import ButtonGroupExample from '../examples/ButtonGroup';
-const ButtonGroupExampleSource = require('!!raw!../examples/ButtonGroup');
+const ButtonGroupExampleSource = require('!!raw-loader!../examples/ButtonGroup');
 
 import ButtonToolbarExample from '../examples/ButtonToolbar';
-const ButtonToolbarExampleSource = require('!!raw!../examples/ButtonToolbar');
+const ButtonToolbarExampleSource = require('!!raw-loader!../examples/ButtonToolbar');
 
 
 export default class ButtonGroupPage extends React.Component {

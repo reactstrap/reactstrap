@@ -15,9 +15,9 @@ import DropdownSizingExample from '../examples/DropdownSizing';
 import CustomDropdownExample from '../examples/CustomDropdown';
 import DropdownUncontrolledExample from '../examples/DropdownUncontrolled';
 
-const DropdownExampleSource = require('!!raw!../examples/Dropdown');
-const CustomDropdownExampleSource = require('!!raw!../examples/CustomDropdown');
-const DropdownUncontrolledExampleSource = require('!!raw!../examples/DropdownUncontrolled');
+const DropdownExampleSource = require('!!raw-loader!../examples/Dropdown');
+const CustomDropdownExampleSource = require('!!raw-loader!../examples/CustomDropdown');
+const DropdownUncontrolledExampleSource = require('!!raw-loader!../examples/DropdownUncontrolled');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 
 import TabsExample from '../examples/Tabs';
-const TabsExampleSource = require('!!raw!../examples/Tabs');
+const TabsExampleSource = require('!!raw-loader!../examples/Tabs');
 
 export default function TabsPage() {
   return (

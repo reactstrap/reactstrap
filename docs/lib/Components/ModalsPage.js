@@ -3,22 +3,22 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import ModalExample from '../examples/Modal';
-const ModalExampleSource = require('!!raw!../examples/Modal');
+const ModalExampleSource = require('!!raw-loader!../examples/Modal');
 
 import ModalBackdropExample from '../examples/ModalBackdrop';
-const ModalBackdropExampleSource = require('!!raw!../examples/ModalBackdrop');
+const ModalBackdropExampleSource = require('!!raw-loader!../examples/ModalBackdrop');
 
 import ModalNestedExample from '../examples/ModalNested';
-const ModalNestedExampleSource = require('!!raw!../examples/ModalNested');
+const ModalNestedExampleSource = require('!!raw-loader!../examples/ModalNested');
 
 import ModalCustomTimeoutExample from '../examples/ModalCustomTimeout';
-const ModalCustomTimeoutExampleSource = require('!!raw!../examples/ModalCustomTimeout');
+const ModalCustomTimeoutExampleSource = require('!!raw-loader!../examples/ModalCustomTimeout');
 
 import ModalFadelessExample from '../examples/ModalFadeless';
-const ModalFadelessExampleSource = require('!!raw!../examples/ModalFadeless');
+const ModalFadelessExampleSource = require('!!raw-loader!../examples/ModalFadeless');
 
 import ModalExternalExample from '../examples/ModalExternal';
-const ModalExternalExampleSource = require('!!raw!../examples/ModalExternal');
+const ModalExternalExampleSource = require('!!raw-loader!../examples/ModalExternal');
 
 export default class ModalsPage extends React.Component {
   render() {

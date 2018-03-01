@@ -3,11 +3,11 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import CarouselExample from '../examples/Carousel';
-const CarouselExampleSource = require('!!raw!../examples/Carousel');
+const CarouselExampleSource = require('!!raw-loader!../examples/Carousel');
 import CarouselUncontrolledExample from '../examples/CarouselUncontrolled';
-const CarouselUncontrolledExampleSource = require('!!raw!../examples/CarouselUncontrolled');
+const CarouselUncontrolledExampleSource = require('!!raw-loader!../examples/CarouselUncontrolled');
 import CarouselCustomTagExample from '../examples/CarouselCustomTag';
-const CarouselCustomTagExampleSource = require('!!raw!../examples/CarouselCustomTag');
+const CarouselCustomTagExampleSource = require('!!raw-loader!../examples/CarouselCustomTag');
 
 export default class CarouselPage extends React.Component {
   render() {

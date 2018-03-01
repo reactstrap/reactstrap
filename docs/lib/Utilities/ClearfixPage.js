@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 
 import ClearfixExample from '../examples/Clearfix';
 
-const ClearfixExampleSource = require('!!raw!../examples/Clearfix');
+const ClearfixExampleSource = require('!!raw-loader!../examples/Clearfix');
 
 export default class ClearfixPage extends React.Component {
   render() {

@@ -5,7 +5,7 @@ import { Alert } from 'reactstrap';
 import Helmet from 'react-helmet';
 
 import FadeExample from '../examples/Fade';
-const FadeExampleSource = require('!!raw!../examples/Fade');
+const FadeExampleSource = require('!!raw-loader!../examples/Fade');
 
 export default class FadePage extends React.Component {
   render() {

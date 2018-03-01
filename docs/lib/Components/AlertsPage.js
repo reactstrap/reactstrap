@@ -5,19 +5,19 @@ import { Alert } from 'reactstrap';
 import Helmet from 'react-helmet';
 
 import AlertExample from '../examples/Alert';
-const AlertExampleSource = require('!!raw!../examples/Alert');
+const AlertExampleSource = require('!!raw-loader!../examples/Alert');
 
 import AlertLinkExample from '../examples/AlertLink';
-const AlertLinkExampleSource = require('!!raw!../examples/AlertLink');
+const AlertLinkExampleSource = require('!!raw-loader!../examples/AlertLink');
 
 import AlertContentExample from '../examples/AlertContent';
-const AlertContentExampleSource = require('!!raw!../examples/AlertContent');
+const AlertContentExampleSource = require('!!raw-loader!../examples/AlertContent');
 
 import AlertDismissExample from '../examples/AlertDismiss';
-const AlertDismissExampleSource = require('!!raw!../examples/AlertDismiss');
+const AlertDismissExampleSource = require('!!raw-loader!../examples/AlertDismiss');
 
 import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
-const AlertUncontrolledDismissExampleSource = require('!!raw!../examples/AlertUncontrolledDismiss');
+const AlertUncontrolledDismissExampleSource = require('!!raw-loader!../examples/AlertUncontrolledDismiss');
 
 export default class AlertsPage extends React.Component {
   render() {
