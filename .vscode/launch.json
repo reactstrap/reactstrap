@@ -28,7 +28,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\dist\\reactstrap.cjs.js"
+            "program": "${workspaceFolder}\\dist\\bgagel.cjs.js"
         }
     ]
 }
