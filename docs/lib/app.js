@@ -67,6 +67,8 @@ export default (locals, callback) => {
           <link rel=icon href=/assets/favicon.ico>
           <link rel="stylesheet" href="/assets/style.css"/>
           <link rel="stylesheet" href="/assets/docs.css"/>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.4.2/react-dom.js" crossorigin="anonymous"></script>
         </head>
         <body>
           <div id="app">${body}</div>

@@ -63,11 +63,5 @@ module.exports = merge(base, {
         loader: 'svg-sprite-loader'
       }]
     }]
-  },
-  resolve: {
-    //not sure
-    alias: {
-      reactstrap: path.resolve('./src')
-    }
   }
 });

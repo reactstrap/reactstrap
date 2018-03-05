@@ -12,9 +12,9 @@ module.exports = {
     path: __dirname + "/build",
     filename: "[name].min.js",
     publicPath: "/",
-    // library: libraryName,
-    // libraryTarget: 'umd',
-    // umdNamedDefine: true
+    library: libraryName,
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   externals: [
     {
@@ -129,9 +129,6 @@ module.exports = {
     ]
   },
   resolve: {
-    alias: {
-      reactstrap: 'src/index'
-    },
     extensions: ['.js', '.json', '.jsx'],
     modules: [
       path.resolve('./src'),

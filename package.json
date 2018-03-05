@@ -92,6 +92,7 @@
     "postcss-discard-duplicates": "^2.1.0",
     "postcss-loader": "^2.0.9",
     "raw-loader": "^0.5.1",
+    "reactstrap": "^5.0.0-alpha.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.0.3",
