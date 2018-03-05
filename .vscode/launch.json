@@ -13,7 +13,7 @@
             "args": [
                 "-d",
                 "--config",
-                "./webpack.dev.config.js"
+                "./webpack.fed.config.js"
             ],
             "runtimeArgs": [],
             "env": {

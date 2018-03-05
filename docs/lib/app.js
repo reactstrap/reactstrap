@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
+//TODO update to BrowserRouter?
 import { Router, RouterContext, match, browserHistory, createMemoryHistory } from 'react-router';
 import routes from './routes';
 import Helmet from 'react-helmet';
