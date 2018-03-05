@@ -47,7 +47,8 @@ module.exports = merge(base, {
     historyApiFallback: true,
     stats: {
       chunks: false
-    }
+    },
+    inline: false
   },
   entry: {
     //need to combine these
@@ -59,11 +60,11 @@ module.exports = merge(base, {
     fs: 'empty'
   },
   //not sure about this
-  // output: {
-  //   filename: 'bundle.js',
-  //   path: path.resolve(__dirname, 'build'),
-  //   libraryTarget: 'umd'
-  // },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    libraryTarget: 'umd'
+  },
   plugins: [
     //not sure about this either
     // new ExtractTextPlugin({
@@ -76,7 +77,9 @@ module.exports = merge(base, {
       from: './docs/static',
       to: 'assets'
     }]),
-    new StaticSiteGeneratorPlugin('fed', paths, {}),
+    new StaticSiteGeneratorPlugin('fed', paths, {}, {
+      window: {}
+    }),
   ],
   module: {
     rules: [{
