@@ -12,13 +12,13 @@ module.exports = {
     path: __dirname + "/build",
     filename: "[name].min.js",
     publicPath: "/",
-    //library: libraryName,
+    // library: libraryName,
     // libraryTarget: 'umd',
     // umdNamedDefine: true
   },
   externals: [
     {
-      react: {
+      "react": {
         root: 'React',
         commonjs2: 'react',
         commonjs: 'react',

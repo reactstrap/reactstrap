@@ -10,7 +10,7 @@
     "test": "cross-env BABEL_ENV=test react-scripts test --env=jsdom",
     "cover": "npm test -- --coverage",
     "start": "cross-env BABEL_ENV=webpack webpack-dev-server --config ./webpack.fed.config.js --watch",
-    "build-docs": "cross-env BABEL_ENV=webpack WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
+    "build-docs": "cross-env BABEL_ENV=webpack WEBPACK_BUILD=production webpack --config ./webpack.fed.config.js --progress --colors",
     "build": "rollup -c",
     "prebuild": "cross-env BABEL_ENV=lib-dir babel src --out-dir lib --ignore src/__tests__/",
     "postbuild": "node ./scripts/postbuild.js",
@@ -163,7 +163,7 @@
     "static-site-generator-webpack-plugin": "^3.4.1",
     "style-loader": "^0.20.2",
     "webpack": "^3.8",
-    "webpack-dev-server": "^1.14.1",
+    "webpack-dev-server": "^2.9.4",
     "webpack-merge": "^4.1.1"
   }
 }
