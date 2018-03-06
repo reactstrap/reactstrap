@@ -1,20 +1,30 @@
 {
   "presets": [
-    ["es2015", {"modules": false}],
-    "react"
+    "@babel/react",
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "modules": false
+      }
+    ]
   ],
   "plugins": [
-    "transform-object-rest-spread"
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    "dynamic-import-webpack",
+    "remove-webpack"
   ],
   "env": {
     "lib-dir": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
     },
     "webpack": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": []
     },
     "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
     }
   }
 }

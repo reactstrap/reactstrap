@@ -1,8 +1,9 @@
-import 'bootstrap-css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
+//TODO update to BrowserRouter?
 import { Router, RouterContext, match, browserHistory, createMemoryHistory } from 'react-router';
 import routes from './routes';
 import Helmet from 'react-helmet';
@@ -66,6 +67,8 @@ export default (locals, callback) => {
           <link rel=icon href=/assets/favicon.ico>
           <link rel="stylesheet" href="/assets/style.css"/>
           <link rel="stylesheet" href="/assets/docs.css"/>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.4.2/react-dom.js" crossorigin="anonymous"></script>
         </head>
         <body>
           <div id="app">${body}</div>
