@@ -16,7 +16,8 @@ function baseConfig() {
     plugins: [
       nodeResolve(),
       commonjs({
-        include: 'node_modules/**'
+        include: 'node_modules/**',
+        namedExports: { 'node_modules/react-popper/lib/react-popper.js': ['Manager', 'Target', 'Popper', 'Arrow'] },
       }),
       babel({
         plugins: ['external-helpers'],
