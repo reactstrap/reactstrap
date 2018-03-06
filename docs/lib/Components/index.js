@@ -25,7 +25,7 @@ class Components extends React.Component {
         {
           name: 'Alerts',
           to: '/components/alerts/'
-        }
+        },
       ]
     };
   }

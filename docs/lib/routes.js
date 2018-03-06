@@ -16,7 +16,7 @@ const routes = (
     <IndexRoute component={Home} />
     <Route path="/components/" component={Components}>
       <IndexRedirect to="alerts/" />
-      {/* <Route path="breadcrumbs/" component={BreadcrumbsPage} /> */}
+      <Route path="alerts/" component={AlertsPage} />
     </Route>
     <Route path="/utilities/" component={Utilities}>
       <IndexRedirect to="colors/" />
