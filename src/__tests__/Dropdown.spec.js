@@ -806,6 +806,14 @@ describe('Dropdown', () => {
     });
   });
 
+  describe('active', () => {
+    it('should render an active class', () => {
+      const wrapper = shallow(<Dropdown active nav />);
+
+      expect(wrapper.hasClass('active')).toBe(true);
+    });
+  });
+
   it('should render with correct class when direction is set', () => {
     const dropup = shallow(<Dropdown direction="up" />);
     const dropupProp = shallow(<Dropdown dropup />);
