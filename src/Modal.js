@@ -143,8 +143,11 @@ class Modal extends React.Component {
     // so all methods get called before it is unmounted
     this.props.onClosed();
     (this.props.modalTransition.onExited || noop)(node);
-    this.destroy();
-
+    
+    if(this.state.isOpen) {
+      this.destroy();
+    }
+    
     if (this._isMounted) {
       this.setState({ isOpen: false });
     }
