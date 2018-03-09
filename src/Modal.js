@@ -144,7 +144,7 @@ class Modal extends React.Component {
     this.props.onClosed();
     (this.props.modalTransition.onExited || noop)(node);
     
-    if(this.state.isOpen) {
+    if (this.state.isOpen) {
       this.destroy();
     }
     
