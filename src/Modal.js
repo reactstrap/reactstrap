@@ -163,13 +163,13 @@ class Modal extends React.Component {
     const container = this._dialog;
 
     if (e.target && !container.contains(e.target) && this.props.toggle) {
-      this.props.toggle();
+      this.props.toggle(e);
     }
   }
 
   handleEscape(e) {
     if (this.props.isOpen && this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
-      this.props.toggle();
+      this.props.toggle(e);
     }
   }
 
