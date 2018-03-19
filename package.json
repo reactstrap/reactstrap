@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "5.0.0-beta.2",
+  "version": "5.0.0-beta.3",
   "description": "React Bootstrap 4 components",
   "main": "dist/reactstrap.cjs.js",
   "jsnext:main": "dist/reactstrap.es.js",
@@ -93,7 +93,7 @@
     "lodash.isobject": "^3.0.2",
     "lodash.tonumber": "^4.0.3",
     "prop-types": "^15.5.8",
-    "react-popper": "0.8.1",
+    "react-popper": "^0.8.3",
     "react-portal": "^4.1.2",
     "react-transition-group": "^2.2.1"
   },
