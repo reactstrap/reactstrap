@@ -1,3 +1,19 @@
+<a name="5.0.0-beta.3"></a>
+# [5.0.0-beta.3](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta.2...5.0.0-beta.3) (2018-03-19)
+
+
+### Bug Fixes
+
+* **popper:** pass event object to toggle prop ([#907](https://github.com/reactstrap/reactstrap/issues/907)) ([b1f6005](https://github.com/reactstrap/reactstrap/commit/b1f6005))
+
+
+### Features
+
+* **Dropdown:** Add active prop to Dropdown ([#895](https://github.com/reactstrap/reactstrap/issues/895)) ([45de5c5](https://github.com/reactstrap/reactstrap/commit/45de5c5)), closes [#827](https://github.com/reactstrap/reactstrap/issues/827)
+* **Modal:** pass event object to toggle prop ([#903](https://github.com/reactstrap/reactstrap/issues/903)) ([f6aacfa](https://github.com/reactstrap/reactstrap/commit/f6aacfa))
+
+
+
 <a name="5.0.0-beta.2"></a>
 # [5.0.0-beta.2](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta...5.0.0-beta.2) (2018-02-27)
 
