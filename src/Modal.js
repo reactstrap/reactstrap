@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Portal } from 'react-portal';
 import classNames from 'classnames';
+import Portal from './Portal';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
