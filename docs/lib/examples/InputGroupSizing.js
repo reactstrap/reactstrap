@@ -5,17 +5,17 @@ const Example = (props) => {
   return (
     <div>
       <InputGroup size="lg">
-        <InputGroupAddon>@lg</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">@lg</InputGroupAddon>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon>@normal</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">@normal</InputGroupAddon>
         <Input />
       </InputGroup>
       <br />
       <InputGroup size="sm">
-        <InputGroupAddon>@sm</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">@sm</InputGroupAddon>
         <Input />
       </InputGroup>
     </div>

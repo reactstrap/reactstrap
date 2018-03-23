@@ -10,8 +10,9 @@ const propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   bsSize: PropTypes.string,
-  state: deprecated(PropTypes.string, 'Please use the prop "valid"'),
+  state: deprecated(PropTypes.string, 'Please use the props "valid" and "invalid" to indicate the state.'),
   valid: PropTypes.bool,
+  invalid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   static: deprecated(PropTypes.bool, 'Please use the prop "plaintext"'),
@@ -22,7 +23,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'p',
   type: 'text',
 };
 
@@ -35,6 +35,7 @@ class Input extends React.Component {
       bsSize,
       state,
       valid,
+      invalid,
       tag,
       addon,
       static: staticInput,
@@ -49,13 +50,13 @@ class Input extends React.Component {
     const fileInput = type === 'file';
     const textareaInput = type === 'textarea';
     const selectInput = type === 'select';
-    let Tag = selectInput || textareaInput ? type : 'input';
+    let Tag = tag || ((selectInput || textareaInput) ? type : 'input');
 
     let formControlClass = 'form-control';
 
     if (plaintext || staticInput) {
       formControlClass = `${formControlClass}-plaintext`;
-      Tag = tag;
+      Tag = tag || 'p';
     } else if (fileInput) {
       formControlClass = `${formControlClass}-file`;
     } else if (checkInput) {
@@ -66,9 +67,9 @@ class Input extends React.Component {
       }
     }
 
-    if (state && typeof valid === 'undefined') {
+    if (state && typeof valid === 'undefined' && typeof invalid === 'undefined') {
       if (state === 'danger') {
-        valid = false;
+        invalid = true;
       } else if (state === 'success') {
         valid = true;
       }
@@ -82,13 +83,13 @@ class Input extends React.Component {
 
     const classes = mapToCssModules(classNames(
       className,
-      valid === false && 'is-invalid',
+      invalid && 'is-invalid',
       valid && 'is-valid',
       bsSize ? `form-control-${bsSize}` : false,
       formControlClass
     ), cssModule);
 
-    if (Tag === 'input') {
+    if (Tag === 'input' || typeof tag !== 'string') {
       attributes.type = type;
     }
 

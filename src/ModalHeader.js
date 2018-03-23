@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'h4',
+  tag: 'h5',
   wrapTag: 'div',
   closeAriaLabel: 'Close',
 };

@@ -5,24 +5,25 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.any,
+  className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
 const defaultProps = {
-  tag: 'h5'
+  tag: 'span'
 };
 
-const ListGroupItemHeading = (props) => {
+const InputGroupText = (props) => {
   const {
     className,
     cssModule,
     tag: Tag,
     ...attributes
   } = props;
+
   const classes = mapToCssModules(classNames(
     className,
-    'list-group-item-heading'
+    'input-group-text'
   ), cssModule);
 
   return (
@@ -30,7 +31,7 @@ const ListGroupItemHeading = (props) => {
   );
 };
 
-ListGroupItemHeading.propTypes = propTypes;
-ListGroupItemHeading.defaultProps = defaultProps;
+InputGroupText.propTypes = propTypes;
+InputGroupText.defaultProps = defaultProps;
 
-export default ListGroupItemHeading;
+export default InputGroupText;

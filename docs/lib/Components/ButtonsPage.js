@@ -40,6 +40,9 @@ export default class ButtonsPage extends React.Component {
   // default: 'button'
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
+  // ref will only get you a reference to the Button component, use innerRef to get a reference to the DOM element (for things like focus management).
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
   onClick: PropTypes.func,
   size: PropTypes.string
 }`}

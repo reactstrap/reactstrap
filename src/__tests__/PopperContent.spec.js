@@ -48,6 +48,24 @@ describe('PopperContent', () => {
     expect(wrapper.containsMatchingElement(<Arrow />)).toBe(true);
   });
 
+  it('should NOT render an Arrow in the Popper when "hideArrow" is truthy', () => {
+    const wrapper = mount(<PopperContent target="target" isOpen container="inline" hideArrow>Yo!</PopperContent>);
+
+    expect(wrapper.containsMatchingElement(<Arrow />)).toBe(false);
+  });
+
+  it('should render with "hideArrow" false by default', () => {
+    const wrapper = mount(<PopperContent target="target">Yo!</PopperContent>);
+
+    expect(wrapper.prop('hideArrow')).toBe(false);
+  });
+
+  it('should render with "hideArrow" true when "hideArrow" prop is truthy', () => {
+    const wrapper = mount(<PopperContent target="target" hideArrow>Yo!</PopperContent>);
+
+    expect(wrapper.prop('hideArrow')).toBe(true);
+  });
+
   it('should not render children', () => {
     const wrapper = shallow(<PopperContent target="target">Yo!</PopperContent>);
 

@@ -33,6 +33,32 @@ describe('Popover', () => {
     element = null;
   });
 
+  it('should render with "hideArrow" false by default', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="innerTarget">
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
+      </Popover>
+    );
+
+    expect(wrapper.prop('hideArrow')).toBe(false);
+    wrapper.unmount();
+  });
+
+  it('should render with "hideArrow" true when "hideArrow" prop is truthy', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="innerTarget" hideArrow>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
+      </Popover>
+    );
+
+    expect(wrapper.prop('hideArrow')).toBe(true);
+    wrapper.unmount();
+  });
+
   it('should render inner popper when isOpen', () => {
     isOpen = true;
     const wrapper = mount(
