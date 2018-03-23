@@ -1,3 +1,19 @@
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta.3...5.0.0) (2018-03-23)
+
+
+### Bug Fixes
+
+* **Modal:** don't add or remove multi body classes ([6ec3174](https://github.com/reactstrap/reactstrap/commit/6ec3174))
+* **Modal:** Ensure that `this._element` exists before removing it. ([#916](https://github.com/reactstrap/reactstrap/issues/916)) ([7faa32a](https://github.com/reactstrap/reactstrap/commit/7faa32a)), closes [#918](https://github.com/reactstrap/reactstrap/issues/918)
+
+
+### BREAKING CHANGES
+
+* **Modal:** reactstrap now requires a minimum react version of 16. Please update your version of react to 16 (from 15 to 16 is very seamless).
+
+
+
 <a name="5.0.0-beta.3"></a>
 # [5.0.0-beta.3](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta.2...5.0.0-beta.3) (2018-03-19)
 
