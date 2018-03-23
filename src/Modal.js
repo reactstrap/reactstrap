@@ -184,10 +184,13 @@ class Modal extends React.Component {
 
     document.body.appendChild(this._element);
 
-    document.body.className = classNames(
-      document.body.className,
-      mapToCssModules('modal-open', this.props.cssModule)
-    );
+    if (!this.bodyClassAdded) {
+      document.body.className = classNames(
+        document.body.className,
+        mapToCssModules('modal-open', this.props.cssModule)
+      );
+      this.bodyClassAdded = true;
+    }
   }
 
   destroy() {
@@ -196,10 +199,13 @@ class Modal extends React.Component {
       this._element = null;
     }
 
-    const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
-    // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
-    const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
-    document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+    if (this.bodyClassAdded) {
+      const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
+      // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
+      const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
+      document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+      this.bodyClassAdded = false;
+    }
 
     setScrollbarWidth(this._originalBodyPadding);
   }
