@@ -247,6 +247,7 @@ Organizations and projects using `reactstrap`
 - [component-template](https://reactstrap.github.io/component-template/)
 - [video-react](https://video-react.github.io/)
 - [CoreUI-Free-Bootstrap-Admin-Template](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template) - [demo](http://coreui.io/demo/React_Demo/#/)
+- [Admin dashboard example app built with reactstrap](https://github.com/reduction-admin/react-reduction) - [demo](https://reduction-admin.firebaseapp.com/)
 
 Submit a PR to add to this list!
 
