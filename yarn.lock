@@ -6659,12 +6659,6 @@ react-popper@^0.8.3:
     popper.js "^1.12.9"
     prop-types "^15.6.0"
 
-react-portal@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.1.2.tgz#7f28f3c8c2ed5c541907c0ed0f24e8996acf627f"
-  dependencies:
-    prop-types "^15.5.8"
-
 react-prism@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/react-prism/-/react-prism-4.3.2.tgz#5c07609539b3ba6f45eb33e7d6a3588df3270c21"

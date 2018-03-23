@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Portal } from 'react-portal';
 import classNames from 'classnames';
+import Portal from './Portal';
 import Fade from './Fade';
 import {
   getOriginalBodyPadding,
@@ -191,8 +191,10 @@ class Modal extends React.Component {
   }
 
   destroy() {
-    document.body.removeChild(this._element);
-    this._element = null;
+    if (this._element) {
+      document.body.removeChild(this._element);
+      this._element = null;
+    }
 
     const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
     // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
