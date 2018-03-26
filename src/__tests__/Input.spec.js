@@ -63,6 +63,12 @@ describe('Input', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
+  it('should render without children  when type is "textarea"', () => {
+    const wrapper = shallow(<Input type="textarea">Yo!</Input>);
+
+    expect(wrapper.text()).toBe('');
+  });
+
   it('should render with "is-invalid" class when state is "danger" [DEPRECATED]', () => {
     const wrapper = shallow(<Input state="danger" />);
 

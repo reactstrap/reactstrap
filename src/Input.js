@@ -93,6 +93,10 @@ class Input extends React.Component {
       attributes.type = type;
     }
 
+    if (type === 'textarea') {
+      attributes.children = null;
+    }
+
     return (
       <Tag {...attributes} ref={innerRef} className={classes} />
     );
