@@ -63,7 +63,7 @@ describe('Input', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render without children  when type is "textarea"', () => {
+  it('should render without children when type is "textarea"', () => {
     const wrapper = shallow(<Input type="textarea">Yo!</Input>);
 
     expect(wrapper.text()).toBe('');
