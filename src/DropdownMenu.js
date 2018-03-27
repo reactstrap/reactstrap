@@ -56,8 +56,8 @@ const DropdownMenu = (props, context) => {
     attrs.placement = `${position1}-${position2}`;
     attrs.component = tag;
     attrs.modifiers = !flip ? {
-      ...noFlipModifier,
       ...modifiers,
+      ...noFlipModifier,
     } : modifiers;
   }
 
