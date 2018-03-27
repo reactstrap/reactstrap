@@ -296,6 +296,86 @@ DropdownItem.propTypes = {
 </Dropdown>`}
           </PrismCode>
         </pre>
+
+        <h3>Modifiers</h3>
+        <div className="docs-example">
+          <Row>
+            <Col>
+              <Dropdown>
+                <DropdownToggle>
+                  Dropdown
+                </DropdownToggle>
+                <DropdownMenu
+                  modifiers={{
+                    setMaxHeight: {
+                      enabled: true,
+                      order: 890,
+                      fn: (data) => {
+                        return {
+                          ...data,
+                          styles: {
+                            ...data.styles,
+                            overflow: 'auto',
+                            maxHeight: 100,
+                          },
+                        };
+                      },
+                    },
+                  }}
+                >
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+          </Row>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+{`<Dropdown>
+  <DropdownToggle>
+    Dropdown
+  </DropdownToggle>
+  <DropdownMenu
+    modifiers={{
+      setMaxHeight: {
+        enabled: true,
+        order: 890,
+        fn: (data) => {
+          return {
+            ...data,
+            styles: {
+              ...data.styles,
+              overflow: 'auto',
+              maxHeight: 100,
+            },
+          };
+        },
+      },
+    }}
+  >
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>`}
+          </PrismCode>
+        </pre>
       </div>
     );
   }
