@@ -157,7 +157,7 @@ describe('DropdownMenu', () => {
       }
     );
 
-    expect(wrapper.find(Popper).prop('modifiers')).toBe(undefined);
+    expect(wrapper.find(Popper).prop('modifiers')).toEqual({});
   });
 
   it('should disable flip modifier when flip is false', () => {
