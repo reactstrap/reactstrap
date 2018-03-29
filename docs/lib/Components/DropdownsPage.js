@@ -89,6 +89,8 @@ DropdownMenu.propTypes = {
   flip: PropTypes.bool, // default: true,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  // Custom modifiers that are passed to DropdownMenu.js, see https://popper.js.org/popper-documentation.html#modifiers
+  modifiers: PropTypes.object
 };
 
 DropdownItem.propTypes = {
@@ -288,6 +290,89 @@ DropdownItem.propTypes = {
     Dropright
   </DropdownToggle>
   <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>`}
+          </PrismCode>
+        </pre>
+
+        <h3>Modifiers</h3>
+        <div className="docs-example">
+          <Row>
+            <Col>
+              <Dropdown
+                isOpen={this.state.ddModifiers}
+                toggle={() => { this.setState({ ddModifiers: !this.state.ddModifiers }); }}
+              >
+                <DropdownToggle>
+                  Dropdown
+                </DropdownToggle>
+                <DropdownMenu
+                  modifiers={{
+                    setMaxHeight: {
+                      enabled: true,
+                      order: 890,
+                      fn: (data) => {
+                        return {
+                          ...data,
+                          styles: {
+                            ...data.styles,
+                            overflow: 'auto',
+                            maxHeight: 100,
+                          },
+                        };
+                      },
+                    },
+                  }}
+                >
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+          </Row>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+{`<Dropdown isOpen={isOpen} toggle={toggle}>
+  <DropdownToggle>
+    Dropdown
+  </DropdownToggle>
+  <DropdownMenu
+    modifiers={{
+      setMaxHeight: {
+        enabled: true,
+        order: 890,
+        fn: (data) => {
+          return {
+            ...data,
+            styles: {
+              ...data.styles,
+              overflow: 'auto',
+              maxHeight: 100,
+            },
+          };
+        },
+      },
+    }}
+  >
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
     <DropdownItem>Another Action</DropdownItem>
     <DropdownItem>Another Action</DropdownItem>
   </DropdownMenu>
