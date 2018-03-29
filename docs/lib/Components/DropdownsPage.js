@@ -301,7 +301,10 @@ DropdownItem.propTypes = {
         <div className="docs-example">
           <Row>
             <Col>
-              <Dropdown>
+              <Dropdown
+                isOpen={this.state.ddModifiers}
+                toggle={() => { this.setState({ ddModifiers: !this.state.ddModifiers }); }}
+              >
                 <DropdownToggle>
                   Dropdown
                 </DropdownToggle>
@@ -340,7 +343,7 @@ DropdownItem.propTypes = {
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Dropdown>
+{`<Dropdown isOpen={isOpen} toggle={toggle}>
   <DropdownToggle>
     Dropdown
   </DropdownToggle>
