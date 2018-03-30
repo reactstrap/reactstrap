@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Input } from '../';
 
 describe('Input', () => {
@@ -57,8 +57,32 @@ describe('Input', () => {
     expect(wrapper.type()).toBe('input');
   });
 
-  it('should render children', () => {
+  it('should not render children', () => {
     const wrapper = shallow(<Input>Yo!</Input>);
+
+    expect(wrapper.text()).toBe('');
+  });
+
+  it('should render without children when type is "textarea"', () => {
+    const wrapper = shallow(<Input type="textarea">Yo!</Input>);
+
+    expect(wrapper.text()).toBe('');
+  });
+
+  it('should render children when type is select', () => {
+    const wrapper = shallow(<Input type="select">Yo!</Input>);
+
+    expect(wrapper.text()).toBe('Yo!');
+  });
+
+  it('should render children when tag is select', () => {
+    const wrapper = shallow(<Input tag="select">Yo!</Input>);
+
+    expect(wrapper.text()).toBe('Yo!');
+  });
+
+  it('should pass children when tag is a custom component', () => {
+    const wrapper = mount(<Input tag={props => props.children}>Yo!</Input>);
 
     expect(wrapper.text()).toBe('Yo!');
   });

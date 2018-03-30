@@ -93,6 +93,11 @@ class Input extends React.Component {
       attributes.type = type;
     }
 
+    if (attributes.children && !(plaintext || staticInput || type === 'select' || typeof Tag !== 'string' || Tag === 'select')) {
+      warnOnce(`Input with a type of "${type}" cannot have children. Please use "value"/"defaultValue" instead.`);
+      delete attributes.children;
+    }
+
     return (
       <Tag {...attributes} ref={innerRef} className={classes} />
     );
