@@ -93,8 +93,9 @@ class Input extends React.Component {
       attributes.type = type;
     }
 
-    if (type === 'textarea') {
-      attributes.children = null;
+    if (attributes.children && !(plaintext || staticInput || type === 'select' || typeof tag !== 'string' || tag === 'select')) {
+      warnOnce(`Input with a type of "${type}" cannot have children. Please use "value"/"defaultValue" instead.`);
+      delete attributes.children;
     }
 
     return (
