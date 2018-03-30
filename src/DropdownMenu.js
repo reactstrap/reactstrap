@@ -9,6 +9,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   right: PropTypes.bool,
   flip: PropTypes.bool,
+  modifiers: PropTypes.object,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -34,7 +35,7 @@ const directionPositionMap = {
 };
 
 const DropdownMenu = (props, context) => {
-  const { className, cssModule, right, tag, flip, ...attrs } = props;
+  const { className, cssModule, right, tag, flip, modifiers, ...attrs } = props;
   const classes = mapToCssModules(classNames(
     className,
     'dropdown-menu',
@@ -53,7 +54,10 @@ const DropdownMenu = (props, context) => {
     const position2 = right ? 'end' : 'start';
     attrs.placement = `${position1}-${position2}`;
     attrs.component = tag;
-    attrs.modifiers = !flip ? noFlipModifier : undefined;
+    attrs.modifiers = !flip ? {
+      ...modifiers,
+      ...noFlipModifier,
+    } : modifiers;
   }
 
   return (
