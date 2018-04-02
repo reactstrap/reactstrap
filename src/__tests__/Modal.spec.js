@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Modal, ModalBody } from '../';
 
 describe('Modal', () => {
@@ -736,5 +736,16 @@ describe('Modal', () => {
     wrapper.unmount();
     expect(onEnter).not.toHaveBeenCalled();
     expect(onExit).toHaveBeenCalled();
+  });
+
+  it('should update element z index when prop changes', () => {
+    const wrapper = shallow(
+      <Modal isOpen zIndex={0}>
+        Yo!
+      </Modal>
+    );
+    expect(wrapper.instance()._element.style.zIndex).toBe('0');
+    wrapper.setProps({ zIndex: 1 });
+    expect(wrapper.instance()._element.style.zIndex).toBe('1');
   });
 });
