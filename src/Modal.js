@@ -100,6 +100,10 @@ class Modal extends React.Component {
       // rerender portal
       this.renderIntoSubtree();
     }
+
+    if (prevProps.zIndex !== this.props.zIndex) {
+      this._element.style.zIndex = this.props.zIndex;
+    }
   }
 
   componentWillUnmount() {
