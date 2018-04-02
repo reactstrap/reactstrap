@@ -66,13 +66,13 @@ npm start`}
             <p>Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:</p>
             <pre>
               <PrismCode className="language-bash">
-  {`npm install bootstrap@4.0.0-beta --save
+  {`npm install bootstrap --save
 npm install --save reactstrap@next react react-dom`}
               </PrismCode>
             </pre>
             <p>Import Bootstrap CSS in the <code>src/index.js</code> file:</p>
             <pre>
-              <PrismCode className="language-bash">import 'bootstrap/dist/css/bootstrap.css';</PrismCode>
+              <PrismCode className="language-bash">import 'bootstrap/dist/css/bootstrap.min.css';</PrismCode>
             </pre>
             <p>Import required reactstrap components within <code>src/App.js</code> file or your custom component files:</p>
             <pre>

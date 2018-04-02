@@ -1,38 +1,44 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
+import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
 
 const Example = (props) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon>@</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">@</InputGroupAddon>
         <Input placeholder="username" />
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon>
-          <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+        <InputGroupAddon addonType="prepend">
+          <InputGroupText>
+            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+          </InputGroupText>
         </InputGroupAddon>
         <Input placeholder="Check it out" />
       </InputGroup>
       <br />
       <InputGroup>
         <Input placeholder="username" />
-        <InputGroupAddon>@example.com</InputGroupAddon>
+        <InputGroupAddon addonType="append">@example.com</InputGroupAddon>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon>$</InputGroupAddon>
-        <InputGroupAddon>$</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">
+          <InputGroupText>$</InputGroupText>
+          <InputGroupText>$</InputGroupText>
+        </InputGroupAddon>
         <Input placeholder="Dolla dolla billz yo!" />
-        <InputGroupAddon>$</InputGroupAddon>
-        <InputGroupAddon>$</InputGroupAddon>
+        <InputGroupAddon addonType="append">
+          <InputGroupText>$</InputGroupText>
+          <InputGroupText>$</InputGroupText>
+        </InputGroupAddon>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon>$</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">$</InputGroupAddon>
         <Input placeholder="Amount" type="number" step="1" />
-        <InputGroupAddon>.00</InputGroupAddon>
+        <InputGroupAddon addonType="append">.00</InputGroupAddon>
       </InputGroup>
     </div>
   );

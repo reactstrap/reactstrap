@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Popover, PopoverHeader, PopoverBody } from '../';
+import { Popover, PopoverHeader, PopoverBody, PopperContent } from '../';
 
 describe('Popover', () => {
   let element;
@@ -31,6 +31,32 @@ describe('Popover', () => {
     jest.clearAllTimers();
     document.body.removeChild(element);
     element = null;
+  });
+
+  it('should render with "hideArrow" false by default', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="innerTarget">
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
+      </Popover>
+    );
+
+    expect(wrapper.prop('hideArrow')).toBe(false);
+    wrapper.unmount();
+  });
+
+  it('should render with "hideArrow" true when "hideArrow" prop is truthy', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Popover isOpen={isOpen} toggle={toggle} placement={placement} target="innerTarget" hideArrow>
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
+      </Popover>
+    );
+
+    expect(wrapper.prop('hideArrow')).toBe(true);
+    wrapper.unmount();
   });
 
   it('should render inner popper when isOpen', () => {
@@ -162,6 +188,30 @@ describe('Popover', () => {
     );
 
     expect(document.getElementsByClassName('popover')[0].className.indexOf('popover-special') > -1).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should pass down custom modifiers', () => {
+    const wrapper = mount(
+      <Popover
+        isOpen
+        placement={placement}
+        target="innerTarget"
+        modifiers={{
+          preventOverflow: { boundariesElement: 'viewport' },
+          offset: { offset: 2 },
+        }}
+      >
+        <PopoverHeader>Title</PopoverHeader>
+        <PopoverBody>Content</PopoverBody>
+      </Popover>
+    );
+
+    expect(wrapper.find(PopperContent).props().modifiers).toEqual({
+      preventOverflow: { boundariesElement: 'viewport' },
+      offset: { offset: 2 },
+    });
 
     wrapper.unmount();
   });

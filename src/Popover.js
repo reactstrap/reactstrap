@@ -18,6 +18,7 @@ const propTypes = {
   ]),
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
+  hideArrow: PropTypes.bool,
   className: PropTypes.string,
   innerClassName: PropTypes.string,
   placementPrefix: PropTypes.string,
@@ -27,6 +28,7 @@ const propTypes = {
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number,
   ]),
+  modifiers: PropTypes.object,
 };
 
 const DEFAULT_DELAYS = {
@@ -36,6 +38,7 @@ const DEFAULT_DELAYS = {
 
 const defaultProps = {
   isOpen: false,
+  hideArrow: false,
   placement: 'right',
   placementPrefix: 'bs-popover',
   delay: DEFAULT_DELAYS,
@@ -125,7 +128,7 @@ class Popover extends React.Component {
       }
 
       if (this.props.isOpen) {
-        this.toggle();
+        this.toggle(e);
       }
     }
   }
@@ -147,7 +150,7 @@ class Popover extends React.Component {
       return e && e.preventDefault();
     }
 
-    return this.props.toggle();
+    return this.props.toggle(e);
   }
 
   render() {
@@ -172,9 +175,11 @@ class Popover extends React.Component {
         className={popperClasses}
         target={this.props.target}
         isOpen={this.props.isOpen}
+        hideArrow={this.props.hideArrow}
         placement={this.props.placement}
         placementPrefix={this.props.placementPrefix}
         container={this.props.container}
+        modifiers={this.props.modifiers}
       >
         <div {...attributes} className={classes} ref={this.getRef} />
       </PopperContent>

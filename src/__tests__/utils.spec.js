@@ -140,6 +140,35 @@ describe('Utils', () => {
       const target = {};
       expect(Utils.getTarget(target)).toEqual(target);
     });
+
+    it('should not return an error when the target could be identified', () => {
+      const element = document.createElement('div');
+      element.className = 'thing';
+      document.body.appendChild(element);
+      jest.spyOn(document, 'querySelector');
+      expect(() => {
+        Utils.getTarget('.thing');
+      }).not.toThrow();
+    });
+
+    it('should return an error when the target could not be identified', () => {
+      const target = 'not a target';
+      expect(() => {
+        Utils.getTarget(target);
+      }).toThrow(`The target '${target}' could not be identified in the dom, tip: check spelling`);
+    });
+  });
+
+  describe('setGlobalCssModule', () => {
+    it('should return the mapped classnames', () => {
+      const globalCssModule = {
+        btn: 'a1',
+        'btn-success': 'b1',
+        'btn-primary': 'c2',
+      };
+      Utils.setGlobalCssModule(globalCssModule);
+      expect(Utils.mapToCssModules('btn btn-primary')).toBe('a1 c2');
+    });
   });
 
   // TODO

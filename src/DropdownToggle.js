@@ -27,6 +27,7 @@ const defaultProps = {
 const contextTypes = {
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
+  inNavbar: PropTypes.bool.isRequired,
 };
 
 class DropdownToggle extends React.Component {
@@ -77,6 +78,18 @@ class DropdownToggle extends React.Component {
       props.cssModule = cssModule;
     } else {
       Tag = tag;
+    }
+
+    if (this.context.inNavbar) {
+      return (
+        <Tag
+          {...props}
+          className={classes}
+          onClick={this.onClick}
+          aria-expanded={this.context.isOpen}
+          children={children}
+        />
+      );
     }
 
     return (

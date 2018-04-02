@@ -27,7 +27,7 @@ Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The 
 Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:
 
 ```
-npm install --save bootstrap@4.0.0-beta
+npm install --save bootstrap@4.0.0
 npm install --save reactstrap@next react@^16.0.0 react-dom@^16.0.0
 ```
 
@@ -43,8 +43,8 @@ Import required reactstrap components within ```src/App.js``` file or your custo
 import { Button } from 'reactstrap';
 ```
 
-Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render 
-method. Here is an example [`App.js`](https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d) redone
+Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render
+method. Here is an example [`App.js`](https://gist.github.com/Thomas-Smyth/006fd507a7295f17a8473451938f9935) redone
 using reactstrap.
 
 ### Dependencies
@@ -52,7 +52,7 @@ using reactstrap.
 ##### Required Peer Dependencies
 
 These libraries are not bundled with Reactstrap and required at runtime:
- 
+
   * [**react**](https://www.npmjs.com/package/react)
   * [**react-dom**](https://www.npmjs.com/package/react-dom)
 
@@ -62,59 +62,59 @@ These libraries are not included in the main distribution file `reactstrap.min.j
 included when using components that require transitions or popover effects (e.g. Tooltip, Modal, etc).
 
   * [**react-transition-group**](https://www.npmjs.com/package/react-transition-group)
-  * [**react-popper**](https://www.npmjs.com/package/react-popper) 
+  * [**react-popper**](https://www.npmjs.com/package/react-popper)
 
 
 ### CDN
 
 If you prefer to include Reactstrap globally by marking `reactstrap` as external in your application, the
-`reactstrap` library provides various single-file distributions, which are hosted on the following CDNs: 
+`reactstrap` library provides various single-file distributions, which are hosted on the following CDNs:
 
 * [**cdnjs**](https://cdnjs.com/libraries/reactstrap)
 ```html
 <!-- Main version -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0/reactstrap.min.js"></script>
 
 <!-- All optional dependencies version -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0/reactstrap.full.min.js"></script>
 ```
 
 * [**unpkg**](https://unpkg.com/reactstrap/)
 ```html
 <!-- Main version -->
-<script src="https://unpkg.com/reactstrap@5.0.0-alpha.3/reactstrap.min.js"></script>
+<script src="https://unpkg.com/reactstrap@5.0.0/dist/reactstrap.min.js"></script>
 
 <!-- All optional dependencies version -->
-<script src="https://unpkg.com/reactstrap@5.0.0-alpha.3/reactstrap.full.min.js"></script>
+<script src="https://unpkg.com/reactstrap@5.0.0/dist/reactstrap.full.min.js"></script>
 ```
 
-> **Note**: To load a specific version of Reactstrap replace `5.0.0-alpha.3` with the version number.
+> **Note**: To load a specific version of Reactstrap replace `5.0.0` with the version number.
 
 #### Versions
 
-Reactstrap has two primary distribution versions:  
+Reactstrap has two primary distribution versions:
 
 1) `reactstrap.min.js`
 
-    This file **excludes** the optional dependencies – `react-popper` and `react-transition-group`. 
-    This is the recommended approach (similar approach in Bootstrap's JavaScript components) for including 
+    This file **excludes** the optional dependencies – `react-popper` and `react-transition-group`.
+    This is the recommended approach (similar approach in Bootstrap's JavaScript components) for including
     Reactstrap as it reduces the filesize and gives more flexibility in configuring needed dependencies.
-    
+
     **Recommended use cases:**
-    
+
       * Small, medium, or large applications
       * Applications that do not use any transitions or popper components
       * Applications that directly use `react-popper` or `react-transition-group` – Reactstrap and your application
         will use the single global version included
 
  2) `reactstrap.full.min.js`
-     
+
     This file **includes** the optional dependencies – `react-popper` and `react-transition-group`
-     
+
     **Recommended use cases:**
 
       * Small applications
-           
+
 
 #### Example
 
@@ -128,9 +128,9 @@ Reactstrap has two primary distribution versions:
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
     <!-- Optional dependencies -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.1/react-transition-group.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.7.4/react-popper.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.8.3/react-popper.min.js"></script>
     <!-- Reactstrap -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0/reactstrap.min.js"></script>
     <!-- Lastly, include your app's bundle -->
     <script type="text/javascript" src="/assets/bundle.js"></script>
   </head>
@@ -247,6 +247,7 @@ Organizations and projects using `reactstrap`
 - [component-template](https://reactstrap.github.io/component-template/)
 - [video-react](https://video-react.github.io/)
 - [CoreUI-Free-Bootstrap-Admin-Template](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template) - [demo](http://coreui.io/demo/React_Demo/#/)
+- [Admin dashboard example app built with reactstrap](https://github.com/reduction-admin/react-reduction) - [demo](https://reduction-admin.firebaseapp.com/)
 
 Submit a PR to add to this list!
 

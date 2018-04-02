@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -9,6 +10,7 @@ const propTypes = {
   color: PropTypes.string,
   action: PropTypes.bool,
   className: PropTypes.any,
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -22,6 +24,7 @@ const handleDisabledOnClick = (e) => {
 const ListGroupItem = (props) => {
   const {
     className,
+    cssModule,
     tag: Tag,
     active,
     disabled,
@@ -29,14 +32,14 @@ const ListGroupItem = (props) => {
     color,
     ...attributes
   } = props;
-  const classes = classNames(
+  const classes = mapToCssModules(classNames(
     className,
     active ? 'active' : false,
     disabled ? 'disabled' : false,
     action ? 'list-group-item-action' : false,
     color ? `list-group-item-${color}` : false,
     'list-group-item'
-  );
+  ), cssModule);
 
   // Prevent click event when disabled.
   if (disabled) {

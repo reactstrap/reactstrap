@@ -3,7 +3,6 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import {
-  Button,
   ButtonDropdown,
   DropdownToggle,
   DropdownItem,
@@ -11,6 +10,7 @@ import {
 import Example from '../examples/ButtonDropdownMulti';
 import ExampleSplit from '../examples/ButtonDropdownMultiSplit';
 import ButtonDropdownExample from '../examples/ButtonDropdown';
+
 const ButtonDropdownExampleSource = require('!!raw!../examples/ButtonDropdown');
 
 export default class ButtonDropdownPage extends React.Component {
@@ -47,7 +47,7 @@ export default class ButtonDropdownPage extends React.Component {
           <PrismCode className="language-jsx">
 {`ButtonDropdown.propTypes = {
   disabled: PropTypes.bool,
-  dropup: PropTypes.bool,
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   tag: PropTypes.string,
@@ -165,12 +165,32 @@ DropdownToggle.propTypes = {
 </ButtonDropdown>`}
           </PrismCode>
         </pre>
-        <h3>Dropup variation</h3>
+        <h3>Drop direction variations</h3>
         <div className="docs-example">
           <div>
-            <ButtonDropdown dropup isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>
-              <DropdownToggle caret size="lg">
+            <ButtonDropdown direction="up" isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>
+              <DropdownToggle caret>
                 Dropup
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>Another Action</DropdownItem>
+                <DropdownItem>Another Action</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+            {' '}
+            <ButtonDropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
+              <DropdownToggle caret>
+                Dropleft
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>Another Action</DropdownItem>
+                <DropdownItem>Another Action</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+            {' '}
+            <ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+              <DropdownToggle caret>
+                Dropright
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem>Another Action</DropdownItem>
@@ -181,9 +201,29 @@ DropdownToggle.propTypes = {
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<ButtonDropdown isOpen={isOpen} toggle={toggle} dropup>
-  <DropdownToggle caret caret size="lg">
+{`<ButtonDropdown direction="up" isOpen={isOpen} toggle={toggle}>
+  <DropdownToggle caret>
     Dropup
+  </DropdownToggle>
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</ButtonDropdown>
+
+<ButtonDropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
+  <DropdownToggle caret>
+    Dropleft
+  </DropdownToggle>
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</ButtonDropdown>
+
+<ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+  <DropdownToggle caret>
+    Dropright
   </DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>

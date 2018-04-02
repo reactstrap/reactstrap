@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Input } from '../';
 
 describe('Input', () => {
@@ -45,10 +45,10 @@ describe('Input', () => {
     expect(wrapper.type()).toBe('div');
   });
 
-  it('should not render with custom tag when plaintext prop is not truthy and tag is provided', () => {
-    const wrapper = shallow(<Input type="select" tag="div" />);
+  it('should render with custom tag when plaintext prop is not truthy and tag is provided', () => {
+    const wrapper = shallow(<Input tag="div" />);
 
-    expect(wrapper.type()).toBe('select');
+    expect(wrapper.type()).toBe('div');
   });
 
   it('should render with "input" tag when type is not a special case', () => {
@@ -57,8 +57,32 @@ describe('Input', () => {
     expect(wrapper.type()).toBe('input');
   });
 
-  it('should render children', () => {
+  it('should not render children', () => {
     const wrapper = shallow(<Input>Yo!</Input>);
+
+    expect(wrapper.text()).toBe('');
+  });
+
+  it('should render without children when type is "textarea"', () => {
+    const wrapper = shallow(<Input type="textarea">Yo!</Input>);
+
+    expect(wrapper.text()).toBe('');
+  });
+
+  it('should render children when type is select', () => {
+    const wrapper = shallow(<Input type="select">Yo!</Input>);
+
+    expect(wrapper.text()).toBe('Yo!');
+  });
+
+  it('should render children when tag is select', () => {
+    const wrapper = shallow(<Input tag="select">Yo!</Input>);
+
+    expect(wrapper.text()).toBe('Yo!');
+  });
+
+  it('should pass children when tag is a custom component', () => {
+    const wrapper = mount(<Input tag={props => props.children}>Yo!</Input>);
 
     expect(wrapper.text()).toBe('Yo!');
   });
@@ -82,8 +106,20 @@ describe('Input', () => {
     expect(wrapper.hasClass('is-invalid')).toBe(false);
   });
 
-  it('should render with "is-invalid" class when valid is false', () => {
+  it('should not render with "is-invalid" class when valid is false', () => {
     const wrapper = shallow(<Input valid={false} />);
+
+    expect(wrapper.hasClass('is-invalid')).toBe(false);
+  });
+
+  it('should not render with "is-valid" class when invalid is false', () => {
+    const wrapper = shallow(<Input invalid={false} />);
+
+    expect(wrapper.hasClass('is-valid')).toBe(false);
+  });
+
+  it('should render with "is-invalid" class when invalid is true', () => {
+    const wrapper = shallow(<Input invalid />);
 
     expect(wrapper.hasClass('is-invalid')).toBe(true);
   });

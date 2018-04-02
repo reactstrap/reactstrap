@@ -69,12 +69,8 @@ export default class CarouselPage extends React.Component {
   ...Transition.propTypes,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   in: PropTypes.bool,
-  src: PropTypes.string,
-  altText: PropTypes.string,
   cssModule: PropTypes.object,
-  children: PropTypes.shape({
-    type: PropTypes.oneOf([CarouselCaption]),
-  }),
+  children: PropTypes.node,
   slide: PropTypes.bool,
 };`}
           </PrismCode>

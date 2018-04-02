@@ -63,6 +63,8 @@ import Input from './Input';
 import InputGroup from './InputGroup';
 import InputGroupAddon from './InputGroupAddon';
 import InputGroupButton from './InputGroupButton';
+import InputGroupButtonDropdown from './InputGroupButtonDropdown';
+import InputGroupText from './InputGroupText';
 import Label from './Label';
 import Media from './Media';
 import Pagination from './Pagination';
@@ -76,13 +78,12 @@ import Collapse from './Collapse';
 import ListGroupItem from './ListGroupItem';
 import ListGroupItemHeading from './ListGroupItemHeading';
 import ListGroupItemText from './ListGroupItemText';
-import {
-  UncontrolledAlert,
-  UncontrolledButtonDropdown,
-  UncontrolledDropdown,
-  UncontrolledNavDropdown,
-  UncontrolledTooltip,
-} from './Uncontrolled';
+import UncontrolledAlert from './UncontrolledAlert';
+import UncontrolledButtonDropdown from './UncontrolledButtonDropdown';
+import UncontrolledDropdown from './UncontrolledDropdown';
+import UncontrolledNavDropdown from './UncontrolledNavDropdown';
+import UncontrolledTooltip from './UncontrolledTooltip';
+import * as Util from './utils';
 
 export {
   Alert,
@@ -151,6 +152,8 @@ export {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
+  InputGroupButtonDropdown,
+  InputGroupText,
   Label,
   Media,
   Pagination,
@@ -168,4 +171,5 @@ export {
   UncontrolledDropdown,
   UncontrolledNavDropdown,
   UncontrolledTooltip,
+  Util,
 };

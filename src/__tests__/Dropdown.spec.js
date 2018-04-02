@@ -1,8 +1,8 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import { Popper, Target } from 'react-popper';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../';
 import { keyCodes } from '../utils';
-
 
 describe('Dropdown', () => {
   let isOpen;
@@ -772,5 +772,57 @@ describe('Dropdown', () => {
       expect(wrapper.find('.dropdown-item').hostNodes().length).toBe(1);
       expect(wrapper.find('.nav-item').hostNodes().children().length).toBe(2);
     });
+  });
+
+  describe('Dropdown in navbar', () => {
+    it('should open without popper with inNavbar prop', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Dropdown nav inNavbar isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle caret nav>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.find('.dropdown-toggle').first().type()).toEqual('a');
+      expect(wrapper.find('.dropdown-menu').first().type()).toEqual('div');
+    });
+
+    it('should open with popper without inNavbar prop', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <Dropdown nav isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle caret nav>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.find('.dropdown-toggle').first().type()).toEqual(Target);
+      expect(wrapper.find('.dropdown-menu').first().type()).toEqual(Popper);
+    });
+  });
+
+  describe('active', () => {
+    it('should render an active class', () => {
+      const wrapper = shallow(<Dropdown active nav />);
+
+      expect(wrapper.hasClass('active')).toBe(true);
+    });
+  });
+
+  it('should render with correct class when direction is set', () => {
+    const dropup = shallow(<Dropdown direction="up" />);
+    const dropupProp = shallow(<Dropdown dropup />);
+    const dropleft = shallow(<Dropdown direction="left" />);
+    const dropright = shallow(<Dropdown direction="right" />);
+
+    expect(dropup.hasClass('dropup')).toBe(true);
+    expect(dropupProp.hasClass('dropup')).toBe(true);
+    expect(dropleft.hasClass('dropleft')).toBe(true);
+    expect(dropright.hasClass('dropright')).toBe(true);
   });
 });

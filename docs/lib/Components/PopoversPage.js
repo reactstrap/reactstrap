@@ -41,6 +41,7 @@ export default class PopoversPage extends React.Component {
   // Apply class to the inner-popover
   innerClassName: PropTypes.string,
   disabled: PropTypes.bool,
+  hideArrow: PropTypes.bool,
   placementPrefix: PropTypes.string,
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
@@ -62,7 +63,9 @@ export default class PopoversPage extends React.Component {
     'left',
     'left-start',
     'left-end',
-  ])
+  ]),
+  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/popper-documentation.html#modifiers
+  modifiers: PropTypes.object
 }`}
           </PrismCode>
         </pre>

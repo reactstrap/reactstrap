@@ -1,3 +1,100 @@
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta.3...5.0.0) (2018-03-23)
+
+
+### Bug Fixes
+
+* **Modal:** don't add or remove multi body classes ([6ec3174](https://github.com/reactstrap/reactstrap/commit/6ec3174))
+* **Modal:** Ensure that `this._element` exists before removing it. ([#916](https://github.com/reactstrap/reactstrap/issues/916)) ([7faa32a](https://github.com/reactstrap/reactstrap/commit/7faa32a)), closes [#918](https://github.com/reactstrap/reactstrap/issues/918)
+
+
+### BREAKING CHANGES
+
+* **Modal:** reactstrap now requires a minimum react version of 16. Please update your version of react to 16 (from 15 to 16 is very seamless).
+
+
+
+<a name="5.0.0-beta.3"></a>
+# [5.0.0-beta.3](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta.2...5.0.0-beta.3) (2018-03-19)
+
+
+### Bug Fixes
+
+* **popper:** pass event object to toggle prop ([#907](https://github.com/reactstrap/reactstrap/issues/907)) ([b1f6005](https://github.com/reactstrap/reactstrap/commit/b1f6005))
+
+
+### Features
+
+* **Dropdown:** Add active prop to Dropdown ([#895](https://github.com/reactstrap/reactstrap/issues/895)) ([45de5c5](https://github.com/reactstrap/reactstrap/commit/45de5c5)), closes [#827](https://github.com/reactstrap/reactstrap/issues/827)
+* **Modal:** pass event object to toggle prop ([#903](https://github.com/reactstrap/reactstrap/issues/903)) ([f6aacfa](https://github.com/reactstrap/reactstrap/commit/f6aacfa))
+
+
+
+<a name="5.0.0-beta.2"></a>
+# [5.0.0-beta.2](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta...5.0.0-beta.2) (2018-02-27)
+
+
+### Bug Fixes
+
+* **Col:** pass cssModule to mapToCSSModules not push ([#857](https://github.com/reactstrap/reactstrap/issues/857)) ([7887364](https://github.com/reactstrap/reactstrap/commit/7887364)), closes [#856](https://github.com/reactstrap/reactstrap/issues/856)
+* **Modal:** map body class name before removing ([#817](https://github.com/reactstrap/reactstrap/issues/817)) ([f099d31](https://github.com/reactstrap/reactstrap/commit/f099d31)), closes [#665](https://github.com/reactstrap/reactstrap/issues/665) [#763](https://github.com/reactstrap/reactstrap/issues/763)
+* **UncontrolledNavDropdown:** add missing props param ([#812](https://github.com/reactstrap/reactstrap/issues/812)) ([b35cdcb](https://github.com/reactstrap/reactstrap/commit/b35cdcb))
+
+
+### Features
+
+* **Col:** Set col class only if no other cols are specified ([#842](https://github.com/reactstrap/reactstrap/issues/842)) ([5a9aa63](https://github.com/reactstrap/reactstrap/commit/5a9aa63)), closes [#750](https://github.com/reactstrap/reactstrap/issues/750)
+* **Dropdown:** Add support for dropleft and dropright ([#813](https://github.com/reactstrap/reactstrap/issues/813)) ([2b71fd6](https://github.com/reactstrap/reactstrap/commit/2b71fd6)), closes [#785](https://github.com/reactstrap/reactstrap/issues/785)
+* **FormFeedback:** Support valid feedback. ([#840](https://github.com/reactstrap/reactstrap/issues/840)) ([9b49091](https://github.com/reactstrap/reactstrap/commit/9b49091))
+* **Input:** add invalid prop ([#858](https://github.com/reactstrap/reactstrap/issues/858)) ([ba8fc39](https://github.com/reactstrap/reactstrap/commit/ba8fc39)), closes [#850](https://github.com/reactstrap/reactstrap/issues/850)
+* **Modal:** add ability to have external content ([#854](https://github.com/reactstrap/reactstrap/issues/854)) ([9c1b71a](https://github.com/reactstrap/reactstrap/commit/9c1b71a)), closes [#853](https://github.com/reactstrap/reactstrap/issues/853)
+* **Modal:** added support for React Portal ([#796](https://github.com/reactstrap/reactstrap/issues/796)) ([49a7f99](https://github.com/reactstrap/reactstrap/commit/49a7f99)), closes [#601](https://github.com/reactstrap/reactstrap/issues/601) [#761](https://github.com/reactstrap/reactstrap/issues/761) [#645](https://github.com/reactstrap/reactstrap/issues/645)
+* **Popover/Tooltip:** add ability to hide arrow ([#814](https://github.com/reactstrap/reactstrap/issues/814)) ([#815](https://github.com/reactstrap/reactstrap/issues/815)) ([43efe8b](https://github.com/reactstrap/reactstrap/commit/43efe8b))
+
+
+### BREAKING CHANGES
+
+* **Col:** Col no longer adds .col class by default when you have other columns specified. To get this class back, simply add the prop xs.
+* **Input:** the valid prop no longer applies the is-invalid class when false. Use the new invalid prop to apply that class.
+
+
+
+<a name="5.0.0-beta"></a>
+# [5.0.0-beta](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.4...5.0.0-beta) (2018-01-31)
+
+
+### Bug Fixes
+
+* **CardTitle:** default tag to h5 ([#794](https://github.com/reactstrap/reactstrap/issues/794)) ([65194c1](https://github.com/reactstrap/reactstrap/commit/65194c1))
+* **CarouselIndicators`:** fix class name when using `cssModule` ([#726](https://github.com/reactstrap/reactstrap/issues/726)) ([57d07e3](https://github.com/reactstrap/reactstrap/commit/57d07e3))
+* **Input:** honor Tag prop ([#795](https://github.com/reactstrap/reactstrap/issues/795)) ([bcefdaa](https://github.com/reactstrap/reactstrap/commit/bcefdaa)), closes [#783](https://github.com/reactstrap/reactstrap/issues/783)
+* **Label:** remove unused `form-control-label` class ([#695](https://github.com/reactstrap/reactstrap/issues/695)) ([b7567c7](https://github.com/reactstrap/reactstrap/commit/b7567c7))
+* **Modal:** check this.props.toggle exists before using it ([#700](https://github.com/reactstrap/reactstrap/issues/700)) ([80c0cde](https://github.com/reactstrap/reactstrap/commit/80c0cde))
+* **ModalHeader:** default tag to h5 ([#793](https://github.com/reactstrap/reactstrap/issues/793)) ([6a5fe7e](https://github.com/reactstrap/reactstrap/commit/6a5fe7e))
+* **Util:** window.getComputedStyle can return null in Firefox ([#782](https://github.com/reactstrap/reactstrap/issues/782)) ([6914f73](https://github.com/reactstrap/reactstrap/commit/6914f73))
+
+
+### Features
+
+* **CarouselItem:** Make CarouselItem accept children of any type ([#735](https://github.com/reactstrap/reactstrap/issues/735)) ([eea7d1b](https://github.com/reactstrap/reactstrap/commit/eea7d1b)), closes [#641](https://github.com/reactstrap/reactstrap/issues/641) [#719](https://github.com/reactstrap/reactstrap/issues/719)
+* **Col/Label:** Removed pull/push and added order ([#696](https://github.com/reactstrap/reactstrap/issues/696)) ([7c5e690](https://github.com/reactstrap/reactstrap/commit/7c5e690))
+* **cssModule:** expose global cssModule setter ([#729](https://github.com/reactstrap/reactstrap/issues/729)) ([adc8736](https://github.com/reactstrap/reactstrap/commit/adc8736))
+* **Dropdown:** disable popper when inNavbar ([#692](https://github.com/reactstrap/reactstrap/issues/692)) ([b5c7612](https://github.com/reactstrap/reactstrap/commit/b5c7612)), closes [#637](https://github.com/reactstrap/reactstrap/issues/637)
+* **InputGroup:** Deprecate InputGroupButton ([#769](https://github.com/reactstrap/reactstrap/issues/769)) ([5c5c205](https://github.com/reactstrap/reactstrap/commit/5c5c205))
+* **InputGroup:** Update for BS 4-beta.3 ([#762](https://github.com/reactstrap/reactstrap/issues/762)) ([fa3555f](https://github.com/reactstrap/reactstrap/commit/fa3555f)), closes [#759](https://github.com/reactstrap/reactstrap/issues/759)
+* **ListGroup*:** Added missing cssModule support ([#784](https://github.com/reactstrap/reactstrap/issues/784)) ([df264a8](https://github.com/reactstrap/reactstrap/commit/df264a8))
+* **Popover/Tooltip:** add ability to pass modifiers to Popper.js ([#710](https://github.com/reactstrap/reactstrap/issues/710)) ([bc6518e](https://github.com/reactstrap/reactstrap/commit/bc6518e)), closes [#709](https://github.com/reactstrap/reactstrap/issues/709)
+* **Table:** BS4 beta 2 updates for Table ([#694](https://github.com/reactstrap/reactstrap/issues/694)) ([3377cdc](https://github.com/reactstrap/reactstrap/commit/3377cdc))
+* **Table:** BS4 beta 3 revert responsive table ([#757](https://github.com/reactstrap/reactstrap/issues/757)) ([ee08d21](https://github.com/reactstrap/reactstrap/commit/ee08d21))
+
+
+### BREAKING CHANGES
+
+* **CardTitle:** CardTitle now defaults to h5 instead of h4. If you still need h4 add tag="h4"
+* **ModalHeader:** ModalHeader now defaults to h5 instead of h4. If you still need h4 add tag="h4"
+
+
+
 <a name="5.0.0-alpha.4"></a>
 # [5.0.0-alpha.4](https://github.com/reactstrap/reactstrap/compare/5.0.0-alpha.3...5.0.0-alpha.4) (2017-11-16)
 

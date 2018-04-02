@@ -32,6 +32,7 @@ export default class TooltipsPage extends React.Component {
 {`Tooltip.propTypes = {
   // boolean to control the state of the tooltip
   isOpen: PropTypes.bool,
+  hideArrow: PropTypes.bool,
   // callback for toggling isOpen in the controlling component
   toggle: PropTypes.func,
   // target element or element ID, popover is attached to this element
@@ -69,7 +70,9 @@ export default class TooltipsPage extends React.Component {
     'left',
     'left-start',
     'left-end',
-  ])
+  ]),
+  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/popper-documentation.html#modifiers
+  modifiers: PropTypes.object
 }`}
           </PrismCode>
         </pre>

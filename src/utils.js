@@ -24,8 +24,10 @@ export function isBodyOverflowing() {
 }
 
 export function getOriginalBodyPadding() {
+  const style = window.getComputedStyle(document.body, null);
+
   return parseInt(
-    window.getComputedStyle(document.body, null).getPropertyValue('padding-right') || 0,
+    (style && style.getPropertyValue('padding-right')) || 0,
     10
   );
 }
@@ -44,7 +46,13 @@ export function conditionallyUpdateScrollbar() {
   }
 }
 
-export function mapToCssModules(className, cssModule) {
+let globalCssModule;
+
+export function setGlobalCssModule(cssModule) {
+  globalCssModule = cssModule;
+}
+
+export function mapToCssModules(className = '', cssModule = globalCssModule) {
   if (!cssModule) return className;
   return className.split(' ').map(c => cssModule[c] || c).join(' ');
 }
@@ -191,3 +199,9 @@ export const PopperPlacements = [
   'left',
   'left-start',
 ];
+
+export const canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
