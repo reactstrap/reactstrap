@@ -121,10 +121,8 @@ class Modal extends React.Component {
       this.setFocus();
     }
 
-    if (prevProps.zIndex !== this.props.zIndex) {
-      if (this._element) {
-        this._element.style.zIndex = this.props.zIndex;
-      }
+    if (this._element && prevProps.zIndex !== this.props.zIndex) {
+      this._element.style.zIndex = this.props.zIndex;
     }
   }
 
