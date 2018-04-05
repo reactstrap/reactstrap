@@ -146,7 +146,7 @@ class Components extends React.Component {
               </Nav>
             </div>
           </Col>
-          <Col md={{ size: 9, order: 1 }}>
+          <Col md={{ size: 9, order: 1 }} className="docSearch.content">
             {this.props.children}
           </Col>
         </Row>
