@@ -30,7 +30,7 @@ export default () => {
       </Jumbotron>
       <Container>
         <Row className="justify-content-sm-center">
-          <Col sm={8} className="docSearch.content">
+          <Col sm={8} className="docSearch-content">
             <h2>Installation</h2>
             <hr />
             <h3 className="mt-5">NPM</h3>
