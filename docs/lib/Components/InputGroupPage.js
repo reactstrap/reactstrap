@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import OverviewExample from '../examples/InputGroupOverview';
 const OverviewExampleSource = require('!!raw!../examples/InputGroupOverview');
 import AddonExample from '../examples/InputGroupAddon';
@@ -33,7 +34,7 @@ export default class InputGroupPage extends React.Component {
     return (
       <div>
         <Helmet title="Input Group" />
-        <h3>Input Group</h3>
+        <SectionTitle>Input Group</SectionTitle>
         <div className="docs-example">
           <OverviewExample />
         </div>
@@ -67,7 +68,7 @@ InputGroupButton.propTypes = {
 };`}
           </PrismCode>
         </pre>
-        <h3>Addons</h3>
+        <SectionTitle>Addons</SectionTitle>
         <div className="docs-example">
           <div>
             <AddonExample />
@@ -79,7 +80,7 @@ InputGroupButton.propTypes = {
           </PrismCode>
         </pre>
 
-        <h3>Addon Sizing</h3>
+        <SectionTitle>Addon Sizing</SectionTitle>
         <div className="docs-example">
           <div>
             <AddonSizingExample />
@@ -91,7 +92,7 @@ InputGroupButton.propTypes = {
           </PrismCode>
         </pre>
 
-        <h3>Buttons / Dropdowns</h3>
+        <SectionTitle>Buttons / Dropdowns</SectionTitle>
         <div className="docs-example">
           <div>
             <ButtonExample />
@@ -103,7 +104,7 @@ InputGroupButton.propTypes = {
           </PrismCode>
         </pre>
 
-        <h3>Button Shorthand (DEPRECATED)</h3>
+        <SectionTitle>Button Shorthand (DEPRECATED)</SectionTitle>
         <p>
           Button shorthand is deprecated. Below are the updated examples of how to use <code>InputGroupAddon</code> to
           accomplish the same output.

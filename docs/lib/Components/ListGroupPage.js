@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import ListGroupExample from '../examples/ListGroup';
 import ListGroupBadgeExample from '../examples/ListGroupBadge';
 import ListGroupDisabledItemsExample from '../examples/ListGroupDisabledItems';
@@ -21,7 +22,7 @@ export default class ListGroupPage extends React.Component {
     return (
       <div>
         <Helmet title="ListGroup Components" />
-        <h3>ListGroup</h3>
+        <SectionTitle>ListGroup</SectionTitle>
         <div className="docs-example">
           <ListGroupExample />
         </div>

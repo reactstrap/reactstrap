@@ -38,6 +38,9 @@ var paths = [
   '/components/collapse/',
   '/components/carousel/',
   '/components/listgroup/',
+  '/utilities/',
+  '/utilities/colors/',
+  '/utilities/clearfix/',
   '/404.html'
 ];
 

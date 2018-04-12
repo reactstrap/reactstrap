@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import TooltipExample from '../examples/Tooltip';
 const TooltipExampleSource = require('!!raw!../examples/Tooltip');
 import TooltipAutoHideExample from '../examples/TooltipAutoHide';
@@ -16,7 +17,7 @@ export default class TooltipsPage extends React.Component {
     return (
       <div>
         <Helmet title="Tooltips" />
-        <h3>Tooltips</h3>
+        <SectionTitle>Tooltips</SectionTitle>
         <p>Tooltips are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
         <div className="docs-example">
           <TooltipExample />
@@ -76,7 +77,7 @@ export default class TooltipsPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>Tooltip Disable Autohide</h3>
+        <SectionTitle>Tooltip Disable Autohide</SectionTitle>
         <div className="docs-example">
           <TooltipAutoHideExample />
         </div>
@@ -85,7 +86,7 @@ export default class TooltipsPage extends React.Component {
             {TooltipExampleAutoHideSource}
           </PrismCode>
         </pre>
-        <h3>Tooltips List</h3>
+        <SectionTitle>Tooltips List</SectionTitle>
         <div className="docs-example">
           <TooltipExampleMulti />
         </div>
@@ -94,7 +95,7 @@ export default class TooltipsPage extends React.Component {
             {TooltipExampleMultiSource}
           </PrismCode>
         </pre>
-        <h3>Uncontrolled Tooltip</h3>
+        <SectionTitle>Uncontrolled Tooltip</SectionTitle>
         <p>
           For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledTooltip</code> does not require <code>isOpen</code> nor <code>toggle</code> props to work.
         </p>

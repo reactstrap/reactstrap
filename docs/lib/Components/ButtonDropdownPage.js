@@ -10,6 +10,7 @@ import {
 import Example from '../examples/ButtonDropdownMulti';
 import ExampleSplit from '../examples/ButtonDropdownMultiSplit';
 import ButtonDropdownExample from '../examples/ButtonDropdown';
+import SectionTitle from '../UI/SectionTitle';
 
 const ButtonDropdownExampleSource = require('!!raw!../examples/ButtonDropdown');
 
@@ -33,7 +34,7 @@ export default class ButtonDropdownPage extends React.Component {
     return (
       <div>
         <Helmet title="Button Dropdown" />
-        <h3>Button Dropdown</h3>
+        <SectionTitle>Button Dropdown</SectionTitle>
         <div className="docs-example">
           <ButtonDropdownExample />
         </div>
@@ -64,7 +65,7 @@ DropdownToggle.propTypes = {
 };`}
           </PrismCode>
         </pre>
-        <h3>Single button dropdowns</h3>
+        <SectionTitle>Single button dropdowns</SectionTitle>
         <div className="docs-example">
           <div>
             <Example color="primary" text="Primary" />
@@ -91,7 +92,7 @@ DropdownToggle.propTypes = {
 </ButtonDropdown>`}
           </PrismCode>
         </pre>
-        <h3>Split button dropdowns</h3>
+        <SectionTitle>Split button dropdowns</SectionTitle>
         <div className="docs-example">
           <div>
             <ExampleSplit color="primary" text="Primary" />
@@ -117,7 +118,7 @@ DropdownToggle.propTypes = {
 </ButtonDropdown>`}
           </PrismCode>
         </pre>
-        <h3>Sizing</h3>
+        <SectionTitle>Sizing</SectionTitle>
         <div className="docs-example">
           <div>
             <ButtonDropdown isOpen={this.state.btnLg} toggle={() => { this.setState({ btnLg: !this.state.btnLg }); }}>
@@ -165,7 +166,7 @@ DropdownToggle.propTypes = {
 </ButtonDropdown>`}
           </PrismCode>
         </pre>
-        <h3>Drop direction variations</h3>
+        <SectionTitle>Drop direction variations</SectionTitle>
         <div className="docs-example">
           <div>
             <ButtonDropdown direction="up" isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>

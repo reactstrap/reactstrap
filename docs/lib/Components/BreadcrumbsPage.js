@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import BreadcrumbExample from '../examples/Breadcrumb';
 const BreadcrumbExampleSource = require('!!raw!../examples/Breadcrumb');
@@ -14,7 +15,7 @@ export default class BreadcrumbsPage extends React.Component {
     return (
       <div>
         <Helmet title="Breadcrumbs" />
-        <h3>Breadcrumbs</h3>
+        <SectionTitle>Breadcrumbs</SectionTitle>
         <div className="docs-example">
           <BreadcrumbExample />
         </div>
@@ -23,7 +24,7 @@ export default class BreadcrumbsPage extends React.Component {
             {BreadcrumbExampleSource}
           </PrismCode>
         </pre>
-        <h3>No list</h3>
+        <SectionTitle>No list</SectionTitle>
         <hr />
         <p>Breadcrumbs can work without the usage of list markup.</p>
         <div className="docs-example">

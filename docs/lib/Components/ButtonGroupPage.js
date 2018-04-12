@@ -11,6 +11,7 @@ import {
   DropdownMenu } from 'reactstrap';
 import { Link } from 'react-router';
 import UI from '../UI';
+import SectionTitle from '../UI/SectionTitle';
 
 import ButtonGroupExample from '../examples/ButtonGroup';
 const ButtonGroupExampleSource = require('!!raw!../examples/ButtonGroup');
@@ -39,7 +40,7 @@ export default class ButtonGroupPage extends React.Component {
     return (
       <div>
         <Helmet title="Button Group" />
-        <h3>Button Group</h3>
+        <SectionTitle>Button Group</SectionTitle>
         <div className="docs-example">
           <div>
             <ButtonGroupExample />
@@ -62,7 +63,7 @@ export default class ButtonGroupPage extends React.Component {
 };`}
           </PrismCode>
         </pre>
-        <h3>Button Toolbar</h3>
+        <SectionTitle>Button Toolbar</SectionTitle>
         <div className="docs-example">
           <ButtonToolbarExample />
         </div>
@@ -71,7 +72,7 @@ export default class ButtonGroupPage extends React.Component {
             {ButtonToolbarExampleSource}
           </PrismCode>
         </pre>
-        <h3>Sizing</h3>
+        <SectionTitle>Sizing</SectionTitle>
         <div className="docs-example">
           <div>
             <ButtonGroup size="lg">
@@ -114,7 +115,7 @@ export default class ButtonGroupPage extends React.Component {
 </ButtonGroup>`}
           </PrismCode>
         </pre>
-        <h3>Nesting</h3>
+        <SectionTitle>Nesting</SectionTitle>
         <div className="docs-example">
           <div>
             <ButtonGroup>
@@ -149,7 +150,7 @@ export default class ButtonGroupPage extends React.Component {
 </ButtonGroup>`}
           </PrismCode>
         </pre>
-        <h3>Vertical variation</h3>
+        <SectionTitle>Vertical variation</SectionTitle>
         <div className="docs-example">
           <ButtonGroup vertical>
             <Button>1</Button>

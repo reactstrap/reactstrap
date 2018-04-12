@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import FormExample from '../examples/Form';
 const FormExampleSource = require('!!raw!../examples/Form');
@@ -35,7 +36,7 @@ export default class FormPage extends React.Component {
     return (
       <div>
         <Helmet title="Form" />
-        <h3>Form</h3>
+        <SectionTitle>Form</SectionTitle>
         <div className="docs-example">
           <FormExample />
         </div>
@@ -45,7 +46,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Properties</h3>
+        <SectionTitle>Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`Input.propTypes = {
@@ -69,7 +70,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Form Grid</h3>
+        <SectionTitle>Form Grid</SectionTitle>
         <div className="docs-example">
           <FormGridExample />
         </div>
@@ -79,7 +80,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Inline Form</h3>
+        <SectionTitle>Inline Form</SectionTitle>
         <div className="docs-example">
           <FormInlineExample />
         </div>
@@ -89,7 +90,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Form Validation</h3>
+        <SectionTitle>Form Validation</SectionTitle>
         <div className="docs-example">
           <FormFeedbackExample />
         </div>
@@ -99,7 +100,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Input Types</h3>
+        <SectionTitle>Input Types</SectionTitle>
         <div className="docs-example">
           <InputTypeExample />
         </div>
@@ -109,7 +110,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Inline checkboxes</h3>
+        <SectionTitle>Inline checkboxes</SectionTitle>
         <div className="docs-example">
           <InlineCheckboxesExample />
         </div>
@@ -119,7 +120,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Input Sizing</h3>
+        <SectionTitle>Input Sizing</SectionTitle>
         <div className="docs-example">
           <InputSizingExample />
         </div>
@@ -129,7 +130,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Input Grid Sizing</h3>
+        <SectionTitle>Input Grid Sizing</SectionTitle>
         <div className="docs-example">
           <InputGridSizingExample />
         </div>
@@ -139,7 +140,7 @@ export default class FormPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Hidden Labels</h3>
+        <SectionTitle>Hidden Labels</SectionTitle>
         <div className="docs-example">
           <LabelHiddenExample />
         </div>

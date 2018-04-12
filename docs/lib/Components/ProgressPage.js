@@ -3,6 +3,7 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
 import { Card, CardText } from 'reactstrap';
+import SectionTitle from '../UI/SectionTitle';
 import ProgressExample from '../examples/Progress';
 const ProgressExampleSource = require('!!raw!../examples/Progress');
 import ProgressColorExample from '../examples/ProgressColor';
@@ -23,7 +24,7 @@ export default class ProgressPage extends React.Component {
     return (
       <div>
         <Helmet title="Progress" />
-        <h3>Progress</h3>
+        <SectionTitle>Progress</SectionTitle>
         <div className="docs-example">
           <ProgressExample />
         </div>
@@ -62,7 +63,7 @@ Progress.defaultProps = {
           </PrismCode>
         </pre>
 
-        <h3>Color Variants</h3>
+        <SectionTitle>Color Variants</SectionTitle>
         <div className="docs-example">
           <div>
             <ProgressColorExample />
@@ -74,7 +75,7 @@ Progress.defaultProps = {
           </PrismCode>
         </pre>
 
-        <h3>Labels</h3>
+        <SectionTitle>Labels</SectionTitle>
         <div className="docs-example">
           <div>
             <ProgressLabelsExample />
@@ -86,7 +87,7 @@ Progress.defaultProps = {
           </PrismCode>
         </pre>
 
-        <h3>Striped</h3>
+        <SectionTitle>Striped</SectionTitle>
         <div className="docs-example">
           <div>
             <ProgressStripedExample />
@@ -98,7 +99,7 @@ Progress.defaultProps = {
           </PrismCode>
         </pre>
 
-        <h3>Animated</h3>
+        <SectionTitle>Animated</SectionTitle>
         <p>
           The <code>animated</code> prop also adds the <code>striped</code> prop; there is no need to pass both.
         </p>
@@ -113,7 +114,7 @@ Progress.defaultProps = {
           </PrismCode>
         </pre>
 
-        <h3>Multiple bars / Stacked</h3>
+        <SectionTitle>Multiple bars / Stacked</SectionTitle>
         <div className="docs-example">
           <div>
             <ProgressMultiExample />
@@ -125,7 +126,7 @@ Progress.defaultProps = {
           </PrismCode>
         </pre>
 
-        <h3>Max value</h3>
+        <SectionTitle>Max value</SectionTitle>
         <div className="docs-example">
           <div>
             <ProgressMaxExample />

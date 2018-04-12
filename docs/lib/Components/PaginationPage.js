@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import PaginationExample from '../examples/Pagination';
 const PaginationExampleSource = require('!!raw!../examples/Pagination');
@@ -20,7 +21,7 @@ export default class PaginationPage extends React.Component {
     return (
       <div>
         <Helmet title="Pagination" />
-        <h3>Pagination</h3>
+        <SectionTitle>Pagination</SectionTitle>
         <div className="docs-example">
           <PaginationExample />
         </div>
@@ -40,7 +41,7 @@ export default class PaginationPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>Disabled and active states</h3>
+        <SectionTitle>Disabled and active states</SectionTitle>
         <div className="docs-example">
           <PaginationStateExample />
         </div>
@@ -49,7 +50,7 @@ export default class PaginationPage extends React.Component {
             {PaginationStateExampleSource}
           </PrismCode>
         </pre>
-        <h3>Sizing</h3>
+        <SectionTitle>Sizing</SectionTitle>
         <div className="docs-example">
           <PaginationSizingLargeExample />
         </div>
