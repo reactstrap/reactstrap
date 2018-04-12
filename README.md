@@ -185,6 +185,8 @@ There are a few core concepts to understand in order to make the most out of thi
 
 https://reactstrap.github.io
 
+Documentation search is powered by [Algolia's DocSearch](https://community.algolia.com/docsearch/).
+
 ## [Contributing](CONTRIBUTING.md)
 
 ## Development
