@@ -14,7 +14,7 @@ const propTypes = {
   valid: PropTypes.bool,
   invalid: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
   static: deprecated(PropTypes.bool, 'Please use the prop "plaintext"'),
   plaintext: PropTypes.bool,
   addon: PropTypes.bool,
