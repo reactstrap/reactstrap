@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import TabsExample from '../examples/Tabs';
 const TabsExampleSource = require('!!raw!../examples/Tabs');
@@ -10,7 +11,7 @@ export default function TabsPage() {
   return (
     <div>
       <Helmet title="Tabs" />
-      <h3>Tabs</h3>
+      <SectionTitle>Tabs</SectionTitle>
       <hr />
       <div className="docs-example">
         <TabsExample />

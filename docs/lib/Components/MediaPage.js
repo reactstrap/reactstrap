@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import MediaExample from '../examples/Media';
 const MediaExampleSource = require('!!raw!../examples/Media');
@@ -20,7 +21,7 @@ export default class MediaPage extends React.Component {
     return (
       <div>
         <Helmet title="Media object" />
-        <h3>Media object</h3>
+        <SectionTitle>Media object</SectionTitle>
         <div className="docs-example">
           <MediaExample />
         </div>

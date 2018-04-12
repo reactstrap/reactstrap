@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import PopoverExample from '../examples/Popover';
 const PopoverExampleSource = require('!!raw!../examples/Popover');
 import PopoverExampleMulti from '../examples/PopoverMulti';
@@ -12,7 +13,7 @@ export default class PopoversPage extends React.Component {
     return (
       <div>
         <Helmet title="Popovers" />
-        <h3>Popovers</h3>
+        <SectionTitle>Popovers</SectionTitle>
         <p>Popovers are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
         <div className="docs-example">
           <PopoverExample />
@@ -69,7 +70,7 @@ export default class PopoversPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>Popovers List</h3>
+        <SectionTitle>Popovers List</SectionTitle>
         <div className="docs-example">
           <PopoverExampleMulti />
         </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import { Alert } from 'reactstrap';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import AlertExample from '../examples/Alert';
 const AlertExampleSource = require('!!raw!../examples/Alert');
@@ -25,7 +26,7 @@ export default class AlertsPage extends React.Component {
       <div>
         <Helmet title="Alerts" />
 
-        <h3>Alerts</h3>
+        <SectionTitle>Alerts</SectionTitle>
         <div className="docs-example">
           <AlertExample />
         </div>
@@ -35,7 +36,7 @@ export default class AlertsPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Properties</h3>
+        <SectionTitle>Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`Alert.propTypes = {
@@ -52,7 +53,7 @@ export default class AlertsPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Link color</h3>
+        <SectionTitle>Link color</SectionTitle>
         <div className="docs-example">
           <AlertLinkExample />
         </div>
@@ -62,7 +63,7 @@ export default class AlertsPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Additional content</h3>
+        <SectionTitle>Additional content</SectionTitle>
         <div className="docs-example">
           <AlertContentExample />
         </div>
@@ -72,7 +73,7 @@ export default class AlertsPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Dismissing</h3>
+        <SectionTitle>Dismissing</SectionTitle>
         <div className="docs-example">
           <AlertDismissExample />
         </div>
@@ -82,7 +83,7 @@ export default class AlertsPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Uncontrolled [disable] Alerts</h3>
+        <SectionTitle>Uncontrolled [disable] Alerts</SectionTitle>
         <p>
           For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledAlert</code> does not require <code>isOpen</code> nor <code>toggle</code> props to work.
         </p>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import LayoutExample from '../examples/Layout';
 const LayoutExampleSource = require('!!raw!../examples/Layout');
 
@@ -10,7 +11,7 @@ export default class LayoutsPage extends React.Component {
     return (
       <div>
         <Helmet title="Layout Components (Container, Row, Col)" />
-        <h3>Layout</h3>
+        <SectionTitle>Layout</SectionTitle>
         <div className="docs-example">
           <LayoutExample />
         </div>

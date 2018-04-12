@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import CardExample from '../examples/Card';
 import CardContentExample from '../examples/CardContentTypes';
@@ -34,7 +35,7 @@ export default class CardPage extends React.Component {
     return (
       <div>
         <Helmet title="Card" />
-        <h3>Card</h3>
+        <SectionTitle>Card</SectionTitle>
         <hr />
         <div className="docs-example">
           <CardExample />
@@ -134,7 +135,7 @@ CardTitle.propTypes = {
 };`}
           </PrismCode>
         </pre>
-        <h3>Content Types</h3>
+        <SectionTitle>Content Types</SectionTitle>
         <div className="docs-example">
           <CardContentExample />
         </div>
@@ -143,7 +144,7 @@ CardTitle.propTypes = {
             {CardContentExampleSource}
           </PrismCode>
         </pre>
-        <h3>Sizing</h3>
+        <SectionTitle>Sizing</SectionTitle>
         <div className="docs-example">
           <CardSizingExample />
         </div>
@@ -152,7 +153,7 @@ CardTitle.propTypes = {
             {CardSizingExampleSource}
           </PrismCode>
         </pre>
-        <h3>Text alignment</h3>
+        <SectionTitle>Text alignment</SectionTitle>
         <div className="docs-example">
           <CardAlignmentExample />
         </div>
@@ -161,7 +162,7 @@ CardTitle.propTypes = {
             {CardAlignmentExampleSource}
           </PrismCode>
         </pre>
-        <h3>Header and Footer</h3>
+        <SectionTitle>Header and Footer</SectionTitle>
         <div className="docs-example">
           <CardHeaderFooterExample />
         </div>
@@ -170,7 +171,7 @@ CardTitle.propTypes = {
             {CardHeaderFooterExampleSource}
           </PrismCode>
         </pre>
-        <h3>Image caps</h3>
+        <SectionTitle>Image caps</SectionTitle>
         <div className="docs-example">
           <CardImageCapsExample />
         </div>
@@ -179,7 +180,7 @@ CardTitle.propTypes = {
             {CardImageCapsExampleSource}
           </PrismCode>
         </pre>
-        <h3>Image overlays</h3>
+        <SectionTitle>Image overlays</SectionTitle>
         <div className="docs-example">
           <CardImageOverlayExample />
         </div>
@@ -188,7 +189,7 @@ CardTitle.propTypes = {
             {CardImageOverlayExampleSource}
           </PrismCode>
         </pre>
-        <h3>Background variants</h3>
+        <SectionTitle>Background variants</SectionTitle>
         <div className="docs-example">
           <CardBackgroundsExample />
         </div>
@@ -197,7 +198,7 @@ CardTitle.propTypes = {
             {CardBackgroundsExampleSource}
           </PrismCode>
         </pre>
-        <h3>Outline variants</h3>
+        <SectionTitle>Outline variants</SectionTitle>
         <div className="docs-example">
           <CardOutlineExample />
         </div>
@@ -206,7 +207,7 @@ CardTitle.propTypes = {
             {CardOutlineExampleSource}
           </PrismCode>
         </pre>
-        <h3>Groups</h3>
+        <SectionTitle>Groups</SectionTitle>
         <div className="docs-example">
           <CardGroupsExample />
         </div>
@@ -215,7 +216,7 @@ CardTitle.propTypes = {
             {CardGroupsExampleSource}
           </PrismCode>
         </pre>
-        <h3>Decks</h3>
+        <SectionTitle>Decks</SectionTitle>
         <div className="docs-example">
           <CardDecksExample />
         </div>
@@ -224,7 +225,7 @@ CardTitle.propTypes = {
             {CardDecksExampleSource}
           </PrismCode>
         </pre>
-        <h3>Columns</h3>
+        <SectionTitle>Columns</SectionTitle>
         <div className="docs-example">
           <CardColumnsExample />
         </div>

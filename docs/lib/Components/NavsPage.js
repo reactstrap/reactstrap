@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import NavsExample from '../examples/Navs';
 const NavsExampleSource = require('!!raw!../examples/Navs');
 import NavVerticalExample from '../examples/NavVertical';
@@ -16,7 +17,7 @@ export default class NavssPage extends React.Component {
     return (
       <div>
         <Helmet title="Nav Components" />
-        <h3>Navs</h3>
+        <SectionTitle>Navs</SectionTitle>
         <div className="docs-example">
           <NavsExample />
         </div>
@@ -65,7 +66,7 @@ export default class NavssPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>Vertical</h3>
+        <SectionTitle>Vertical</SectionTitle>
         <div className="docs-example">
           <NavVerticalExample />
         </div>
@@ -74,7 +75,7 @@ export default class NavssPage extends React.Component {
             {NavVerticalExampleSource}
           </PrismCode>
         </pre>
-        <h3>Tabs</h3>
+        <SectionTitle>Tabs</SectionTitle>
         <div className="docs-example">
           <NavTabsExample />
         </div>
@@ -83,7 +84,7 @@ export default class NavssPage extends React.Component {
             {NavTabsExampleSource}
           </PrismCode>
         </pre>
-        <h3>Pills</h3>
+        <SectionTitle>Pills</SectionTitle>
         <div className="docs-example">
           <NavPillsExample />
         </div>

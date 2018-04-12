@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import CollapseExample from '../examples/Collapse';
 const CollapseExampleSource = require('!!raw!../examples/Collapse');
@@ -15,7 +16,7 @@ export default class CollapsePage extends React.Component {
       <div>
         <Helmet title="Collapse" />
 
-        <h3>Collapse</h3>
+        <SectionTitle>Collapse</SectionTitle>
         <div className="docs-example">
           <CollapseExample />
         </div>
@@ -25,7 +26,7 @@ export default class CollapsePage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Properties</h3>
+        <SectionTitle>Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
             {`Collapse.propTypes = {
@@ -43,7 +44,7 @@ export default class CollapsePage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Events</h3>
+        <SectionTitle>Events</SectionTitle>
         <p>
           Use the <code>onEnter</code>, onEntering, onEntered, onExit, onExiting and onExited props for callbacks when the
           Collapse has finished opening (entering) or closing (exiting).

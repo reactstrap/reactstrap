@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import NavbarExample from '../examples/Navbar';
 const NavbarExampleSource = require('!!raw!../examples/Navbar');
 import NavbarTogglerExample from '../examples/NavbarToggler';
@@ -13,7 +14,7 @@ export default class NavsPage extends React.Component {
     return (
       <div>
         <Helmet title="Navbar Components" />
-        <h3>Navbar</h3>
+        <SectionTitle>Navbar</SectionTitle>
         <div className="docs-example">
           <NavbarExample />
         </div>
@@ -47,7 +48,7 @@ export default class NavsPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>NavbarToggler</h3>
+        <SectionTitle>NavbarToggler</SectionTitle>
         <p>
           Place the <code>NavbarToggler</code> <b>after</b> <code>NavbarBrand</code> to have it appear on the right (typical setup).
           Reverse the order to have it appear on the left

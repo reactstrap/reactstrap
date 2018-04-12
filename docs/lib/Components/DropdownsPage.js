@@ -10,6 +10,7 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu } from 'reactstrap';
+import SectionTitle from '../UI/SectionTitle';
 import DropdownExample from '../examples/Dropdown';
 import DropdownSizingExample from '../examples/DropdownSizing';
 import CustomDropdownExample from '../examples/CustomDropdown';
@@ -39,7 +40,7 @@ export default class DropdownPage extends React.Component {
     return (
       <div>
         <Helmet title="Dropdowns" />
-        <h3>Dropdowns</h3>
+        <SectionTitle>Dropdowns</SectionTitle>
         <p>
           The <code>Dropdown</code> component is used to pass the <code>isOpen</code> &amp; <code>toggle</code> props via context to the following components: <code>DropdownToggle</code>, <code>DropdownMenu</code>. The <code>DropdownToggle</code> uses the <code>Button</code> component internally, meaning it also accepts all the props the <Link to="/components/buttons/">Button component</Link> accepts.
         </p>
@@ -107,7 +108,7 @@ DropdownItem.propTypes = {
 };`}
           </PrismCode>
         </pre>
-        <h3>Alignment</h3>
+        <SectionTitle>Alignment</SectionTitle>
         <p>To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to <code>Dropdown</code>.</p>
         <div className="docs-example">
           <div style={{ display: 'inline-block' }}>
@@ -141,31 +142,31 @@ DropdownItem.propTypes = {
 </Dropdown>`}
           </PrismCode>
         </pre>
-        <h3>Menu Headers</h3>
+        <SectionTitle>Menu Headers</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {'<DropdownItem header>Header</DropdownItem>'}
           </PrismCode>
         </pre>
-        <h3>Menu Dividers</h3>
+        <SectionTitle>Menu Dividers</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {'<DropdownItem divider/>'}
           </PrismCode>
         </pre>
-        <h3>Menu Items</h3>
+        <SectionTitle>Menu Items</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {'<DropdownItem>Action</DropdownItem>'}
           </PrismCode>
         </pre>
-        <h3>Disabled Menu Items</h3>
+        <SectionTitle>Disabled Menu Items</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {'<DropdownItem disabled>Action</DropdownItem>'}
           </PrismCode>
         </pre>
-        <h3>Sizing</h3>
+        <SectionTitle>Sizing</SectionTitle>
         <div className="docs-example">
           <div>
             <DropdownSizingExample group size="lg" />
@@ -213,7 +214,7 @@ DropdownItem.propTypes = {
           </PrismCode>
         </pre>
 
-        <h3>Uncontrolled Dropdown</h3>
+        <SectionTitle>Uncontrolled Dropdown</SectionTitle>
         <p>
           For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledDropdown</code> does not require <code>isOpen</code> nor <code>toggle</code> props to work. For the <code>ButtonDropdown</code> flavor, an uncontrolled component have been made as well; <code>UncontrolledButtonDropdown</code>.
         </p>
@@ -225,7 +226,7 @@ DropdownItem.propTypes = {
             {DropdownUncontrolledExampleSource}
           </PrismCode>
         </pre>
-        <h3>Drop direction variations</h3>
+        <SectionTitle>Drop direction variations</SectionTitle>
         <div className="docs-example">
           <Row>
             <Col>
@@ -297,7 +298,7 @@ DropdownItem.propTypes = {
           </PrismCode>
         </pre>
 
-        <h3>Modifiers</h3>
+        <SectionTitle>Modifiers</SectionTitle>
         <div className="docs-example">
           <Row>
             <Col>

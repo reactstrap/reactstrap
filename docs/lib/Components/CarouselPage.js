@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import CarouselExample from '../examples/Carousel';
 const CarouselExampleSource = require('!!raw!../examples/Carousel');
 import CarouselUncontrolledExample from '../examples/CarouselUncontrolled';
@@ -15,7 +16,7 @@ export default class CarouselPage extends React.Component {
       <div>
         <Helmet title="Carousel" />
 
-        <h3>Carousel</h3>
+        <SectionTitle>Carousel</SectionTitle>
         <div className="docs-example">
           <CarouselExample />
         </div>
@@ -25,7 +26,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Carousel Properties</h3>
+        <SectionTitle>Carousel Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`Carousel.propTypes = {
@@ -62,7 +63,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>CarouselItem Properties</h3>
+        <SectionTitle>CarouselItem Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`CarouselItem.propTypes = {
@@ -76,7 +77,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>CarouselControl Properties</h3>
+        <SectionTitle>CarouselControl Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`CarouselControl.propTypes = {
@@ -88,7 +89,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>CarouselIndicators Properties</h3>
+        <SectionTitle>CarouselIndicators Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`CarouselIndicators.propTypes = {
@@ -100,7 +101,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>CarouselCaption Properties</h3>
+        <SectionTitle>CarouselCaption Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`CarouselCaption.propTypes = {
@@ -111,7 +112,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Uncontrolled Carousel</h3>
+        <SectionTitle>Uncontrolled Carousel</SectionTitle>
         <p>
           For the most basic use-case an uncontrolled component can provide the functionality wanted without the need to manage/control the state of the component. <code>UncontrolledCarousel</code> does not require <code>previous</code>, <code>next</code> nor <code>activeIndex</code> props to work.
           Anything provided to a normal <code>Carousel</code> can also be provided to <code>UncontrolledCarousel</code>, overriding the control <code>UncontrolledCarousel</code> provides. Additionally, you can hide the controls by passing <code>false</code> to the <code>controls</code> prop
@@ -126,7 +127,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Uncontrolled Carousel Properties</h3>
+        <SectionTitle>Uncontrolled Carousel Properties</SectionTitle>
         <p>Same as Carousel (except children) can be overridden plus the following</p>
         <pre>
           <PrismCode className="language-jsx">
@@ -139,7 +140,7 @@ export default class CarouselPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Carousel using a tag and classname</h3>
+        <SectionTitle>Carousel using a tag and classname</SectionTitle>
         <div className="docs-example">
           <CarouselCustomTagExample />
         </div>

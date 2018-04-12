@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import ModalExample from '../examples/Modal';
 const ModalExampleSource = require('!!raw!../examples/Modal');
 
@@ -25,7 +26,7 @@ export default class ModalsPage extends React.Component {
     return (
       <div>
         <Helmet title="Modals" />
-        <h3>Modals</h3>
+        <SectionTitle>Modals</SectionTitle>
         <div className="docs-example">
           <div className="btn-group">
             <div className="btn">

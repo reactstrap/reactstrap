@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import BadgeExample from '../examples/Badge';
 const BadgeExampleSource = require('!!raw!../examples/Badge');
@@ -23,7 +24,7 @@ export default class BadgesPage extends React.Component {
     return (
       <div>
         <Helmet title="Badges" />
-        <h3>Badges</h3>
+        <SectionTitle>Badges</SectionTitle>
         <hr />
         <p>Scale to parent</p>
         <div className="docs-example">
@@ -43,7 +44,7 @@ export default class BadgesPage extends React.Component {
             {BadgeButtonExampleSource}
           </PrismCode>
         </pre>
-        <h3>Contextual variations</h3>
+        <SectionTitle>Contextual variations</SectionTitle>
         <div className="docs-example">
           <BadgeVariationsExample />
         </div>
@@ -52,7 +53,7 @@ export default class BadgesPage extends React.Component {
             {BadgeVariationsExampleSource}
           </PrismCode>
         </pre>
-        <h3>Pills</h3>
+        <SectionTitle>Pills</SectionTitle>
         <div className="docs-example">
           <BadgePillsExample />
         </div>
@@ -61,7 +62,7 @@ export default class BadgesPage extends React.Component {
             {BadgePillsExampleSource}
           </PrismCode>
         </pre>
-        <h3>Links</h3>
+        <SectionTitle>Links</SectionTitle>
         <p>Adding the <code>href</code> prop (without specifying a <code>tag</code> prop) will default the badge to a link.</p>
         <div className="docs-example">
           <BadgeLinksExample />

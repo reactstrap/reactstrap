@@ -2,6 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import TableExample from '../examples/Table';
 import TableBorderedExample from '../examples/TableBordered';
@@ -24,7 +25,7 @@ export default class TablesPage extends React.Component {
     return (
       <div>
         <Helmet title="Tables" />
-        <h3>Tables</h3>
+        <SectionTitle>Tables</SectionTitle>
         <hr />
         <div className="docs-example">
           <TableExample />
@@ -49,7 +50,7 @@ responsive: PropTypes.bool
 };`}
         </PrismCode>
         </pre>
-        <h3>Dark table</h3>
+        <SectionTitle>Dark table</SectionTitle>
         <div className="docs-example">
           <TableDarkExample />
         </div>
@@ -58,7 +59,7 @@ responsive: PropTypes.bool
             {TableDarkExampleSource}
           </PrismCode>
         </pre>
-        <h3>Striped rows</h3>
+        <SectionTitle>Striped rows</SectionTitle>
         <div className="docs-example">
           <TableStripedExample />
         </div>
@@ -67,7 +68,7 @@ responsive: PropTypes.bool
             {TableStripedExampleSource}
           </PrismCode>
         </pre>
-        <h3>Bordered table</h3>
+        <SectionTitle>Bordered table</SectionTitle>
         <div className="docs-example">
           <TableBorderedExample />
         </div>
@@ -76,7 +77,7 @@ responsive: PropTypes.bool
             {TableBorderedExampleSource}
           </PrismCode>
         </pre>
-        <h3>Hoverable rows</h3>
+        <SectionTitle>Hoverable rows</SectionTitle>
         <div className="docs-example">
           <TableHoverExample />
         </div>
@@ -85,7 +86,7 @@ responsive: PropTypes.bool
             {TableHoverExampleSource}
           </PrismCode>
         </pre>
-        <h3>Small table</h3>
+        <SectionTitle>Small table</SectionTitle>
         <div className="docs-example">
           <TableSizingExample />
         </div>
@@ -94,7 +95,7 @@ responsive: PropTypes.bool
             {TableSizingExampleSource}
           </PrismCode>
         </pre>
-        <h3>Responsive table</h3>
+        <SectionTitle>Responsive table</SectionTitle>
         <div className="docs-example">
           <TableResponsiveExample />
         </div>

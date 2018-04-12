@@ -3,6 +3,7 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import { Alert } from 'reactstrap';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 
 import FadeExample from '../examples/Fade';
 const FadeExampleSource = require('!!raw!../examples/Fade');
@@ -13,7 +14,7 @@ export default class FadePage extends React.Component {
       <div>
         <Helmet title="Fade" />
 
-        <h3>Fade</h3>
+        <SectionTitle>Fade</SectionTitle>
         <div className="docs-example">
           <FadeExample />
         </div>
@@ -23,7 +24,7 @@ export default class FadePage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Properties</h3>
+        <SectionTitle>Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
 {`Fade.propTypes = {

@@ -3,6 +3,7 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import { Button } from 'reactstrap';
 import Helmet from 'react-helmet';
+import SectionTitle from '../UI/SectionTitle';
 import ButtonExample from '../examples/Button';
 const ButtonExampleSource = require('!!raw!../examples/Button');
 
@@ -17,7 +18,7 @@ export default class ButtonsPage extends React.Component {
     return (
       <div>
         <Helmet title="Buttons" />
-        <h3>Buttons</h3>
+        <SectionTitle>Buttons</SectionTitle>
         <div className="docs-example">
           <ButtonExample />
         </div>
@@ -48,7 +49,7 @@ export default class ButtonsPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <h3>Outline Buttons</h3>
+        <SectionTitle>Outline Buttons</SectionTitle>
         <div className="docs-example">
           <ButtonOutline />
         </div>
@@ -57,7 +58,7 @@ export default class ButtonsPage extends React.Component {
             {ButtonOutlineSource}
           </PrismCode>
         </pre>
-        <h3>Sizes</h3>
+        <SectionTitle>Sizes</SectionTitle>
         <div className="docs-example">
           <Button color="primary" size="lg">Large Button</Button>{' '}
           <Button color="secondary" size="lg">Large Button</Button>
@@ -88,7 +89,7 @@ export default class ButtonsPage extends React.Component {
 <Button color="secondary" size="lg" block>Block level button</Button>`}
           </PrismCode>
         </pre>
-        <h3>Active State</h3>
+        <SectionTitle>Active State</SectionTitle>
         <div className="docs-example">
           <Button color="primary" size="lg" active>Primary link</Button>{' '}
           <Button color="secondary" size="lg" active>Link</Button>
@@ -99,7 +100,7 @@ export default class ButtonsPage extends React.Component {
 <Button color="secondary" size="lg" active>Link</Button>`}
           </PrismCode>
         </pre>
-        <h3>Disabled State</h3>
+        <SectionTitle>Disabled State</SectionTitle>
         <div className="docs-example">
           <Button color="primary" size="lg" disabled>Primary button</Button>{' '}
           <Button color="secondary" size="lg" disabled>Button</Button>
@@ -111,7 +112,7 @@ export default class ButtonsPage extends React.Component {
           </PrismCode>
         </pre>
 
-        <h3>Checkbox and Radio Buttons (Stateful Buttons)</h3>
+        <SectionTitle>Checkbox and Radio Buttons (Stateful Buttons)</SectionTitle>
         <p>
           In order to have checkbox and radio buttons, your component needs to manage the state of which button(s) are active/select. It is not in the opinion of this library to manage state within it's components so it is left up to you. Below is a simple example showcasing how this could be done uses the components which already exist in this library.
         </p>
