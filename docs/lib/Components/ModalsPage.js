@@ -54,6 +54,7 @@ export default class ModalsPage extends React.Component {
   autoFocus: PropTypes.bool,
   // if modal should be centered vertically in viewport
   centered: PropTypes.bool,
+  // corresponds to bootstrap's modal sizes, ie. 'lg' or 'sm'
   size: PropTypes.string,
   // callback for toggling isOpen in the controlling component
   toggle:  PropTypes.func,
