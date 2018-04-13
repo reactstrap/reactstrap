@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import {
   Row,
   Col,
@@ -39,8 +39,7 @@ export default class DropdownPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Dropdowns" />
-        <SectionTitle>Dropdowns</SectionTitle>
+        <PageTitle title="Dropdowns" />
         <p>
           The <code>Dropdown</code> component is used to pass the <code>isOpen</code> &amp; <code>toggle</code> props via context to the following components: <code>DropdownToggle</code>, <code>DropdownMenu</code>. The <code>DropdownToggle</code> uses the <code>Button</code> component internally, meaning it also accepts all the props the <Link to="/components/buttons/">Button component</Link> accepts.
         </p>

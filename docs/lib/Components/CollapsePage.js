@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import CollapseExample from '../examples/Collapse';
@@ -14,9 +14,7 @@ export default class CollapsePage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Collapse" />
-
-        <SectionTitle>Collapse</SectionTitle>
+        <PageTitle title="Collapse" />
         <div className="docs-example">
           <CollapseExample />
         </div>

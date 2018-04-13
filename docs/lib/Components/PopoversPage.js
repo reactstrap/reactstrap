@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import PopoverExample from '../examples/Popover';
 const PopoverExampleSource = require('!!raw!../examples/Popover');
@@ -12,8 +12,7 @@ export default class PopoversPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Popovers" />
-        <SectionTitle>Popovers</SectionTitle>
+        <PageTitle title="Popovers" />
         <p>Popovers are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
         <div className="docs-example">
           <PopoverExample />

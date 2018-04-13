@@ -110,7 +110,7 @@ const items = [
 
 function Components(props) {
   return (
-    <Content items={items} {...props} />
+    <Content title="Components" items={items} {...props} />
   );
 }
 
