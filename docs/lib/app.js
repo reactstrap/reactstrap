@@ -19,7 +19,7 @@ if (typeof document !== 'undefined') {
     Holder = require('holderjs');
   });
 
-  ReactDOM.render(
+  ReactDOM.hydrate(
     <Router
       onUpdate={() => {
         window.scrollTo(0, 0);
