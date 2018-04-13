@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { NavbarToggler, Container, Collapse, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-
+import DocSearch from './DocSearch';
 
 export default class UINav extends React.Component {
   constructor(props) {
@@ -26,6 +26,9 @@ export default class UINav extends React.Component {
           <NavbarToggler onClick={this.toggleNavbar} />
           <Collapse navbar isOpen={this.state.showNavbar}>
             <Nav navbar className="ml-sm-auto">
+              <NavItem>
+                <DocSearch />
+              </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="nav-link" to="/components/" activeClassName="active">Components</NavLink>
               </NavItem>
