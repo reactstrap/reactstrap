@@ -4,10 +4,7 @@ import Helmet from 'react-helmet';
 
 function PageTitle({ tag: Tag, title, ...props }) {
   return (
-    <React.Fragment>
-      <Helmet title={title} />
-      <Tag {...props}>{title}</Tag>
-    </React.Fragment>
+    <Tag {...props}><Helmet title={title} />{title}</Tag>
   );
 }
 

@@ -3,20 +3,6 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 
-const ComponentLink = ({ item }) => {
-  return (
-    <NavItem>
-      <NavLink tag={Link} to={item.to} activeClassName="active">
-        {item.name}
-      </NavLink>
-    </NavItem>
-  );
-};
-
-ComponentLink.propTypes = {
-  item: PropTypes.object,
-};
-
 const propTypes = {
   children: PropTypes.node,
   items: PropTypes.array,
@@ -48,5 +34,6 @@ function Content({ items, children, title }) {
     </Container>
   );
 }
+
 Content.propTypes = propTypes;
 export default Content;
