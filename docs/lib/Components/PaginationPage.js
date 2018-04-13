@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 
 import PaginationExample from '../examples/Pagination';
@@ -20,7 +20,8 @@ export default class PaginationPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Pagination" />
+        <Helmet title="Pagination" />
+        <SectionTitle>Pagination</SectionTitle>
         <div className="docs-example">
           <PaginationExample />
         </div>

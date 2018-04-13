@@ -2,7 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import { Alert } from 'reactstrap';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 
 import FadeExample from '../examples/Fade';
@@ -12,7 +12,9 @@ export default class FadePage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Fade" />
+        <Helmet title="Fade" />
+
+        <SectionTitle>Fade</SectionTitle>
         <div className="docs-example">
           <FadeExample />
         </div>

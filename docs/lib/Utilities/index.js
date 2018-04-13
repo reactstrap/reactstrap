@@ -14,7 +14,7 @@ const items = [
 
 function Utilities(props) {
   return (
-    <Content title="Utilities" items={items} {...props} />
+    <Content items={items} {...props} />
   );
 }
 

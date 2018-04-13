@@ -2,7 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import { Alert } from 'reactstrap';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 
 import AlertExample from '../examples/Alert';
@@ -24,7 +24,9 @@ export default class AlertsPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Alerts" />
+        <Helmet title="Alerts" />
+
+        <SectionTitle>Alerts</SectionTitle>
         <div className="docs-example">
           <AlertExample />
         </div>

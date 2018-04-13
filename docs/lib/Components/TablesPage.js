@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 
 import TableExample from '../examples/Table';
@@ -24,7 +24,8 @@ export default class TablesPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Tables" />
+        <Helmet title="Tables" />
+        <SectionTitle>Tables</SectionTitle>
         <hr />
         <div className="docs-example">
           <TableExample />

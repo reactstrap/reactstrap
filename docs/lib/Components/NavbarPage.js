@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { PrismCode } from 'react-prism';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 import NavbarExample from '../examples/Navbar';
 const NavbarExampleSource = require('!!raw!../examples/Navbar');
@@ -13,7 +13,8 @@ export default class NavsPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Navbar" />
+        <Helmet title="Navbar Components" />
+        <SectionTitle>Navbar</SectionTitle>
         <div className="docs-example">
           <NavbarExample />
         </div>

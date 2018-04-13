@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import { Card, CardText } from 'reactstrap';
 import SectionTitle from '../UI/SectionTitle';
 import ProgressExample from '../examples/Progress';
@@ -23,7 +23,8 @@ export default class ProgressPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Progress" />
+        <Helmet title="Progress" />
+        <SectionTitle>Progress</SectionTitle>
         <div className="docs-example">
           <ProgressExample />
         </div>

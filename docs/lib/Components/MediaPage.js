@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 
 import MediaExample from '../examples/Media';
@@ -20,7 +20,8 @@ export default class MediaPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Media object" />
+        <Helmet title="Media object" />
+        <SectionTitle>Media object</SectionTitle>
         <div className="docs-example">
           <MediaExample />
         </div>

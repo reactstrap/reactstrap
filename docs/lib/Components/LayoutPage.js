@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 import LayoutExample from '../examples/Layout';
 const LayoutExampleSource = require('!!raw!../examples/Layout');
@@ -10,7 +10,8 @@ export default class LayoutsPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Layout Components (Container, Row, Col)" />
+        <Helmet title="Layout Components (Container, Row, Col)" />
+        <SectionTitle>Layout</SectionTitle>
         <div className="docs-example">
           <LayoutExample />
         </div>

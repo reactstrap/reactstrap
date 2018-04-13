@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import PageTitle from '../UI/PageTitle';
+import Helmet from 'react-helmet';
 import SectionTitle from '../UI/SectionTitle';
 import ModalExample from '../examples/Modal';
 const ModalExampleSource = require('!!raw!../examples/Modal');
@@ -25,7 +25,8 @@ export default class ModalsPage extends React.Component {
   render() {
     return (
       <div>
-        <PageTitle title="Modals" />
+        <Helmet title="Modals" />
+        <SectionTitle>Modals</SectionTitle>
         <div className="docs-example">
           <div className="btn-group">
             <div className="btn">
