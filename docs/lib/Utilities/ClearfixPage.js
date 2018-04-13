@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 
 import ClearfixExample from '../examples/Clearfix';
 
@@ -11,8 +11,7 @@ export default class ClearfixPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Clearfix" />
-        <h3>Clearfix</h3>
+        <PageTitle title="Clearfix" />
         <p>Easily clear <code className="highlighter-rouge">float</code>s by adding
           <code className="highlighter-rouge">.clearfix</code>
           <strong>to the parent element</strong>.

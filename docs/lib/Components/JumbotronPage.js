@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import JumbotronExample from '../examples/Jumbotron';
@@ -13,8 +13,7 @@ export default class JumbotronPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Jumbotron" />
-        <SectionTitle>Jumbotron</SectionTitle>
+        <PageTitle title="Jumbotron" />
         <hr />
         <div className="docs-example">
           <JumbotronExample />

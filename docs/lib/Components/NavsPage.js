@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import NavsExample from '../examples/Navs';
 const NavsExampleSource = require('!!raw!../examples/Navs');
@@ -16,8 +16,7 @@ export default class NavssPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Nav Components" />
-        <SectionTitle>Navs</SectionTitle>
+        <PageTitle title="Nav" />
         <div className="docs-example">
           <NavsExample />
         </div>

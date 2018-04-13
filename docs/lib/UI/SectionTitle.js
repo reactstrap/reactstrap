@@ -11,7 +11,8 @@ SectionTitle.propTypes = {
 };
 
 SectionTitle.defaultProps = {
-  tag: 'h3'
+  tag: 'h2',
+  classNames: 'h3',
 };
 
 export default SectionTitle;

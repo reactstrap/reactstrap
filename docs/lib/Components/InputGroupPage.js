@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import OverviewExample from '../examples/InputGroupOverview';
 const OverviewExampleSource = require('!!raw!../examples/InputGroupOverview');
@@ -33,8 +33,7 @@ export default class InputGroupPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Input Group" />
-        <SectionTitle>Input Group</SectionTitle>
+        <PageTitle title="Input Group" />
         <div className="docs-example">
           <OverviewExample />
         </div>

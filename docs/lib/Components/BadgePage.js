@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import BadgeExample from '../examples/Badge';
@@ -23,8 +23,7 @@ export default class BadgesPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Badges" />
-        <SectionTitle>Badges</SectionTitle>
+        <PageTitle title="Badges" />
         <hr />
         <p>Scale to parent</p>
         <div className="docs-example">

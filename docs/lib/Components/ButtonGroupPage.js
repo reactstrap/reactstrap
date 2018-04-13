@@ -1,7 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
 import {
   Button,
   ButtonGroup,
@@ -10,7 +9,7 @@ import {
   DropdownItem,
   DropdownMenu } from 'reactstrap';
 import { Link } from 'react-router';
-import UI from '../UI';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import ButtonGroupExample from '../examples/ButtonGroup';
@@ -39,8 +38,7 @@ export default class ButtonGroupPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Button Group" />
-        <SectionTitle>Button Group</SectionTitle>
+        <PageTitle title="Button Group" />
         <div className="docs-example">
           <div>
             <ButtonGroupExample />
