@@ -6,6 +6,7 @@ import SectionTitle from '../UI/SectionTitle';
 
 import TableExample from '../examples/Table';
 import TableBorderedExample from '../examples/TableBordered';
+import TableBorderlessExample from '../examples/TableBorderless';
 import TableHoverExample from '../examples/TableHover';
 import TableDarkExample from '../examples/TableDark';
 import TableResponsiveExample from '../examples/TableResponsive';
@@ -14,6 +15,7 @@ import TableStripedExample from '../examples/TableStriped';
 
 const TableExampleSource = require('!!raw!../examples/Table');
 const TableBorderedExampleSource = require('!!raw!../examples/TableBordered');
+const TableBorderlessExampleSource = require('!!raw!../examples/TableBorderless');
 const TableHoverExampleSource = require('!!raw!../examples/TableHover');
 const TableDarkExampleSource = require('!!raw!../examples/TableDark');
 const TableResponsiveExampleSource = require('!!raw!../examples/TableResponsive');
@@ -43,6 +45,7 @@ export default class TablesPage extends React.Component {
 tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 size: PropTypes.string,
 bordered: PropTypes.bool,
+borderless: PropTypes.bool,
 striped: PropTypes.bool,
 dark: PropTypes.bool,
 hover: PropTypes.bool,
@@ -75,6 +78,15 @@ responsive: PropTypes.bool
         <pre>
           <PrismCode className="language-jsx">
             {TableBorderedExampleSource}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Borderless table</SectionTitle>
+        <div className="docs-example">
+          <TableBorderlessExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {TableBorderlessExampleSource}
           </PrismCode>
         </pre>
         <SectionTitle>Hoverable rows</SectionTitle>
