@@ -37,6 +37,14 @@ describe('Table', () => {
     expect(wrapper.hasClass('table-dark')).toBe(true);
   });
 
+  it('should render a borderless table', () => {
+    const wrapper = shallow(<Table borderless>Yo!</Table>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table')).toBe(true);
+    expect(wrapper.hasClass('table-borderless')).toBe(true);
+  });
+
   it('should render responsive wrapper class', () => {
     const wrapper = shallow(<Table responsive>Yo!</Table>);
 
