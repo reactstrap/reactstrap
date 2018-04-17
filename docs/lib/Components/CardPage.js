@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import CardExample from '../examples/Card';
@@ -34,8 +34,7 @@ export default class CardPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Card" />
-        <SectionTitle>Card</SectionTitle>
+        <PageTitle title="Card" />
         <hr />
         <div className="docs-example">
           <CardExample />

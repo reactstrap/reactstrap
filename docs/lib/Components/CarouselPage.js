@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import CarouselExample from '../examples/Carousel';
 const CarouselExampleSource = require('!!raw!../examples/Carousel');
@@ -14,9 +14,7 @@ export default class CarouselPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Carousel" />
-
-        <SectionTitle>Carousel</SectionTitle>
+        <PageTitle title="Carousel" />
         <div className="docs-example">
           <CarouselExample />
         </div>

@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import Helmet from 'react-helmet';
+import PageTitle from '../UI/PageTitle';
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -33,8 +33,7 @@ export default class ButtonDropdownPage extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Button Dropdown" />
-        <SectionTitle>Button Dropdown</SectionTitle>
+        <PageTitle title="Button Dropdown" />
         <div className="docs-example">
           <ButtonDropdownExample />
         </div>
