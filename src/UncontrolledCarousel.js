@@ -66,7 +66,7 @@ class UncontrolledCarousel extends Component {
           key={item.src}
         >
           <img className="d-block w-100" src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselCaption captionText={item.caption} captionHeader={item.header || item.caption} />
         </CarouselItem>
       );
     });
