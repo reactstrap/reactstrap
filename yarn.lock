@@ -1453,9 +1453,9 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
+bootstrap@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.0.tgz#110b05c31a236d56dbc9adcda6dd16f53738a28a"
 
 boxen@^0.6.0:
   version "0.6.0"
@@ -6652,9 +6652,9 @@ react-helmet@^5.0.3:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
-react-popper@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.9.1.tgz#0b43db11b03bef403f209e085dddb94ce6330da5"
+react-popper@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.10.1.tgz#6a1f2595faffda77105bed4e89ecf22607a4c452"
   dependencies:
     popper.js "^1.14.1"
     prop-types "^15.6.1"
