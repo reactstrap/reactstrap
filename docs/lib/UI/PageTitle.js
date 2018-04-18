@@ -15,7 +15,7 @@ PageTitle.propTypes = {
 
 PageTitle.defaultProps = {
   tag: 'h2',
-  classNames: 'h3',
+  className: 'h3',
 };
 
 export default PageTitle;

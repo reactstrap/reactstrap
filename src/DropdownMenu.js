@@ -67,6 +67,7 @@ const DropdownMenu = (props, context) => {
       {...attrs}
       aria-hidden={!context.isOpen}
       className={classes}
+      x-placement={attrs.placement}
     />
   );
 };
