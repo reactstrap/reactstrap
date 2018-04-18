@@ -113,14 +113,14 @@ DropdownItem.propTypes = {
           <div style={{ display: 'inline-block' }}>
             <Dropdown isOpen={this.state.example2} toggle={this.toggleExample2}>
               <DropdownToggle caret>
-                This dropdown's menu is right-aligned
+                Dropdown's menu is right-aligned
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem header>Header</DropdownItem>
                 <DropdownItem disabled>Action</DropdownItem>
                 <DropdownItem>Another Action</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Another Action</DropdownItem>
+                <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>

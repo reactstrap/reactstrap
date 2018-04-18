@@ -163,7 +163,7 @@ class PopperContent extends React.Component {
     };
 
     return (
-      <ReactPopper modifiers={extendedModifiers} {...attrs} component={tag} className={popperClassName}>
+      <ReactPopper modifiers={extendedModifiers} {...attrs} component={tag} className={popperClassName} x-placement={this.state.placement || attrs.placement}>
         {children}
         {!hideArrow && <Arrow className={arrowClassName} />}
       </ReactPopper>
