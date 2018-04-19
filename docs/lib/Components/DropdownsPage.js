@@ -90,7 +90,8 @@ DropdownMenu.propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   // Custom modifiers that are passed to DropdownMenu.js, see https://popper.js.org/popper-documentation.html#modifiers
-  modifiers: PropTypes.object
+  modifiers: PropTypes.object,
+  persist: PropTypes.bool // presist the popper, even when closed. See #779 for reasoning
 };
 
 DropdownItem.propTypes = {

@@ -12,6 +12,7 @@ const propTypes = {
   modifiers: PropTypes.object,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  persist: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -47,7 +48,7 @@ const DropdownMenu = (props, context) => {
 
   let Tag = tag;
 
-  if (context.isOpen && !context.inNavbar) {
+  if (persist || (context.isOpen && !context.inNavbar) {
     Tag = Popper;
 
     const position1 = directionPositionMap[context.direction] || 'bottom';
