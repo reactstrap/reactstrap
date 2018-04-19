@@ -36,7 +36,7 @@ const directionPositionMap = {
 };
 
 const DropdownMenu = (props, context) => {
-  const { className, cssModule, right, tag, flip, modifiers, ...attrs } = props;
+  const { className, cssModule, right, tag, flip, modifiers, persist, ...attrs } = props;
   const classes = mapToCssModules(classNames(
     className,
     'dropdown-menu',
@@ -48,7 +48,7 @@ const DropdownMenu = (props, context) => {
 
   let Tag = tag;
 
-  if (persist || (context.isOpen && !context.inNavbar) {
+  if (persist || (context.isOpen && !context.inNavbar)) {
     Tag = Popper;
 
     const position1 = directionPositionMap[context.direction] || 'bottom';
