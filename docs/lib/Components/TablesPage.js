@@ -115,6 +115,13 @@ responsive: PropTypes.bool
             {TableResponsiveExampleSource}
           </PrismCode>
         </pre>
+        <SectionTitle>Advanced use cases</SectionTitle>
+        <p>
+          For more advanced use cases you might be able to take advantage of
+          <a href="https://www.npmjs.com/package/@devexpress/dx-react-grid-bootstrap4">dx-react-grid-bootstrap4</a>.
+          It's a data grid built on top of Reactstrap with paging, sorting, filtering,
+          grouping, selection, editing and virtual scrolling features.
+        </p>
       </div>
     );
   }
