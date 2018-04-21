@@ -2,6 +2,10 @@
   max-width: 1200px;
 }
 
+.nav-tabs .nav-link {
+  cursor: pointer;
+}
+
 @media (max-width: 575px) {
   .navbar-toggleable > .container {
       width: 100%;
