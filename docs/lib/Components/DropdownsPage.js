@@ -65,7 +65,8 @@ export default class DropdownPage extends React.Component {
   // For Dropdown usage inside a Navbar (disables popper)
   inNavbar: PropTypes.bool,
   tag: PropTypes.string, // default: 'div' unless nav=true, then 'li'
-  toggle: PropTypes.func
+  toggle: PropTypes.func,
+  setActiveFromChild: PropTypes.bool
 };
 
 DropdownToggle.propTypes = {
