@@ -194,13 +194,12 @@ class Dropdown extends React.Component {
     attrs.tag = attrs.tag || (nav ? 'li' : 'div');
 
     let subItemIsActive = false;
-    if(setActiveFromChild) {
-      React.Children.map(
-        this.props.children[1].props.children, dropdownItem => {
-          if(dropdownItem.props.active) subItemIsActive = true;
+    if (setActiveFromChild) {
+      React.Children.map(this.props.children[1].props.children,
+        (dropdownItem) => {
+          if (dropdownItem.props.active) subItemIsActive = true;
         }
-      )
-      console.log("subItemIsActive: ", subItemIsActive);
+      );
     }
 
     const classes = mapToCssModules(classNames(

@@ -825,10 +825,10 @@ describe('Dropdown', () => {
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-      )
+      );
 
       expect(wrapper.hasClass('active')).toBe(true);
-    })
+    });
   });
 
   it('should render with correct class when direction is set', () => {
