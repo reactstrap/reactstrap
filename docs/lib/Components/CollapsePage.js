@@ -44,7 +44,7 @@ export default class CollapsePage extends React.Component {
 
         <SectionTitle>Events</SectionTitle>
         <p>
-          Use the <code>onEnter</code>, onEntering, onEntered, onExit, onExiting and onExited props for callbacks when the
+          Use the <code>onEnter</code>, onEntering, onEntered, onExiting and onExited props for callbacks when the
           Collapse has finished opening (entering) or closing (exiting).
         </p>
         <div className="docs-example">
