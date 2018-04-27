@@ -22,7 +22,7 @@ export default () => {
               </p>
               <p>
                 <Button color="danger" tag={Link} to="/components/">Components</Button>
-                <Button outline color="danger" href="https://github.com/reactstrap/reactstrap">Github</Button>
+                <Button outline color="danger" href="https://github.com/reactstrap/reactstrap">GitHub</Button>
               </p>
             </Col>
           </Row>
