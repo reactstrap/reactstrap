@@ -80,7 +80,7 @@ npm install --save reactstrap react react-dom`}
                 {`import { Button } from 'reactstrap';`}
               </PrismCode>
             </pre>
-            <p>Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example <a href="https://gist.github.com/eddywashere/e13033c0e655ab7cda995f8bc77ce40d" target="_blank"><code>App.js</code></a> redone using reactstrap.</p>
+            <p>Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example <a href="https://gist.github.com/Thomas-Smyth/006fd507a7295f17a8473451938f9935" target="_blank"><code>App.js</code></a> redone using reactstrap.</p>
             <h2 className="mt-5">CDN</h2>
             <p>Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN.</p>
             <pre>
