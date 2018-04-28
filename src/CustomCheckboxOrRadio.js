@@ -1,24 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
+  className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.string.isRequired,
-  description: PropTypes.string
+  description: PropTypes.string,
+  inline: PropTypes.bool,
+  cssModule: PropTypes.object
 };
 
 function CustomCheckboxOrRadio(props) {
   const {
+    className,
     id,
     description,
     type,
+    inline,
+    cssModule,
     ...attributes
   } = props;
 
-  const className = `custom-control custom-${type}`;
+  const classes = mapToCssModules(classNames(
+    className,
+    'custom-control',
+    `custom-${type}`,
+    { 'custom-control-inline': inline }
+  ), cssModule);
 
   return (
-    <div className={className}>
+    <div className={classes}>
       <input
         {...attributes}
         id={id}
