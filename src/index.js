@@ -41,6 +41,7 @@ import CardSubtitle from './CardSubtitle';
 import CardText from './CardText';
 import CardTitle from './CardTitle';
 import CustomCheckbox from './CustomCheckbox';
+import CustomRadio from './CustomRadio';
 import PopperContent from './PopperContent';
 import PopperTargetHelper from './PopperTargetHelper';
 import Popover from './Popover';
@@ -157,6 +158,7 @@ export {
   InputGroupText,
   Label,
   CustomCheckbox,
+  CustomRadio,
   Media,
   Pagination,
   PaginationItem,

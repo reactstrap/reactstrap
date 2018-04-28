@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CustomCheckbox, Form, FormGroup, Label } from 'reactstrap';
+import { CustomCheckbox, CustomRadio, Form, FormGroup, Label } from 'reactstrap';
 
 function Example() {
   return (
@@ -8,8 +8,15 @@ function Example() {
       <FormGroup>
         <Label for="exampleCheckbox">Checkboxes</Label>
         <div>
-          <CustomCheckbox description="Check this custom checkbox" />
-          <CustomCheckbox description="Or this one" />
+          <CustomCheckbox id="exampleCustomCheckbox" description="Check this custom checkbox" />
+          <CustomCheckbox id="exampleCustomCheckbox2" description="Or this one" />
+        </div>
+      </FormGroup>
+      <FormGroup>
+        <Label for="exampleCheckbox">Radios</Label>
+        <div>
+          <CustomRadio id="exampleCustomRadio" name="customRadio" description="Check this custom radio" />
+          <CustomRadio id="exampleCustomRadio2" name="customRadio" description="Or this one" />
         </div>
       </FormGroup>
     </Form>
