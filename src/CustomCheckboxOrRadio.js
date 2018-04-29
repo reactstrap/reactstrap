@@ -9,7 +9,8 @@ const propTypes = {
   type: PropTypes.string.isRequired,
   description: PropTypes.string,
   inline: PropTypes.bool,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
+  children: PropTypes.oneOfType(PropTypes.node, PropTypes.array, PropTypes.func)
 };
 
 function CustomCheckboxOrRadio(props) {
@@ -20,6 +21,7 @@ function CustomCheckboxOrRadio(props) {
     type,
     inline,
     cssModule,
+    children,
     ...attributes
   } = props;
 
@@ -39,6 +41,7 @@ function CustomCheckboxOrRadio(props) {
         className="custom-control-input"
       />
       <label className="custom-control-label" htmlFor={id}>{description}</label>
+      {children}
     </div>
   );
 }
