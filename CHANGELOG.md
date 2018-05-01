@@ -1,3 +1,35 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/reactstrap/reactstrap/compare/5.0.0...6.0.0) (2018-05-01)
+
+
+*  chore(Input): remove support for children content in <textarea/> (#927) ([4dea4a6](https://github.com/reactstrap/reactstrap/commit/4dea4a6)), closes [#927](https://github.com/reactstrap/reactstrap/issues/927) [#871](https://github.com/reactstrap/reactstrap/issues/871)
+
+
+### Bug Fixes
+
+* **DropdownMenu:** add x-placement attribute ([#966](https://github.com/reactstrap/reactstrap/issues/966)) ([0f4a4cb](https://github.com/reactstrap/reactstrap/commit/0f4a4cb)), closes [#962](https://github.com/reactstrap/reactstrap/issues/962)
+* **innerRef:** allow createRef as a ref ([a5795b8](https://github.com/reactstrap/reactstrap/commit/a5795b8))
+* **Modal:** update zindex when prop is changed ([#937](https://github.com/reactstrap/reactstrap/issues/937)) ([01667c1](https://github.com/reactstrap/reactstrap/commit/01667c1))
+* **UncontrolledCarousel:** add bootstrap classes to img to make it responsive ([#934](https://github.com/reactstrap/reactstrap/issues/934)) ([9f7b741](https://github.com/reactstrap/reactstrap/commit/9f7b741))
+* **UncontrolledCarousel:** added header item prop ([#964](https://github.com/reactstrap/reactstrap/issues/964)) ([62b79fb](https://github.com/reactstrap/reactstrap/commit/62b79fb)), closes [#943](https://github.com/reactstrap/reactstrap/issues/943)
+
+
+### Features
+
+* **CustomInput:** add custom checkboxes/radios ([#985](https://github.com/reactstrap/reactstrap/issues/985)) ([312e729](https://github.com/reactstrap/reactstrap/commit/312e729))
+* **CustomInput:** add more custom inputs ([#991](https://github.com/reactstrap/reactstrap/issues/991)) ([ccdb7f2](https://github.com/reactstrap/reactstrap/commit/ccdb7f2)), closes [#534](https://github.com/reactstrap/reactstrap/issues/534)
+* **Dropdown:** setActiveFromChild prop ([#977](https://github.com/reactstrap/reactstrap/issues/977)) ([1b47757](https://github.com/reactstrap/reactstrap/commit/1b47757))
+* **DropdownMenu:** add Popper modifiers ([#929](https://github.com/reactstrap/reactstrap/issues/929)) ([f28ef8a](https://github.com/reactstrap/reactstrap/commit/f28ef8a)), closes [#811](https://github.com/reactstrap/reactstrap/issues/811)
+* **DropdownMenu:** allow menu to persist ([840adb2](https://github.com/reactstrap/reactstrap/commit/840adb2)), closes [#779](https://github.com/reactstrap/reactstrap/issues/779)
+* **Table:** add `borderless` option ([#956](https://github.com/reactstrap/reactstrap/issues/956)) ([210b53f](https://github.com/reactstrap/reactstrap/commit/210b53f))
+
+
+### BREAKING CHANGES
+
+* `Input` with type="textarea" can no longer have children. To set the value of the textarea please use `value`/`defaultValue` the same as you would for input type="text".
+
+
+
 <a name="5.0.0"></a>
 # [5.0.0](https://github.com/reactstrap/reactstrap/compare/5.0.0-beta.3...5.0.0) (2018-03-23)
 
