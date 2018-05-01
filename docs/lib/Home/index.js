@@ -21,8 +21,8 @@ export default () => {
                 Easy to use React Bootstrap 4 components
               </p>
               <p>
-                <Button outline color="danger" href="https://github.com/reactstrap/reactstrap">View on Github</Button>
-                <Button color="danger" tag={Link} to="/components/">View Components</Button>
+                <Button outline color="danger" href="https://github.com/reactstrap/reactstrap">GitHub</Button>
+                <Button color="danger" tag={Link} to="/components/">Components</Button>
               </p>
             </Col>
           </Row>
@@ -36,7 +36,7 @@ export default () => {
             <h3 className="mt-5">NPM</h3>
             <p>Install reactstrap and peer dependencies via NPM</p>
             <pre>
-              <PrismCode className="language-bash">npm install --save reactstrap@next react react-dom</PrismCode>
+              <PrismCode className="language-bash">npm install --save reactstrap react react-dom</PrismCode>
             </pre>
             <p>Import the components you need</p>
             <div className="docs-example">
@@ -67,7 +67,7 @@ npm start`}
             <pre>
               <PrismCode className="language-bash">
   {`npm install bootstrap --save
-npm install --save reactstrap@next react react-dom`}
+npm install --save reactstrap react react-dom`}
               </PrismCode>
             </pre>
             <p>Import Bootstrap CSS in the <code>src/index.js</code> file:</p>

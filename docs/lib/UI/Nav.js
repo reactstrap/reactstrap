@@ -36,7 +36,7 @@ export default class UINav extends React.Component {
                 <NavLink tag={Link} to="/utilities/" activeClassName="active">Utilities</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
