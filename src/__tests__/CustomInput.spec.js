@@ -1,0 +1,193 @@
+import React from 'react';
+import { shallow, mount } from 'enzyme';
+import { CustomInput } from '../';
+
+describe('Custom Inputs', () => {
+  describe('CustomCheckbox', () => {
+    it('should render an optional label', () => {
+      const checkbox = mount(<CustomInput type="checkbox" label="Yo!" />);
+      expect(checkbox.find('label').text()).toBe('Yo!');
+    });
+
+    it('should render children in the outer div', () => {
+      const checkbox = shallow(<CustomInput type="checkbox" />);
+      expect(checkbox.type()).toBe('div');
+    });
+
+    it('should render an input with the type of checkbox', () => {
+      const checkbox = mount(<CustomInput type="checkbox" />);
+      expect(checkbox.find('input').prop('type')).toBe('checkbox');
+    });
+
+    it('should pass id to both the input and label nodes', () => {
+      const checkbox = mount(<CustomInput type="checkbox" id="yo" />);
+      expect(checkbox.find('input').prop('id')).toBe('yo');
+      expect(checkbox.find('label').prop('htmlFor')).toBe('yo');
+    });
+
+    it('should pass classNames to the outer div', () => {
+      const checkbox = mount(<CustomInput type="checkbox" className="yo" />);
+      expect(checkbox.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
+    });
+
+    it('should add class is-invalid when invalid is true', () => {
+      const checkbox = mount(<CustomInput type="checkbox" invalid />);
+      expect(checkbox.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
+    });
+
+    it('should add class is-valid when valid is true', () => {
+      const checkbox = mount(<CustomInput type="checkbox" valid />);
+      expect(checkbox.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
+    });
+
+    it('should pass all other props to the input node', () => {
+      const checkbox = mount(<CustomInput type="checkbox" data-testprop="yo" />);
+      expect(checkbox.find('input').prop('data-testprop')).toBe('yo');
+    });
+  });
+
+  describe('CustomRadio', () => {
+    it('should render an optional label', () => {
+      const radio = mount(<CustomInput type="radio" label="Yo!" />);
+      expect(radio.find('label').text()).toBe('Yo!');
+    });
+
+    it('should render children in the outer div', () => {
+      const radio = shallow(<CustomInput type="radio" />);
+      expect(radio.type()).toBe('div');
+    });
+
+    it('should render an input with the type of radio', () => {
+      const radio = mount(<CustomInput type="radio" />);
+      expect(radio.find('input').prop('type')).toBe('radio');
+    });
+
+    it('should add class is-invalid when invalid is true', () => {
+      const radio = mount(<CustomInput type="radio" invalid />);
+      expect(radio.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
+    });
+
+    it('should add class is-valid when valid is true', () => {
+      const radio = mount(<CustomInput type="radio" valid />);
+      expect(radio.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
+    });
+
+    it('should pass id to both the input and label nodes', () => {
+      const radio = mount(<CustomInput type="radio" id="yo" />);
+      expect(radio.find('input').prop('id')).toBe('yo');
+      expect(radio.find('label').prop('htmlFor')).toBe('yo');
+    });
+
+    it('should pass classNames to the outer div', () => {
+      const radio = mount(<CustomInput type="radio" className="yo" />);
+      expect(radio.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
+    });
+
+    it('should pass all other props to the input node', () => {
+      const radio = mount(<CustomInput type="radio" data-testprop="yo" />);
+      expect(radio.find('input').prop('data-testprop')).toBe('yo');
+    });
+  });
+
+  describe('CustomSelect', () => {
+    it('should render children in the outer div', () => {
+      const select = shallow(<CustomInput type="select" />);
+      expect(select.type()).toBe('select');
+    });
+
+    it('should add class is-invalid when invalid is true', () => {
+      const select = mount(<CustomInput type="select" invalid />);
+      expect(select.find('select').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
+    });
+
+    it('should add class is-valid when valid is true', () => {
+      const select = mount(<CustomInput type="select" valid />);
+      expect(select.find('select').prop('className').indexOf('is-valid') > -1).toBeTruthy();
+    });
+
+    it('should add the size class when bsSize is provided', () => {
+      const select = mount(<CustomInput type="select" bsSize="lg" />);
+      expect(select.find('select').prop('className').indexOf('custom-select-lg') > -1).toBeTruthy();
+    });
+
+    it('should pass classNames to the outer div', () => {
+      const select = mount(<CustomInput type="select" className="yo" />);
+      expect(select.find('.custom-select').prop('className').indexOf('yo') > -1).toBeTruthy();
+    });
+
+    it('should pass all other props to the input node', () => {
+      const select = mount(<CustomInput type="select" data-testprop="yo" />);
+      expect(select.find('select').prop('data-testprop')).toBe('yo');
+    });
+  });
+
+  describe('CustomFile', () => {
+    it('should render children in the outer div', () => {
+      const file = shallow(<CustomInput type="file" />);
+      expect(file.type()).toBe('div');
+    });
+
+    it('should add class is-invalid when invalid is true', () => {
+      const file = mount(<CustomInput type="file" invalid />);
+      expect(file.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
+    });
+
+    it('should add class is-valid when valid is true', () => {
+      const file = mount(<CustomInput type="file" valid />);
+      expect(file.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
+    });
+
+    it('should render an input with the type of file', () => {
+      const file = mount(<CustomInput type="file" />);
+      expect(file.find('input').prop('type')).toBe('file');
+    });
+
+    it('should pass id to both the input and label nodes', () => {
+      const file = mount(<CustomInput type="file" id="yo" />);
+      expect(file.find('input').prop('id')).toBe('yo');
+      expect(file.find('label').prop('htmlFor')).toBe('yo');
+    });
+
+    it('should pass classNames to the outer div', () => {
+      const file = mount(<CustomInput type="file" className="yo" />);
+      expect(file.find('.custom-file').prop('className').indexOf('yo') > -1).toBeTruthy();
+    });
+
+    it('should set the label when provided', () => {
+      const file = mount(<CustomInput type="file" label="yo" />);
+      expect(file.find('label').text()).toBe('yo');
+    });
+
+    it('should pass all other props to the input node', () => {
+      const file = mount(<CustomInput type="file" data-testprop="yo" />);
+      expect(file.find('input').prop('data-testprop')).toBe('yo');
+    });
+  });
+
+  describe('CustomRange', () => {
+    it('should render children in the outer div', () => {
+      const range = shallow(<CustomInput type="range" />);
+      expect(range.type()).toBe('input');
+    });
+
+    it('should add class is-invalid when invalid is true', () => {
+      const range = mount(<CustomInput type="range" invalid />);
+      expect(range.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
+    });
+
+    it('should add class is-valid when valid is true', () => {
+      const range = mount(<CustomInput type="range" valid />);
+      expect(range.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
+    });
+
+    it('should render an input with the type of range', () => {
+      const range = mount(<CustomInput type="range" />);
+      expect(range.find('input').prop('type')).toBe('range');
+    });
+
+    it('should pass all other props to the input node', () => {
+      const range = mount(<CustomInput type="range" data-testprop="yo" />);
+      expect(range.find('input').prop('data-testprop')).toBe('yo');
+    });
+  });
+});
