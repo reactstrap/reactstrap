@@ -31,7 +31,8 @@
     "README.md",
     "CHANGELOG.md",
     "lib",
-    "dist"
+    "dist",
+    "src"
   ],
   "keywords": [
     "reactstrap",
