@@ -24,6 +24,7 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   inNavbar: PropTypes.bool,
+  setActiveFromChild: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -33,6 +34,7 @@ const defaultProps = {
   active: false,
   addonType: false,
   inNavbar: false,
+  setActiveFromChild: false
 };
 
 const childContextTypes = {
@@ -181,6 +183,7 @@ class Dropdown extends React.Component {
       group,
       size,
       nav,
+      setActiveFromChild,
       active,
       addonType,
       ...attrs
@@ -190,10 +193,20 @@ class Dropdown extends React.Component {
 
     attrs.tag = attrs.tag || (nav ? 'li' : 'div');
 
+    let subItemIsActive = false;
+    if (setActiveFromChild) {
+      React.Children.map(this.props.children[1].props.children,
+        (dropdownItem) => {
+          if (dropdownItem.props.active) subItemIsActive = true;
+        }
+      );
+    }
+
     const classes = mapToCssModules(classNames(
       className,
       direction !== 'down' && `drop${direction}`,
       nav && active ? 'active' : false,
+      setActiveFromChild && subItemIsActive ? 'active' : false,
       {
         [`input-group-${addonType}`]: addonType,
         'btn-group': group,
@@ -203,6 +216,7 @@ class Dropdown extends React.Component {
         'nav-item': nav
       }
     ), cssModule);
+
     return <Manager {...attrs} className={classes} onKeyDown={this.handleKeyDown} />;
   }
 }

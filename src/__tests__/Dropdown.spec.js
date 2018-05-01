@@ -812,6 +812,23 @@ describe('Dropdown', () => {
 
       expect(wrapper.hasClass('active')).toBe(true);
     });
+
+    it('should render an active class when a child DropdownItem is active IF setActiveFromChild is true', () => {
+      const wrapper = shallow(
+        <Dropdown nav inNavbar setActiveFromChild toggle={toggle}>
+          <DropdownToggle nav caret>
+            Options
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem active>
+              Test
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.hasClass('active')).toBe(true);
+    });
   });
 
   it('should render with correct class when direction is set', () => {
