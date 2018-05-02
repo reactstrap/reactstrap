@@ -8,6 +8,7 @@
   "jsdelivr": "dist/reactstrap.min.js",
   "unpkg": "dist/reactstrap.min.js",
   "cdn": "dist/reactstrap.min.js",
+  "esnext": "src",
   "scripts": {
     "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "cross-env BABEL_ENV=test react-scripts test --env=jsdom",
@@ -30,7 +31,8 @@
     "README.md",
     "CHANGELOG.md",
     "lib",
-    "dist"
+    "dist",
+    "src"
   ],
   "keywords": [
     "reactstrap",
