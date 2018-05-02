@@ -1,3 +1,13 @@
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/reactstrap/reactstrap/compare/6.0.0...6.0.1) (2018-05-02)
+
+
+### Bug Fixes
+
+* **CustomInput:** fix Invalid propType. ([#994](https://github.com/reactstrap/reactstrap/issues/994)) ([35ca0a8](https://github.com/reactstrap/reactstrap/commit/35ca0a8)), closes [#993](https://github.com/reactstrap/reactstrap/issues/993)
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/reactstrap/reactstrap/compare/5.0.0...6.0.0) (2018-05-01)
 
