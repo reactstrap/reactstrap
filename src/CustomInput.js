@@ -13,7 +13,7 @@ const propTypes = {
   invalid: PropTypes.bool,
   bsSize: PropTypes.string,
   cssModule: PropTypes.object,
-  children: PropTypes.oneOfType(PropTypes.node, PropTypes.array, PropTypes.func)
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func])
 };
 
 function CustomInput(props) {
