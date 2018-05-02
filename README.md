@@ -73,22 +73,22 @@ If you prefer to include Reactstrap globally by marking `reactstrap` as external
 * [**cdnjs**](https://cdnjs.com/libraries/reactstrap)
 ```html
 <!-- Main version -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0/reactstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.min.js"></script>
 
 <!-- All optional dependencies version -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0/reactstrap.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.full.min.js"></script>
 ```
 
 * [**unpkg**](https://unpkg.com/reactstrap/)
 ```html
 <!-- Main version -->
-<script src="https://unpkg.com/reactstrap@5.0.0/dist/reactstrap.min.js"></script>
+<script src="https://unpkg.com/reactstrap@6.0.1/dist/reactstrap.min.js"></script>
 
 <!-- All optional dependencies version -->
-<script src="https://unpkg.com/reactstrap@5.0.0/dist/reactstrap.full.min.js"></script>
+<script src="https://unpkg.com/reactstrap@6.0.1/dist/reactstrap.full.min.js"></script>
 ```
 
-> **Note**: To load a specific version of Reactstrap replace `5.0.0` with the version number.
+> **Note**: To load a specific version of Reactstrap replace `6.0.1` with the version number.
 
 #### Versions
 
@@ -123,14 +123,15 @@ Reactstrap has two primary distribution versions:
 <html lang="en">
   <head>
     <!-- Required dependencies -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/16.3.2/umd/react.production.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.3.2/umd/react-dom.production.min.js"></script>
     <!-- Optional dependencies -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.1/react-transition-group.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.8.3/react-popper.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/popper.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.10.4/react-popper.min.js"></script>
     <!-- Reactstrap -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0/reactstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.min.js"></script>
     <!-- Lastly, include your app's bundle -->
     <script type="text/javascript" src="/assets/bundle.js"></script>
   </head>
