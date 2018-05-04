@@ -3,7 +3,7 @@
 
 - components: `name`
 - reactstrap version `#x.x.x`
-- import method `umd/csj/es` (if umd, are you using the "full" version (only for v5+)?)
+- import method `umd/csj/es` <!-- (if umd, are you using the "full" version (only for v5+)?) -->
 - react version `#x.x.x`
 - bootstrap version `#x.x.x`
 
@@ -29,9 +29,8 @@ paste error message with stacktrack here
 ### Code
 
 <!--
-Fork a link (for the corresponding version) and update it to demonstrate your issue.
- - v4 (with react 15): issue http://codepen.io/eddywashere/pen/ZOjmkm
- - v5 (with react 16): issue https://codepen.io/TheSharpieOne/pen/GMMPEZ
+Fork the link and update it to demonstrate your issue.
+https://stackblitz.com/edit/reactstrap?file=Example.js
  
 and/or add the code which causes the issue directly here
  -->  
