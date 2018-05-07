@@ -18,7 +18,7 @@ const defaultProps = {
 };
 
 const PaginationLink = (props) => {
-  const {
+  let {
     className,
     cssModule,
     next,
@@ -50,6 +50,10 @@ const PaginationLink = (props) => {
   let children = props.children;
   if (children && Array.isArray(children) && children.length === 0) {
     children = null;
+  }
+
+  if (!attributes.href && Tag === 'a') {
+    Tag = 'button';
   }
 
   if (previous || next) {
