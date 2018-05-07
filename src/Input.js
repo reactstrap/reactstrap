@@ -27,6 +27,25 @@ const defaultProps = {
 };
 
 class Input extends React.Component {
+  constructor(props) {
+    super(props);
+    this.getRef = this.getRef.bind(this);
+    this.focus = this.focus.bind(this);
+  }
+
+  getRef(ref) {
+    if (this.props.innerRef) {
+      this.props.innerRef(ref);
+    }
+    this.ref = ref;
+  }
+
+  focus() {
+    if (this.ref) {
+      this.ref.focus();
+    }
+  }
+
   render() {
     let {
       className,
