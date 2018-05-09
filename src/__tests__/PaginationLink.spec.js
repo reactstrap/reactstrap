@@ -3,10 +3,16 @@ import { shallow, mount } from 'enzyme';
 import { PaginationLink } from '../';
 
 describe('PaginationLink', () => {
-  it('should render default tag', () => {
-    const wrapper = mount(<PaginationLink />);
+  it('should render default `a` tag when `href` is present', () => {
+    const wrapper = mount(<PaginationLink href="#" />);
 
     expect(wrapper.find('a').hostNodes().length).toBe(1);
+  });
+
+  it('should render default `button` tag when no `href` is present', () => {
+    const wrapper = mount(<PaginationLink />);
+
+    expect(wrapper.find('button').hostNodes().length).toBe(1);
   });
 
   it('should render custom tag', () => {

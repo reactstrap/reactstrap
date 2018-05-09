@@ -39,9 +39,9 @@ const Media = (props) => {
   let defaultTag;
   if (heading) {
     defaultTag = 'h4';
-  } else if (left || right) {
+  } else if (attributes.href) {
     defaultTag = 'a';
-  } else if (object) {
+  } else if (attributes.src || object) {
     defaultTag = 'img';
   } else if (list) {
     defaultTag = 'ul';
