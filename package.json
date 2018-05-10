@@ -9,6 +9,7 @@
   "unpkg": "dist/reactstrap.min.js",
   "cdn": "dist/reactstrap.min.js",
   "esnext": "src",
+  "sideEffects": false,
   "scripts": {
     "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "cross-env BABEL_ENV=test react-scripts test --env=jsdom",

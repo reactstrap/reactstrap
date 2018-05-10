@@ -15,20 +15,20 @@ describe('Media', () => {
     expect(wrapper.type()).toBe('h4');
   });
 
-  it('should render an a tag by default for left', () => {
-    const wrapper = shallow(<Media left />);
-
-    expect(wrapper.type()).toBe('a');
-  });
-
-  it('should render an a tag by default for right', () => {
-    const wrapper = shallow(<Media right />);
+  it('should render an a tag by default Media with an href', () => {
+    const wrapper = shallow(<Media href="#" />);
 
     expect(wrapper.type()).toBe('a');
   });
 
   it('should render an img tag by default for object', () => {
     const wrapper = shallow(<Media object />);
+
+    expect(wrapper.type()).toBe('img');
+  });
+
+  it('should render an img tag by default Media with a src', () => {
+    const wrapper = shallow(<Media src="#" />);
 
     expect(wrapper.type()).toBe('img');
   });
