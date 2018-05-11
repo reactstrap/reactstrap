@@ -386,7 +386,7 @@ DropdownItem.propTypes = {
 
         <SectionTitle>setActiveFromChild</SectionTitle>
         <p>
-          Use <code>setActiveFromChild</code> prop to automatically set the dropdown to active when any of the dropdown menu item's are active. Note: this prop will not work in conjunction with react-router <code>Link</code> and <code>activeClassName</code>.
+          Use <code>setActiveFromChild</code> prop to automatically set the dropdown to active when any of the dropdown menu items are active. Note: this prop will not work in conjunction with react-router <code>Link</code> and <code>activeClassName</code>.
         </p>
         <div className="docs-example">
           <DropdownSetActiveFromChildExample />
