@@ -236,15 +236,17 @@ describe('Tooltip', () => {
     wrapper.unmount();
   });
 
-  it('should pass down offset', ()=> {
+  it('should pass down offset', () => {
     const wrapper = mount(
       <Tooltip
         isOpen
         target="target"
-        offset='100'>Tooltip content</Tooltip>
+        offset="100">
+        Tooltip content
+      </Tooltip>
     );
 
-    expect(wrapper.find(PopperContent).props().offset).toEqual('100')
+    expect(wrapper.find(PopperContent).props().offset).toEqual("100");
     wrapper.unmount();
   });
 

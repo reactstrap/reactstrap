@@ -514,15 +514,17 @@ describe('Popover', () => {
       wrapper.detach();
     });
 
-    it('should pass down offset', ()=> {
+    it('should pass down offset', () => {
       const wrapper = mount(
         <Popover
           isOpen
           target="innerTarget"
-          offset='100'>Popover content</Popover>
+          offset="100">
+          Popover content
+        </Popover>
       );
 
-      expect(wrapper.find(PopperContent).props().offset).toEqual('100')
+      expect(wrapper.find(PopperContent).props().offset).toEqual("100");
       wrapper.unmount();
     });
   });
