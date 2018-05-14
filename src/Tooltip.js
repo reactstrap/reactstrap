@@ -30,6 +30,10 @@ const propTypes = {
     PropTypes.number,
   ]),
   modifiers: PropTypes.object,
+  offset: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
 };
 
 const DEFAULT_DELAYS = {
@@ -200,6 +204,7 @@ class Tooltip extends React.Component {
         placementPrefix={this.props.placementPrefix}
         container={this.props.container}
         modifiers={this.props.modifiers}
+        offset={this.props.offset}
       >
         <div
           {...attributes}
