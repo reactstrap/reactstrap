@@ -516,10 +516,7 @@ describe('Popover', () => {
 
     it('should pass down offset', () => {
       const wrapper = mount(
-        <Popover
-          isOpen
-          target="innerTarget"
-          offset="100">
+        <Popover isOpen target="innerTarget" offset="100">
           Popover content
         </Popover>
       );

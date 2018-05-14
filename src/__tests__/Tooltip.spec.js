@@ -238,10 +238,7 @@ describe('Tooltip', () => {
 
   it('should pass down offset', () => {
     const wrapper = mount(
-      <Tooltip
-        isOpen
-        target="target"
-        offset="100">
+      <Tooltip isOpen target="target" offset="100">
         Tooltip content
       </Tooltip>
     );
