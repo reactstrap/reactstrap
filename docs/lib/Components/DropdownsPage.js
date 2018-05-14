@@ -15,10 +15,12 @@ import DropdownExample from '../examples/Dropdown';
 import DropdownSizingExample from '../examples/DropdownSizing';
 import CustomDropdownExample from '../examples/CustomDropdown';
 import DropdownUncontrolledExample from '../examples/DropdownUncontrolled';
+import DropdownSetActiveFromChildExample from '../examples/DropdownSetActiveFromChild';
 
 const DropdownExampleSource = require('!!raw!../examples/Dropdown');
 const CustomDropdownExampleSource = require('!!raw!../examples/CustomDropdown');
 const DropdownUncontrolledExampleSource = require('!!raw!../examples/DropdownUncontrolled');
+const DropdownSetActiveFromChildSource = require('!!raw!../examples/DropdownSetActiveFromChild');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {
@@ -379,6 +381,19 @@ DropdownItem.propTypes = {
     <DropdownItem>Another Action</DropdownItem>
   </DropdownMenu>
 </Dropdown>`}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>setActiveFromChild</SectionTitle>
+        <p>
+          Use <code>setActiveFromChild</code> prop to automatically set the dropdown to active when any of the dropdown menu items are active. Note: this prop will not work in conjunction with react-router <code>Link</code> and <code>activeClassName</code>.
+        </p>
+        <div className="docs-example">
+          <DropdownSetActiveFromChildExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {DropdownSetActiveFromChildSource}
           </PrismCode>
         </pre>
       </div>
