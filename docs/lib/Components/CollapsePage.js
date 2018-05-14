@@ -5,11 +5,14 @@ import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import CollapseExample from '../examples/Collapse';
+import UncontrolledCollapseExample from '../examples/CollapseUncontrolled';
 
 import CollapseEventsExample from '../examples/CollapseEvents';
 
 const CollapseExampleSource = require('!!raw!../examples/Collapse');
 const CollapseEventsExampleSource = require('!!raw!../examples/CollapseEvents');
+
+const UncontrolledCollapseExampleSource = require('!!raw!../examples/CollapseUncontrolled');
 
 export default class CollapsePage extends React.Component {
   render() {
@@ -60,6 +63,12 @@ export default class CollapsePage extends React.Component {
           pass a <code>toggler</code> prop. The <code>toggler</code> prop is a string which will run
           querySelectorAll to find dom elements which will trigger toggle.
         </p>
+        <div className="docs-example">
+          <UncontrolledCollapseExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">{UncontrolledCollapseExampleSource}</PrismCode>
+        </pre>
       </div>
     );
   }
