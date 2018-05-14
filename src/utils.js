@@ -26,20 +26,16 @@ export function isBodyOverflowing() {
 export function getOriginalBodyPadding() {
   const style = window.getComputedStyle(document.body, null);
 
-  return parseInt(
-    (style && style.getPropertyValue('padding-right')) || 0,
-    10
-  );
+  return parseInt((style && style.getPropertyValue('padding-right')) || 0, 10);
 }
 
 export function conditionallyUpdateScrollbar() {
   const scrollbarWidth = getScrollbarWidth();
   // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/js/src/modal.js#L433
-  const fixedContent = document.querySelectorAll('.fixed-top, .fixed-bottom, .is-fixed, .sticky-top')[0];
-  const bodyPadding = fixedContent ? parseInt(
-    fixedContent.style.paddingRight || 0,
-    10
-  ) : 0;
+  const fixedContent = document.querySelectorAll(
+    '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
+  )[0];
+  const bodyPadding = fixedContent ? parseInt(fixedContent.style.paddingRight || 0, 10) : 0;
 
   if (isBodyOverflowing()) {
     setScrollbarWidth(bodyPadding + scrollbarWidth);
@@ -118,26 +114,6 @@ export function DOMElement(props, propName, componentName) {
   }
 }
 
-export function getTarget(target) {
-  if (isFunction(target)) {
-    return target();
-  }
-
-  if (typeof target === 'string' && document) {
-    let selection = document.querySelector(target);
-    if (selection === null) {
-      selection = document.querySelector(`#${target}`);
-    }
-    if (selection === null) {
-      throw new Error(`The target '${target}' could not be identified in the dom, tip: check spelling`);
-    }
-    return selection;
-  }
-
-  return target;
-}
-
-
 /* eslint key-spacing: ["error", { afterColon: true, align: "value" }] */
 // These are all setup to match what is in the bootstrap _variables.scss
 // https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
@@ -205,3 +181,60 @@ export const canUseDOM = !!(
   window.document &&
   window.document.createElement
 );
+
+export function findDOMElements(target) {
+  if (isFunction(target)) {
+    return target();
+  }
+  if (typeof target === 'string' && canUseDOM) {
+    let selection = document.querySelectorAll(target);
+    if (!selection.length) {
+      selection = document.querySelectorAll(`#${target}`);
+    }
+    if (!selection.length) {
+      throw new Error(`The target '${target}' could not be identified in the dom, tip: check spelling`);
+    }
+    return selection;
+  }
+  return target;
+}
+
+export function isArrayOrNodeList(els) {
+  return Array.isArray(els) || (canUseDOM && typeof els.length === 'number');
+}
+
+export function getTarget(target) {
+  const els = findDOMElements(target);
+  if (isArrayOrNodeList(els)) {
+    return els[0];
+  }
+  return els;
+}
+
+export const defaultToggleEvents = ['touchstart', 'click'];
+
+export function addMultipleEventListeners(els, handler, events) {
+  if (
+    !isArrayOrNodeList(els) ||
+    typeof handler !== 'function' ||
+    !Array.isArray(events)
+  ) {
+    throw new Error(`
+      The first argument of this function must be an array or NodeList.
+      The second must be a function.
+      The third is an array of strings that represents DOM events
+    `);
+  }
+  events.forEach((event) => {
+    els.forEach((el) => {
+      el.addEventListener(event, handler);
+    });
+  });
+  return function removeEvents() {
+    events.forEach((event) => {
+      els.forEach((el) => {
+        el.removeEventListener(event, handler);
+      });
+    });
+  };
+}

@@ -14,8 +14,10 @@
     "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "cross-env BABEL_ENV=test react-scripts test --env=jsdom",
     "cover": "npm test -- --coverage",
-    "start": "cross-env BABEL_ENV=webpack webpack-dev-server --config ./webpack.dev.config.js --watch",
-    "build-docs": "cross-env BABEL_ENV=webpack WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
+    "start":
+      "cross-env BABEL_ENV=webpack webpack-dev-server --config ./webpack.dev.config.js --watch",
+    "build-docs":
+      "cross-env BABEL_ENV=webpack WEBPACK_BUILD=production webpack --config ./webpack.dev.config.js --progress --colors",
     "build": "rollup -c",
     "prebuild": "cross-env BABEL_ENV=lib-dir babel src --out-dir lib --ignore src/__tests__/",
     "postbuild": "node ./scripts/postbuild.js",
@@ -27,14 +29,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/reactstrap/reactstrap.git"
   },
-  "files": [
-    "LICENSE",
-    "README.md",
-    "CHANGELOG.md",
-    "lib",
-    "dist",
-    "src"
-  ],
+  "files": ["LICENSE", "README.md", "CHANGELOG.md", "lib", "dist", "src"],
   "keywords": [
     "reactstrap",
     "bootstrap",
@@ -86,7 +81,8 @@
     "edgji (https://github.com/edgji)",
     "nlrowe (https://github.com/nlrowe)",
     "npm-to-cdn-bot (by Forbes Lindesay) (https://github.com/npmcdn-to-unpkg-bot)",
-    "polmauri (https://github.com/polmauri)"
+    "polmauri (https://github.com/polmauri)",
+    "Steven Scaffidi (https://github.com/sscaff1)"
   ],
   "license": "MIT",
   "bugs": {
