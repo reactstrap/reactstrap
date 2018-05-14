@@ -524,7 +524,7 @@ describe('Popover', () => {
         </Popover>
       );
 
-      expect(wrapper.find(PopperContent).props().offset).toEqual("100");
+      expect(wrapper.find(PopperContent).props().offset).toEqual('100');
       wrapper.unmount();
     });
   });
