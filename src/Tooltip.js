@@ -117,16 +117,16 @@ class Tooltip extends React.Component {
     }
   }
 
-  handleFocus() {
-    this.toggle()
-  }
-
   getDelay(key) {
     const { delay } = this.props;
     if (typeof delay === 'object') {
       return isNaN(delay[key]) ? DEFAULT_DELAYS[key] : delay[key];
     }
     return delay;
+  }
+
+  handleFocus() {
+    this.toggle();
   }
 
   show() {
@@ -230,7 +230,7 @@ class Tooltip extends React.Component {
         <div
           {...attributes}
           className={classes}
-          role='tooltip'
+          role="tooltip"
           aria-hidden={this.props.isOpen}
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
