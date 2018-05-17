@@ -220,6 +220,8 @@ class Tooltip extends React.Component {
         <div
           {...attributes}
           className={classes}
+          role='tooltip'
+          aria-hidden={this.props.isOpen}
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
           onKeyDown={this.onEscKeyDown}
