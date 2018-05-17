@@ -48,7 +48,7 @@ const defaultProps = {
   placementPrefix: 'bs-tooltip',
   delay: DEFAULT_DELAYS,
   autohide: true,
-  toggle: function () {}
+  toggle: function () { }
 };
 
 class Tooltip extends React.Component {
@@ -66,6 +66,7 @@ class Tooltip extends React.Component {
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   componentDidMount() {
@@ -116,6 +117,10 @@ class Tooltip extends React.Component {
     }
   }
 
+  handleFocus() {
+    this.toggle()
+  }
+
   getDelay(key) {
     const { delay } = this.props;
     if (typeof delay === 'object') {
@@ -164,6 +169,9 @@ class Tooltip extends React.Component {
     this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
     this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
     this._target.addEventListener('keydown', this.onEscKeyDown, true);
+    this._target.addEventListener('focusin', this.handleFocus, true);
+    this._target.addEventListener('focusout', this.handleFocus, true);
+
 
     ['click', 'touchstart'].forEach(event =>
       document.addEventListener(event, this.handleDocumentClick, true)
@@ -174,6 +182,8 @@ class Tooltip extends React.Component {
     this._target.removeEventListener('mouseover', this.onMouseOverTooltip, true);
     this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip, true);
     this._target.addEventListener('keydown', this.onEscKeyDown, true);
+    this._target.addEventListener('focusin', this.handleFocus, true);
+    this._target.addEventListener('focusout', this.handleFocus, true);
 
     ['click', 'touchstart'].forEach(event =>
       document.removeEventListener(event, this.handleDocumentClick, true)
