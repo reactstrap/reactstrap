@@ -1,3 +1,24 @@
+<a name="6.0.2"></a>
+## [6.0.2](https://github.com/reactstrap/reactstrap/compare/6.0.1...6.0.2) (2018-05-17)
+
+
+### Bug Fixes
+
+* **Media:** fix default tags ([267dfe0](https://github.com/reactstrap/reactstrap/commit/267dfe0)), closes [#979](https://github.com/reactstrap/reactstrap/issues/979)
+* **PaginationLink:** do not render invalid anchor tags ([7266214](https://github.com/reactstrap/reactstrap/commit/7266214))
+
+
+### Features
+
+* **addMultipleEventListeners:** handle singles ([d124b27](https://github.com/reactstrap/reactstrap/commit/d124b27))
+* **exports:** mark reactstrap as sideEffects free ([#1005](https://github.com/reactstrap/reactstrap/issues/1005)) ([b68826d](https://github.com/reactstrap/reactstrap/commit/b68826d))
+* **Form:** add submit to component ([4e10dd9](https://github.com/reactstrap/reactstrap/commit/4e10dd9))
+* **Input:** make it easier to focus ([e3124af](https://github.com/reactstrap/reactstrap/commit/e3124af))
+* **Tooltip,Popover:** add offset prop ([#1018](https://github.com/reactstrap/reactstrap/issues/1018)) ([3561e3c](https://github.com/reactstrap/reactstrap/commit/3561e3c))
+* **UncontrolledCollapse:** add UncontrolledCollapse ([#1009](https://github.com/reactstrap/reactstrap/issues/1009)) ([355d2b8](https://github.com/reactstrap/reactstrap/commit/355d2b8))
+
+
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://github.com/reactstrap/reactstrap/compare/6.0.0...6.0.1) (2018-05-02)
 
