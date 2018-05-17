@@ -68,7 +68,6 @@ class Tooltip extends React.Component {
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.handleFocusIn = this.handleFocusIn.bind(this);
     this.handleFocusOut = this.handleFocusOut.bind(this);
-
   }
 
   componentDidMount() {
