@@ -26,7 +26,7 @@ class Portal extends React.Component {
       document.body.appendChild(this.defaultNode);
     }
 
-    return ReactDOM.createPortal(
+    return (ReactDOM.createPortal || ReactDOM.unstable_createPortal)(
       this.props.children,
       this.props.node || this.defaultNode
     );
