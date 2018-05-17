@@ -65,6 +65,7 @@ class Tooltip extends React.Component {
     this.onMouseLeaveTooltipContent = this.onMouseLeaveTooltipContent.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
+    this.onEscKeyDown = this.onEscKeyDown.bind(this);
   }
 
   componentDidMount() {
@@ -107,6 +108,12 @@ class Tooltip extends React.Component {
       this.clearShowTimeout();
     }
     this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
+  }
+
+  onEscKeyDown(e) {
+    if (e.key === 'Escape') {
+      this.hide();
+    }
   }
 
   getDelay(key) {
@@ -156,6 +163,8 @@ class Tooltip extends React.Component {
   addTargetEvents() {
     this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
     this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    this._target.addEventListener('keydown', this.onEscKeyDown, true);
+
     ['click', 'touchstart'].forEach(event =>
       document.addEventListener(event, this.handleDocumentClick, true)
     );
@@ -164,6 +173,8 @@ class Tooltip extends React.Component {
   removeTargetEvents() {
     this._target.removeEventListener('mouseover', this.onMouseOverTooltip, true);
     this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip, true);
+    this._target.addEventListener('keydown', this.onEscKeyDown, true);
+
     ['click', 'touchstart'].forEach(event =>
       document.removeEventListener(event, this.handleDocumentClick, true)
     );
@@ -211,6 +222,7 @@ class Tooltip extends React.Component {
           className={classes}
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
+          onKeyDown={this.onEscKeyDown}
         />
       </PopperContent>
     );
