@@ -129,9 +129,9 @@ describe('DropdownItem', () => {
 
     it('should be called when not disabled, heading, or divider', () => {
       const e = { preventDefault: jest.fn() };
-      const clickHandler = jest.fn();
+      const onClick = jest.fn();
       const wrapper = mount(
-        <DropdownItem onClick={() => clickHandler()}>Click me</DropdownItem>,
+        <DropdownItem onClick={() => onClick()}>Click me</DropdownItem>,
         {
           context: {
             toggle: toggle
@@ -141,14 +141,14 @@ describe('DropdownItem', () => {
       const instance = wrapper.instance();
 
       instance.onClick(e);
-      expect(clickHandler).toHaveBeenCalled();
+      expect(onClick).toHaveBeenCalled();
     });
 
     it('should call onClick prop', () => {
       toggle = jest.fn();
-      const handler = jest.fn();
+      const clickHandler = jest.fn();
       const wrapper = mount(
-        <DropdownItem onClick={handler}>Click me</DropdownItem>,
+        <DropdownItem onClick={clickHandler}>Click me</DropdownItem>,
         {
           context: {
             toggle: toggle
@@ -157,7 +157,7 @@ describe('DropdownItem', () => {
       );
 
       wrapper.simulate('click');
-      expect(handler).toHaveBeenCalled();
+      expect(clickHandler).toHaveBeenCalled();
       expect(toggle).toHaveBeenCalled();
     });
 
