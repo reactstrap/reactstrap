@@ -90,7 +90,7 @@ class DropdownItem extends React.Component {
 
     return (
       <Tag
-        type={(Tag === 'button' && (this.props.onClick || this.props.toggle)) ? 'button' : undefined}
+        type={(Tag === 'button' && (props.onClick || this.props.toggle)) ? 'button' : undefined}
         {...props}
         tabIndex={tabIndex}
         className={classes}
