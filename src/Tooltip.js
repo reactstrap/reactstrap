@@ -118,10 +118,6 @@ class Tooltip extends React.Component {
     }
   }
 
-  handleFocus() {
-    this.toggle()
-  }
-
   getDelay(key) {
     const { delay } = this.props;
     if (typeof delay === 'object') {
