@@ -1,39 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, warnOnce } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  listClassName: PropTypes.string,
   cssModule: PropTypes.object,
   size: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  listTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  'aria-label': PropTypes.string
 };
 
 const defaultProps = {
-  tag: 'ul',
+  tag: 'nav',
+  listTag: 'ul',
 };
 
 const Pagination = (props) => {
   const {
     className,
+    listClassName,
     cssModule,
     size,
     tag: Tag,
+    listTag: ListTag,
+    'aria-label': label,
     ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
-    className,
+    className
+  ), cssModule);
+
+  const listClasses = mapToCssModules(classNames(
+    listClassName,
     'pagination',
     {
       [`pagination-${size}`]: !!size,
     }
   ), cssModule);
 
+  if (!label) {
+    warnOnce('It\'s highly recommended to pass the prop "aria-label" to the <Pagination /> component.');
+  }
+
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag className={classes} aria-label={label}>
+      <ListTag {...attributes} className={listClasses} />
+    </Tag>
   );
 };
 
