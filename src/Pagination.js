@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, warnOnce } from './utils';
+import { mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
@@ -17,6 +17,7 @@ const propTypes = {
 const defaultProps = {
   tag: 'nav',
   listTag: 'ul',
+  'aria-label': 'pagination'
 };
 
 const Pagination = (props) => {
@@ -42,10 +43,6 @@ const Pagination = (props) => {
       [`pagination-${size}`]: !!size,
     }
   ), cssModule);
-
-  if (!label) {
-    warnOnce('It\'s highly recommended to pass the prop "aria-label" to the <Pagination /> component.');
-  }
 
   return (
     <Tag className={classes} aria-label={label}>
