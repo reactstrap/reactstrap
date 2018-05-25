@@ -34,7 +34,7 @@ const Media = (props) => {
     right,
     src,
     tag,
-    top
+    top,
     ...attributes
   } = props;
 
