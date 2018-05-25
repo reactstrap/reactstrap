@@ -45,6 +45,7 @@ export default class MediaPage extends React.Component {
   right: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   top: PropTypes.bool,
+  src: Proptypes.string,
 };`}
           </PrismCode>
         </pre>
