@@ -17,6 +17,7 @@ const propTypes = {
   right: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   top: PropTypes.bool,
+  src: PropTypes.string,
 };
 
 const Media = (props) => {
@@ -31,6 +32,7 @@ const Media = (props) => {
     middle,
     object,
     right,
+    src,
     tag,
     top,
     ...attributes
