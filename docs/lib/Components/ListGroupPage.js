@@ -32,6 +32,20 @@ export default class ListGroupPage extends React.Component {
             {ListGroupExampleSource}
           </PrismCode>
         </pre>
+        <h4>Properties</h4>
+        <pre>
+          <PrismCode className="language-jsx">
+{
+  `ListGroup.propTypes = {
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    // boolean to render list group items edge-to-edge in a parent container
+    flush: PropTypes.bool,
+    className: PropTypes.string,
+    cssModule: PropTypes.object,
+  }`
+            }
+          </PrismCode>
+        </pre>
 
         <legend>Tags</legend>
         <div className="docs-example">
