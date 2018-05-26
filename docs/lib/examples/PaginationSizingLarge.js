@@ -4,7 +4,7 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 export default class Example extends React.Component {
   render() {
     return (
-      <Pagination size="lg">
+      <Pagination size="lg" aria-label="Page navigation example">
         <PaginationItem>
           <PaginationLink previous href="#" />
         </PaginationItem>

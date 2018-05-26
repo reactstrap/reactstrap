@@ -3,10 +3,16 @@ import { shallow, mount } from 'enzyme';
 import { Pagination } from '../';
 
 describe('Pagination', () => {
-  it('should render default tag', () => {
+  it('should render "nav" tag by default', () => {
     const wrapper = mount(<Pagination />);
 
-    expect(wrapper.find('ul').hostNodes().length).toBe(1);
+    expect(wrapper.find('nav').hostNodes().length).toBe(1);
+  });
+
+  it('should render default list tag', () => {
+    const wrapper = mount(<Pagination />);
+
+    expect(wrapper.children().find('ul').hostNodes().length).toBe(1);
   });
 
   it('should render custom tag', () => {
@@ -18,7 +24,7 @@ describe('Pagination', () => {
   it('should render with "pagination" class', () => {
     const wrapper = shallow(<Pagination />);
 
-    expect(wrapper.hasClass('pagination')).toBe(true);
+    expect(wrapper.children().hasClass('pagination')).toBe(true);
   });
 
   it('should render children', () => {
@@ -31,7 +37,7 @@ describe('Pagination', () => {
     const small = shallow(<Pagination size="sm" />);
     const large = shallow(<Pagination size="lg" />);
 
-    expect(small.hasClass('pagination-sm')).toBe(true);
-    expect(large.hasClass('pagination-lg')).toBe(true);
+    expect(small.children().hasClass('pagination-sm')).toBe(true);
+    expect(large.children().hasClass('pagination-lg')).toBe(true);
   });
 });
