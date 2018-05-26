@@ -26,20 +26,18 @@ export function isBodyOverflowing() {
 export function getOriginalBodyPadding() {
   const style = window.getComputedStyle(document.body, null);
 
-  return parseInt(
-    (style && style.getPropertyValue('padding-right')) || 0,
-    10
-  );
+  return parseInt((style && style.getPropertyValue('padding-right')) || 0, 10);
 }
 
 export function conditionallyUpdateScrollbar() {
   const scrollbarWidth = getScrollbarWidth();
   // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/js/src/modal.js#L433
-  const fixedContent = document.querySelectorAll('.fixed-top, .fixed-bottom, .is-fixed, .sticky-top')[0];
-  const bodyPadding = fixedContent ? parseInt(
-    fixedContent.style.paddingRight || 0,
-    10
-  ) : 0;
+  const fixedContent = document.querySelectorAll(
+    '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
+  )[0];
+  const bodyPadding = fixedContent
+    ? parseInt(fixedContent.style.paddingRight || 0, 10)
+    : 0;
 
   if (isBodyOverflowing()) {
     setScrollbarWidth(bodyPadding + scrollbarWidth);
@@ -54,7 +52,10 @@ export function setGlobalCssModule(cssModule) {
 
 export function mapToCssModules(className = '', cssModule = globalCssModule) {
   if (!cssModule) return className;
-  return className.split(' ').map(c => cssModule[c] || c).join(' ');
+  return className
+    .split(' ')
+    .map(c => cssModule[c] || c)
+    .join(' ');
 }
 
 /**
@@ -102,7 +103,9 @@ export function warnOnce(message) {
 export function deprecated(propType, explanation) {
   return function validate(props, propName, componentName, ...rest) {
     if (props[propName] !== null && typeof props[propName] !== 'undefined') {
-      warnOnce(`"${propName}" property of "${componentName}" has been deprecated.\n${explanation}`);
+      warnOnce(
+        `"${propName}" property of "${componentName}" has been deprecated.\n${explanation}`
+      );
     }
 
     return propType(props, propName, componentName, ...rest);
@@ -112,31 +115,14 @@ export function deprecated(propType, explanation) {
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
-      'Invalid prop `' + propName + '` supplied to `' + componentName +
-      '`. Expected prop to be an instance of Element. Validation failed.'
+      'Invalid prop `' +
+        propName +
+        '` supplied to `' +
+        componentName +
+        '`. Expected prop to be an instance of Element. Validation failed.'
     );
   }
 }
-
-export function getTarget(target) {
-  if (isFunction(target)) {
-    return target();
-  }
-
-  if (typeof target === 'string' && document) {
-    let selection = document.querySelector(target);
-    if (selection === null) {
-      selection = document.querySelector(`#${target}`);
-    }
-    if (selection === null) {
-      throw new Error(`The target '${target}' could not be identified in the dom, tip: check spelling`);
-    }
-    return selection;
-  }
-
-  return target;
-}
-
 
 /* eslint key-spacing: ["error", { afterColon: true, align: "value" }] */
 // These are all setup to match what is in the bootstrap _variables.scss
@@ -145,7 +131,7 @@ export const TransitionTimeouts = {
   Fade:     150, // $transition-fade
   Collapse: 350, // $transition-collapse
   Modal:    300, // $modal-transition
-  Carousel: 600, // $carousel-transition
+  Carousel: 600 // $carousel-transition
 };
 
 // Duplicated Transition.propType keys to ensure that Reactstrap builds
@@ -164,14 +150,14 @@ export const TransitionPropTypeKeys = [
   'onEntered',
   'onExit',
   'onExiting',
-  'onExited',
+  'onExited'
 ];
 
 export const TransitionStatuses = {
   ENTERING: 'entering',
   ENTERED:  'entered',
   EXITING:  'exiting',
-  EXITED:   'exited',
+  EXITED:   'exited'
 };
 
 export const keyCodes = {
@@ -179,7 +165,7 @@ export const keyCodes = {
   space: 32,
   tab:   9,
   up:    38,
-  down:  40,
+  down:  40
 };
 
 export const PopperPlacements = [
@@ -197,7 +183,7 @@ export const PopperPlacements = [
   'bottom-start',
   'left-end',
   'left',
-  'left-start',
+  'left-start'
 ];
 
 export const canUseDOM = !!(
@@ -205,3 +191,72 @@ export const canUseDOM = !!(
   window.document &&
   window.document.createElement
 );
+
+export function findDOMElements(target) {
+  if (isFunction(target)) {
+    return target();
+  }
+  if (typeof target === 'string' && canUseDOM) {
+    let selection = document.querySelectorAll(target);
+    if (!selection.length) {
+      selection = document.querySelectorAll(`#${target}`);
+    }
+    if (!selection.length) {
+      throw new Error(
+        `The target '${target}' could not be identified in the dom, tip: check spelling`
+      );
+    }
+    return selection;
+  }
+  return target;
+}
+
+export function isArrayOrNodeList(els) {
+  return Array.isArray(els) || (canUseDOM && typeof els.length === 'number');
+}
+
+export function getTarget(target) {
+  const els = findDOMElements(target);
+  if (isArrayOrNodeList(els)) {
+    return els[0];
+  }
+  return els;
+}
+
+export const defaultToggleEvents = ['touchstart', 'click'];
+
+export function addMultipleEventListeners(_els, handler, _events) {
+  let els = _els;
+  if (!isArrayOrNodeList(els)) {
+    els = [els];
+  }
+
+  let events = _events;
+  if (typeof events === 'string') {
+    events = events.split(/\s+/);
+  }
+
+  if (
+    !isArrayOrNodeList(els) ||
+    typeof handler !== 'function' ||
+    !Array.isArray(events)
+  ) {
+    throw new Error(`
+      The first argument of this function must be DOM node or an array on DOM nodes or NodeList.
+      The second must be a function.
+      The third is a string or an array of strings that represents DOM events
+    `);
+  }
+  events.forEach((event) => {
+    els.forEach((el) => {
+      el.addEventListener(event, handler);
+    });
+  });
+  return function removeEvents() {
+    events.forEach((event) => {
+      els.forEach((el) => {
+        el.removeEventListener(event, handler);
+      });
+    });
+  };
+}
