@@ -144,6 +144,23 @@ describe('DropdownItem', () => {
       expect(onClick).toHaveBeenCalled();
     });
 
+    it('should call onClick prop', () => {
+      toggle = jest.fn();
+      const clickHandler = jest.fn();
+      const wrapper = mount(
+        <DropdownItem onClick={clickHandler}>Click me</DropdownItem>,
+        {
+          context: {
+            toggle: toggle
+          }
+        }
+      );
+
+      wrapper.simulate('click');
+      expect(clickHandler).toHaveBeenCalled();
+      expect(toggle).toHaveBeenCalled();
+    });
+
     it('should call toggle', () => {
       toggle = jest.fn();
       const wrapper = mount(

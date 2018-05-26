@@ -236,6 +236,17 @@ describe('Tooltip', () => {
     wrapper.unmount();
   });
 
+  it('should pass down offset', () => {
+    const wrapper = mount(
+      <Tooltip isOpen target="target" offset="100">
+        Tooltip content
+      </Tooltip>
+    );
+
+    expect(wrapper.find(PopperContent).props().offset).toEqual('100');
+    wrapper.unmount();
+  });
+
   it('should not call props.toggle when disabled ', () => {
     const props = createSpyObj('props', ['toggle']);
     const event = createSpyObj('event', ['preventDefault']);

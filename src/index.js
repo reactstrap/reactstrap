@@ -81,6 +81,7 @@ import ListGroupItemHeading from './ListGroupItemHeading';
 import ListGroupItemText from './ListGroupItemText';
 import UncontrolledAlert from './UncontrolledAlert';
 import UncontrolledButtonDropdown from './UncontrolledButtonDropdown';
+import UncontrolledCollapse from './UncontrolledCollapse';
 import UncontrolledDropdown from './UncontrolledDropdown';
 import UncontrolledNavDropdown from './UncontrolledNavDropdown';
 import UncontrolledTooltip from './UncontrolledTooltip';
@@ -170,6 +171,7 @@ export {
   ListGroupItemHeading,
   UncontrolledAlert,
   UncontrolledButtonDropdown,
+  UncontrolledCollapse,
   UncontrolledDropdown,
   UncontrolledNavDropdown,
   UncontrolledTooltip,

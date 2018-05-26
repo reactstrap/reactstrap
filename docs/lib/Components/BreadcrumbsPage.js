@@ -23,6 +23,28 @@ export default class BreadcrumbsPage extends React.Component {
             {BreadcrumbExampleSource}
           </PrismCode>
         </pre>
+        <h4>Properties</h4>
+        <pre>
+          <PrismCode className="language-jsx">
+{`Breadcrumb.propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  listTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  className: PropTypes.string,
+  listClassName: PropTypes.string,
+  cssModule: PropTypes.object,
+  children: PropTypes.node,
+  'aria-label': PropTypes.string
+};
+
+BreadcrumbItem.propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  active: PropTypes.bool,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+};
+`}
+          </PrismCode>
+        </pre>
         <SectionTitle>No list</SectionTitle>
         <hr />
         <p>Breadcrumbs can work without the usage of list markup.</p>

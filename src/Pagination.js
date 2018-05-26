@@ -6,26 +6,38 @@ import { mapToCssModules } from './utils';
 const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  listClassName: PropTypes.string,
   cssModule: PropTypes.object,
   size: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  listTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  'aria-label': PropTypes.string
 };
 
 const defaultProps = {
-  tag: 'ul',
+  tag: 'nav',
+  listTag: 'ul',
+  'aria-label': 'pagination'
 };
 
 const Pagination = (props) => {
   const {
     className,
+    listClassName,
     cssModule,
     size,
     tag: Tag,
+    listTag: ListTag,
+    'aria-label': label,
     ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
-    className,
+    className
+  ), cssModule);
+
+  const listClasses = mapToCssModules(classNames(
+    listClassName,
     'pagination',
     {
       [`pagination-${size}`]: !!size,
@@ -33,7 +45,9 @@ const Pagination = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag className={classes} aria-label={label}>
+      <ListTag {...attributes} className={listClasses} />
+    </Tag>
   );
 };
 
