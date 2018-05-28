@@ -67,6 +67,25 @@ function CustomInput(props) {
     ), cssModule)
   );
 
+  if (type === 'checkbox') {
+    return (
+      <div className={wrapperClasses}>
+        <input
+          {...attributes}
+          className={classNames(validationClassNames, mapToCssModules('custom-control-input', cssModule))}
+        />
+        <label
+          className={mapToCssModules('custom-control-label', cssModule)}
+          onClick={attributes.onClick}
+          htmlFor={attributes.id}
+        >
+          {label}
+        </label>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div className={wrapperClasses}>
       <input
