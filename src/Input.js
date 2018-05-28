@@ -108,7 +108,7 @@ class Input extends React.Component {
       formControlClass
     ), cssModule);
 
-    if (Tag === 'input' || tag) {
+    if (Tag === 'input' || (tag && typeof tag !== 'string')) {
       attributes.type = type;
     }
 
