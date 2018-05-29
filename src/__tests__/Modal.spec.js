@@ -557,7 +557,16 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(true);
 
-    document.getElementsByClassName('modal')[0].click();
+    const modal = document.getElementsByClassName('modal')[0];
+
+    const mouseDownEvent = document.createEvent('MouseEvents');
+    mouseDownEvent.initEvent('mousedown', true, true);
+    modal.dispatchEvent(mouseDownEvent);
+
+    const mouseUpEvent = document.createEvent('MouseEvents');
+    mouseUpEvent.initEvent('mouseup', true, true);
+    modal.dispatchEvent(mouseUpEvent);
+
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(false);
