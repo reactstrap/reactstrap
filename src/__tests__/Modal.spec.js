@@ -557,13 +557,13 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(true);
 
-    var modal = document.getElementsByClassName('modal')[0];
+    const modal = document.getElementsByClassName('modal')[0];
 
-    var mouseDownEvent = document.createEvent('MouseEvents');
+    const mouseDownEvent = document.createEvent('MouseEvents');
     mouseDownEvent.initEvent('mousedown', true, true);
     modal.dispatchEvent(mouseDownEvent);
 
-    var mouseUpEvent = document.createEvent('MouseEvents');
+    const mouseUpEvent = document.createEvent('MouseEvents');
     mouseUpEvent.initEvent('mouseup', true, true);
     modal.dispatchEvent(mouseUpEvent);
 
