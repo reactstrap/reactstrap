@@ -9,6 +9,7 @@ import ListGroupDisabledItemsExample from '../examples/ListGroupDisabledItems';
 import ListGroupAnchorsAndButtonsExample from '../examples/ListGroupAnchorsAndButtons';
 import ListGroupContextualClassesExample from '../examples/ListGroupContextualClasses';
 import ListGroupCustomContentExample from '../examples/ListGroupCustomContent';
+import ListGroupFlushExample from '../examples/ListGroupFlush';
 
 const ListGroupBadgeExampleSource = require('!!raw!../examples/ListGroupBadge');
 const ListGroupExampleSource = require('!!raw!../examples/ListGroup');
@@ -16,6 +17,7 @@ const ListGroupDisabledItemsExampleSource = require('!!raw!../examples/ListGroup
 const ListGroupAnchorsAndButtonsExampleSource = require('!!raw!../examples/ListGroupAnchorsAndButtons');
 const ListGroupContextualClassesExampleSource = require('!!raw!../examples/ListGroupContextualClasses');
 const ListGroupCustomContentExampleSource = require('!!raw!../examples/ListGroupCustomContent');
+const ListGroupFlushExampleSource = require('!!raw!../examples/ListGroupFlush')
 
 export default class ListGroupPage extends React.Component {
   render() {
@@ -28,6 +30,20 @@ export default class ListGroupPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ListGroupExampleSource}
+          </PrismCode>
+        </pre>
+        <h4>Properties</h4>
+        <pre>
+          <PrismCode className="language-jsx">
+{
+  `ListGroup.propTypes = {
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    // boolean to render list group items edge-to-edge in a parent container
+    flush: PropTypes.bool,
+    className: PropTypes.string,
+    cssModule: PropTypes.object,
+  }`
+            }
           </PrismCode>
         </pre>
 
@@ -79,6 +95,16 @@ export default class ListGroupPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ListGroupCustomContentExampleSource}
+          </PrismCode>
+        </pre>
+
+        <legend>Flush</legend>
+        <div className="docs-example">
+          <ListGroupFlushExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ListGroupFlushExampleSource}
           </PrismCode>
         </pre>
       </div>
