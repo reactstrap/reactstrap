@@ -42,8 +42,9 @@ class UncontrolledCollapse extends Component {
     }
   }
 
-  toggle() {
+  toggle(e) {
     this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
+    e.preventDefault();
   }
 
   render() {
