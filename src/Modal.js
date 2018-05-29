@@ -84,7 +84,6 @@ class Modal extends React.Component {
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
 
-
     this.state = {
       isOpen: props.isOpen,
     };
