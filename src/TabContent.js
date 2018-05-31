@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, omit } from './utils';
+
 
 const propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -18,7 +20,15 @@ const childContextTypes = {
   activeTabId: PropTypes.any
 };
 
-export default class TabContent extends Component {
+class TabContent extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.activeTab !== nextProps.activeTab) {
+      return {
+        activeTab: nextProps.activeTab
+      };
+    }
+    return null;
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -29,13 +39,6 @@ export default class TabContent extends Component {
     return {
       activeTabId: this.state.activeTab
     };
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.state.activeTab !== nextProps.activeTab) {
-      this.setState({
-        activeTab: nextProps.activeTab
-      });
-    }
   }
   render() {
     const {
@@ -53,6 +56,10 @@ export default class TabContent extends Component {
     );
   }
 }
+
+polyfill(TabContent);
+export default TabContent;
+
 TabContent.propTypes = propTypes;
 TabContent.defaultProps = defaultProps;
 TabContent.childContextTypes = childContextTypes;
