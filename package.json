@@ -94,6 +94,7 @@
     "lodash.isfunction": "^3.0.9",
     "lodash.isobject": "^3.0.2",
     "lodash.tonumber": "^4.0.3",
+    "css.escape": "^1.5.1",
     "prop-types": "^15.5.8",
     "react-popper": "^0.10.4",
     "react-transition-group": "^2.3.1"

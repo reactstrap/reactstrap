@@ -1,5 +1,7 @@
 /* global jest */
 /* eslint-disable import/no-extraneous-dependencies */
+import 'css.escape'; // polyfill: CSS.escape
+
 import Enzyme, { ReactWrapper } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
