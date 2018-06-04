@@ -199,7 +199,7 @@ export function findDOMElements(target) {
   if (typeof target === 'string' && canUseDOM) {
     let selection;
     try {
-      selection = document.querySelectorAll(target); 
+      selection = document.querySelectorAll(target);
       if (!selection.length) {
         selection = document.querySelectorAll(`#${CSS.escape(target)}`);
       }

@@ -143,8 +143,8 @@ describe('Utils', () => {
       jest.spyOn(document, 'querySelectorAll');
       expect(Utils.getTarget('[0].thing')).toEqual(element);
       expect(document.querySelectorAll).toHaveBeenCalledWith('#\\[0\\]\\.thing');
-      document.querySelectorAll.mockRestore(); 
-    }) 
+      document.querySelectorAll.mockRestore();
+    });
 
     it('should return the input target if it is not a function nor a string', () => {
       const target = {};
