@@ -197,9 +197,14 @@ export function findDOMElements(target) {
     return target();
   }
   if (typeof target === 'string' && canUseDOM) {
-    let selection = document.querySelectorAll(target);
-    if (!selection.length) {
-      selection = document.querySelectorAll(`#${target}`);
+    let selection;
+    try {
+      selection = document.querySelectorAll(target);
+      if (!selection.length) {
+        selection = document.querySelectorAll(`#${CSS.escape(target)}`);
+      }
+    } catch (err) {
+      selection = document.querySelectorAll(`#${CSS.escape(target)}`);
     }
     if (!selection.length) {
       throw new Error(
