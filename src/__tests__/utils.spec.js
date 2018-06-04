@@ -136,6 +136,16 @@ describe('Utils', () => {
       document.querySelectorAll.mockRestore();
     });
 
+    it('should query the document for the css escaped id target if the target is a string and could not be found normally', () => {
+      const element = document.createElement('div');
+      element.setAttribute('id', '[0].thing');
+      document.body.appendChild(element);
+      jest.spyOn(document, 'querySelectorAll');
+      expect(Utils.getTarget('[0].thing')).toEqual(element);
+      expect(document.querySelectorAll).toHaveBeenCalledWith('#\\[0\\]\\.thing');
+      document.querySelectorAll.mockRestore(); 
+    }) 
+
     it('should return the input target if it is not a function nor a string', () => {
       const target = {};
       expect(Utils.getTarget(target)).toEqual(target);
