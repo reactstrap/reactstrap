@@ -1,3 +1,28 @@
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/reactstrap/reactstrap/compare/6.0.1...6.1.0) (2018-06-04)
+
+
+### Bug Fixes
+
+* **Input:**  type attribute should not render for select and textarea ([#1041](https://github.com/reactstrap/reactstrap/issues/1041)) ([2e45d8a](https://github.com/reactstrap/reactstrap/commit/2e45d8a)), closes [#1038](https://github.com/reactstrap/reactstrap/issues/1038)
+* **Media:** fix default tags ([267dfe0](https://github.com/reactstrap/reactstrap/commit/267dfe0)), closes [#979](https://github.com/reactstrap/reactstrap/issues/979)
+* **Modal:** closes when dragging outside modal ([#1047](https://github.com/reactstrap/reactstrap/issues/1047)) ([cccd7af](https://github.com/reactstrap/reactstrap/commit/cccd7af)), closes [angular-ui/bootstrap#5810](https://github.com/angular-ui/bootstrap/issues/5810)
+* **PaginationLink:** do not render invalid anchor tags ([7266214](https://github.com/reactstrap/reactstrap/commit/7266214))
+* **UncontrolledCollapse:** collapsing on mobile ([#1043](https://github.com/reactstrap/reactstrap/issues/1043)) ([dcc1dda](https://github.com/reactstrap/reactstrap/commit/dcc1dda)), closes [#1034](https://github.com/reactstrap/reactstrap/issues/1034)
+
+
+### Features
+
+* **addMultipleEventListeners:** handle singles ([d124b27](https://github.com/reactstrap/reactstrap/commit/d124b27))
+* **exports:** mark reactstrap as sideEffects free ([#1005](https://github.com/reactstrap/reactstrap/issues/1005)) ([b68826d](https://github.com/reactstrap/reactstrap/commit/b68826d))
+* **Form:** add submit to component ([4e10dd9](https://github.com/reactstrap/reactstrap/commit/4e10dd9))
+* **Input:** make it easier to focus ([e3124af](https://github.com/reactstrap/reactstrap/commit/e3124af))
+* **Tooltip:** add tooltip accessibility ([#1025](https://github.com/reactstrap/reactstrap/issues/1025)) ([a2138a8](https://github.com/reactstrap/reactstrap/commit/a2138a8)), closes [#1012](https://github.com/reactstrap/reactstrap/issues/1012)
+* **Tooltip,Popover:** add offset prop ([#1018](https://github.com/reactstrap/reactstrap/issues/1018)) ([3561e3c](https://github.com/reactstrap/reactstrap/commit/3561e3c))
+* **UncontrolledCollapse:** add UncontrolledCollapse ([#1009](https://github.com/reactstrap/reactstrap/issues/1009)) ([355d2b8](https://github.com/reactstrap/reactstrap/commit/355d2b8))
+
+
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://github.com/reactstrap/reactstrap/compare/6.0.0...6.0.1) (2018-05-02)
 
