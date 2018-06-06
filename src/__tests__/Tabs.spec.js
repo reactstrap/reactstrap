@@ -80,10 +80,9 @@ describe('Tabs', () => {
   });
   it('should call setState when the active tab does change during a prop update', () => {
     const tab1 = mount(<TabContent activeTab={1} />);
-    const instance = tab1.instance();
-    expect(tab1.state().activeTab).toEqual(1)
+    expect(tab1.state().activeTab).toEqual(1);
     tab1.setProps({ activeTab: 2 });
-    expect(tab1.state().activeTab).toEqual(2)
+    expect(tab1.state().activeTab).toEqual(2);
   });
 
   it('should render custom TabContent tag', () => {
