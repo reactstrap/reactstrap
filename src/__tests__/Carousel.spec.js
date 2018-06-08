@@ -231,6 +231,34 @@ describe('Carousel', () => {
       expect(wrapper.find(CarouselControl).length).toEqual(2);
       expect(wrapper.find(CarouselIndicators).length).toEqual(1);
     });
+
+    it('should tolerate booleans, null and undefined values rendered as children of Carousel', () => {
+      const slides = items.map((item, idx) => {
+        return (
+          <CarouselItem
+            key={idx}
+          >
+            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          </CarouselItem>
+        );
+      });
+
+      const wrapper = mount(
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+          {null}
+          {true}
+          {false}
+          {undefined}
+          {(() => {})()}
+          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
+          {slides}
+          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
+          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
+        </Carousel>
+      );
+      expect(wrapper.find(CarouselControl).length).toEqual(2);
+      expect(wrapper.find(CarouselIndicators).length).toEqual(1);
+    });
   });
 
   describe('carouseling', () => {

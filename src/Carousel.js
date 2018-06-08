@@ -109,7 +109,7 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { children, cssModule, slide, className } = this.props;
+    const { cssModule, slide, className } = this.props;
     const outerClasses = mapToCssModules(classNames(
       className,
       'carousel',
@@ -120,6 +120,8 @@ class Carousel extends React.Component {
       'carousel-inner'
     ), cssModule);
 
+    // filter out booleans, null, or undefined
+    const children = this.props.children.filter(child => child !== null && child !== undefined && typeof child !== 'boolean');
 
     const slidesOnly = children.every(child => child.type === CarouselItem);
 
