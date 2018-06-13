@@ -40,6 +40,7 @@ export default class CollapsePage extends React.Component {
   className: PropTypes.node,
   navbar: PropTypes.bool,
   cssModule: PropTypes.object,
+  innerRef: PropTypes.object,
 };`}
           </PrismCode>
         </pre>

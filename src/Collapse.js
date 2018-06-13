@@ -15,6 +15,7 @@ const propTypes = {
   className: PropTypes.node,
   navbar: PropTypes.bool,
   cssModule: PropTypes.object,
+  innerRef: PropTypes.object,
 };
 
 const defaultProps = {
@@ -90,6 +91,7 @@ class Collapse extends Component {
       navbar,
       cssModule,
       children,
+      innerRef,
       ...otherProps
     } = this.props;
 
@@ -108,7 +110,6 @@ class Collapse extends Component {
     // element which results in errors/warnings for non-valid attributes.
     const transitionProps = pick(otherProps, TransitionPropTypeKeys);
     const childProps = omit(otherProps, TransitionPropTypeKeys);
-
     return (
       <Transition
         {...transitionProps}
@@ -132,6 +133,7 @@ class Collapse extends Component {
               {...childProps}
               style={{ ...childProps.style, ...style }}
               className={classes}
+              ref={this.props.innerRef}
             >
               {children}
             </Tag>
