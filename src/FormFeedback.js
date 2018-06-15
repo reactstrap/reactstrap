@@ -27,17 +27,18 @@ const FormFeedback = (props) => {
     ...attributes
   } = props;
 
-  const validMode = tooltip ? 'tooltip' : 'feedback'
+  const validMode = tooltip ? 'tooltip' : 'feedback';
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'd-block',
-    valid ? `valid-${validMode}` : `invalid-${validMode}`
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'd-block',
+      valid ? `valid-${validMode}` : `invalid-${validMode}`
+    ),
+    cssModule
   );
+
+  return <Tag {...attributes} className={classes} />;
 };
 
 FormFeedback.propTypes = propTypes;
