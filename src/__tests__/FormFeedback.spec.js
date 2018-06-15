@@ -27,7 +27,7 @@ describe('FormFeedback', () => {
   });
 
   it('should render with "valid-tooltip" class', () => {
-    const wrapper = shallow(<FormFeedback valid validMode={'tooltip'}>Yo!</FormFeedback>);
+    const wrapper = shallow(<FormFeedback valid tooltip>Yo!</FormFeedback>);
 
     expect(wrapper.hasClass('valid-tooltip')).toBe(true);
   });
