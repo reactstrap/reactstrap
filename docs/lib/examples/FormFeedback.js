@@ -5,8 +5,7 @@ export default class Example extends React.Component {
   render() {
     return (
       <Form>
-      
-        <FormGroup>
+       <FormGroup>
           <Label for="exampleEmail">Input without validation</Label>
           <Input />
           <FormFeedback>You will not be able to see this</FormFeedback>
@@ -24,7 +23,6 @@ export default class Example extends React.Component {
           <FormFeedback>Oh noes! that name is already taken</FormFeedback>
           <FormText>Example help text that remains unchanged.</FormText>
         </FormGroup>
-
         <FormGroup>
           <Label for="exampleEmail">Input without validation</Label>
           <Input />
@@ -43,7 +41,6 @@ export default class Example extends React.Component {
           <FormFeedback tooltip>Oh noes! that name is already taken</FormFeedback>
           <FormText>Example help text that remains unchanged.</FormText>
         </FormGroup>
-      
       </Form>
     );
   }

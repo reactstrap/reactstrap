@@ -236,6 +236,21 @@ describe('Tooltip', () => {
     wrapper.unmount();
   });
 
+  it('should pass down cssModule', () => {
+    const cssModule = {};
+    const wrapper = mount(
+      <Tooltip
+        isOpen
+        target="target"
+        cssModule={cssModule}
+      >
+        Tooltip Content
+      </Tooltip>
+    );
+    expect(wrapper.find(PopperContent).props().cssModule).toBe(cssModule);
+    wrapper.unmount();
+  });
+
   it('should pass down offset', () => {
     const wrapper = mount(
       <Tooltip isOpen target="target" offset="100">

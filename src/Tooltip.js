@@ -221,6 +221,7 @@ class Tooltip extends React.Component {
         container={this.props.container}
         modifiers={this.props.modifiers}
         offset={this.props.offset}
+        cssModule={this.props.cssModule}
       >
         <div
           {...attributes}
