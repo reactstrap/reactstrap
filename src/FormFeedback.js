@@ -32,7 +32,6 @@ const FormFeedback = (props) => {
   const classes = mapToCssModules(
     classNames(
       className,
-      'd-block',
       valid ? `valid-${validMode}` : `invalid-${validMode}`
     ),
     cssModule
