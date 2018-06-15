@@ -20,8 +20,12 @@ export default class Example extends React.Component {
         <FormGroup>
           <Label for="examplePassword">Invalid input</Label>
           <Input invalid />
-          <FormFeedback>Oh noes! that name is already taken</FormFeedback>
-          <FormText>Example help text that remains unchanged.</FormText>
+          <FormFeedback validMode={'tooltip'}>Oh noes! that name is already taken</FormFeedback>
+        </FormGroup>
+        <FormGroup>
+          <Label for="examplePassword">Invalid input</Label>
+          <Input invalid />
+          <FormFeedback valid validMode={'tooltip'}>Sweet! that name is available</FormFeedback>
         </FormGroup>
       </Form>
     );
