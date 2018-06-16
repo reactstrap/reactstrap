@@ -149,7 +149,7 @@ class Tooltip extends React.Component {
   }
 
   handleDocumentClick(e) {
-    if (e.target === this._target || this._target.contains(e.target)) {
+    if (e.target !== this._target || !this._target.contains(e.target)) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
       }
