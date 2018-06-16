@@ -58,7 +58,7 @@ function Alert(props) {
   const alertTransition = {
     ...Fade.defaultProps,
     ...transition,
-    baseClass: fade ? this.props.modalTransition.baseClass : '',
+    baseClass: fade ? transition.baseClass : '',
     timeout: fade ? transition.timeout : 0,
   };
 
