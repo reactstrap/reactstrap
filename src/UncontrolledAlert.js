@@ -4,11 +4,11 @@ import Alert from './Alert';
 
 const propTypes = {
   fade: PropTypes.bool
-}
+};
 
 const defaultProps = {
   fade: true
-}
+};
 
 class UncontrolledAlert extends Component {
   constructor(props) {
