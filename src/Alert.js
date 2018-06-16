@@ -23,7 +23,7 @@ const defaultProps = {
   isOpen: true,
   tag: 'div',
   closeAriaLabel: 'Close',
-  fade: false,
+  fade: true,
   transition: {
     ...Fade.defaultProps,
     unmountOnExit: true,
