@@ -20,6 +20,9 @@ const AlertDismissExampleSource = require('!!raw!../examples/AlertDismiss');
 import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
 const AlertUncontrolledDismissExampleSource = require('!!raw!../examples/AlertUncontrolledDismiss');
 
+import {AlertFadelessExample, UncontrolledAlertFadelessExample} from '../examples/AlertFadeless';
+const AlertFadelessExampleSource = require('!!raw!../examples/AlertFadeless');
+
 export default class AlertsPage extends React.Component {
   render() {
     return (
@@ -91,6 +94,20 @@ export default class AlertsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {AlertUncontrolledDismissExampleSource}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>Alerts without fade</SectionTitle>
+        <p>
+          Fade can be disbaled using <code>fade=false</code>.
+        </p>
+        <div className="docs-example">
+          <AlertFadelessExample />
+          <UncontrolledAlertFadelessExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {AlertFadelessExampleSource}
           </PrismCode>
         </pre>
       </div>

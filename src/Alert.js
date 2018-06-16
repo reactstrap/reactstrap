@@ -40,6 +40,7 @@ function Alert(props) {
     toggle,
     children,
     transition,
+    fade,
     ...attributes
   } = props;
 
@@ -52,8 +53,15 @@ function Alert(props) {
 
   const closeClasses = mapToCssModules(classNames('close', closeClassName), cssModule);
 
+  const alertTransition = {
+    ...Fade.defaultProps,
+    ...transition,
+    baseClass: fade ? this.props.modalTransition.baseClass : '',
+    timeout: fade ? transition.timeout : 0,
+  };
+
   return (
-    <Fade {...attributes} {...transition} tag={Tag} className={classes} in={isOpen} role="alert">
+    <Fade {...attributes} {...alertTransition} tag={Tag} className={classes} in={isOpen} role="alert">
       {toggle ?
         <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle}>
           <span aria-hidden="true">&times;</span>
