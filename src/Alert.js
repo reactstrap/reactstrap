@@ -11,6 +11,7 @@ const propTypes = {
   closeAriaLabel: PropTypes.string,
   cssModule: PropTypes.object,
   color: PropTypes.string,
+  fade: PropTypes.bool,
   isOpen: PropTypes.bool,
   toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -22,6 +23,7 @@ const defaultProps = {
   isOpen: true,
   tag: 'div',
   closeAriaLabel: 'Close',
+  fade: false,
   transition: {
     ...Fade.defaultProps,
     unmountOnExit: true,
