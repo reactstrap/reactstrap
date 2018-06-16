@@ -149,6 +149,18 @@ class Tooltip extends React.Component {
   }
 
   handleDocumentClick(e) {
+    if (e.target === this._target || this._target.contains(e.target)) {
+      if (this._hideTimeout) {
+        this.clearHideTimeout();
+      }
+
+      if (!this.props.isOpen) {
+        this.toggle();
+      }
+    }
+  }
+
+  handleDocumentClickOutside(e) {
     if (e.target !== this._target || !this._target.contains(e.target)) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
@@ -167,10 +179,11 @@ class Tooltip extends React.Component {
     this._target.addEventListener('focusin', this.show, true);
     this._target.addEventListener('focusout', this.hide, true);
 
-
-    ['click', 'touchstart'].forEach(event =>
-      document.addEventListener(event, this.handleDocumentClick, true)
-    );
+    const isHideDelay = this.props.delay && this.props.delay.hide;
+    ['click', 'touchstart'].forEach((event) => {
+      document.addEventListener(event, this.handleDocumentClick, true);
+      if (isHideDelay) document.addEventListener(event, this.handleDocumentClickOutside, true);
+    });
   }
 
   removeTargetEvents() {
@@ -180,9 +193,12 @@ class Tooltip extends React.Component {
     this._target.addEventListener('focusin', this.show, true);
     this._target.addEventListener('focusout', this.hide, true);
 
-    ['click', 'touchstart'].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
-    );
+    const isHideDelay = this.props.delay && this.props.delay.hide;
+
+    ['click', 'touchstart'].forEach((event) => {
+      document.removeEventListener(event, this.handleDocumentClick, true);
+      if (isHideDelay) document.removeEventListener(event, this.handleDocumentClickOutside, true);
+    });
   }
 
   toggle(e) {
