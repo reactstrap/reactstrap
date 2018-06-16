@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Alert from './Alert';
 
-export default class UncontrolledAlert extends Component {
+const propTypes = {
+  fade: PropTypes.bool
+}
+
+const defaultProps = {
+  fade: true
+}
+
+class UncontrolledAlert extends Component {
   constructor(props) {
     super(props);
 
@@ -18,3 +27,8 @@ export default class UncontrolledAlert extends Component {
     return <Alert isOpen={this.state.isOpen} toggle={this.toggle} {...this.props} />;
   }
 }
+
+Alert.propTypes = propTypes;
+Alert.defaultProps = defaultProps;
+
+export default UncontrolledAlert;
