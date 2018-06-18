@@ -17,7 +17,6 @@ describe('FormFeedback', () => {
 
   it('should render with "invalid-feedback" class', () => {
     const wrapper = shallow(<FormFeedback>Yo!</FormFeedback>);
-
     expect(wrapper.hasClass('invalid-feedback')).toBe(true);
   });
 
@@ -25,6 +24,12 @@ describe('FormFeedback', () => {
     const wrapper = shallow(<FormFeedback valid>Yo!</FormFeedback>);
 
     expect(wrapper.hasClass('valid-feedback')).toBe(true);
+  });
+
+  it('should render with "valid-tooltip" class', () => {
+    const wrapper = shallow(<FormFeedback valid tooltip>Yo!</FormFeedback>);
+
+    expect(wrapper.hasClass('valid-tooltip')).toBe(true);
   });
 
   it('should render additional classes', () => {
