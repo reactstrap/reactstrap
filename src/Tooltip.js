@@ -157,7 +157,7 @@ class Tooltip extends React.Component {
       if (!this.props.isOpen) {
         this.toggle();
       }
-    }
+    } else if (this.props.isOpen && this.props.autohide) this.hide();
   }
 
   addTargetEvents() {
