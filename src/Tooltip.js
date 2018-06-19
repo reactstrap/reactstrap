@@ -157,6 +157,12 @@ class Tooltip extends React.Component {
       if (!this.props.isOpen) {
         this.toggle();
       }
+    } else if (this.props.isOpen && e.target.getAttribute('role') !== 'tooltip') {
+      if (this._showTimeout) {
+        this.clearShowTimeout();
+      }
+
+      this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
     }
   }
 
