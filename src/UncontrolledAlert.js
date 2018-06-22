@@ -16,7 +16,6 @@ class UncontrolledAlert extends Component {
 
     this.state = { isOpen: true };
     this.toggle = this.toggle.bind(this);
-    this.fade = this.props.fade;
   }
 
   toggle() {
