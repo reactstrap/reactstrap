@@ -21,7 +21,7 @@ export class AlertFadelessExample extends React.Component {
   render() {
     return (
       <div>
-        <Alert color="primary" isOpen={this.state.visible} toggle={this.onDismiss}>
+        <Alert color="primary" isOpen={this.state.visible} toggle={this.onDismiss} fade={false}>
           I am a primary alert and I can be dismissed without animating!
         </Alert>
       </div>
