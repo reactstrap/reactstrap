@@ -48,6 +48,7 @@ const propTypes = {
   ]),
   backdropTransition: FadePropTypes,
   modalTransition: FadePropTypes,
+  innerRef: PropTypes.object,
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -260,6 +261,7 @@ class Modal extends React.Component {
         role,
         labelledBy,
         external,
+        innerRef,
       } = this.props;
 
       const modalAttributes = {
@@ -297,6 +299,7 @@ class Modal extends React.Component {
               onExited={this.onClosed}
               cssModule={cssModule}
               className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
+              innerRef={innerRef}
             >
               {external}
               {this.renderModalDialog()}

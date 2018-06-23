@@ -15,6 +15,7 @@ const propTypes = {
   baseClassActive: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  innerRef: PropTypes.object,
 };
 
 const defaultProps = {
@@ -37,6 +38,7 @@ function Fade(props) {
     className,
     cssModule,
     children,
+    innerRef,
     ...otherProps
   } = props;
 
@@ -64,7 +66,7 @@ function Fade(props) {
           isActive && baseClassActive
         ), cssModule);
         return (
-          <Tag className={classes} {...childProps}>
+          <Tag className={classes} {...childProps} ref={innerRef}>
             {children}
           </Tag>
         );

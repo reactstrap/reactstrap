@@ -93,10 +93,11 @@ export default class ModalsPage extends React.Component {
   // timeout is 150ms by default to match bootstrap
   // see [Fade](/components/fade/) for more details
   backdropTransition: PropTypes.shape(Fade.propTypes),
-  // modalTransition - controls modal transition 
+  // modalTransition - controls modal transition
   // timeout is 300ms by default to match bootstrap
   // see [Fade](/components/fade/) for more details
   modalTransition: PropTypes.shape(Fade.propTypes),
+  innerRef: PropTypes.object,
 }`}
           </PrismCode>
         </pre>
