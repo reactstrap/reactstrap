@@ -18,7 +18,4 @@ class UncontrolledAlert extends Component {
   }
 }
 
-UncontrolledAlert.propTypes = Alert.propTypes;
-UncontrolledAlert.defaultProps = Alert.defaultProps;
-
 export default UncontrolledAlert;
