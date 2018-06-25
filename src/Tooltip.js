@@ -34,6 +34,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
+  innerRef: PropTypes.object,
 };
 
 const DEFAULT_DELAYS = {
@@ -225,6 +226,7 @@ class Tooltip extends React.Component {
       >
         <div
           {...attributes}
+          ref={this.props.innerRef}
           className={classes}
           role="tooltip"
           aria-hidden={this.props.isOpen}
