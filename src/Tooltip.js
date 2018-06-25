@@ -36,7 +36,8 @@ const propTypes = {
   ]),
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.string
+    PropTypes.string,
+    PropTypes.object
   ]),
 };
 

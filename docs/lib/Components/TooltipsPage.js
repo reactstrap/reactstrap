@@ -80,7 +80,8 @@ export default class TooltipsPage extends React.Component {
   // Custom ref handler that will be assigned to the "ref" of the <div> wrapping the tooltip elements
   innerRef: PropTypes.oneOfType([
     PropTypes.func, 
-    PropTypes.string
+    PropTypes.string,
+    PropTypes.object
   ]),
 }`}
           </PrismCode>
