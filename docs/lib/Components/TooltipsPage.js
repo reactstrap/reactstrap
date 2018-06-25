@@ -76,7 +76,13 @@ export default class TooltipsPage extends React.Component {
   offset: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
-  ])
+  ]),
+  // Custom ref handler that will be assigned to the "ref" of the <div> wrapping the tooltip elements
+  innerRef: PropTypes.oneOfType([
+    PropTypes.func, 
+    PropTypes.string,
+    PropTypes.object
+  ]),
 }`}
           </PrismCode>
         </pre>
