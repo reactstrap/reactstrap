@@ -16,6 +16,11 @@ const propTypes = {
   toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   transition: PropTypes.shape(Fade.propTypes),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
 };
 
 const defaultProps = {
@@ -43,6 +48,7 @@ function Alert(props) {
     children,
     transition,
     fade,
+    innerRef,
     ...attributes
   } = props;
 
@@ -63,7 +69,7 @@ function Alert(props) {
   };
 
   return (
-    <Fade {...attributes} {...alertTransition} tag={Tag} className={classes} in={isOpen} role="alert">
+    <Fade {...attributes} {...alertTransition} tag={Tag} className={classes} in={isOpen} role="alert" innerRef={innerRef}>
       {toggle ?
         <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle}>
           <span aria-hidden="true">&times;</span>
