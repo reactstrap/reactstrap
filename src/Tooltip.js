@@ -34,7 +34,10 @@ const propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  innerRef: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.func, 
+    PropTypes.string
+  ]),
 };
 
 const DEFAULT_DELAYS = {
