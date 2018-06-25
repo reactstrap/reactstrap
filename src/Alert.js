@@ -11,6 +11,7 @@ const propTypes = {
   closeAriaLabel: PropTypes.string,
   cssModule: PropTypes.object,
   color: PropTypes.string,
+  fade: PropTypes.bool,
   isOpen: PropTypes.bool,
   toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
@@ -22,6 +23,7 @@ const defaultProps = {
   isOpen: true,
   tag: 'div',
   closeAriaLabel: 'Close',
+  fade: true,
   transition: {
     ...Fade.defaultProps,
     unmountOnExit: true,
@@ -40,6 +42,7 @@ function Alert(props) {
     toggle,
     children,
     transition,
+    fade,
     ...attributes
   } = props;
 
@@ -52,8 +55,15 @@ function Alert(props) {
 
   const closeClasses = mapToCssModules(classNames('close', closeClassName), cssModule);
 
+  const alertTransition = {
+    ...Fade.defaultProps,
+    ...transition,
+    baseClass: fade ? transition.baseClass : '',
+    timeout: fade ? transition.timeout : 0,
+  };
+
   return (
-    <Fade {...attributes} {...transition} tag={Tag} className={classes} in={isOpen} role="alert">
+    <Fade {...attributes} {...alertTransition} tag={Tag} className={classes} in={isOpen} role="alert">
       {toggle ?
         <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle}>
           <span aria-hidden="true">&times;</span>
