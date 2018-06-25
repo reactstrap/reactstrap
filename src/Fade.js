@@ -15,7 +15,11 @@ const propTypes = {
   baseClassActive: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  innerRef: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
 };
 
 const defaultProps = {
