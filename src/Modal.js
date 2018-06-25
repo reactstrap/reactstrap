@@ -48,7 +48,11 @@ const propTypes = {
   ]),
   backdropTransition: FadePropTypes,
   modalTransition: FadePropTypes,
-  innerRef: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
 };
 
 const propsToOmit = Object.keys(propTypes);
