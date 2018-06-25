@@ -35,7 +35,7 @@ const propTypes = {
     PropTypes.number
   ]),
   innerRef: PropTypes.oneOfType([
-    PropTypes.func, 
+    PropTypes.func,
     PropTypes.string
   ]),
 };
