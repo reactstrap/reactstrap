@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Alert from './Alert';
 
-export default class UncontrolledAlert extends Component {
+class UncontrolledAlert extends Component {
   constructor(props) {
     super(props);
 
@@ -17,3 +17,5 @@ export default class UncontrolledAlert extends Component {
     return <Alert isOpen={this.state.isOpen} toggle={this.toggle} {...this.props} />;
   }
 }
+
+export default UncontrolledAlert;
