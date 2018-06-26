@@ -16,7 +16,12 @@ export function getScrollbarWidth() {
 }
 
 export function setScrollbarWidth(padding) {
-  document.body.style.paddingRight = padding > 0 ? `${padding}px` : null;
+  const paddingRight = padding > 0 ? `${padding}px` : null;
+  const fullWidthFixedContent = document.querySelectorAll('.fixed-top, .fixed-bottom');
+  const elementsAffectedByScrollbarWidth = [document.body, ...fullWidthFixedContent];
+  elementsAffectedByScrollbarWidth.forEach((element) => {
+    element.style.paddingRight = paddingRight; // eslint-disable-line no-param-reassign
+  });
 }
 
 export function isBodyOverflowing() {

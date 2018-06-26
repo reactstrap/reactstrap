@@ -208,4 +208,34 @@ describe('Utils', () => {
   //   document.body.clientWidth = prevClientWidth;
   //   window.innerWidth = prevWindowInnerWidth;
   // });
+
+  describe('setScrollbarWidth', () => {
+    const scrollbarWidth = 16;
+    let initialBody;
+    beforeEach(() => {
+      initialBody = document.body;
+      document.body = document.createElement('body');
+    });
+    afterEach(() => {
+      document.body = initialBody;
+    });
+
+    it('applies padding to the body', () => {
+      Utils.setScrollbarWidth(scrollbarWidth);
+      expect(document.body.style.paddingRight).toBe(`${scrollbarWidth}px`);
+    });
+
+    it('applies padding to full-width fixed-position content', () => {
+      const controlElement = document.createElement('div');
+      const fixedElement = document.createElement('div');
+      fixedElement.classList.add('fixed-top');
+      document.body.appendChild(controlElement);
+      document.body.appendChild(fixedElement);
+
+      Utils.setScrollbarWidth(scrollbarWidth);
+
+      expect(controlElement.style.paddingRight).toBe('');
+      expect(fixedElement.style.paddingRight).toBe(`${scrollbarWidth}px`);
+    });
+  });
 });
