@@ -106,7 +106,6 @@ class Tooltip extends React.Component {
   }
 
   onMouseLeaveTooltipContent(e) {
-    
     if (this.props.autohide) {
       return;
     }
