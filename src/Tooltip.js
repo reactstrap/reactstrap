@@ -96,7 +96,7 @@ class Tooltip extends React.Component {
     this._hideTimeout = setTimeout(this.hide.bind(this, e), this.getDelay('hide'));
   }
 
-  onMouseOverTooltipContent(e) {
+  onMouseOverTooltipContent() {
     if (this.props.autohide) {
       return;
     }
@@ -112,7 +112,7 @@ class Tooltip extends React.Component {
     if (this._showTimeout) {
       this.clearShowTimeout();
     }
-    e.persist()
+    e.persist();
     this._hideTimeout = setTimeout(this.hide.bind(this, e), this.getDelay('hide'));
   }
 

@@ -23,7 +23,7 @@ describe('Tooltip', () => {
     document.body.appendChild(element);
     target = document.getElementById('target');
     innerTarget = document.getElementById('innerTarget');
-    synthEvent = { persist: () => {} }
+    synthEvent = { persist: () => {} };
 
     jest.useFakeTimers();
   });
