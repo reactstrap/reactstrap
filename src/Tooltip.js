@@ -82,18 +82,18 @@ class Tooltip extends React.Component {
     this.removeTargetEvents();
   }
 
-  onMouseOverTooltip() {
+  onMouseOverTooltip(e) {
     if (this._hideTimeout) {
       this.clearHideTimeout();
     }
-    this._showTimeout = setTimeout(this.show, this.getDelay('show'));
+    this._showTimeout = setTimeout(this.show.bind(this, e), this.getDelay('show'));
   }
 
-  onMouseLeaveTooltip() {
+  onMouseLeaveTooltip(e) {
     if (this._showTimeout) {
       this.clearShowTimeout();
     }
-    this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
+    this._hideTimeout = setTimeout(this.hide.bind(this, e), this.getDelay('hide'));
   }
 
   onMouseOverTooltipContent() {
@@ -105,19 +105,20 @@ class Tooltip extends React.Component {
     }
   }
 
-  onMouseLeaveTooltipContent() {
+  onMouseLeaveTooltipContent(e) {
     if (this.props.autohide) {
       return;
     }
     if (this._showTimeout) {
       this.clearShowTimeout();
     }
-    this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
+    e.persist();
+    this._hideTimeout = setTimeout(this.hide.bind(this, e), this.getDelay('hide'));
   }
 
   onEscKeyDown(e) {
     if (e.key === 'Escape') {
-      this.hide();
+      this.hide(e);
     }
   }
 
@@ -129,17 +130,17 @@ class Tooltip extends React.Component {
     return delay;
   }
 
-  show() {
+  show(e) {
     if (!this.props.isOpen) {
       this.clearShowTimeout();
-      this.toggle();
+      this.toggle(e);
     }
   }
 
-  hide() {
+  hide(e) {
     if (this.props.isOpen) {
       this.clearHideTimeout();
-      this.toggle();
+      this.toggle(e);
     }
   }
 
@@ -160,14 +161,13 @@ class Tooltip extends React.Component {
       }
 
       if (!this.props.isOpen) {
-        this.toggle();
+        this.toggle(e);
       }
     } else if (this.props.isOpen && e.target.getAttribute('role') !== 'tooltip') {
       if (this._showTimeout) {
         this.clearShowTimeout();
       }
-
-      this._hideTimeout = setTimeout(this.hide, this.getDelay('hide'));
+      this._hideTimeout = setTimeout(this.hide.bind(this, e), this.getDelay('hide'));
     }
   }
 
@@ -201,7 +201,7 @@ class Tooltip extends React.Component {
       return e && e.preventDefault();
     }
 
-    return this.props.toggle();
+    return this.props.toggle(e);
   }
 
   render() {

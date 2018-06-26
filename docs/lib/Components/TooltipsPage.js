@@ -33,7 +33,7 @@ export default class TooltipsPage extends React.Component {
   // boolean to control the state of the tooltip
   isOpen: PropTypes.bool,
   hideArrow: PropTypes.bool,
-  // callback for toggling isOpen in the controlling component
+  // callback for toggling isOpen in the controlling component. It will receive an object with info about the event that triggered it
   toggle: PropTypes.func,
   // target element or element ID, popover is attached to this element
   target:  PropTypes.oneOfType([
