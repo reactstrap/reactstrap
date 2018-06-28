@@ -21,6 +21,7 @@ env:
 branches:
   only:
   - master
+  - /^\d+\.\d+(\.\d+)?(-\S*)?$/
 before_deploy: 
   - "echo 'Preparing to publish'"
   - npm run build
