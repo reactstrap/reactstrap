@@ -16,8 +16,6 @@ error() {
 if [ -z "$TRAVIS" ]; then
   git checkout master
   git pull
-  npm install
-  npm run build
 fi
 
 if [ -z "$CURRENT_BRANCH" ]; then
@@ -34,4 +32,4 @@ git tag -a $VERSION -m "release $VERSION"
 git push --set-upstream origin $CURRENT_BRANCH > /dev/null 2>&1
 git push --tags > /dev/null 2>&1
 
-success "pushed $VERSION tag to GitHub. If everything looks good, run: npm publish"
+success "pushed $VERSION tag to GitHub."
