@@ -131,8 +131,10 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: target });
+    jest.runTimersToTime(0);
     expect(isOpen).toBe(true);
     instance.handleDocumentClick({ target: target });
+    jest.runTimersToTime(250);
     expect(isOpen).toBe(false);
 
     wrapper.detach();
@@ -149,6 +151,7 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: innerTarget });
+    jest.runTimersToTime(0);
     expect(isOpen).toBe(true);
     wrapper.detach();
   });
