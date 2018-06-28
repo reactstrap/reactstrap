@@ -1,3 +1,26 @@
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/reactstrap/reactstrap/compare/6.1.0...6.2.0) (2018-06-28)
+
+
+### Bug Fixes
+
+* **Carousel:** allow true, false, undefined, null and children of Carousel ([#1064](https://github.com/reactstrap/reactstrap/issues/1064)) ([478870b](https://github.com/reactstrap/reactstrap/commit/478870b)), closes [#1063](https://github.com/reactstrap/reactstrap/issues/1063)
+* **Modal:** allow innerRef to be function or string ([#1091](https://github.com/reactstrap/reactstrap/issues/1091)) ([aceaf22](https://github.com/reactstrap/reactstrap/commit/aceaf22))
+* **tooltip:** fixed tooltip not disappearing on mobile ([#1083](https://github.com/reactstrap/reactstrap/issues/1083)) ([e6a1313](https://github.com/reactstrap/reactstrap/commit/e6a1313)), closes [#1004](https://github.com/reactstrap/reactstrap/issues/1004)
+* **Tooltip:** Pass down cssModule ([#1075](https://github.com/reactstrap/reactstrap/issues/1075)) ([#1076](https://github.com/reactstrap/reactstrap/issues/1076)) ([4fb05b2](https://github.com/reactstrap/reactstrap/commit/4fb05b2))
+
+
+### Features
+
+* **alert:** add ability to disable fade ([#1078](https://github.com/reactstrap/reactstrap/issues/1078)) ([c71f1d4](https://github.com/reactstrap/reactstrap/commit/c71f1d4)), closes [#824](https://github.com/reactstrap/reactstrap/issues/824)
+* **Collapse:** add ref to collapse component ([#1067](https://github.com/reactstrap/reactstrap/issues/1067)) ([9d3126c](https://github.com/reactstrap/reactstrap/commit/9d3126c)), closes [#1054](https://github.com/reactstrap/reactstrap/issues/1054)
+* **feedback-tooltip:** add feedback tooltip ([#1074](https://github.com/reactstrap/reactstrap/issues/1074)) ([baee9a4](https://github.com/reactstrap/reactstrap/commit/baee9a4)), closes [#1062](https://github.com/reactstrap/reactstrap/issues/1062)
+* **Modal:** add ref to Modal ([#1087](https://github.com/reactstrap/reactstrap/issues/1087)) ([015d16d](https://github.com/reactstrap/reactstrap/commit/015d16d)), closes [#1082](https://github.com/reactstrap/reactstrap/issues/1082)
+* **Tooltip:** add innerRef ([#1090](https://github.com/reactstrap/reactstrap/issues/1090)) ([214da8c](https://github.com/reactstrap/reactstrap/commit/214da8c)), closes [#1089](https://github.com/reactstrap/reactstrap/issues/1089)
+* **Tooltip:** pass event to toggle callback ([#1096](https://github.com/reactstrap/reactstrap/issues/1096)) ([9dad68b](https://github.com/reactstrap/reactstrap/commit/9dad68b)), closes [#1094](https://github.com/reactstrap/reactstrap/issues/1094) [#1072](https://github.com/reactstrap/reactstrap/issues/1072)
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/reactstrap/reactstrap/compare/6.0.1...6.1.0) (2018-06-04)
 
