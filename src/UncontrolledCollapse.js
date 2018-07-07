@@ -51,7 +51,7 @@ class UncontrolledCollapse extends Component {
 
   render() {
     const { toggleEvents, isOpen, ...rest } = this.props;
-    return <Collapse isOpen={ this.state.isOpen } { ...rest } />;
+    return <Collapse isOpen={this.state.isOpen} {...rest} />;
   }
 }
 
