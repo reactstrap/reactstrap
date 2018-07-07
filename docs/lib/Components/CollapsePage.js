@@ -6,6 +6,7 @@ import SectionTitle from '../UI/SectionTitle';
 
 import CollapseExample from '../examples/Collapse';
 import UncontrolledCollapseExample from '../examples/CollapseUncontrolled';
+import UncontrolledCollapseIsOpenExample from '../examples/CollapseUncontrolledIsOpen';
 
 import CollapseEventsExample from '../examples/CollapseEvents';
 
@@ -13,6 +14,7 @@ const CollapseExampleSource = require('!!raw!../examples/Collapse');
 const CollapseEventsExampleSource = require('!!raw!../examples/CollapseEvents');
 
 const UncontrolledCollapseExampleSource = require('!!raw!../examples/CollapseUncontrolled');
+const UncontrolledCollapseIsOpenExampleSource = require('!!raw!../examples/CollapseUncontrolledIsOpen');
 
 export default class CollapsePage extends React.Component {
   render() {
@@ -69,6 +71,17 @@ export default class CollapsePage extends React.Component {
         </div>
         <pre>
           <PrismCode className="language-jsx">{UncontrolledCollapseExampleSource}</PrismCode>
+        </pre>
+        <SectionTitle>Uncontrolled Collapse with isOpen</SectionTitle>
+        <p>
+          Although <code>UncontrolledCollapse</code> does not require an <code>isOpen</code> prop, it takes an
+          optional <code>isOpen</code> prop to allow for the <code>UncontrolledCollapse</code> to be open by default.
+        </p>
+        <div className="docs-example">
+          <UncontrolledCollapseIsOpenExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">{UncontrolledCollapseIsOpenExampleSource}</PrismCode>
         </pre>
       </div>
     );

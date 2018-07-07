@@ -38,6 +38,18 @@ describe('UncontrolledCollapse', () => {
     expect(collapse.prop('isOpen')).toBe(false);
   });
 
+  it('should be closed when isOpen prop is set to false', () => {
+    const collapse = shallow(<UncontrolledCollapse toggler="#toggler" isOpen={ false }>Yo!</UncontrolledCollapse>);
+
+    expect(collapse.prop('isOpen')).toBe(false);
+  });
+
+  it('should be open when isOpen prop is set to true', () => {
+    const collapse = shallow(<UncontrolledCollapse toggler="#toggler" isOpen={ true }>Yo!</UncontrolledCollapse>);
+
+    expect(collapse.prop('isOpen')).toBe(true);
+  });
+
   it('should toggle isOpen when toggle is called', () => {
     const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
 
