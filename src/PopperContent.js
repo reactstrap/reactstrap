@@ -28,7 +28,6 @@ const defaultProps = {
   hideArrow: false,
   isOpen: false,
   offset: 0,
-  arrowClassName: 'arrow',
   fallbackPlacement: 'flip',
   flip: true,
   container: 'body',
@@ -147,7 +146,10 @@ class PopperContent extends React.Component {
       modifiers,
       ...attrs
     } = this.props;
-    const arrowClassName = mapToCssModules(_arrowClassName, cssModule);
+    const arrowClassName = mapToCssModules(classNames(
+      'arrow',
+      _arrowClassName
+    ), cssModule);
     const placement = (this.state.placement || attrs.placement).split('-')[0];
     const popperClassName = mapToCssModules(classNames(
       className,
