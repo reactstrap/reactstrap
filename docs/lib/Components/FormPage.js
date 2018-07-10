@@ -79,7 +79,13 @@ export default class FormPage extends React.Component {
   invalid: PropTypes.bool, // applied the is-valid class when true, does nothing when false
   bsSize: PropTypes.string,
   cssModule: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]) // for type="select"
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]), // for type="select"
+  // innerRef would be referenced to select node or input DOM node, depends on type property
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ])
 };`}
           </PrismCode>
         </pre>
