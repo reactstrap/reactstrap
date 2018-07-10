@@ -139,7 +139,7 @@ class PopperContent extends React.Component {
       offset,
       fallbackPlacement,
       placementPrefix,
-      arrowClassName,
+      arrowClassName: _arrowClassName,
       hideArrow,
       className,
       tag,
@@ -147,7 +147,7 @@ class PopperContent extends React.Component {
       modifiers,
       ...attrs
     } = this.props;
-    const _arrowClassName = mapToCssModules(arrowClassName, cssModule);
+    const arrowClassName = mapToCssModules(_arrowClassName, cssModule);
     const placement = (this.state.placement || attrs.placement).split('-')[0];
     const popperClassName = mapToCssModules(classNames(
       className,
@@ -168,7 +168,7 @@ class PopperContent extends React.Component {
     return (
       <ReactPopper modifiers={extendedModifiers} {...attrs} component={tag} className={popperClassName} x-placement={this.state.placement || attrs.placement}>
         {children}
-        {!hideArrow && <Arrow className={_arrowClassName} />}
+        {!hideArrow && <Arrow className={arrowClassName} />}
       </ReactPopper>
     );
   }
