@@ -3,6 +3,8 @@
 
 ### Features
 
+* **CustomInput:** add innerRef to CustomInput ([#1123](https://github.com/reactstrap/reactstrap/issues/1123)) ([418fdf8](https://github.com/reactstrap/reactstrap/commit/418fdf8))
+
 * **Tooltip:** allow additional arrow classNames ([#1119](https://github.com/reactstrap/reactstrap/issues/1119)) ([9ffa55f](https://github.com/reactstrap/reactstrap/commit/9ffa55f)), closes [#1117](https://github.com/reactstrap/reactstrap/issues/1117)
 
 <a name="6.2.0"></a>
