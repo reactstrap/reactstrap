@@ -51,6 +51,8 @@ export default class TooltipsPage extends React.Component {
   className: PropTypes.string,
   // Apply class to the inner-tooltip
   innerClassName: PropTypes.string,
+  // Apply class to the arrow-tooltip ('arrow' by default)
+  arrowClassName: PropTypes.string,
   // optionally hide tooltip when hovering over tooltip content - default true
   autohide: PropTypes.bool,
   // convenience attachments for popover

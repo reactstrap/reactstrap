@@ -21,6 +21,7 @@ const propTypes = {
   hideArrow: PropTypes.bool,
   className: PropTypes.string,
   innerClassName: PropTypes.string,
+  arrowClassName: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
   autohide: PropTypes.bool,
@@ -229,6 +230,7 @@ class Tooltip extends React.Component {
         hideArrow={this.props.hideArrow}
         placement={this.props.placement}
         placementPrefix={this.props.placementPrefix}
+        arrowClassName={this.props.arrowClassName}
         container={this.props.container}
         modifiers={this.props.modifiers}
         offset={this.props.offset}
