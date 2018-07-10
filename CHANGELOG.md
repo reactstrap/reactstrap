@@ -1,5 +1,5 @@
 <a name="6.3.0"></a>
-# [6.3.0](https://github.com/reactstrap/reactstrap/compare/6.1.0...6.3.0) (2018-07-10)
+# [6.3.0](https://github.com/reactstrap/reactstrap/compare/6.2.0...6.3.0) (2018-07-10)
 
 ### Features
 

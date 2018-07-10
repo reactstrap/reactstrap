@@ -27,7 +27,7 @@ before_deploy:
   - npm run build
 deploy:
   provider: npm
-  email: "dumbdrun@gmail.com"
+  email: "dumbdrum@gmail.com"
   api_key:
     secure: P+6SEhs1BQ8sUygZ3L+Mqe2lxrhA9CB35DOds4d8Lp1LneRMm3jDt/DDBhIxF3N1xhd5f9BaHifyXcOfm+EiNIczkTP2G8wJCaxoA7bVKLNx27//kXBUVq7J4vnM3nZltFO7YHd3l46XkTeapQuXVXmbNbT6enQISkwNKMGd/hJk/hNqtS/faJAk84wqjcSGh/wY1YQ7po7FaAUWN2V6y8M8GfW/8s9BEAlY0sY4QYZr90CnSmOsvFtY//0Mx0NevUbo7UcEa+8cO7YOsrgdIMxQBq3UlN9L2XkQyLBobwShk+GeQhFWNVw5aByluWg8DoY5GOkgRSMhTLUyQ3fKnV8B2Mo1SqsqdSD9830TWY+Br47O1Mx20WrbzkpMdGa/Msmvrk0wMFNY0+TuMyn6ItMpGnijbKLoM23deiq69TwgUlVLOHGRcuE7P9iyP+bCNgHxPtI3d3akO2ZWO+8wiVw8sJ29Ywr4x+omFeuyLalfNCGVYF2vg07hT8oWPXNPcNA7Lktqb6PWmaUMGAaLv6Awe8lBu/RT/Tx5rVzdygxKj+xti95vduKaSZp0KfNCkA1txemQCbiuURM5S7KhAhWsDrFJOlYdP5tSf53HhCNrpniAEUXPuNW0aPjgFYYcOVFL/7U4eWLUaXaFL9mBF4wT6K9ekjHaEOSCjZeKDCw=
   skip_cleanup: true
