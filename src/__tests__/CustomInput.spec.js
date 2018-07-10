@@ -44,6 +44,13 @@ describe('Custom Inputs', () => {
       const checkbox = mount(<CustomInput type="checkbox" data-testprop="yo" />);
       expect(checkbox.find('input').prop('data-testprop')).toBe('yo');
     });
+
+    it('should reference innerRef to the input node', () => {
+      const ref = React.createRef();
+      mount(<CustomInput type="checkbox" innerRef={ref} />);
+      expect(ref.current).not.toBeNull();
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
   });
 
   describe('CustomRadio', () => {
@@ -87,6 +94,13 @@ describe('Custom Inputs', () => {
       const radio = mount(<CustomInput type="radio" data-testprop="yo" />);
       expect(radio.find('input').prop('data-testprop')).toBe('yo');
     });
+
+    it('should reference innerRef to the input node', () => {
+      const ref = React.createRef();
+      mount(<CustomInput type="radio" innerRef={ref} />);
+      expect(ref.current).not.toBeNull();
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
   });
 
   describe('CustomSelect', () => {
@@ -118,6 +132,13 @@ describe('Custom Inputs', () => {
     it('should pass all other props to the input node', () => {
       const select = mount(<CustomInput type="select" data-testprop="yo" />);
       expect(select.find('select').prop('data-testprop')).toBe('yo');
+    });
+
+    it('should reference innerRef to the select node', () => {
+      const ref = React.createRef();
+      mount(<CustomInput type="select" innerRef={ref} />);
+      expect(ref.current).not.toBeNull();
+      expect(ref.current).toBeInstanceOf(HTMLSelectElement);
     });
   });
 
@@ -162,6 +183,13 @@ describe('Custom Inputs', () => {
       const file = mount(<CustomInput type="file" data-testprop="yo" />);
       expect(file.find('input').prop('data-testprop')).toBe('yo');
     });
+
+    it('should reference innerRef to the input node', () => {
+      const ref = React.createRef();
+      mount(<CustomInput type="file" innerRef={ref} />);
+      expect(ref.current).not.toBeNull();
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
   });
 
   describe('CustomRange', () => {
@@ -188,6 +216,13 @@ describe('Custom Inputs', () => {
     it('should pass all other props to the input node', () => {
       const range = mount(<CustomInput type="range" data-testprop="yo" />);
       expect(range.find('input').prop('data-testprop')).toBe('yo');
+    });
+
+    it('should reference innerRef to the input node', () => {
+      const ref = React.createRef();
+      mount(<CustomInput type="range" innerRef={ref} />);
+      expect(ref.current).not.toBeNull();
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
   });
 });
