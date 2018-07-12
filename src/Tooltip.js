@@ -40,6 +40,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.object
   ]),
+  trigger: PropTypes.string,
 };
 
 const DEFAULT_DELAYS = {
@@ -173,16 +174,34 @@ class Tooltip extends React.Component {
   }
 
   addTargetEvents() {
-    this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
-    this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
-    this._target.addEventListener('keydown', this.onEscKeyDown, true);
-    this._target.addEventListener('focusin', this.show, true);
-    this._target.addEventListener('focusout', this.hide, true);
-
-
-    ['click', 'touchstart'].forEach(event =>
-      document.addEventListener(event, this.handleDocumentClick, true)
-    );
+    if (this.props.trigger) {
+      let triggers = this.props.trigger.split(' ');
+      if (!triggers.includes('manual')) {
+        if (triggers.includes('click')) {
+          ['click', 'touchstart'].forEach(event =>
+            document.addEventListener(event, this.handleDocumentClick, true)
+          );
+        }
+        if (triggers.includes('hover')) {
+          this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
+          this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+        }
+        if (triggers.includes('focus')) {
+          this._target.addEventListener('focusin', this.show, true);
+          this._target.addEventListener('focusout', this.hide, true);
+        }
+        this._target.addEventListener('keydown', this.onEscKeyDown, true);
+      }
+    } else {
+      this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
+      this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+      this._target.addEventListener('keydown', this.onEscKeyDown, true);
+      this._target.addEventListener('focusin', this.show, true);
+      this._target.addEventListener('focusout', this.hide, true);
+      ['click', 'touchstart'].forEach(event =>
+        document.addEventListener(event, this.handleDocumentClick, true)
+      );
+    }
   }
 
   removeTargetEvents() {
