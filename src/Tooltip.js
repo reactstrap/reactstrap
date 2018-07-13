@@ -177,16 +177,16 @@ class Tooltip extends React.Component {
     if (this.props.trigger) {
       let triggers = this.props.trigger.split(' ');
       if (triggers.indexOf('manual') === -1) {
-        if (triggers.indexOf('click') >= -1) {
+        if (triggers.indexOf('click') > -1) {
           ['click', 'touchstart'].forEach(event =>
             document.addEventListener(event, this.handleDocumentClick, true)
           );
         }
-        if (triggers.indexOf('hover') >= -1) {
+        if (triggers.indexOf('hover') > -1) {
           this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
           this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
         }
-        if (triggers.indexOf('focus') >= -1) {
+        if (triggers.indexOf('focus') > -1) {
           this._target.addEventListener('focusin', this.show, true);
           this._target.addEventListener('focusout', this.hide, true);
         }
