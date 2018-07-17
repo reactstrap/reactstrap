@@ -9,6 +9,7 @@ describe('Tooltip', () => {
   let container;
   let target;
   let innerTarget;
+  let synthEvent;
 
   beforeEach(() => {
     isOpen = false;
@@ -22,6 +23,7 @@ describe('Tooltip', () => {
     document.body.appendChild(element);
     target = document.getElementById('target');
     innerTarget = document.getElementById('innerTarget');
+    synthEvent = { persist: () => {} };
 
     jest.useFakeTimers();
   });
@@ -536,7 +538,7 @@ describe('Tooltip', () => {
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
 
-      instance.onMouseLeaveTooltipContent();
+      instance.onMouseLeaveTooltipContent(synthEvent);
       jest.runTimersToTime(100);
       expect(spy).not.toHaveBeenCalled();
       jest.runTimersToTime(200);
@@ -558,7 +560,7 @@ describe('Tooltip', () => {
 
       instance.onMouseOverTooltip();
       expect(instance._showTimeout).toBeTruthy();
-      instance.onMouseLeaveTooltipContent();
+      instance.onMouseLeaveTooltipContent(synthEvent);
       jest.runTimersToTime(300);
       expect(instance._showTimeout).toBeFalsy();
       wrapper.detach();
@@ -577,7 +579,7 @@ describe('Tooltip', () => {
 
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
-      instance.onMouseLeaveTooltipContent();
+      instance.onMouseLeaveTooltipContent(synthEvent);
       jest.runTimersToTime(100);
       expect(instance._hideTimeout).toBeTruthy();
       instance.onMouseOverTooltipContent();
@@ -603,7 +605,7 @@ describe('Tooltip', () => {
       instance.onMouseOverTooltipContent();
       jest.runTimersToTime(200);
       expect(spy).toHaveBeenCalled();
-      instance.onMouseLeaveTooltipContent();
+      instance.onMouseLeaveTooltipContent(synthEvent);
       expect(instance._hideTimeout).toBeFalsy();
       wrapper.detach();
     });

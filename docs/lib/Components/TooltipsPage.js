@@ -33,7 +33,7 @@ export default class TooltipsPage extends React.Component {
   // boolean to control the state of the tooltip
   isOpen: PropTypes.bool,
   hideArrow: PropTypes.bool,
-  // callback for toggling isOpen in the controlling component
+  // callback for toggling isOpen in the controlling component. It will receive an object with info about the event that triggered it
   toggle: PropTypes.func,
   // target element or element ID, popover is attached to this element
   target:  PropTypes.oneOfType([
@@ -51,6 +51,8 @@ export default class TooltipsPage extends React.Component {
   className: PropTypes.string,
   // Apply class to the inner-tooltip
   innerClassName: PropTypes.string,
+  // Apply class to the arrow-tooltip ('arrow' by default)
+  arrowClassName: PropTypes.string,
   // optionally hide tooltip when hovering over tooltip content - default true
   autohide: PropTypes.bool,
   // convenience attachments for popover
@@ -79,10 +81,11 @@ export default class TooltipsPage extends React.Component {
   ]),
   // Custom ref handler that will be assigned to the "ref" of the <div> wrapping the tooltip elements
   innerRef: PropTypes.oneOfType([
-    PropTypes.func, 
+    PropTypes.func,
     PropTypes.string,
     PropTypes.object
   ]),
+  trigger: PropTypes.string,
 }`}
           </PrismCode>
         </pre>

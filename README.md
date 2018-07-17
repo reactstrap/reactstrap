@@ -220,9 +220,11 @@ npm run test-watch
 
 #### Create Release Branch
 
-To create a release branch and changelog, run the following command with a semantic release type (major, minor, patch):
+Note: you must have the `GITHUB_TOKEN` environment variable set to a valid GitHub token with write access to your repo.
 
-```
+To create a release branch and changelog, run the following command, optionally with a semantic release type (major, minor, patch) (if not provided, it will default to semver (it's best to let it default)):
+
+```bash
 ./scripts/release <release-type>
 ```
 
@@ -230,17 +232,19 @@ Verify changelog in branch. Create a PR if everything looks good. Merge when tes
 
 #### Tagging and Publishing
 
+Note: you must have write permission to this repo do perform this action
+
 Once the release branch is merged, checkout master and run:
 
-```
+```bash
 ./scripts/publish
 ```
 
-This will build the current state of master, tag it based on the release version and push the tag up to GitHub. If that all looks good, the final command to run is:
+This will build the current state of master, tag it based on the release version and push the tag up to GitHub. Travis will detect the new tag and publish to npm.
 
-```
-npm publish
-```
+_OR_
+
+You can create a new tag via the GitHub user interface. If you do it this way, make sure to use the correct version as the tag name (eg. `6.2.0`).
 
 ## In the wild
 
