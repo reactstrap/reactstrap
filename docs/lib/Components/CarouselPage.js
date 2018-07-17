@@ -130,7 +130,7 @@ export default class CarouselPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`UncontrolledCarousel.propTypes = {
-  items: PropTypes.array,isRequired,
+  items: PropTypes.array.isRequired,
   indicators: PropTypes.bool, // default: true
   controls: PropTypes.bool, // default: true
   autoPlay: PropTypes.bool, // default: true
