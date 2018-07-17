@@ -7,7 +7,7 @@ const propTypes = {
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.string.isRequired,
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  label: PropTypes.node,
   inline: PropTypes.bool,
   valid: PropTypes.bool,
   invalid: PropTypes.bool,
