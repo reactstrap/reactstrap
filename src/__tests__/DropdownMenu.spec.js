@@ -92,6 +92,19 @@ describe('DropdownMenu', () => {
     expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-right')).toBe(true);
   });
 
+  it('should render center aligned menus', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <DropdownMenu center>Ello world</DropdownMenu>,
+      {
+        context: { isOpen, direction, inNavbar, popperManager },
+        childContextTypes: { popperManager }
+      }
+    );
+
+    expect(wrapper.find(Popper).prop('placement')).toBe('bottom');
+  });
+
   it('should render down when direction is "down" on the context', () => {
     isOpen = true;
     const wrapper = shallow(

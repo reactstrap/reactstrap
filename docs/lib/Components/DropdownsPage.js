@@ -88,6 +88,7 @@ DropdownToggle.propTypes = {
 DropdownMenu.propTypes = {
   tag: PropTypes.string,
   children: PropTypes.node.isRequired,
+  center: PropTypes.bool,
   right: PropTypes.bool,
   flip: PropTypes.bool, // default: true,
   className: PropTypes.string,
@@ -112,22 +113,44 @@ DropdownItem.propTypes = {
           </PrismCode>
         </pre>
         <SectionTitle>Alignment</SectionTitle>
-        <p>To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to <code>Dropdown</code>.</p>
+        <p>
+          To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to <code>DropdownMenu</code>.
+          To center the menu, add a <code>center</code> prop.
+        </p>
         <div className="docs-example">
-          <div style={{ display: 'inline-block' }}>
-            <Dropdown isOpen={this.state.example2} toggle={this.toggleExample2}>
-              <DropdownToggle caret>
-                Dropdown's menu is right-aligned
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem header>Header</DropdownItem>
-                <DropdownItem disabled>Action</DropdownItem>
-                <DropdownItem>Another Action</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
+          <Row>
+            <Col>
+              <Dropdown isOpen={this.state.example2} toggle={this.toggleExample2}>
+                <DropdownToggle caret>
+                  Dropdown's menu is right-aligned
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem header>Header</DropdownItem>
+                  <DropdownItem disabled>Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+            <Col>
+              <Dropdown
+                isOpen={this.state.alignCenter}
+                toggle={() => this.setState({alignCenter: !this.state.alignCenter})}
+              >
+                <DropdownToggle caret>
+                  Dropdown's menu is centered
+                </DropdownToggle>
+                <DropdownMenu center>
+                  <DropdownItem header>Header</DropdownItem>
+                  <DropdownItem disabled>Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+          </Row>
         </div>
         <pre>
           <PrismCode className="language-jsx">
@@ -141,6 +164,19 @@ DropdownItem.propTypes = {
     <DropdownItem>Another Action</DropdownItem>
     <DropdownItem divider/>
     <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+
+<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+  <DropdownToggle caret>
+    Dropdown's menu is centered
+  </DropdownToggle>
+  <DropdownMenu center>
+    <DropdownItem header>Header</DropdownItem>
+    <DropdownItem disabled>Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem divider />
+    <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
   </DropdownMenu>
 </Dropdown>`}
           </PrismCode>

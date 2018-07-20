@@ -13,11 +13,13 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
+  center: PropTypes.bool,
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
+  center: false,
 };
 
 const contextTypes = {
@@ -36,7 +38,7 @@ const directionPositionMap = {
 };
 
 const DropdownMenu = (props, context) => {
-  const { className, cssModule, right, tag, flip, modifiers, persist, ...attrs } = props;
+  const { className, cssModule, right, tag, flip, modifiers, persist, center, ...attrs } = props;
   const classes = mapToCssModules(classNames(
     className,
     'dropdown-menu',
@@ -53,7 +55,12 @@ const DropdownMenu = (props, context) => {
 
     const position1 = directionPositionMap[context.direction] || 'bottom';
     const position2 = right ? 'end' : 'start';
-    attrs.placement = `${position1}-${position2}`;
+    if (center) {
+      attrs.placement = position1;
+    } else {
+      attrs.placement = `${position1}-${position2}`;
+    }
+
     attrs.component = tag;
     attrs.modifiers = !flip ? {
       ...modifiers,
