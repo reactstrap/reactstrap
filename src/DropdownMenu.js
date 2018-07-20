@@ -55,12 +55,7 @@ const DropdownMenu = (props, context) => {
 
     const position1 = directionPositionMap[context.direction] || 'bottom';
     const position2 = right ? 'end' : 'start';
-    if (center) {
-      attrs.placement = position1;
-    } else {
-      attrs.placement = `${position1}-${position2}`;
-    }
-
+    attrs.placement = center ? position1 : `${position1}-${position2}`;
     attrs.component = tag;
     attrs.modifiers = !flip ? {
       ...modifiers,
