@@ -42,11 +42,14 @@ const childContextTypes = {
   isOpen: PropTypes.bool.isRequired,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
   inNavbar: PropTypes.bool.isRequired,
+  menuContainer: PropTypes.oneOfType(Element).isRequired
 };
 
 class Dropdown extends React.Component {
   constructor(props) {
     super(props);
+
+    this._menuContainer = document.createElement('div');
 
     this.addEvents = this.addEvents.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
@@ -61,11 +64,14 @@ class Dropdown extends React.Component {
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
+      menuContainer: this._menuContainer,
     };
   }
 
   componentDidMount() {
     this.handleProps();
+
+    document.body.appendChild(this._menuContainer);
   }
 
   componentDidUpdate(prevProps) {
@@ -76,10 +82,16 @@ class Dropdown extends React.Component {
 
   componentWillUnmount() {
     this.removeEvents();
+
+    document.body.removeChild(this._menuContainer);
   }
 
   getContainer() {
     return ReactDOM.findDOMNode(this);
+  }
+
+  getMenuContainer() {
+    return this._menuContainer;
   }
 
   addEvents() {
@@ -98,8 +110,12 @@ class Dropdown extends React.Component {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
     const container = this.getContainer();
 
-    if (container.contains(e.target) && container !== e.target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
-      return;
+    const menuContainer = this.getMenuContainer();
+
+    if ((container.contains(e.target) && container !== e.target) || (menuContainer.contains(e.target) && menuContainer !== e.target)) {
+      if (e.type !== 'keyup' || e.which === keyCodes.tab) {
+        return;
+      }
     }
 
     this.toggle(e);
@@ -131,7 +147,9 @@ class Dropdown extends React.Component {
     const itemClass = mapToCssModules('dropdown-item', this.props.cssModule);
     const disabledClass = mapToCssModules('disabled', this.props.cssModule);
 
-    const items = container.querySelectorAll(`.${menuClass} .${itemClass}:not(.${disabledClass})`);
+    const menuContainer = this.getMenuContainer();
+
+    const items = menuContainer.querySelectorAll(`.${menuClass} .${itemClass}:not(.${disabledClass})`);
 
     if (!items.length) return;
 
