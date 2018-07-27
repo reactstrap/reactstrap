@@ -1,3 +1,14 @@
+<a name="6.3.1"></a>
+## [6.3.1](https://github.com/reactstrap/reactstrap/compare/6.3.0...6.3.1) (2018-07-27)
+
+
+### Bug Fixes
+
+* **Collapse:** add function and string to innerRef propType ([#1129](https://github.com/reactstrap/reactstrap/issues/1129)) ([f380b41](https://github.com/reactstrap/reactstrap/commit/f380b41)), closes [#1054](https://github.com/reactstrap/reactstrap/issues/1054)
+* **CustomInput:** allow any node for label ([#1095](https://github.com/reactstrap/reactstrap/issues/1095)) ([c1374b4](https://github.com/reactstrap/reactstrap/commit/c1374b4))
+
+
+
 <a name="6.3.0"></a>
 # [6.3.0](https://github.com/reactstrap/reactstrap/compare/6.2.0...6.3.0) (2018-07-10)
 

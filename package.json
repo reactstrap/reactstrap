@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "6.3.0",
+  "version": "6.3.1",
   "description": "React Bootstrap 4 components",
   "main": "dist/reactstrap.cjs.js",
   "jsnext:main": "dist/reactstrap.es.js",
@@ -19,8 +19,8 @@
     "build": "rollup -c",
     "prebuild": "cross-env BABEL_ENV=lib-dir babel src --out-dir lib --ignore src/__tests__/",
     "postbuild": "node ./scripts/postbuild.js",
-    "create-release": "npm test && sh ./scripts/release",
-    "publish-release": "npm test && sh ./scripts/publish",
+    "create-release": "npm run cover && sh ./scripts/release",
+    "publish-release": "npm run cover && sh ./scripts/publish",
     "lint": "eslint src"
   },
   "repository": {
