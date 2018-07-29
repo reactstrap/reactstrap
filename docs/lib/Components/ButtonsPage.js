@@ -113,7 +113,7 @@ export default class ButtonsPage extends React.Component {
 
         <SectionTitle>Checkbox and Radio Buttons (Stateful Buttons)</SectionTitle>
         <p>
-          In order to have checkbox and radio buttons, your component needs to manage the state of which button(s) are active/select. It is not in the opinion of this library to manage state within it's components so it is left up to you. Below is a simple example showcasing how this could be done uses the components which already exist in this library.
+          In order to have checkbox and radio buttons, your component needs to manage the state of which button(s) are active/select. It is not in the opinion of this library to manage state within it's components so it is left up to you. Below is a simple example showcasing how this could be done using the components which already exist in this library.
         </p>
         <div className="docs-example">
           <ButtonStateful />
