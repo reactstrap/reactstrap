@@ -21,9 +21,11 @@ const propTypes = {
   container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
   target: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]).isRequired,
   modifiers: PropTypes.object,
+  boundariesElement: PropTypes.string,
 };
 
 const defaultProps = {
+  boundariesElement: 'scrollParent',
   placement: 'auto',
   hideArrow: false,
   isOpen: false,
@@ -144,6 +146,7 @@ class PopperContent extends React.Component {
       tag,
       container,
       modifiers,
+      boundariesElement,
       ...attrs
     } = this.props;
     const arrowClassName = mapToCssModules(classNames(
@@ -159,6 +162,7 @@ class PopperContent extends React.Component {
     const extendedModifiers = {
       offset: { offset },
       flip: { enabled: flip, behavior: fallbackPlacement },
+      preventOverflow: { boundariesElement },
       update: {
         enabled: true,
         order: 950,
