@@ -30,6 +30,8 @@ export default class PopoversPage extends React.Component {
   isOpen:  PropTypes.bool,
   // callback for toggling isOpen in the controlling component
   toggle:  PropTypes.func,
+  // boundaries for popper, can be scrollParent, window, viewport, or any DOM element
+  boundariesElement: PropTypes.string,
   target:  PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
