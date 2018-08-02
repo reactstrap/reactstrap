@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { mapToCssModules } from './utils';
+import Portal from './Portal';
 
 const propTypes = {
   tag: PropTypes.string,
@@ -24,6 +25,7 @@ const contextTypes = {
   isOpen: PropTypes.bool.isRequired,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
   inNavbar: PropTypes.bool.isRequired,
+  menuContainer: PropTypes.instanceOf(Element),
 };
 
 const noFlipModifier = { flip: { enabled: false } };
@@ -62,14 +64,16 @@ const DropdownMenu = (props, context) => {
   }
 
   return (
-    <Tag
-      tabIndex="-1"
-      role="menu"
-      {...attrs}
-      aria-hidden={!context.isOpen}
-      className={classes}
-      x-placement={attrs.placement}
-    />
+    <Portal node={context.menuContainer}>
+      <Tag
+        tabIndex="-1"
+        role="menu"
+        {...attrs}
+        aria-hidden={!context.isOpen}
+        className={classes}
+        x-placement={attrs.placement}
+      />
+    </Portal>
   );
 };
 
