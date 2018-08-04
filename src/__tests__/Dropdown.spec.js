@@ -452,7 +452,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: 52 });
+      wrapper.find('#dropdown').hostNodes().simulate('keydown', { which: 52 });
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
       expect(focus1.mock.calls.length).toBe(0);

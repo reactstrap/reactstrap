@@ -132,33 +132,28 @@ class Dropdown extends React.Component {
     const disabledClass = mapToCssModules('disabled', this.props.cssModule);
 
     const items = container.querySelectorAll(`.${menuClass} .${itemClass}:not(.${disabledClass})`);
-    const char = String.fromCharCode(e.which).toLowerCase();
-    const itemsOfChar = char !== '' &&
-      Array.from(items).filter(item =>
-        !!item.textContent && item.textContent.substr(0, 1).toLowerCase() === char);
-
     if (!items.length) return;
 
     let index = -1;
 
-    if (itemsOfChar.length) {
-      index = Array.from(items).indexOf(itemsOfChar[0]);
-    } else {
-      for (let i = 0; i < items.length; i += 1) {
-        if (items[i] === e.target) {
-          index = i;
-          break;
-        }
-      }
+    const charPressed = String.fromCharCode(e.which).toLowerCase();
 
-      if (e.which === keyCodes.up && index > 0) {
-        index -= 1;
-      }
-
-      if (e.which === keyCodes.down && index < items.length - 1) {
-        index += 1;
+    for (let i = 0; i < items.length; i += 1) {
+      const firstLetter = items[i].textContent && items[i].textContent[0].toLowerCase();
+      if (firstLetter === charPressed || items[i] === e.target) {
+        index = i;
+        break;
       }
     }
+
+    if (e.which === keyCodes.up && index > 0) {
+      index -= 1;
+    }
+
+    if (e.which === keyCodes.down && index < items.length - 1) {
+      index += 1;
+    }
+
 
     if (index < 0) {
       index = 0;
