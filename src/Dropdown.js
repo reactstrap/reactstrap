@@ -106,7 +106,7 @@ class Dropdown extends React.Component {
   }
 
   handleKeyDown(e) {
-    if ([keyCodes.esc, keyCodes.up, keyCodes.down, keyCodes.space].indexOf(e.which) === -1 ||
+    if (keyCodes.tab === e.which ||
       (/button/i.test(e.target.tagName) && e.which === keyCodes.space) ||
       /input|textarea/i.test(e.target.tagName)) {
       return;
@@ -132,23 +132,32 @@ class Dropdown extends React.Component {
     const disabledClass = mapToCssModules('disabled', this.props.cssModule);
 
     const items = container.querySelectorAll(`.${menuClass} .${itemClass}:not(.${disabledClass})`);
+    const char = String.fromCharCode(e.which).toLowerCase();
+    const itemsOfChar = char !== '' &&
+      Array.from(items).filter(item =>
+        !!item.textContent && item.textContent.substr(0, 1).toLowerCase() === char);
 
     if (!items.length) return;
 
     let index = -1;
-    for (let i = 0; i < items.length; i += 1) {
-      if (items[i] === e.target) {
-        index = i;
-        break;
+
+    if (itemsOfChar.length) {
+      index = Array.from(items).indexOf(itemsOfChar[0]);
+    } else {
+      for (let i = 0; i < items.length; i += 1) {
+        if (items[i] === e.target) {
+          index = i;
+          break;
+        }
       }
-    }
 
-    if (e.which === keyCodes.up && index > 0) {
-      index -= 1;
-    }
+      if (e.which === keyCodes.up && index > 0) {
+        index -= 1;
+      }
 
-    if (e.which === keyCodes.down && index < items.length - 1) {
-      index += 1;
+      if (e.which === keyCodes.down && index < items.length - 1) {
+        index += 1;
+      }
     }
 
     if (index < 0) {
