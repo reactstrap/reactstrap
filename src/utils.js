@@ -260,3 +260,16 @@ export function addMultipleEventListeners(_els, handler, _events) {
     });
   };
 }
+
+export const focusableElements = [
+  'a[href]',
+  'area[href]',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  'button:not([disabled])',
+  'object',
+  'embed',
+  '*[tabindex]:not(.modal)',
+  '*[contenteditable]',
+];

@@ -9,6 +9,7 @@ import {
   setScrollbarWidth,
   mapToCssModules,
   omit,
+  focusableElements,
   TransitionTimeouts
 } from './utils';
 
@@ -86,6 +87,7 @@ class Modal extends React.Component {
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
     this.handleBackdropMouseUp = this.handleBackdropMouseUp.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
+    this.handleTab = this.handleTab.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
 
@@ -182,6 +184,31 @@ class Modal extends React.Component {
     }
   }
 
+  handleTab(e) {
+    if (e.which !== 9) return;
+
+    const focusableChildren = this._element.querySelectorAll(focusableElements.join(', '));
+    const currentFocus = document.activeElement;
+    const totalFocusable = focusableChildren.length;
+
+    let focusedIndex = -1;
+
+    for (let i = 0; i < totalFocusable; i += 1) {
+      if (focusableChildren[i] === currentFocus) {
+        focusedIndex = i;
+        break;
+      }
+    }
+
+    if (e.shiftKey && focusedIndex === 0) {
+      e.preventDefault();
+      focusableChildren[totalFocusable - 1].focus();
+    } else if (!e.shiftKey && focusedIndex === totalFocusable - 1) {
+      e.preventDefault();
+      focusableChildren[0].focus();
+    }
+  }
+
   handleEscape(e) {
     if (this.props.isOpen && this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
       this.props.toggle(e);
@@ -198,7 +225,6 @@ class Modal extends React.Component {
     conditionallyUpdateScrollbar();
 
     document.body.appendChild(this._element);
-
     if (!this.bodyClassAdded) {
       document.body.className = classNames(
         document.body.className,
@@ -272,6 +298,7 @@ class Modal extends React.Component {
         onMouseDown: this.handleBackdropMouseDown,
         onMouseUp: this.handleBackdropMouseUp,
         onKeyUp: this.handleEscape,
+        onKeyDown: this.handleTab,
         style: { display: 'block' },
         'aria-labelledby': labelledBy,
         role,
