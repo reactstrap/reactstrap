@@ -21,6 +21,9 @@ const ModalFadelessExampleSource = require('!!raw!../examples/ModalFadeless');
 import ModalExternalExample from '../examples/ModalExternal';
 const ModalExternalExampleSource = require('!!raw!../examples/ModalExternal');
 
+import ModalCustomCloseIconExample from '../examples/ModalCustomCloseIcon';
+const ModalCustomCloseIconExampleSource = require('!!raw!../examples/ModalCutomCloseIcon');
+
 export default class ModalsPage extends React.Component {
   render() {
     return (
@@ -169,6 +172,20 @@ export default class ModalsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ModalExternalExampleSource}
+          </PrismCode>
+        </pre>
+
+        <h4>Modals with custom close icon</h4>
+        <div className="docs-example">
+          <div className="btn-group">
+            <div className="btn">
+              <ModalCustomCloseIconExample buttonLabel="Launch Modal with custom close button" />
+            </div>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ModalCustomCloseIconExampleSource}
           </PrismCode>
         </pre>
       </div>
