@@ -16,6 +16,7 @@ const propTypes = {
     PropTypes.func,
     DOMElement,
   ]),
+  boundariesElement: PropTypes.string,
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   hideArrow: PropTypes.bool,
@@ -182,6 +183,7 @@ class Popover extends React.Component {
         container={this.props.container}
         modifiers={this.props.modifiers}
         offset={this.props.offset}
+        boundariesElement={this.props.boundariesElement}
       >
         <div {...attributes} className={classes} ref={this.getRef} />
       </PopperContent>
