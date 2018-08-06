@@ -83,8 +83,8 @@ class Modal extends React.Component {
 
     this._element = null;
     this._originalBodyPadding = null;
+    this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
-    this.handleBackdropMouseUp = this.handleBackdropMouseUp.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
@@ -166,10 +166,8 @@ class Modal extends React.Component {
     }
   }
 
-  handleBackdropMouseDown(e) {
-    this._mouseDownElement = e.target;
-  }
-  handleBackdropMouseUp(e) {
+  // not mouseUp because scrollbar fires it, shouldn't close when user scrolls
+  handleBackdropClick(e) {
     if (e.target === this._mouseDownElement) {
       e.stopPropagation();
       if (!this.props.isOpen || this.props.backdrop !== true) return;
@@ -180,6 +178,10 @@ class Modal extends React.Component {
         this.props.toggle(e);
       }
     }
+  }
+
+  handleBackdropMouseDown(e) {
+    this._mouseDownElement = e.target;
   }
 
   handleEscape(e) {
@@ -269,8 +271,8 @@ class Modal extends React.Component {
       } = this.props;
 
       const modalAttributes = {
+        onClick: this.handleBackdropClick,
         onMouseDown: this.handleBackdropMouseDown,
-        onMouseUp: this.handleBackdropMouseUp,
         onKeyUp: this.handleEscape,
         style: { display: 'block' },
         'aria-labelledby': labelledBy,
