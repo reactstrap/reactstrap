@@ -270,7 +270,7 @@ export const focusableElements = [
   'button:not([disabled])',
   'object',
   'embed',
-  '*[tabindex]:not(.modal)',
+  '[tabindex]:not(.modal)',
   'audio[controls]',
   'video[controls]',
   '[contenteditable]:not([contenteditable="false"])',
