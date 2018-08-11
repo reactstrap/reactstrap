@@ -188,8 +188,14 @@ class Modal extends React.Component {
     if (e.which !== 9) return;
 
     const focusableChildren = this._element.querySelectorAll(focusableElements.join(', '));
-    const currentFocus = document.activeElement;
     const totalFocusable = focusableChildren.length;
+
+    let currentFocus;
+    try {
+      currentFocus = document.activeElement;
+    } catch (err) {
+      currentFocus = focusableChildren[0];
+    }
 
     let focusedIndex = -1;
 
