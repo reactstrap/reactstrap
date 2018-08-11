@@ -563,9 +563,9 @@ describe('Modal', () => {
     mouseDownEvent.initEvent('mousedown', true, true);
     modal.dispatchEvent(mouseDownEvent);
 
-    const mouseUpEvent = document.createEvent('MouseEvents');
-    mouseUpEvent.initEvent('mouseup', true, true);
-    modal.dispatchEvent(mouseUpEvent);
+    const clickEvent = document.createEvent('MouseEvents');
+    clickEvent.initEvent('click', true, true);
+    modal.dispatchEvent(clickEvent);
 
     jest.runTimersToTime(300);
 

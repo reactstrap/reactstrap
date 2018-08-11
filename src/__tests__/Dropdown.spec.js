@@ -432,6 +432,36 @@ describe('Dropdown', () => {
       wrapper.detach();
     });
 
+    it('should focus the first menu item matching the character pressed when isOpen is true', () => {
+      isOpen = true;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+      const focus1 = jest.fn();
+      const focus2 = jest.fn();
+      const focus3 = jest.fn();
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu id="dropdown" right>
+            <DropdownItem id="first" onFocus={focus1}>Reactstrap</DropdownItem>
+            <DropdownItem onFocus={focus2}>4</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}> Lyfe</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      wrapper.find('#dropdown').hostNodes().simulate('keydown', { which: 52 });
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      expect(focus1.mock.calls.length).toBe(0);
+      expect(focus2.mock.calls.length).toBe(1);
+      expect(focus3.mock.calls.length).toBe(0);
+
+      wrapper.detach();
+    });
+
     it('should skip non-menu items focus the next menu item on down arrow keydown when it isOpen is true and anther item is focused', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');

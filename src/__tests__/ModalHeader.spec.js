@@ -44,4 +44,19 @@ describe('ModalHeader', () => {
     const closeButton = wrapper.find('button.close').first();
     expect(closeButton.prop('aria-label')).toBe('oseclay');
   });
+
+  it('should render close button with default icon', () => {
+    const wrapper = shallow(<ModalHeader toggle={() => {}}>Yo!</ModalHeader>);
+
+    const closeButtonIcon = wrapper.find('button.close span');
+    const defaultIcon = String.fromCharCode(215);
+    expect(closeButtonIcon.text()).toEqual(defaultIcon);
+  });
+
+  it('should render close button with custom icon', () => {
+    const wrapper = shallow(<ModalHeader toggle={() => {}} charCode={'X'}>Yo!</ModalHeader>);
+
+    const closeButtonIcon = wrapper.find('button.close span');
+    expect(closeButtonIcon.text()).toEqual('X');
+  });
 });
