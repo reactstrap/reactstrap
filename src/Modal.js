@@ -84,6 +84,7 @@ class Modal extends React.Component {
 
     this._element = null;
     this._originalBodyPadding = null;
+    this.getFocusableChildren = this.getFocusableChildren.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
@@ -168,6 +169,22 @@ class Modal extends React.Component {
     }
   }
 
+  getFocusableChildren() {
+    return this._element.querySelectorAll(focusableElements.join(', '));
+  }
+
+  getFocusedChild() {
+    let currentFocus;
+    const focusableChildren = this.getFocusableChildren();
+
+    try {
+      currentFocus = document.activeElement;
+    } catch (err) {
+      currentFocus = focusableChildren[0];
+    }
+    return currentFocus;
+  }
+
   // not mouseUp because scrollbar fires it, shouldn't close when user scrolls
   handleBackdropClick(e) {
     if (e.target === this._mouseDownElement) {
@@ -185,17 +202,11 @@ class Modal extends React.Component {
   handleTab(e) {
     if (e.which !== 9) return;
 
-    const focusableChildren = this._element.querySelectorAll(focusableElements.join(', '));
+    const focusableChildren = this.getFocusableChildren();
     const totalFocusable = focusableChildren.length;
+    const currentFocus = this.getFocusedChild();
 
-    let currentFocus;
-    try {
-      currentFocus = document.activeElement;
-    } catch (err) {
-      currentFocus = focusableChildren[0];
-    }
-
-    let focusedIndex = -1;
+    let focusedIndex = 0;
 
     for (let i = 0; i < totalFocusable; i += 1) {
       if (focusableChildren[i] === currentFocus) {

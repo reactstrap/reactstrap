@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { Modal, ModalBody } from '../';
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '../';
 
 describe('Modal', () => {
   let isOpen;
@@ -756,5 +757,64 @@ describe('Modal', () => {
     expect(wrapper.instance()._element.style.zIndex).toBe('0');
     wrapper.setProps({ zIndex: 1 });
     expect(wrapper.instance()._element.style.zIndex).toBe('1');
+  });
+
+  it('should allow focus on only focusable elements', () => {
+    isOpen = true;
+
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalBody>
+          <a alt="test" href="/">Test</a>
+          <map name="test">
+            <area alt="test" href="/" coords="200,5,200,30" />
+          </map>
+          <input type="text" />
+          <input type="hidden" />
+          <input type="text" disabled value="Test" />
+          <select name="test" id="select_test">
+            <option>Test item</option>
+          </select>
+          <select name="test" id="select_test_disabled" disabled>
+            <option>Test item</option>
+          </select>
+          <textarea name="textarea_test" id="textarea_test" cols="30" rows="10" />
+          <textarea name="textarea_test_disabled" id="textarea_test_disabled" cols="30" rows="10" disabled />
+          <object>Test</object>
+          <span tabIndex="0">test tab index</span>
+        </ModalBody>
+        <ModalFooter>
+          <Button disabled color="primary" onClick={toggle}>Do Something</Button>{' '}
+          <Button color="secondary" onClick={toggle}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
+    );
+
+    const instance = wrapper.instance();
+    expect(instance.getFocusableChildren().length).toBe(9);
+    wrapper.unmount();
+  });
+
+  it('should tab through focusable elements', () => {
+    isOpen = true;
+
+    const mock = jest.fn();
+
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalBody>
+          <Button onFocus={mock} color="secondary" onClick={toggle}>Cancel</Button>
+        </ModalBody>
+      </Modal>
+    );
+
+    const instance = wrapper.instance();
+    expect(instance.getFocusedChild()).not.toBe(instance.getFocusableChildren()[0]);
+    wrapper.find('.modal').hostNodes().simulate('keyDown', { which: 9, key: 'Tab', keyCode: 9 });
+    expect(instance.getFocusedChild()).toBe(instance.getFocusableChildren()[0]);
+    expect(mock).toHaveBeenCalled();
+
+    wrapper.unmount();
   });
 });
