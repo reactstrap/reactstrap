@@ -292,6 +292,15 @@ class Modal extends React.Component {
         timeout: hasTransition ? this.props.backdropTransition.timeout : 0,
       };
 
+      const Backdrop = hasTransition ?
+        (<Fade
+          {...backdropTransition}
+          in={isOpen && !!backdrop}
+          cssModule={cssModule}
+          className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+        />)
+        : <div className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)} />;
+
       return (
         <Portal node={this._element}>
           <div className={mapToCssModules(wrapClassName)}>
@@ -308,12 +317,7 @@ class Modal extends React.Component {
               {external}
               {this.renderModalDialog()}
             </Fade>
-            <Fade
-              {...backdropTransition}
-              in={isOpen && !!backdrop}
-              cssModule={cssModule}
-              className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
-            />
+            {Backdrop}
           </div>
         </Portal>
       );
