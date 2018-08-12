@@ -127,6 +127,15 @@ describe('Button', () => {
       expect(onClick).toHaveBeenCalled();
     });
 
+    it('returns the value returned by props.onClick', () => {
+      const onClick = jest.fn(() => 1234);
+      const wrapper = mount(<Button onClick={onClick}>Testing Click</Button>);
+
+      const result = wrapper.find('button').props().onClick();
+      expect(onClick).toHaveBeenCalled();
+      expect(result).toEqual(1234);
+    });
+
     it('is not called when disabled', () => {
       const e = createSpyObj('e', ['preventDefault']);
       const wrapper = mount(<Button>Testing Click</Button>);
