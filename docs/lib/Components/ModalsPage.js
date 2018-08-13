@@ -22,7 +22,7 @@ import ModalExternalExample from '../examples/ModalExternal';
 const ModalExternalExampleSource = require('!!raw!../examples/ModalExternal');
 
 import ModalCustomCloseIconExample from '../examples/ModalCustomCloseIcon';
-const ModalCustomCloseIconExampleSource = require('!!raw!../examples/ModalCutomCloseIcon');
+const ModalCustomCloseIconExampleSource = require('!!raw!../examples/ModalCustomCloseIcon');
 
 export default class ModalsPage extends React.Component {
   render() {
