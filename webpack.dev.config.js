@@ -47,6 +47,7 @@ var paths = [
 var config = [{
   devtool: 'source-map',
   devServer: {
+    disableHostCheck: true,
     contentBase: './build',
     historyApiFallback: true,
     stats: {

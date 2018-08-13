@@ -19,6 +19,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   hideArrow: PropTypes.bool,
+  boundariesElement: PropTypes.string,
   className: PropTypes.string,
   innerClassName: PropTypes.string,
   arrowClassName: PropTypes.string,
@@ -247,6 +248,7 @@ class Tooltip extends React.Component {
         target={this.props.target}
         isOpen={this.props.isOpen}
         hideArrow={this.props.hideArrow}
+        boundariesElement={this.props.boundariesElement}
         placement={this.props.placement}
         placementPrefix={this.props.placementPrefix}
         arrowClassName={this.props.arrowClassName}

@@ -109,4 +109,9 @@ describe('UncontrolledTooltip', () => {
     tooltip.update();
     expect(tooltip.prop('isOpen')).toBe(true);
   });
+
+  it('should have boundary set to string', () => {
+    const tooltip = shallow(<UncontrolledTooltip boundariesElement="window" target="blah">Yo!</UncontrolledTooltip>);
+    expect(tooltip.prop('boundariesElement')).toBe('window');
+  });
 });

@@ -30,6 +30,8 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Tooltip.propTypes = {
+  // boundaries for popper, can be scrollParent, window, viewport, or any DOM element
+  boundariesElement: PropTypes.string,
   // boolean to control the state of the tooltip
   isOpen: PropTypes.bool,
   hideArrow: PropTypes.bool,
