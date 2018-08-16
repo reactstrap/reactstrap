@@ -235,6 +235,11 @@ class Modal extends React.Component {
   }
 
   init() {
+    try {
+      this._triggeringElement = document.activeElement;
+    } catch (err) {
+      this._triggeringElement = null;
+    }
     this._element = document.createElement('div');
     this._element.setAttribute('tabindex', '-1');
     this._element.style.position = 'relative';
@@ -257,6 +262,11 @@ class Modal extends React.Component {
     if (this._element) {
       document.body.removeChild(this._element);
       this._element = null;
+    }
+
+    if (this._triggeringElement) {
+      this._triggeringElement.focus();
+      this._triggeringElement = null;
     }
 
     if (this.bodyClassAdded) {
