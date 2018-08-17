@@ -6,3 +6,4 @@ node_modules
 .idea
 .history
 npm-debug.log
+package-lock.json
