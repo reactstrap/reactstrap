@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "6.3.1",
+  "version": "6.4.0",
   "description": "React Bootstrap 4 components",
   "main": "dist/reactstrap.cjs.js",
   "jsnext:main": "dist/reactstrap.es.js",

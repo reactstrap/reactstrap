@@ -1,3 +1,23 @@
+<a name="6.4.0"></a>
+# [6.4.0](https://github.com/reactstrap/reactstrap/compare/6.3.1...6.4.0) (2018-08-17)
+
+
+### Bug Fixes
+
+* **Modal:** don't fade backdrop if there is no transition ([#1172](https://github.com/reactstrap/reactstrap/issues/1172)) ([77e7beb](https://github.com/reactstrap/reactstrap/commit/77e7beb)), closes [#1100](https://github.com/reactstrap/reactstrap/issues/1100)
+* **Modal:** prevent scrollbar from closing ([#1165](https://github.com/reactstrap/reactstrap/issues/1165)) ([9d7948f](https://github.com/reactstrap/reactstrap/commit/9d7948f)), closes [#1097](https://github.com/reactstrap/reactstrap/issues/1097)
+
+
+### Features
+
+* **Dropdown:** Select first element matching pressed key ([#1160](https://github.com/reactstrap/reactstrap/issues/1160)) ([abbac56](https://github.com/reactstrap/reactstrap/commit/abbac56)), closes [#1156](https://github.com/reactstrap/reactstrap/issues/1156)
+* **Modal:** add charCode prop for custom icon ([#1162](https://github.com/reactstrap/reactstrap/issues/1162)) ([4d19b09](https://github.com/reactstrap/reactstrap/commit/4d19b09)), closes [#1155](https://github.com/reactstrap/reactstrap/issues/1155)
+* **Modal:** return focus after modal closes ([#1175](https://github.com/reactstrap/reactstrap/issues/1175)) ([1b27c49](https://github.com/reactstrap/reactstrap/commit/1b27c49)), closes [#1174](https://github.com/reactstrap/reactstrap/issues/1174)
+* **Modal:** trap focus in modal ([#1161](https://github.com/reactstrap/reactstrap/issues/1161)) ([e6781d7](https://github.com/reactstrap/reactstrap/commit/e6781d7)), closes [#310](https://github.com/reactstrap/reactstrap/issues/310)
+* **Popover/Tooltip:** add boundariesElement prop  ([#1149](https://github.com/reactstrap/reactstrap/issues/1149)) ([02b4555](https://github.com/reactstrap/reactstrap/commit/02b4555)), closes [#1118](https://github.com/reactstrap/reactstrap/issues/1118)
+
+
+
 <a name="6.3.1"></a>
 ## [6.3.1](https://github.com/reactstrap/reactstrap/compare/6.3.0...6.3.1) (2018-07-27)
 
