@@ -82,6 +82,8 @@ class Tooltip extends React.Component {
   }
 
   componentWillUnmount() {
+    this.clearHideTimeout();
+    this.clearShowTimeout();
     this.removeTargetEvents();
   }
 
