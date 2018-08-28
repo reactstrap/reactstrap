@@ -250,10 +250,13 @@ class Modal extends React.Component {
 
     document.body.appendChild(this._element);
     if (!this.bodyClassAdded) {
-      document.body.className = classNames(
-        document.body.className,
-        mapToCssModules('modal-open', this.props.cssModule)
-      );
+      if (Modal.openCount === 0) {
+        document.body.className = classNames(
+          document.body.className,
+          mapToCssModules('modal-open', this.props.cssModule)
+        );
+      }
+      Modal.openCount += 1;
       this.bodyClassAdded = true;
     }
   }
@@ -270,10 +273,13 @@ class Modal extends React.Component {
     }
 
     if (this.bodyClassAdded) {
-      const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
-      // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
-      const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
-      document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+      if (Modal.openCount <= 1) {
+        const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
+        // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
+        const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
+        document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+      }
+      Modal.openCount -= 1;
       this.bodyClassAdded = false;
     }
 
@@ -385,5 +391,6 @@ class Modal extends React.Component {
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
+Modal.openCount = 0;
 
 export default Modal;
