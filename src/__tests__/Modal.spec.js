@@ -658,7 +658,13 @@ describe('Modal', () => {
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
-    expect(document.body.className).toBe('modal-open modal-open');
+    expect(document.body.className).toBe('modal-open');
+
+    toggleNested();
+    jest.runTimersToTime(300);
+    expect(isOpenNested).toBe(false);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
+    expect(document.body.className).toBe('modal-open');
 
     wrapper.unmount();
     expect(document.getElementsByClassName('modal-dialog').length).toBe(0);

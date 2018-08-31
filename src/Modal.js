@@ -249,13 +249,13 @@ class Modal extends React.Component {
     conditionallyUpdateScrollbar();
 
     document.body.appendChild(this._element);
-    if (!this.bodyClassAdded) {
+    if (Modal.openCount === 0) {
       document.body.className = classNames(
         document.body.className,
         mapToCssModules('modal-open', this.props.cssModule)
       );
-      this.bodyClassAdded = true;
     }
+    Modal.openCount += 1;
   }
 
   destroy() {
@@ -269,13 +269,13 @@ class Modal extends React.Component {
       this._triggeringElement = null;
     }
 
-    if (this.bodyClassAdded) {
+    if (Modal.openCount <= 1) {
       const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
       // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
-      this.bodyClassAdded = false;
     }
+    Modal.openCount -= 1;
 
     setScrollbarWidth(this._originalBodyPadding);
   }
@@ -385,5 +385,6 @@ class Modal extends React.Component {
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
+Modal.openCount = 0;
 
 export default Modal;
