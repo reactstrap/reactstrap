@@ -300,6 +300,19 @@ describe('Tooltip', () => {
     wrapper.detach();
   });
 
+  it('should not throw when passed a ref object as the target', () => {
+    const targetObj = React.createRef();
+    const event = createSpyObj('event', ['preventDefault']);
+    const wrapper = mount(
+      <Tooltip target={targetObj}>Yo!</Tooltip>,
+      { attachTo: container });
+
+    const instance = wrapper.instance();
+    instance.toggle(event);
+
+    wrapper.detach();
+  });
+
   describe('delay', () => {
     it('should accept a number', () => {
       isOpen = true;

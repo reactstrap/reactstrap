@@ -1,4 +1,5 @@
 import isFunction from 'lodash.isfunction';
+import PropTypes from 'prop-types';
 
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
 export function getScrollbarWidth() {
@@ -124,6 +125,14 @@ export function DOMElement(props, propName, componentName) {
   }
 }
 
+export const targetPropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.func,
+  DOMElement,
+  PropTypes.shape({ current: PropTypes.any })
+]);
+
+
 /* eslint key-spacing: ["error", { afterColon: true, align: "value" }] */
 // These are all setup to match what is in the bootstrap _variables.scss
 // https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
@@ -192,7 +201,17 @@ export const canUseDOM = !!(
   window.document.createElement
 );
 
+export function isReactRefObj(target) {
+  if (target && typeof target === 'object') {
+    return 'current' in target;
+  }
+  return false;
+}
+
 export function findDOMElements(target) {
+  if (isReactRefObj(target)) {
+    return target.current;
+  }
   if (isFunction(target)) {
     return target();
   }
@@ -212,8 +231,12 @@ export function findDOMElements(target) {
 }
 
 export function isArrayOrNodeList(els) {
+  if (els === null) {
+    return false;
+  }
   return Array.isArray(els) || (canUseDOM && typeof els.length === 'number');
 }
+
 
 export function getTarget(target) {
   const els = findDOMElements(target);

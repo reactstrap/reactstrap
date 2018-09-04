@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { getTarget, DOMElement } from './utils';
+import { getTarget, targetPropType } from './utils';
 
 const PopperTargetHelper = (props, context) => {
   context.popperManager.setTargetNode(getTarget(props.target));
@@ -11,7 +11,7 @@ PopperTargetHelper.contextTypes = {
 };
 
 PopperTargetHelper.propTypes = {
-  target: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]).isRequired,
+  target: targetPropType.isRequired,
 };
 
 export default PopperTargetHelper;
