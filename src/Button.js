@@ -5,6 +5,7 @@ import { mapToCssModules } from './utils';
 
 const propTypes = {
   active: PropTypes.bool,
+  'aria-label': PropTypes.string,
   block: PropTypes.bool,
   color: PropTypes.string,
   disabled: PropTypes.bool,
@@ -16,9 +17,11 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  close: PropTypes.bool,
 };
 
 const defaultProps = {
+  children: <span aria-hidden>×</span>,
   color: 'secondary',
   tag: 'button',
 };
@@ -44,8 +47,10 @@ class Button extends React.Component {
   render() {
     let {
       active,
+      'aria-label': ariaLabel,
       block,
       className,
+      close,
       cssModule,
       color,
       outline,
@@ -55,10 +60,13 @@ class Button extends React.Component {
       ...attributes
     } = this.props;
 
+    const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
+
     const classes = mapToCssModules(classNames(
       className,
-      'btn',
-      `btn${outline ? '-outline' : ''}-${color}`,
+      { close },
+      close || 'btn',
+      close || btnOutlineColor,
       size ? `btn-${size}` : false,
       block ? 'btn-block' : false,
       { active, disabled: this.props.disabled }
@@ -68,6 +76,8 @@ class Button extends React.Component {
       Tag = 'a';
     }
 
+    const defaultAriaLabel = close ? 'Close' : null;
+
     return (
       <Tag
         type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
@@ -75,6 +85,7 @@ class Button extends React.Component {
         className={classes}
         ref={innerRef}
         onClick={this.onClick}
+        aria-label={ariaLabel || defaultAriaLabel}
       />
     );
   }
