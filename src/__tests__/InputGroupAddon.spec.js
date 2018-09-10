@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { InputGroupAddon } from '../';
+import { InputGroupAddon, InputGroupText } from '../';
 
 describe('InputGroupAddon', () => {
   it('should render with "div" tag', () => {
@@ -13,6 +13,19 @@ describe('InputGroupAddon', () => {
     const wrapper = shallow(<InputGroupAddon addonType="append">Yo!</InputGroupAddon>);
 
     expect(wrapper.text()).toBe('<InputGroupText />');
+  });
+
+  it('should render children provided', () => {
+    const wrapper = shallow(<InputGroupAddon addonType="append"><button>Yo!</button></InputGroupAddon>);
+
+    expect(wrapper.childAt(0).type()).toBe('button');
+  });
+
+  it('should render the string provided in the child InputGroupText', () => {
+    const wrapper = shallow(<InputGroupAddon addonType="append">Yo!</InputGroupAddon>);
+
+    expect(wrapper.childAt(0).type()).toBe(InputGroupText);
+    expect(wrapper.childAt(0).prop('children')).toBe('Yo!');
   });
 
   it('should render with "input-group-*" classes', () => {
