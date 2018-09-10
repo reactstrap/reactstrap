@@ -92,6 +92,20 @@ describe('DropdownMenu', () => {
     expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-right')).toBe(true);
   });
 
+  it('should render down when direction is unknown on the context', () => {
+    isOpen = true;
+    direction = 'unknown';
+    const wrapper = shallow(
+      <DropdownMenu>Ello world</DropdownMenu>,
+      {
+        context: { isOpen, direction, inNavbar, popperManager },
+        childContextTypes: { popperManager }
+      }
+    );
+
+    expect(wrapper.find(Popper).prop('placement')).toBe('bottom-start');
+  });
+
   it('should render down when direction is "down" on the context', () => {
     isOpen = true;
     const wrapper = shallow(
