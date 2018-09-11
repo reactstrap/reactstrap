@@ -68,15 +68,16 @@ export default class FormPage extends React.Component {
   addon: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-};`}
-{`CustomInput.propTypes = {
+};
+
+CustomInput.propTypes = {
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.string.isRequired, // radio, checkbox, select, range.
   label: PropTypes.string, // used for checkbox and radios
   inline: PropTypes.bool,
-  valid: PropTypes.bool, // applied the is-invalid class when true, does nothing when false
-  invalid: PropTypes.bool, // applied the is-valid class when true, does nothing when false
+  valid: PropTypes.bool, // applied the is-valid class when true, does nothing when false
+  invalid: PropTypes.bool, // applied the is-invalid class when true, does nothing when false
   bsSize: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]), // for type="select"
@@ -86,6 +87,51 @@ export default class FormPage extends React.Component {
     PropTypes.string,
     PropTypes.func,
   ])
+};
+
+Form.propTypes = {
+  children: PropTypes.node,
+  inline: PropTypes.bool,
+  // Pass in a Component to override default element
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]), // default: 'form'
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+};
+
+FormFeedback.propTypes = {
+  children: PropTypes.node,
+  // Pass in a Component to override default element
+  tag: PropTypes.string, // default: 'div'
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  valid: PropTypes.bool, // default: undefined
+  tooltip: PropTypes.bool
+};
+
+FormGroup.propTypes = {
+  children: PropTypes.node,
+  // Applied the row class when true, does nothing when false
+  row: PropTypes.bool,
+  // Applied the form-check class when true, form-group when false
+  check: PropTypes.bool,
+  inline: PropTypes.bool,
+  // Applied the disabled class when the check and disabled props are true, does nothing when false
+  disabled: PropTypes.bool,
+  // Pass in a Component to override default element
+  tag: PropTypes.string, // default: 'div'
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+};
+
+FormText.propTypes = {
+  children: PropTypes.node,
+  inline: PropTypes.bool,
+  // Pass in a Component to override default element
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]), // default: 'small'
+  color: PropTypes.string, // default: 'muted'
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
 };`}
           </PrismCode>
         </pre>

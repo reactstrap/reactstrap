@@ -265,7 +265,7 @@ class Modal extends React.Component {
     }
 
     if (this._triggeringElement) {
-      this._triggeringElement.focus();
+      if (this._triggeringElement.focus) this._triggeringElement.focus();
       this._triggeringElement = null;
     }
 
