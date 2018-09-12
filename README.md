@@ -19,6 +19,14 @@ create-react-app my-app
 cd my-app/
 npm start
 ```
+ or, if Node >= 6 and npm >= 5.2 
+ 
+ ```
+npx create-react-app my-app
+cd my-app/
+npm start
+```
+
 
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The initial structure of your app is setup. Next, let's [add reactstrap and bootstrap](#adding-bootstrap).
 
