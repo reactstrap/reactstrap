@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Arrow, Popper as ReactPopper } from 'react-popper';
-import { getTarget, DOMElement, mapToCssModules } from './utils';
+import { getTarget, targetPropType, mapToCssModules } from './utils';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -18,8 +18,8 @@ const propTypes = {
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   fallbackPlacement: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   flip: PropTypes.bool,
-  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
-  target: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]).isRequired,
+  container: targetPropType,
+  target: targetPropType.isRequired,
   modifiers: PropTypes.object,
   boundariesElement: PropTypes.string,
 };
