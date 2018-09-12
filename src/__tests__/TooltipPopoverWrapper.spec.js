@@ -76,7 +76,7 @@ describe('Tooltip', () => {
   it('should render if isOpen is true', () => {
     isOpen = true;
     const wrapper = mount(
-      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} popperClasses="tooltip show">
+      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} className="tooltip show" trigger="hover">
         Tooltip Content
       </TooltipPopoverWrapper>,
       { attachTo: container }
@@ -93,7 +93,7 @@ describe('Tooltip', () => {
   it('should render with target object', () => {
     isOpen = true;
     const wrapper = mount(
-      <TooltipPopoverWrapper target={document.getElementById('target')} isOpen={isOpen} toggle={toggle} popperClasses="tooltip show">
+      <TooltipPopoverWrapper target={document.getElementById('target')} isOpen={isOpen} toggle={toggle} className="tooltip show">
         Tooltip Content
       </TooltipPopoverWrapper>,
       { attachTo: container }
@@ -109,7 +109,7 @@ describe('Tooltip', () => {
 
   it('should toggle isOpen', () => {
     const wrapper = mount(
-      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} popperClasses="tooltip show">
+      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} className="tooltip show">
         Tooltip Content
       </TooltipPopoverWrapper>,
       { attachTo: container }
@@ -281,7 +281,7 @@ describe('Tooltip', () => {
     const targetObj = React.createRef();
     const event = createSpyObj('event', ['preventDefault']);
     const wrapper = mount(
-      <Tooltip target={targetObj}>Yo!</Tooltip>,
+      <TooltipPopoverWrapper target={targetObj}>Yo!</TooltipPopoverWrapper>,
       { attachTo: container });
 
     const instance = wrapper.instance();
@@ -426,7 +426,7 @@ describe('Tooltip', () => {
     it('should clear timeout if it exists on target click', () => {
       const spy = jest.fn(toggle);
       const wrapper = mount(
-        <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={spy} delay={200}>
+        <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={spy} delay={200} trigger="manual">
           Tooltip Content
         </TooltipPopoverWrapper>,
         { attachTo: container }
@@ -582,7 +582,7 @@ describe('Tooltip', () => {
       const spy = jest.fn(toggle);
       isOpen = true;
       const wrapper = mount(
-        <TooltipPopoverWrapper target="target" autohide isOpen={isOpen} toggle={spy} delay={200}>
+        <TooltipPopoverWrapper target="target" autohide isOpen={isOpen} toggle={spy} delay={200} trigger="click hover focus">
           Tooltip Content
         </TooltipPopoverWrapper>,
         { attachTo: container }
