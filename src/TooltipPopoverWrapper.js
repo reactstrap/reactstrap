@@ -35,8 +35,7 @@ export const propTypes = {
     PropTypes.string,
     PropTypes.object
   ]),
-  trigger: PropTypes.string,
-  componentType: PropTypes.string
+  trigger: PropTypes.string
 };
 
 const DEFAULT_DELAYS = {
@@ -47,12 +46,10 @@ const DEFAULT_DELAYS = {
 const defaultProps = {
   isOpen: false,
   hideArrow: false,
-  placement: 'top',
-  placementPrefix: 'bs-tooltip',
+  autohide: false,
   delay: DEFAULT_DELAYS,
-  autohide: true,
   toggle: function () {},
-  componentType: 'tooltip'
+  trigger: 'click',
 };
 
 class TooltipPopoverWrapper extends React.Component {
@@ -64,8 +61,8 @@ class TooltipPopoverWrapper extends React.Component {
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeTargetEvents = this.removeTargetEvents.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.onMouseOverTooltip = this.onMouseOverTooltip.bind(this);
-    this.onMouseLeaveTooltip = this.onMouseLeaveTooltip.bind(this);
+    this.showWithDelay = this.showWithDelay.bind(this);
+    this.hideWithDelay = this.hideWithDelay.bind(this);
     this.onMouseOverTooltipContent = this.onMouseOverTooltipContent.bind(this);
     this.onMouseLeaveTooltipContent = this.onMouseLeaveTooltipContent.bind(
       this
@@ -73,6 +70,7 @@ class TooltipPopoverWrapper extends React.Component {
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
+    this.getRef = this.getRef.bind(this);
   }
 
   componentDidMount() {
@@ -83,53 +81,43 @@ class TooltipPopoverWrapper extends React.Component {
     this.removeTargetEvents();
   }
 
-  onMouseOverTooltip(e) {
-    if (this._hideTimeout) {
-      this.clearHideTimeout();
-    }
-    this._showTimeout = setTimeout(
-      this.show.bind(this, e),
-      this.getDelay('show')
-    );
-  }
-
-  onMouseLeaveTooltip(e) {
-    if (this._showTimeout) {
-      this.clearShowTimeout();
-    }
-    this._hideTimeout = setTimeout(
-      this.hide.bind(this, e),
-      this.getDelay('hide')
-    );
-  }
-
   onMouseOverTooltipContent() {
-    if (this.props.autohide) {
-      return;
-    }
-    if (this._hideTimeout) {
-      this.clearHideTimeout();
+    if (this.props.trigger.indexOf('hover') > -1 && !this.props.autohide) {
+      if (this._hideTimeout) {
+        this.clearHideTimeout();
+      }
     }
   }
 
   onMouseLeaveTooltipContent(e) {
-    if (this.props.autohide) {
-      return;
+    if (this.props.trigger.indexOf('hover') > -1 && !this.props.autohide) {
+      if (this._showTimeout) {
+        this.clearShowTimeout();
+      }
+      e.persist();
+      this._hideTimeout = setTimeout(
+        this.hide.bind(this, e),
+        this.getDelay('hide')
+      );
     }
-    if (this._showTimeout) {
-      this.clearShowTimeout();
-    }
-    e.persist();
-    this._hideTimeout = setTimeout(
-      this.hide.bind(this, e),
-      this.getDelay('hide')
-    );
   }
 
   onEscKeyDown(e) {
     if (e.key === 'Escape') {
       this.hide(e);
     }
+  }
+
+  getRef(ref) {
+    const { innerRef } = this.props;
+    if (innerRef) {
+      if (typeof innerRef === 'function') {
+        innerRef(ref);
+      } else if (typeof innerRef === 'object') {
+        innerRef.current = ref;
+      }
+    }
+    this._popover = ref;
   }
 
   getDelay(key) {
@@ -147,12 +135,32 @@ class TooltipPopoverWrapper extends React.Component {
     }
   }
 
+  showWithDelay(e) {
+    if (this._hideTimeout) {
+      this.clearHideTimeout();
+    }
+    this._showTimeout = setTimeout(
+      this.show.bind(this, e),
+      this.getDelay('show')
+    );
+  }
   hide(e) {
     if (this.props.isOpen) {
       this.clearHideTimeout();
       this.toggle(e);
     }
   }
+
+  hideWithDelay(e) {
+    if (this._showTimeout) {
+      this.clearShowTimeout();
+    }
+    this._hideTimeout = setTimeout(
+      this.hide.bind(this, e),
+      this.getDelay('hide')
+    );
+  }
+
 
   clearShowTimeout() {
     clearTimeout(this._showTimeout);
@@ -165,41 +173,16 @@ class TooltipPopoverWrapper extends React.Component {
   }
 
   handleDocumentClick(e) {
-    if (this._target) {
-      if (this.props.componentType === 'tooltip') {
-        if (e.target === this._target || this._target.contains(e.target)) {
-          if (this._hideTimeout) {
-            this.clearHideTimeout();
-          }
-
-          if (!this.props.isOpen) {
-            this.toggle(e);
-          }
-        } else if (
-          this.props.isOpen &&
-          e.target.getAttribute('role') !== 'tooltip'
-        ) {
-          if (this._showTimeout) {
-            this.clearShowTimeout();
-          }
-          this._hideTimeout = setTimeout(
-            this.hide.bind(this, e),
-            this.getDelay('hide')
-          );
+    if (this._target && this.props.trigger.indexOf('click') > -1) {
+      if (e.target === this._target || this._target.contains(e.target)) {
+        if (this._hideTimeout) {
+          this.clearHideTimeout();
         }
-      } else if (this.props.componentType === 'popover') {
-        if (
-          e.target !== this._target &&
-          !this._target.contains(e.target) &&
-          e.target !== this._popover &&
-          !(this._popover && this._popover.contains(e.target))
-        ) {
-          if (this._hideTimeout) {
-            this.clearHideTimeout();
-          }
-          if (this.props.isOpen) {
-            this.toggle(e);
-          }
+
+        if (!this.props.isOpen) {
+          this.showWithDelay(e);
+        } else {
+          this.hideWithDelay(e);
         }
       }
     }
@@ -219,12 +202,12 @@ class TooltipPopoverWrapper extends React.Component {
           if (triggers.indexOf('hover') > -1) {
             this._target.addEventListener(
               'mouseover',
-              this.onMouseOverTooltip,
+              this.showWithDelay,
               true
             );
             this._target.addEventListener(
               'mouseout',
-              this.onMouseLeaveTooltip,
+              this.hideWithDelay,
               true
             );
           }
@@ -242,12 +225,12 @@ class TooltipPopoverWrapper extends React.Component {
     if (this._target) {
       this._target.removeEventListener(
         'mouseover',
-        this.onMouseOverTooltip,
+        this.showWithDelay,
         true
       );
       this._target.removeEventListener(
         'mouseout',
-        this.onMouseLeaveTooltip,
+        this.hideWithDelay,
         true
       );
       this._target.addEventListener('keydown', this.onEscKeyDown, true);
@@ -298,7 +281,6 @@ class TooltipPopoverWrapper extends React.Component {
       container,
       modifiers,
       offset,
-      innerRef
     } = this.props;
 
     const attributes = omit(this.props, Object.keys(propTypes));
@@ -324,7 +306,7 @@ class TooltipPopoverWrapper extends React.Component {
       >
         <div
           {...attributes}
-          ref={innerRef}
+          ref={this.getRef}
           className={classes}
           role="tooltip"
           aria-hidden={isOpen}

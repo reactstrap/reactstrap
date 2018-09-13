@@ -24,7 +24,6 @@ const Popover = (props) => {
   return (
     <TooltipPopoverWrapper
       {...props}
-      componentType="popover"
       className={popperClasses}
       innerClassName={classes}
     />

@@ -134,8 +134,10 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: target });
+    jest.runTimersToTime(200);
     expect(isOpen).toBe(true);
     instance.handleDocumentClick({ target: target });
+    jest.runTimersToTime(200);
     expect(isOpen).toBe(false);
 
     wrapper.detach();
@@ -152,6 +154,7 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: innerTarget });
+    jest.runTimersToTime(200);
     expect(isOpen).toBe(true);
     wrapper.detach();
   });
@@ -181,7 +184,7 @@ describe('Tooltip', () => {
     );
     const instance = wrapper.instance();
 
-    instance.onMouseLeaveTooltip();
+    instance.hideWithDelay();
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: target });
     jest.runTimersToTime(200);
@@ -301,7 +304,7 @@ describe('Tooltip', () => {
       );
       const instance = wrapper.instance();
 
-      instance.onMouseLeaveTooltip();
+      instance.hideWithDelay();
       expect(isOpen).toBe(true);
       jest.runTimersToTime(200);
       expect(isOpen).toBe(false);
@@ -317,7 +320,7 @@ describe('Tooltip', () => {
       );
       const instance = wrapper.instance();
 
-      instance.onMouseLeaveTooltip();
+      instance.hideWithDelay();
       expect(isOpen).toBe(true);
       jest.runTimersToTime(200);
       expect(isOpen).toBe(false);
@@ -333,7 +336,7 @@ describe('Tooltip', () => {
       );
       const instance = wrapper.instance();
 
-      instance.onMouseLeaveTooltip();
+      instance.hideWithDelay();
       expect(isOpen).toBe(true);
       jest.runTimersToTime(250); // Default hide value: 250
       expect(isOpen).toBe(false);
@@ -433,12 +436,12 @@ describe('Tooltip', () => {
       );
       const instance = wrapper.instance();
 
-      instance.onMouseLeaveTooltip();
+      instance.hideWithDelay();
 
       expect(isOpen).toBe(false);
       expect(spy).not.toHaveBeenCalled();
 
-      instance.onMouseOverTooltip();
+      instance.showWithDelay();
       jest.runTimersToTime(200);
 
       expect(spy).toHaveBeenCalled();
@@ -457,7 +460,7 @@ describe('Tooltip', () => {
       );
       const instance = wrapper.instance();
 
-      instance.onMouseOverTooltip();
+      instance.showWithDelay();
       jest.runTimersToTime(0); // delay: 0 toggle is still async
 
       expect(isOpen).toBe(true);
@@ -479,12 +482,12 @@ describe('Tooltip', () => {
       );
       const instance = wrapper.instance();
 
-      instance.onMouseOverTooltip();
+      instance.showWithDelay();
 
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
 
-      instance.onMouseLeaveTooltip();
+      instance.hideWithDelay();
       jest.runTimersToTime(200);
 
       expect(spy).toHaveBeenCalled();
@@ -503,7 +506,7 @@ describe('Tooltip', () => {
       );
       const instance = wrapper.instance();
 
-      instance.onMouseLeaveTooltip();
+      instance.hideWithDelay();
       jest.runTimersToTime(0); // delay: 0 toggle is still async
 
       expect(isOpen).toBe(false);
@@ -518,7 +521,7 @@ describe('Tooltip', () => {
       const spy = jest.fn(toggle);
       isOpen = true;
       const wrapper = mount(
-        <TooltipPopoverWrapper target="target" autohide={false} isOpen={isOpen} toggle={spy} delay={200}>
+        <TooltipPopoverWrapper trigger="hover" target="target" autohide={false} isOpen={isOpen} toggle={spy} delay={200}>
           Tooltip Content
         </TooltipPopoverWrapper>,
         { attachTo: container }
@@ -541,14 +544,14 @@ describe('Tooltip', () => {
       const spy = jest.fn(toggle);
       isOpen = true;
       const wrapper = mount(
-        <TooltipPopoverWrapper target="target" autohide={false} isOpen={isOpen} toggle={spy} delay={200}>
+        <TooltipPopoverWrapper trigger="hover" target="target" autohide={false} isOpen={isOpen} toggle={spy} delay={200}>
           Tooltip Content
         </TooltipPopoverWrapper>,
         { attachTo: container }
       );
       const instance = wrapper.instance();
 
-      instance.onMouseOverTooltip();
+      instance.showWithDelay();
       expect(instance._showTimeout).toBeTruthy();
       instance.onMouseLeaveTooltipContent(synthEvent);
       jest.runTimersToTime(300);
@@ -560,7 +563,7 @@ describe('Tooltip', () => {
       const spy = jest.fn(toggle);
       isOpen = true;
       const wrapper = mount(
-        <TooltipPopoverWrapper target="target" autohide={false} isOpen={isOpen} toggle={spy} delay={200}>
+        <TooltipPopoverWrapper trigger="hover" target="target" autohide={false} isOpen={isOpen} toggle={spy} delay={200}>
           Tooltip Content
         </TooltipPopoverWrapper>,
         { attachTo: container }
@@ -582,7 +585,7 @@ describe('Tooltip', () => {
       const spy = jest.fn(toggle);
       isOpen = true;
       const wrapper = mount(
-        <TooltipPopoverWrapper target="target" autohide isOpen={isOpen} toggle={spy} delay={200} trigger="click hover focus">
+        <TooltipPopoverWrapper trigger="hover" target="target" autohide isOpen={isOpen} toggle={spy} delay={200} trigger="click hover focus">
           Tooltip Content
         </TooltipPopoverWrapper>,
         { attachTo: container }
@@ -590,7 +593,7 @@ describe('Tooltip', () => {
       const instance = wrapper.instance();
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
-      instance.onMouseLeaveTooltip();
+      instance.hideWithDelay();
       jest.runTimersToTime(100);
       instance.onMouseOverTooltipContent();
       jest.runTimersToTime(200);

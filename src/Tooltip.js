@@ -4,6 +4,7 @@ import TooltipPopoverWrapper, { propTypes } from './TooltipPopoverWrapper';
 
 const defaultProps = {
   placement: 'top',
+  autohide: true,
   placementPrefix: 'bs-tooltip',
   trigger: 'click hover focus',
 };
@@ -24,7 +25,6 @@ const Tooltip = (props) => {
   return (
     <TooltipPopoverWrapper
       {...props}
-      componentType="tooltip"
       className={popperClasses}
       innerClassName={classes}
     />
