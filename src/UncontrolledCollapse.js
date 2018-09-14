@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from './Collapse';
-import { findDOMElements, defaultToggleEvents, addMultipleEventListeners } from './utils';
+import { omit, findDOMElements, defaultToggleEvents, addMultipleEventListeners } from './utils';
+
+const omitKeys = ['toggleEvents', 'defaultOpen'];
 
 const propTypes = {
+  defaultOpen: PropTypes.bool,
   toggler: PropTypes.string.isRequired,
   toggleEvents: PropTypes.arrayOf(PropTypes.string)
 };
@@ -20,9 +23,7 @@ class UncontrolledCollapse extends Component {
     this.removeEventListeners = null;
     this.toggle = this.toggle.bind(this);
 
-    this.state = {
-      isOpen: false
-    };
+    this.state = { isOpen: props.defaultOpen || false };
   }
 
   componentDidMount() {
@@ -48,8 +49,7 @@ class UncontrolledCollapse extends Component {
   }
 
   render() {
-    const { toggleEvents, ...rest } = this.props;
-    return <Collapse isOpen={this.state.isOpen} {...rest} />;
+    return <Collapse isOpen={this.state.isOpen} {...omit(this.props, omitKeys)} />;
   }
 }
 

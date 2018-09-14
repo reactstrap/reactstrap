@@ -30,6 +30,8 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Tooltip.propTypes = {
+  // space separated list of triggers (e.g. "click hover focus")
+  trigger: PropTypes.string,
   // boundaries for popper, can be scrollParent, window, viewport, or any DOM element
   boundariesElement: PropTypes.string,
   // boolean to control the state of the tooltip
@@ -86,8 +88,7 @@ export default class TooltipsPage extends React.Component {
     PropTypes.func,
     PropTypes.string,
     PropTypes.object
-  ]),
-  trigger: PropTypes.string,
+  ])
 }`}
           </PrismCode>
         </pre>
