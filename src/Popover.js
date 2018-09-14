@@ -2,20 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import PopperContent from './PopperContent';
-import { getTarget, DOMElement, mapToCssModules, omit, PopperPlacements } from './utils';
+import { getTarget, mapToCssModules, omit, PopperPlacements, targetPropType } from './utils';
 
 const propTypes = {
   placement: PropTypes.oneOf(PopperPlacements),
-  target: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    DOMElement,
-  ]).isRequired,
-  container: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    DOMElement,
-  ]),
+  target: targetPropType.isRequired,
+  container: targetPropType,
   boundariesElement: PropTypes.string,
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -58,8 +50,8 @@ class Popover extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
+    this._target = null;
   }
-
   componentDidMount() {
     this._target = getTarget(this.props.target);
     this.handleProps();
@@ -124,13 +116,15 @@ class Popover extends React.Component {
   }
 
   handleDocumentClick(e) {
-    if (e.target !== this._target && !this._target.contains(e.target) && e.target !== this._popover && !(this._popover && this._popover.contains(e.target))) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
+    if (this._target) {
+      if (e.target !== this._target && !this._target.contains(e.target) && e.target !== this._popover && !(this._popover && this._popover.contains(e.target))) {
+        if (this._hideTimeout) {
+          this.clearHideTimeout();
+        }
 
-      if (this.props.isOpen) {
-        this.toggle(e);
+        if (this.props.isOpen) {
+          this.toggle(e);
+        }
       }
     }
   }

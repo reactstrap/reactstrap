@@ -376,6 +376,19 @@ describe('Popover', () => {
     wrapper.detach();
   });
 
+  it('should not throw when passed a ref object as the target', () => {
+    const targetObj = React.createRef();
+
+    const wrapper = mount(
+      <Popover target={targetObj} isOpen={isOpen} toggle={toggle}>Yo!</Popover>,
+      { attachTo: container }
+    );
+
+    toggle();
+
+    wrapper.detach();
+  });
+
   describe('delay', () => {
     it('should accept a number', () => {
       isOpen = true;
