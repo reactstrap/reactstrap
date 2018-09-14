@@ -4,11 +4,13 @@ import Collapse from './Collapse';
 import { findDOMElements, defaultToggleEvents, addMultipleEventListeners } from './utils';
 
 const propTypes = {
+  isOpen: PropTypes.bool,
   toggler: PropTypes.string.isRequired,
   toggleEvents: PropTypes.arrayOf(PropTypes.string)
 };
 
 const defaultProps = {
+  isOpen: false,
   toggleEvents: defaultToggleEvents
 };
 
@@ -21,7 +23,7 @@ class UncontrolledCollapse extends Component {
     this.toggle = this.toggle.bind(this);
 
     this.state = {
-      isOpen: false
+      isOpen: props.isOpen
     };
   }
 
@@ -48,7 +50,7 @@ class UncontrolledCollapse extends Component {
   }
 
   render() {
-    const { toggleEvents, ...rest } = this.props;
+    const { toggleEvents, isOpen, ...rest } = this.props;
     return <Collapse isOpen={this.state.isOpen} {...rest} />;
   }
 }
