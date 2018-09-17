@@ -21,10 +21,10 @@ describe('Input', () => {
     expect(wrapper.type()).toBe('textarea');
   });
 
-  it('should render with "p" tag when plaintext prop is truthy', () => {
+  it('should render with "input" tag when plaintext prop is truthy', () => {
     const wrapper = shallow(<Input type="select" plaintext />);
 
-    expect(wrapper.type()).toBe('p');
+    expect(wrapper.type()).toBe('input');
   });
 
   it('should render with "form-control-plaintext" class when plaintext prop is truthy', () => {
