@@ -44,6 +44,7 @@ import CustomInput from './CustomInput';
 import PopperContent from './PopperContent';
 import PopperTargetHelper from './PopperTargetHelper';
 import Popover from './Popover';
+import UncontrolledPopover from './UncontrolledPopover';
 import PopoverHeader from './PopoverHeader';
 import PopoverTitle from './PopoverTitle';
 import PopoverBody from './PopoverBody';
@@ -132,6 +133,7 @@ export {
   CardText,
   CardTitle,
   Popover,
+  UncontrolledPopover,
   PopoverContent,
   PopoverBody,
   PopoverTitle,

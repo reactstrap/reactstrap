@@ -11,6 +11,7 @@ const propTypes = {
   indicators: PropTypes.bool,
   controls: PropTypes.bool,
   autoPlay: PropTypes.bool,
+  defaultActiveIndex: PropTypes.number,
   activeIndex: PropTypes.number,
   next: PropTypes.func,
   previous: PropTypes.func,
@@ -21,7 +22,7 @@ class UncontrolledCarousel extends Component {
   constructor(props) {
     super(props);
     this.animating = false;
-    this.state = { activeIndex: 0 };
+    this.state = { activeIndex: props.defaultActiveIndex || 0 };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
@@ -55,7 +56,7 @@ class UncontrolledCarousel extends Component {
   }
 
   render() {
-    const { autoPlay, indicators, controls, items, goToIndex, ...props } = this.props;
+    const { defaultActiveIndex, autoPlay, indicators, controls, items, goToIndex, ...props } = this.props;
     const { activeIndex } = this.state;
 
     const slides = items.map((item) => {
