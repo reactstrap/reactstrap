@@ -117,7 +117,7 @@ class Dropdown extends React.Component {
 
     const container = this.getContainer();
 
-    if (e.which === keyCodes.space && this.props.isOpen && container !== e.target) {
+    if (e.which === keyCodes.space && keyCodes.enter && this.props.isOpen && container !== e.target) {
       e.target.click();
     }
 
