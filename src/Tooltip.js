@@ -2,20 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import PopperContent from './PopperContent';
-import { getTarget, DOMElement, mapToCssModules, omit, PopperPlacements } from './utils';
+import { getTarget, mapToCssModules, omit, PopperPlacements, targetPropType } from './utils';
 
 const propTypes = {
   placement: PropTypes.oneOf(PopperPlacements),
-  target: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    DOMElement,
-  ]).isRequired,
-  container: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    DOMElement,
-  ]),
+  target: targetPropType.isRequired,
+  container: targetPropType,
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   hideArrow: PropTypes.bool,
@@ -63,6 +55,7 @@ class Tooltip extends React.Component {
   constructor(props) {
     super(props);
 
+    this._target = null;
     this.addTargetEvents = this.addTargetEvents.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeTargetEvents = this.removeTargetEvents.bind(this);
@@ -160,7 +153,7 @@ class Tooltip extends React.Component {
   }
 
   handleDocumentClick(e) {
-    if (e.target === this._target || this._target.contains(e.target)) {
+    if (this._target !== null && (e.target === this._target || this._target.contains(e.target))) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
       }
@@ -185,22 +178,26 @@ class Tooltip extends React.Component {
             document.addEventListener(event, this.handleDocumentClick, true)
           );
         }
-        if (triggers.indexOf('hover') > -1) {
-          this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
-          this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+        if (this._target !== null) {
+          if (triggers.indexOf('hover') > -1) {
+            this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
+            this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+          }
+          if (triggers.indexOf('focus') > -1) {
+            this._target.addEventListener('focusin', this.show, true);
+            this._target.addEventListener('focusout', this.hide, true);
+          }
+          this._target.addEventListener('keydown', this.onEscKeyDown, true);
         }
-        if (triggers.indexOf('focus') > -1) {
-          this._target.addEventListener('focusin', this.show, true);
-          this._target.addEventListener('focusout', this.hide, true);
-        }
-        this._target.addEventListener('keydown', this.onEscKeyDown, true);
       }
     } else {
-      this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
-      this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
-      this._target.addEventListener('keydown', this.onEscKeyDown, true);
-      this._target.addEventListener('focusin', this.show, true);
-      this._target.addEventListener('focusout', this.hide, true);
+      if (this._target !== null) {
+        this._target.addEventListener('mouseover', this.onMouseOverTooltip, true);
+        this._target.addEventListener('mouseout', this.onMouseLeaveTooltip, true);
+        this._target.addEventListener('keydown', this.onEscKeyDown, true);
+        this._target.addEventListener('focusin', this.show, true);
+        this._target.addEventListener('focusout', this.hide, true);
+      }
       ['click', 'touchstart'].forEach(event =>
         document.addEventListener(event, this.handleDocumentClick, true)
       );
@@ -208,12 +205,13 @@ class Tooltip extends React.Component {
   }
 
   removeTargetEvents() {
-    this._target.removeEventListener('mouseover', this.onMouseOverTooltip, true);
-    this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip, true);
-    this._target.addEventListener('keydown', this.onEscKeyDown, true);
-    this._target.addEventListener('focusin', this.show, true);
-    this._target.addEventListener('focusout', this.hide, true);
-
+    if (this._target !== null) {
+      this._target.removeEventListener('mouseover', this.onMouseOverTooltip, true);
+      this._target.removeEventListener('mouseout', this.onMouseLeaveTooltip, true);
+      this._target.addEventListener('keydown', this.onEscKeyDown, true);
+      this._target.addEventListener('focusin', this.show, true);
+      this._target.addEventListener('focusout', this.hide, true);
+    }
     ['click', 'touchstart'].forEach(event =>
       document.removeEventListener(event, this.handleDocumentClick, true)
     );

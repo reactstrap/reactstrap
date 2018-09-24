@@ -114,4 +114,10 @@ describe('UncontrolledTooltip', () => {
     const tooltip = shallow(<UncontrolledTooltip boundariesElement="window" target="blah">Yo!</UncontrolledTooltip>);
     expect(tooltip.prop('boundariesElement')).toBe('window');
   });
+
+  it('should render correctly with a ref object as the target', () => {
+    const target = React.createRef();
+    const tooltip = shallow(<UncontrolledTooltip target={target}>Yo!</UncontrolledTooltip>);
+    expect(tooltip.exists()).toBe(true);
+  });
 });
