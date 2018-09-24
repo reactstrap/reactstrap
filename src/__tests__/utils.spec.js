@@ -157,6 +157,16 @@ describe('Utils', () => {
         Utils.getTarget(target);
       }).toThrow(`The target '${target}' could not be identified in the dom, tip: check spelling`);
     });
+
+    it('should return the value of the `current` object if it is a react Ref object', () => {
+      const target = { current: { name: 'hello' } };
+      expect(Utils.getTarget(target)).toEqual(target.current);
+    });
+
+    it('should return null if the `current` property of the target is null', () => {
+      const target = { current: null };
+      expect(Utils.getTarget(target)).toBeNull();
+    });
   });
 
   describe('setGlobalCssModule', () => {
