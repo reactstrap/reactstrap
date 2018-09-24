@@ -21,7 +21,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  children: <span aria-hidden>×</span>,
   color: 'secondary',
   tag: 'button',
 };
@@ -59,6 +58,10 @@ class Button extends React.Component {
       innerRef,
       ...attributes
     } = this.props;
+
+    if(close && typeof attributes.children === 'undefined') {
+      attributes.children = <span aria-hidden>×</span>;
+    }
 
     const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
 
