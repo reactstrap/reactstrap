@@ -59,7 +59,7 @@ class Button extends React.Component {
       ...attributes
     } = this.props;
 
-    if(close && typeof attributes.children === 'undefined') {
+    if (close && typeof attributes.children === 'undefined') {
       attributes.children = <span aria-hidden>×</span>;
     }
 
