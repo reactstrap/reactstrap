@@ -30,7 +30,7 @@ describe('Row', () => {
   });
 
   it('show render form classes', () => {
-    const wrapper = shallow(<Row form/>);
+    const wrapper = shallow(<Row form />);
 
     expect(wrapper.html()).toBe('<div class="form-row"></div>');
   });
