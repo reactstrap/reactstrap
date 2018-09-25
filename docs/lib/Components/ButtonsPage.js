@@ -13,6 +13,9 @@ const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline');
 import ButtonStateful from '../examples/ButtonStateful';
 const ButtonStatefulSource = require('!!raw!../examples/ButtonStateful');
 
+import ButtonCloseIcon from '../examples/ButtonCloseIcon';
+const ButtonCloseIconSource = require('!!raw!../examples/ButtonCloseIcon');
+
 export default class ButtonsPage extends React.Component {
   render() {
     return (
@@ -44,7 +47,10 @@ export default class ButtonsPage extends React.Component {
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
   onClick: PropTypes.func,
-  size: PropTypes.string
+  size: PropTypes.string,
+
+  // use close prop for BS4 close icon utility
+  close: PropTypes.bool,
 }`}
           </PrismCode>
         </pre>
@@ -121,6 +127,20 @@ export default class ButtonsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ButtonStatefulSource}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>Close icon</SectionTitle>
+        <p>
+          Use a generic close icon to dismiss content. Use <code>&lt;Button close /&gt;</code> for the default icon. Otherwise, custom content for the button
+          may be defined. (e.g. JSX: <code>&lt;Button close&gt;&lt;span aria-hidden="true"&gt;&ndash;&lt;/span&gt;&lt;/Button&gt;</code>) The default aria-label is "Close".
+        </p>
+        <div className="docs-example">
+          <ButtonCloseIcon />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ButtonCloseIconSource}
           </PrismCode>
         </pre>
       </div>
