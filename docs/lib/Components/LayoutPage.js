@@ -32,7 +32,9 @@ export default class LayoutsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Row.propTypes = {
-  noGutters: PropTypes.bool
+  noGutters: PropTypes.bool,
+  // see https://reactstrap.github.io/components/form Form Grid with Form Row
+  form: PropTypes.bool
 }`}
           </PrismCode>
         </pre>
