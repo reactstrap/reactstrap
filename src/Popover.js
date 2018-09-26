@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import PopperContent from './PopperContent';
-import { getTarget, mapToCssModules, omit, PopperPlacements, targetPropType } from './utils';
+import { getTarget, mapToCssModules, omit, PopperPlacements, targetPropType, DOMElement } from './utils';
 
 const propTypes = {
   placement: PropTypes.oneOf(PopperPlacements),
   target: targetPropType.isRequired,
   container: targetPropType,
-  boundariesElement: PropTypes.string,
+  boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   hideArrow: PropTypes.bool,
