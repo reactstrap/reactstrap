@@ -47,6 +47,7 @@ class PopperContent extends React.Component {
     this.handlePlacementChange = this.handlePlacementChange.bind(this);
     this.setTargetNode = this.setTargetNode.bind(this);
     this.getTargetNode = this.getTargetNode.bind(this);
+    this.getRef = this.getRef.bind(this);
     this.state = {};
   }
 
@@ -59,21 +60,10 @@ class PopperContent extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.handleProps();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.isOpen !== prevProps.isOpen) {
-      this.handleProps();
-    } else if (this._element) {
-      // rerender
-      this.renderIntoSubtree();
+  componentDidUpdate() {
+    if (this._element && this._element.childNodes && this._element.childNodes[0] && this._element.childNodes[0].focus) {
+      this._element.childNodes[0].focus();
     }
-  }
-
-  componentWillUnmount() {
-    this.hide();
   }
 
   setTargetNode(node) {
@@ -88,46 +78,15 @@ class PopperContent extends React.Component {
     return getTarget(this.props.container);
   }
 
+  getRef(ref) {
+    this._element = ref;
+  }
+
   handlePlacementChange(data) {
     if (this.state.placement !== data.placement) {
       this.setState({ placement: data.placement });
     }
     return data;
-  }
-
-  handleProps() {
-    if (this.props.container !== 'inline') {
-      if (this.props.isOpen) {
-        this.show();
-      } else {
-        this.hide();
-      }
-    }
-  }
-
-  hide() {
-    if (this._element) {
-      this.getContainerNode().removeChild(this._element);
-      ReactDOM.unmountComponentAtNode(this._element);
-      this._element = null;
-    }
-  }
-
-  show() {
-    this._element = document.createElement('div');
-    this.getContainerNode().appendChild(this._element);
-    this.renderIntoSubtree();
-    if (this._element.childNodes && this._element.childNodes[0] && this._element.childNodes[0].focus) {
-      this._element.childNodes[0].focus();
-    }
-  }
-
-  renderIntoSubtree() {
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this,
-      this.renderChildren(),
-      this._element
-    );
   }
 
   renderChildren() {
@@ -182,8 +141,10 @@ class PopperContent extends React.Component {
   render() {
     this.setTargetNode(getTarget(this.props.target));
 
-    if (this.props.container === 'inline') {
-      return this.props.isOpen ? this.renderChildren() : null;
+    if (this.props.isOpen) {
+      return this.props.container === 'inline' ?
+        this.renderChildren() :
+        ReactDOM.createPortal((<div ref={this.getRef}>{this.renderChildren()}</div>), this.getContainerNode());
     }
 
     return null;
