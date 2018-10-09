@@ -19,7 +19,7 @@ export default class UncontrolledTooltip extends Component {
 
   toggle() {
     if (this._isMounted) {
-      this.setState({isOpen: !this.state.isOpen});
+      this.setState({ isOpen: !this.state.isOpen });
     }
   }
 
