@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import forEach from 'lodash.foreach';
 import isobject from 'lodash.isobject';
 import { mapToCssModules, deprecated } from './utils';
 
@@ -67,7 +68,7 @@ const Label = (props) => {
 
   const colClasses = [];
 
-  widths.forEach((colWidth, i) => {
+  forEach(widths, (colWidth, i) => {
     let columnProp = props[colWidth];
 
     delete attributes[colWidth];

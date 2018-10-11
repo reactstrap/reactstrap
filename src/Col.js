@@ -1,3 +1,4 @@
+import forEach from 'lodash.foreach';
 import isobject from 'lodash.isobject';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -57,7 +58,7 @@ const Col = (props) => {
   } = props;
   const colClasses = [];
 
-  widths.forEach((colWidth, i) => {
+  forEach(widths, (colWidth, i) => {
     let columnProp = props[colWidth];
 
     delete attributes[colWidth];

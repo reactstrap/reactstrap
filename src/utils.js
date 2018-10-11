@@ -1,4 +1,6 @@
 import isFunction from 'lodash.isfunction';
+import forEach from 'lodash.foreach';
+import _keys from 'lodash.keys';
 import PropTypes from 'prop-types';
 
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
@@ -64,7 +66,7 @@ export function mapToCssModules(className = '', cssModule = globalCssModule) {
  */
 export function omit(obj, omitKeys) {
   const result = {};
-  Object.keys(obj).forEach((key) => {
+  forEach(_keys(obj), (key) => {
     if (omitKeys.indexOf(key) === -1) {
       result[key] = obj[key];
     }
@@ -271,14 +273,14 @@ export function addMultipleEventListeners(_els, handler, _events) {
       The third is a string or an array of strings that represents DOM events
     `);
   }
-  events.forEach((event) => {
-    els.forEach((el) => {
+  forEach(events, (event) => {
+    forEach(els, (el) => {
       el.addEventListener(event, handler);
     });
   });
   return function removeEvents() {
-    events.forEach((event) => {
-      els.forEach((el) => {
+    forEach(events, (event) => {
+      forEach(els, (el) => {
         el.removeEventListener(event, handler);
       });
     });
