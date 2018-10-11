@@ -1,6 +1,6 @@
 import isFunction from 'lodash.isfunction';
 import forEach from 'lodash.foreach';
-import keys from 'lodash.keys';
+import _keys from 'lodash.keys';
 import PropTypes from 'prop-types';
 
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
@@ -66,7 +66,7 @@ export function mapToCssModules(className = '', cssModule = globalCssModule) {
  */
 export function omit(obj, omitKeys) {
   const result = {};
-  forEach(keys(obj), (key) => {
+  forEach(_keys(obj), (key) => {
     if (omitKeys.indexOf(key) === -1) {
       result[key] = obj[key];
     }
