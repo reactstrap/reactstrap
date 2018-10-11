@@ -1,4 +1,5 @@
 import isFunction from 'lodash.isfunction';
+import forEach from 'lodash.foreach';
 import PropTypes from 'prop-types';
 
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
@@ -271,14 +272,14 @@ export function addMultipleEventListeners(_els, handler, _events) {
       The third is a string or an array of strings that represents DOM events
     `);
   }
-  events.forEach((event) => {
-    els.forEach((el) => {
+  forEach(events, (event) => {
+    forEach(els, (el) => {
       el.addEventListener(event, handler);
     });
   });
   return function removeEvents() {
-    events.forEach((event) => {
-      els.forEach((el) => {
+    forEach(events, (event) => {
+      forEach(els, (el) => {
         el.removeEventListener(event, handler);
       });
     });

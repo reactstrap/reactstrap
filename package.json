@@ -96,6 +96,7 @@
   "homepage": "https://github.com/reactstrap/reactstrap#readme",
   "dependencies": {
     "classnames": "^2.2.3",
+    "lodash.foreach": "^4.5.0",
     "lodash.isfunction": "^3.0.9",
     "lodash.isobject": "^3.0.2",
     "lodash.tonumber": "^4.0.3",
