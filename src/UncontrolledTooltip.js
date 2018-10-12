@@ -9,8 +9,18 @@ export default class UncontrolledTooltip extends Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   toggle() {
-    this.setState({ isOpen: !this.state.isOpen });
+    if (this._isMounted) {
+      this.setState({ isOpen: !this.state.isOpen });
+    }
   }
 
   render() {
