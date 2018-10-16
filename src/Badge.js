@@ -18,11 +18,12 @@ const defaultProps = {
   tag: 'span'
 };
 
-const Badge = React.forwardRef((props, ref) => {
+const Badge = (props) => {
   let {
     className,
     cssModule,
     color,
+    innerRef,
     pill,
     tag: Tag,
     ...attributes
@@ -40,9 +41,9 @@ const Badge = React.forwardRef((props, ref) => {
   }
 
   return (
-    <Tag {...attributes} className={classes} ref={ref} />
+    <Tag {...attributes} className={classes} ref={innerRef} />
   );
-});
+};
 
 Badge.propTypes = propTypes;
 Badge.defaultProps = defaultProps;
