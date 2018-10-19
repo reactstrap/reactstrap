@@ -373,7 +373,7 @@ class Modal extends React.Component {
               {external}
               {this.renderModalDialog()}
             </Fade>
-            {Backdrop}
+            {backdrop && Backdrop}
           </div>
         </Portal>
       );
