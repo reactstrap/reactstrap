@@ -54,6 +54,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
+  mountNode: PropTypes.any,
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -76,6 +77,7 @@ const defaultProps = {
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
+  mountNode: document.body,
 };
 
 class Modal extends React.Component {
@@ -235,6 +237,8 @@ class Modal extends React.Component {
   }
 
   init() {
+    const { mountNode } = this.props;
+
     try {
       this._triggeringElement = document.activeElement;
     } catch (err) {
@@ -248,10 +252,10 @@ class Modal extends React.Component {
 
     conditionallyUpdateScrollbar();
 
-    document.body.appendChild(this._element);
+    mountNode.appendChild(this._element);
     if (Modal.openCount === 0) {
-      document.body.className = classNames(
-        document.body.className,
+      mountNode.className = classNames(
+        mountNode.className,
         mapToCssModules('modal-open', this.props.cssModule)
       );
     }
@@ -259,8 +263,10 @@ class Modal extends React.Component {
   }
 
   destroy() {
+    const { mountNode } = this.props;
+
     if (this._element) {
-      document.body.removeChild(this._element);
+      mountNode.removeChild(this._element);
       this._element = null;
     }
 
@@ -273,7 +279,7 @@ class Modal extends React.Component {
       const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
       // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
-      document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+      mountNode.className = mountNode.className.replace(modalOpenClassNameRegex, ' ').trim();
     }
     Modal.openCount -= 1;
 

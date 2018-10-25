@@ -97,6 +97,8 @@ const ModalsPage = () => {
   // see [Fade](/components/fade/) for more details
   modalTransition: PropTypes.shape(Fade.propTypes),
   innerRef: PropTypes.object,
+  mountNode: PropTypes.any,
+  // defaults to document.body
 }`}
         </PrismCode>
       </pre>
