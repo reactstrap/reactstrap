@@ -77,7 +77,6 @@ const defaultProps = {
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
-  mountNode: document.body,
 };
 
 class Modal extends React.Component {
@@ -237,7 +236,7 @@ class Modal extends React.Component {
   }
 
   init() {
-    const { mountNode } = this.props;
+    const mountNode = this.props.mountNode || document.body;
 
     try {
       this._triggeringElement = document.activeElement;
@@ -263,7 +262,7 @@ class Modal extends React.Component {
   }
 
   destroy() {
-    const { mountNode } = this.props;
+    const mountNode = this.props.mountNode || document.body;
 
     if (this._element) {
       mountNode.removeChild(this._element);
