@@ -11,6 +11,7 @@ import {
   omit,
   focusableElements,
   TransitionTimeouts
+  targetPropType,
 } from './utils';
 
 function noop() { }
@@ -54,7 +55,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
-  mountNode: PropTypes.any,
+  mountNode: targetPropType,
 };
 
 const propsToOmit = Object.keys(propTypes);
