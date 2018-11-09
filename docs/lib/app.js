@@ -87,6 +87,7 @@ export default (locals, callback) => {
               debug: false // Set debug to true if you want to inspect the dropdown
             });
           </script>
+          <!-- avangate: Evan@lostonia.com -->
         </body>
       </html>`;
     callback(null, markup);
