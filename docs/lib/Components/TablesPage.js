@@ -48,7 +48,13 @@ borderless: PropTypes.bool,
 striped: PropTypes.bool,
 dark: PropTypes.bool,
 hover: PropTypes.bool,
-responsive: PropTypes.bool
+responsive: PropTypes.bool,
+// Custom ref handler that will be assigned to the "ref" of the inner <table> element
+innerRef: PropTypes.oneOfType([
+  PropTypes.func,
+  PropTypes.string,
+  PropTypes.object
+])
 };`}
         </PrismCode>
         </pre>
