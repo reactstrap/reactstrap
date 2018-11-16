@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'h5'
+  tag: 'div'
 };
 
 const CardTitle = (props) => {
