@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'h6'
+  tag: 'div'
 };
 
 const CardSubtitle = (props) => {
