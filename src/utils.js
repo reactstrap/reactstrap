@@ -272,13 +272,13 @@ export function addMultipleEventListeners(_els, handler, _events) {
     `);
   }
   Array.prototype.forEach.call(events, (event) => {
-    els.forEach((el) => {
+    Array.prototype.forEach.call(els, (el) => {
       el.addEventListener(event, handler);
     });
   });
   return function removeEvents() {
     Array.prototype.forEach.call(events, (event) => {
-      els.forEach((el) => {
+      Array.prototype.forEach.call(els, (el) => {
         el.removeEventListener(event, handler);
       });
     });
