@@ -65,7 +65,7 @@ const ModalsPage = () => {
     PropTypes.bool,
     PropTypes.oneOf(['static'])
   ]),
-  // allows for a node/componet to exist next to the modal (outside of it). Useful for external close buttons
+  // allows for a node/component to exist next to the modal (outside of it). Useful for external close buttons
   // external: PropTypes.node,
   // called on componentDidMount
   onEnter: PropTypes.func,
