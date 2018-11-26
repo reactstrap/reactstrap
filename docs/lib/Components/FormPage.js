@@ -10,6 +10,9 @@ const FormExampleSource = require('!!raw!../examples/Form');
 import FormGridExample from '../examples/FormGrid';
 const FormGridExampleSource = require('!!raw!../examples/FormGrid');
 
+import FormGridFormRowExample from '../examples/FormGridFormRow';
+const FormGridFormRowExampleSource = require('!!raw!../examples/FormGridFormRow');
+
 import FormInlineExample from '../examples/FormInline';
 const FormInlineExampleSource = require('!!raw!../examples/FormInline');
 
@@ -143,6 +146,16 @@ FormText.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
             {FormGridExampleSource}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>Form Grid with Form Row</SectionTitle>
+        <div className="docs-example">
+          <FormGridFormRowExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {FormGridFormRowExampleSource}
           </PrismCode>
         </pre>
 

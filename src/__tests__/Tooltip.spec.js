@@ -83,7 +83,7 @@ describe('Tooltip', () => {
 
     const tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
     expect(tooltips.length).toBe(1);
     expect(tooltips[0].textContent).toBe('Tooltip Content');
     wrapper.detach();
@@ -99,8 +99,7 @@ describe('Tooltip', () => {
     );
 
     const tooltips = document.getElementsByClassName('tooltip');
-
-    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
     expect(tooltips.length).toBe(1);
     expect(tooltips[0].textContent).toBe('Tooltip Content');
     wrapper.detach();

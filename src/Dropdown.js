@@ -201,7 +201,7 @@ class Dropdown extends React.Component {
     if (setActiveFromChild) {
       React.Children.map(this.props.children[1].props.children,
         (dropdownItem) => {
-          if (dropdownItem.props.active) subItemIsActive = true;
+          if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
         }
       );
     }

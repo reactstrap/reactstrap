@@ -7,6 +7,7 @@ const propTypes = {
   color: PropTypes.string,
   pill: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -23,6 +24,7 @@ const Badge = (props) => {
     className,
     cssModule,
     color,
+    innerRef,
     pill,
     tag: Tag,
     ...attributes
@@ -40,7 +42,7 @@ const Badge = (props) => {
   }
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={innerRef} />
   );
 };
 

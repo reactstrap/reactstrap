@@ -8,6 +8,7 @@ const propTypes = {
   noGutters: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  form: PropTypes.bool
 };
 
 const defaultProps = {
@@ -20,13 +21,14 @@ const Row = (props) => {
     cssModule,
     noGutters,
     tag: Tag,
+    form,
     ...attributes
   } = props;
 
   const classes = mapToCssModules(classNames(
     className,
     noGutters ? 'no-gutters' : null,
-    'row'
+    form ? 'form-row' : 'row'
   ), cssModule);
 
   return (
