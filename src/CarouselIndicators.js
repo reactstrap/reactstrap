@@ -13,7 +13,7 @@ const CarouselIndicators = (props) => {
     ), cssModule);
     return (
       <li
-        key={`${Object.values(item).join('')}`}
+        key={`${item.key || Object.values(item).join('')}`}
         onClick={(e) => {
           e.preventDefault();
           onClickHandler(idx);
