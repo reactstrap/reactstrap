@@ -230,6 +230,8 @@ class Modal extends React.Component {
 
   handleEscape(e) {
     if (this.props.isOpen && this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
+      e.preventDefault();
+      e.stopPropagation();
       this.props.toggle(e);
     }
   }
