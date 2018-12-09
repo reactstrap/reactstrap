@@ -24,7 +24,7 @@ const CardBody = (props) => {
     cssModule,
     innerRef,
     tag: Tag,
-    ...attributes,
+    ...attributes
   } = props;
   const classes = mapToCssModules(classNames(
     className,
