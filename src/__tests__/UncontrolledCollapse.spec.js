@@ -38,6 +38,12 @@ describe('UncontrolledCollapse', () => {
     expect(collapse.prop('isOpen')).toBe(false);
   });
 
+  it('should be open by default when open attribute is set to true', () => {
+    const collapse = shallow(<UncontrolledCollapse toggler="#toggler" open>Yo!</UncontrolledCollapse>);
+
+    expect(collapse.prop('isOpen')).toBe(true);
+  });
+
   it('should toggle isOpen when toggle is called', () => {
     const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
 
