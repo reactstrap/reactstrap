@@ -6,7 +6,7 @@ const Example = () => (
     <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
       Toggle
     </Button>
-    <UncontrolledCollapse toggler="#toggler">
+    <UncontrolledCollapse toggler="#toggler" open>
       <Card>
         <CardBody>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt magni, voluptas debitis

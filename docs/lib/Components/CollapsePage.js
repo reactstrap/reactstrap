@@ -70,6 +70,7 @@ export default class CollapsePage extends React.Component {
           pass a <code>toggler</code> prop. The <code>toggler</code> prop is a string which will run
           querySelectorAll to find dom elements which will trigger toggle.
         </p>
+        <p>Adittionaly it accepts a `open` attribute to indicate if the collapse should be open by default</p>
         <div className="docs-example">
           <UncontrolledCollapseExample />
         </div>
