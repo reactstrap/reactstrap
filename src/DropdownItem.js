@@ -58,6 +58,7 @@ class DropdownItem extends React.Component {
 
   render() {
     const tabIndex = this.getTabIndex();
+    const role = tabIndex > -1 ? 'menuitem' : undefined;
     let {
       className,
       cssModule,
@@ -93,6 +94,7 @@ class DropdownItem extends React.Component {
         type={(Tag === 'button' && (props.onClick || this.props.toggle)) ? 'button' : undefined}
         {...props}
         tabIndex={tabIndex}
+        role={role}
         className={classes}
         onClick={this.onClick}
       />

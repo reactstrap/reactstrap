@@ -175,7 +175,11 @@ export const keyCodes = {
   enter: 13,
   tab:   9,
   up:    38,
-  down:  40
+  down:  40,
+  home:  36,
+  end:   35,
+  n:     78,
+  p:     80,
 };
 
 export const PopperPlacements = [
