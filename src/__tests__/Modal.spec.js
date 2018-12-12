@@ -490,10 +490,18 @@ describe('Modal', () => {
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
-    instance.handleEscape({ keyCode: 27 });
+    const escapeKeyUpEvent = {
+      keyCode: 27,
+      preventDefault: jest.fn(() => {}),
+      stopPropagation: jest.fn(() => {}),
+    };
+
+    instance.handleEscape(escapeKeyUpEvent);
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(false);
+    expect(escapeKeyUpEvent.preventDefault.mock.calls.length).toBe(1);
+    expect(escapeKeyUpEvent.stopPropagation.mock.calls.length).toBe(1);
 
     wrapper.setProps({
       isOpen: isOpen
