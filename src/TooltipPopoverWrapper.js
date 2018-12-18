@@ -16,7 +16,7 @@ export const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   hideArrow: PropTypes.bool,
-  boundariesElement: PropTypes.string,
+  boundariesElement: PropTypes.string, //PropTypes.oneOfType([PropTypes.string, DOMElement]),
   className: PropTypes.string,
   innerClassName: PropTypes.string,
   arrowClassName: PropTypes.string,

@@ -230,6 +230,8 @@ class Modal extends React.Component {
 
   handleEscape(e) {
     if (this.props.isOpen && this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
+      e.preventDefault();
+      e.stopPropagation();
       this.props.toggle(e);
     }
   }
@@ -348,14 +350,16 @@ class Modal extends React.Component {
         timeout: hasTransition ? this.props.backdropTransition.timeout : 0,
       };
 
-      const Backdrop = hasTransition ?
-        (<Fade
-          {...backdropTransition}
-          in={isOpen && !!backdrop}
-          cssModule={cssModule}
-          className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
-        />)
-        : <div className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)} />;
+      const Backdrop = backdrop && (
+        hasTransition ?
+          (<Fade
+            {...backdropTransition}
+            in={isOpen && !!backdrop}
+            cssModule={cssModule}
+            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+          />)
+          : <div className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)} />
+      );
 
       return (
         <Portal node={this._element}>

@@ -172,9 +172,14 @@ export const TransitionStatuses = {
 export const keyCodes = {
   esc:   27,
   space: 32,
+  enter: 13,
   tab:   9,
   up:    38,
-  down:  40
+  down:  40,
+  home:  36,
+  end:   35,
+  n:     78,
+  p:     80,
 };
 
 export const PopperPlacements = [
@@ -270,15 +275,27 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
       The third is a string or an array of strings that represents DOM events
     `);
   }
-  events.forEach((event) => {
-    els.forEach((el) => {
-      el.addEventListener(event, handler, useCapture);
+//<<<<<<< HEAD
+  // events.forEach((event) => {
+  //   els.forEach((el) => {
+  //     el.addEventListener(event, handler, useCapture);
+  //   });
+  // });
+  // return function removeEvents() {
+  //   events.forEach((event) => {
+  //     els.forEach((el) => {
+  //       el.removeEventListener(event, handler, useCapture);
+// =======
+  Array.prototype.forEach.call(events, (event) => {
+    Array.prototype.forEach.call(els, (el) => {
+      el.addEventListener(event, handler);
     });
   });
   return function removeEvents() {
-    events.forEach((event) => {
-      els.forEach((el) => {
-        el.removeEventListener(event, handler, useCapture);
+    Array.prototype.forEach.call(events, (event) => {
+      Array.prototype.forEach.call(els, (el) => {
+        el.removeEventListener(event, handler);
+// >>>>>>> master
       });
     });
   };

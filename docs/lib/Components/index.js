@@ -31,12 +31,12 @@ const items = [
     to: '/components/card/'
   },
   {
-    name: 'Collapse',
-    to: '/components/collapse/',
-  },
-  {
     name: 'Carousel',
     to: '/components/carousel/'
+  },
+  {
+    name: 'Collapse',
+    to: '/components/collapse/',
   },
   {
     name: 'Dropdowns',

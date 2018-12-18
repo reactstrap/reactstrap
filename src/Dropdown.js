@@ -79,7 +79,19 @@ class Dropdown extends React.Component {
   }
 
   getContainer() {
+    if (this._$container) return this._$container;
+    this._$container = ReactDOM.findDOMNode(this);
     return ReactDOM.findDOMNode(this);
+  }
+
+  getMenuCtrl() {
+    if (this._$menuCtrl) return this._$menuCtrl;
+    this._$menuCtrl = this.getContainer().querySelector('[aria-expanded]');
+    return this._$menuCtrl;
+  }
+
+  getMenuItems() {
+    return [].slice.call(this.getContainer().querySelectorAll('[role="menuitem"]'));
   }
 
   addEvents() {
@@ -106,60 +118,64 @@ class Dropdown extends React.Component {
   }
 
   handleKeyDown(e) {
-    if (keyCodes.tab === e.which ||
-      (/button/i.test(e.target.tagName) && e.which === keyCodes.space) ||
-      /input|textarea/i.test(e.target.tagName)) {
+    if (
+      /input|textarea/i.test(e.target.tagName)
+      || (keyCodes.tab === e.which && e.target.getAttribute('role') !== 'menuitem')
+    ) {
       return;
     }
 
     e.preventDefault();
+
     if (this.props.disabled) return;
 
-    const container = this.getContainer();
-
-    if (e.which === keyCodes.space && this.props.isOpen && container !== e.target) {
-      e.target.click();
-    }
-
-    if (e.which === keyCodes.esc || !this.props.isOpen) {
-      this.toggle(e);
-      container.querySelector('[aria-expanded]').focus();
-      return;
-    }
-
-    const menuClass = mapToCssModules('dropdown-menu', this.props.cssModule);
-    const itemClass = mapToCssModules('dropdown-item', this.props.cssModule);
-    const disabledClass = mapToCssModules('disabled', this.props.cssModule);
-
-    const items = container.querySelectorAll(`.${menuClass} .${itemClass}:not(.${disabledClass})`);
-    if (!items.length) return;
-
-    let index = -1;
-
-    const charPressed = String.fromCharCode(e.which).toLowerCase();
-
-    for (let i = 0; i < items.length; i += 1) {
-      const firstLetter = items[i].textContent && items[i].textContent[0].toLowerCase();
-      if (firstLetter === charPressed || items[i] === e.target) {
-        index = i;
-        break;
+    if (this.getMenuCtrl() === e.target) {
+      if (
+        !this.props.isOpen
+        && ([keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(e.which) > -1)
+      ) {
+        this.toggle(e);
+        setTimeout(() => this.getMenuItems()[0].focus());
       }
     }
 
-    if (e.which === keyCodes.up && index > 0) {
-      index -= 1;
+    if (this.props.isOpen && (e.target.getAttribute('role') === 'menuitem')) {
+      if ([keyCodes.tab, keyCodes.esc].indexOf(e.which) > -1) {
+        this.toggle(e);
+        this.getMenuCtrl().focus();
+      } else if ([keyCodes.space, keyCodes.enter].indexOf(e.which) > -1) {
+        e.target.click();
+        this.getMenuCtrl().focus();
+      } else if (
+        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1
+        || ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
+      ) {
+        const $menuitems = this.getMenuItems();
+        let index = $menuitems.indexOf(e.target);
+        if (keyCodes.up === e.which || (keyCodes.p === e.which && e.ctrlKey)) {
+          index = index !== 0 ? index - 1 : $menuitems.length - 1;
+        } else if (keyCodes.down === e.which || (keyCodes.n === e.which && e.ctrlKey)) {
+          index = index === $menuitems.length - 1 ? 0 : index + 1;
+        }
+        $menuitems[index].focus();
+      } else if (keyCodes.end === e.which) {
+        const $menuitems = this.getMenuItems();
+        $menuitems[$menuitems.length - 1].focus();
+      } else if (keyCodes.home === e.which) {
+        const $menuitems = this.getMenuItems();
+        $menuitems[0].focus();
+      } else if ((e.which >= 48) && (e.which <= 90)) {
+        const $menuitems = this.getMenuItems();
+        const charPressed = String.fromCharCode(e.which).toLowerCase();
+        for (let i = 0; i < $menuitems.length; i += 1) {
+          const firstLetter = $menuitems[i].textContent && $menuitems[i].textContent[0].toLowerCase();
+          if (firstLetter === charPressed) {
+            $menuitems[i].focus();
+            break;
+          }
+        }
+      }
     }
-
-    if (e.which === keyCodes.down && index < items.length - 1) {
-      index += 1;
-    }
-
-
-    if (index < 0) {
-      index = 0;
-    }
-
-    items[index].focus();
   }
 
   handleProps() {
@@ -201,7 +217,7 @@ class Dropdown extends React.Component {
     if (setActiveFromChild) {
       React.Children.map(this.props.children[1].props.children,
         (dropdownItem) => {
-          if (dropdownItem.props.active) subItemIsActive = true;
+          if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
         }
       );
     }
