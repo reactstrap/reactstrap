@@ -278,7 +278,7 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
 
   Array.prototype.forEach.call(events, (event) => {
     Array.prototype.forEach.call(els, (el) => {
-      el.addEventListener(event, handler);
+      el.addEventListener(event, handler, useCapture);
     });
   });
   return function removeEvents() {
