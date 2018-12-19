@@ -275,17 +275,7 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
       The third is a string or an array of strings that represents DOM events
     `);
   }
-//<<<<<<< HEAD
-  // events.forEach((event) => {
-  //   els.forEach((el) => {
-  //     el.addEventListener(event, handler, useCapture);
-  //   });
-  // });
-  // return function removeEvents() {
-  //   events.forEach((event) => {
-  //     els.forEach((el) => {
-  //       el.removeEventListener(event, handler, useCapture);
-// =======
+
   Array.prototype.forEach.call(events, (event) => {
     Array.prototype.forEach.call(els, (el) => {
       el.addEventListener(event, handler);
@@ -294,8 +284,7 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
   return function removeEvents() {
     Array.prototype.forEach.call(events, (event) => {
       Array.prototype.forEach.call(els, (el) => {
-        el.removeEventListener(event, handler);
-// >>>>>>> master
+        el.removeEventListener(event, handler, useCapture);
       });
     });
   };
