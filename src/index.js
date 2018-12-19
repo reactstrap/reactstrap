@@ -84,6 +84,7 @@ import UncontrolledButtonDropdown from './UncontrolledButtonDropdown';
 import UncontrolledCollapse from './UncontrolledCollapse';
 import UncontrolledDropdown from './UncontrolledDropdown';
 import UncontrolledNavDropdown from './UncontrolledNavDropdown';
+import UncontrolledNavigation from './UncontrolledNavigation';
 import UncontrolledTooltip from './UncontrolledTooltip';
 import * as Util from './utils';
 
@@ -174,6 +175,7 @@ export {
   UncontrolledCollapse,
   UncontrolledDropdown,
   UncontrolledNavDropdown,
+  UncontrolledNavigation,
   UncontrolledTooltip,
   Util,
 };
