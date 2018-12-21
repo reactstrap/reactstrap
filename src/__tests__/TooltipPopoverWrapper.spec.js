@@ -596,7 +596,7 @@ describe('Tooltip', () => {
       const spy = jest.fn(toggle);
       isOpen = true;
       const wrapper = mount(
-        <TooltipPopoverWrapper trigger="hover" target="target" autohide isOpen={isOpen} toggle={spy} delay={200} trigger="click hover focus">
+        <TooltipPopoverWrapper target="target" autohide isOpen={isOpen} toggle={spy} delay={200} trigger="click hover focus">
           Tooltip Content
         </TooltipPopoverWrapper>,
         { attachTo: container }
