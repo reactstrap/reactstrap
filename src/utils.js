@@ -253,7 +253,7 @@ export function getTarget(target) {
 
 export const defaultToggleEvents = ['touchstart', 'click'];
 
-export function addMultipleEventListeners(_els, handler, _events) {
+export function addMultipleEventListeners(_els, handler, _events, useCapture) {
   let els = _els;
   if (!isArrayOrNodeList(els)) {
     els = [els];
@@ -275,15 +275,16 @@ export function addMultipleEventListeners(_els, handler, _events) {
       The third is a string or an array of strings that represents DOM events
     `);
   }
+
   Array.prototype.forEach.call(events, (event) => {
     Array.prototype.forEach.call(els, (el) => {
-      el.addEventListener(event, handler);
+      el.addEventListener(event, handler, useCapture);
     });
   });
   return function removeEvents() {
     Array.prototype.forEach.call(events, (event) => {
       Array.prototype.forEach.call(els, (el) => {
-        el.removeEventListener(event, handler);
+        el.removeEventListener(event, handler, useCapture);
       });
     });
   };

@@ -75,7 +75,7 @@ class Input extends React.Component {
 
     if (plaintext || staticInput) {
       formControlClass = `${formControlClass}-plaintext`;
-      Tag = tag || 'p';
+      Tag = tag || 'input';
     } else if (fileInput) {
       formControlClass = `${formControlClass}-file`;
     } else if (checkInput) {

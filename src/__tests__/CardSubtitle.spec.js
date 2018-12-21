@@ -24,4 +24,10 @@ describe('CardSubtitle', () => {
     expect(wrapper.hasClass('card-subtitle')).toBe(true);
     expect(wrapper.find('h3').length).toBe(1);
   });
+
+  it('should render a "div" tag by default', () => {
+    const wrapper = shallow(<CardSubtitle>Yo!</CardSubtitle>);
+
+    expect(wrapper.find('div').length).toBe(1);
+  });
 });

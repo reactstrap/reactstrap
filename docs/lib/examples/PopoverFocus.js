@@ -21,10 +21,10 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Button id="Popover1" type="button">
+        <Button id="PopoverFocus" type="button">
           Launch Popover
         </Button>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
+        <Popover trigger="focus" placement="bottom" isOpen={this.state.popoverOpen} target="PopoverFocus" toggle={this.toggle}>
           <PopoverHeader>Popover Title</PopoverHeader>
           <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
         </Popover>

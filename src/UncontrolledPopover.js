@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ButtonDropdown from './ButtonDropdown';
+import Popover from './Popover';
 import { omit } from './utils';
 
 const omitKeys = ['defaultOpen'];
 
-export default class UncontrolledButtonDropdown extends Component {
+export default class UncontrolledPopover extends Component {
   constructor(props) {
     super(props);
 
@@ -18,11 +18,11 @@ export default class UncontrolledButtonDropdown extends Component {
   }
 
   render() {
-    return <ButtonDropdown isOpen={this.state.isOpen} toggle={this.toggle} {...omit(this.props, omitKeys)} />;
+    return <Popover isOpen={this.state.isOpen} toggle={this.toggle} {...omit(this.props, omitKeys)} />;
   }
 }
 
-UncontrolledButtonDropdown.propTypes = {
+UncontrolledPopover.propTypes = {
   defaultOpen: PropTypes.bool,
-  ...ButtonDropdown.propTypes
+  ...Popover.propTypes
 };

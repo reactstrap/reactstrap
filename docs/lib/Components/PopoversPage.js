@@ -7,6 +7,10 @@ import PopoverExample from '../examples/Popover';
 const PopoverExampleSource = require('!!raw!../examples/Popover');
 import PopoverExampleMulti from '../examples/PopoverMulti';
 const PopoverExampleMultiSource = require('!!raw!../examples/PopoverMulti');
+import PopoverFocusExample from '../examples/PopoverFocus';
+const PopoverFocusExampleSource = require('!!raw!../examples/PopoverFocus');
+import UncontrolledPopoverExample from '../examples/PopoverUncontrolled';
+const UncontrolledPopoverExampleSource = require('!!raw!../examples/PopoverUncontrolled');
 
 export default class PopoversPage extends React.Component {
   render() {
@@ -26,6 +30,8 @@ export default class PopoversPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Popover.propTypes = {
+  // space separated list of triggers (e.g. "click hover focus")
+  trigger: PropTypes.string,
   // boolean to control the state of the popover
   isOpen:  PropTypes.bool,
   // callback for toggling isOpen in the controlling component
@@ -75,13 +81,31 @@ export default class PopoversPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
-        <SectionTitle>Popovers List</SectionTitle>
+        <SectionTitle>Popovers Trigger</SectionTitle>
+        <div className="docs-example">
+          <PopoverFocusExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {PopoverFocusExampleSource}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Popovers Placements</SectionTitle>
         <div className="docs-example">
           <PopoverExampleMulti />
         </div>
         <pre>
           <PrismCode className="language-jsx">
             {PopoverExampleMultiSource}
+          </PrismCode>
+        </pre>
+        <SectionTitle>UncontrolledPopovers</SectionTitle>
+        <div className="docs-example">
+          <UncontrolledPopoverExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {UncontrolledPopoverExampleSource}
           </PrismCode>
         </pre>
       </div>
