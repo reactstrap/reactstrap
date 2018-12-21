@@ -32,7 +32,6 @@ const FormGroup = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    'position-relative',
     row ? 'row' : false,
     check ? 'form-check' : 'form-group',
     check && inline ? 'form-check-inline' : false,

@@ -33,7 +33,7 @@ export default class TooltipsPage extends React.Component {
   // space separated list of triggers (e.g. "click hover focus")
   trigger: PropTypes.string,
   // boundaries for popper, can be scrollParent, window, viewport, or any DOM element
-  boundariesElement: PropTypes.string,
+  boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   // boolean to control the state of the tooltip
   isOpen: PropTypes.bool,
   hideArrow: PropTypes.bool,

@@ -1,3 +1,25 @@
+<a name="6.5.0"></a>
+# [6.5.0](https://github.com/reactstrap/reactstrap/compare/6.4.0...6.5.0) (2018-10-04)
+
+
+### Bug Fixes
+
+* **boundariesElement:** add DOMElement to allowed proptypes ([#1238](https://github.com/reactstrap/reactstrap/issues/1238)) ([cfe7318](https://github.com/reactstrap/reactstrap/commit/cfe7318))
+* **Dropdown:** enter key triggers onClick ([#1232](https://github.com/reactstrap/reactstrap/issues/1232)) ([f2528da](https://github.com/reactstrap/reactstrap/commit/f2528da)), closes [#1228](https://github.com/reactstrap/reactstrap/issues/1228)
+* **Modal:** do not trigger focus on SVG elements ([#1212](https://github.com/reactstrap/reactstrap/issues/1212)) ([c7e6ef5](https://github.com/reactstrap/reactstrap/commit/c7e6ef5)), closes [#1208](https://github.com/reactstrap/reactstrap/issues/1208)
+* **Modal:** use static openCount to become resilient to classList modification ([#1190](https://github.com/reactstrap/reactstrap/issues/1190)) ([c8ceeeb](https://github.com/reactstrap/reactstrap/commit/c8ceeeb)), closes [#1189](https://github.com/reactstrap/reactstrap/issues/1189)
+* **Tooltip:** clear timers on component unmount ([#1180](https://github.com/reactstrap/reactstrap/issues/1180)) ([9fea409](https://github.com/reactstrap/reactstrap/commit/9fea409))
+
+
+### Features
+
+* **Button:** add close icon support ([#1206](https://github.com/reactstrap/reactstrap/issues/1206)) ([02f5e9a](https://github.com/reactstrap/reactstrap/commit/02f5e9a)), closes [#1182](https://github.com/reactstrap/reactstrap/issues/1182)
+* **FormGrid:** Add form-row ([#1237](https://github.com/reactstrap/reactstrap/issues/1237)) ([205e80d](https://github.com/reactstrap/reactstrap/commit/205e80d)), closes [#1195](https://github.com/reactstrap/reactstrap/issues/1195)
+* **Modal:** add custom close button ([#1168](https://github.com/reactstrap/reactstrap/issues/1168)) ([5f33a1a](https://github.com/reactstrap/reactstrap/commit/5f33a1a))
+* **Popover/Tooltip:** Implented usage of react 16.3 RefObject as target ([#1200](https://github.com/reactstrap/reactstrap/issues/1200)) ([0eade39](https://github.com/reactstrap/reactstrap/commit/0eade39)), closes [#1198](https://github.com/reactstrap/reactstrap/issues/1198)
+
+
+
 <a name="6.4.0"></a>
 # [6.4.0](https://github.com/reactstrap/reactstrap/compare/6.3.1...6.4.0) (2018-08-17)
 

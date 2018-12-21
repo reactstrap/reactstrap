@@ -25,10 +25,12 @@ export default class Example extends React.Component {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Header</DropdownItem>
-          <DropdownItem disabled>Action</DropdownItem>
-          <DropdownItem>Another Action</DropdownItem>
+          <DropdownItem>Some Action</DropdownItem>
+          <DropdownItem disabled>Action (disabled)</DropdownItem>
           <DropdownItem divider />
-          <DropdownItem>Another Action</DropdownItem>
+          <DropdownItem>Foo Action</DropdownItem>
+          <DropdownItem>Bar Action</DropdownItem>
+          <DropdownItem>Quo Action</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );

@@ -28,4 +28,10 @@ describe('Row', () => {
     expect(wrapper.hasClass('no-gutters')).toBe(true);
     expect(wrapper.hasClass('row')).toBe(true);
   });
+
+  it('show render form classes', () => {
+    const wrapper = shallow(<Row form />);
+
+    expect(wrapper.html()).toBe('<div class="form-row"></div>');
+  });
 });

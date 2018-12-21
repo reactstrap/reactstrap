@@ -10,6 +10,7 @@ import {
 import Example from '../examples/ButtonDropdownMulti';
 import ExampleSplit from '../examples/ButtonDropdownMultiSplit';
 import ButtonDropdownExample from '../examples/ButtonDropdown';
+import ButtonDropdownUncontrolledExample from '../examples/ButtonDropdownUncontrolled'
 import SectionTitle from '../UI/SectionTitle';
 
 const ButtonDropdownExampleSource = require('!!raw!../examples/ButtonDropdown');
@@ -163,6 +164,33 @@ DropdownToggle.propTypes = {
     <DropdownItem>Another Action</DropdownItem>
   </DropdownMenu>
 </ButtonDropdown>`}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Uncontrolled Dropdown</SectionTitle>
+        <div className="docs-example">
+          <ButtonDropdownUncontrolledExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+{`import React from 'react';
+import { UncontrolledButtonDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap';
+
+export default function Example () => {
+  return (
+    <UncontrolledButtonDropdown>
+      <DropdownToggle caret>
+        Dropdown
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem header>Header</DropdownItem>
+        <DropdownItem disabled>Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem>Another Action</DropdownItem>
+      </DropdownMenu>
+    </UncontrolledButtonDropdown>
+  );
+}`}
           </PrismCode>
         </pre>
         <SectionTitle>Drop direction variations</SectionTitle>

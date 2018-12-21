@@ -6,7 +6,8 @@ import {
   targetPropType,
   omit,
   PopperPlacements,
-  mapToCssModules
+  mapToCssModules,
+  DOMElement
 } from './utils';
 
 export const propTypes = {
@@ -16,7 +17,7 @@ export const propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   hideArrow: PropTypes.bool,
-  boundariesElement: PropTypes.string,
+  boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   className: PropTypes.string,
   innerClassName: PropTypes.string,
   arrowClassName: PropTypes.string,

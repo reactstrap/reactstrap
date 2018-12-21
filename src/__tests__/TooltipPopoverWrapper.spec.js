@@ -87,6 +87,11 @@ describe('Tooltip', () => {
     expect(wrapper.find('.Tooltip.show').hostNodes().length).toBe(0);
     expect(Tooltips.length).toBe(1);
     expect(Tooltips[0].textContent).toBe('Tooltip Content');
+
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
+    expect(Tooltips.length).toBe(1);
+    expect(Tooltips[0].textContent).toBe('Tooltip Content');
+
     wrapper.detach();
   });
 
@@ -104,6 +109,12 @@ describe('Tooltip', () => {
     expect(wrapper.find('.Tooltip.show').hostNodes().length).toBe(0);
     expect(Tooltips.length).toBe(1);
     expect(Tooltips[0].textContent).toBe('Tooltip Content');
+
+    const tooltips = document.getElementsByClassName('tooltip');
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
+    expect(tooltips.length).toBe(1);
+    expect(tooltips[0].textContent).toBe('Tooltip Content');
+
     wrapper.detach();
   });
 

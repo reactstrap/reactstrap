@@ -268,36 +268,14 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="test">Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>, { attachTo: element });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.simulate('keydown', { which: keyCodes.esc });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
-    });
-
-    it('should call toggle on ESC keydown when it isOpen is true', () => {
-      isOpen = false;
-      jest.spyOn(Dropdown.prototype, 'toggle');
-
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
-          <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-          </DropdownMenu>
-        </Dropdown>, { attachTo: element });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper.simulate('keydown', { which: keyCodes.esc });
+      wrapper.find('#test').hostNodes().simulate('keydown', { which: keyCodes.esc });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
@@ -319,7 +297,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.simulate('keydown', { which: keyCodes.down });
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
@@ -341,68 +319,101 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.simulate('keydown', { which: keyCodes.up });
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.up });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
       wrapper.detach();
     });
 
-    it('should focus the first menu item on up arrow keydown when it isOpen is true', () => {
-      isOpen = true;
+    it('should focus the first menuitem when toggle is triggered by enter keydown', () => {
+      jest.useFakeTimers();
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus = jest.fn();
-
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
             <DropdownItem onFocus={focus}>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>, { attachTo: element }
+      );
 
+      expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.simulate('keydown', { which: keyCodes.up });
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.enter });
+      jest.runAllTimers();
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
       wrapper.detach();
     });
 
-    it('should focus the first menu item on down arrow keydown when it isOpen is true', () => {
-      isOpen = true;
+    it('should focus the first menuitem when toggle is triggered by up arrow keydown', () => {
+      jest.useFakeTimers();
       jest.spyOn(Dropdown.prototype, 'toggle');
-      const focus1 = jest.fn();
-      const focus2 = jest.fn();
-      const focus3 = jest.fn();
-
+      const focus = jest.fn();
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem onFocus={focus2}>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
+            <DropdownItem onFocus={focus}>Test</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>, { attachTo: element }
+      );
 
+      expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.simulate('keydown', { which: keyCodes.down });
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.up });
+      jest.runAllTimers();
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(1);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(0);
+      expect(focus.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
       wrapper.detach();
     });
 
-    it('should focus the next menu item on down arrow keydown when it isOpen is true and anther item is focused', () => {
+    it('should focus the first menuitem when toggle is triggered by down arrow keydown', () => {
+      jest.useFakeTimers();
+      jest.spyOn(Dropdown.prototype, 'toggle');
+      const focus = jest.fn();
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
+            <DropdownItem onFocus={focus}>Test</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element }
+      );
+
+      expect(focus.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.down });
+      jest.runAllTimers();
+
+      expect(focus.mock.calls.length).toBe(1);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
+
+      wrapper.detach();
+    });
+
+    it('should focus the next menuitem on down arrow keydown when isOpen is true', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
@@ -432,6 +443,36 @@ describe('Dropdown', () => {
       wrapper.detach();
     });
 
+    it('should focus the next menuitem on ctrl + n keydown when isOpen is true', () => {
+      isOpen = true;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+      const focus1 = jest.fn();
+      const focus2 = jest.fn();
+      const focus3 = jest.fn();
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.n, ctrlKey: true });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(focus1.mock.calls.length).toBe(0);
+      expect(focus2.mock.calls.length).toBe(1);
+      expect(focus3.mock.calls.length).toBe(0);
+
+      wrapper.detach();
+    });
+
     it('should focus the first menu item matching the character pressed when isOpen is true', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
@@ -442,7 +483,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu id="dropdown" right>
+          <DropdownMenu right>
             <DropdownItem id="first" onFocus={focus1}>Reactstrap</DropdownItem>
             <DropdownItem onFocus={focus2}>4</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -452,7 +493,7 @@ describe('Dropdown', () => {
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#dropdown').hostNodes().simulate('keydown', { which: 52 });
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: 52 });
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
       expect(focus1.mock.calls.length).toBe(0);
@@ -492,7 +533,7 @@ describe('Dropdown', () => {
       wrapper.detach();
     });
 
-    it('should focus the previous menu item on up arrow keydown when it isOpen is true and anther item is focused', () => {
+    it('should focus the previous menu item on up arrow keydown when isOpen is true and another item is focused', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
@@ -522,7 +563,37 @@ describe('Dropdown', () => {
       wrapper.detach();
     });
 
-    it('should not wrap focus with down arrow keydown', () => {
+    it('should focus the previous menuitem on ctrl + p keydown when isOpen is true and another item is focused', () => {
+      isOpen = true;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+      const focus1 = jest.fn();
+      const focus2 = jest.fn();
+      const focus3 = jest.fn();
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      wrapper.find('#second').hostNodes().simulate('keydown', { which: keyCodes.p, ctrlKey: true });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(focus1.mock.calls.length).toBe(1);
+      expect(focus2.mock.calls.length).toBe(0);
+      expect(focus3.mock.calls.length).toBe(0);
+
+      wrapper.detach();
+    });
+
+    it('should wrap focus with down arrow keydown', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
@@ -545,14 +616,14 @@ describe('Dropdown', () => {
       wrapper.find('#third').hostNodes().simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(0);
+      expect(focus1.mock.calls.length).toBe(1);
       expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(1);
+      expect(focus3.mock.calls.length).toBe(0);
 
       wrapper.detach();
     });
 
-    it('should not wrap focus with up arrow keydown', () => {
+    it('should wrap focus with up arrow keydown', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
@@ -575,9 +646,71 @@ describe('Dropdown', () => {
       wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.up });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(focus1.mock.calls.length).toBe(0);
+      expect(focus2.mock.calls.length).toBe(0);
+      expect(focus3.mock.calls.length).toBe(1);
+
+      wrapper.detach();
+    });
+
+    it('should focus the 1st item on home key keyDown', () => {
+      isOpen = true;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+      const focus1 = jest.fn();
+      const focus2 = jest.fn();
+      const focus3 = jest.fn();
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem id="zero" disabled>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.home });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(1);
       expect(focus2.mock.calls.length).toBe(0);
       expect(focus3.mock.calls.length).toBe(0);
+
+      wrapper.detach();
+    });
+
+    it('should focus the last item on end key keyDown', () => {
+      isOpen = true;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+      const focus1 = jest.fn();
+      const focus2 = jest.fn();
+      const focus3 = jest.fn();
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem id="zero" disabled>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.end });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(focus1.mock.calls.length).toBe(0);
+      expect(focus2.mock.calls.length).toBe(0);
+      expect(focus3.mock.calls.length).toBe(1);
 
       wrapper.detach();
     });
@@ -608,7 +741,7 @@ describe('Dropdown', () => {
       wrapper.detach();
     });
 
-    it('should not trigger a click on buttons when an item is focused and space[bar] it pressed (browser does this)', () => {
+    it('should trigger a click on buttons when an item is focused and space[bar] it pressed (override browser defaults for focus management)', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
       const click = jest.fn();
@@ -629,7 +762,7 @@ describe('Dropdown', () => {
       wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(click.mock.calls.length).toBe(0);
+      expect(click.mock.calls.length).toBe(1);
 
       wrapper.detach();
     });
@@ -690,6 +823,32 @@ describe('Dropdown', () => {
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
       expect(focus.mock.calls.length).toBe(0);
+
+      wrapper.detach();
+    });
+
+    it('should toggle when isOpen is true and tab keyDown on menuitem', () => {
+      isOpen = true;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+      const focus = jest.fn();
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem id="first">First</DropdownItem>
+            <DropdownItem id="second" onFocus={focus}>Second</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+
+      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.tab });
+
+      expect(focus.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
       wrapper.detach();
     });

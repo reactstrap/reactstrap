@@ -4,7 +4,7 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 const Example = (props) => {
   return (
     <div>
-      <Breadcrumb tag="nav">
+      <Breadcrumb tag="nav" listTag="div">
         <BreadcrumbItem tag="a" href="#">Home</BreadcrumbItem>
         <BreadcrumbItem tag="a" href="#">Library</BreadcrumbItem>
         <BreadcrumbItem tag="a" href="#">Data</BreadcrumbItem>

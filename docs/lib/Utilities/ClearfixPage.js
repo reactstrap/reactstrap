@@ -12,7 +12,7 @@ export default function ClearfixPage() {
       <PageTitle title="Clearfix" />
       <p>
         Easily clear <code className="highlighter-rouge">float</code>s by adding
-        <code className="highlighter-rouge">.clearfix</code>
+        {' '}<code className="highlighter-rouge">.clearfix</code>{' '}
         <strong>to the parent element</strong>.
         Utilizes <a href="http://nicolasgallagher.com/micro-clearfix-hack/">
         the micro clearfix</a> as popularized by Nicolas Gallagher.
