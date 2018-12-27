@@ -7,7 +7,8 @@ export default class Example extends React.Component {
       <Form>
         <FormGroup>
           <Label for="exampleEmail">Plain Text (Static)</Label>
-          <Input plaintext>Some plain text/ static value</Input>
+          <Input plaintext value="Some plain text/ static value" />
+          <Input plaintext value="Some plain text/ static value">Children override value attribute</Input>
         </FormGroup>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
