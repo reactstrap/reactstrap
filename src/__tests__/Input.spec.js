@@ -45,6 +45,27 @@ describe('Input', () => {
     expect(wrapper.type()).toBe('div');
   });
 
+  it('renders children as input value', () => {
+    const wrapper = shallow(<Input plaintext>Some child text</Input>);
+
+    expect(wrapper.text()).toBe('');
+    expect(wrapper.prop('value')).toBe('Some child text');
+    expect(wrapper.children().length).toBe(0)
+  });
+  it('renders children and overrides value attribute with plaintext option', () => {
+    const wrapper = shallow(<Input plaintext value="Other text">Some child text</Input>);
+
+    expect(wrapper.text()).toBe('');
+    expect(wrapper.prop('value')).toBe('Some child text');
+    expect(wrapper.children().length).toBe(0)
+  });
+  it('renders value attribute with plaintext', () => {
+    const wrapper = shallow(<Input plaintext value="Other text" />);
+
+    expect(wrapper.text()).toBe('');
+    expect(wrapper.prop('value')).toBe('Other text');
+    expect(wrapper.children().length).toBe(0)
+  });
   it('should render with custom tag when plaintext prop is not truthy and tag is provided', () => {
     const wrapper = shallow(<Input tag="div" />);
 
