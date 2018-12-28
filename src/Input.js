@@ -116,9 +116,9 @@ class Input extends React.Component {
       warnOnce(`Input with a type of "${type}" cannot have children. Please use "value"/"defaultValue" instead.`);
       delete attributes.children;
     }
-    if(plaintext) {
-      if( attributes.children !== undefined ) {
-        attributes.value = attributes.children
+    if (plaintext) {
+      if (attributes.children !== undefined) {
+        attributes.value = attributes.children;
       }
       delete attributes.children;
     }
