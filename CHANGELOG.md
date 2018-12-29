@@ -1,3 +1,35 @@
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/reactstrap/reactstrap/compare/6.5.0...7.0.0) (2018-12-29)
+
+
+### Bug Fixes
+
+* **CardTitle,CardSubtitle:** div as default tag ([#1298](https://github.com/reactstrap/reactstrap/issues/1298)) ([ea0f1f0](https://github.com/reactstrap/reactstrap/commit/ea0f1f0)), closes [#1297](https://github.com/reactstrap/reactstrap/issues/1297)
+* **CarouselIndicators:** li key generate from provided item values ([#1311](https://github.com/reactstrap/reactstrap/issues/1311)) ([fd7506d](https://github.com/reactstrap/reactstrap/commit/fd7506d)), closes [#1310](https://github.com/reactstrap/reactstrap/issues/1310)
+* **Dropdown:** enter key triggers onClick -- correction ([#1306](https://github.com/reactstrap/reactstrap/issues/1306)) ([6b50732](https://github.com/reactstrap/reactstrap/commit/6b50732))
+* **Dropdown:** improve keyboard ux, WAI-ARIA ([#1293](https://github.com/reactstrap/reactstrap/issues/1293)) ([506c46a](https://github.com/reactstrap/reactstrap/commit/506c46a))
+* **Dropdown:** Null check on children ([#1294](https://github.com/reactstrap/reactstrap/issues/1294)) ([#1295](https://github.com/reactstrap/reactstrap/issues/1295)) ([dcfde3b](https://github.com/reactstrap/reactstrap/commit/dcfde3b))
+* **FormGroup:** remove `.position-relative` ([#1270](https://github.com/reactstrap/reactstrap/issues/1270)) ([01eb5f9](https://github.com/reactstrap/reactstrap/commit/01eb5f9)), closes [#1269](https://github.com/reactstrap/reactstrap/issues/1269)
+* **Input:** make plaintext output input by default ([#1226](https://github.com/reactstrap/reactstrap/issues/1226)) ([ff64c76](https://github.com/reactstrap/reactstrap/commit/ff64c76)), closes [#1225](https://github.com/reactstrap/reactstrap/issues/1225)
+* **Modal:** don't propagate handled escape key event ([#1317](https://github.com/reactstrap/reactstrap/issues/1317)) ([5d45b26](https://github.com/reactstrap/reactstrap/commit/5d45b26))
+* **Modal:** only show backdrop when prop is true ([#1271](https://github.com/reactstrap/reactstrap/issues/1271)) ([07ec4b5](https://github.com/reactstrap/reactstrap/commit/07ec4b5)), closes [#1267](https://github.com/reactstrap/reactstrap/issues/1267)
+* **PopperContent:** Use create portal instead of unstable_renderSubtreeIntoContainer ([#1254](https://github.com/reactstrap/reactstrap/issues/1254)) ([81da8c5](https://github.com/reactstrap/reactstrap/commit/81da8c5)), closes [#1216](https://github.com/reactstrap/reactstrap/issues/1216)
+
+
+### Features
+
+* **Badge:** allow innerRef ([#1264](https://github.com/reactstrap/reactstrap/issues/1264)) ([2caaaa5](https://github.com/reactstrap/reactstrap/commit/2caaaa5))
+* **CardBody:** add innerRef to CardBody ([#1318](https://github.com/reactstrap/reactstrap/issues/1318)) ([4b0474f](https://github.com/reactstrap/reactstrap/commit/4b0474f)), closes [#1314](https://github.com/reactstrap/reactstrap/issues/1314)
+* **Table:** add innerRef prop ([#1296](https://github.com/reactstrap/reactstrap/issues/1296)) ([bb84c85](https://github.com/reactstrap/reactstrap/commit/bb84c85))
+* **Tooltip,Popover:** base component for Tooltip and Popover ([#1222](https://github.com/reactstrap/reactstrap/issues/1222)) ([b45907b](https://github.com/reactstrap/reactstrap/commit/b45907b)), closes [#1022](https://github.com/reactstrap/reactstrap/issues/1022) [#1181](https://github.com/reactstrap/reactstrap/issues/1181)
+
+
+### BREAKING CHANGES
+
+* **Input:** previously plaintext on Input would output a 'p' tag. To better line up with bootstrap it will not output an 'input' tag. If you need a 'p' tag, provide tag="p" prop
+
+
+
 <a name="6.5.0"></a>
 # [6.5.0](https://github.com/reactstrap/reactstrap/compare/6.4.0...6.5.0) (2018-10-04)
 
