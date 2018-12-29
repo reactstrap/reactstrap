@@ -99,7 +99,7 @@ export default class AlertsPage extends React.Component {
 
         <SectionTitle>Alerts without fade</SectionTitle>
         <p>
-          Fade can be disbaled using <code>fade=false</code>.
+          Fade can be disabled using <code>fade=false</code>.
         </p>
         <div className="docs-example">
           <AlertFadelessExample />
