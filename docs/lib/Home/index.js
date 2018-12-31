@@ -4,7 +4,7 @@ import { Button, Container, Row, Col, Jumbotron } from 'reactstrap';
 import { Link } from 'react-router';
 import Example from '../examples/import-basic';
 
-const importBasic = require('!!raw!../examples/import-basic');
+const importBasic = require('!!raw-loader!../examples/import-basic');
 
 export default () => {
   return (

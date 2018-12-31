@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Transition from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
 import { mapToCssModules, omit, pick, TransitionPropTypeKeys, TransitionTimeouts } from './utils';
 
 const propTypes = {
@@ -46,17 +46,6 @@ function Fade(props) {
     ...otherProps
   } = props;
 
-  // In NODE_ENV=production the Transition.propTypes are wrapped which results in an
-  // empty object "{}". This is the result of the `react-transition-group` babel
-  // configuration settings. Therefore, to ensure that production builds work without
-  // error, we can either explicitly define keys or use the Transition.defaultProps.
-  // Using the Transition.defaultProps excludes any required props. Thus, the best
-  // solution is to explicitly define required props in our utilities and reference these.
-  // This also gives us more flexibility in the future to remove the prop-types
-  // dependency in distribution builds (Similar to how `react-transition-group` does).
-  // Note: Without omitting the `react-transition-group` props, the resulting child
-  // Tag component would inherit the Transition properties as attributes for the HTML
-  // element which results in errors/warnings for non-valid attributes.
   const transitionProps = pick(otherProps, TransitionPropTypeKeys);
   const childProps = omit(otherProps, TransitionPropTypeKeys);
 

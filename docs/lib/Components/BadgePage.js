@@ -5,19 +5,19 @@ import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import BadgeExample from '../examples/Badge';
-const BadgeExampleSource = require('!!raw!../examples/Badge');
+const BadgeExampleSource = require('!!raw-loader!../examples/Badge');
 
 import BadgeButtonExample from '../examples/BadgeButton';
-const BadgeButtonExampleSource = require('!!raw!../examples/BadgeButton');
+const BadgeButtonExampleSource = require('!!raw-loader!../examples/BadgeButton');
 
 import BadgePillsExample from '../examples/BadgePills';
-const BadgePillsExampleSource = require('!!raw!../examples/BadgePills');
+const BadgePillsExampleSource = require('!!raw-loader!../examples/BadgePills');
 
 import BadgeVariationsExample from '../examples/BadgeVariations';
-const BadgeVariationsExampleSource = require('!!raw!../examples/BadgeVariations');
+const BadgeVariationsExampleSource = require('!!raw-loader!../examples/BadgeVariations');
 
 import BadgeLinksExample from '../examples/BadgeLinks';
-const BadgeLinksExampleSource = require('!!raw!../examples/BadgeLinks');
+const BadgeLinksExampleSource = require('!!raw-loader!../examples/BadgeLinks');
 
 export default class BadgesPage extends React.Component {
   render() {

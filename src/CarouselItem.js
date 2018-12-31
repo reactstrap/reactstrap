@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Transition from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
 import { mapToCssModules, TransitionTimeouts, TransitionStatuses } from './utils';
 
 class CarouselItem extends React.Component {

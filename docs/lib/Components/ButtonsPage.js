@@ -5,16 +5,16 @@ import { Button } from 'reactstrap';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import ButtonExample from '../examples/Button';
-const ButtonExampleSource = require('!!raw!../examples/Button');
+const ButtonExampleSource = require('!!raw-loader!../examples/Button');
 
 import ButtonOutline from '../examples/ButtonOutline';
-const ButtonOutlineSource = require('!!raw!../examples/ButtonOutline');
+const ButtonOutlineSource = require('!!raw-loader!../examples/ButtonOutline');
 
 import ButtonStateful from '../examples/ButtonStateful';
-const ButtonStatefulSource = require('!!raw!../examples/ButtonStateful');
+const ButtonStatefulSource = require('!!raw-loader!../examples/ButtonStateful');
 
 import ButtonCloseIcon from '../examples/ButtonCloseIcon';
-const ButtonCloseIconSource = require('!!raw!../examples/ButtonCloseIcon');
+const ButtonCloseIconSource = require('!!raw-loader!../examples/ButtonCloseIcon');
 
 export default class ButtonsPage extends React.Component {
   render() {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 var fs = require('fs');
 
 // Ensure that any optional peer dependency (e.g. ReactTransitionGroup and

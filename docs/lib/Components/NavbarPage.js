@@ -5,9 +5,9 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import NavbarExample from '../examples/Navbar';
-const NavbarExampleSource = require('!!raw!../examples/Navbar');
+const NavbarExampleSource = require('!!raw-loader!../examples/Navbar');
 import NavbarTogglerExample from '../examples/NavbarToggler';
-const NavbarTogglerExampleSource = require('!!raw!../examples/NavbarToggler');
+const NavbarTogglerExampleSource = require('!!raw-loader!../examples/NavbarToggler');
 
 export default class NavsPage extends React.Component {
   render() {

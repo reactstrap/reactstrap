@@ -13,7 +13,7 @@ import ButtonDropdownExample from '../examples/ButtonDropdown';
 import ButtonDropdownUncontrolledExample from '../examples/ButtonDropdownUncontrolled'
 import SectionTitle from '../UI/SectionTitle';
 
-const ButtonDropdownExampleSource = require('!!raw!../examples/ButtonDropdown');
+const ButtonDropdownExampleSource = require('!!raw-loader!../examples/ButtonDropdown');
 
 export default class ButtonDropdownPage extends React.Component {
   constructor(props) {

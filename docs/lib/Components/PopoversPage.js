@@ -4,13 +4,13 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import PopoverExample from '../examples/Popover';
-const PopoverExampleSource = require('!!raw!../examples/Popover');
+const PopoverExampleSource = require('!!raw-loader!../examples/Popover');
 import PopoverExampleMulti from '../examples/PopoverMulti';
-const PopoverExampleMultiSource = require('!!raw!../examples/PopoverMulti');
+const PopoverExampleMultiSource = require('!!raw-loader!../examples/PopoverMulti');
 import PopoverFocusExample from '../examples/PopoverFocus';
-const PopoverFocusExampleSource = require('!!raw!../examples/PopoverFocus');
+const PopoverFocusExampleSource = require('!!raw-loader!../examples/PopoverFocus');
 import UncontrolledPopoverExample from '../examples/PopoverUncontrolled';
-const UncontrolledPopoverExampleSource = require('!!raw!../examples/PopoverUncontrolled');
+const UncontrolledPopoverExampleSource = require('!!raw-loader!../examples/PopoverUncontrolled');
 
 export default class PopoversPage extends React.Component {
   render() {
