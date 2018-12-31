@@ -1,3 +1,13 @@
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/reactstrap/reactstrap/compare/7.0.0...7.0.1) (2018-12-31)
+
+
+### Bug Fixes
+
+* fix release artifacts ([#1345](https://github.com/reactstrap/reactstrap/issues/1345)) ([b5710ef](https://github.com/reactstrap/reactstrap/commit/b5710ef))
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/reactstrap/reactstrap/compare/6.5.0...7.0.0) (2018-12-29)
 
