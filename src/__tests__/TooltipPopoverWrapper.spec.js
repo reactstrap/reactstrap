@@ -65,9 +65,9 @@ describe('Tooltip', () => {
       { attachTo: container }
     );
 
-    const Tooltips = document.getElementsByClassName('Tooltip');
+    const Tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.Tooltip.show').hostNodes().length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(0);
     expect(target.className).toBe('');
     expect(Tooltips.length).toBe(0);
     wrapper.detach();
@@ -83,8 +83,7 @@ describe('Tooltip', () => {
     );
 
     const Tooltips = document.getElementsByClassName('tooltip');
-
-    expect(wrapper.find('.Tooltip.show').hostNodes().length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
     expect(Tooltips.length).toBe(1);
     expect(Tooltips[0].textContent).toBe('Tooltip Content');
 
@@ -104,9 +103,9 @@ describe('Tooltip', () => {
       { attachTo: container }
     );
 
-    const Tooltips = document.getElementsByClassName('Tooltip');
+    const Tooltips = document.getElementsByClassName('tooltip');
 
-    expect(wrapper.find('.Tooltip.show').hostNodes().length).toBe(0);
+    expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
     expect(Tooltips.length).toBe(1);
     expect(Tooltips[0].textContent).toBe('Tooltip Content');
 
@@ -126,11 +125,11 @@ describe('Tooltip', () => {
       { attachTo: container }
     );
 
-    expect(document.getElementsByClassName('Tooltip').length).toBe(0);
+    expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.setProps({ isOpen: true });
-    expect(document.getElementsByClassName('Tooltip').length).toBe(1);
+    expect(document.getElementsByClassName('tooltip').length).toBe(1);
     wrapper.setProps({ isOpen: false });
-    expect(document.getElementsByClassName('Tooltip').length).toBe(0);
+    expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.detach();
   });
 
