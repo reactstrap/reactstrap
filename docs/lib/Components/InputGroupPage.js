@@ -4,15 +4,15 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import OverviewExample from '../examples/InputGroupOverview';
-const OverviewExampleSource = require('!!raw!../examples/InputGroupOverview');
+const OverviewExampleSource = require('!!raw-loader!../examples/InputGroupOverview');
 import AddonExample from '../examples/InputGroupAddon';
-const AddonExampleSource = require('!!raw!../examples/InputGroupAddon');
+const AddonExampleSource = require('!!raw-loader!../examples/InputGroupAddon');
 import AddonSizingExample from '../examples/InputGroupSizing';
-const AddonSizingExampleSource = require('!!raw!../examples/InputGroupSizing');
+const AddonSizingExampleSource = require('!!raw-loader!../examples/InputGroupSizing');
 import ButtonExample from '../examples/InputGroupButton';
-const ButtonExampleSource = require('!!raw!../examples/InputGroupButton');
+const ButtonExampleSource = require('!!raw-loader!../examples/InputGroupButton');
 import ButtonShorthandExample from '../examples/InputGroupButtonShorthand';
-const ButtonShorthandExampleSource = require('!!raw!../examples/InputGroupButtonShorthand');
+const ButtonShorthandExampleSource = require('!!raw-loader!../examples/InputGroupButtonShorthand');
 
 export default class InputGroupPage extends React.Component {
   constructor(props) {

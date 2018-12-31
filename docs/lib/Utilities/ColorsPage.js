@@ -4,7 +4,7 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 
 import ColorExample from '../examples/Color';
-const ColorExampleSource = require('!!raw!../examples/Color');
+const ColorExampleSource = require('!!raw-loader!../examples/Color');
 
 export default function ColorsPage() {
   return (

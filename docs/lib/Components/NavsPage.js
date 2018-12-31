@@ -4,13 +4,13 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import NavsExample from '../examples/Navs';
-const NavsExampleSource = require('!!raw!../examples/Navs');
+const NavsExampleSource = require('!!raw-loader!../examples/Navs');
 import NavVerticalExample from '../examples/NavVertical';
-const NavVerticalExampleSource = require('!!raw!../examples/NavVertical');
+const NavVerticalExampleSource = require('!!raw-loader!../examples/NavVertical');
 import NavTabsExample from '../examples/NavTabs';
-const NavTabsExampleSource = require('!!raw!../examples/NavTabs');
+const NavTabsExampleSource = require('!!raw-loader!../examples/NavTabs');
 import NavPillsExample from '../examples/NavPills';
-const NavPillsExampleSource = require('!!raw!../examples/NavPills');
+const NavPillsExampleSource = require('!!raw-loader!../examples/NavPills');
 
 export default class NavssPage extends React.Component {
   render() {

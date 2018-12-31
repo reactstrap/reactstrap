@@ -11,13 +11,13 @@ import ListGroupContextualClassesExample from '../examples/ListGroupContextualCl
 import ListGroupCustomContentExample from '../examples/ListGroupCustomContent';
 import ListGroupFlushExample from '../examples/ListGroupFlush';
 
-const ListGroupBadgeExampleSource = require('!!raw!../examples/ListGroupBadge');
-const ListGroupExampleSource = require('!!raw!../examples/ListGroup');
-const ListGroupDisabledItemsExampleSource = require('!!raw!../examples/ListGroupDisabledItems');
-const ListGroupAnchorsAndButtonsExampleSource = require('!!raw!../examples/ListGroupAnchorsAndButtons');
-const ListGroupContextualClassesExampleSource = require('!!raw!../examples/ListGroupContextualClasses');
-const ListGroupCustomContentExampleSource = require('!!raw!../examples/ListGroupCustomContent');
-const ListGroupFlushExampleSource = require('!!raw!../examples/ListGroupFlush')
+const ListGroupBadgeExampleSource = require('!!raw-loader!../examples/ListGroupBadge');
+const ListGroupExampleSource = require('!!raw-loader!../examples/ListGroup');
+const ListGroupDisabledItemsExampleSource = require('!!raw-loader!../examples/ListGroupDisabledItems');
+const ListGroupAnchorsAndButtonsExampleSource = require('!!raw-loader!../examples/ListGroupAnchorsAndButtons');
+const ListGroupContextualClassesExampleSource = require('!!raw-loader!../examples/ListGroupContextualClasses');
+const ListGroupCustomContentExampleSource = require('!!raw-loader!../examples/ListGroupCustomContent');
+const ListGroupFlushExampleSource = require('!!raw-loader!../examples/ListGroupFlush')
 
 export default class ListGroupPage extends React.Component {
   render() {

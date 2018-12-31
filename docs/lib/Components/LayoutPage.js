@@ -4,7 +4,7 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import LayoutExample from '../examples/Layout';
-const LayoutExampleSource = require('!!raw!../examples/Layout');
+const LayoutExampleSource = require('!!raw-loader!../examples/Layout');
 
 export default class LayoutsPage extends React.Component {
   render() {

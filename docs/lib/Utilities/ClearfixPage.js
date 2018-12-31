@@ -4,7 +4,7 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 
 import ClearfixExample from '../examples/Clearfix';
-const ClearfixExampleSource = require('!!raw!../examples/Clearfix');
+const ClearfixExampleSource = require('!!raw-loader!../examples/Clearfix');
 
 export default function ClearfixPage() {
   return (

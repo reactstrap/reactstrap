@@ -5,10 +5,10 @@ import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import BreadcrumbExample from '../examples/Breadcrumb';
-const BreadcrumbExampleSource = require('!!raw!../examples/Breadcrumb');
+const BreadcrumbExampleSource = require('!!raw-loader!../examples/Breadcrumb');
 
 import BreadcrumbNoListExample from '../examples/BreadcrumbNoList';
-const BreadcrumbNoListExampleSource = require('!!raw!../examples/BreadcrumbNoList');
+const BreadcrumbNoListExampleSource = require('!!raw-loader!../examples/BreadcrumbNoList');
 
 export default class BreadcrumbsPage extends React.Component {
   render() {

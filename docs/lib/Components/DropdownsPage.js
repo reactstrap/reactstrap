@@ -17,10 +17,10 @@ import CustomDropdownExample from '../examples/CustomDropdown';
 import DropdownUncontrolledExample from '../examples/DropdownUncontrolled';
 import DropdownSetActiveFromChildExample from '../examples/DropdownSetActiveFromChild';
 
-const DropdownExampleSource = require('!!raw!../examples/Dropdown');
-const CustomDropdownExampleSource = require('!!raw!../examples/CustomDropdown');
-const DropdownUncontrolledExampleSource = require('!!raw!../examples/DropdownUncontrolled');
-const DropdownSetActiveFromChildSource = require('!!raw!../examples/DropdownSetActiveFromChild');
+const DropdownExampleSource = require('!!raw-loader!../examples/Dropdown');
+const CustomDropdownExampleSource = require('!!raw-loader!../examples/CustomDropdown');
+const DropdownUncontrolledExampleSource = require('!!raw-loader!../examples/DropdownUncontrolled');
+const DropdownSetActiveFromChildSource = require('!!raw-loader!../examples/DropdownSetActiveFromChild');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {

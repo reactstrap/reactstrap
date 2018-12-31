@@ -12,14 +12,14 @@ import ModalExternalExample from '../examples/ModalExternal';
 import ModalCustomCloseIconExample from '../examples/ModalCustomCloseIcon';
 import ModalCustomCloseButtonExample from '../examples/ModalCustomCloseButton';
 
-const ModalBackdropExampleSource = require('!!raw!../examples/ModalBackdrop');
-const ModalCustomCloseButtonExampleSource = require('!!raw!../examples/ModalCustomCloseButton');
-const ModalCustomCloseIconExampleSource = require('!!raw!../examples/ModalCustomCloseIcon');
-const ModalCustomTimeoutExampleSource = require('!!raw!../examples/ModalCustomTimeout');
-const ModalExampleSource = require('!!raw!../examples/Modal');
-const ModalExternalExampleSource = require('!!raw!../examples/ModalExternal');
-const ModalFadelessExampleSource = require('!!raw!../examples/ModalFadeless');
-const ModalNestedExampleSource = require('!!raw!../examples/ModalNested');
+const ModalBackdropExampleSource = require('!!raw-loader!../examples/ModalBackdrop');
+const ModalCustomCloseButtonExampleSource = require('!!raw-loader!../examples/ModalCustomCloseButton');
+const ModalCustomCloseIconExampleSource = require('!!raw-loader!../examples/ModalCustomCloseIcon');
+const ModalCustomTimeoutExampleSource = require('!!raw-loader!../examples/ModalCustomTimeout');
+const ModalExampleSource = require('!!raw-loader!../examples/Modal');
+const ModalExternalExampleSource = require('!!raw-loader!../examples/ModalExternal');
+const ModalFadelessExampleSource = require('!!raw-loader!../examples/ModalFadeless');
+const ModalNestedExampleSource = require('!!raw-loader!../examples/ModalNested');
 
 const ModalsPage = () => {
   return (

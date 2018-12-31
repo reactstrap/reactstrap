@@ -5,19 +5,19 @@ import PageTitle from '../UI/PageTitle';
 import { Card, CardText } from 'reactstrap';
 import SectionTitle from '../UI/SectionTitle';
 import ProgressExample from '../examples/Progress';
-const ProgressExampleSource = require('!!raw!../examples/Progress');
+const ProgressExampleSource = require('!!raw-loader!../examples/Progress');
 import ProgressColorExample from '../examples/ProgressColor';
-const ProgressColorExampleSource = require('!!raw!../examples/ProgressColor');
+const ProgressColorExampleSource = require('!!raw-loader!../examples/ProgressColor');
 import ProgressLabelsExample from '../examples/ProgressLabels';
-const ProgressLabelsExampleSource = require('!!raw!../examples/ProgressLabels');
+const ProgressLabelsExampleSource = require('!!raw-loader!../examples/ProgressLabels');
 import ProgressAnimatedExample from '../examples/ProgressAnimated';
-const ProgressAnimatedExampleSource = require('!!raw!../examples/ProgressAnimated');
+const ProgressAnimatedExampleSource = require('!!raw-loader!../examples/ProgressAnimated');
 import ProgressStripedExample from '../examples/ProgressStriped';
-const ProgressStripedExampleSource = require('!!raw!../examples/ProgressStriped');
+const ProgressStripedExampleSource = require('!!raw-loader!../examples/ProgressStriped');
 import ProgressMultiExample from '../examples/ProgressMulti';
-const ProgressMultiExampleSource = require('!!raw!../examples/ProgressMulti');
+const ProgressMultiExampleSource = require('!!raw-loader!../examples/ProgressMulti');
 import ProgressMaxExample from '../examples/ProgressMax';
-const ProgressMaxExampleSource = require('!!raw!../examples/ProgressMax');
+const ProgressMaxExampleSource = require('!!raw-loader!../examples/ProgressMax');
 
 export default class ProgressPage extends React.Component {
   render() {

@@ -9,10 +9,10 @@ import UncontrolledCollapseExample from '../examples/CollapseUncontrolled';
 
 import CollapseEventsExample from '../examples/CollapseEvents';
 
-const CollapseExampleSource = require('!!raw!../examples/Collapse');
-const CollapseEventsExampleSource = require('!!raw!../examples/CollapseEvents');
+const CollapseExampleSource = require('!!raw-loader!../examples/Collapse');
+const CollapseEventsExampleSource = require('!!raw-loader!../examples/CollapseEvents');
 
-const UncontrolledCollapseExampleSource = require('!!raw!../examples/CollapseUncontrolled');
+const UncontrolledCollapseExampleSource = require('!!raw-loader!../examples/CollapseUncontrolled');
 
 export default class CollapsePage extends React.Component {
   render() {

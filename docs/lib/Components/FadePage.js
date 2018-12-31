@@ -6,7 +6,7 @@ import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import FadeExample from '../examples/Fade';
-const FadeExampleSource = require('!!raw!../examples/Fade');
+const FadeExampleSource = require('!!raw-loader!../examples/Fade');
 
 export default class FadePage extends React.Component {
   render() {
