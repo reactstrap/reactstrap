@@ -86,4 +86,5 @@ export UncontrolledCollapse from './UncontrolledCollapse';
 export UncontrolledDropdown from './UncontrolledDropdown';
 export UncontrolledNavDropdown from './UncontrolledNavDropdown';
 export UncontrolledTooltip from './UncontrolledTooltip';
+export Spinner from './Spinner';
 export * as Util from './utils';
