@@ -27,6 +27,7 @@ import AlertsPage from './Components/AlertsPage';
 import CollapsePage from './Components/CollapsePage';
 import CarouselPage from './Components/CarouselPage';
 import ListGroupPage from './Components/ListGroupPage';
+import SpinnersPage from './Components/SpinnersPage';
 import ClearfixPage from './Utilities/ClearfixPage';
 import ColorsPage from './Utilities/ColorsPage';
 import NotFound from './NotFound';
@@ -65,6 +66,7 @@ const routes = (
       <Route path="collapse/" component={CollapsePage} />
       <Route path="carousel/" component={CarouselPage} />
       <Route path="listgroup/" component={ListGroupPage} />
+      <Route path="spinners/" component={SpinnersPage} />
     </Route>
     <Route path="/utilities/" component={Utilities}>
       <IndexRedirect to="colors/" />
