@@ -22,6 +22,14 @@ export default class Example extends React.Component {
           </div>
         </FormGroup>
         <FormGroup>
+          <Label for="exampleCheckbox">Switches</Label>
+          <div>
+            <CustomInput type="switch" id="exampleCustomSwitch" name="customSwitch" label="Turn on this custom switch" />
+            <CustomInput type="switch" id="exampleCustomSwitch2" name="customSwitch" label="Or this one" />
+            <CustomInput type="switch" id="exampleCustomSwitch3" label="But not this disabled one" disabled />
+          </div>
+        </FormGroup>
+        <FormGroup>
           <Label for="exampleCheckbox">Inline</Label>
           <div>
             <CustomInput type="checkbox" id="exampleCustomInline" label="An inline custom input" inline />
