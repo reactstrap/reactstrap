@@ -39,8 +39,12 @@ const Spinner = props => {
   );
 
   return (
-    <div {...attributes} className={classes} role="status">
-      {children && <span className="sr-only">{children}</span>}
+    <div role="status" {...attributes} className={classes}>
+      {children &&
+        <span className={mapToCssModules('sr-only', cssModule)}>
+         {children}
+        </span>
+      }
     </div>
   );
 };
