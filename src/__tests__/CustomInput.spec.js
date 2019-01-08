@@ -103,6 +103,56 @@ describe('Custom Inputs', () => {
     });
   });
 
+  describe('CustomSwitch', () => {
+    it('should render an optional label', () => {
+      const checkbox = mount(<CustomInput type="switch" label="Yo!" />);
+      expect(checkbox.find('label').text()).toBe('Yo!');
+    });
+
+    it('should render children in the outer div', () => {
+      const checkbox = shallow(<CustomInput type="switch" />);
+      expect(checkbox.type()).toBe('div');
+    });
+
+    it('should render an input with the type of checkbox', () => {
+      const checkbox = mount(<CustomInput type="switch" />);
+      expect(checkbox.find('input').prop('type')).toBe('checkbox');
+    });
+
+    it('should pass id to both the input and label nodes', () => {
+      const checkbox = mount(<CustomInput type="switch" id="yo" />);
+      expect(checkbox.find('input').prop('id')).toBe('yo');
+      expect(checkbox.find('label').prop('htmlFor')).toBe('yo');
+    });
+
+    it('should pass classNames to the outer div', () => {
+      const checkbox = mount(<CustomInput type="switch" className="yo" />);
+      expect(checkbox.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
+    });
+
+    it('should add class is-invalid when invalid is true', () => {
+      const checkbox = mount(<CustomInput type="switch" invalid />);
+      expect(checkbox.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
+    });
+
+    it('should add class is-valid when valid is true', () => {
+      const checkbox = mount(<CustomInput type="switch" valid />);
+      expect(checkbox.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
+    });
+
+    it('should pass all other props to the input node', () => {
+      const checkbox = mount(<CustomInput type="switch" data-testprop="yo" />);
+      expect(checkbox.find('input').prop('data-testprop')).toBe('yo');
+    });
+
+    it('should reference innerRef to the input node', () => {
+      const ref = React.createRef();
+      mount(<CustomInput type="switch" innerRef={ref} />);
+      expect(ref.current).not.toBeNull();
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+  });
+
   describe('CustomSelect', () => {
     it('should render children in the outer div', () => {
       const select = shallow(<CustomInput type="select" />);
