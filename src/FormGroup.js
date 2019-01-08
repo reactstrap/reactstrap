@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
@@ -9,7 +9,7 @@ const propTypes = {
   check: PropTypes.bool,
   inline: PropTypes.bool,
   disabled: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };

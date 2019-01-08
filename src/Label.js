@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isobject from 'lodash.isobject';
-import { mapToCssModules, deprecated } from './utils';
+import { mapToCssModules, deprecated, tagPropType } from './utils';
 
 const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -26,7 +26,7 @@ const propTypes = {
   check: PropTypes.bool,
   size: PropTypes.string,
   for: PropTypes.string,
-  tag: PropTypes.string,
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   xs: columnProps,

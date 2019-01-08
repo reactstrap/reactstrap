@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: PropTypes.string,
+  tag: tagPropType,
   children: PropTypes.node.isRequired,
   right: PropTypes.bool,
   flip: PropTypes.bool,

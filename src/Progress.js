@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import toNumber from 'lodash.tonumber';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   bar: PropTypes.bool,
   multi: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: tagPropType,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

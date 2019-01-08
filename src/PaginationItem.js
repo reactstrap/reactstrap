@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -9,7 +9,7 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
 };
 
 const defaultProps = {

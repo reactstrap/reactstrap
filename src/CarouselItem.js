@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, TransitionTimeouts, TransitionStatuses } from './utils';
+import { mapToCssModules, TransitionTimeouts, TransitionStatuses, tagPropType } from './utils';
 
 class CarouselItem extends React.Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class CarouselItem extends React.Component {
 
 CarouselItem.propTypes = {
   ...Transition.propTypes,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   in: PropTypes.bool,
   cssModule: PropTypes.object,
   children: PropTypes.node,

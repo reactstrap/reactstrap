@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, deprecated } from './utils';
+import { mapToCssModules, deprecated, tagPropType } from './utils';
 
 const propTypes = {
   className: PropTypes.string,
@@ -14,8 +14,8 @@ const propTypes = {
   dark: PropTypes.bool,
   hover: PropTypes.bool,
   responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  responsiveTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
+  responsiveTag: tagPropType,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.object]),
 };
 

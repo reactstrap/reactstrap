@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, deprecated } from './utils';
+import { mapToCssModules, deprecated, tagPropType } from './utils';
 
 const propTypes = {
   light: PropTypes.bool,
@@ -12,7 +12,7 @@ const propTypes = {
   sticky: PropTypes.string,
   color: PropTypes.string,
   role: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   toggleable: deprecated(PropTypes.oneOfType([PropTypes.bool, PropTypes.string]), 'Please use the prop "expand"'),

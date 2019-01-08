@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   tabs: PropTypes.bool,
@@ -12,7 +12,7 @@ const propTypes = {
   fill: PropTypes.bool,
   navbar: PropTypes.bool,
   card: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };

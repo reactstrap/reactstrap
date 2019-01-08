@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Target } from 'react-popper';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 import Button from './Button';
 
 const propTypes = {
@@ -15,7 +15,7 @@ const propTypes = {
   onClick: PropTypes.func,
   'aria-haspopup': PropTypes.bool,
   split: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   nav: PropTypes.bool,
 };
 

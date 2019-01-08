@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import InputGroupAddon from './InputGroupAddon';
-import { warnOnce } from './utils';
+import { warnOnce, tagPropType } from './utils';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   children: PropTypes.node,
   groupClassName: PropTypes.string,

@@ -64,7 +64,7 @@ export function mapToCssModules(className = '', cssModule = globalCssModule) {
  */
 export function omit(obj, omitKeys) {
   const result = {};
-  Object.keys(obj).forEach((key) => {
+  Object.keys(obj).forEach(key => {
     if (omitKeys.indexOf(key) === -1) {
       result[key] = obj[key];
     }
@@ -129,9 +129,14 @@ export const targetPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.func,
   DOMElement,
-  PropTypes.shape({ current: PropTypes.any })
+  PropTypes.shape({ current: PropTypes.any }),
 ]);
 
+export const tagPropType = PropTypes.oneOfType([
+  PropTypes.func,
+  PropTypes.string,
+  PropTypes.shape({ $$typeof: PropTypes.symbol, render: PropTypes.func }),
+]);
 
 /* eslint key-spacing: ["error", { afterColon: true, align: "value" }] */
 // These are all setup to match what is in the bootstrap _variables.scss
@@ -140,7 +145,7 @@ export const TransitionTimeouts = {
   Fade:     150, // $transition-fade
   Collapse: 350, // $transition-collapse
   Modal:    300, // $modal-transition
-  Carousel: 600 // $carousel-transition
+  Carousel: 600, // $carousel-transition
 };
 
 // Duplicated Transition.propType keys to ensure that Reactstrap builds
@@ -159,14 +164,14 @@ export const TransitionPropTypeKeys = [
   'onEntered',
   'onExit',
   'onExiting',
-  'onExited'
+  'onExited',
 ];
 
 export const TransitionStatuses = {
   ENTERING: 'entering',
   ENTERED:  'entered',
   EXITING:  'exiting',
-  EXITED:   'exited'
+  EXITED:   'exited',
 };
 
 export const keyCodes = {
@@ -197,7 +202,7 @@ export const PopperPlacements = [
   'bottom-start',
   'left-end',
   'left',
-  'left-start'
+  'left-start',
 ];
 
 export const canUseDOM = !!(
@@ -242,7 +247,6 @@ export function isArrayOrNodeList(els) {
   return Array.isArray(els) || (canUseDOM && typeof els.length === 'number');
 }
 
-
 export function getTarget(target) {
   const els = findDOMElements(target);
   if (isArrayOrNodeList(els)) {
@@ -276,14 +280,14 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
     `);
   }
 
-  Array.prototype.forEach.call(events, (event) => {
-    Array.prototype.forEach.call(els, (el) => {
+  Array.prototype.forEach.call(events, event => {
+    Array.prototype.forEach.call(els, el => {
       el.addEventListener(event, handler, useCapture);
     });
   });
   return function removeEvents() {
-    Array.prototype.forEach.call(events, (event) => {
-      Array.prototype.forEach.call(els, (el) => {
+    Array.prototype.forEach.call(events, event => {
+      Array.prototype.forEach.call(els, el => {
         el.removeEventListener(event, handler, useCapture);
       });
     });

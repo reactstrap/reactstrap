@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
-import { mapToCssModules, omit, keyCodes, deprecated } from './utils';
+import { mapToCssModules, omit, keyCodes, deprecated, tagPropType } from './utils';
 
 const propTypes = {
   disabled: PropTypes.bool,
@@ -18,7 +18,7 @@ const propTypes = {
   active: PropTypes.bool,
   addonType: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['prepend', 'append'])]),
   size: PropTypes.string,
-  tag: PropTypes.string,
+  tag: tagPropType,
   toggle: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,

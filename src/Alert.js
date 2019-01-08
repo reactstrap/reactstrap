@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 import Fade from './Fade';
 
 const propTypes = {
@@ -14,7 +14,7 @@ const propTypes = {
   fade: PropTypes.bool,
   isOpen: PropTypes.bool,
   toggle: PropTypes.func,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   transition: PropTypes.shape(Fade.propTypes),
   innerRef: PropTypes.oneOfType([
     PropTypes.object,

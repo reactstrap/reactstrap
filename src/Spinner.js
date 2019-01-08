@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
+  tag: tagPropType,
   type: PropTypes.string,
   size: PropTypes.string,
   color: PropTypes.string,
@@ -13,6 +14,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  tag: 'div',
   type: 'border',
   children: 'Loading...'
 };
@@ -25,6 +27,7 @@ const Spinner = props => {
     size,
     color,
     children,
+    tag: Tag,
     ...attributes
   } = props;
 
@@ -39,13 +42,13 @@ const Spinner = props => {
   );
 
   return (
-    <div role="status" {...attributes} className={classes}>
+    <Tag role="status" {...attributes} className={classes}>
       {children &&
         <span className={mapToCssModules('sr-only', cssModule)}>
-         {children}
+          {children}
         </span>
       }
-    </div>
+    </Tag>
   );
 };
 
