@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.shape({$$typeof: PropTypes.symbol, render: PropTypes.func})]),
   innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
   disabled: PropTypes.bool,
   active: PropTypes.bool,
