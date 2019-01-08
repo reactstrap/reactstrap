@@ -61,7 +61,7 @@ function CustomInput(props) {
     );
   }
 
-  if (type !== 'checkbox' && type !== 'radio') {
+  if (type !== 'checkbox' && type !== 'radio' && type !== 'switch') {
     return <input {...attributes} ref={innerRef} className={classNames(validationClassNames, customClass)} />;
   }
 
@@ -77,6 +77,7 @@ function CustomInput(props) {
     <div className={wrapperClasses}>
       <input
         {...attributes}
+        type={type === 'switch' ? 'checkbox' : type}
         ref={innerRef}
         className={classNames(validationClassNames, mapToCssModules('custom-control-input', cssModule))}
       />
