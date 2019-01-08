@@ -36,7 +36,7 @@ const items = [
   },
   {
     name: 'Collapse',
-    to: '/components/collapse/',
+    to: '/components/collapse/'
   },
   {
     name: 'Dropdowns',
@@ -83,6 +83,10 @@ const items = [
     to: '/components/navs/'
   },
   {
+    name: 'Spinners',
+    to: '/components/spinners/'
+  },
+  {
     name: 'Pagination',
     to: '/components/pagination/'
   },
@@ -109,9 +113,7 @@ const items = [
 ];
 
 function Components(props) {
-  return (
-    <Content title="Components" items={items} {...props} />
-  );
+  return <Content title="Components" items={items} {...props} />;
 }
 
 export default Components;
