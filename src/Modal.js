@@ -191,9 +191,9 @@ class Modal extends React.Component {
       e.stopPropagation();
       if (!this.props.isOpen || this.props.backdrop !== true) return;
 
-      const container = this._dialog;
+      const backdrop = this._dialog ? this._dialog.parentNode : null;
 
-      if (e.target && !container.contains(e.target) && this.props.toggle) {
+      if (backdrop && e.target === backdrop && this.props.toggle) {
         this.props.toggle(e);
       }
     }
