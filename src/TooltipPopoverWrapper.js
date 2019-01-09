@@ -247,9 +247,9 @@ class TooltipPopoverWrapper extends React.Component {
         this.hideWithDelay,
         true
       );
-      this._target.addEventListener('keydown', this.onEscKeyDown, true);
-      this._target.addEventListener('focusin', this.show, true);
-      this._target.addEventListener('focusout', this.hide, true);
+      this._target.removeEventListener('keydown', this.onEscKeyDown, true);
+      this._target.removeEventListener('focusin', this.show, true);
+      this._target.removeEventListener('focusout', this.hide, true);
     }
 
     ['click', 'touchstart'].forEach(event =>
