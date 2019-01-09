@@ -14,14 +14,10 @@ const propTypes = {
   bsSize: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ])
+
 };
 
-function CustomInput(props) {
+const CustomInput = React.forwardRef((props, ref) => {
   const {
     className,
     label,
@@ -31,7 +27,6 @@ function CustomInput(props) {
     cssModule,
     children,
     bsSize,
-    innerRef,
     ...attributes
   } = props;
 
@@ -49,20 +44,20 @@ function CustomInput(props) {
   ), cssModule);
 
   if (type === 'select') {
-    return <select {...attributes} ref={innerRef} className={classNames(validationClassNames, customClass)}>{children}</select>;
+    return <select {...attributes} ref={ref} className={classNames(validationClassNames, customClass)}>{children}</select>;
   }
 
   if (type === 'file') {
     return (
       <div className={customClass}>
-        <input {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} />
+        <input {...attributes} ref={ref} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} />
         <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={attributes.id}>{label || 'Choose file'}</label>
       </div>
     );
   }
 
   if (type !== 'checkbox' && type !== 'radio' && type !== 'switch') {
-    return <input {...attributes} ref={innerRef} className={classNames(validationClassNames, customClass)} />;
+    return <input {...attributes} ref={ref} className={classNames(validationClassNames, customClass)} />;
   }
 
   const wrapperClasses = classNames(
@@ -78,14 +73,14 @@ function CustomInput(props) {
       <input
         {...attributes}
         type={type === 'switch' ? 'checkbox' : type}
-        ref={innerRef}
+        ref={ref}
         className={classNames(validationClassNames, mapToCssModules('custom-control-input', cssModule))}
       />
       <label className={mapToCssModules('custom-control-label', cssModule)} htmlFor={attributes.id}>{label}</label>
       {children}
     </div>
   );
-}
+});
 
 CustomInput.propTypes = propTypes;
 

@@ -47,7 +47,7 @@ const getColumnSizeClass = (isXs, colWidth, colSize) => {
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 };
 
-const Col = (props) => {
+const Col = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -93,9 +93,9 @@ const Col = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Col.propTypes = propTypes;
 Col.defaultProps = defaultProps;

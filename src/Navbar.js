@@ -53,7 +53,7 @@ const getToggleableClass = (toggleable) => {
   return `navbar-expand-${toggleable === true ? 'sm' : (toggleableToExpand[toggleable] || toggleable)}`;
 };
 
-const Navbar = (props) => {
+const Navbar = React.forwardRef((props, ref) => {
   const {
     toggleable,
     expand,
@@ -83,9 +83,9 @@ const Navbar = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Navbar.propTypes = propTypes;
 Navbar.defaultProps = defaultProps;

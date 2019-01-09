@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const ModalFooter = (props) => {
+const ModalFooter = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -25,9 +25,9 @@ const ModalFooter = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 ModalFooter.propTypes = propTypes;
 ModalFooter.defaultProps = defaultProps;

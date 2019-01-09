@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'a'
 };
 
-const NavbarBrand = (props) => {
+const NavbarBrand = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -27,9 +27,9 @@ const NavbarBrand = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 NavbarBrand.propTypes = propTypes;
 NavbarBrand.defaultProps = defaultProps;

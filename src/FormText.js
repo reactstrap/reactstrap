@@ -17,7 +17,7 @@ const defaultProps = {
   color: 'muted',
 };
 
-const FormText = (props) => {
+const FormText = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -34,9 +34,9 @@ const FormText = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 FormText.propTypes = propTypes;
 FormText.defaultProps = defaultProps;

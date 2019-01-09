@@ -19,7 +19,7 @@ const defaultProps = {
   'aria-label': 'breadcrumb'
 };
 
-const Breadcrumb = (props) => {
+const Breadcrumb = React.forwardRef((props, ref) => {
   const {
     className,
     listClassName,
@@ -41,13 +41,13 @@ const Breadcrumb = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} aria-label={label}>
+    <Tag {...attributes} className={classes} aria-label={label} ref={ref}>
       <ListTag className={listClasses}>
         {children}
       </ListTag>
     </Tag>
   );
-};
+});
 
 Breadcrumb.propTypes = propTypes;
 Breadcrumb.defaultProps = defaultProps;

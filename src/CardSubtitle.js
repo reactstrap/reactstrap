@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardSubtitle = (props) => {
+const CardSubtitle = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -26,9 +26,9 @@ const CardSubtitle = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 CardSubtitle.propTypes = propTypes;
 CardSubtitle.defaultProps = defaultProps;

@@ -52,7 +52,7 @@ const getColumnSizeClass = (isXs, colWidth, colSize) => {
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 };
 
-const Label = (props) => {
+const Label = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -104,9 +104,9 @@ const Label = (props) => {
   ), cssModule);
 
   return (
-    <Tag htmlFor={htmlFor} {...attributes} className={classes} />
+    <Tag htmlFor={htmlFor} {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Label.propTypes = propTypes;
 Label.defaultProps = defaultProps;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselControl = (props) => {
+const CarouselControl = React.forwardRef((props, ref) => {
   const { direction, onClickHandler, cssModule, directionText, className } = props;
 
   const anchorClasses = mapToCssModules(classNames(
@@ -29,12 +29,13 @@ const CarouselControl = (props) => {
         e.preventDefault();
         onClickHandler();
       }}
+      ref={ref}
     >
       <span className={iconClasses} aria-hidden="true" />
       <span className={screenReaderClasses}>{directionText || direction}</span>
     </a>
   );
-};
+});
 
 CarouselControl.propTypes = {
   direction: PropTypes.oneOf(['prev', 'next']).isRequired,

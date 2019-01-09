@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardGroup = (props) => {
+const CardGroup = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -26,9 +26,9 @@ const CardGroup = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 CardGroup.propTypes = propTypes;
 CardGroup.defaultProps = defaultProps;

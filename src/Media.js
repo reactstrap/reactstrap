@@ -19,7 +19,7 @@ const propTypes = {
   top: PropTypes.bool,
 };
 
-const Media = (props) => {
+const Media = React.forwardRef((props, ref) => {
   const {
     body,
     bottom,
@@ -67,9 +67,9 @@ const Media = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Media.propTypes = propTypes;
 

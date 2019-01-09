@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const CardDeck = (props) => {
+const CardDeck = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -26,9 +26,9 @@ const CardDeck = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 CardDeck.propTypes = propTypes;
 CardDeck.defaultProps = defaultProps;

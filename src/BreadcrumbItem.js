@@ -14,7 +14,7 @@ const defaultProps = {
   tag: 'li'
 };
 
-const BreadcrumbItem = (props) => {
+const BreadcrumbItem = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -29,9 +29,9 @@ const BreadcrumbItem = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} aria-current={active ? 'page' : undefined} />
+    <Tag {...attributes} className={classes} aria-current={active ? 'page' : undefined} ref={ref} />
   );
-};
+});
 
 BreadcrumbItem.propTypes = propTypes;
 BreadcrumbItem.defaultProps = defaultProps;

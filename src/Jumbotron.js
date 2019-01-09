@@ -14,7 +14,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const Jumbotron = (props) => {
+const Jumbotron = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -30,9 +30,9 @@ const Jumbotron = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Jumbotron.propTypes = propTypes;
 Jumbotron.defaultProps = defaultProps;

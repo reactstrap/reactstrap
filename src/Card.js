@@ -12,18 +12,13 @@ const propTypes = {
   outline: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
 };
 
 const defaultProps = {
   tag: 'div'
 };
 
-const Card = (props) => {
+const Card = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -33,7 +28,6 @@ const Card = (props) => {
     inverse,
     outline,
     tag: Tag,
-    innerRef,
     ...attributes
   } = props;
   const classes = mapToCssModules(classNames(
@@ -45,9 +39,9 @@ const Card = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;

@@ -21,7 +21,7 @@ const handleDisabledOnClick = (e) => {
   e.preventDefault();
 };
 
-const ListGroupItem = (props) => {
+const ListGroupItem = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -46,9 +46,9 @@ const ListGroupItem = (props) => {
     attributes.onClick = handleDisabledOnClick;
   }
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 ListGroupItem.propTypes = propTypes;
 ListGroupItem.defaultProps = defaultProps;

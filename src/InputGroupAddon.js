@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const InputGroupAddon = (props) => {
+const InputGroupAddon = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -43,7 +43,7 @@ const InputGroupAddon = (props) => {
   return (
     <Tag {...attributes} className={classes} children={children} />
   );
-};
+});
 
 InputGroupAddon.propTypes = propTypes;
 InputGroupAddon.defaultProps = defaultProps;

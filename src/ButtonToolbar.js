@@ -16,7 +16,7 @@ const defaultProps = {
   role: 'toolbar',
 };
 
-const ButtonToolbar = (props) => {
+const ButtonToolbar = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -30,9 +30,9 @@ const ButtonToolbar = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 ButtonToolbar.propTypes = propTypes;
 ButtonToolbar.defaultProps = defaultProps;

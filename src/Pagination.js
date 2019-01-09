@@ -20,7 +20,7 @@ const defaultProps = {
   'aria-label': 'pagination'
 };
 
-const Pagination = (props) => {
+const Pagination = React.forwardRef((props, ref) => {
   const {
     className,
     listClassName,
@@ -45,11 +45,11 @@ const Pagination = (props) => {
   ), cssModule);
 
   return (
-    <Tag className={classes} aria-label={label}>
+    <Tag className={classes} aria-label={label} ref={ref}>
       <ListTag {...attributes} className={listClasses} />
     </Tag>
   );
-};
+});
 
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;

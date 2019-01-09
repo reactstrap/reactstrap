@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'span'
 };
 
-const InputGroupText = (props) => {
+const InputGroupText = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -27,9 +27,9 @@ const InputGroupText = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 InputGroupText.propTypes = propTypes;
 InputGroupText.defaultProps = defaultProps;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselCaption = (props) => {
+const CarouselCaption = React.forwardRef((props, ref) => {
   const { captionHeader, captionText, cssModule, className } = props;
   const classes = mapToCssModules(classNames(
     className,
@@ -13,12 +13,12 @@ const CarouselCaption = (props) => {
   ), cssModule);
 
   return (
-    <div className={classes}>
+    <div className={classes} ref={ref}>
       <h3>{captionHeader}</h3>
       <p>{captionText}</p>
     </div>
   );
-};
+});
 
 CarouselCaption.propTypes = {
   captionHeader: PropTypes.string,

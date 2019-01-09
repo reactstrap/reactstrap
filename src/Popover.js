@@ -8,7 +8,7 @@ const defaultProps = {
   trigger: 'click',
 };
 
-const Popover = (props) => {
+const Popover = React.forwardRef((props, ref) => {
   const popperClasses = classNames(
     'popover',
     'show',
@@ -26,9 +26,10 @@ const Popover = (props) => {
       {...props}
       className={popperClasses}
       innerClassName={classes}
+      ref={ref}
     />
   );
-};
+});
 
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;

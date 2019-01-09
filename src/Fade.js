@@ -15,11 +15,7 @@ const propTypes = {
   baseClassActive: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+
 };
 
 const defaultProps = {
@@ -34,7 +30,7 @@ const defaultProps = {
   in: true,
 };
 
-function Fade(props) {
+const Fade = React.forwardRef((props, ref) => {
   const {
     tag: Tag,
     baseClass,
@@ -42,7 +38,6 @@ function Fade(props) {
     className,
     cssModule,
     children,
-    innerRef,
     ...otherProps
   } = props;
 
@@ -59,14 +54,14 @@ function Fade(props) {
           isActive && baseClassActive
         ), cssModule);
         return (
-          <Tag className={classes} {...childProps} ref={innerRef}>
+          <Tag className={classes} {...childProps} ref={ref}>
             {children}
           </Tag>
         );
       }}
     </Transition>
   );
-}
+});
 
 Fade.propTypes = propTypes;
 Fade.defaultProps = defaultProps;

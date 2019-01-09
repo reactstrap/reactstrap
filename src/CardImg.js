@@ -15,7 +15,7 @@ const defaultProps = {
   tag: 'img'
 };
 
-const CardImg = (props) => {
+const CardImg = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -39,9 +39,9 @@ const CardImg = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 CardImg.propTypes = propTypes;
 CardImg.defaultProps = defaultProps;

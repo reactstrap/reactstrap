@@ -31,7 +31,7 @@ const defaultProps = {
   max: 100,
 };
 
-const Progress = (props) => {
+const Progress = React.forwardRef((props, ref) => {
   const {
     children,
     className,
@@ -80,9 +80,9 @@ const Progress = (props) => {
   }
 
   return (
-    <Tag {...attributes} className={progressClasses} children={ProgressBar} />
+    <Tag {...attributes} className={progressClasses} children={ProgressBar} ref={ref} />
   );
-};
+});
 
 Progress.propTypes = propTypes;
 Progress.defaultProps = defaultProps;

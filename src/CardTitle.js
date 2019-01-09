@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardTitle = (props) => {
+const CardTitle = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -26,9 +26,9 @@ const CardTitle = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 CardTitle.propTypes = propTypes;
 CardTitle.defaultProps = defaultProps;

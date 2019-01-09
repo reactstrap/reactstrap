@@ -9,7 +9,7 @@ const defaultProps = {
   trigger: 'click hover focus',
 };
 
-const Tooltip = (props) => {
+const Tooltip = React.forwardRef((props, ref) => {
   const popperClasses = classNames(
     'tooltip',
     'show',
@@ -27,9 +27,10 @@ const Tooltip = (props) => {
       {...props}
       className={popperClasses}
       innerClassName={classes}
+      ref={ref}
     />
   );
-};
+});
 
 Tooltip.propTypes = propTypes;
 Tooltip.defaultProps = defaultProps;

@@ -16,7 +16,6 @@ const propTypes = {
   responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   tag: tagPropType,
   responsiveTag: tagPropType,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.object]),
 };
 
 const defaultProps = {
@@ -24,7 +23,7 @@ const defaultProps = {
   responsiveTag: 'div',
 };
 
-const Table = (props) => {
+const Table = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -38,7 +37,6 @@ const Table = (props) => {
     responsive,
     tag: Tag,
     responsiveTag: ResponsiveTag,
-    innerRef,
     ...attributes
   } = props;
 
@@ -53,7 +51,7 @@ const Table = (props) => {
     hover ? 'table-hover' : false,
   ), cssModule);
 
-  const table = <Tag {...attributes} ref={innerRef} className={classes} />;
+  const table = <Tag {...attributes} ref={ref} className={classes} ref={ref} />;
 
   if (responsive) {
     const responsiveClassName = responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
@@ -64,7 +62,7 @@ const Table = (props) => {
   }
 
   return table;
-};
+});
 
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;

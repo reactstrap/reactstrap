@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const PopoverBody = (props) => {
+const PopoverBody = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -27,9 +27,9 @@ const PopoverBody = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 PopoverBody.propTypes = propTypes;
 PopoverBody.defaultProps = defaultProps;

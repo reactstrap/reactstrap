@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'p'
 };
 
-const ListGroupItemText = (props) => {
+const ListGroupItemText = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -26,9 +26,9 @@ const ListGroupItemText = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 ListGroupItemText.propTypes = propTypes;
 ListGroupItemText.defaultProps = defaultProps;

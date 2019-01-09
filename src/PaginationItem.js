@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'li',
 };
 
-const PaginationItem = (props) => {
+const PaginationItem = React.forwardRef((props, ref) => {
   const {
     active,
     className,
@@ -36,9 +36,9 @@ const PaginationItem = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 PaginationItem.propTypes = propTypes;
 PaginationItem.defaultProps = defaultProps;

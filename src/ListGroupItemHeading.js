@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'h5'
 };
 
-const ListGroupItemHeading = (props) => {
+const ListGroupItemHeading = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -26,9 +26,9 @@ const ListGroupItemHeading = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 ListGroupItemHeading.propTypes = propTypes;
 ListGroupItemHeading.defaultProps = defaultProps;

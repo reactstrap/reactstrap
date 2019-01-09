@@ -17,7 +17,7 @@ const defaultProps = {
   valid: undefined
 };
 
-const FormFeedback = (props) => {
+const FormFeedback = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -37,8 +37,8 @@ const FormFeedback = (props) => {
     cssModule
   );
 
-  return <Tag {...attributes} className={classes} />;
-};
+  return <Tag {...attributes} className={classes} ref={ref} />;
+});
 
 FormFeedback.propTypes = propTypes;
 FormFeedback.defaultProps = defaultProps;

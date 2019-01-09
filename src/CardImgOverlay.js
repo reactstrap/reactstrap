@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardImgOverlay = (props) => {
+const CardImgOverlay = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -26,9 +26,9 @@ const CardImgOverlay = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 CardImgOverlay.propTypes = propTypes;
 CardImgOverlay.defaultProps = defaultProps;

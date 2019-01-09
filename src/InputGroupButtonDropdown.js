@@ -7,11 +7,11 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const InputGroupButtonDropdown = (props) => {
+const InputGroupButtonDropdown = React.forwardRef((props, ref) => {
   return (
-    <Dropdown {...props} />
+    <Dropdown {...props} ref={ref} />
   );
-};
+});
 
 InputGroupButtonDropdown.propTypes = propTypes;
 

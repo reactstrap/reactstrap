@@ -22,7 +22,7 @@ const defaultProps = {
   charCode: 215,
 };
 
-const ModalHeader = (props) => {
+const ModalHeader = React.forwardRef((props, ref) => {
   let closeButton;
   const {
     className,
@@ -51,14 +51,14 @@ const ModalHeader = (props) => {
   }
 
   return (
-    <WrapTag {...attributes} className={classes}>
+    <WrapTag {...attributes} className={classes} ref={ref}>
       <Tag className={mapToCssModules('modal-title', cssModule)}>
         {children}
       </Tag>
       {close || closeButton}
     </WrapTag>
   );
-};
+});
 
 ModalHeader.propTypes = propTypes;
 ModalHeader.defaultProps = defaultProps;

@@ -16,7 +16,7 @@ const defaultProps = {
   type: 'button'
 };
 
-const NavbarToggler = (props) => {
+const NavbarToggler = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -31,11 +31,11 @@ const NavbarToggler = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes}>
+    <Tag {...attributes} className={classes} ref={ref}>
       {children || <span className={mapToCssModules('navbar-toggler-icon', cssModule)} />}
     </Tag>
   );
-};
+});
 
 NavbarToggler.propTypes = propTypes;
 NavbarToggler.defaultProps = defaultProps;

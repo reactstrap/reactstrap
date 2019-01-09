@@ -32,7 +32,7 @@ const getVerticalClass = (vertical) => {
   return `flex-${vertical}-column`;
 };
 
-const Nav = (props) => {
+const Nav = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -64,9 +64,9 @@ const Nav = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Nav.propTypes = propTypes;
 Nav.defaultProps = defaultProps;

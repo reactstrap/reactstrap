@@ -7,22 +7,16 @@ const propTypes = {
   tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
 };
 
 const defaultProps = {
   tag: 'div'
 };
 
-const CardBody = (props) => {
+const CardBody = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
-    innerRef,
     tag: Tag,
     ...attributes
   } = props;
@@ -32,9 +26,9 @@ const CardBody = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 CardBody.propTypes = propTypes;
 CardBody.defaultProps = defaultProps;

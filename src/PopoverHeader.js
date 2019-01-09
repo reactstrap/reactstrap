@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'h3'
 };
 
-const PopoverHeader = (props) => {
+const PopoverHeader = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -27,9 +27,9 @@ const PopoverHeader = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 PopoverHeader.propTypes = propTypes;
 PopoverHeader.defaultProps = defaultProps;

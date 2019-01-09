@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselIndicators = (props) => {
+const CarouselIndicators = React.forwardRef((props, ref) => {
   const { items, activeIndex, cssModule, onClickHandler, className } = props;
 
   const listClasses = mapToCssModules(classNames(className, 'carousel-indicators'), cssModule);
@@ -23,11 +23,11 @@ const CarouselIndicators = (props) => {
   });
 
   return (
-    <ol className={listClasses}>
+    <ol className={listClasses} ref={ref}>
       {indicators}
     </ol>
   );
-};
+});
 
 CarouselIndicators.propTypes = {
   items: PropTypes.array.isRequired,

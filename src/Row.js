@@ -15,7 +15,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const Row = (props) => {
+const Row = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -32,9 +32,9 @@ const Row = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 Row.propTypes = propTypes;
 Row.defaultProps = defaultProps;

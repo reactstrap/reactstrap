@@ -18,7 +18,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const FormGroup = (props) => {
+const FormGroup = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -39,9 +39,9 @@ const FormGroup = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 FormGroup.propTypes = propTypes;
 FormGroup.defaultProps = defaultProps;

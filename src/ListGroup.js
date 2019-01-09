@@ -14,7 +14,7 @@ const defaultProps = {
   tag: 'ul'
 };
 
-const ListGroup = (props) => {
+const ListGroup = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -29,9 +29,9 @@ const ListGroup = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 ListGroup.propTypes = propTypes;
 ListGroup.defaultProps = defaultProps;

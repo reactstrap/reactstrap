@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const ModalBody = (props) => {
+const ModalBody = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -25,9 +25,9 @@ const ModalBody = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={ref} />
   );
-};
+});
 
 ModalBody.propTypes = propTypes;
 ModalBody.defaultProps = defaultProps;
