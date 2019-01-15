@@ -37,7 +37,6 @@ export const propTypes = {
     PropTypes.object
   ]),
   trigger: PropTypes.string,
-  isInteractive: PropTypes.bool,
 };
 
 const DEFAULT_DELAYS = {
@@ -52,7 +51,6 @@ const defaultProps = {
   delay: DEFAULT_DELAYS,
   toggle: function () {},
   trigger: 'click',
-  isInteractive: false,
 };
 
 function isInDOMSubtree(element, subtreeRoot) {
@@ -182,14 +180,16 @@ class TooltipPopoverWrapper extends React.Component {
   handleDocumentClick(e) {
     const triggers = this.props.trigger.split(' ');
 
-    if (this.props.isOpen && triggers.indexOf('legacy-auto-hide') > -1) {
-      // hide when clicking anywhere except target subtree (and itself if isInteractive)
-      if (!this._hideTimeout && !isInDOMSubtree(e.target, this._target) &&
-          !(this.props.isInteractive && isInDOMSubtree(e.target, this._popover))) {
+    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtree(e.target, this._target))) {
+      if (this._hideTimeout) {
+        this.clearHideTimeout();
+      }
+      if (this.props.isOpen && !isInDOMSubtree(e.target, this._popover)) {
         this.hideWithDelay(e);
+      } else {
+        this.showWithDelay(e);
       }
     } else if (triggers.indexOf('click') > -1 && isInDOMSubtree(e.target, this._target)) {
-      // toggle when clicking target subtree
       if (this._hideTimeout) {
         this.clearHideTimeout();
       }
@@ -206,7 +206,7 @@ class TooltipPopoverWrapper extends React.Component {
     if (this.props.trigger) {
       let triggers = this.props.trigger.split(' ');
       if (triggers.indexOf('manual') === -1) {
-        if (triggers.indexOf('click') > -1 || triggers.indexOf('legacy-auto-hide') > -1) {
+        if (triggers.indexOf('click') > -1 || triggers.indexOf('legacy') > -1) {
           ['click', 'touchstart'].forEach(event =>
             document.addEventListener(event, this.handleDocumentClick, true)
           );
