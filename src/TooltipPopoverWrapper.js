@@ -21,6 +21,7 @@ export const propTypes = {
   className: PropTypes.string,
   innerClassName: PropTypes.string,
   arrowClassName: PropTypes.string,
+  popperClassName: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.func,
   autohide: PropTypes.bool,
@@ -37,11 +38,12 @@ export const propTypes = {
     PropTypes.object
   ]),
   trigger: PropTypes.string,
+  fade: PropTypes.bool,
 };
 
 const DEFAULT_DELAYS = {
   show: 0,
-  hide: 250
+  hide: 0
 };
 
 const defaultProps = {
@@ -51,6 +53,7 @@ const defaultProps = {
   delay: DEFAULT_DELAYS,
   toggle: function () {},
   trigger: 'click',
+  fade: true,
 };
 
 function isInDOMSubtree(element, subtreeRoot) {
@@ -76,6 +79,8 @@ class TooltipPopoverWrapper extends React.Component {
     this.hide = this.hide.bind(this);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.getRef = this.getRef.bind(this);
+    this.onClosed = this.onClosed.bind(this);
+    this.state = { isOpen: props.isOpen };
   }
 
   componentDidMount() {
@@ -86,10 +91,20 @@ class TooltipPopoverWrapper extends React.Component {
     this.removeTargetEvents();
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.isOpen && !state.isOpen) {
+      return { isOpen: props.isOpen };
+    }
+    else return null;
+  }
+
   onMouseOverTooltipContent() {
     if (this.props.trigger.indexOf('hover') > -1 && !this.props.autohide) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
+      }
+      if (this.state.isOpen && !this.props.isOpen) {
+        this.toggle();
       }
     }
   }
@@ -274,8 +289,12 @@ class TooltipPopoverWrapper extends React.Component {
     return this.props.toggle(e);
   }
 
+  onClosed() {
+    this.setState({ isOpen: false });
+  }
+
   render() {
-    if (!this.props.isOpen) {
+    if (!this.state.isOpen) {
       return null;
     }
 
@@ -292,20 +311,22 @@ class TooltipPopoverWrapper extends React.Component {
       placement,
       placementPrefix,
       arrowClassName,
+      popperClassName,
       container,
       modifiers,
       offset,
+      fade,
     } = this.props;
 
     const attributes = omit(this.props, Object.keys(propTypes));
 
-    const popperClasses = mapToCssModules(className, cssModule);
+    const popperClasses = mapToCssModules(popperClassName, cssModule);
 
     const classes = mapToCssModules(innerClassName, cssModule);
 
     return (
       <PopperContent
-        className={popperClasses}
+        className={className}
         target={target}
         isOpen={isOpen}
         hideArrow={hideArrow}
@@ -313,10 +334,13 @@ class TooltipPopoverWrapper extends React.Component {
         placement={placement}
         placementPrefix={placementPrefix}
         arrowClassName={arrowClassName}
+        popperClassName={popperClasses}
         container={container}
         modifiers={modifiers}
         offset={offset}
         cssModule={cssModule}
+        onClosed={this.onClosed}
+        fade={fade}
       >
         <div
           {...attributes}

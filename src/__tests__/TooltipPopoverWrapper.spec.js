@@ -125,10 +125,33 @@ describe('Tooltip', () => {
       { attachTo: container }
     );
 
+    jest.runTimersToTime(150);
+    expect(document.getElementsByClassName('tooltip').length).toBe(0);
+
+    wrapper.setProps({ isOpen: true });
+    jest.runTimersToTime(150);
+    expect(document.getElementsByClassName('tooltip').length).toBe(1);
+
+    wrapper.setProps({ isOpen: false });
+    jest.runTimersToTime(150);
+    expect(document.getElementsByClassName('tooltip').length).toBe(0);
+    wrapper.detach();
+  });
+
+  it('should toggle isOpen', () => {
+    const wrapper = mount(
+      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} className="tooltip show" fade={false}>
+        Tooltip Content
+      </TooltipPopoverWrapper>,
+      { attachTo: container }
+    );
+
     expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.setProps({ isOpen: true });
+    jest.runTimersToTime(0); // slight async delay for getDerivedStateFromProps to update isOpen
     expect(document.getElementsByClassName('tooltip').length).toBe(1);
     wrapper.setProps({ isOpen: false });
+    jest.runTimersToTime(0);
     expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.detach();
   });

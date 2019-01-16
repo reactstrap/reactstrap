@@ -11,8 +11,7 @@ const defaultProps = {
 const Popover = (props) => {
   const popperClasses = classNames(
     'popover',
-    'show',
-    props.className
+    'show'
   );
 
   const classes = classNames(
@@ -24,7 +23,7 @@ const Popover = (props) => {
   return (
     <TooltipPopoverWrapper
       {...props}
-      className={popperClasses}
+      popperClassName={popperClasses}
       innerClassName={classes}
     />
   );
