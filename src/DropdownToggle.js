@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Target } from 'react-popper';
+import { Reference } from 'react-popper';
 import { mapToCssModules, tagPropType } from './utils';
 import Button from './Button';
 
@@ -33,7 +33,6 @@ const contextTypes = {
 class DropdownToggle extends React.Component {
   constructor(props) {
     super(props);
-
     this.onClick = this.onClick.bind(this);
   }
 
@@ -80,6 +79,8 @@ class DropdownToggle extends React.Component {
       Tag = tag;
     }
 
+    const isStringTag = typeof Tag === 'string';
+
     if (this.context.inNavbar) {
       return (
         <Tag
@@ -93,14 +94,21 @@ class DropdownToggle extends React.Component {
     }
 
     return (
-      <Target
-        {...props}
-        className={classes}
-        component={Tag}
-        onClick={this.onClick}
-        aria-expanded={this.context.isOpen}
-        children={children}
-      />
+      <Reference>
+        {({ ref }) => (
+          <Tag
+            { ...props }
+            {
+              ...{ [ isStringTag ? 'ref' : 'innerRef' ]: ref }
+              // TODO: After https://github.com/reactstrap/reactstrap/pull/1356
+            }
+            className={classes}
+            onClick={this.onClick}
+            aria-expanded={this.context.isOpen}
+            children={children}
+          />
+        )}
+      </Reference>
     );
   }
 }

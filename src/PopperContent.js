@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { Arrow, Popper as ReactPopper } from 'react-popper';
+import { Popper as ReactPopper } from 'react-popper';
 import { getTarget, targetPropType, mapToCssModules, DOMElement, tagPropType } from './utils';
 import Fade from './Fade';
 
@@ -172,9 +172,21 @@ class PopperContent extends React.Component {
         onExited={this.onClosed}
         tag={tag}
       >
-        <ReactPopper modifiers={extendedModifiers} className={popperClassName} x-placement={this.state.placement || attrs.placement} placement={this.state.placement || attrs.placement}>
-            {children}
-            {!hideArrow && <Arrow className={arrowClassName} />}
+        <ReactPopper referenceElement={ target && document.getElementById(target) } modifiers={extendedModifiers} placement={this.state.placement || attrs.placement}>
+            {
+              ({ ref, style, placement, arrowProps }) => (
+                <div ref={ref} style={style} className={popperClassName} x-placement={placement}>
+                  {children}
+                  {!hideArrow && (
+                    <span
+                      className={'arrow'}
+                      ref={arrowProps.ref}
+                      style={arrowProps.style}
+                    />
+                  )}
+                </div>
+              )
+            }
         </ReactPopper>
       </Fade>
     );

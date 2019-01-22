@@ -49,16 +49,33 @@ const DropdownMenu = (props, context) => {
   let Tag = tag;
 
   if (persist || (context.isOpen && !context.inNavbar)) {
-    Tag = Popper;
-
     const position1 = directionPositionMap[context.direction] || 'bottom';
     const position2 = right ? 'end' : 'start';
-    attrs.placement = `${position1}-${position2}`;
+    const placement = `${position1}-${position2}`;
+
     attrs.component = tag;
-    attrs.modifiers = !flip ? {
+    
+    const popperModifiers = !flip ? {
       ...modifiers,
       ...noFlipModifier,
     } : modifiers;
+
+    return (
+      <Popper modifiers={popperModifiers} placement={placement}>
+        {({ ref, style, placement }) => (
+          <Tag
+            tabIndex="-1"
+            ref={ref}
+            role="menu"
+            {...attrs}
+            style={{ ...attrs.style, ...style }}
+            aria-hidden={!context.isOpen}
+            className={classes}
+            x-placement={placement}
+          />
+        )}
+      </Popper>
+    )
   }
 
   return (

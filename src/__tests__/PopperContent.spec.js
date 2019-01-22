@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Arrow, Popper } from 'react-popper';
+import { Popper } from 'react-popper';
 import { PopperContent } from '../';
 
 describe('PopperContent', () => {
@@ -42,16 +42,15 @@ describe('PopperContent', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render an Arrow in the Popper when isOpen is true and container is inline', () => {
+  it('should render an arrow element in the Popper when isOpen is true and container is inline', () => {
     const wrapper = mount(<PopperContent target="target" isOpen container="inline">Yo!</PopperContent>);
-
-    expect(wrapper.containsMatchingElement(<Arrow />)).toBe(true);
+    expect(wrapper.find('.arrow').type()).toBe('span');
   });
 
   it('should NOT render an Arrow in the Popper when "hideArrow" is truthy', () => {
     const wrapper = mount(<PopperContent target="target" isOpen container="inline" hideArrow>Yo!</PopperContent>);
-
-    expect(wrapper.containsMatchingElement(<Arrow />)).toBe(false);
+    
+    expect(wrapper.find('.arrow').exists()).toBe(false);
   });
 
   it('should render with "hideArrow" false by default', () => {
@@ -111,26 +110,25 @@ describe('PopperContent', () => {
   });
 
   it('should have placement class of top by default', () => {
-    const wrapper = shallow(<PopperContent target="target" isOpen container="inline">Yo!</PopperContent>);
-
+    const wrapper = mount(<PopperContent target="target" isOpen container="inline">Yo!</PopperContent>);
     expect(wrapper.find('.auto').exists()).toBe(true);
   });
 
   it('should override placement class', () => {
-    const wrapper = shallow(<PopperContent placement="top" target="target" isOpen container="inline">Yo!</PopperContent>);
+    const wrapper = mount(<PopperContent placement="top" target="target" isOpen container="inline">Yo!</PopperContent>);
 
     expect(wrapper.find('.auto').exists()).toBe(false);
     expect(wrapper.find('.top').exists()).toBe(true);
   });
 
   it('should allow for a placement prefix', () => {
-    const wrapper = shallow(<PopperContent placementPrefix="dropdown" target="target" isOpen container="inline">Yo!</PopperContent>);
+    const wrapper = mount(<PopperContent placementPrefix="dropdown" target="target" isOpen container="inline">Yo!</PopperContent>);
 
     expect(wrapper.find('.dropdown-auto').exists()).toBe(true);
   });
 
   it('should allow for a placement prefix with custom placement', () => {
-    const wrapper = shallow(<PopperContent placementPrefix="dropdown" placement="top" target="target" isOpen container="inline">Yo!</PopperContent>);
+    const wrapper = mount(<PopperContent placementPrefix="dropdown" placement="top" target="target" isOpen container="inline">Yo!</PopperContent>);
 
     expect(wrapper.find('.dropdown-auto').exists()).toBe(false);
     expect(wrapper.find('.dropdown-top').exists()).toBe(true);

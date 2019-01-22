@@ -38,7 +38,7 @@ const defaultProps = {
 };
 
 const childContextTypes = {
-  toggle: PropTypes.func.isRequired,
+  toggle: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
   inNavbar: PropTypes.bool.isRequired,
@@ -206,12 +206,13 @@ class Dropdown extends React.Component {
       setActiveFromChild,
       active,
       addonType,
+      tag,
       ...attrs
     } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'direction']);
 
     const direction = (this.props.direction === 'down' && dropup) ? 'up' : this.props.direction;
 
-    attrs.tag = attrs.tag || (nav ? 'li' : 'div');
+    const Tag = tag || (nav ? 'li' : 'div');
 
     let subItemIsActive = false;
     if (setActiveFromChild) {
@@ -237,7 +238,11 @@ class Dropdown extends React.Component {
       }
     ), cssModule);
 
-    return <Manager {...attrs} className={classes} onKeyDown={this.handleKeyDown} />;
+    return (
+      <Manager>
+        <Tag {...attrs} className={classes} onKeyDown={this.handleKeyDown} />
+      </Manager>
+    );
   }
 }
 
