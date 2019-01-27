@@ -25,14 +25,17 @@ const defaultProps = {
 };
 
 const Button = React.forwardRef((props, ref) => {
-
   function onClick(e) {
     if (props.disabled) {
       e.preventDefault();
-    } else if (props.onClick) {
+      return;
+    }
+
+    if (props.onClick) {
       props.onClick(e);
     }
   }
+
   let {
     active,
     'aria-label': ariaLabel,

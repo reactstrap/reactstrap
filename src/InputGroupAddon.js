@@ -34,14 +34,14 @@ const InputGroupAddon = React.forwardRef((props, ref) => {
   // Convenience to assist with transition
   if (typeof children === 'string') {
     return (
-      <Tag {...attributes} className={classes}>
+      <Tag {...attributes} className={classes} ref={ref}>
         <InputGroupText children={children} />
       </Tag>
     );
   }
 
   return (
-    <Tag {...attributes} className={classes} children={children} />
+    <Tag {...attributes} className={classes} children={children} ref={ref} />
   );
 });
 

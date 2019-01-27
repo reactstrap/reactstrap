@@ -5,6 +5,7 @@ import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   tag: tagPropType,
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
   disabled: PropTypes.bool,
   active: PropTypes.bool,
   className: PropTypes.string,
@@ -45,6 +46,7 @@ class NavLink extends React.Component {
       cssModule,
       active,
       tag: Tag,
+      innerRef,
       ...attributes
     } = this.props;
 
@@ -58,7 +60,7 @@ class NavLink extends React.Component {
     ), cssModule);
 
     return (
-      <Tag {...attributes} ref={ref} onClick={this.onClick} className={classes} />
+      <Tag {...attributes} ref={innerRef} onClick={this.onClick} className={classes} />
     );
   }
 }

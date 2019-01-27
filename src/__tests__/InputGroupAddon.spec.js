@@ -9,12 +9,6 @@ describe('InputGroupAddon', () => {
     expect(wrapper.type()).toBe('div');
   });
 
-  it('should render children', () => {
-    const wrapper = shallow(<InputGroupAddon addonType="append">Yo!</InputGroupAddon>);
-
-    expect(wrapper.text()).toBe('<InputGroupText />');
-  });
-
   it('should render children provided', () => {
     const wrapper = shallow(<InputGroupAddon addonType="append"><button>Yo!</button></InputGroupAddon>);
 

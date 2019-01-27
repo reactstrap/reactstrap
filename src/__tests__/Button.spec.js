@@ -32,7 +32,7 @@ describe('Button', () => {
   });
 
   it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
-    const wrapper = mount(<Button onClick={() => {}}>Home</Button>);
+    const wrapper = mount(<Button onClick={() => { }}>Home</Button>);
 
     expect(wrapper.find('button').hostNodes().prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');
@@ -128,15 +128,19 @@ describe('Button', () => {
     });
 
     it('is not called when disabled', () => {
-      const e = createSpyObj('e', ['preventDefault']);
-      const wrapper = mount(<Button>Testing Click</Button>);
+      const onClick = jest.fn();
+      const wrapper = mount(<Button onClick={onClick} disabled>Testing Click</Button>);
 
-      wrapper.instance().onClick(e);
-      expect(e.preventDefault).not.toHaveBeenCalled();
+      wrapper.find('button').hostNodes().simulate('click');
+      expect(onClick).not.toHaveBeenCalled();
+    });
 
-      wrapper.setProps({ disabled: true });
-      wrapper.instance().onClick(e);
-      expect(e.preventDefault).toHaveBeenCalled();
+    it('calls preventDefault when disabled', () => {
+      const preventDefault = jest.fn();
+      const wrapper = shallow(<Button disabled>Testing Click</Button>);
+
+      wrapper.find('button').hostNodes().simulate('click', { preventDefault });
+      expect(preventDefault).toHaveBeenCalled();
     });
   });
 });
