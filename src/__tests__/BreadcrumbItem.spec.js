@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { BreadcrumbItem } from '../';
+import { shallow, mount } from 'enzyme';
+import { BreadcrumbItem } from '..';
 
 describe('BreadcrumbItem', () => {
   it('should render children', () => {
@@ -37,5 +37,12 @@ describe('BreadcrumbItem', () => {
     const wrapper = shallow(<BreadcrumbItem tag="main">Yo!</BreadcrumbItem>);
 
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><BreadcrumbItem ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

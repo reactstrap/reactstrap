@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { ModalHeader } from '../';
 
 describe('ModalHeader', () => {
@@ -18,7 +18,7 @@ describe('ModalHeader', () => {
   });
 
   it('should render close button', () => {
-    const wrapper = shallow(<ModalHeader toggle={() => {}} className="other">Yo!</ModalHeader>);
+    const wrapper = shallow(<ModalHeader toggle={() => { }} className="other">Yo!</ModalHeader>);
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('modal-header')).toBe(true);
@@ -32,6 +32,13 @@ describe('ModalHeader', () => {
     expect(wrapper.type()).toBe('p');
   });
 
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><ModalHeader ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
+
   it('should render custom wrapping tag', () => {
     const wrapper = shallow(<ModalHeader wrapTag="main">Yo!</ModalHeader>);
 
@@ -39,14 +46,14 @@ describe('ModalHeader', () => {
   });
 
   it('should render close button with custom aria-label', () => {
-    const wrapper = shallow(<ModalHeader toggle={() => {}} className="other" closeAriaLabel="oseclay">Yo!</ModalHeader>);
+    const wrapper = shallow(<ModalHeader toggle={() => { }} className="other" closeAriaLabel="oseclay">Yo!</ModalHeader>);
 
     const closeButton = wrapper.find('button.close').first();
     expect(closeButton.prop('aria-label')).toBe('oseclay');
   });
 
   it('should render close button with default icon', () => {
-    const wrapper = shallow(<ModalHeader toggle={() => {}}>Yo!</ModalHeader>);
+    const wrapper = shallow(<ModalHeader toggle={() => { }}>Yo!</ModalHeader>);
 
     const closeButtonIcon = wrapper.find('button.close span');
     const defaultIcon = String.fromCharCode(215);
@@ -54,7 +61,7 @@ describe('ModalHeader', () => {
   });
 
   it('should render close button with custom icon', () => {
-    const wrapper = shallow(<ModalHeader toggle={() => {}} charCode={'X'}>Yo!</ModalHeader>);
+    const wrapper = shallow(<ModalHeader toggle={() => { }} charCode={'X'}>Yo!</ModalHeader>);
 
     const closeButtonIcon = wrapper.find('button.close span');
     expect(closeButtonIcon.text()).toEqual('X');

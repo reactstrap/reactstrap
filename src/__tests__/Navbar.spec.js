@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Navbar } from '../';
 
 describe('Navbar', () => {
@@ -74,5 +74,12 @@ describe('Navbar', () => {
     expect(wrapper.hasClass('navbar-dark')).toBe(true);
     expect(wrapper.hasClass('fixed-top')).toBe(true);
     expect(wrapper.hasClass('sticky-top')).toBe(true);
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Navbar ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

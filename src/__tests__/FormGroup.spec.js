@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { FormGroup } from '../';
 
 describe('FormGroup', () => {
@@ -94,5 +94,12 @@ describe('FormGroup', () => {
     const wrapper = shallow(<FormGroup tag="main">Yo!</FormGroup>);
 
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><FormGroup ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

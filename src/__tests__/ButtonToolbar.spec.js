@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { ButtonToolbar } from '../';
 
 describe('ButtonToolbar', () => {
@@ -16,5 +16,12 @@ describe('ButtonToolbar', () => {
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('btn-toolbar')).toBe(true);
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><ButtonToolbar ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

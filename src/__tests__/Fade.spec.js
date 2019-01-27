@@ -104,4 +104,11 @@ describe('Fade', () => {
     const alert = mount(<Fade tag="p">Yo!</Fade>);
     expect(alert.find('p').hostNodes().length).toBe(1);
   });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Fade ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
 });

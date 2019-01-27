@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { NavbarToggler } from '../';
 
 describe('NavbarToggler', () => {
@@ -26,5 +26,12 @@ describe('NavbarToggler', () => {
 
     expect(wrapper.hasClass('extra')).toBe(true);
     expect(wrapper.hasClass('navbar-toggler')).toBe(true);
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><NavbarToggler ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

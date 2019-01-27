@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { InputGroupAddon, InputGroupText } from '../';
 
 describe('InputGroupAddon', () => {
@@ -41,5 +41,12 @@ describe('InputGroupAddon', () => {
     const wrapper = shallow(<InputGroupAddon addonType="append" tag="main">Yo!</InputGroupAddon>);
 
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><InputGroupAddon ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

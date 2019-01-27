@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { CardImgOverlay } from '../';
 
 describe('CardImgOverlay', () => {
@@ -23,5 +23,12 @@ describe('CardImgOverlay', () => {
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('card-img-overlay')).toBe(true);
     expect(wrapper.find('main').length).toBe(1);
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><CardImgOverlay ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

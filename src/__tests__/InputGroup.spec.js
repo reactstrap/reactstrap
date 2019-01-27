@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { InputGroup } from '../';
 
 describe('InputGroup', () => {
@@ -38,5 +38,12 @@ describe('InputGroup', () => {
     const wrapper = shallow(<InputGroup tag="main">Yo!</InputGroup>);
 
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><InputGroup ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

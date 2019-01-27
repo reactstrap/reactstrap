@@ -98,4 +98,11 @@ describe('Alert', () => {
     const closeButton = alert.find('button').hostNodes().first();
     expect(closeButton.prop('aria-label')).toBe('oseclay');
   });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Alert ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
 });

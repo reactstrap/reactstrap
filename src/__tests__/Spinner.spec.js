@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Spinner } from '../';
 
 describe('Spinner', () => {
@@ -50,5 +50,12 @@ describe('Spinner', () => {
     const wrapper = shallow(<Spinner color="primary" />);
 
     expect(wrapper.hasClass('text-primary')).toBe(true);
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Spinner ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

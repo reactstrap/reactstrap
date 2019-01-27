@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { ListGroupItemHeading } from '../';
 
 describe('ListGroupItem', () => {
@@ -11,5 +11,12 @@ describe('ListGroupItem', () => {
   it('should render with "list-group-item-heading" class', () => {
     const wrapper = shallow(<ListGroupItemHeading>Yo!</ListGroupItemHeading>);
     expect(wrapper.hasClass('list-group-item-heading')).toBe(true);
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><ListGroupItemHeading ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

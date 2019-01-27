@@ -155,4 +155,11 @@ describe('Progress', () => {
     expect(wrapper.find('.progress').hostNodes().length).toBe(1);
     expect(wrapper.find('.progress-bar').hostNodes().length).toBe(5);
   });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Progress ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
 });

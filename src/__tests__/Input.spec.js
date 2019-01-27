@@ -249,4 +249,11 @@ describe('Input', () => {
     expect(input.find('[type="select"]').exists()).toBe(false);
     expect(textarea.find('[type="textarea"]').exists()).toBe(false);
   });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Input ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
 });

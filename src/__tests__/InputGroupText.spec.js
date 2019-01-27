@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { InputGroupText } from '../';
 
 describe('InputGroupText', () => {
@@ -31,5 +31,12 @@ describe('InputGroupText', () => {
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('input-group-text')).toBe(true);
     expect(wrapper.find('p').length).toBe(1);
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><InputGroupText ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

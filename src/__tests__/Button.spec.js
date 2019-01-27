@@ -118,6 +118,13 @@ describe('Button', () => {
     expect(wrapper.contains(testChild));
   });
 
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Button ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
+
   describe('onClick', () => {
     it('calls props.onClick if it exists', () => {
       const onClick = jest.fn();

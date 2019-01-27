@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { CardTitle } from '../';
 
 describe('CardTitle', () => {
@@ -29,5 +29,12 @@ describe('CardTitle', () => {
     const wrapper = shallow(<CardTitle>Yo!</CardTitle>);
 
     expect(wrapper.find('div').length).toBe(1);
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><CardTitle ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

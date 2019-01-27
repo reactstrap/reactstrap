@@ -32,4 +32,11 @@ describe('PaginationItem', () => {
 
     expect(wrapper.hasClass('disabled')).toBe(true);
   });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><PaginationItem ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
 });

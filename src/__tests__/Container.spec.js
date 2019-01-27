@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Container } from '../';
 
 describe('Container', () => {
@@ -34,5 +34,12 @@ describe('Container', () => {
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('container')).toBe(true);
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Container ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

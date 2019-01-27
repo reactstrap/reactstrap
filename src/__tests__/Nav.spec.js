@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Nav } from '../';
 
 describe('Nav', () => {
@@ -86,5 +86,12 @@ describe('Nav', () => {
     const wrapper = shallow(<Nav navbar>Children</Nav>);
 
     expect(wrapper.html()).toBe('<ul class="navbar-nav">Children</ul>');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Nav ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

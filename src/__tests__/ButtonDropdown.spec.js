@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from '../';
 
 
 describe('ButtonDropdown', () => {
@@ -34,5 +34,12 @@ describe('ButtonDropdown', () => {
     expect(wrapper.find('.btn-group').hostNodes().length).toBe(1);
     expect(wrapper.find('.dropdown-item').hostNodes().length).toBe(1);
     expect(wrapper.childAt(0).childAt(0).childAt(0).children().length).toBe(2);
+  });
+
+  it('should forward the ref to the Dropdown component', () => {
+    const ref = React.createRef();
+    mount(<><ButtonDropdown ref={ref} toggle={toggle} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(Dropdown);
   });
 });

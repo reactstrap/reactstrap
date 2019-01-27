@@ -40,4 +40,11 @@ describe('Pagination', () => {
     expect(small.children().hasClass('pagination-sm')).toBe(true);
     expect(large.children().hasClass('pagination-lg')).toBe(true);
   });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Pagination ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
 });

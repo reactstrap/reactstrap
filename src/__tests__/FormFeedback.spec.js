@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { FormFeedback } from '../';
 
 describe('FormFeedback', () => {
@@ -42,5 +42,12 @@ describe('FormFeedback', () => {
     const wrapper = shallow(<FormFeedback tag="main">Yo!</FormFeedback>);
 
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><FormFeedback ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });
