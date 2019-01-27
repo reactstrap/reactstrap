@@ -11,7 +11,6 @@ const propTypes = {
   disabled: PropTypes.bool,
   outline: PropTypes.bool,
   tag: tagPropType,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
   onClick: PropTypes.func,
   size: PropTypes.string,
   children: PropTypes.node,
@@ -25,74 +24,62 @@ const defaultProps = {
   tag: 'button',
 };
 
-class Button extends React.Component {
-  constructor(props) {
-    super(props);
+const Button = React.forwardRef((props, ref) => {
 
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(e) {
-    if (this.props.disabled) {
+  function onClick(e) {
+    if (props.disabled) {
       e.preventDefault();
-      return;
-    }
-
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    } else if (props.onClick) {
+      props.onClick(e);
     }
   }
+  let {
+    active,
+    'aria-label': ariaLabel,
+    block,
+    className,
+    close,
+    cssModule,
+    color,
+    outline,
+    size,
+    tag: Tag,
+    ...attributes
+  } = props;
 
-  render() {
-    let {
-      active,
-      'aria-label': ariaLabel,
-      block,
-      className,
-      close,
-      cssModule,
-      color,
-      outline,
-      size,
-      tag: Tag,
-      innerRef,
-      ...attributes
-    } = this.props;
-
-    if (close && typeof attributes.children === 'undefined') {
-      attributes.children = <span aria-hidden>×</span>;
-    }
-
-    const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
-
-    const classes = mapToCssModules(classNames(
-      className,
-      { close },
-      close || 'btn',
-      close || btnOutlineColor,
-      size ? `btn-${size}` : false,
-      block ? 'btn-block' : false,
-      { active, disabled: this.props.disabled }
-    ), cssModule);
-
-    if (attributes.href && Tag === 'button') {
-      Tag = 'a';
-    }
-
-    const defaultAriaLabel = close ? 'Close' : null;
-
-    return (
-      <Tag
-        type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
-        {...attributes}
-        className={classes}
-        ref={innerRef}
-        onClick={this.onClick}
-        aria-label={ariaLabel || defaultAriaLabel}
-      />
-    );
+  if (close && typeof attributes.children === 'undefined') {
+    attributes.children = <span aria-hidden>×</span>;
   }
-}
+
+  const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
+
+  const classes = mapToCssModules(classNames(
+    className,
+    { close },
+    close || 'btn',
+    close || btnOutlineColor,
+    size ? `btn-${size}` : false,
+    block ? 'btn-block' : false,
+    { active, disabled: props.disabled }
+  ), cssModule);
+
+  if (attributes.href && Tag === 'button') {
+    Tag = 'a';
+  }
+
+  const defaultAriaLabel = close ? 'Close' : null;
+
+  return (
+    <Tag
+      type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
+      {...attributes}
+      className={classes}
+      ref={ref}
+      onClick={onClick}
+      aria-label={ariaLabel || defaultAriaLabel}
+    />
+  );
+});
 
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
