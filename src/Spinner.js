@@ -19,7 +19,7 @@ const defaultProps = {
   children: 'Loading...'
 };
 
-const Spinner = props => {
+const Spinner = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -42,7 +42,7 @@ const Spinner = props => {
   );
 
   return (
-    <Tag role="status" {...attributes} className={classes}>
+    <Tag role="status" {...attributes} className={classes} ref={ref}>
       {children &&
         <span className={mapToCssModules('sr-only', cssModule)}>
           {children}
@@ -50,7 +50,7 @@ const Spinner = props => {
       }
     </Tag>
   );
-};
+});
 
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;
