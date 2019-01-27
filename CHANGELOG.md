@@ -1,3 +1,22 @@
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/reactstrap/reactstrap/compare/7.0.2...7.1.0) (2019-01-15)
+
+
+### Bug Fixes
+
+* **NavLink:** console error while using [@reach](https://github.com/reach)/Router ([#1350](https://github.com/reactstrap/reactstrap/issues/1350)) ([477e1a8](https://github.com/reactstrap/reactstrap/commit/477e1a8)), closes [#1308](https://github.com/reactstrap/reactstrap/issues/1308)
+
+
+### Features
+
+* support forwardRef components as tag ([4cda8bf](https://github.com/reactstrap/reactstrap/commit/4cda8bf))
+* **Popover:** add legacy trigger, replacing unreleased isInteractive prop ([6b3c3ce](https://github.com/reactstrap/reactstrap/commit/6b3c3ce))
+* **Popover:** backward-compatible Popover behavior ([#1360](https://github.com/reactstrap/reactstrap/issues/1360)) ([1d5ce83](https://github.com/reactstrap/reactstrap/commit/1d5ce83)), closes [#1349](https://github.com/reactstrap/reactstrap/issues/1349)
+* **Spinner:** Add spinner component ([#1352](https://github.com/reactstrap/reactstrap/issues/1352)) ([45952e2](https://github.com/reactstrap/reactstrap/commit/45952e2)), closes [#1347](https://github.com/reactstrap/reactstrap/issues/1347)
+* **Switch:** Add support for CustomInput type='switch' ([#1353](https://github.com/reactstrap/reactstrap/issues/1353)) ([7c1e166](https://github.com/reactstrap/reactstrap/commit/7c1e166)), closes [#1348](https://github.com/reactstrap/reactstrap/issues/1348)
+
+
+
 <a name="7.0.2"></a>
 ## [7.0.2](https://github.com/reactstrap/reactstrap/compare/7.0.0...7.0.2) (2018-12-31)
 
@@ -48,6 +67,7 @@
 ### BREAKING CHANGES
 
 * **Input:** previously plaintext on Input would output a 'p' tag. To better line up with bootstrap it will not output an 'input' tag. If you need a 'p' tag, provide tag="p" prop
+* **Popover:** Popover will no longer dismiss when clicking away from it. To get this behaviour please use trigger="focus". In 7.1.0, trigger="legacy" has been added to get the exact previous behavior.
 
 
 

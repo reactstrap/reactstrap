@@ -4,10 +4,13 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Arrow, Popper as ReactPopper } from 'react-popper';
 import { getTarget, targetPropType, mapToCssModules, DOMElement, tagPropType } from './utils';
+import Fade from './Fade';
+
+function noop() {  }
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
+  popperClassName: PropTypes.string,
   placement: PropTypes.string,
   placementPrefix: PropTypes.string,
   arrowClassName: PropTypes.string,
@@ -22,6 +25,9 @@ const propTypes = {
   target: targetPropType.isRequired,
   modifiers: PropTypes.object,
   boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
+  onClosed: PropTypes.func,
+  fade: PropTypes.bool,
+  transition: PropTypes.shape(Fade.propTypes),
 };
 
 const defaultProps = {
@@ -34,6 +40,11 @@ const defaultProps = {
   flip: true,
   container: 'body',
   modifiers: {},
+  onClosed: noop,
+  fade: true,
+  transition: {
+      ...Fade.defaultProps,
+  }
 };
 
 const childContextTypes = {
@@ -48,7 +59,8 @@ class PopperContent extends React.Component {
     this.setTargetNode = this.setTargetNode.bind(this);
     this.getTargetNode = this.getTargetNode.bind(this);
     this.getRef = this.getRef.bind(this);
-    this.state = {};
+    this.onClosed = this.onClosed.bind(this);
+    this.state = { isOpen: props.isOpen };
   }
 
   getChildContext() {
@@ -58,6 +70,13 @@ class PopperContent extends React.Component {
         getTargetNode: this.getTargetNode,
       },
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.isOpen && !state.isOpen) {
+      return { isOpen: props.isOpen };
+    }
+    else return null;
   }
 
   componentDidUpdate() {
@@ -89,6 +108,11 @@ class PopperContent extends React.Component {
     return data;
   }
 
+  onClosed() {
+    this.props.onClosed();
+    this.setState({ isOpen: false });
+  }
+
   renderChildren() {
     const {
       cssModule,
@@ -101,11 +125,14 @@ class PopperContent extends React.Component {
       placementPrefix,
       arrowClassName: _arrowClassName,
       hideArrow,
-      className,
+      popperClassName: _popperClassName,
       tag,
       container,
       modifiers,
       boundariesElement,
+      onClosed,
+      fade,
+      transition,
       ...attrs
     } = this.props;
     const arrowClassName = mapToCssModules(classNames(
@@ -114,7 +141,7 @@ class PopperContent extends React.Component {
     ), cssModule);
     const placement = (this.state.placement || attrs.placement).split('-')[0];
     const popperClassName = mapToCssModules(classNames(
-      className,
+      _popperClassName,
       placementPrefix ? `${placementPrefix}-${placement}` : placement
     ), this.props.cssModule);
 
@@ -130,18 +157,33 @@ class PopperContent extends React.Component {
       ...modifiers,
     };
 
+    const popperTransition = {
+      ...Fade.defaultProps,
+      ...transition,
+      baseClass: fade ? transition.baseClass : '',
+      timeout: fade ? transition.timeout : 0,
+    }
+
     return (
-      <ReactPopper modifiers={extendedModifiers} {...attrs} component={tag} className={popperClassName} x-placement={this.state.placement || attrs.placement}>
-        {children}
-        {!hideArrow && <Arrow className={arrowClassName} />}
-      </ReactPopper>
+      <Fade
+        {...popperTransition}
+        {...attrs}
+        in={isOpen}
+        onExited={this.onClosed}
+        tag={tag}
+      >
+        <ReactPopper modifiers={extendedModifiers} className={popperClassName} x-placement={this.state.placement || attrs.placement} placement={this.state.placement || attrs.placement}>
+            {children}
+            {!hideArrow && <Arrow className={arrowClassName} />}
+        </ReactPopper>
+      </Fade>
     );
   }
 
   render() {
     this.setTargetNode(getTarget(this.props.target));
 
-    if (this.props.isOpen) {
+    if (this.state.isOpen) {
       return this.props.container === 'inline' ?
         this.renderChildren() :
         ReactDOM.createPortal((<div ref={this.getRef}>{this.renderChildren()}</div>), this.getContainerNode());

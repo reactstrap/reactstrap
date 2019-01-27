@@ -191,9 +191,9 @@ class Modal extends React.Component {
       e.stopPropagation();
       if (!this.props.isOpen || this.props.backdrop !== true) return;
 
-      const container = this._dialog;
+      const backdrop = this._dialog ? this._dialog.parentNode : null;
 
-      if (e.target && !container.contains(e.target) && this.props.toggle) {
+      if (backdrop && e.target === backdrop && this.props.toggle) {
         this.props.toggle(e);
       }
     }
@@ -277,7 +277,7 @@ class Modal extends React.Component {
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
     }
-    Modal.openCount -= 1;
+    Modal.openCount = Math.max(0, Modal.openCount - 1);
 
     setScrollbarWidth(this._originalBodyPadding);
   }

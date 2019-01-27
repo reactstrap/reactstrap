@@ -82,6 +82,7 @@ export default class PopoversPage extends React.Component {
           </PrismCode>
         </pre>
         <SectionTitle>Popovers Trigger</SectionTitle>
+        <p>Trigger each popover to see information about the trigger</p>
         <div className="docs-example">
           <PopoverFocusExample />
         </div>
