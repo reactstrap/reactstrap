@@ -54,7 +54,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
-  destroyOnClose: PropTypes.bool
+  unmountOnClose: PropTypes.bool
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -77,7 +77,7 @@ const defaultProps = {
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
-  destroyOnClose: true
+  unmountOnClose: true
 };
 
 class Modal extends React.Component {
@@ -158,12 +158,12 @@ class Modal extends React.Component {
   }
 
   onClosed(node) {
-    const { destroyOnClose } = this.props;
+    const { unmountOnClose } = this.props;
     // so all methods get called before it is unmounted
     this.props.onClosed();
     (this.props.modalTransition.onExited || noop)(node);
 
-    if (destroyOnClose) {
+    if (unmountOnClose) {
       this.destroy();
     }
     this.close();
@@ -329,12 +329,12 @@ class Modal extends React.Component {
 
   render() {
     const {
-      destroyOnClose
+      unmountOnClose
     } = this.props;
 
-    if (!!this._element && (this.state.isOpen || !destroyOnClose)) {
+    if (!!this._element && (this.state.isOpen || !unmountOnClose)) {
 
-      const isModalHidden = !!this._element && !this.state.isOpen && !destroyOnClose;
+      const isModalHidden = !!this._element && !this.state.isOpen && !unmountOnClose;
       this._element.style.display = isModalHidden ? 'none' : 'block';
 
       const {

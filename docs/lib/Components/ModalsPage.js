@@ -100,7 +100,7 @@ const ModalsPage = () => {
   modalTransition: PropTypes.shape(Fade.propTypes),
   innerRef: PropTypes.object,
   // if modal should be destructed/removed from DOM after closing
-  destroyOnClose: PropTypes.bool // defaults to true
+  unmountOnClose: PropTypes.bool // defaults to true
 }`}
         </PrismCode>
       </pre>

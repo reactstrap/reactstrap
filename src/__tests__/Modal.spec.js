@@ -633,10 +633,10 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should destroy this._element when destroyOnClose prop set to true', () => {
+  it('should destroy this._element when unmountOnClose prop set to true', () => {
     isOpen = true;
     const wrapper = mount(
-      <Modal isOpen={isOpen} toggle={toggle} destroyOnClose={true}>
+      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={true}>
         <button id="clicker">Does Nothing</button>
       </Modal>
     );
@@ -657,10 +657,10 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should not destroy this._element when destroyOnClose prop set to false', () => {
+  it('should not destroy this._element when unmountOnClose prop set to false', () => {
     isOpen = true;
     const wrapper = mount(
-      <Modal isOpen={isOpen} toggle={toggle} destroyOnClose={false}>
+      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={false}>
         <button id="clicker">Does Nothing</button>
       </Modal>
     );

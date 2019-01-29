@@ -8,11 +8,11 @@ class ModalExample extends React.Component {
         super(props);
         this.state = {
             modal: false,
-            destroyOnClose: true
+            unmountOnClose: true
         };
 
         this.toggle = this.toggle.bind(this);
-        this.changeDestroyOnClose = this.changeDestroyOnClose.bind(this);
+        this.changeUnmountOnClose = this.changeUnmountOnClose.bind(this);
     }
 
     toggle() {
@@ -21,9 +21,9 @@ class ModalExample extends React.Component {
         });
     }
 
-    changeDestroyOnClose(e) {
+    changeUnmountOnClose(e) {
         let value = e.target.value;
-        this.setState({ destroyOnClose: JSON.parse(value) });
+        this.setState({ unmountOnClose: JSON.parse(value) });
     }
 
     render() {
@@ -31,8 +31,8 @@ class ModalExample extends React.Component {
             <div>
                 <Form inline onSubmit={(e) => e.preventDefault()}>
                     <FormGroup>
-                        <Label for="destroyOnClose">DestroyOnClose value</Label>{' '}
-                        <Input type="select" name="destroyOnClose" id="destroyOnClose" onChange={this.changeDestroyOnClose}>
+                        <Label for="unmountOnClose">UnmountOnClose value</Label>{' '}
+                        <Input type="select" name="unmountOnClose" id="unmountOnClose" onChange={this.changeUnmountOnClose}>
                             <option value="true">true</option>
                             <option value="false">false</option>
                         </Input>
@@ -40,10 +40,10 @@ class ModalExample extends React.Component {
                     {' '}
                     <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
                 </Form>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} destroyOnClose={this.state.destroyOnClose}>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} unmountOnClose={this.state.unmountOnClose}>
                     <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
                     <ModalBody>
-                        <Input type="textarea" placeholder="Write something (data should remain in modal if destroyOnClose is set to false)" rows={5} />
+                        <Input type="textarea" placeholder="Write something (data should remain in modal if unmountOnClose is set to false)" rows={5} />
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
