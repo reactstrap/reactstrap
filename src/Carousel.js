@@ -96,7 +96,7 @@ class Carousel extends React.Component {
   renderItems(carouselItems, className) {
     const { slide } = this.props;
     return (
-      <div role="listbox" className={className}>
+      <div className={className}>
         {carouselItems.map((item, index) => {
           const isIn = (index === this.props.activeIndex);
           return React.cloneElement(item, {
