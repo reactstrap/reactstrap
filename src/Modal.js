@@ -54,6 +54,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
+  unmountOnClose: PropTypes.bool
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -76,6 +77,7 @@ const defaultProps = {
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
+  unmountOnClose: true
 };
 
 class Modal extends React.Component {
@@ -140,8 +142,11 @@ class Modal extends React.Component {
       this.props.onExit();
     }
 
-    if (this.state.isOpen) {
+    if (this._element) {
       this.destroy();
+      if (this.state.isOpen) {
+        this.close();
+      }
     }
 
     this._isMounted = false;
@@ -153,10 +158,15 @@ class Modal extends React.Component {
   }
 
   onClosed(node) {
+    const { unmountOnClose } = this.props;
     // so all methods get called before it is unmounted
     this.props.onClosed();
     (this.props.modalTransition.onExited || noop)(node);
-    this.destroy();
+
+    if (unmountOnClose) {
+      this.destroy();
+    }
+    this.close();
 
     if (this._isMounted) {
       this.setState({ isOpen: false });
@@ -242,21 +252,25 @@ class Modal extends React.Component {
     } catch (err) {
       this._triggeringElement = null;
     }
-    this._element = document.createElement('div');
-    this._element.setAttribute('tabindex', '-1');
-    this._element.style.position = 'relative';
-    this._element.style.zIndex = this.props.zIndex;
-    this._originalBodyPadding = getOriginalBodyPadding();
 
+    if (!this._element) {
+      this._element = document.createElement('div');
+      this._element.setAttribute('tabindex', '-1');
+      this._element.style.position = 'relative';
+      this._element.style.zIndex = this.props.zIndex;
+      document.body.appendChild(this._element);
+    }
+
+    this._originalBodyPadding = getOriginalBodyPadding();
     conditionallyUpdateScrollbar();
 
-    document.body.appendChild(this._element);
     if (Modal.openCount === 0) {
       document.body.className = classNames(
         document.body.className,
         mapToCssModules('modal-open', this.props.cssModule)
       );
     }
+
     Modal.openCount += 1;
   }
 
@@ -270,13 +284,16 @@ class Modal extends React.Component {
       if (this._triggeringElement.focus) this._triggeringElement.focus();
       this._triggeringElement = null;
     }
+  }
 
+  close() {
     if (Modal.openCount <= 1) {
       const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
       // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
     }
+
     Modal.openCount = Math.max(0, Modal.openCount - 1);
 
     setScrollbarWidth(this._originalBodyPadding);
@@ -311,7 +328,15 @@ class Modal extends React.Component {
   }
 
   render() {
-    if (this.state.isOpen) {
+    const {
+      unmountOnClose
+    } = this.props;
+
+    if (!!this._element && (this.state.isOpen || !unmountOnClose)) {
+
+      const isModalHidden = !!this._element && !this.state.isOpen && !unmountOnClose;
+      this._element.style.display = isModalHidden ? 'none' : 'block';
+
       const {
         wrapClassName,
         modalClassName,

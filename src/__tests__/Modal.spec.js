@@ -633,6 +633,54 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should destroy this._element when unmountOnClose prop set to true', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={true}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jest.runTimersToTime(300);
+    expect(instance._element).toBeTruthy();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(false);
+    expect(instance._element).toBe(null);
+
+    wrapper.unmount();
+  });
+
+  it('should not destroy this._element when unmountOnClose prop set to false', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={false}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jest.runTimersToTime(300);
+    expect(instance._element).toBeTruthy();
+
+    toggle();
+    wrapper.setProps({
+      isOpen: isOpen
+    });
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(false);
+    expect(instance._element).toBeTruthy();
+
+    wrapper.unmount();
+  });
+
   it('should destroy this._element on unmount', () => {
     isOpen = true;
     const wrapper = mount(
