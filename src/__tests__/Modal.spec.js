@@ -492,8 +492,8 @@ describe('Modal', () => {
 
     const escapeKeyUpEvent = {
       keyCode: 27,
-      preventDefault: jest.fn(() => {}),
-      stopPropagation: jest.fn(() => {}),
+      preventDefault: jest.fn(() => { }),
+      stopPropagation: jest.fn(() => { }),
     };
 
     instance.handleEscape(escapeKeyUpEvent);
@@ -830,5 +830,12 @@ describe('Modal', () => {
     expect(mock).toHaveBeenCalled();
 
     wrapper.unmount();
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Modal ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

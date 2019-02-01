@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { NavLink } from '../';
 
 describe('NavLink', () => {
@@ -82,5 +82,12 @@ describe('NavLink', () => {
     wrapper.find('a').simulate('click', e);
     expect(e.preventDefault).toHaveBeenCalled();
     expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><NavLink ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

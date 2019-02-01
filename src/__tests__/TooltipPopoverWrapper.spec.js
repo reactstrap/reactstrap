@@ -24,7 +24,7 @@ describe('Tooltip', () => {
     document.body.appendChild(element);
     target = document.getElementById('target');
     innerTarget = document.getElementById('innerTarget');
-    synthEvent = { persist: () => {} };
+    synthEvent = { persist: () => { } };
 
     jest.useFakeTimers();
   });
@@ -635,5 +635,12 @@ describe('Tooltip', () => {
       expect(instance._hideTimeout).toBeFalsy();
       wrapper.detach();
     });
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><TooltipPopoverWrapper ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

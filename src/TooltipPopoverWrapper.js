@@ -51,7 +51,7 @@ const defaultProps = {
   hideArrow: false,
   autohide: false,
   delay: DEFAULT_DELAYS,
-  toggle: function () {},
+  toggle: function () { },
   trigger: 'click',
   fade: true,
 };
@@ -360,4 +360,4 @@ class TooltipPopoverWrapper extends React.Component {
 TooltipPopoverWrapper.propTypes = propTypes;
 TooltipPopoverWrapper.defaultProps = defaultProps;
 
-export default TooltipPopoverWrapper;
+export default React.forwardRef((props, ref) => <TooltipPopoverWrapper {...props} innerRef={ref} />);

@@ -391,4 +391,4 @@ Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
 Modal.openCount = 0;
 
-export default Modal;
+export default React.forwardRef((props, ref) => <Modal {...props} innerRef={ref} />);

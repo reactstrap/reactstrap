@@ -117,9 +117,17 @@ describe('Collapse', () => {
 
   it('should remove inline style when isOpen change to true after transition', () => {
     wrapper = mount(<Collapse isOpen={isOpen} />);
+    console.log(wrapper)
     toggle();
     jest.runTimersToTime(380);
     expect(wrapper.state('height')).toBe(null);
     wrapper.unmount();
+  });
+
+  it('should forward the ref to the DOM element', () => {
+    const ref = React.createRef();
+    mount(<><Collapse ref={ref} /></>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toBeInstanceOf(HTMLElement);
   });
 });

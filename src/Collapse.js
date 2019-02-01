@@ -126,7 +126,7 @@ class Collapse extends Component {
               {...childProps}
               style={{ ...childProps.style, ...style }}
               className={classes}
-              ref={this.props.innerRef}
+              ref={innerRef}
             >
               {children}
             </Tag>
@@ -139,4 +139,5 @@ class Collapse extends Component {
 
 Collapse.propTypes = propTypes;
 Collapse.defaultProps = defaultProps;
-export default Collapse;
+
+export default React.forwardRef((props, ref) => <Collapse {...props} innerRef={ref} />);
