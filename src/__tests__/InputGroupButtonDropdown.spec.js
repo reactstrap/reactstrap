@@ -11,8 +11,9 @@ describe('InputGroupButtonDropdown', () => {
 
   it('should forward the ref to the Dropdown component', () => {
     const ref = React.createRef();
-    mount(<><InputGroupButtonDropdown ref={ref} /></>);
+    const wrapper = mount(<><InputGroupButtonDropdown ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(Dropdown);
+    wrapper.unmount();
   });
 });

@@ -20,8 +20,9 @@ describe('ButtonToolbar', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><ButtonToolbar ref={ref} /></>);
+    const wrapper = mount(<><ButtonToolbar ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

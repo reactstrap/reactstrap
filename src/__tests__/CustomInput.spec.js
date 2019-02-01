@@ -47,9 +47,10 @@ describe('Custom Inputs', () => {
 
     it('should forward the ref to the DOM element', () => {
       const ref = React.createRef();
-      mount(<><CustomInput type="checkbox" ref={ref} /></>);
+      const wrapper = mount(<><CustomInput type="checkbox" ref={ref} /></>);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
+      wrapper.unmount();
     });
   });
 
@@ -97,9 +98,10 @@ describe('Custom Inputs', () => {
 
     it('should forward the ref to the DOM element', () => {
       const ref = React.createRef();
-      mount(<><CustomInput type="radio" ref={ref} /></>);
+      const wrapper = mount(<><CustomInput type="radio" ref={ref} /></>);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
+      wrapper.unmount();
     });
   });
 
@@ -147,9 +149,10 @@ describe('Custom Inputs', () => {
 
     it('should forward the ref to the DOM element', () => {
       const ref = React.createRef();
-      mount(<><CustomInput type="switch" ref={ref} /></>);
+      const wrapper = mount(<><CustomInput type="switch" ref={ref} /></>);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
+      wrapper.unmount();
     });
   });
 
@@ -186,9 +189,10 @@ describe('Custom Inputs', () => {
 
     it('should forward the ref to the DOM element', () => {
       const ref = React.createRef();
-      mount(<><CustomInput type="select" ref={ref} /></>);
+      const wrapper = mount(<><CustomInput type="select" ref={ref} /></>);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLSelectElement);
+      wrapper.unmount();
     });
   });
 
@@ -236,9 +240,10 @@ describe('Custom Inputs', () => {
 
     it('should forward the ref to the DOM element', () => {
       const ref = React.createRef();
-      mount(<><CustomInput type="file" ref={ref} /></>);
+      const wrapper = mount(<><CustomInput type="file" ref={ref} /></>);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
+      wrapper.unmount();
     });
   });
 
@@ -270,9 +275,10 @@ describe('Custom Inputs', () => {
 
     it('should forward the ref to the DOM element', () => {
       const ref = React.createRef();
-      mount(<><CustomInput type="range" ref={ref} /></>);
+      const wrapper = mount(<><CustomInput type="range" ref={ref} /></>);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
+      wrapper.unmount();
     });
   });
 });

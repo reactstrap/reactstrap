@@ -64,7 +64,7 @@ describe('NavLink', () => {
 
   it('prevents link clicks via onClick for dropdown nav-items', () => {
     const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(
+    const wrapper = mount(
       <NavLink href="#" />
     );
 
@@ -75,7 +75,7 @@ describe('NavLink', () => {
   it('is not called when disabled', () => {
     const onClick = jest.fn();
     const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(
+    const wrapper = mount(
       <NavLink disabled onClick={onClick} />
     );
 
@@ -86,8 +86,9 @@ describe('NavLink', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><NavLink ref={ref} /></>);
+    const wrapper = mount(<><NavLink ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

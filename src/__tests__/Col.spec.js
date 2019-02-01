@@ -98,8 +98,9 @@ describe('Col', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><Col ref={ref} /></>);
+    const wrapper = mount(<><Col ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

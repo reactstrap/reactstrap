@@ -15,8 +15,9 @@ describe('ListGroupItem', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><ListGroupItemText ref={ref} /></>);
+    const wrapper = mount(<><ListGroupItemText ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

@@ -34,8 +34,9 @@ describe('ButtonGroup', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><ButtonGroup ref={ref} /></>);
+    const wrapper = mount(<><ButtonGroup ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

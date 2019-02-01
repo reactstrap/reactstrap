@@ -46,8 +46,9 @@ describe('FormFeedback', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><FormFeedback ref={ref} /></>);
+    const wrapper = mount(<><FormFeedback ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

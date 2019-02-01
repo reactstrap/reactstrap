@@ -78,8 +78,9 @@ describe('Navbar', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><Navbar ref={ref} /></>);
+    const wrapper = mount(<><Navbar ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

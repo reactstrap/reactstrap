@@ -834,8 +834,9 @@ describe('Modal', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><Modal ref={ref} /></>);
+    const wrapper = mount(<><Modal ref={ref} isOpen /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

@@ -37,8 +37,9 @@ describe('Jumbotron', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><Jumbotron ref={ref} /></>);
+    const wrapper = mount(<><Jumbotron ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

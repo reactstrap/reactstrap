@@ -372,7 +372,7 @@ class Modal extends React.Component {
               onExited={this.onClosed}
               cssModule={cssModule}
               className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
-              innerRef={innerRef}
+              ref={innerRef}
             >
               {external}
               {this.renderModalDialog()}

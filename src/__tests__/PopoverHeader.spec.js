@@ -12,8 +12,9 @@ describe('PopoverHeader', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><PopoverHeader ref={ref} /></>);
+    const wrapper = mount(<><PopoverHeader ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

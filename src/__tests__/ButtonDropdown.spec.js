@@ -38,8 +38,9 @@ describe('ButtonDropdown', () => {
 
   it('should forward the ref to the Dropdown component', () => {
     const ref = React.createRef();
-    mount(<><ButtonDropdown ref={ref} toggle={toggle} /></>);
+    const wrapper = mount(<><ButtonDropdown ref={ref} toggle={toggle} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(Dropdown);
+    wrapper.unmount();
   });
 });

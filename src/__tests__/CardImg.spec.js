@@ -29,8 +29,9 @@ describe('CardImg', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><CardImg ref={ref} /></>);
+    const wrapper = mount(<><CardImg ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

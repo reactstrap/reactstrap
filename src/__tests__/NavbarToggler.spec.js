@@ -30,8 +30,9 @@ describe('NavbarToggler', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><NavbarToggler ref={ref} /></>);
+    const wrapper = mount(<><NavbarToggler ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

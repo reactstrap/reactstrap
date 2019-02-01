@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { PopperContent } from '../';
 import TooltipPopoverWrapper from '../TooltipPopoverWrapper';
 
-describe('Tooltip', () => {
+describe('TooltipPopoverWrapper', () => {
   let isOpen;
   let toggle;
   let element;
@@ -639,8 +639,9 @@ describe('Tooltip', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><TooltipPopoverWrapper ref={ref} /></>);
+    const wrapper = mount(<><TooltipPopoverWrapper ref={ref} target={target} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

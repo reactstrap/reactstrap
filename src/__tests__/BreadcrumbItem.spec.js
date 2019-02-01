@@ -41,8 +41,9 @@ describe('BreadcrumbItem', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><BreadcrumbItem ref={ref} /></>);
+    const wrapper = mount(<><BreadcrumbItem ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

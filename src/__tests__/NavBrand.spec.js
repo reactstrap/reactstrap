@@ -30,8 +30,9 @@ describe('NavbarBrand', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><NavbarBrand ref={ref} /></>);
+    const wrapper = mount(<><NavbarBrand ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });

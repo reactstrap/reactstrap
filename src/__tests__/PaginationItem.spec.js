@@ -35,8 +35,9 @@ describe('PaginationItem', () => {
 
   it('should forward the ref to the DOM element', () => {
     const ref = React.createRef();
-    mount(<><PaginationItem ref={ref} /></>);
+    const wrapper = mount(<><PaginationItem ref={ref} /></>);
     expect(ref.current).not.toBeNull();
     expect(ref.current).toBeInstanceOf(HTMLElement);
+    wrapper.unmount();
   });
 });
