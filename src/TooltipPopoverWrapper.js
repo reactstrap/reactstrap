@@ -201,7 +201,7 @@ class TooltipPopoverWrapper extends React.Component {
       }
       if (this.props.isOpen && !isInDOMSubtree(e.target, this._popover)) {
         this.hideWithDelay(e);
-      } else {
+      } else if (!this.props.isOpen) {
         this.showWithDelay(e);
       }
     } else if (triggers.indexOf('click') > -1 && isInDOMSubtree(e.target, this._target)) {

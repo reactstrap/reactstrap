@@ -11,6 +11,7 @@ import ModalFadelessExample from '../examples/ModalFadeless';
 import ModalExternalExample from '../examples/ModalExternal';
 import ModalCustomCloseIconExample from '../examples/ModalCustomCloseIcon';
 import ModalCustomCloseButtonExample from '../examples/ModalCustomCloseButton';
+import ModalDestructuringExample from '../examples/ModalDestructuring';
 
 const ModalBackdropExampleSource = require('!!raw-loader!../examples/ModalBackdrop');
 const ModalCustomCloseButtonExampleSource = require('!!raw-loader!../examples/ModalCustomCloseButton');
@@ -20,6 +21,7 @@ const ModalExampleSource = require('!!raw-loader!../examples/Modal');
 const ModalExternalExampleSource = require('!!raw-loader!../examples/ModalExternal');
 const ModalFadelessExampleSource = require('!!raw-loader!../examples/ModalFadeless');
 const ModalNestedExampleSource = require('!!raw-loader!../examples/ModalNested');
+const ModalDestructuringExampleSource = require('!!raw-loader!../examples/ModalDestructuring');
 
 const ModalsPage = () => {
   return (
@@ -97,6 +99,8 @@ const ModalsPage = () => {
   // see [Fade](/components/fade/) for more details
   modalTransition: PropTypes.shape(Fade.propTypes),
   innerRef: PropTypes.object,
+  // if modal should be destructed/removed from DOM after closing
+  unmountOnClose: PropTypes.bool // defaults to true
 }`}
         </PrismCode>
       </pre>
@@ -195,6 +199,20 @@ const ModalsPage = () => {
       <pre>
         <PrismCode className="language-jsx">
           {ModalCustomCloseButtonExampleSource}
+        </PrismCode>
+      </pre>
+
+      <h4>Destructuring</h4>
+      <div className="docs-example">
+        <div className="btn-group">
+          <div className="btn">
+            <ModalDestructuringExample buttonLabel="Launch Modal" />
+          </div>
+        </div>
+      </div>
+      <pre>
+        <PrismCode className="language-jsx">
+          {ModalDestructuringExampleSource}
         </PrismCode>
       </pre>
     </div>
