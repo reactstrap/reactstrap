@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Portal from './Portal';
 import Fade from './Fade';
+
 import {
   getOriginalBodyPadding,
   conditionallyUpdateScrollbar,
@@ -10,7 +11,9 @@ import {
   mapToCssModules,
   omit,
   focusableElements,
-  TransitionTimeouts
+  TransitionTimeouts,
+  canUseDOM,
+  validateHTMLDocument
 } from './utils';
 
 function noop() { }
@@ -54,7 +57,8 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
-  unmountOnClose: PropTypes.bool
+  unmountOnClose: PropTypes.bool,
+  document: validateHTMLDocument,
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -77,7 +81,8 @@ const defaultProps = {
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
-  unmountOnClose: true
+  unmountOnClose: true,
+  document: canUseDOM ? window.document : {}
 };
 
 class Modal extends React.Component {
@@ -184,9 +189,9 @@ class Modal extends React.Component {
   }
 
   getFocusedChild() {
+    const { document } = this.props;
     let currentFocus;
     const focusableChildren = this.getFocusableChildren();
-
     try {
       currentFocus = document.activeElement;
     } catch (err) {
@@ -248,6 +253,7 @@ class Modal extends React.Component {
   }
 
   init() {
+    const { document } = this.props;
     try {
       this._triggeringElement = document.activeElement;
     } catch (err) {
@@ -262,20 +268,26 @@ class Modal extends React.Component {
       document.body.appendChild(this._element);
     }
 
-    this._originalBodyPadding = getOriginalBodyPadding();
-    conditionallyUpdateScrollbar();
+    this._originalBodyPadding = getOriginalBodyPadding({ document });
+    conditionallyUpdateScrollbar({ document });
 
-    if (Modal.openCount === 0) {
+    if (document._rsid === undefined) {
+      document._rsid = Object.keys(Modal.documents).length;
+      Modal.documents[document._rsid] = { openCount: 0 };
+    }
+
+    if (Modal.documents[document._rsid].openCount === 0) {
       document.body.className = classNames(
         document.body.className,
         mapToCssModules('modal-open', this.props.cssModule)
       );
     }
 
-    Modal.openCount += 1;
+    Modal.documents[document._rsid].openCount = (Modal.documents[document._rsid].openCount || 0) + 1;
   }
 
   destroy() {
+    const { document } = this.props;
     if (this._element) {
       document.body.removeChild(this._element);
       this._element = null;
@@ -288,16 +300,17 @@ class Modal extends React.Component {
   }
 
   close() {
-    if (Modal.openCount <= 1) {
+    const { document } = this.props;
+    if (Modal.documents[document._rsid].openCount <= 1) {
       const modalOpenClassName = mapToCssModules('modal-open', this.props.cssModule);
       // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
     }
 
-    Modal.openCount = Math.max(0, Modal.openCount - 1);
+    Modal.documents[document._rsid].openCount = Math.max(0, Modal.documents[document._rsid].openCount - 1);
 
-    setScrollbarWidth(this._originalBodyPadding);
+    setScrollbarWidth({ padding: this._originalBodyPadding, document });
   }
 
   renderModalDialog() {
@@ -415,6 +428,6 @@ class Modal extends React.Component {
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
-Modal.openCount = 0;
+Modal.documents = {};
 
 export default Modal;
