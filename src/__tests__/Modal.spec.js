@@ -39,6 +39,26 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render modal portal into provided DOM when document prop set', () => {
+    const iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+    const iframeDoc = iframe.contentWindow.document;
+    
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} document={iframeDoc}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(wrapper.childAt(0).children().length).not.toBe(0);
+    expect(document.getElementsByClassName('modal-dialog').length).toBe(0);
+    expect(iframeDoc.getElementsByClassName('modal-dialog').length).toBe(1);
+    wrapper.unmount();
+  });
+
+
   it('should render with the class "modal-dialog"', () => {
     isOpen = true;
     const wrapper = mount(
@@ -492,8 +512,8 @@ describe('Modal', () => {
 
     const escapeKeyUpEvent = {
       keyCode: 27,
-      preventDefault: jest.fn(() => {}),
-      stopPropagation: jest.fn(() => {}),
+      preventDefault: jest.fn(() => { }),
+      stopPropagation: jest.fn(() => { }),
     };
 
     instance.handleEscape(escapeKeyUpEvent);
