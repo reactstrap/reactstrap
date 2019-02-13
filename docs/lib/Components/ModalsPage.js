@@ -12,6 +12,7 @@ import ModalExternalExample from '../examples/ModalExternal';
 import ModalCustomCloseIconExample from '../examples/ModalCustomCloseIcon';
 import ModalCustomCloseButtonExample from '../examples/ModalCustomCloseButton';
 import ModalDestructuringExample from '../examples/ModalDestructuring';
+import ModalDocumentExample from '../examples/ModalDocument';
 
 const ModalBackdropExampleSource = require('!!raw-loader!../examples/ModalBackdrop');
 const ModalCustomCloseButtonExampleSource = require('!!raw-loader!../examples/ModalCustomCloseButton');
@@ -22,6 +23,7 @@ const ModalExternalExampleSource = require('!!raw-loader!../examples/ModalExtern
 const ModalFadelessExampleSource = require('!!raw-loader!../examples/ModalFadeless');
 const ModalNestedExampleSource = require('!!raw-loader!../examples/ModalNested');
 const ModalDestructuringExampleSource = require('!!raw-loader!../examples/ModalDestructuring');
+const ModalDocumentExampleSource = require('!!raw-loader!../examples/ModalDocument');
 
 const ModalsPage = () => {
   return (
@@ -100,7 +102,10 @@ const ModalsPage = () => {
   modalTransition: PropTypes.shape(Fade.propTypes),
   innerRef: PropTypes.object,
   // if modal should be destructed/removed from DOM after closing
-  unmountOnClose: PropTypes.bool // defaults to true
+  unmountOnClose: PropTypes.bool // defaults to true,
+  // provide document object where modal should be rendered - e.g. case with iframes
+  // instanceof HTMLDocument (https://developer.mozilla.org/en-US/docs/Web/API/HTMLDocument)
+  document: PropTypes.instanceOf(HTMLDocument)
 }`}
         </PrismCode>
       </pre>
@@ -213,6 +218,21 @@ const ModalsPage = () => {
       <pre>
         <PrismCode className="language-jsx">
           {ModalDestructuringExampleSource}
+        </PrismCode>
+      </pre>
+
+
+      <h4>Document as prop</h4>
+      <div className="docs-example">
+        <div className="btn-group" style={{ width: "100%" }}>
+          <div className="btn">
+            <ModalDocumentExample buttonLabel="Launch Modal" />
+          </div>
+        </div>
+      </div>
+      <pre>
+        <PrismCode className="language-jsx">
+          {ModalDocumentExampleSource}
         </PrismCode>
       </pre>
     </div>
