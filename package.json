@@ -104,6 +104,7 @@
     "lodash.isobject": "^3.0.2",
     "lodash.tonumber": "^4.0.3",
     "prop-types": "^15.5.8",
+    "react-frame-component": "^4.0.2",
     "react-lifecycles-compat": "^3.0.4",
     "react-popper": "^0.10.4",
     "react-transition-group": "^2.3.1"
