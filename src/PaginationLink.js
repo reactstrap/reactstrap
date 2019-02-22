@@ -10,6 +10,8 @@ const propTypes = {
   cssModule: PropTypes.object,
   next: PropTypes.bool,
   previous: PropTypes.bool,
+  first: PropTypes.bool,
+  last: PropTypes.bool,
   tag: tagPropType,
 };
 
@@ -23,6 +25,8 @@ const PaginationLink = (props) => {
     cssModule,
     next,
     previous,
+    first,
+    last,
     tag: Tag,
     ...attributes
   } = props;
@@ -37,13 +41,22 @@ const PaginationLink = (props) => {
     defaultAriaLabel = 'Previous';
   } else if (next) {
     defaultAriaLabel = 'Next';
+  } else if (first) {
+    defaultAriaLabel = 'First';
+  } else if (last) {
+    defaultAriaLabel = 'Last';
   }
+
   const ariaLabel = props['aria-label'] || defaultAriaLabel;
 
   let defaultCaret;
   if (previous) {
-    defaultCaret = '\u00ab';
+    defaultCaret = '\u2039';
   } else if (next) {
+    defaultCaret = '\u203A';
+  } else if (first) {
+    defaultCaret = '\u00ab';
+  } else if (last) {
     defaultCaret = '\u00bb';
   }
 
@@ -56,7 +69,7 @@ const PaginationLink = (props) => {
     Tag = 'button';
   }
 
-  if (previous || next) {
+  if (previous || next || first || last) {
     children = [
       <span
         aria-hidden="true"
