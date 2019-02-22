@@ -58,6 +58,8 @@ PaginationLink.propTypes = {
   cssModule: PropTypes.object,
   next: PropTypes.bool,
   previous: PropTypes.bool,
+  first: PropTypes.bool,
+  last: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   'aria-label': PropTypes.string
 };

@@ -31,7 +31,7 @@ describe('PaginationLink', () => {
     const wrapper = shallow(<PaginationLink previous />);
 
     expect(wrapper.prop('aria-label')).toBe('Previous');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00ab');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u2039');
     expect(wrapper.find('.sr-only').text()).toBe('Previous');
   });
 
@@ -39,7 +39,7 @@ describe('PaginationLink', () => {
     const wrapper = shallow(<PaginationLink next />);
 
     expect(wrapper.prop('aria-label')).toBe('Next');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u203A');
     expect(wrapper.find('.sr-only').text()).toBe('Next');
   });
 
@@ -47,7 +47,7 @@ describe('PaginationLink', () => {
     const wrapper = shallow(<PaginationLink previous children={[]} />);
 
     expect(wrapper.prop('aria-label')).toBe('Previous');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00ab');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u2039');
     expect(wrapper.find('.sr-only').text()).toBe('Previous');
   });
 
@@ -55,7 +55,7 @@ describe('PaginationLink', () => {
     const wrapper = shallow(<PaginationLink next children={[]} />);
 
     expect(wrapper.prop('aria-label')).toBe('Next');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u203A');
     expect(wrapper.find('.sr-only').text()).toBe('Next');
   });
 
@@ -77,4 +77,37 @@ describe('PaginationLink', () => {
 
     expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('Yo');
   });
+
+  it('should render first', () => {
+    const wrapper = shallow(<PaginationLink first />);
+
+    expect(wrapper.prop('aria-label')).toBe('First');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00ab');
+    expect(wrapper.find('.sr-only').text()).toBe('First');
+  });
+
+  it('should render last', () => {
+    const wrapper = shallow(<PaginationLink last />);
+
+    expect(wrapper.prop('aria-label')).toBe('Last');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
+    expect(wrapper.find('.sr-only').text()).toBe('Last');
+  });
+
+  it('should render default first caret with children as an empty array', () => {
+    const wrapper = shallow(<PaginationLink first children={[]} />);
+
+    expect(wrapper.prop('aria-label')).toBe('First');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00ab');
+    expect(wrapper.find('.sr-only').text()).toBe('First');
+  });
+
+  it('should render default last caret with children as an empty array', () => {
+    const wrapper = shallow(<PaginationLink last children={[]} />);
+
+    expect(wrapper.prop('aria-label')).toBe('Last');
+    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
+    expect(wrapper.find('.sr-only').text()).toBe('Last');
+  });
+
 });
