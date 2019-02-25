@@ -37,6 +37,17 @@
   margin-top: 2rem;
 }
 
+@media(min-width: 768px) {
+  html,body,#app,#app > .wrapper,#app >.wrapper > .container,  #app >.wrapper > .container > .row{
+    height:100%;
+  }
+  .docSearch-navigation, .docSearch-content {
+    overflow-y: scroll;
+    height:100%;
+  }
+}
+
+
 .header .navbar-nav .nav-link.active {
   color: #333;
 }
