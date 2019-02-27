@@ -12,6 +12,7 @@ const propTypes = {
   valid: PropTypes.bool,
   invalid: PropTypes.bool,
   bsSize: PropTypes.string,
+  htmlFor: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
   innerRef: PropTypes.oneOfType([
