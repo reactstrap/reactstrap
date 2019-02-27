@@ -25,6 +25,12 @@ describe('Custom Inputs', () => {
       expect(checkbox.find('label').prop('htmlFor')).toBe('yo');
     });
 
+    it('should pass id to both the input and label nodes, with an overriden for on the label node', () => {
+      const checkbox = mount(<CustomInput type="checkbox" htmlFor="custom-for" id="yo" />);
+      expect(checkbox.find('input').prop('id')).toBe('yo');
+      expect(checkbox.find('label').prop('htmlFor')).toBe('custom-for');
+    });
+
     it('should pass classNames to the outer div', () => {
       const checkbox = mount(<CustomInput type="checkbox" className="yo" />);
       expect(checkbox.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
@@ -85,6 +91,12 @@ describe('Custom Inputs', () => {
       expect(radio.find('label').prop('htmlFor')).toBe('yo');
     });
 
+    it('should pass id to both the input and label nodes, with an overriden for on the label node', () => {
+      const radio = mount(<CustomInput type="radio" htmlFor="custom-for" id="yo" />);
+      expect(radio.find('input').prop('id')).toBe('yo');
+      expect(radio.find('label').prop('htmlFor')).toBe('custom-for');
+    });
+
     it('should pass classNames to the outer div', () => {
       const radio = mount(<CustomInput type="radio" className="yo" />);
       expect(radio.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
@@ -123,6 +135,12 @@ describe('Custom Inputs', () => {
       const checkbox = mount(<CustomInput type="switch" id="yo" />);
       expect(checkbox.find('input').prop('id')).toBe('yo');
       expect(checkbox.find('label').prop('htmlFor')).toBe('yo');
+    });
+
+    it('should pass id to both the input and label nodes, with an overriden for on the label node', () => {
+      const checkbox = mount(<CustomInput type="switch" htmlFor="custom-for" id="yo" />);
+      expect(checkbox.find('input').prop('id')).toBe('yo');
+      expect(checkbox.find('label').prop('htmlFor')).toBe('custom-for');
     });
 
     it('should pass classNames to the outer div', () => {
@@ -217,6 +235,12 @@ describe('Custom Inputs', () => {
       const file = mount(<CustomInput type="file" id="yo" />);
       expect(file.find('input').prop('id')).toBe('yo');
       expect(file.find('label').prop('htmlFor')).toBe('yo');
+    });
+
+    it('should pass id to both the input and label nodes, with an overriden for on the label node', () => {
+      const file = mount(<CustomInput type="file" htmlFor="custom-for" id="yo" />);
+      expect(file.find('input').prop('id')).toBe('yo');
+      expect(file.find('label').prop('htmlFor')).toBe('custom-for');
     });
 
     it('should pass classNames to the outer div', () => {
