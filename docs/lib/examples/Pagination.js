@@ -5,6 +5,9 @@ export default class Example extends React.Component {
   render() {
     return (
       <Pagination aria-label="Page navigation example">
+      <PaginationItem>
+          <PaginationLink first href="#" />
+        </PaginationItem>
         <PaginationItem>
           <PaginationLink previous href="#" />
         </PaginationItem>
@@ -35,6 +38,9 @@ export default class Example extends React.Component {
         </PaginationItem>
         <PaginationItem>
           <PaginationLink next href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink last href="#" />
         </PaginationItem>
       </Pagination>
     );

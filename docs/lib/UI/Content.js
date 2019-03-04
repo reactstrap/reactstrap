@@ -13,7 +13,7 @@ function Content({ items, children, title }) {
   return (
     <Container className="content">
       <Row>
-        <Col tag="main" md={{ size: 3, order: 2 }}>
+        <Col className="docSearch-navigation" tag="main" md={{ size: 3, order: 2 }}>
           <div className="docs-sidebar mb-3">
             <h1 className="h5">{title}</h1>
             <Nav className="flex-column">
