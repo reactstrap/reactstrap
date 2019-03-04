@@ -2,7 +2,7 @@ import isFunction from 'lodash.isfunction';
 import PropTypes from 'prop-types';
 
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
-export function getScrollbarWidth() {
+export function getScrollbarWidth({ document } = {}) {
   let scrollDiv = document.createElement('div');
   // .modal-scrollbar-measure styles // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/scss/_modal.scss#L106-L113
   scrollDiv.style.position = 'absolute';
@@ -16,22 +16,24 @@ export function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
-export function setScrollbarWidth(padding) {
+export function setScrollbarWidth({ padding = 0, document } = {}) {
   document.body.style.paddingRight = padding > 0 ? `${padding}px` : null;
 }
 
-export function isBodyOverflowing() {
+export function isBodyOverflowing({ document } = {}) {
+  const window = document.defaultView;
   return document.body.clientWidth < window.innerWidth;
 }
 
-export function getOriginalBodyPadding() {
+export function getOriginalBodyPadding({ document } = {}) {
+  const window = document.defaultView;
   const style = window.getComputedStyle(document.body, null);
 
   return parseInt((style && style.getPropertyValue('padding-right')) || 0, 10);
 }
 
-export function conditionallyUpdateScrollbar() {
-  const scrollbarWidth = getScrollbarWidth();
+export function conditionallyUpdateScrollbar({ document } = {}) {
+  const scrollbarWidth = getScrollbarWidth({ document });
   // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/js/src/modal.js#L433
   const fixedContent = document.querySelectorAll(
     '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
@@ -40,8 +42,8 @@ export function conditionallyUpdateScrollbar() {
     ? parseInt(fixedContent.style.paddingRight || 0, 10)
     : 0;
 
-  if (isBodyOverflowing()) {
-    setScrollbarWidth(bodyPadding + scrollbarWidth);
+  if (isBodyOverflowing({ document })) {
+    setScrollbarWidth({ padding: bodyPadding + scrollbarWidth, document });
   }
 }
 
@@ -114,17 +116,35 @@ export function deprecated(propType, explanation) {
 }
 
 // Shim Element if needed (e.g. in Node environment)
-const Element = typeof window === 'object' && window.Element || function() {};
+const Element = typeof window === 'object' && window.Element || function () { }; // eslint-disable-line no-mixed-operators
 
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
       'Invalid prop `' +
-        propName +
-        '` supplied to `' +
-        componentName +
-        '`. Expected prop to be an instance of Element. Validation failed.'
+      propName +
+      '` supplied to `' +
+      componentName +
+      '`. Expected prop to be an instance of Element. Validation failed.'
     );
+  }
+}
+
+// Shim HTMLDocument if needed (e.g. in Node environment)
+const HTMLDocument = typeof window === 'object' && window.HTMLDocument || function () { }; // eslint-disable-line no-mixed-operators
+
+export function validateHTMLDocument(props, propName, componentName) {
+  // wrapping in `trycatch` block because some browsers (e.g. <=IE7) don't support `document.constructor.toString()`
+  // just `instanceof` won't work on cross-window document objects, checking if the constructor contains `HTMLDocument` string
+  // e.g. `document instanceof iframe.contentWindow.HTMLDocument` => false
+  try {
+    if (!(props[propName] instanceof HTMLDocument) && !props[propName].constructor.toString().includes('HTMLDocument')) {
+      throw new Error(
+        `Invalid prop \`${propName}\` of type \`${typeof props[propName]}\`
+      supplied to \`${componentName}\`, expected  prop to be an instance of \`HTMLDocument\`.`);
+    }
+  } catch (error) {
+    return error;
   }
 }
 
