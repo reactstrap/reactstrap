@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Target } from 'react-popper';
+import { Reference } from 'react-popper';
+import { DropdownContext } from './DropdownContext';
 import { mapToCssModules, tagPropType } from './utils';
 import Button from './Button';
 
@@ -22,12 +23,6 @@ const propTypes = {
 const defaultProps = {
   'aria-haspopup': true,
   color: 'secondary',
-};
-
-const contextTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
-  inNavbar: PropTypes.bool.isRequired,
 };
 
 class DropdownToggle extends React.Component {
@@ -93,20 +88,25 @@ class DropdownToggle extends React.Component {
     }
 
     return (
-      <Target
-        {...props}
-        className={classes}
-        component={Tag}
-        onClick={this.onClick}
-        aria-expanded={this.context.isOpen}
-        children={children}
-      />
+      <Reference>
+        {({ ref }) => (
+          <Tag
+            {...props}
+            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: ref }}
+            
+            className={classes}
+            onClick={this.onClick}
+            aria-expanded={this.context.isOpen}
+            children={children}
+          />
+        )}
+      </Reference>
     );
   }
 }
 
 DropdownToggle.propTypes = propTypes;
 DropdownToggle.defaultProps = defaultProps;
-DropdownToggle.contextTypes = contextTypes;
+DropdownToggle.contextType = DropdownContext;
 
 export default DropdownToggle;

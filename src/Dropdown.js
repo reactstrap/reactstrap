@@ -3,9 +3,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
+import { DropdownContext } from './DropdownContext';
 import { mapToCssModules, omit, keyCodes, deprecated, tagPropType } from './utils';
 
 const propTypes = {
@@ -37,12 +37,6 @@ const defaultProps = {
   setActiveFromChild: false
 };
 
-const childContextTypes = {
-  toggle: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
-  inNavbar: PropTypes.bool.isRequired,
-};
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -53,9 +47,11 @@ class Dropdown extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
+
+    this.containerRef = React.createRef();
   }
 
-  getChildContext() {
+  getContextValue() {
     return {
       toggle: this.props.toggle,
       isOpen: this.props.isOpen,
@@ -79,9 +75,7 @@ class Dropdown extends React.Component {
   }
 
   getContainer() {
-    if (this._$container) return this._$container;
-    this._$container = ReactDOM.findDOMNode(this);
-    return ReactDOM.findDOMNode(this);
+    return this.containerRef.current;
   }
 
   getMenuCtrl() {
@@ -206,12 +200,13 @@ class Dropdown extends React.Component {
       setActiveFromChild,
       active,
       addonType,
+      tag,
       ...attrs
     } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'direction']);
 
     const direction = (this.props.direction === 'down' && dropup) ? 'up' : this.props.direction;
 
-    attrs.tag = attrs.tag || (nav ? 'li' : 'div');
+    const Tag = tag || (nav ? 'li' : 'div');
 
     let subItemIsActive = false;
     if (setActiveFromChild) {
@@ -237,12 +232,22 @@ class Dropdown extends React.Component {
       }
     ), cssModule);
 
-    return <Manager {...attrs} className={classes} onKeyDown={this.handleKeyDown} />;
+    return (
+      <DropdownContext.Provider value={this.getContextValue()}>
+        <Manager>
+          <Tag
+            {...attrs} 
+            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef }}
+            onKeyDown={this.handleKeyDown}
+            className={classes}
+          />
+        </Manager>
+      </DropdownContext.Provider>
+    );
   }
 }
 
 Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
-Dropdown.childContextTypes = childContextTypes;
 
 export default Dropdown;

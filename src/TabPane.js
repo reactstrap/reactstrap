@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { TabContext } from './TabContext';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
@@ -14,11 +15,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const contextTypes = {
-  activeTabId: PropTypes.any
-};
-
-export default function TabPane(props, context) {
+export default function TabPane(props) {
   const {
     className,
     cssModule,
@@ -26,11 +23,13 @@ export default function TabPane(props, context) {
     tag: Tag,
     ...attributes
   } = props;
-  const classes = mapToCssModules(classNames('tab-pane', className, { active: tabId === context.activeTabId }), cssModule);
+  const getClasses = (activeTabId) => mapToCssModules(classNames('tab-pane', className, { active: tabId === activeTabId }), cssModule);
   return (
-    <Tag {...attributes} className={classes} />
+    <TabContext.Consumer>
+      {({activeTabId}) => <Tag {...attributes} className={getClasses(activeTabId)} />}
+    </TabContext.Consumer>
   );
 }
 TabPane.propTypes = propTypes;
 TabPane.defaultProps = defaultProps;
-TabPane.contextTypes = contextTypes;
+
