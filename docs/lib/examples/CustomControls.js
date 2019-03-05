@@ -11,6 +11,7 @@ export default class Example extends React.Component {
             <CustomInput type="checkbox" id="exampleCustomCheckbox" label="Check this custom checkbox" />
             <CustomInput type="checkbox" id="exampleCustomCheckbox2" label="Or this one" />
             <CustomInput type="checkbox" id="exampleCustomCheckbox3" label="But not this disabled one" disabled />
+            <CustomInput type="checkbox" id="exampleCustomCheckbox4" label="Can't click this label to check!" htmlFor="exampleCustomCheckbox4_X" disabled />
           </div>
         </FormGroup>
         <FormGroup>
@@ -19,6 +20,7 @@ export default class Example extends React.Component {
             <CustomInput type="radio" id="exampleCustomRadio" name="customRadio" label="Select this custom radio" />
             <CustomInput type="radio" id="exampleCustomRadio2" name="customRadio" label="Or this one" />
             <CustomInput type="radio" id="exampleCustomRadio3" label="But not this disabled one" disabled />
+            <CustomInput type="radio" id="exampleCustomRadio4" label="Can't click this label to select!" htmlFor="exampleCustomRadio4_X" disabled />
           </div>
         </FormGroup>
         <FormGroup>
@@ -27,6 +29,7 @@ export default class Example extends React.Component {
             <CustomInput type="switch" id="exampleCustomSwitch" name="customSwitch" label="Turn on this custom switch" />
             <CustomInput type="switch" id="exampleCustomSwitch2" name="customSwitch" label="Or this one" />
             <CustomInput type="switch" id="exampleCustomSwitch3" label="But not this disabled one" disabled />
+            <CustomInput type="switch" id="exampleCustomSwitch4" label="Can't click this label to turn on!" htmlFor="exampleCustomSwitch4_X" disabled />
           </div>
         </FormGroup>
         <FormGroup>
