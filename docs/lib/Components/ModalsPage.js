@@ -12,6 +12,7 @@ import ModalExternalExample from '../examples/ModalExternal';
 import ModalCustomCloseIconExample from '../examples/ModalCustomCloseIcon';
 import ModalCustomCloseButtonExample from '../examples/ModalCustomCloseButton';
 import ModalDestructuringExample from '../examples/ModalDestructuring';
+import ModalFocusAfterClose from '../examples/ModalFocusAfterClose';
 
 const ModalBackdropExampleSource = require('!!raw-loader!../examples/ModalBackdrop');
 const ModalCustomCloseButtonExampleSource = require('!!raw-loader!../examples/ModalCustomCloseButton');
@@ -22,6 +23,7 @@ const ModalExternalExampleSource = require('!!raw-loader!../examples/ModalExtern
 const ModalFadelessExampleSource = require('!!raw-loader!../examples/ModalFadeless');
 const ModalNestedExampleSource = require('!!raw-loader!../examples/ModalNested');
 const ModalDestructuringExampleSource = require('!!raw-loader!../examples/ModalDestructuring');
+const ModalFocusOnDestroyExampleSource = require('!!raw-loader!../examples/ModalFocusAfterClose');
 
 const ModalsPage = () => {
   return (
@@ -215,6 +217,20 @@ const ModalsPage = () => {
           {ModalDestructuringExampleSource}
         </PrismCode>
       </pre>
+
+       <h4>Focus after close</h4>
+       <div className="docs-example">
+         <div className="btn-group">
+           <div className="btn">
+             <ModalFocusAfterClose />
+           </div>
+         </div>
+       </div>
+       <pre>
+         <PrismCode className="language-jsx">
+           {ModalFocusOnDestroyExampleSource}
+         </PrismCode>
+       </pre>
     </div>
   );
 };
