@@ -229,6 +229,44 @@ describe('Tooltip', () => {
     wrapper.detach();
   });
 
+  it('should open after receiving single touchstart and single click', () => {
+    const wrapper = mount(
+      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} trigger="click">
+        Tooltip Content
+      </TooltipPopoverWrapper>,
+      { attachTo: container }
+    );
+    
+    expect(isOpen).toBe(false);
+    target.dispatchEvent(new Event('touchstart'));
+    jest.runTimersToTime(20);
+    target.dispatchEvent(new Event('click'));
+    jest.runTimersToTime(200);
+    expect(isOpen).toBe(true);
+
+    wrapper.detach();
+  });
+
+  it('should close after receiving single touchstart and single click', () => {
+    isOpen = true;
+
+    const wrapper = mount(
+      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} trigger="click">
+        Tooltip Content
+      </TooltipPopoverWrapper>,
+      { attachTo: container }
+    );
+    
+    expect(isOpen).toBe(true);
+    target.dispatchEvent(new Event('touchstart'));
+    jest.runTimersToTime(20);
+    target.dispatchEvent(new Event('click'));
+    jest.runTimersToTime(200);
+    expect(isOpen).toBe(false);
+
+    wrapper.detach();
+  });
+
   it('should pass down custom modifiers', () => {
     const wrapper = mount(
       <TooltipPopoverWrapper

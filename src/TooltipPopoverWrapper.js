@@ -222,9 +222,7 @@ class TooltipPopoverWrapper extends React.Component {
       let triggers = this.props.trigger.split(' ');
       if (triggers.indexOf('manual') === -1) {
         if (triggers.indexOf('click') > -1 || triggers.indexOf('legacy') > -1) {
-          ['click', 'touchstart'].forEach(event =>
-            document.addEventListener(event, this.handleDocumentClick, true)
-          );
+          document.addEventListener('click', this.handleDocumentClick, true);
         }
 
         if (this._target) {
@@ -267,9 +265,7 @@ class TooltipPopoverWrapper extends React.Component {
       this._target.removeEventListener('focusout', this.hide, true);
     }
 
-    ['click', 'touchstart'].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
-    );
+    document.removeEventListener('click', this.handleDocumentClick, true)
   }
 
   updateTarget() {
