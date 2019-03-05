@@ -29,7 +29,7 @@ class Example extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState(state => ({ collapse: !state.collapse }));
   }
 
   render() {
