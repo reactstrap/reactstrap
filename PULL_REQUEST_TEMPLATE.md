@@ -2,18 +2,17 @@
 What types of changes does your code introduce? Put an `x` in all the boxes that apply:
 -->
 - [ ] Bug fix <!-- (change which fixes an issue) -->
-- [x] New feature <!-- (change which adds functionality) -->
-- [x] Refactoring: Update on React Async Rendering
+- [ ] New feature <!-- (change which adds functionality) -->
 - [ ] Chore <!-- (change which doesn't affect the usage of the package (such as a documentation, build process, or project setup change)) -->
-- [x] Breaking change <!-- (fix or feature that would cause existing functionality to change) -->
+- [ ] Breaking change <!-- (fix or feature that would cause existing functionality to change) -->
 - [ ] There is an open issue which this change addresses
-- [x] I have read the **[CONTRIBUTING](./CONTRIBUTING.md)** document.
-- [x] My commits follow the [Git Commit Guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
-- [x] My code follows the code style of this project.
+- [ ] I have read the **[CONTRIBUTING](./CONTRIBUTING.md)** document.
+- [ ] My commits follow the [Git Commit Guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
+- [ ] My code follows the code style of this project.
 - [ ] My change requires a change to the documentation.
 - - [ ] I have updated the documentation accordingly.
-- [x] I have added tests to cover my changes.
-- [x] All new and existing tests passed.
+- [ ] I have added tests to cover my changes.
+- [ ] All new and existing tests passed.
 
 <!-- Put any other information you believe would be useful to know when reviewing this PR below -->
 
