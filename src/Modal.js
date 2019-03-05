@@ -54,7 +54,8 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
-  unmountOnClose: PropTypes.bool
+  unmountOnClose: PropTypes.bool,
+  returnFocusAfterClose: PropTypes.bool
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -77,7 +78,8 @@ const defaultProps = {
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
-  unmountOnClose: true
+  unmountOnClose: true,
+  returnFocusAfterClose: true
 };
 
 class Modal extends React.Component {
@@ -93,6 +95,7 @@ class Modal extends React.Component {
     this.handleTab = this.handleTab.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
+    this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
 
     this.state = {
       isOpen: props.isOpen,
@@ -281,8 +284,13 @@ class Modal extends React.Component {
       this._element = null;
     }
 
+    this.manageFocusAfterClose();
+  }
+
+  manageFocusAfterClose() {
     if (this._triggeringElement) {
-      if (this._triggeringElement.focus) this._triggeringElement.focus();
+      const { returnFocusAfterClose } = this.props;
+      if (this._triggeringElement.focus && returnFocusAfterClose) this._triggeringElement.focus();
       this._triggeringElement = null;
     }
   }
@@ -294,7 +302,7 @@ class Modal extends React.Component {
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
     }
-
+    this.manageFocusAfterClose();
     Modal.openCount = Math.max(0, Modal.openCount - 1);
 
     setScrollbarWidth(this._originalBodyPadding);
