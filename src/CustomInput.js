@@ -12,6 +12,7 @@ const propTypes = {
   valid: PropTypes.bool,
   invalid: PropTypes.bool,
   bsSize: PropTypes.string,
+  htmlFor: PropTypes.string,
   cssModule: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
   innerRef: PropTypes.oneOfType([
@@ -32,6 +33,7 @@ function CustomInput(props) {
     children,
     bsSize,
     innerRef,
+    htmlFor,
     ...attributes
   } = props;
 
@@ -48,6 +50,8 @@ function CustomInput(props) {
     valid && 'is-valid',
   ), cssModule);
 
+  const labelHtmlFor = htmlFor || attributes.id;
+
   if (type === 'select') {
     return <select {...attributes} ref={innerRef} className={classNames(validationClassNames, customClass)}>{children}</select>;
   }
@@ -56,7 +60,7 @@ function CustomInput(props) {
     return (
       <div className={customClass}>
         <input {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} />
-        <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={attributes.id}>{label || 'Choose file'}</label>
+        <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor}>{label || 'Choose file'}</label>
       </div>
     );
   }
@@ -81,7 +85,7 @@ function CustomInput(props) {
         ref={innerRef}
         className={classNames(validationClassNames, mapToCssModules('custom-control-input', cssModule))}
       />
-      <label className={mapToCssModules('custom-control-label', cssModule)} htmlFor={attributes.id}>{label}</label>
+      <label className={mapToCssModules('custom-control-label', cssModule)} htmlFor={labelHtmlFor}>{label}</label>
       {children}
     </div>
   );
