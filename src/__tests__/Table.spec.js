@@ -60,4 +60,16 @@ describe('Table', () => {
     expect(wrapper.hasClass('table-responsive-md')).toBe(true);
     expect(wrapper.find('.table').length).toBe(1);
   });
+
+  it('should render responsive wrapper cssModule', () => {
+    const cssModule = {
+        table: 'scopedTable',
+        'table-responsive': 'scopedResponsive',
+    };
+    const wrapper = shallow(<Table responsive cssModule={cssModule}>Yo!</Table>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('scopedResponsive')).toBe(true);
+    expect(wrapper.find('.scopedTable').length).toBe(1);
+  });
 });
