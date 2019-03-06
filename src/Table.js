@@ -56,7 +56,7 @@ const Table = (props) => {
   const table = <Tag {...attributes} ref={innerRef} className={classes} />;
 
   if (responsive) {
-    const responsiveClassName = responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
+    const responsiveClassName = mapToCssModules(responsive === true ? 'table-responsive' : `table-responsive-${responsive}`, cssModule);
 
     return (
       <ResponsiveTag className={responsiveClassName}>{table}</ResponsiveTag>
