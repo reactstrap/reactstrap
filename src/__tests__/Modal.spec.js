@@ -106,6 +106,19 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render with the class "modal-dialog-scrollable" when scrollable is "true"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} scrollable={true}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(document.getElementsByClassName('modal-dialog-scrollable').length).toBe(1);
+    wrapper.unmount();
+  });
+
   it('should render with class "modal-dialog" and have custom class name if provided', () => {
     isOpen = true;
     const wrapper = mount(
