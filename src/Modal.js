@@ -21,6 +21,7 @@ const propTypes = {
   isOpen: PropTypes.bool,
   autoFocus: PropTypes.bool,
   centered: PropTypes.bool,
+  scrollable: PropTypes.bool,
   size: PropTypes.string,
   toggle: PropTypes.func,
   keyboard: PropTypes.bool,
@@ -54,7 +55,8 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
-  unmountOnClose: PropTypes.bool
+  unmountOnClose: PropTypes.bool,
+  returnFocusAfterClose: PropTypes.bool
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -63,6 +65,7 @@ const defaultProps = {
   isOpen: false,
   autoFocus: true,
   centered: false,
+  scrollable: false,
   role: 'dialog',
   backdrop: true,
   keyboard: true,
@@ -77,7 +80,8 @@ const defaultProps = {
     mountOnEnter: true,
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
-  unmountOnClose: true
+  unmountOnClose: true,
+  returnFocusAfterClose: true
 };
 
 class Modal extends React.Component {
@@ -93,6 +97,7 @@ class Modal extends React.Component {
     this.handleTab = this.handleTab.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
+    this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
 
     this.state = {
       isOpen: props.isOpen,
@@ -281,8 +286,13 @@ class Modal extends React.Component {
       this._element = null;
     }
 
+    this.manageFocusAfterClose();
+  }
+
+  manageFocusAfterClose() {
     if (this._triggeringElement) {
-      if (this._triggeringElement.focus) this._triggeringElement.focus();
+      const { returnFocusAfterClose } = this.props;
+      if (this._triggeringElement.focus && returnFocusAfterClose) this._triggeringElement.focus();
       this._triggeringElement = null;
     }
   }
@@ -294,7 +304,7 @@ class Modal extends React.Component {
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
     }
-
+    this.manageFocusAfterClose();
     Modal.openCount = Math.max(0, Modal.openCount - 1);
 
     setScrollbarWidth(this._originalBodyPadding);
@@ -310,6 +320,7 @@ class Modal extends React.Component {
         className={mapToCssModules(classNames(dialogBaseClass, this.props.className, {
           [`modal-${this.props.size}`]: this.props.size,
           [`${dialogBaseClass}-centered`]: this.props.centered,
+          [`${dialogBaseClass}-scrollable`]: this.props.scrollable,
         }), this.props.cssModule)}
         role="document"
         ref={(c) => {
