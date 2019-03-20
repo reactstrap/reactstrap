@@ -69,6 +69,8 @@ const ModalsPage = () => {
     PropTypes.bool,
     PropTypes.oneOf(['static'])
   ]),
+  // if body of modal should be scrollable when content is long
+  scrollable: PropTypes.bool,
   // allows for a node/component to exist next to the modal (outside of it). Useful for external close buttons
   // external: PropTypes.node,
   // called on componentDidMount
