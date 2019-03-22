@@ -236,7 +236,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container }
     );
-    
+
     expect(isOpen).toBe(false);
     target.dispatchEvent(new Event('touchstart'));
     jest.runTimersToTime(20);
@@ -256,7 +256,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container }
     );
-    
+
     expect(isOpen).toBe(true);
     target.dispatchEvent(new Event('touchstart'));
     jest.runTimersToTime(20);
@@ -312,6 +312,17 @@ describe('Tooltip', () => {
     );
 
     expect(wrapper.find(PopperContent).props().offset).toEqual('100');
+    wrapper.unmount();
+  });
+
+  it('should pass down flip', () => {
+    const wrapper = mount(
+      <TooltipPopoverWrapper isOpen target="target" flip={false}>
+        Tooltip Content
+      </TooltipPopoverWrapper>
+    );
+
+    expect(wrapper.find(PopperContent).props().flip).toBe(false);
     wrapper.unmount();
   });
 
