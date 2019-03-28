@@ -5,7 +5,7 @@ import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   tag: tagPropType,
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   wrapTag: tagPropType,
   toggle: PropTypes.func,
   className: PropTypes.string,
@@ -26,6 +26,7 @@ const defaultProps = {
 
 const ToastHeader = (props) => {
   let closeButton;
+  let icon;
   const {
     className,
     cssModule,
@@ -37,7 +38,7 @@ const ToastHeader = (props) => {
     charCode,
     close,
     tagClassName,
-    icon,
+    icon: iconProp,
     ...attributes } = props;
 
   const classes = mapToCssModules(classNames(
@@ -54,21 +55,28 @@ const ToastHeader = (props) => {
     );
   }
 
+  if (typeof iconProp === "string") {
+    icon = (
+      <svg
+        className={mapToCssModules(`rounded text-${iconProp}`)}
+        width="20"
+        height="20"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+        focusable="false"
+        role="img"
+      >
+        <rect fill="currentColor" width="100%" height="100%"></rect>
+      </svg>
+    );
+  } else if (iconProp) {
+    icon = iconProp;
+  }
+
   return (
     <WrapTag {...attributes} className={classes}>
-      {icon && (
-        <svg
-          className={mapToCssModules(
-            `rounded mr-2 text-${icon === true ? 'primary' : icon}`
-          )}
-          width="20"
-          height="20"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-          role="img"><rect fill="currentColor" width="100%" height="100%"></rect></svg>
-      )}
-      <Tag className={mapToCssModules(tagClassName, cssModule)}>
+      {icon}
+      <Tag className={mapToCssModules(classNames(tagClassName, { "ml-2": icon != null }), cssModule)}>
         {children}
       </Tag>
       {close || closeButton}

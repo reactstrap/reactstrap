@@ -1,11 +1,11 @@
 import React from 'react';
-import { Toast, ToastBody, ToastHeader } from 'reactstrap';
+import { Toast, ToastBody, ToastHeader, Spinner } from 'reactstrap';
 
 const Example = (props) => {
   return (
     <div>
       <Toast>
-        <ToastHeader icon>
+        <ToastHeader icon="primary">
           Reactstrap
         </ToastHeader>
         <ToastBody>
@@ -17,7 +17,7 @@ const Example = (props) => {
           Reactstrap
         </ToastHeader>
         <ToastBody>
-        This is a toast with a secondary icon — check it out!
+          This is a toast with a secondary icon — check it out!
         </ToastBody>
       </Toast>
       <Toast>
@@ -25,7 +25,7 @@ const Example = (props) => {
           Reactstrap
         </ToastHeader>
         <ToastBody>
-        This is a toast with a success icon — check it out!
+          This is a toast with a success icon — check it out!
         </ToastBody>
       </Toast>
       <Toast>
@@ -66,6 +66,14 @@ const Example = (props) => {
         </ToastHeader>
         <ToastBody>
           This is a toast with a dark icon — check it out!
+        </ToastBody>
+      </Toast>
+      <Toast>
+        <ToastHeader icon={<Spinner size="sm" />}>
+          Reactstrap
+        </ToastHeader>
+        <ToastBody>
+          This is a toast with a custom icon — check it out!
         </ToastBody>
       </Toast>
     </div>

@@ -7,9 +7,6 @@ import SectionTitle from '../UI/SectionTitle';
 import ToastExample from '../examples/Toast';
 const ToastExampleSource = require('!!raw-loader!../examples/Toast');
 
-import ToastBodyExample from '../examples/ToastBody';
-const ToastBodyExampleSource = require('!!raw-loader!../examples/ToastBody');
-
 import ToastHeaderIconExample from '../examples/ToastHeaderIcon';
 const ToastHeaderIconExampleSource = require('!!raw-loader!../examples/ToastHeaderIcon');
 
@@ -19,7 +16,7 @@ const ToastDismissExampleSource = require('!!raw-loader!../examples/ToastDismiss
 import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
 const AlertUncontrolledDismissExampleSource = require('!!raw-loader!../examples/AlertUncontrolledDismiss');
 
-import {AlertFadelessExample, UncontrolledAlertFadelessExample} from '../examples/AlertFadeless';
+import { AlertFadelessExample, UncontrolledAlertFadelessExample } from '../examples/AlertFadeless';
 const AlertFadelessExampleSource = require('!!raw-loader!../examples/AlertFadeless');
 
 export default class ToastsPage extends React.Component {
@@ -41,25 +38,13 @@ export default class ToastsPage extends React.Component {
           <PrismCode className="language-jsx">
 {`Toast.propTypes = {
   className: PropTypes.string,
-  closeClassName: PropTypes.string,
   color: PropTypes.string, // default: 'success'
   isOpen: PropTypes.bool,  // default: true
-  toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   // Controls the transition of the toast fading in and out
   // See [Fade](/components/fade/) for more details
   transition: PropTypes.shape(Fade.propTypes),
 }`}
-          </PrismCode>
-        </pre>
-
-        <SectionTitle>Toast body</SectionTitle>
-        <div className="docs-example">
-          <ToastBodyExample />
-        </div>
-        <pre>
-          <PrismCode className="language-jsx">
-            {ToastBodyExampleSource}
           </PrismCode>
         </pre>
 

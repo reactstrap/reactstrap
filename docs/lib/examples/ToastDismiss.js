@@ -22,7 +22,7 @@ class ToastDismissExample extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <br />
         <br />
         <Toast isOpen={this.state.show}>
