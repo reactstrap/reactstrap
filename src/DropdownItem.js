@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { DropdownContext } from './DropdownContext';
 import { mapToCssModules, omit, tagPropType } from './utils';
 
 const propTypes = {
@@ -14,10 +15,6 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.bool
-};
-
-const contextTypes = {
-  toggle: PropTypes.func
 };
 
 const defaultProps = {
@@ -104,6 +101,6 @@ class DropdownItem extends React.Component {
 
 DropdownItem.propTypes = propTypes;
 DropdownItem.defaultProps = defaultProps;
-DropdownItem.contextTypes = contextTypes;
+DropdownItem.contextType = DropdownContext;
 
 export default DropdownItem;

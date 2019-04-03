@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { Popper, Target } from 'react-popper';
+import { Popper, Reference } from 'react-popper';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../';
 import { keyCodes } from '../utils';
 
@@ -990,8 +990,8 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      expect(wrapper.find('.dropdown-toggle').first().type()).toEqual(Target);
-      expect(wrapper.find('.dropdown-menu').first().type()).toEqual(Popper);
+      expect(wrapper.find('.dropdown-toggle').parent().type()).toEqual(Reference);
+      expect(wrapper.find('.dropdown-menu').parent().type()).toEqual(Popper);
     });
   });
 
@@ -999,7 +999,7 @@ describe('Dropdown', () => {
     it('should render an active class', () => {
       const wrapper = shallow(<Dropdown active nav />);
 
-      expect(wrapper.hasClass('active')).toBe(true);
+      expect(wrapper.childAt(0).childAt(0).hasClass('active')).toBe(true);
     });
 
     it('should render an active class when a child DropdownItem is active IF setActiveFromChild is true', () => {
@@ -1016,7 +1016,7 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      expect(wrapper.hasClass('active')).toBe(true);
+      expect(wrapper.childAt(0).childAt(0).hasClass('active')).toBe(true);
     });
   });
 
@@ -1026,9 +1026,9 @@ describe('Dropdown', () => {
     const dropleft = shallow(<Dropdown direction="left" />);
     const dropright = shallow(<Dropdown direction="right" />);
 
-    expect(dropup.hasClass('dropup')).toBe(true);
-    expect(dropupProp.hasClass('dropup')).toBe(true);
-    expect(dropleft.hasClass('dropleft')).toBe(true);
-    expect(dropright.hasClass('dropright')).toBe(true);
+    expect(dropup.childAt(0).childAt(0).hasClass('dropup')).toBe(true);
+    expect(dropupProp.childAt(0).childAt(0).hasClass('dropup')).toBe(true);
+    expect(dropleft.childAt(0).childAt(0).hasClass('dropleft')).toBe(true);
+    expect(dropright.childAt(0).childAt(0).hasClass('dropright')).toBe(true);
   });
 });
