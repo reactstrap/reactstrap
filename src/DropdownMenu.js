@@ -55,11 +55,13 @@ const DropdownMenu = (props, context) => {
     const position2 = right ? 'end' : 'start';
     attrs.placement = `${position1}-${position2}`;
     attrs.component = tag;
+    attrs.children = [...attrs.children];
     attrs.modifiers = !flip ? {
       ...modifiers,
       ...noFlipModifier,
     } : modifiers;
   }
+
 
   return (
     <Tag
