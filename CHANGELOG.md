@@ -1,3 +1,55 @@
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/reactstrap/reactstrap/compare/7.1.0...8.0.0) (2019-04-03)
+
+
+### Bug Fixes
+
+* **Carousel:** remove inappropriate role=listbox ([#1385](https://github.com/reactstrap/reactstrap/issues/1385)) ([32eb8ed](https://github.com/reactstrap/reactstrap/commit/32eb8ed))
+* **Modal:** fix exception in focus management ([#1382](https://github.com/reactstrap/reactstrap/issues/1382)) ([5cc9af5](https://github.com/reactstrap/reactstrap/commit/5cc9af5))
+* **Modal:** set Modal.openCount floor to 0 ([#1368](https://github.com/reactstrap/reactstrap/issues/1368)) ([71f9574](https://github.com/reactstrap/reactstrap/commit/71f9574))
+* **Popover:** touch not opening popover on mobile ([#1425](https://github.com/reactstrap/reactstrap/issues/1425)) ([#1426](https://github.com/reactstrap/reactstrap/issues/1426)) ([ad2a9a0](https://github.com/reactstrap/reactstrap/commit/ad2a9a0))
+* **Table:** add CSS Module support for responsive Table ([#1429](https://github.com/reactstrap/reactstrap/issues/1429)) ([#1430](https://github.com/reactstrap/reactstrap/issues/1430)) ([1e2dc5b](https://github.com/reactstrap/reactstrap/commit/1e2dc5b))
+* **utils:** Shim Element in non-DOM environments ([#1387](https://github.com/reactstrap/reactstrap/issues/1387)) ([eb4ee93](https://github.com/reactstrap/reactstrap/commit/eb4ee93))
+
+
+### Code Refactoring
+
+* **Modal, Dropdown{*}, PopperContent, Tabs:** go to React Async Rendering ([#1427](https://github.com/reactstrap/reactstrap/issues/1427)) ([1afb2c2](https://github.com/reactstrap/reactstrap/commit/1afb2c2))
+
+
+### Features
+
+* **CustomerInput:** added htmlFor prop ([#1417](https://github.com/reactstrap/reactstrap/issues/1417)) ([a590880](https://github.com/reactstrap/reactstrap/commit/a590880))
+* **modal:** add optional return focus after close ([#1424](https://github.com/reactstrap/reactstrap/issues/1424)) ([33cfce6](https://github.com/reactstrap/reactstrap/commit/33cfce6))
+* **Modal:** add scrollable prop ([#1435](https://github.com/reactstrap/reactstrap/issues/1435)) ([9f7dd45](https://github.com/reactstrap/reactstrap/commit/9f7dd45))
+* **pagination-links:** added props for first and last. changed carets… ([#1410](https://github.com/reactstrap/reactstrap/issues/1410)) ([70cfca2](https://github.com/reactstrap/reactstrap/commit/70cfca2))
+* **Popover:** add default toggleable fade support ([#1364](https://github.com/reactstrap/reactstrap/issues/1364)) ([#1364](https://github.com/reactstrap/reactstrap/issues/1364)) ([ee15c86](https://github.com/reactstrap/reactstrap/commit/ee15c86)), closes [#363](https://github.com/reactstrap/reactstrap/issues/363)
+* **Popover/Tooltip:** ability to pass through flip prop ([#1443](https://github.com/reactstrap/reactstrap/issues/1443)) ([4a5a8a3](https://github.com/reactstrap/reactstrap/commit/4a5a8a3))
+* **Toast:** add support for Toasts ([#1447](https://github.com/reactstrap/reactstrap/issues/1447)) ([7ea7610](https://github.com/reactstrap/reactstrap/commit/7ea7610)), closes [#1384](https://github.com/reactstrap/reactstrap/issues/1384) [#1346](https://github.com/reactstrap/reactstrap/issues/1346)
+
+
+### BREAKING CHANGES
+
+* **Modal, Dropdown{*}, PopperContent, Tabs:** using new Context API, react-popper v. '1.3.3'
+* **pagination-links:** Now the `next` and `previous` props are displaying single carets instead of double caret. To get the old style, use `first` and `last` props instead of `previous` and `next` respectfully and set `aria-label` to `Next` or `Previous`. 
+* **Popover:** Popover and Tooltip will now fade in and out (like bootstrap's default). To get the previous behavior use fade={false}
+
+
+###Removed Deprecations
+
+* **`Card`'s `block` prop**: use `Card`s `body` prop.
+* **`Input`'s `static` prop**: use `Input`s `plaintext` prop.
+* **`Dropdown`'s `dropup` prop**: use `Dropdown`s `direction` prop with the value of `"up"`.
+* **`Navbar`'s `toggleable` prop**: use `Navbar`s `expand` prop (see docs)`.
+* **inverse prop**: use `dark` prop.
+* **CardBlock**: use `CardBody`.
+* **InputGroupButton**: use `InputGroupAddon`.
+* **NavDropdown**: use `Dropdown` with `nav` prop.
+* **PopoverContent**: use `PopoverBody`.
+* **PopoverTitle**: use `PopoverHeader`.
+* **UncontrolledNavDropdown**: use `UncontrolledDropdown` with `nav` prop.
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/reactstrap/reactstrap/compare/7.0.2...7.1.0) (2019-01-15)
 
