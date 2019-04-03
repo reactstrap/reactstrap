@@ -87,6 +87,10 @@ const items = [
     to: '/components/spinners/'
   },
   {
+    name: 'Toasts',
+    to: '/components/toasts/'
+  },
+  {
     name: 'Pagination',
     to: '/components/pagination/'
   },
