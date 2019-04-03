@@ -39,6 +39,7 @@ export const propTypes = {
   ]),
   trigger: PropTypes.string,
   fade: PropTypes.bool,
+  flip: PropTypes.bool,
 };
 
 const DEFAULT_DELAYS = {
@@ -312,6 +313,7 @@ class TooltipPopoverWrapper extends React.Component {
       modifiers,
       offset,
       fade,
+      flip,
     } = this.props;
 
     const attributes = omit(this.props, Object.keys(propTypes));
@@ -337,6 +339,7 @@ class TooltipPopoverWrapper extends React.Component {
         cssModule={cssModule}
         onClosed={this.onClosed}
         fade={fade}
+        flip={flip}
       >
         <div
           {...attributes}
