@@ -34,6 +34,7 @@ const paths = [
   '/components/tabs/',
   '/components/jumbotron/',
   '/components/alerts/',
+  '/components/toasts/',
   '/components/collapse/',
   '/components/carousel/',
   '/components/listgroup/',

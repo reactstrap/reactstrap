@@ -88,7 +88,16 @@ export default class TooltipsPage extends React.Component {
     PropTypes.func,
     PropTypes.string,
     PropTypes.object
-  ])
+  ]),
+
+  // Whether to show/hide the popover with a fade effect
+  // (default: true)
+  fade: PropTypes.bool,
+
+  // Whether to flip the direction of the popover if too close to
+  // the container edge
+  // (default: true)
+  flip: PropTypes.bool,
 }`}
           </PrismCode>
         </pre>

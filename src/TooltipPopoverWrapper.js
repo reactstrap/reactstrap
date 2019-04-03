@@ -39,6 +39,7 @@ export const propTypes = {
   ]),
   trigger: PropTypes.string,
   fade: PropTypes.bool,
+  flip: PropTypes.bool,
 };
 
 const DEFAULT_DELAYS = {
@@ -222,9 +223,7 @@ class TooltipPopoverWrapper extends React.Component {
       let triggers = this.props.trigger.split(' ');
       if (triggers.indexOf('manual') === -1) {
         if (triggers.indexOf('click') > -1 || triggers.indexOf('legacy') > -1) {
-          ['click', 'touchstart'].forEach(event =>
-            document.addEventListener(event, this.handleDocumentClick, true)
-          );
+          document.addEventListener('click', this.handleDocumentClick, true);
         }
 
         if (this._target) {
@@ -267,9 +266,7 @@ class TooltipPopoverWrapper extends React.Component {
       this._target.removeEventListener('focusout', this.hide, true);
     }
 
-    ['click', 'touchstart'].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
-    );
+    document.removeEventListener('click', this.handleDocumentClick, true)
   }
 
   updateTarget() {
@@ -316,6 +313,7 @@ class TooltipPopoverWrapper extends React.Component {
       modifiers,
       offset,
       fade,
+      flip,
     } = this.props;
 
     const attributes = omit(this.props, Object.keys(propTypes));
@@ -341,6 +339,7 @@ class TooltipPopoverWrapper extends React.Component {
         cssModule={cssModule}
         onClosed={this.onClosed}
         fade={fade}
+        flip={flip}
       >
         <div
           {...attributes}

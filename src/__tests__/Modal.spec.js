@@ -106,6 +106,19 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should render with the class "modal-dialog-scrollable" when scrollable is "true"', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <Modal isOpen={isOpen} toggle={toggle} scrollable={true}>
+        Yo!
+      </Modal>
+    );
+
+    jest.runTimersToTime(300);
+    expect(document.getElementsByClassName('modal-dialog-scrollable').length).toBe(1);
+    wrapper.unmount();
+  });
+
   it('should render with class "modal-dialog" and have custom class name if provided', () => {
     isOpen = true;
     const wrapper = mount(
@@ -878,5 +891,96 @@ describe('Modal', () => {
     expect(mock).toHaveBeenCalled();
 
     wrapper.unmount();
+  });
+
+  it('should return the focus to the last focused element before the modal has opened', () => {
+    const MockComponent = ({ isOpen = false }) => (
+        <>
+          <button className={'focus'}>Focused</button>
+          <Modal isOpen={isOpen}>
+            <ModalBody>Whatever</ModalBody>
+          </Modal>
+        </>
+    );
+    const wrapper = mount(<MockComponent />);
+    const button = wrapper
+        .find('.focus')
+        .hostNodes()
+        .getDOMNode();
+    button.focus();
+    wrapper.setProps({ isOpen: true });
+    wrapper.setProps({ isOpen: false });
+    jest.runAllTimers();
+
+    expect(document.activeElement === button).toEqual(true);
+    wrapper.unmount();
+  })
+
+  it('should not return the focus to the last focused element before the modal has opened when "returnFocusAfterClose" is false', () => {
+    const MockComponent = ({ isOpen = false }) => (
+        <>
+          <button className={'focus'}>Focused</button>
+          <Modal isOpen={isOpen} returnFocusAfterClose={false} >
+            <ModalBody>Whatever</ModalBody>
+          </Modal>
+        </>
+    );
+    const wrapper = mount(<MockComponent />);
+    const button = wrapper
+        .find('.focus')
+        .hostNodes()
+        .getDOMNode();
+    button.focus();
+    wrapper.setProps({ isOpen: true });
+    wrapper.setProps({ isOpen: false });
+    jest.runAllTimers();
+
+    expect(document.activeElement === button).toEqual(false);
+    wrapper.unmount();
+  })
+
+  it('should return the focus to the last focused element before the modal has opened when "unmountOnClose" is false', () => {
+    const MockComponent = ({ isOpen = false }) => (
+        <>
+          <button className={'focus'}>Focused</button>
+          <Modal isOpen={isOpen} unmountOnClose={false}>
+            <ModalBody>Whatever</ModalBody>
+          </Modal>
+        </>
+    );
+    const wrapper = mount(<MockComponent />);
+    const button = wrapper
+        .find('.focus')
+        .hostNodes()
+        .getDOMNode();
+    button.focus();
+    wrapper.setProps({ isOpen: true });
+    wrapper.setProps({ isOpen: false });
+    jest.runAllTimers();
+
+    expect(document.activeElement === button).toEqual(true);
+    wrapper.unmount();
+  })
+
+  it('should not return the focus to the last focused element before the modal has opened when "returnFocusAfterClose" is false and "unmountOnClose" is false', () => {
+    const MockComponent = ({ isOpen = false }) => (
+        <>
+          <button className={'focus'}/>
+          <Modal isOpen={isOpen} returnFocusAfterClose={false} unmountOnClose={false}>
+            <ModalBody>Whatever</ModalBody>
+          </Modal>
+        </>
+    );
+    const wrapper = mount(<MockComponent />);
+    const button = wrapper
+        .find('.focus')
+        .hostNodes()
+        .getDOMNode();
+    button.focus();
+    wrapper.setProps({ isOpen: true });
+    wrapper.setProps({ isOpen: false });
+    jest.runAllTimers();
+
+    expect(document.activeElement === button).toEqual(false);
   });
 });
