@@ -35,7 +35,7 @@
 * **Popover:** Popover and Tooltip will now fade in and out (like bootstrap's default). To get the previous behavior use fade={false}
 
 
-###Removed Deprecations
+### Removed Deprecations
 
 * **`Card`'s `block` prop**: use `Card`s `body` prop.
 * **`Input`'s `static` prop**: use `Input`s `plaintext` prop.
