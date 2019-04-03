@@ -1022,12 +1022,10 @@ describe('Dropdown', () => {
 
   it('should render with correct class when direction is set', () => {
     const dropup = shallow(<Dropdown direction="up" />);
-    const dropupProp = shallow(<Dropdown dropup />);
     const dropleft = shallow(<Dropdown direction="left" />);
     const dropright = shallow(<Dropdown direction="right" />);
 
     expect(dropup.childAt(0).childAt(0).hasClass('dropup')).toBe(true);
-    expect(dropupProp.childAt(0).childAt(0).hasClass('dropup')).toBe(true);
     expect(dropleft.childAt(0).childAt(0).hasClass('dropleft')).toBe(true);
     expect(dropright.childAt(0).childAt(0).hasClass('dropright')).toBe(true);
   });

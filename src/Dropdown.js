@@ -6,11 +6,10 @@ import PropTypes from 'prop-types';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, omit, keyCodes, deprecated, tagPropType } from './utils';
+import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
 
 const propTypes = {
   disabled: PropTypes.bool,
-  dropup: deprecated(PropTypes.bool, 'Please use the prop "direction" with the value "up".'),
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
@@ -192,7 +191,7 @@ class Dropdown extends React.Component {
     const {
       className,
       cssModule,
-      dropup,
+      direction,
       isOpen,
       group,
       size,
@@ -202,9 +201,7 @@ class Dropdown extends React.Component {
       addonType,
       tag,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'direction']);
-
-    const direction = (this.props.direction === 'down' && dropup) ? 'up' : this.props.direction;
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar']);
 
     const Tag = tag || (nav ? 'li' : 'div');
 

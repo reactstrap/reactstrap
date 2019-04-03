@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, deprecated, tagPropType } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   tag: tagPropType,
   inverse: PropTypes.bool,
   color: PropTypes.string,
-  block: deprecated(PropTypes.bool, 'Please use the props "body"'),
   body: PropTypes.bool,
   outline: PropTypes.bool,
   className: PropTypes.string,
@@ -28,7 +27,6 @@ const Card = (props) => {
     className,
     cssModule,
     color,
-    block,
     body,
     inverse,
     outline,
@@ -40,7 +38,7 @@ const Card = (props) => {
     className,
     'card',
     inverse ? 'text-white' : false,
-    block || body ? 'card-body' : false,
+    body ? 'card-body' : false,
     color ? `${outline ? 'border' : 'bg'}-${color}` : false
   ), cssModule);
 

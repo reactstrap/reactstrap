@@ -21,24 +21,6 @@ describe('Navbar', () => {
     expect(wrapper.html()).toBe('<nav class="navbar navbar-expand-md"></nav>');
   });
 
-  it('should render default .navbar-expand class for toggleable false [DEPRECATED]', () => {
-    const wrapper = shallow(<Navbar toggleable={false} />);
-
-    expect(wrapper.html()).toBe('<nav class="navbar navbar-expand"></nav>');
-  });
-
-  it('should render default .navbar-expand class for toggleable true [DEPRECATED]', () => {
-    const wrapper = shallow(<Navbar toggleable />);
-
-    expect(wrapper.html()).toBe('<nav class="navbar navbar-expand-sm"></nav>');
-  });
-
-  it('should render size based .navbar-expand-* classes for toggleable (bumping breakpoint) [DEPRECATED]', () => {
-    const wrapper = shallow(<Navbar toggleable="md" />);
-
-    expect(wrapper.html()).toBe('<nav class="navbar navbar-expand-lg"></nav>');
-  });
-
   it('should render custom tag', () => {
     const wrapper = shallow(<Navbar tag="div" />);
 
