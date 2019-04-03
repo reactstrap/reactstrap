@@ -37,7 +37,7 @@ const Example = (props) => {
       <br />
       <InputGroup>
         <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-        <Input placeholder="Amount" type="number" step="1" />
+        <Input placeholder="Amount" min={0} max={100} type="number" step="1" />
         <InputGroupAddon addonType="append">.00</InputGroupAddon>
       </InputGroup>
     </div>
