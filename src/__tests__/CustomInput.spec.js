@@ -212,8 +212,8 @@ describe('Custom Inputs', () => {
 
   describe('CustomFile', () => {
     it('should render children in the outer div', () => {
-      const file = shallow(<CustomInput type="file" />);
-      expect(file.type()).toBe('div');
+      const file = mount(<CustomInput type="file" />);
+      expect(file.find('.custom-file').first().type()).toBe('div');
     });
 
     it('should add class is-invalid when invalid is true', () => {
