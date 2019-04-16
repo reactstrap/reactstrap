@@ -274,6 +274,18 @@ describe('Custom Inputs', () => {
         expect(onChange).toHaveBeenCalled();
       });
     });
+
+    it('removes fakepath from file name', () => {
+      const file = mount(<CustomInput type="file" />);
+
+      file.find('input').hostNodes().simulate('change', {
+        target:{
+          value:'C:\\fakepath\\test.txt'
+        }
+      });
+
+      expect(file.find('.custom-file-label').text()).toBe('test.txt');
+    });
   });
 
   describe('CustomRange', () => {
