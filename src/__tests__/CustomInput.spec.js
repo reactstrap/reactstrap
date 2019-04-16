@@ -264,6 +264,16 @@ describe('Custom Inputs', () => {
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
+
+    describe('onChange', () => {
+      it('calls props.onChange if it exists', () => {
+        const onChange = jest.fn();
+        const file = mount(<CustomInput type="file" onChange={onChange} />);
+
+        file.find('input').hostNodes().simulate('change');
+        expect(onChange).toHaveBeenCalled();
+      });
+    });
   });
 
   describe('CustomRange', () => {
