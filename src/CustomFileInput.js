@@ -82,7 +82,6 @@ class CustomFileInput extends React.Component {
             classNames(
                 className,
                 `custom-file`,
-                bsSize ? `custom-file-${bsSize}` : false,
             ),
             cssModule
         );
