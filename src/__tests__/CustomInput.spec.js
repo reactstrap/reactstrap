@@ -286,6 +286,23 @@ describe('Custom Inputs', () => {
 
       expect(file.find('.custom-file-label').text()).toBe('test.txt');
     });
+
+    it('lists multiple files when supported', () => {
+      const file = mount(<CustomInput type="file" multiple/>);
+
+      file.find('input').hostNodes().simulate('change', {
+        target:{
+          value:'C:\\fakepath\\file1.txt',
+          files:[
+            {name:"file1.txt"},
+            {name:'file2.txt'},
+            {name:'file3.txt'},
+          ]
+        }
+      })
+
+      expect(file.find('.custom-file-label').text()).toBe('file1.txt, file2.txt, file3.txt');
+    })
   });
 
   describe('CustomRange', () => {
