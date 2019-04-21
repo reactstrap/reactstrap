@@ -341,7 +341,7 @@ class TooltipPopoverWrapper extends React.Component {
     return (
       <PopperContent
         className={className}
-        target={this.currentTargetElement}
+        target={this.currentTargetElement || this._targets[0]}
         isOpen={isOpen}
         hideArrow={hideArrow}
         boundariesElement={boundariesElement}
