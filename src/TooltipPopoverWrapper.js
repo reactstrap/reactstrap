@@ -85,7 +85,6 @@ class TooltipPopoverWrapper extends React.Component {
     this.hide = this.hide.bind(this);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.getRef = this.getRef.bind(this);
-    this.onClosed = this.onClosed.bind(this);
     this.state = { isOpen: props.isOpen };
   }
 
@@ -294,6 +293,7 @@ class TooltipPopoverWrapper extends React.Component {
     if (newTarget !== this._targets) {
       this.removeTargetEvents();
       this._targets = newTarget ? Array.from(newTarget) : [];
+      this.currentTargetElement = this.currentTargetElement || this._targets[0];
       this.addTargetEvents();
     }
   }
@@ -302,16 +302,12 @@ class TooltipPopoverWrapper extends React.Component {
     if (this.props.disabled) {
       return e && e.preventDefault();
     }
-
+    
     return this.props.toggle(e);
   }
 
-  onClosed() {
-    this.setState({ isOpen: false });
-  }
-
   render() {
-    if (!this.state.isOpen) {
+    if (!this.props.isOpen) {
       return null;
     }
 
@@ -357,7 +353,6 @@ class TooltipPopoverWrapper extends React.Component {
         modifiers={modifiers}
         offset={offset}
         cssModule={cssModule}
-        onClosed={this.onClosed}
         fade={fade}
         flip={flip}
       >
