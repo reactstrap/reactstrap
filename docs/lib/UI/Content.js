@@ -17,7 +17,7 @@ function Content({ items, children, title }) {
           <div className="docs-sidebar mb-3">
             <h1 className="h5">{title}</h1>
             <Nav className="flex-column">
-              {items.map(item => (
+              {items.sort((a, b) => a.name.localeCompare(b.name)).map(item => (
                 <NavItem key={item.to}>
                   <NavLink tag={Link} to={item.to} activeClassName="active">
                     {item.name}
