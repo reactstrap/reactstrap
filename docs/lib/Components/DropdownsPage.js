@@ -323,7 +323,7 @@ DropdownItem.propTypes = {
                           styles: {
                             ...data.styles,
                             overflow: 'auto',
-                            maxHeight: 100,
+                            maxHeight: '100px',
                           },
                         };
                       },
