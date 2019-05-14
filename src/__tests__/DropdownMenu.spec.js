@@ -8,17 +8,30 @@ describe('DropdownMenu', () => {
   let isOpen;
   let direction;
   let inNavbar;
+  let dropdownElement;
+  let element;
 
   beforeEach(() => {
     isOpen = false;
     direction = 'down';
     inNavbar = false;
+    element = document.createElement('div');
+    element.innerHTML = '<div id="dropdownElement">Dropdown element</div><div id="anotherContainer"></div>';
+    document.body.appendChild(element);
+    dropdownElement = document.getElementById('dropdownElement');
+  });
+
+  afterEach(() => {
+    document.body.removeChild(element);
+    document.body.innerHTML = '';
+    element = null;
+    dropdownElement = null;
   });
 
   it('should render children', () => {
     isOpen = true;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>
           <p>Content</p>
         </DropdownMenu>
@@ -32,7 +45,7 @@ describe('DropdownMenu', () => {
   it('should not have the class "show" when isOpen context is false', () => {
     isOpen = false;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>
           <p>Content</p>
         </DropdownMenu>
@@ -46,7 +59,7 @@ describe('DropdownMenu', () => {
   it('should have the class "show" when isOpen context is true', () => {
     isOpen = true;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>
           <p>Content</p>
         </DropdownMenu>
@@ -60,7 +73,7 @@ describe('DropdownMenu', () => {
   it('should render left aligned menus by default', () => {
     isOpen = true;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -71,7 +84,7 @@ describe('DropdownMenu', () => {
   it('should render right aligned menus', () => {
     isOpen = true;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu right>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -83,7 +96,7 @@ describe('DropdownMenu', () => {
     isOpen = true;
     direction = 'unknown';
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -94,7 +107,7 @@ describe('DropdownMenu', () => {
   it('should render down when direction is "down" on the context', () => {
     isOpen = true;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -106,7 +119,7 @@ describe('DropdownMenu', () => {
     isOpen = true;
     direction = 'up';
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -118,7 +131,7 @@ describe('DropdownMenu', () => {
     isOpen = true;
     direction = 'left';
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -130,7 +143,7 @@ describe('DropdownMenu', () => {
     isOpen = true;
     direction = 'right';
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -141,7 +154,7 @@ describe('DropdownMenu', () => {
   it('should not disable flip modifier by default', () => {
     isOpen = true;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -152,7 +165,7 @@ describe('DropdownMenu', () => {
   it('should disable flip modifier when flip is false', () => {
     isOpen = true;
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu flip={false}>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -162,7 +175,7 @@ describe('DropdownMenu', () => {
 
   it('should not render multiple children when isOpen is false', () => {
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu right>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -172,7 +185,7 @@ describe('DropdownMenu', () => {
 
   it('should render custom tag', () => {
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
         <DropdownMenu tag="main">Yo!</DropdownMenu>
       </DropdownContext.Provider>
     );
@@ -180,5 +193,17 @@ describe('DropdownMenu', () => {
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.childAt(0).hasClass('dropdown-menu')).toBe(true);
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
+  });
+
+  it('should render inside container', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, dropdownElement }}>
+        <DropdownMenu container="#anotherContainer">My body</DropdownMenu>
+      </DropdownContext.Provider>
+    );
+
+    expect(document.getElementById('anotherContainer').innerHTML).toContain('My body');
+    expect(wrapper.text()).toBe('My body');
   });
 });

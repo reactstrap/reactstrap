@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType } from './utils';
+import { mapToCssModules, tagPropType, targetPropType, getTarget } from './utils';
 
 const propTypes = {
   tag: tagPropType,
@@ -14,11 +15,13 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
+  container: targetPropType,
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
+  container: 'inline',
 };
 
 const noFlipModifier = { flip: { enabled: false } };
@@ -33,7 +36,7 @@ const directionPositionMap = {
 class DropdownMenu extends React.Component { 
 
   render() {
-    const { className, cssModule, right, tag, flip, modifiers, persist, ...attrs } = this.props;
+    const { className, cssModule, right, tag, flip, modifiers, persist, container, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
@@ -55,10 +58,14 @@ class DropdownMenu extends React.Component {
         ...noFlipModifier,
       } : modifiers;
 
-      return (
+      const useContainer = container !== 'inline' && this.context.dropdownElement;
+      const referenceElement = useContainer ? this.context.dropdownElement : undefined;
+
+      const popper = (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
+          referenceElement={referenceElement}
         >
           {({ ref, style, placement }) => (
             <Tag
@@ -74,6 +81,12 @@ class DropdownMenu extends React.Component {
           )}
         </Popper>
       );
+
+      if (useContainer) {
+        return ReactDOM.createPortal(popper, getTarget(container));
+      } else {
+        return popper;
+      }
     }
 
     return (

@@ -56,6 +56,7 @@ class Dropdown extends React.Component {
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
+      dropdownElement: this.containerRef.current,
     };
   }
 
