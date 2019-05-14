@@ -120,19 +120,15 @@ class Modal extends React.Component {
     this._isMounted = true;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isOpen && !this.props.isOpen) {
-      this.setState({ isOpen: nextProps.isOpen });
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.isOpen && !this.state.isOpen) {
-      this.init();
-    }
-  }
-
   componentDidUpdate(prevProps, prevState) {
+    if (this.props.isOpen && !prevProps.isOpen) {
+      this.init();
+      this.setState({ isOpen: true});
+      // let render() renders Modal Dialog first
+      return;
+    }
+
+    // now Modal Dialog is rendered and we can refer this._element and this._dialog
     if (this.props.autoFocus && this.state.isOpen && !prevState.isOpen) {
       this.setFocus();
     }

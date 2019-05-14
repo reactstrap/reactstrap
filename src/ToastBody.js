@@ -5,10 +5,6 @@ import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   tag: tagPropType,
-  inverse: PropTypes.bool,
-  color: PropTypes.string,
-  body: PropTypes.bool,
-  outline: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   innerRef: PropTypes.oneOfType([
@@ -22,24 +18,17 @@ const defaultProps = {
   tag: 'div'
 };
 
-const Card = (props) => {
+const ToastBody = (props) => {
   const {
     className,
     cssModule,
-    color,
-    body,
-    inverse,
-    outline,
-    tag: Tag,
     innerRef,
+    tag: Tag,
     ...attributes
   } = props;
   const classes = mapToCssModules(classNames(
     className,
-    'card',
-    inverse ? 'text-white' : false,
-    body ? 'card-body' : false,
-    color ? `${outline ? 'border' : 'bg'}-${color}` : false
+    'toast-body'
   ), cssModule);
 
   return (
@@ -47,7 +36,7 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = propTypes;
-Card.defaultProps = defaultProps;
+ToastBody.propTypes = propTypes;
+ToastBody.defaultProps = defaultProps;
 
-export default Card;
+export default ToastBody;

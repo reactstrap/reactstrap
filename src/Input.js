@@ -3,17 +3,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, deprecated, warnOnce, tagPropType } from './utils';
+import { mapToCssModules, warnOnce, tagPropType } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   type: PropTypes.string,
   size: PropTypes.string,
   bsSize: PropTypes.string,
-  state: deprecated(
-    PropTypes.string,
-    'Please use the props "valid" and "invalid" to indicate the state.'
-  ),
   valid: PropTypes.bool,
   invalid: PropTypes.bool,
   tag: tagPropType,
@@ -22,7 +18,6 @@ const propTypes = {
     PropTypes.func,
     PropTypes.string
   ]),
-  static: deprecated(PropTypes.bool, 'Please use the prop "plaintext"'),
   plaintext: PropTypes.bool,
   addon: PropTypes.bool,
   className: PropTypes.string,
@@ -59,12 +54,10 @@ class Input extends React.Component {
       cssModule,
       type,
       bsSize,
-      state,
       valid,
       invalid,
       tag,
       addon,
-      static: staticInput,
       plaintext,
       innerRef,
       ...attributes
@@ -80,7 +73,7 @@ class Input extends React.Component {
 
     let formControlClass = 'form-control';
 
-    if (plaintext || staticInput) {
+    if (plaintext) {
       formControlClass = `${formControlClass}-plaintext`;
       Tag = tag || 'input';
     } else if (fileInput) {
@@ -90,18 +83,6 @@ class Input extends React.Component {
         formControlClass = null;
       } else {
         formControlClass = 'form-check-input';
-      }
-    }
-
-    if (
-      state &&
-      typeof valid === 'undefined' &&
-      typeof invalid === 'undefined'
-    ) {
-      if (state === 'danger') {
-        invalid = true;
-      } else if (state === 'success') {
-        valid = true;
       }
     }
 
@@ -132,7 +113,6 @@ class Input extends React.Component {
       attributes.children &&
       !(
         plaintext ||
-        staticInput ||
         type === 'select' ||
         typeof Tag !== 'string' ||
         Tag === 'select'

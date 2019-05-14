@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { Arrow, Popper as ReactPopper } from 'react-popper';
+import { Popper as ReactPopper } from 'react-popper';
 import { getTarget, targetPropType, mapToCssModules, DOMElement, tagPropType } from './utils';
 import Fade from './Fade';
 
@@ -47,10 +47,6 @@ const defaultProps = {
   }
 };
 
-const childContextTypes = {
-  popperManager: PropTypes.object.isRequired,
-};
-
 class PopperContent extends React.Component {
   constructor(props) {
     super(props);
@@ -61,15 +57,6 @@ class PopperContent extends React.Component {
     this.getRef = this.getRef.bind(this);
     this.onClosed = this.onClosed.bind(this);
     this.state = { isOpen: props.isOpen };
-  }
-
-  getChildContext() {
-    return {
-      popperManager: {
-        setTargetNode: this.setTargetNode,
-        getTargetNode: this.getTargetNode,
-      },
-    };
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -139,10 +126,11 @@ class PopperContent extends React.Component {
       'arrow',
       _arrowClassName
     ), cssModule);
-    const placement = (this.state.placement || attrs.placement).split('-')[0];
+    const placement = this.state.placement || attrs.placement;
+    const placementFirstPart = placement.split('-')[0];
     const popperClassName = mapToCssModules(classNames(
       _popperClassName,
-      placementPrefix ? `${placementPrefix}-${placement}` : placement
+      placementPrefix ? `${placementPrefix}-${placementFirstPart}` : placementFirstPart
     ), this.props.cssModule);
 
     const extendedModifiers = {
@@ -172,9 +160,17 @@ class PopperContent extends React.Component {
         onExited={this.onClosed}
         tag={tag}
       >
-        <ReactPopper modifiers={extendedModifiers} className={popperClassName} x-placement={this.state.placement || attrs.placement} placement={this.state.placement || attrs.placement}>
-            {children}
-            {!hideArrow && <Arrow className={arrowClassName} />}
+        <ReactPopper
+          referenceElement={this.targetNode}
+          modifiers={extendedModifiers}
+          placement={placement}
+        >
+          {({ ref, style, placement, arrowProps }) => (
+            <div ref={ref} style={style} className={popperClassName} x-placement={placement}>
+              {children}
+              {!hideArrow && <span ref={arrowProps.ref} className={arrowClassName} style={arrowProps.style} />}
+            </div>
+          )}
         </ReactPopper>
       </Fade>
     );
@@ -195,6 +191,5 @@ class PopperContent extends React.Component {
 
 PopperContent.propTypes = propTypes;
 PopperContent.defaultProps = defaultProps;
-PopperContent.childContextTypes = childContextTypes;
 
 export default PopperContent;

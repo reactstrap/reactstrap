@@ -11,7 +11,7 @@ describe('Card', () => {
   });
 
   it('should render with "modal-header" class', () => {
-    const wrapper = shallow(<Card inverse block color="primary">Yo!</Card>);
+    const wrapper = shallow(<Card inverse body color="primary">Yo!</Card>);
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('card')).toBe(true);
@@ -21,7 +21,7 @@ describe('Card', () => {
   });
 
   it('should render with "outline" class when a color is provided', () => {
-    const wrapper = shallow(<Card outline block color="primary">Yo!</Card>);
+    const wrapper = shallow(<Card outline body color="primary">Yo!</Card>);
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('card')).toBe(true);
@@ -30,7 +30,7 @@ describe('Card', () => {
   });
 
   it('should not render with "outline" class when a color is not provided (no default)', () => {
-    const wrapper = shallow(<Card outline block>Yo!</Card>);
+    const wrapper = shallow(<Card outline body>Yo!</Card>);
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('card')).toBe(true);

@@ -2,7 +2,7 @@ import isobject from 'lodash.isobject';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, deprecated, tagPropType } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
@@ -13,8 +13,6 @@ const columnProps = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.shape({
     size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-    push: deprecated(stringOrNumberProp, 'Please use the prop "order"'),
-    pull: deprecated(stringOrNumberProp, 'Please use the prop "order"'),
     order: stringOrNumberProp,
     offset: stringOrNumberProp
   })

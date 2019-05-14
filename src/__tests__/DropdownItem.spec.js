@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { DropdownItem } from '../';
+import { DropdownContext } from '../DropdownContext';
 
 describe('DropdownItem', () => {
   let isOpen;
@@ -131,12 +132,9 @@ describe('DropdownItem', () => {
       const e = { preventDefault: jest.fn() };
       const onClick = jest.fn();
       const wrapper = mount(
-        <DropdownItem onClick={() => onClick()}>Click me</DropdownItem>,
-        {
-          context: {
-            toggle: toggle
-          }
-        }
+        <DropdownContext.Provider value={{ toggle: toggle }}>
+          <DropdownItem onClick={() => onClick()}>Click me</DropdownItem>
+        </DropdownContext.Provider>
       );
       const instance = wrapper.instance();
 
@@ -148,12 +146,9 @@ describe('DropdownItem', () => {
       toggle = jest.fn();
       const clickHandler = jest.fn();
       const wrapper = mount(
-        <DropdownItem onClick={clickHandler}>Click me</DropdownItem>,
-        {
-          context: {
-            toggle: toggle
-          }
-        }
+        <DropdownContext.Provider value={{ toggle: toggle }}>
+          <DropdownItem onClick={clickHandler}>Click me</DropdownItem>
+        </DropdownContext.Provider>
       );
 
       wrapper.simulate('click');
@@ -164,12 +159,9 @@ describe('DropdownItem', () => {
     it('should call toggle', () => {
       toggle = jest.fn();
       const wrapper = mount(
-        <DropdownItem>Click me</DropdownItem>,
-        {
-          context: {
-            toggle: toggle
-          }
-        }
+        <DropdownContext.Provider value={{ toggle: toggle }}>
+          <DropdownItem>Click me</DropdownItem>
+        </DropdownContext.Provider>
       );
 
       wrapper.simulate('click');

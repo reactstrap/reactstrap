@@ -87,25 +87,6 @@ describe('Input', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render with "is-invalid" class when state is "danger" [DEPRECATED]', () => {
-    const wrapper = shallow(<Input state="danger" />);
-
-    expect(wrapper.hasClass('is-invalid')).toBe(true);
-  });
-
-  it('should render with "is-valid" class when state is "success" [DEPRECATED]', () => {
-    const wrapper = shallow(<Input state="success" />);
-
-    expect(wrapper.hasClass('is-valid')).toBe(true);
-  });
-
-  it('should not render with "is-valid" nor "is-invalid" class when state is "warning" [DEPRECATED]', () => {
-    const wrapper = shallow(<Input state="warning" />);
-
-    expect(wrapper.hasClass('is-valid')).toBe(false);
-    expect(wrapper.hasClass('is-invalid')).toBe(false);
-  });
-
   it('should not render with "is-invalid" class when valid is false', () => {
     const wrapper = shallow(<Input valid={false} />);
 
@@ -179,15 +160,6 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-control')).toBe(false);
     expect(wrapper.hasClass('form-check-input')).toBe(false);
   });
-
-  it('should not render with "form-control-file" nor "form-control" nor "form-check-input" class when static prop is truthy [DEPRECATED]', () => {
-    const wrapper = shallow(<Input type="file" static />);
-
-    expect(wrapper.hasClass('form-control-file')).toBe(false);
-    expect(wrapper.hasClass('form-control')).toBe(false);
-    expect(wrapper.hasClass('form-check-input')).toBe(false);
-  });
-
   it('should not render with "form-control-file" nor "form-control-plaintext" nor "form-control" class when type is radio', () => {
     const wrapper = shallow(<Input type="radio" />);
 

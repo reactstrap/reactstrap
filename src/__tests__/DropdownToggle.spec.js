@@ -1,19 +1,18 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { DropdownToggle } from '../';
+import { DropdownContext } from '../DropdownContext';
 
 describe('DropdownToggle', () => {
+  const setReferenceNode = jest.fn();
   let isOpen;
   let inNavbar;
-  let popperManager;
   let toggle;
 
   beforeEach(() => {
     isOpen = false;
     inNavbar = false;
-    popperManager = {
-      setTargetNode: () => {}
-    };
+    setReferenceNode.mockClear();
     toggle = () => {
       isOpen = !isOpen;
     };
@@ -21,11 +20,9 @@ describe('DropdownToggle', () => {
 
   it('should wrap text', () => {
     const wrapper = mount(
-      <DropdownToggle>Ello world</DropdownToggle>,
-      {
-        context: { isOpen, inNavbar, toggle, popperManager },
-        childContextTypes: { popperManager }
-      }
+      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+        <DropdownToggle>Ello world</DropdownToggle>
+      </DropdownContext.Provider>
     );
 
     expect(wrapper.text()).toBe('Ello world');
@@ -33,11 +30,9 @@ describe('DropdownToggle', () => {
 
   it('should add default sr-only content', () => {
     const wrapper = mount(
-      <DropdownToggle />,
-      {
-        context: { isOpen, inNavbar, toggle, popperManager },
-        childContextTypes: { popperManager }
-      }
+      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+        <DropdownToggle />
+      </DropdownContext.Provider>
     );
 
     expect(wrapper.text()).toBe('Toggle Dropdown');
@@ -46,11 +41,9 @@ describe('DropdownToggle', () => {
 
   it('should add default sr-only content', () => {
     const wrapper = mount(
-      <DropdownToggle aria-label="Dropup Toggle" />,
-      {
-        context: { isOpen, inNavbar, toggle, popperManager },
-        childContextTypes: { popperManager }
-      }
+      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+        <DropdownToggle aria-label="Dropup Toggle" />
+      </DropdownContext.Provider>
     );
 
     expect(wrapper.text()).toBe('Dropup Toggle');
@@ -59,11 +52,9 @@ describe('DropdownToggle', () => {
 
   it('should render elements', () => {
     const wrapper = mount(
-      <DropdownToggle>Click Me</DropdownToggle>,
-      {
-        context: { isOpen, inNavbar, toggle, popperManager },
-        childContextTypes: { popperManager }
-      }
+      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+        <DropdownToggle>Click Me</DropdownToggle>
+      </DropdownContext.Provider>
     );
 
     expect(wrapper.text()).toBe('Click Me');
@@ -72,24 +63,20 @@ describe('DropdownToggle', () => {
 
   it('should render a caret', () => {
     const wrapper = mount(
-      <DropdownToggle caret>Ello world</DropdownToggle>,
-      {
-        context: { isOpen, inNavbar, toggle, popperManager },
-        childContextTypes: { popperManager }
-      }
+      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+        <DropdownToggle caret>Ello world</DropdownToggle>
+      </DropdownContext.Provider>
     );
 
-    expect(wrapper.childAt(0).hasClass('dropdown-toggle')).toBe(true);
+    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle')).toBe(true);
   });
 
   describe('color', () => {
     it('should render the dropdown as a BUTTON element with default color secondary', () => {
       const wrapper = mount(
-        <DropdownToggle />,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle />
+        </DropdownContext.Provider>
       );
 
       expect(wrapper.find('button').hostNodes().length).toBe(1);
@@ -98,11 +85,9 @@ describe('DropdownToggle', () => {
 
     it('should render the dropdown as a BUTTON element with explicit color success', () => {
       const wrapper = mount(
-        <DropdownToggle color="success" />,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle color="success" />
+        </DropdownContext.Provider>
       );
 
       expect(wrapper.find('button').hostNodes().length).toBe(1);
@@ -111,11 +96,9 @@ describe('DropdownToggle', () => {
 
     it('should render the dropdown as an A element with no color attribute', () => {
       const wrapper = mount(
-        <DropdownToggle tag="a" />,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle tag="a" />
+        </DropdownContext.Provider>
       );
 
       expect(wrapper.find('a').hostNodes().length).toBe(1);
@@ -124,11 +107,9 @@ describe('DropdownToggle', () => {
 
     it('should render the dropdown as a DIV element with no color attribute', () => {
       const wrapper = mount(
-        <DropdownToggle tag="div" color="success" />,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle tag="div" color="success" />
+        </DropdownContext.Provider>
       );
 
       expect(wrapper.find('div').hostNodes().length).toBe(1);
@@ -138,26 +119,23 @@ describe('DropdownToggle', () => {
 
   it('should render a split', () => {
     const wrapper = mount(
-      <DropdownToggle split>Ello world</DropdownToggle>,
-      {
-        context: { isOpen, inNavbar, toggle, popperManager },
-        childContextTypes: { popperManager }
-      }
+      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+        <DropdownToggle split>Ello world</DropdownToggle>
+      </DropdownContext.Provider>
     );
 
-    expect(wrapper.childAt(0).hasClass('dropdown-toggle-split')).toBe(true);
+    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle-split')).toBe(true);
   });
 
   describe('onClick', () => {
     it('should call props.onClick if it exists', () => {
       const onClick = jest.fn();
       const wrapper = mount(
-        <DropdownToggle onClick={() => onClick()}>Ello world</DropdownToggle>,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle onClick={() => onClick()}>Ello world</DropdownToggle>
+        </DropdownContext.Provider>
       );
+
       const instance = wrapper.instance();
 
       instance.onClick({});
@@ -167,12 +145,11 @@ describe('DropdownToggle', () => {
     it('should call context.toggle when present ', () => {
       toggle = jest.fn();
       const wrapper = mount(
-        <DropdownToggle>Ello world</DropdownToggle>,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle>Ello world</DropdownToggle>
+        </DropdownContext.Provider>
       );
+      
       const instance = wrapper.instance();
 
       instance.onClick({
@@ -187,11 +164,9 @@ describe('DropdownToggle', () => {
     it('should preventDefault when disabled', () => {
       const e = { preventDefault: jest.fn() };
       const wrapper = mount(
-        <DropdownToggle disabled>Ello world</DropdownToggle>,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle disabled>Ello world</DropdownToggle>
+        </DropdownContext.Provider>
       );
       const instance = wrapper.instance();
 
@@ -203,11 +178,9 @@ describe('DropdownToggle', () => {
   describe('nav', () => {
     it('should add .nav-link class', () => {
       const wrapper = mount(
-        <DropdownToggle nav>Ello world</DropdownToggle>,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle nav>Ello world</DropdownToggle>
+        </DropdownContext.Provider>
       );
 
       expect(wrapper.find('a').hostNodes().length).toBe(1);
@@ -216,11 +189,9 @@ describe('DropdownToggle', () => {
 
     it('should not set the tag prop when the tag is defined', () => {
       const wrapper = mount(
-        <DropdownToggle nav>Ello world</DropdownToggle>,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle nav>Ello world</DropdownToggle>
+        </DropdownContext.Provider>
       );
 
       expect(wrapper.prop('tag')).toBe(undefined);
@@ -229,11 +200,9 @@ describe('DropdownToggle', () => {
     it('should preventDefault', () => {
       const e = { preventDefault: jest.fn() };
       const wrapper = mount(
-        <DropdownToggle nav>Ello world</DropdownToggle>,
-        {
-          context: { isOpen, inNavbar, toggle, popperManager },
-          childContextTypes: { popperManager }
-        }
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle nav>Ello world</DropdownToggle>
+        </DropdownContext.Provider>
       );
       const instance = wrapper.instance();
 

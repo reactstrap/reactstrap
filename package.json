@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "description": "React Bootstrap 4 components",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -105,12 +105,12 @@
     "lodash.tonumber": "^4.0.3",
     "prop-types": "^15.5.8",
     "react-lifecycles-compat": "^3.0.4",
-    "react-popper": "^0.10.4",
+    "react-popper": "^1.3.3",
     "react-transition-group": "^2.3.1"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
