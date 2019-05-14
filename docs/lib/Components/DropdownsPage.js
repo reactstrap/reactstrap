@@ -95,6 +95,8 @@ DropdownMenu.propTypes = {
   // Custom modifiers that are passed to DropdownMenu.js, see https://popper.js.org/popper-documentation.html#modifiers
   modifiers: PropTypes.object,
   persist: PropTypes.bool // presist the popper, even when closed. See #779 for reasoning
+  // Where to inject the popper DOM node, default to inline
+  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
 };
 
 DropdownItem.propTypes = {
