@@ -90,7 +90,6 @@ class Modal extends React.Component {
 
     this._element = null;
     this._originalBodyPadding = null;
-    this.isSSR = typeof window === 'function';
     this.getFocusableChildren = this.getFocusableChildren.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
@@ -103,14 +102,10 @@ class Modal extends React.Component {
     this.state = {
       isOpen: props.isOpen,
     };
-
-    if (!this.isSSR && props.isOpen) {
-      this.init();
-    }
   }
 
   componentDidMount() {
-    if (this.isSSR && this.props.isOpen) {
+    if (this.props.isOpen) {
       this.init();
     }
 
@@ -346,7 +341,6 @@ class Modal extends React.Component {
     } = this.props;
 
     if (!!this._element && (this.state.isOpen || !unmountOnClose)) {
-
       const isModalHidden = !!this._element && !this.state.isOpen && !unmountOnClose;
       this._element.style.display = isModalHidden ? 'none' : 'block';
 
@@ -420,7 +414,6 @@ class Modal extends React.Component {
         </Portal>
       );
     }
-
     return null;
   }
 }
