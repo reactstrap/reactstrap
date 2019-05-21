@@ -3,6 +3,12 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '../';
 
+const didMount = (component) => {
+  const wrapper = mount(component);
+  wrapper.setProps({ fakefield: 'fakeToUpdate' });
+  return wrapper;
+}
+
 describe('Modal', () => {
   let isOpen;
   let toggle;
@@ -28,7 +34,7 @@ describe('Modal', () => {
 
   it('should render modal portal into DOM', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -41,7 +47,7 @@ describe('Modal', () => {
 
   it('should render with the class "modal-dialog"', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -54,7 +60,7 @@ describe('Modal', () => {
 
   it('should render external content when present', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} external={<button className="cool-close-button">&times;</button>}>
         Yo!
       </Modal>
@@ -68,7 +74,7 @@ describe('Modal', () => {
 
   it('should render with the backdrop with the class "modal-backdrop" by default', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -81,7 +87,7 @@ describe('Modal', () => {
 
   it('should render with the backdrop with the class "modal-backdrop" when backdrop is "static"', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
         Yo!
       </Modal>
@@ -94,7 +100,7 @@ describe('Modal', () => {
 
   it('should not render with the backdrop with the class "modal-backdrop" when backdrop is "false"', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop={false}>
         Yo!
       </Modal>
@@ -108,7 +114,7 @@ describe('Modal', () => {
 
   it('should render with the class "modal-dialog-scrollable" when scrollable is "true"', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} scrollable={true}>
         Yo!
       </Modal>
@@ -121,7 +127,7 @@ describe('Modal', () => {
 
   it('should render with class "modal-dialog" and have custom class name if provided', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} className="my-custom-modal">
         Yo!
       </Modal>
@@ -135,7 +141,7 @@ describe('Modal', () => {
 
   it('should render with class "modal-dialog" w/o centered class if not provided', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -149,7 +155,7 @@ describe('Modal', () => {
 
   it('should render with class "modal-dialog" and centered class if provided', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} centered>
         Yo!
       </Modal>
@@ -163,7 +169,7 @@ describe('Modal', () => {
 
   it('should render with additional props if provided', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} style={{ maxWidth: '95%' }}>
         Yo!
       </Modal>
@@ -177,7 +183,7 @@ describe('Modal', () => {
 
   it('should render without fade transition if provided with fade={false}', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} fade={false} modalClassName="fadeless-modal">
         Howdy!
       </Modal>
@@ -198,7 +204,7 @@ describe('Modal', () => {
 
   it('should render when expected when passed modalTransition and backdropTransition props', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal
         isOpen={isOpen}
         toggle={toggle}
@@ -221,7 +227,7 @@ describe('Modal', () => {
 
   it('should render with class "modal" and have custom class name if provided with modalClassName', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} modalClassName="my-custom-modal">
         Yo!
       </Modal>
@@ -234,7 +240,7 @@ describe('Modal', () => {
 
   it('should render with custom class name if provided with wrapClassName', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} wrapClassName="my-custom-modal">
         Yo!
       </Modal>
@@ -247,7 +253,7 @@ describe('Modal', () => {
 
   it('should render with class "modal-content" and have custom class name if provided with contentClassName', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} contentClassName="my-custom-modal">
         Yo!
       </Modal>
@@ -260,7 +266,7 @@ describe('Modal', () => {
 
   it('should render with class "modal-backdrop" and have custom class name if provided with backdropClassName', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdropClassName="my-custom-modal">
         Yo!
       </Modal>
@@ -273,7 +279,7 @@ describe('Modal', () => {
 
   it('should render with the class "modal-${size}" when size is passed', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} size="crazy">
         Yo!
       </Modal>
@@ -288,7 +294,7 @@ describe('Modal', () => {
 
   it('should render modal when isOpen is true', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -302,7 +308,7 @@ describe('Modal', () => {
 
   it('should render modal with default role of "dialog"', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -315,7 +321,7 @@ describe('Modal', () => {
 
   it('should render modal with provided role', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} role="alert">
         Yo!
       </Modal>
@@ -328,7 +334,7 @@ describe('Modal', () => {
 
   it('should render modal with aria-labelledby provided labelledBy', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} labelledBy="myModalTitle">
         Yo!
       </Modal>
@@ -340,7 +346,7 @@ describe('Modal', () => {
   });
 
   it('should not render modal when isOpen is false', () => {
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -354,7 +360,7 @@ describe('Modal', () => {
   });
 
   it('should toggle modal', () => {
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -383,7 +389,7 @@ describe('Modal', () => {
     jest.spyOn(Modal.prototype, 'onClosed');
     const onOpened = jest.fn();
     const onClosed = jest.fn();
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
         Yo!
       </Modal>
@@ -424,7 +430,7 @@ describe('Modal', () => {
   it('should call onClosed & onOpened when fade={false}', () => {
     const onOpened = jest.fn();
     const onClosed = jest.fn();
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle} fade={false}>
         Yo!
       </Modal>
@@ -485,7 +491,7 @@ describe('Modal', () => {
 
   it('should close modal when escape key pressed', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -528,7 +534,7 @@ describe('Modal', () => {
 
   it('should not close modal when escape key pressed when keyboard is false', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} keyboard={false}>
         Yo!
       </Modal>
@@ -563,7 +569,7 @@ describe('Modal', () => {
 
   it('should close modal when clicking backdrop', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
       </Modal>
@@ -598,7 +604,7 @@ describe('Modal', () => {
 
   it('should not close modal when clicking backdrop and backdrop is "static"', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
         <button id="clicker">Does Nothing</button>
       </Modal>
@@ -624,7 +630,7 @@ describe('Modal', () => {
 
   it('should destroy this._element', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
       </Modal>
@@ -648,7 +654,7 @@ describe('Modal', () => {
 
   it('should destroy this._element when unmountOnClose prop set to true', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={true}>
         <button id="clicker">Does Nothing</button>
       </Modal>
@@ -672,7 +678,7 @@ describe('Modal', () => {
 
   it('should not destroy this._element when unmountOnClose prop set to false', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={false}>
         <button id="clicker">Does Nothing</button>
       </Modal>
@@ -696,7 +702,7 @@ describe('Modal', () => {
 
   it('should destroy this._element on unmount', () => {
     isOpen = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
       </Modal>
@@ -715,7 +721,7 @@ describe('Modal', () => {
   it('should render nested modals', () => {
     isOpen = true;
     isOpenNested = true;
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalBody>
           <Modal isOpen={isOpenNested} toggle={toggleNested}>
@@ -744,7 +750,7 @@ describe('Modal', () => {
     // set a body class which includes modal-open
     document.body.className = 'my-modal-opened';
 
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
       </Modal>
@@ -786,7 +792,7 @@ describe('Modal', () => {
   it('should call onEnter & onExit props if provided', () => {
     const onEnter = jest.fn();
     const onExit = jest.fn();
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle}>
         Yo!
       </Modal>
@@ -837,7 +843,7 @@ describe('Modal', () => {
   it('should allow focus on only focusable elements', () => {
     isOpen = true;
 
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
@@ -876,7 +882,7 @@ describe('Modal', () => {
 
     const mock = jest.fn();
 
-    const wrapper = mount(
+    const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalBody>
           <Button onFocus={mock} color="secondary" onClick={toggle}>Cancel</Button>
@@ -902,7 +908,7 @@ describe('Modal', () => {
           </Modal>
         </>
     );
-    const wrapper = mount(<MockComponent />);
+    const wrapper = didMount(<MockComponent />);
     const button = wrapper
         .find('.focus')
         .hostNodes()
@@ -925,7 +931,7 @@ describe('Modal', () => {
           </Modal>
         </>
     );
-    const wrapper = mount(<MockComponent />);
+    const wrapper = didMount(<MockComponent />);
     const button = wrapper
         .find('.focus')
         .hostNodes()
@@ -948,7 +954,7 @@ describe('Modal', () => {
           </Modal>
         </>
     );
-    const wrapper = mount(<MockComponent />);
+    const wrapper = didMount(<MockComponent />);
     const button = wrapper
         .find('.focus')
         .hostNodes()
@@ -971,7 +977,7 @@ describe('Modal', () => {
           </Modal>
         </>
     );
-    const wrapper = mount(<MockComponent />);
+    const wrapper = didMount(<MockComponent />);
     const button = wrapper
         .find('.focus')
         .hostNodes()
