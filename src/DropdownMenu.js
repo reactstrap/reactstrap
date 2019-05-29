@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType, getTarget } from './utils';
+import { mapToCssModules, tagPropType, targetPropType, getTarget } from './utils';
 
 const propTypes = {
   tag: tagPropType,
@@ -15,11 +15,13 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
+  container: targetPropType,
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
+  container: 'inline',
 };
 
 const noFlipModifier = { flip: { enabled: false } };
