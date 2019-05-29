@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
+import { mapToCssModules, omit, keyCodes, tagPropType, targetPropType, getTarget } from './utils';
 
 const propTypes = {
   disabled: PropTypes.bool,
@@ -24,6 +24,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
+  menuContainer: targetPropType,
 };
 
 const defaultProps = {
@@ -56,7 +57,7 @@ class Dropdown extends React.Component {
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
-      dropdownElement: this.containerRef.current,
+      menuContainer: this.props.menuContainer,
     };
   }
 
@@ -75,6 +76,10 @@ class Dropdown extends React.Component {
   }
 
   getContainer() {
+    if (this.props.menuContainer) {
+      return getTarget(this.props.menuContainer);
+    }
+
     return this.containerRef.current;
   }
 

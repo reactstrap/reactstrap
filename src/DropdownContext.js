@@ -7,7 +7,7 @@ import React from 'react';
  *  isOpen: PropTypes.bool.isRequired,
  *  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
  *  inNavbar: PropTypes.bool.isRequired,
- *  dropdownElement: PropTypes.element,
+ *  menuContainer: targetPropType,
  * }
  */
 export const DropdownContext = React.createContext({});

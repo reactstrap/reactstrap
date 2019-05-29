@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType, targetPropType, getTarget } from './utils';
+import { mapToCssModules, tagPropType, getTarget } from './utils';
 
 const propTypes = {
   tag: tagPropType,
@@ -15,13 +15,11 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
-  container: targetPropType,
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
-  container: 'inline',
 };
 
 const noFlipModifier = { flip: { enabled: false } };
@@ -58,14 +56,10 @@ class DropdownMenu extends React.Component {
         ...noFlipModifier,
       } : modifiers;
 
-      const useContainer = container !== 'inline' && this.context.dropdownElement;
-      const referenceElement = useContainer ? this.context.dropdownElement : undefined;
-
       const popper = (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
-          referenceElement={referenceElement}
         >
           {({ ref, style, placement }) => (
             <Tag
@@ -82,8 +76,8 @@ class DropdownMenu extends React.Component {
         </Popper>
       );
 
-      if (useContainer) {
-        return ReactDOM.createPortal(popper, getTarget(container));
+      if (this.context.menuContainer) {
+        return ReactDOM.createPortal(popper, getTarget(this.context.menuContainer));
       } else {
         return popper;
       }
