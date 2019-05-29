@@ -69,6 +69,9 @@ export default class DropdownPage extends React.Component {
   tag: PropTypes.string, // default: 'div' unless nav=true, then 'li'
   toggle: PropTypes.func,
   setActiveFromChild: PropTypes.bool
+  // Where to inject the popper menu DOM node. Can be used to help menu
+  // escape from a div with overflow, for example by setting it to "body"
+  menuContainer: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
 };
 
 DropdownToggle.propTypes = {

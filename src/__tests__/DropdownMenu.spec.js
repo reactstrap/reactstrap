@@ -8,11 +8,20 @@ describe('DropdownMenu', () => {
   let isOpen;
   let direction;
   let inNavbar;
+  let element;
 
   beforeEach(() => {
     isOpen = false;
     direction = 'down';
     inNavbar = false;
+    element = document.createElement('div');
+    document.body.appendChild(element);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(element);
+    document.body.innerHTML = '';
+    element = null;
   });
 
   it('should render children', () => {
@@ -180,5 +189,19 @@ describe('DropdownMenu', () => {
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.childAt(0).hasClass('dropdown-menu')).toBe(true);
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
+  });
+
+  it('should render inside container', () => {
+    isOpen = true;
+    element.innerHTML = '<div id="anotherContainer"></div>';
+    const menuContainer = '#anotherContainer';
+    const wrapper = mount(
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, menuContainer  }}>
+        <DropdownMenu>My body</DropdownMenu>
+      </DropdownContext.Provider>
+    );
+
+    expect(document.getElementById('anotherContainer').innerHTML).toContain('My body');
+    expect(wrapper.text()).toBe('My body');
   });
 });
