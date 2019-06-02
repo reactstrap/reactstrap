@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType, targetPropType, getTarget } from './utils';
+import { mapToCssModules, tagPropType, getTarget } from './utils';
 
 const propTypes = {
   tag: tagPropType,
@@ -15,13 +15,11 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
-  container: targetPropType,
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
-  container: 'inline',
 };
 
 const noFlipModifier = { flip: { enabled: false } };
@@ -36,7 +34,7 @@ const directionPositionMap = {
 class DropdownMenu extends React.Component { 
 
   render() {
-    const { className, cssModule, right, tag, flip, modifiers, persist, container, ...attrs } = this.props;
+    const { className, cssModule, right, tag, flip, modifiers, persist, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
