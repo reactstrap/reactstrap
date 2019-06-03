@@ -102,6 +102,8 @@ DropdownMenu.propTypes = {
   modifiers: PropTypes.object,
   persist: PropTypes.bool, // presist the popper, even when closed. See #779 for reasoning
   positionFixed: PropTypes.bool,
+  // Element to place the menu in. Used to show the menu as a child of 'body'
+  // or other elements in the DOM instead of where it's stated
   container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
 };
 

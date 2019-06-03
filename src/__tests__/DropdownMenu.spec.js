@@ -194,10 +194,9 @@ describe('DropdownMenu', () => {
   it('should render inside container', () => {
     isOpen = true;
     element.innerHTML = '<div id="anotherContainer"></div>';
-    const menuContainer = '#anotherContainer';
     const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, direction, inNavbar, menuContainer  }}>
-        <DropdownMenu>My body</DropdownMenu>
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+        <DropdownMenu container="#anotherContainer">My body</DropdownMenu>
       </DropdownContext.Provider>
     );
 
