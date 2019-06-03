@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType, getTarget } from './utils';
+import { mapToCssModules, tagPropType, targetPropType, getTarget } from './utils';
 
 const propTypes = {
   tag: tagPropType,
@@ -16,6 +16,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
   positionFixed: PropTypes.bool,
+  container: targetPropType,
 };
 
 const defaultProps = {
@@ -35,7 +36,7 @@ const directionPositionMap = {
 class DropdownMenu extends React.Component { 
 
   render() {
-    const { className, cssModule, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
+    const { className, cssModule, right, tag, flip, modifiers, persist, container, positionFixed, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
@@ -78,8 +79,8 @@ class DropdownMenu extends React.Component {
         </Popper>
       );
 
-      if (this.context.menuContainer) {
-        return ReactDOM.createPortal(popper, getTarget(this.context.menuContainer));
+      if (container) {
+        return ReactDOM.createPortal(popper, getTarget(container));
       } else {
         return popper;
       }

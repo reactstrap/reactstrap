@@ -24,7 +24,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
-  menuContainer: targetPropType,
+  menuClickTarget: targetPropType,
 };
 
 const defaultProps = {
@@ -57,7 +57,6 @@ class Dropdown extends React.Component {
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
-      menuContainer: this.props.menuContainer,
     };
   }
 
@@ -76,8 +75,8 @@ class Dropdown extends React.Component {
   }
 
   getContainer() {
-    if (this.props.menuContainer) {
-      return getTarget(this.props.menuContainer);
+    if (this.props.menuClickTarget) {
+      return getTarget(this.props.menuClickTarget);
     }
 
     return this.containerRef.current;
@@ -207,7 +206,7 @@ class Dropdown extends React.Component {
       addonType,
       tag,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'menuContainer']);
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'menuClickTarget']);
 
     const Tag = tag || (nav ? 'li' : 'div');
 
