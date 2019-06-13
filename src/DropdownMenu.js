@@ -14,6 +14,7 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
+  positionFixed: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -33,7 +34,7 @@ const directionPositionMap = {
 class DropdownMenu extends React.Component { 
 
   render() {
-    const { className, cssModule, right, tag, flip, modifiers, persist, ...attrs } = this.props;
+    const { className, cssModule, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
@@ -54,11 +55,13 @@ class DropdownMenu extends React.Component {
         ...modifiers,
         ...noFlipModifier,
       } : modifiers;
+      const popperPositionFixed = !!positionFixed;
 
       return (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
+          positionFixed={popperPositionFixed}
         >
           {({ ref, style, placement }) => (
             <Tag
