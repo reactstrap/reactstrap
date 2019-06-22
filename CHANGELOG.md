@@ -1,4 +1,13 @@
 <a name="8.0.0"></a>
+## [8.0.3](https://github.com/reactstrap/reactstrap/compare/8.0.0...8.0.3) (2019-06-22)
+
+
+### Bug Fixes
+
+* **Carousel:** Fixed Carousel to scroll in wrong direction when scrolling to an arbitrary position
+
+
+<a name="8.0.0"></a>
 # [8.0.0](https://github.com/reactstrap/reactstrap/compare/7.1.0...8.0.0) (2019-04-03)
 
 
