@@ -105,17 +105,18 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isOpen) {
+    const { isOpen, autoFocus, onEnter } = this.props;
+
+    if (isOpen) {
       this.init();
       this.setState({ isOpen: true })
+      if (autoFocus) {
+        this.setFocus();
+      }
     }
 
-    if (this.props.onEnter) {
-      this.props.onEnter();
-    }
-
-    if (this.state.isOpen && this.props.autoFocus) {
-      this.setFocus();
+    if (onEnter) {
+      onEnter();
     }
 
     this._isMounted = true;
