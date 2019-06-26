@@ -37,6 +37,10 @@ const FormGroup = (props) => {
     check && inline ? 'form-check-inline' : false,
     check && disabled ? 'disabled' : false
   ), cssModule);
+  
+  if (Tag === 'fieldset') {
+    attributes.disabled = disabled;
+  }
 
   return (
     <Tag {...attributes} className={classes} />
