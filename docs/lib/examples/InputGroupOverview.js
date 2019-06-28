@@ -20,7 +20,9 @@ const Example = (props) => {
       <br />
       <InputGroup>
         <Input placeholder="username" />
-        <InputGroupAddon addonType="append">@example.com</InputGroupAddon>
+        <InputGroupAddon addonType="append">
+          <InputGroupText>@example.com</InputGroupText>
+        </InputGroupAddon>
       </InputGroup>
       <br />
       <InputGroup>
