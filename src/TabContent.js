@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -18,42 +18,28 @@ const defaultProps = {
 };
 
 
-class TabContent extends Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.activeTab !== nextProps.activeTab) {
-      return {
-        activeTab: nextProps.activeTab
-      };
-    }
-    return null;
-  }
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: this.props.activeTab
-    };
-  }
-
-  render() {
+const TabContent = props => {
     const {
       className,
       cssModule,
       tag: Tag,
-    } = this.props;
+      activeTab: initialActiveTab,
+    } = props;
 
-    const attributes = omit(this.props, Object.keys(propTypes));
+    const attributes = omit(props, Object.keys(propTypes));
 
     const classes = mapToCssModules(classNames('tab-content', className), cssModule);
 
+    const [activeTab, setActiveTab] = useState(initialActiveTab);
+
     return (
-      <TabContext.Provider value={{activeTabId: this.state.activeTab}}>
+      <TabContext.Provider value={{activeTabId: activeTab}}>
         <Tag {...attributes} className={classes} />
       </TabContext.Provider>
     );
-  }
+
 }
 
-polyfill(TabContent);
 export default TabContent;
 
 TabContent.propTypes = propTypes;
