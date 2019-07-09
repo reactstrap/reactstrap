@@ -160,6 +160,17 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(Popper).prop('modifiers')).toEqual({ flip: { enabled: false } });
   });
 
+  it('should position using fixed mode when positionFixed is true', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+        <DropdownMenu positionFixed>Ello world</DropdownMenu>
+      </DropdownContext.Provider>
+    );
+
+    expect(wrapper.find(Popper).prop('positionFixed')).toBe(true);
+  });
+
   it('should not render multiple children when isOpen is false', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
