@@ -1,3 +1,17 @@
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/reactstrap/reactstrap/compare/8.0.0...8.0.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* **DropdownMenu:** Allow positionFixed prop to be passed through ([#1538](https://github.com/reactstrap/reactstrap/issues/1538)) ([01466ae](https://github.com/reactstrap/reactstrap/commit/01466ae)), closes [#1473](https://github.com/reactstrap/reactstrap/issues/1473)
+* **FormGroup:** allow disable when tag is fieldset ([#1547](https://github.com/reactstrap/reactstrap/issues/1547)) ([0736f80](https://github.com/reactstrap/reactstrap/commit/0736f80)), closes [#1546](https://github.com/reactstrap/reactstrap/issues/1546)
+* **Modal:** handle init modal in SSR ([#1495](https://github.com/reactstrap/reactstrap/issues/1495)) ([c844ab1](https://github.com/reactstrap/reactstrap/commit/c844ab1))
+* **Modal:** update condition to call `setFocus` in case open mo… ([#1514](https://github.com/reactstrap/reactstrap/issues/1514)) ([ae6fe93](https://github.com/reactstrap/reactstrap/commit/ae6fe93))
+* **Tooltip:** clear timeouts on unmount ([#1562](https://github.com/reactstrap/reactstrap/issues/1562)) ([e85238b](https://github.com/reactstrap/reactstrap/commit/e85238b)), closes [#1255](https://github.com/reactstrap/reactstrap/issues/1255)
+
+
+
 <a name="8.0.0"></a>
 # [8.0.0](https://github.com/reactstrap/reactstrap/compare/7.1.0...8.0.0) (2019-04-03)
 
