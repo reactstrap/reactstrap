@@ -1,73 +1,56 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 
-import React from 'react';
-import { Button, Tooltip } from 'reactstrap';
+import React, { useState } from "react";
+import { Button, Tooltip } from "reactstrap";
 
-class TooltipItem extends React.Component {
-  constructor(props) {
-    super(props);
+const TooltipItem = props => {
+  const { item, id } = props;
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      tooltipOpen: false
-    };
-  }
+  const toggle = () => setTooltipOpen(!tooltipOpen);
 
-  toggle() {
-    this.setState({
-      tooltipOpen: !this.state.tooltipOpen
-    });
-  }
+  return (
+    <span>
+      <Button className="mr-1" color="secondary" id={"Tooltip-" + id}>
+        {item.text}
+      </Button>
+      <Tooltip
+        placement={item.placement}
+        isOpen={tooltipOpen}
+        target={"Tooltip-" + id}
+        toggle={toggle}
+      >
+        Tooltip Content!
+      </Tooltip>
+    </span>
+  );
+};
 
-  render() {
-    return (
-      <span>
-        <Button className="mr-1" color="secondary" id={'Tooltip-' + this.props.id}>
-          {this.props.item.text}
-        </Button>
-        <Tooltip placement={this.props.item.placement} isOpen={this.state.tooltipOpen} target={'Tooltip-' + this.props.id} toggle={this.toggle}>
-          Tooltip Content!
-        </Tooltip>
-      </span>
-    );
-  }
-}
-
-class TooltipExampleMulti extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      tooltips: [
+const TooltipExampleMulti = props => {
+  return (
+    <>
+      {[
         {
-          placement: 'top',
-          text: 'Top'
+          placement: "top",
+          text: "Top"
         },
         {
-          placement: 'bottom',
-          text: 'Bottom'
+          placement: "bottom",
+          text: "Bottom"
         },
         {
-          placement: 'left',
-          text: 'Left'
+          placement: "left",
+          text: "Left"
         },
         {
-          placement: 'right',
-          text: 'Right'
+          placement: "right",
+          text: "Right"
         }
-      ]
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        { this.state.tooltips.map((tooltip, i) => {
-          return <TooltipItem key={i} item={tooltip} id={i} />;
-        })}
-      </div>
-    );
-  }
-}
+      ].map((tooltip, i) => {
+        return <TooltipItem key={i} item={tooltip} id={i} />;
+      })}
+    </>
+  );
+};
 
 export default TooltipExampleMulti;
