@@ -52,10 +52,11 @@ class Dropdown extends React.Component {
 
   getContextValue() {
     return {
-      toggle: this.props.toggle,
+      toggle: this.toggle,
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
+      disabled: this.props.disabled
     };
   }
 
