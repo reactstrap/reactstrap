@@ -6,7 +6,7 @@ const Example = (props) => {
   return (
     <CardColumns>
       <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
+        <CardImg top width="100%" src="https://via.placeholder.com/256x180.png?text=Placeholder+Image" alt="Card image cap" />
         <CardBody>
           <CardTitle>Card title</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
@@ -15,7 +15,7 @@ const Example = (props) => {
         </CardBody>
       </Card>
       <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
+        <CardImg top width="100%" src="https://via.placeholder.com/256x180.png?text=Placeholder+Image" alt="Card image cap" />
       </Card>
       <Card>
         <CardBody>
@@ -31,7 +31,7 @@ const Example = (props) => {
         <Button>Button</Button>
       </Card>
       <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
+        <CardImg top width="100%" src="https://via.placeholder.com/256x180.png?text=Placeholder+Image" alt="Card image cap" />
         <CardBody>
           <CardTitle>Card title</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
