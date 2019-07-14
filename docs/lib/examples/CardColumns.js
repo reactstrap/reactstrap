@@ -1,12 +1,13 @@
 import React from 'react';
 import { Card, Button, CardImg, CardTitle, CardText, CardColumns,
  CardSubtitle, CardBody } from 'reactstrap';
+ import { getPlaceholderImg } from './util';
 
 const Example = (props) => {
   return (
     <CardColumns>
       <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
+        <CardImg top width="100%" src={getPlaceholderImg({ w: 256, h: 180 })} alt="Card image cap" />
         <CardBody>
           <CardTitle>Card title</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
@@ -15,7 +16,7 @@ const Example = (props) => {
         </CardBody>
       </Card>
       <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
+        <CardImg top width="100%" src={getPlaceholderImg({ w: 256, h: 180 })} alt="Card image cap" />
       </Card>
       <Card>
         <CardBody>
@@ -31,7 +32,7 @@ const Example = (props) => {
         <Button>Button</Button>
       </Card>
       <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
+        <CardImg top width="100%" src={getPlaceholderImg({ w: 256, h: 180 })} alt="Card image cap" />
         <CardBody>
           <CardTitle>Card title</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
