@@ -1,8 +1,16 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { Collapse, UncontrolledCollapse } from '../';
+import React from "react";
+import {
+  render,
+  fireEvent,
+  waitForDomChange,
+  cleanup
+} from "@testing-library/react";
+import { UncontrolledCollapse } from "../";
+import { toHaveClass } from "@testing-library/jest-dom";
 
-describe('UncontrolledCollapse', () => {
+expect.extend({ toHaveClass });
+
+describe("UncontrolledCollapse", () => {
   let toggler;
   let togglers;
 
@@ -13,86 +21,65 @@ describe('UncontrolledCollapse', () => {
         <button class="toggler">Toggler 1</button>
         <button class="toggler">Toggler 2</button>
       </div>`;
-    toggler = document.getElementById('toggler');
-    togglers = document.getElementsByClassName('toggler');
+    toggler = document.getElementById("toggler");
+    togglers = document.getElementsByClassName("toggler");
   });
 
   afterEach(() => {
     if (jest.isMockFunction(UncontrolledCollapse.prototype.toggle)) {
       UncontrolledCollapse.prototype.toggle.mockRestore();
     }
-    document.body.innerHTML = '';
+    document.body.innerHTML = "";
     toggler = null;
     togglers = null;
+    cleanup();
   });
 
-  it('should be a Collapse', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+  it("should be collapsed by default", () => {
+    const { getByText } = render(
+      <UncontrolledCollapse defaultOpen={false} toggler="#toggler">
+        Yo!
+      </UncontrolledCollapse>
+    );
 
-    expect(collapse.type()).toBe(Collapse);
+    const el = getByText("Yo!");
+    expect(el).toHaveClass("collapse");
   });
 
-  it('should have isOpen default to false', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+  it("should trigger Collapse to expand when it is clicked", async () => {
+    const { getByText } = render(
+      <UncontrolledCollapse defaultOpen={false} toggler="#toggler">
+        Yo!
+      </UncontrolledCollapse>
+    );
 
-    expect(collapse.prop('isOpen')).toBe(false);
+    fireEvent.click(toggler);
+
+    const el = getByText("Yo!");
+
+    expect(el).toHaveClass("collapsing");
+
+    await waitForDomChange(el);
+    expect(el).toHaveClass("collapse show");
   });
 
-  it('should toggle isOpen when toggle is called', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+  it("should toggle for multiple togglers", async () => {
+    const { getByText } = render(
+      <UncontrolledCollapse defaultOpen={false} toggler=".toggler">
+        Yo!
+      </UncontrolledCollapse>
+    );
 
-    toggler.click();
-    collapse.update();
+    const el = getByText("Yo!");
 
-    expect(collapse.prop('isOpen')).toBe(true);
-  });
+    fireEvent.click(togglers[0]);
 
-  it('should call toggle when toggler is clicked', () => {
-    jest.spyOn(UncontrolledCollapse.prototype, 'toggle');
-    mount(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+    await waitForDomChange(el);
+    expect(el).toHaveClass("collapse show");
 
-    expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(0);
+    fireEvent.click(togglers[1]);
 
-    toggler.click();
-
-    expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(1);
-  });
-
-  it('should toggle for multiple togglers', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler=".toggler">Yo!</UncontrolledCollapse>);
-
-    expect(collapse.prop('isOpen')).toBe(false);
-
-    togglers[0].click();
-    collapse.update();
-
-    expect(collapse.prop('isOpen')).toBe(true);
-
-    togglers[1].click();
-    collapse.update();
-
-    expect(collapse.prop('isOpen')).toBe(false);
-  });
-
-  it('should remove eventListeners when unmounted', () => {
-    jest.spyOn(UncontrolledCollapse.prototype, 'componentWillUnmount');
-    jest.spyOn(UncontrolledCollapse.prototype, 'toggle');
-
-    const wrapper = mount(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
-
-    expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(0);
-    expect(UncontrolledCollapse.prototype.componentWillUnmount.mock.calls.length).toBe(0);
-
-    toggler.click();
-
-    expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(1);
-
-    wrapper.unmount();
-
-    expect(UncontrolledCollapse.prototype.componentWillUnmount.mock.calls.length).toBe(1);
-
-    toggler.click();
-
-    expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(1);
+    await waitForDomChange(el);
+    expect(el).toHaveClass("collapse");
   });
 });
