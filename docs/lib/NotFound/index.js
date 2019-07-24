@@ -20,7 +20,7 @@ export default () => {
               </p>
               <p>
                 <Button outline color="danger" className="mr-1" tag={Link} to="/">Get Started</Button>
-                <Button color="danger" tag={Link} to="/components">View Components</Button>
+                <Button color="danger" tag={Link} to="/components/">View Components</Button>
               </p>
             </Col>
           </Row>
