@@ -57,6 +57,7 @@ export default class DropdownPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Dropdown.propTypes = {
+  a11y: PropTypes.bool, // defaults to true. Set to false to enable more bootstrap like tabbing behavior
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
