@@ -85,7 +85,7 @@ class CustomFileInput extends React.Component {
             ),
             cssModule
         );
-        
+
         const validationClassNames = mapToCssModules(
             classNames(
                 invalid && 'is-invalid',
@@ -101,6 +101,7 @@ class CustomFileInput extends React.Component {
             <div className={customClass}>
                 <input type="file" {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} onChange={this.onChange}/>
                 <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor}>{files || label || 'Choose file'}</label>
+                {children}
             </div>
         );
     }
