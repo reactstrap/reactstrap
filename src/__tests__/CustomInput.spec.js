@@ -212,8 +212,8 @@ describe('Custom Inputs', () => {
 
   describe('CustomFile', () => {
     it('should render children in the outer div', () => {
-      const file = shallow(<CustomInput type="file" />);
-      expect(file.type()).toBe('div');
+      const file = mount(<CustomInput type="file" />);
+      expect(file.find('.custom-file').first().type()).toBe('div');
     });
 
     it('should add class is-invalid when invalid is true', () => {
@@ -264,6 +264,45 @@ describe('Custom Inputs', () => {
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
+
+    describe('onChange', () => {
+      it('calls props.onChange if it exists', () => {
+        const onChange = jest.fn();
+        const file = mount(<CustomInput type="file" onChange={onChange} />);
+
+        file.find('input').hostNodes().simulate('change');
+        expect(onChange).toHaveBeenCalled();
+      });
+    });
+
+    it('removes fakepath from file name', () => {
+      const file = mount(<CustomInput type="file" />);
+
+      file.find('input').hostNodes().simulate('change', {
+        target:{
+          value:'C:\\fakepath\\test.txt'
+        }
+      });
+
+      expect(file.find('.custom-file-label').text()).toBe('test.txt');
+    });
+
+    it('lists multiple files when supported', () => {
+      const file = mount(<CustomInput type="file" multiple/>);
+
+      file.find('input').hostNodes().simulate('change', {
+        target:{
+          value:'C:\\fakepath\\file1.txt',
+          files:[
+            {name:"file1.txt"},
+            {name:'file2.txt'},
+            {name:'file3.txt'},
+          ]
+        }
+      })
+
+      expect(file.find('.custom-file-label').text()).toBe('file1.txt, file2.txt, file3.txt');
+    })
   });
 
   describe('CustomRange', () => {
