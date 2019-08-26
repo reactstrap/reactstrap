@@ -76,7 +76,7 @@ export default class FormPage extends React.Component {
 CustomInput.propTypes = {
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  type: PropTypes.string.isRequired, // radio, checkbox, select, range.
+  type: PropTypes.string.isRequired, // radio, checkbox, select, range, switch, file.
   label: PropTypes.string, // used for checkbox and radios
   inline: PropTypes.bool,
   valid: PropTypes.bool, // applied the is-valid class when true, does nothing when false
