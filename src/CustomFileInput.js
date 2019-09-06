@@ -75,6 +75,7 @@ class CustomFileInput extends React.Component {
             htmlFor,
             type,
             onChange,
+            dataBrowse,
             ...attributes
         } = this.props;
 
@@ -100,7 +101,7 @@ class CustomFileInput extends React.Component {
         return (
             <div className={customClass}>
                 <input type="file" {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} onChange={this.onChange}/>
-                <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor}>{files || label || 'Choose file'}</label>
+                <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor} data-browse={ dataBrowse }>{files || label || 'Choose file'}</label>
                 {children}
             </div>
         );
