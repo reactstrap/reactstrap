@@ -7,7 +7,7 @@ const Example = (props) => {
   return (
     <CardGroup>
       <Card>
-        <CardImg top width="100%" src="../../static/318x180.svg" alt="Card image cap" />
+        <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
         <CardBody>
           <CardTitle>Card title</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
@@ -16,7 +16,7 @@ const Example = (props) => {
         </CardBody>
       </Card>
       <Card>
-        <CardImg top width="100%" src="../../static/318x180.svg" alt="Card image cap" />
+        <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
         <CardBody>
           <CardTitle>Card title</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
@@ -25,7 +25,7 @@ const Example = (props) => {
         </CardBody>
       </Card>
       <Card>
-        <CardImg top width="100%" src="../../static/318x180.svg" alt="Card image cap" />
+        <CardImg top width="100%" src="/assets/static318x180.svg" alt="Card image cap" />
         <CardBody>
           <CardTitle>Card title</CardTitle>
           <CardSubtitle>Card subtitle</CardSubtitle>
