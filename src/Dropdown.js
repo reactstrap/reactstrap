@@ -130,6 +130,8 @@ class Dropdown extends React.Component {
       ) {
         this.toggle(e);
         setTimeout(() => this.getMenuItems()[0].focus());
+      } else if (this.props.isOpen && e.which === keyCodes.esc) {
+        this.toggle(e); 
       }
     }
 
