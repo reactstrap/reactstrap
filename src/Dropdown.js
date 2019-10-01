@@ -101,13 +101,7 @@ class Dropdown extends React.Component {
   }
 
   handleDocumentClick(e) {
-    if (e && e.which === keyCodes.esc) {
-      this.toggle(e);
-      this.getMenuCtrl().focus();
-      return;
-    }
-
-    if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
+      if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
     const container = this.getContainer();
 
     if (container.contains(e.target) && container !== e.target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
@@ -136,6 +130,8 @@ class Dropdown extends React.Component {
       ) {
         this.toggle(e);
         setTimeout(() => this.getMenuItems()[0].focus());
+      } else if (this.props.isOpen && e.which === keyCodes.esc) {
+        this.toggle(e); 
       }
     }
 
