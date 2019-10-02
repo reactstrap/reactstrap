@@ -33,7 +33,7 @@
 
 ### Features
 
-* **CustomerInput:** added htmlFor prop ([#1417](https://github.com/reactstrap/reactstrap/issues/1417)) ([a590880](https://github.com/reactstrap/reactstrap/commit/a590880))
+* **CustomInput:** added htmlFor prop ([#1417](https://github.com/reactstrap/reactstrap/issues/1417)) ([a590880](https://github.com/reactstrap/reactstrap/commit/a590880))
 * **modal:** add optional return focus after close ([#1424](https://github.com/reactstrap/reactstrap/issues/1424)) ([33cfce6](https://github.com/reactstrap/reactstrap/commit/33cfce6))
 * **Modal:** add scrollable prop ([#1435](https://github.com/reactstrap/reactstrap/issues/1435)) ([9f7dd45](https://github.com/reactstrap/reactstrap/commit/9f7dd45))
 * **pagination-links:** added props for first and last. changed carets… ([#1410](https://github.com/reactstrap/reactstrap/issues/1410)) ([70cfca2](https://github.com/reactstrap/reactstrap/commit/70cfca2))
