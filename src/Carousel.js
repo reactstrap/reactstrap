@@ -31,19 +31,24 @@ class Carousel extends React.Component {
     document.addEventListener('keyup', this.handleKeyPress);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setInterval(nextProps);
-    // Calculate the direction to turn
-    if (this.props.activeIndex + 1 === nextProps.activeIndex) {
-      this.setState({ direction: 'right' });
-    } else if (this.props.activeIndex - 1 === nextProps.activeIndex) {
-      this.setState({ direction: 'left' });
-    } else if (this.props.activeIndex > nextProps.activeIndex) {
-      this.setState({ direction: this.state.indicatorClicked ? 'left' : 'right' });
-    } else if (this.props.activeIndex !== nextProps.activeIndex) {
-      this.setState({ direction: this.state.indicatorClicked ? 'right' : 'left' });
-    }
-    this.setState({ indicatorClicked: false });
+  componentDidUpdate(prevProps){
+    // we try to simulate the componentWillReceive props
+    // purpose, if the props are the same we are not interested to
+    // proceed anymore in the function.
+    if(prevProps === this.props) return;
+
+    this.setInterval(this.props);
+       // Calculate the direction to turn
+     if (prevProps.activeIndex + 1 === this.props.activeIndex) {
+       this.setState({ direction: 'right' });
+     } else if (prevProps.activeIndex - 1 === this.props.activeIndex) {
+       this.setState({ direction: 'left' });
+     } else if (prevProps.activeIndex > this.props.activeIndex) {
+       this.setState({ direction: this.state.indicatorClicked ? 'left' : 'right' });
+     } else if (prevProps.activeIndex !== this.props.activeIndex) {
+       this.setState({ direction: this.state.indicatorClicked ? 'right' : 'left' });
+     }
+     this.setState({ indicatorClicked: false });
   }
 
   componentWillUnmount() {
