@@ -9,6 +9,7 @@ import { DropdownContext } from './DropdownContext';
 import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
 
 const propTypes = {
+  a11y: PropTypes.bool,
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
@@ -27,6 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11y: true,
   isOpen: false,
   direction: 'down',
   nav: false,
@@ -114,7 +116,7 @@ class Dropdown extends React.Component {
   handleKeyDown(e) {
     if (
       /input|textarea/i.test(e.target.tagName)
-      || (keyCodes.tab === e.which && e.target.getAttribute('role') !== 'menuitem')
+      || (keyCodes.tab === e.which && (e.target.getAttribute('role') !== 'menuitem' || !this.props.a11y))
     ) {
       return;
     }
