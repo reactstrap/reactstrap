@@ -11,7 +11,7 @@ Stateless React Components for Bootstrap 4.
 Follow the [create-react-app instructions](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) **up to** the `Adding Bootstrap` section and instead follow the reactstrap version of [adding bootstrap](#adding-bootstrap).
 
 ### tl;dr
-
+anthony
  ```
 npx create-react-app my-app
 cd my-app/
