@@ -54,7 +54,8 @@ function CustomInput(props) {
   const labelHtmlFor = htmlFor || attributes.id;
 
   if (type === 'select') {
-    return <select {...attributes} ref={innerRef} className={classNames(validationClassNames, customClass)}>{children}</select>;
+    const { type, ...rest } = attributes;
+    return <select {...rest} ref={innerRef} className={classNames(validationClassNames, customClass)}>{children}</select>;
   }
 
   if (type === 'file') {

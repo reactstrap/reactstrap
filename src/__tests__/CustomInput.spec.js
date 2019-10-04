@@ -202,6 +202,11 @@ describe('Custom Inputs', () => {
       expect(select.find('select').prop('data-testprop')).toBe('yo');
     });
 
+    it('should remove type prop from the input node', () => {
+      const select = mount(<CustomInput type="select" />);
+      expect(select.find('select').prop('type')).toBeUndefined();
+    });
+
     it('should reference innerRef to the select node', () => {
       const ref = React.createRef();
       mount(<CustomInput type="select" innerRef={ref} />);
