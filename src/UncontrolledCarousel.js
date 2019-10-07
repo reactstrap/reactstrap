@@ -5,7 +5,6 @@ import CarouselItem from './CarouselItem';
 import CarouselControl from './CarouselControl';
 import CarouselIndicators from './CarouselIndicators';
 import CarouselCaption from './CarouselCaption';
-import { warnOnce } from './utils';
 
 const propTypes = {
   items: PropTypes.array.isRequired,
@@ -62,9 +61,6 @@ class UncontrolledCarousel extends Component {
 
     const slides = items.map((item) => {
       const key = item.key || item.src;
-      if (!item.key) {
-        warnOnce('Item in UncontrolledCarousel is missing a key. Please provide a unique key to the item to avoid rendering react children with duplicate keys.');
-      }
       return (
         <CarouselItem
           onExiting={this.onExiting}
