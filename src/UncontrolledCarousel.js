@@ -59,12 +59,12 @@ class UncontrolledCarousel extends Component {
     const { defaultActiveIndex, autoPlay, indicators, controls, items, goToIndex, ...props } = this.props;
     const { activeIndex } = this.state;
 
-    const slides = items.map((item) => {
+    const slides = items.map((item, index) => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
+          key={`${index}${item.src}`}
         >
           <img className="d-block w-100" src={item.src} alt={item.altText} />
           <CarouselCaption captionText={item.caption} captionHeader={item.header || item.caption} />
