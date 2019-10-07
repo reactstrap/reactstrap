@@ -3,12 +3,22 @@ import { shallow } from 'enzyme';
 import { Carousel, UncontrolledCarousel } from '../';
 
 const items = [
+  { src: '', altText: 'a', caption: 'caption 1', key: '1' },
+  { src: '', altText: 'b', caption: 'caption 2', key: '2' },
+  { src: '', altText: 'c', caption: 'caption 3', key: '3' }
+];
+
+const itemsWithoutKeys = [
   { src: '', altText: 'a', caption: 'caption 1' },
   { src: '', altText: 'b', caption: 'caption 2' },
   { src: '', altText: 'c', caption: 'caption 3' }
 ];
 
 describe('UncontrolledCarousel', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be an Carousel', () => {
     const carousel = shallow(<UncontrolledCarousel items={items} />);
     expect(carousel.type()).toBe(Carousel);
@@ -134,4 +144,28 @@ describe('UncontrolledCarousel', () => {
     instance.onExited();
     expect(instance.animating).toBe(false);
   });
+
+  it('should render carousel items with provided key', () => {
+    const carousel = shallow(<UncontrolledCarousel items={items} indicators={false} />);
+    const carouselItem1 = carousel.childAt(0);
+    const carouselItem2 = carousel.childAt(1);
+    const carouselItem3 = carousel.childAt(2);
+    expect(carouselItem1.key()).toBe('1');
+    expect(carouselItem2.key()).toBe('2');
+    expect(carouselItem3.key()).toBe('3');
+  });
+
+  it('should warn user if item(s) with no key are provided', () => {
+    jest.spyOn(console, 'error');
+    const carousel = shallow(<UncontrolledCarousel items={itemsWithoutKeys} indicators={false} />);
+    const carouselItem1 = carousel.childAt(0);
+    const carouselItem2 = carousel.childAt(1);
+    const carouselItem3 = carousel.childAt(2);
+    expect(carouselItem1.key()).toBe('');
+    expect(carouselItem2.key()).toBe('');
+    expect(carouselItem3.key()).toBe('');
+    expect(console.error).toHaveBeenCalledTimes(1);
+    expect(console.error.mock.calls[0][0]).toBe('Item in UncontrolledCarousel is missing a key. Please provide a unique key to the item to avoid rendering react children with duplicate keys.');
+  });
+
 });
