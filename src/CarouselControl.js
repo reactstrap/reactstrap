@@ -23,6 +23,7 @@ const CarouselControl = (props) => {
   return (
     <a
       className={anchorClasses}
+      style={{cursor: "pointer"}}
       role="button"
       tabIndex="0"
       onClick={(e) => {
