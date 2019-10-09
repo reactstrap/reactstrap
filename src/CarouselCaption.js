@@ -21,8 +21,8 @@ const CarouselCaption = (props) => {
 };
 
 CarouselCaption.propTypes = {
-  captionHeader: PropTypes.string,
-  captionText: PropTypes.string.isRequired,
+  captionHeader: PropTypes.node,
+  captionText: PropTypes.node.isRequired,
   cssModule: PropTypes.object,
   className: PropTypes.string,
 };
