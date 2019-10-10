@@ -49,7 +49,7 @@ class UncontrolledCollapse extends Component {
   }
 
   render() {
-    return <Collapse isOpen={this.state.isOpen} {...omit(this.props, omitKeys)} />;
+    return <Collapse isOpen={this.state.isOpen} {...omit(this.props, omitKeys)} aria-expanded={this.state.isOpen ? 'true' : 'false'} />;
   }
 }
 
