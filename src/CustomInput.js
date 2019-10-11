@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
+import CustomFileInput from './CustomFileInput';
 
 const propTypes = {
   className: PropTypes.string,
@@ -53,15 +54,13 @@ function CustomInput(props) {
   const labelHtmlFor = htmlFor || attributes.id;
 
   if (type === 'select') {
-    return <select {...attributes} ref={innerRef} className={classNames(validationClassNames, customClass)}>{children}</select>;
+    const { type, ...rest } = attributes;
+    return <select {...rest} ref={innerRef} className={classNames(validationClassNames, customClass)}>{children}</select>;
   }
 
   if (type === 'file') {
     return (
-      <div className={customClass}>
-        <input {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} />
-        <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor}>{label || 'Choose file'}</label>
-      </div>
+      <CustomFileInput {...props}/>
     );
   }
 
