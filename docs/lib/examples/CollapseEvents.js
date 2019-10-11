@@ -1,61 +1,42 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
-class Example extends Component {
-  constructor(props) {
-    super(props);
-    this.onEntering = this.onEntering.bind(this);
-    this.onEntered = this.onEntered.bind(this);
-    this.onExiting = this.onExiting.bind(this);
-    this.onExited = this.onExited.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false, status: 'Closed' };
-  }
+const Example = (props) => {
+  const [collapse, setCollapse] = useState(false);
+  const [status, setStatus] = useState('Closed');
 
-  onEntering() {
-    this.setState({ status: 'Opening...' });
-  }
+  const onEntering = () => setStatus('Opening...');
 
-  onEntered() {
-    this.setState({ status: 'Opened' });
-  }
+  const onEntered = () => setStatus('Opened');
 
-  onExiting() {
-    this.setState({ status: 'Closing...' });
-  }
+  const onExiting = () => setStatus('Closing...');
 
-  onExited() {
-    this.setState({ status: 'Closed' });
-  }
+  const onExited = () => setStatus('Closed');
 
-  toggle() {
-    this.setState(state => ({ collapse: !state.collapse }));
-  }
+  const toggle = () => setCollapse(!collapse);
 
-  render() {
-    return (
-      <div>
-        <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
-        <h5>Current state: {this.state.status}</h5>
-        <Collapse
-          isOpen={this.state.collapse}
-          onEntering={this.onEntering}
-          onEntered={this.onEntered}
-          onExiting={this.onExiting}
-          onExited={this.onExited}
-        >
-          <Card>
-            <CardBody>
-              Anim pariatur cliche reprehenderit,
-             enim eiusmod high life accusamus terry richardson ad squid. Nihil
-             anim keffiyeh helvetica, craft beer labore wes anderson cred
-             nesciunt sapiente ea proident.
-            </CardBody>
-          </Card>
-        </Collapse>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
+      <h5>Current state: {status}</h5>
+      <Collapse
+        isOpen={collapse}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExiting={onExiting}
+        onExited={onExited}
+      >
+        <Card>
+          <CardBody>
+            Anim pariatur cliche reprehenderit,
+           enim eiusmod high life accusamus terry richardson ad squid. Nihil
+           anim keffiyeh helvetica, craft beer labore wes anderson cred
+           nesciunt sapiente ea proident.
+          </CardBody>
+        </Card>
+      </Collapse>
+    </div>
+  );
 }
 
 export default Example;
