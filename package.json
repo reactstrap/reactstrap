@@ -101,9 +101,6 @@
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "classnames": "^2.2.3",
-    "lodash.isfunction": "^3.0.9",
-    "lodash.isobject": "^3.0.2",
-    "lodash.tonumber": "^4.0.3",
     "prop-types": "^15.5.8",
     "react-lifecycles-compat": "^3.0.4",
     "react-popper": "^1.3.3",
