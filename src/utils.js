@@ -299,9 +299,9 @@ export function isArrayOrNodeList(els) {
   return Array.isArray(els) || (canUseDOM && typeof els.length === 'number');
 }
 
-export function getTarget(target) {
+export function getTarget(target, allElements) {
   const els = findDOMElements(target);
-  if (isArrayOrNodeList(els)) {
+  if (isArrayOrNodeList(els) && !allElements) {
     return els[0];
   }
   return els;

@@ -42,6 +42,14 @@ describe('PopperContent', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
+  it('should render children when isOpen is true and container is inline and DOM node passed directly for target', () => {
+    const targetElement = element.querySelector('#target');
+    
+    const wrapper = mount(<PopperContent target={targetElement} isOpen container="inline">Yo!</PopperContent>);
+    expect(targetElement).toBeDefined();
+    expect(wrapper.text()).toBe('Yo!');
+  });
+
   it('should render an Arrow in the Popper when isOpen is true and container is inline', () => {
     const wrapper = mount(<PopperContent target="target" isOpen container="inline" arrowClassName="custom-arrow">Yo!</PopperContent>);
 
