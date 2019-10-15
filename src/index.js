@@ -38,6 +38,7 @@ export CarouselCaption from './CarouselCaption';
 export CardSubtitle from './CardSubtitle';
 export CardText from './CardText';
 export CardTitle from './CardTitle';
+export CustomFileInput from './CustomFileInput';
 export CustomInput from './CustomInput';
 export PopperContent from './PopperContent';
 export PopperTargetHelper from './PopperTargetHelper';

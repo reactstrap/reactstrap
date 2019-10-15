@@ -103,8 +103,8 @@ export default class CarouselPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`CarouselCaption.propTypes = {
-  captionHeader: PropTypes.string,
-  captionText: PropTypes.string.isRequired,
+  captionHeader: PropTypes.node,
+  captionText: PropTypes.node.isRequired,
   cssModule: PropTypes.object
 };`}
           </PrismCode>

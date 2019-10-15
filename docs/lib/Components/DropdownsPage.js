@@ -57,6 +57,7 @@ export default class DropdownPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Dropdown.propTypes = {
+  a11y: PropTypes.bool, // defaults to true. Set to false to enable more bootstrap like tabbing behavior
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
@@ -94,7 +95,9 @@ DropdownMenu.propTypes = {
   cssModule: PropTypes.object,
   // Custom modifiers that are passed to DropdownMenu.js, see https://popper.js.org/popper-documentation.html#modifiers
   modifiers: PropTypes.object,
-  persist: PropTypes.bool // presist the popper, even when closed. See #779 for reasoning
+  persist: PropTypes.bool, // presist the popper, even when closed. See #779 for reasoning
+  // passed to popper, see https://popper.js.org/popper-documentation.html#Popper.Defaults.positionFixed
+  positionFixed: PropTypes.bool
 };
 
 DropdownItem.propTypes = {

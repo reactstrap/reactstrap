@@ -735,7 +735,7 @@ describe('Dropdown', () => {
 
       wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
       expect(click.mock.calls.length).toBe(1);
 
       wrapper.detach();
@@ -761,7 +761,7 @@ describe('Dropdown', () => {
 
       wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
       expect(click.mock.calls.length).toBe(1);
 
       wrapper.detach();

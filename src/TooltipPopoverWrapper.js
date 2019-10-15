@@ -86,15 +86,20 @@ class TooltipPopoverWrapper extends React.Component {
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.getRef = this.getRef.bind(this);
     this.state = { isOpen: props.isOpen };
+    this._isMounted = false;
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.updateTarget();
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     this.removeTargetEvents();
     this._targets = null;
+    this.clearShowTimeout();
+    this.clearHideTimeout();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -299,7 +304,7 @@ class TooltipPopoverWrapper extends React.Component {
   }
 
   toggle(e) {
-    if (this.props.disabled) {
+    if (this.props.disabled || !this._isMounted) {
       return e && e.preventDefault();
     }
     

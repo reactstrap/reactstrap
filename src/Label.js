@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import isobject from 'lodash.isobject';
-import { mapToCssModules, tagPropType } from './utils';
+import { mapToCssModules, tagPropType, isObject } from './utils';
 
 const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -77,7 +76,7 @@ const Label = (props) => {
     const isXs = !i;
     let colClass;
 
-    if (isobject(columnProp)) {
+    if (isObject(columnProp)) {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
       colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 

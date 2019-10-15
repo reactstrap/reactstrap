@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { InputGroupButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
@@ -6,40 +6,27 @@ const propTypes = {
   addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
 };
 
-class Example extends React.Component {
-  constructor(props) {
-    super(props);
+const Example = (props) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      dropdownOpen: false
-    };
-  }
+  const toggle = () => setDropdownOpen(!dropdownOpen);
 
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
-  }
+  const { addonType } = props;
 
-  render() {
-    const { addonType } = this.props;
-
-    return (
-      <InputGroupButtonDropdown addonType={addonType} isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
-          Button Dropdown
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem header>Header</DropdownItem>
-          <DropdownItem disabled>Action</DropdownItem>
-          <DropdownItem>Another Action</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>Another Action</DropdownItem>
-        </DropdownMenu>
-      </InputGroupButtonDropdown>
-    );
-  }
+  return (
+    <InputGroupButtonDropdown addonType={addonType} isOpen={dropdownOpen} toggle={toggle}>
+      <DropdownToggle caret>
+        Button Dropdown
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem header>Header</DropdownItem>
+        <DropdownItem disabled>Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem>Another Action</DropdownItem>
+      </DropdownMenu>
+    </InputGroupButtonDropdown>
+  );
 }
 
 Example.propTypes = propTypes;

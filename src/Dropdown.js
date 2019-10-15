@@ -9,6 +9,7 @@ import { DropdownContext } from './DropdownContext';
 import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
 
 const propTypes = {
+  a11y: PropTypes.bool,
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
@@ -27,6 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11y: true,
   isOpen: false,
   direction: 'down',
   nav: false,
@@ -52,10 +54,11 @@ class Dropdown extends React.Component {
 
   getContextValue() {
     return {
-      toggle: this.props.toggle,
+      toggle: this.toggle,
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
+      disabled: this.props.disabled
     };
   }
 
@@ -113,7 +116,7 @@ class Dropdown extends React.Component {
   handleKeyDown(e) {
     if (
       /input|textarea/i.test(e.target.tagName)
-      || (keyCodes.tab === e.which && e.target.getAttribute('role') !== 'menuitem')
+      || (keyCodes.tab === e.which && (e.target.getAttribute('role') !== 'menuitem' || !this.props.a11y))
     ) {
       return;
     }
@@ -129,6 +132,8 @@ class Dropdown extends React.Component {
       ) {
         this.toggle(e);
         setTimeout(() => this.getMenuItems()[0].focus());
+      } else if (this.props.isOpen && e.which === keyCodes.esc) {
+        this.toggle(e); 
       }
     }
 
