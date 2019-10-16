@@ -375,6 +375,44 @@ describe('Tooltip', () => {
     wrapper.detach();
   });
 
+  describe('multi target', () => {
+    let targets, targetContainer;
+    beforeEach(() => {
+      targetContainer = document.createElement('div');
+      targetContainer.innerHTML = `<span class='example'>Target 1</span><span class='example'>Target 2</span>`
+      element.appendChild(targetContainer);
+      targets = targetContainer.querySelectorAll('.example');
+    });
+
+    afterEach(() => {
+      element.removeChild(targetContainer);
+      targets = null;
+    });
+
+    it("should attach tooltip on multiple target when a target selector matches multiple elements", () => {
+      const wrapper = mount(
+        <TooltipPopoverWrapper target=".example" isOpen={isOpen} toggle={toggle} delay={0}>Yo!</TooltipPopoverWrapper>,
+        { attachTo: container });
+
+      targets[0].dispatchEvent(new Event('click'));
+      jest.runTimersToTime(0)
+      expect(isOpen).toBe(true);
+
+      targets[0].dispatchEvent(new Event('click'));
+      jest.runTimersToTime(0)
+      expect(isOpen).toBe(false);
+
+      targets[1].dispatchEvent(new Event('click'));
+      jest.runTimersToTime(0)
+      expect(isOpen).toBe(true);
+
+      targets[1].dispatchEvent(new Event('click'));
+      jest.runTimersToTime(0)
+      expect(isOpen).toBe(false);
+      wrapper.detach();
+    });
+  });
+
   describe('delay', () => {
     it('should accept a number', () => {
       isOpen = true;

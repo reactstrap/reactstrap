@@ -61,11 +61,16 @@ function isInDOMSubtree(element, subtreeRoot) {
   return subtreeRoot && (element === subtreeRoot || subtreeRoot.contains(element));
 }
 
+function isInDOMSubtrees(element, subtreeRoots = []) {
+  return subtreeRoots && subtreeRoots.length && subtreeRoots.find(subTreeRoot=> isInDOMSubtree(element, subTreeRoot));
+}
+
 class TooltipPopoverWrapper extends React.Component {
   constructor(props) {
     super(props);
 
-    this._target = null;
+    this._targets = [];
+    this.currentTargetElement = null;
     this.addTargetEvents = this.addTargetEvents.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.removeTargetEvents = this.removeTargetEvents.bind(this);
@@ -80,7 +85,6 @@ class TooltipPopoverWrapper extends React.Component {
     this.hide = this.hide.bind(this);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);
     this.getRef = this.getRef.bind(this);
-    this.onClosed = this.onClosed.bind(this);
     this.state = { isOpen: props.isOpen };
     this._isMounted = false;
   }
@@ -93,6 +97,7 @@ class TooltipPopoverWrapper extends React.Component {
   componentWillUnmount() {
     this._isMounted = false;
     this.removeTargetEvents();
+    this._targets = null;
     this.clearShowTimeout();
     this.clearHideTimeout();
   }
@@ -157,6 +162,7 @@ class TooltipPopoverWrapper extends React.Component {
   show(e) {
     if (!this.props.isOpen) {
       this.clearShowTimeout();
+      this.currentTargetElement = e && e.target;
       this.toggle(e);
     }
   }
@@ -173,6 +179,7 @@ class TooltipPopoverWrapper extends React.Component {
   hide(e) {
     if (this.props.isOpen) {
       this.clearHideTimeout();
+      this.currentTargetElement = null;
       this.toggle(e);
     }
   }
@@ -201,7 +208,7 @@ class TooltipPopoverWrapper extends React.Component {
   handleDocumentClick(e) {
     const triggers = this.props.trigger.split(' ');
 
-    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtree(e.target, this._target))) {
+    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtrees(e.target, this._targets))) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
       }
@@ -210,7 +217,7 @@ class TooltipPopoverWrapper extends React.Component {
       } else if (!this.props.isOpen) {
         this.showWithDelay(e);
       }
-    } else if (triggers.indexOf('click') > -1 && isInDOMSubtree(e.target, this._target)) {
+    } else if (triggers.indexOf('click') > -1 && isInDOMSubtrees(e.target, this._targets)) {
       if (this._hideTimeout) {
         this.clearHideTimeout();
       }
@@ -223,6 +230,18 @@ class TooltipPopoverWrapper extends React.Component {
     }
   }
 
+  addEventOnTargets(type, handler, isBubble) {
+    this._targets.forEach(target=> {
+      target.addEventListener(type, handler, isBubble);
+    });
+  }
+
+  removeEventOnTargets(type, handler, isBubble) {
+    this._targets.forEach(target=> {
+      target.removeEventListener(type, handler, isBubble);
+    });
+  }
+
   addTargetEvents() {
     if (this.props.trigger) {
       let triggers = this.props.trigger.split(' ');
@@ -231,54 +250,55 @@ class TooltipPopoverWrapper extends React.Component {
           document.addEventListener('click', this.handleDocumentClick, true);
         }
 
-        if (this._target) {
+        if (this._targets && this._targets.length) {
           if (triggers.indexOf('hover') > -1) {
-            this._target.addEventListener(
+            this.addEventOnTargets(
               'mouseover',
               this.showWithDelay,
               true
             );
-            this._target.addEventListener(
+            this.addEventOnTargets(
               'mouseout',
               this.hideWithDelay,
               true
             );
           }
           if (triggers.indexOf('focus') > -1) {
-            this._target.addEventListener('focusin', this.show, true);
-            this._target.addEventListener('focusout', this.hide, true);
+            this.addEventOnTargets('focusin', this.show, true);
+            this.addEventOnTargets('focusout', this.hide, true);
           }
-          this._target.addEventListener('keydown', this.onEscKeyDown, true);
+          this.addEventOnTargets('keydown', this.onEscKeyDown, true);
         }
       }
     }
   }
 
   removeTargetEvents() {
-    if (this._target) {
-      this._target.removeEventListener(
+    if (this._targets) {
+      this.removeEventOnTargets(
         'mouseover',
         this.showWithDelay,
         true
       );
-      this._target.removeEventListener(
+      this.removeEventOnTargets(
         'mouseout',
         this.hideWithDelay,
         true
       );
-      this._target.removeEventListener('keydown', this.onEscKeyDown, true);
-      this._target.removeEventListener('focusin', this.show, true);
-      this._target.removeEventListener('focusout', this.hide, true);
+      this.removeEventOnTargets('keydown', this.onEscKeyDown, true);
+      this.removeEventOnTargets('focusin', this.show, true);
+      this.removeEventOnTargets('focusout', this.hide, true);
     }
 
     document.removeEventListener('click', this.handleDocumentClick, true)
   }
 
   updateTarget() {
-    const newTarget = getTarget(this.props.target);
-    if (newTarget !== this._target) {
+    const newTarget = getTarget(this.props.target, true);
+    if (newTarget !== this._targets) {
       this.removeTargetEvents();
-      this._target = newTarget;
+      this._targets = newTarget ? Array.from(newTarget) : [];
+      this.currentTargetElement = this.currentTargetElement || this._targets[0];
       this.addTargetEvents();
     }
   }
@@ -287,16 +307,12 @@ class TooltipPopoverWrapper extends React.Component {
     if (this.props.disabled || !this._isMounted) {
       return e && e.preventDefault();
     }
-
+    
     return this.props.toggle(e);
   }
 
-  onClosed() {
-    this.setState({ isOpen: false });
-  }
-
   render() {
-    if (!this.state.isOpen) {
+    if (!this.props.isOpen) {
       return null;
     }
 
@@ -330,7 +346,7 @@ class TooltipPopoverWrapper extends React.Component {
     return (
       <PopperContent
         className={className}
-        target={target}
+        target={this.currentTargetElement || this._targets[0]}
         isOpen={isOpen}
         hideArrow={hideArrow}
         boundariesElement={boundariesElement}
@@ -342,7 +358,6 @@ class TooltipPopoverWrapper extends React.Component {
         modifiers={modifiers}
         offset={offset}
         cssModule={cssModule}
-        onClosed={this.onClosed}
         fade={fade}
         flip={flip}
       >

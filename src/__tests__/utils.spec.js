@@ -116,6 +116,20 @@ describe('Utils', () => {
       expect(spy).toHaveBeenCalled();
     });
 
+    it('should return all matching elements if allElement param is true', () => {
+      const element = document.createElement('div');
+       element.innerHTML = `<span class='example'>span 1</span>
+       <span class='example'>span 2</span>`;
+      document.body.appendChild(element);
+
+      jest.spyOn(document, 'querySelectorAll');
+      const elements = Utils.getTarget('.example', true);
+      expect(elements.length).toEqual(2);
+      expect(elements[1].textContent).toEqual('span 2');
+      expect(document.querySelectorAll).toHaveBeenCalledWith('.example');
+      document.querySelectorAll.mockRestore();
+    });
+
     it('should query the document for the target if the target is a string', () => {
       const element = document.createElement('div');
       element.className = 'thing';

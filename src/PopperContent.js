@@ -73,7 +73,7 @@ class PopperContent extends React.Component {
   }
 
   setTargetNode(node) {
-    this.targetNode = node;
+    this.targetNode = typeof node === 'string' ? getTarget(node) : node;
   }
 
   getTargetNode() {
@@ -177,7 +177,7 @@ class PopperContent extends React.Component {
   }
 
   render() {
-    this.setTargetNode(getTarget(this.props.target));
+    this.setTargetNode(this.props.target);
 
     if (this.state.isOpen) {
       return this.props.container === 'inline' ?
