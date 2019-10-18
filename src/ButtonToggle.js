@@ -4,6 +4,12 @@ import Button from "./Button";
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
+const propTypes = {
+  onClick: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+}
+
 class ButtonToggle extends React.Component {
   constructor(props) {
     super(props);
@@ -19,18 +25,21 @@ class ButtonToggle extends React.Component {
   }
 
   onBlur() {
+    this.props.onBlur();
     this.setState({
       focus: false,
     });
   }
 
   onFocus() {
+    this.props.onFocus();
     this.setState({
       focus: true,
     });
   }
 
   onClick() {
+    this.props.onClick();
     this.setState({
       toggle: !this.state.toggle,
     });
@@ -57,5 +66,7 @@ class ButtonToggle extends React.Component {
     />;
   }
 }
+
+ButtonToggle.propTypes = propTypes;
 
 export default ButtonToggle;
