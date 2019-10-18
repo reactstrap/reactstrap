@@ -12,6 +12,7 @@ class Carousel extends React.Component {
     this.hoverStart = this.hoverStart.bind(this);
     this.hoverEnd = this.hoverEnd.bind(this);
     this.state = {
+      activeIndex: this.props.activeIndex,
       direction: 'right',
       indicatorClicked: false,
     };
@@ -31,19 +32,35 @@ class Carousel extends React.Component {
     document.addEventListener('keyup', this.handleKeyPress);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setInterval(nextProps);
-    // Calculate the direction to turn
-    if (this.props.activeIndex + 1 === nextProps.activeIndex) {
-      this.setState({ direction: 'right' });
-    } else if (this.props.activeIndex - 1 === nextProps.activeIndex) {
-      this.setState({ direction: 'left' });
-    } else if (this.props.activeIndex > nextProps.activeIndex) {
-      this.setState({ direction: this.state.indicatorClicked ? 'left' : 'right' });
-    } else if (this.props.activeIndex !== nextProps.activeIndex) {
-      this.setState({ direction: this.state.indicatorClicked ? 'right' : 'left' });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let newState = null;
+    let { activeIndex, direction, indicatorClicked } = prevState;
+
+    if (nextProps.activeIndex !== activeIndex) {
+      // Calculate the direction to turn
+      if (nextProps.activeIndex === activeIndex + 1) {
+        direction = 'right';
+      } else if (nextProps.activeIndex === activeIndex -1) {
+        direction = 'left';
+      } else if (nextProps.activeIndex < activeIndex) {
+        direction = indicatorClicked ? 'left' : 'right';
+      } else if (nextProps.activeIndex !== activeIndex) {
+        direction = indicatorClicked ? 'right' : 'left';
+      }
+
+      newState = {
+        activeIndex: nextProps.activeIndex,
+        direction,
+        indicatorClicked: false,
+      }
     }
-    this.setState({ indicatorClicked: false });
+
+    return newState;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activeIndex === this.state.activeIndex) return;
+    this.setInterval(this.props);
   }
 
   componentWillUnmount() {
@@ -98,7 +115,7 @@ class Carousel extends React.Component {
     return (
       <div className={className}>
         {carouselItems.map((item, index) => {
-          const isIn = (index === this.props.activeIndex);
+          const isIn = (index === this.state.activeIndex);
           return React.cloneElement(item, {
             in: isIn,
             slide: slide,
