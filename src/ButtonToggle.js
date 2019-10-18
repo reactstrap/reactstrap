@@ -8,6 +8,7 @@ const propTypes = {
   onClick: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
 class ButtonToggle extends React.Component {
@@ -40,6 +41,12 @@ class ButtonToggle extends React.Component {
 
   onClick() {
     this.props.onClick();
+
+    if (this.props.disabled) {
+      e.preventDefault();
+      return;
+    }
+
     this.setState({
       toggle: !this.state.toggle,
     });
@@ -54,7 +61,11 @@ class ButtonToggle extends React.Component {
 
     const classes = mapToCssModules(classNames(
       className, 
-      { focus: this.state.focus, active: this.state.toggle }
+      { 
+        focus: this.state.focus, 
+        active: this.state.toggle,
+        disabled: this.props.disabled 
+      }
       ), cssModule);
 
     return <Button
