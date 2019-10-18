@@ -39,7 +39,7 @@ class ButtonToggle extends React.Component {
     });
   }
 
-  onClick() {
+  onClick(e) {
     this.props.onClick();
 
     if (this.props.disabled) {
