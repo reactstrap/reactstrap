@@ -1,3 +1,25 @@
+# [8.1.0](https://github.com/reactstrap/reactstrap/compare/8.0.1...8.1.0) (2019-10-18)
+
+
+### Bug Fixes
+
+* **ButtonDropdown:** add close event when Escape key is pressed ([#1634](https://github.com/reactstrap/reactstrap/issues/1634)) ([#1635](https://github.com/reactstrap/reactstrap/issues/1635)) ([911d779](https://github.com/reactstrap/reactstrap/commit/911d779))
+* **Carousel:** Add pointer on hover for controls ([#1654](https://github.com/reactstrap/reactstrap/issues/1654)) ([32f0c0d](https://github.com/reactstrap/reactstrap/commit/32f0c0d)), closes [#1631](https://github.com/reactstrap/reactstrap/issues/1631)
+* **Collapse:** add aria-expanded attribute ([#1657](https://github.com/reactstrap/reactstrap/issues/1657)) ([2fdf15a](https://github.com/reactstrap/reactstrap/commit/2fdf15a))
+* **CustomInput:** remove type prop from input node when type is select ([3e4c23f](https://github.com/reactstrap/reactstrap/commit/3e4c23f))
+* **CustomInput[type=file]:** add CustomFileInput component ([#1461](https://github.com/reactstrap/reactstrap/issues/1461)) ([25e2480](https://github.com/reactstrap/reactstrap/commit/25e2480)), closes [#1460](https://github.com/reactstrap/reactstrap/issues/1460)
+* **Dropdown:** disabled toggle ([#1571](https://github.com/reactstrap/reactstrap/issues/1571)) ([b4edeb8](https://github.com/reactstrap/reactstrap/commit/b4edeb8)), closes [#1542](https://github.com/reactstrap/reactstrap/issues/1542)
+* **Tooltip:** Support for multiple target elements ([#1465](https://github.com/reactstrap/reactstrap/issues/1465)) ([45775c0](https://github.com/reactstrap/reactstrap/commit/45775c0)), closes [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185)
+* **UncontrolledCarousel:** use item.key instead of item.src as… ([#1649](https://github.com/reactstrap/reactstrap/issues/1649)) ([5b9e758](https://github.com/reactstrap/reactstrap/commit/5b9e758)), closes [#1536](https://github.com/reactstrap/reactstrap/issues/1536)
+
+
+### Features
+
+* **Dropdown:** add a11y prop to tab moves focus ([#1600](https://github.com/reactstrap/reactstrap/issues/1600)) ([1bd965f](https://github.com/reactstrap/reactstrap/commit/1bd965f)), closes [#1441](https://github.com/reactstrap/reactstrap/issues/1441)
+* **NavbarToggler:** add aria-label to NavbarToggler ([#1633](https://github.com/reactstrap/reactstrap/issues/1633)) ([dc0b8ae](https://github.com/reactstrap/reactstrap/commit/dc0b8ae)), closes [#1632](https://github.com/reactstrap/reactstrap/issues/1632)
+
+
+
 <a name="8.0.1"></a>
 ## [8.0.1](https://github.com/reactstrap/reactstrap/compare/8.0.0...8.0.1) (2019-07-10)
 
