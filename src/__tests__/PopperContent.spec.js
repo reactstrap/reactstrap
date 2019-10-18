@@ -103,10 +103,6 @@ describe('PopperContent', () => {
     expect(wrapper.find(Popper).props().modifiers).toMatchObject({
       // remaining default modifiers
       flip: { enabled: true, behavior: 'flip' },
-      update: {
-        enabled: true,
-        order: 950,
-      },
 
       // additional modifiers
       preventOverflow: { boundariesElement: 'viewport' },
@@ -118,17 +114,19 @@ describe('PopperContent', () => {
     wrapper.unmount();
   });
 
-  it('should have placement class of top by default', () => {
+  it('should have x-placement of auto by default', () => {
     const wrapper = mount(<PopperContent target="target" isOpen container="inline">Yo!</PopperContent>);
 
-    expect(wrapper.find('.auto').exists()).toBe(true);
+    console.log(wrapper.debug());
+
+    expect(wrapper.find('div[x-placement="auto"]').exists()).toBe(true);
   });
 
-  it('should override placement class', () => {
+  it('should override x-placement', () => {
     const wrapper = mount(<PopperContent placement="top" target="target" isOpen container="inline">Yo!</PopperContent>);
 
-    expect(wrapper.find('.auto').exists()).toBe(false);
-    expect(wrapper.find('.top').exists()).toBe(true);
+    expect(wrapper.find('div[x-placement="auto"]').exists()).toBe(false);
+    expect(wrapper.find('div[x-placement="top"]').exists()).toBe(true);
   });
 
   it('should allow for a placement prefix', () => {
@@ -140,53 +138,13 @@ describe('PopperContent', () => {
   it('should allow for a placement prefix with custom placement', () => {
     const wrapper = mount(<PopperContent placementPrefix="dropdown" placement="top" target="target" isOpen container="inline">Yo!</PopperContent>);
 
-    expect(wrapper.find('.dropdown-auto').exists()).toBe(false);
-    expect(wrapper.find('.dropdown-top').exists()).toBe(true);
+    expect(wrapper.find('.dropdown-auto').exists()).toBe(true);
+    expect(wrapper.find('div[x-placement="top"]').exists()).toBe(true);
   });
 
   it('should render custom tag for the popper', () => {
     const wrapper = mount(<PopperContent tag="main" target="target" isOpen container="inline">Yo!</PopperContent>);
 
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
-  });
-
-  it('should handle placement changes from popperjs', () => {
-    jest.spyOn(PopperContent.prototype, 'setState');
-    const wrapper = mount(<PopperContent tag="main" target="target" isOpen container="inline">Yo!</PopperContent>);
-
-    const instance = wrapper.instance();
-    const placement = 'top';
-    expect(PopperContent.prototype.setState).not.toHaveBeenCalled();
-    instance.handlePlacementChange({ placement });
-    expect(PopperContent.prototype.setState).toHaveBeenCalled();
-    expect(wrapper.state('placement')).toBe(placement);
-
-    PopperContent.prototype.setState.mockRestore();
-  });
-
-  it('should not update when placement does not change', () => {
-    jest.spyOn(PopperContent.prototype, 'setState');
-    const wrapper = mount(<PopperContent tag="main" target="target" isOpen container="inline">Yo!</PopperContent>);
-
-    const instance = wrapper.instance();
-    const placement = 'top';
-    expect(PopperContent.prototype.setState).not.toHaveBeenCalled();
-    instance.handlePlacementChange({ placement });
-    expect(PopperContent.prototype.setState).toHaveBeenCalled();
-    PopperContent.prototype.setState.mockClear();
-    instance.handlePlacementChange({ placement });
-    expect(PopperContent.prototype.setState).not.toHaveBeenCalled();
-    expect(wrapper.state('placement')).toBe(placement);
-
-    PopperContent.prototype.setState.mockRestore();
-  });
-
-  it('should return data from handle placement changes', () => {
-    const wrapper = mount(<PopperContent tag="main" target="target" isOpen container="inline">Yo!</PopperContent>);
-
-    const instance = wrapper.instance();
-    const data = { placement: 'top' };
-    const result = instance.handlePlacementChange(data);
-    expect(result).toEqual(data);
   });
 });
