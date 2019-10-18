@@ -31,7 +31,7 @@ class Carousel extends React.Component {
     document.addEventListener('keyup', this.handleKeyPress);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setInterval(nextProps);
     // Calculate the direction to turn
     if (this.props.activeIndex + 1 === nextProps.activeIndex) {
