@@ -11,6 +11,7 @@
 * **Dropdown:** disabled toggle ([#1571](https://github.com/reactstrap/reactstrap/issues/1571)) ([b4edeb8](https://github.com/reactstrap/reactstrap/commit/b4edeb8)), closes [#1542](https://github.com/reactstrap/reactstrap/issues/1542)
 * **Tooltip:** Support for multiple target elements ([#1465](https://github.com/reactstrap/reactstrap/issues/1465)) ([45775c0](https://github.com/reactstrap/reactstrap/commit/45775c0)), closes [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185)
 * **UncontrolledCarousel:** use item.key instead of item.src as… ([#1649](https://github.com/reactstrap/reactstrap/issues/1649)) ([5b9e758](https://github.com/reactstrap/reactstrap/commit/5b9e758)), closes [#1536](https://github.com/reactstrap/reactstrap/issues/1536)
+* **Popover:** PopperContent memory leak ([#1669]((https://github.com/reactstrap/reactstrap/issues/1669))) ([54d459c](https://github.com/reactstrap/reactstrap/commit/5b9e758)), closes [#1482](https://github.com/reactstrap/reactstrap/issues/1482) [#1488](https://github.com/reactstrap/reactstrap/issues/1488) [#1664](https://github.com/reactstrap/reactstrap/issues/1664)
 
 
 ### Features
