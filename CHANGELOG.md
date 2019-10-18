@@ -1,3 +1,13 @@
+## [8.1.1](https://github.com/reactstrap/reactstrap/compare/8.1.0...8.1.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* **Carousel:** rename unsafe lifecycles ([940438f](https://github.com/reactstrap/reactstrap/commit/940438f))
+* **Dropdown:** fixed a11y property error message ([#1673](https://github.com/reactstrap/reactstrap/issues/1673))([87d28b6](https://github.com/reactstrap/reactstrap/commit/87d28b6)), closes [#1670](https://github.com/reactstrap/reactstrap/issues/1670)
+
+
+
 # [8.1.0](https://github.com/reactstrap/reactstrap/compare/8.0.1...8.1.0) (2019-10-18)
 
 
