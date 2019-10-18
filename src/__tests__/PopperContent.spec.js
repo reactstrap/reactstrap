@@ -117,8 +117,6 @@ describe('PopperContent', () => {
   it('should have x-placement of auto by default', () => {
     const wrapper = mount(<PopperContent target="target" isOpen container="inline">Yo!</PopperContent>);
 
-    console.log(wrapper.debug());
-
     expect(wrapper.find('div[x-placement="auto"]').exists()).toBe(true);
   });
 
