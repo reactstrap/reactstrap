@@ -12,7 +12,8 @@ const defaultProps = {
 const Tooltip = (props) => {
   const popperClasses = classNames(
     'tooltip',
-    'show'
+    'show',
+    props.popperClassName
   );
 
   const classes = classNames(
