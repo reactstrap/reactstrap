@@ -746,6 +746,40 @@ describe('Modal', () => {
     expect(document.body.className).toBe('');
   });
 
+  it.only('should not keep modal-open class on the body if the modal is not rendered', () => {
+    class ModalWrapper extends React.Component {
+      constructor (props) {
+        super(props);
+
+        this.state = {
+          displayModal: true
+        };
+      }
+
+      componentDidMount() {
+        this.setState({ displayModal: false });
+      }
+
+      render () {
+        const { displayModal } = this.state;
+
+        return (
+          <div>
+            {displayModal && (
+              <Modal isOpen={true} toggle={toggle}>
+                Hello!
+              </Modal>
+            )}
+          </div>
+        )
+      }
+    }
+
+    mount(<ModalWrapper />);
+
+    expect(document.body.className).toBe('');
+  })
+
   it('should remove exactly modal-open class from body', () => {
     // set a body class which includes modal-open
     document.body.className = 'my-modal-opened';
