@@ -9,14 +9,19 @@ const propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   disabled: PropTypes.bool,
-}
+  toggleValue: PropTypes.bool,
+};
+
+const defaultProps = {
+  toggleValue: false,
+};
 
 class ButtonToggle extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      toggle: false,
+      toggle: props.toggleValue,
       focus: false,
     }
 
@@ -25,26 +30,34 @@ class ButtonToggle extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onBlur() {
-    this.props.onBlur();
+  onBlur(e) {
+    if(this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+
     this.setState({
       focus: false,
     });
   }
 
-  onFocus() {
-    this.props.onFocus();
+  onFocus(e) {
+    if(this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+
     this.setState({
       focus: true,
     });
   }
 
   onClick(e) {
-    this.props.onClick();
-
     if (this.props.disabled) {
       e.preventDefault();
       return;
+    }
+
+    if(this.props.onClick) {
+      this.props.onClick(e);
     }
 
     this.setState({
@@ -79,5 +92,6 @@ class ButtonToggle extends React.Component {
 }
 
 ButtonToggle.propTypes = propTypes;
+ButtonToggle.defaultProps = defaultProps;
 
 export default ButtonToggle;
