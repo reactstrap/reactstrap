@@ -130,6 +130,15 @@ describe('Utils', () => {
       document.querySelectorAll.mockRestore();
     });
 
+    it('should return elements as array like object if allElement param is true', () => {
+      const data = {};
+      const spy = jest.fn(() => data);
+      const elements = Utils.getTarget(spy, true);
+      expect(elements).toHaveProperty('length');
+      expect(elements).toContain(data);
+      expect(spy).toHaveBeenCalled();
+    });
+
     it('should query the document for the target if the target is a string', () => {
       const element = document.createElement('div');
       element.className = 'thing';
