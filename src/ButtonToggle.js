@@ -9,11 +9,11 @@ const propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   disabled: PropTypes.bool,
-  toggleValue: PropTypes.bool,
+  defaultValue: PropTypes.bool,
 };
 
 const defaultProps = {
-  toggleValue: false,
+  defaultValue: false,
 };
 
 class ButtonToggle extends React.Component {
@@ -21,7 +21,7 @@ class ButtonToggle extends React.Component {
     super(props);
 
     this.state = {
-      toggle: props.toggleValue,
+      toggle: props.defaultValue,
       focus: false,
     }
 
