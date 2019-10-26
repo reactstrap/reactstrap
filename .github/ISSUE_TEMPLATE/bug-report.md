@@ -20,6 +20,8 @@ about: Create a report to help us improve
 
 ### Steps to reproduce issue
 
+<!-- detail how we can reporduce the issue -->
+
 1. ...
 2. ...
 
