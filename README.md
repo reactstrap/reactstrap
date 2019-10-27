@@ -269,3 +269,5 @@ Organizations and projects using `reactstrap`
 Submit a PR to add to this list!
 
 Looking to build, document and publish reusable components built on top of `reactstrap`? Consider forking https://github.com/reactstrap/component-template to kickstart your project!
+
+Masih belajar
