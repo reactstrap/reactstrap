@@ -59,9 +59,9 @@ class ButtonToggle extends React.Component {
       this.props.onClick(e);
     }
 
-    this.setState(({ toggle }) => {
+    this.setState(({ toggle }) => ({
       toggle: !toggle,
-    });
+    }));
   }
 
   render() {
