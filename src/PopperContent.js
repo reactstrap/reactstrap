@@ -51,7 +51,6 @@ class PopperContent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handlePlacementChange = this.handlePlacementChange.bind(this);
     this.setTargetNode = this.setTargetNode.bind(this);
     this.getTargetNode = this.getTargetNode.bind(this);
     this.getRef = this.getRef.bind(this);
@@ -73,7 +72,7 @@ class PopperContent extends React.Component {
   }
 
   setTargetNode(node) {
-    this.targetNode = node;
+    this.targetNode = typeof node === 'string' ? getTarget(node) : node;
   }
 
   getTargetNode() {
@@ -86,13 +85,6 @@ class PopperContent extends React.Component {
 
   getRef(ref) {
     this._element = ref;
-  }
-
-  handlePlacementChange(data) {
-    if (this.state.placement !== data.placement) {
-      this.setState({ placement: data.placement });
-    }
-    return data;
   }
 
   onClosed() {
@@ -120,28 +112,22 @@ class PopperContent extends React.Component {
       onClosed,
       fade,
       transition,
+      placement,
       ...attrs
     } = this.props;
     const arrowClassName = mapToCssModules(classNames(
       'arrow',
       _arrowClassName
     ), cssModule);
-    const placement = this.state.placement || attrs.placement;
-    const placementFirstPart = placement.split('-')[0];
     const popperClassName = mapToCssModules(classNames(
       _popperClassName,
-      placementPrefix ? `${placementPrefix}-${placementFirstPart}` : placementFirstPart
+      placementPrefix ? `${placementPrefix}-auto` : ''
     ), this.props.cssModule);
 
     const extendedModifiers = {
       offset: { offset },
       flip: { enabled: flip, behavior: fallbackPlacement },
       preventOverflow: { boundariesElement },
-      update: {
-        enabled: true,
-        order: 950,
-        fn: this.handlePlacementChange,
-      },
       ...modifiers,
     };
 
@@ -177,7 +163,7 @@ class PopperContent extends React.Component {
   }
 
   render() {
-    this.setTargetNode(getTarget(this.props.target));
+    this.setTargetNode(this.props.target);
 
     if (this.state.isOpen) {
       return this.props.container === 'inline' ?

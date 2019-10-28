@@ -53,6 +53,8 @@ export default class TooltipsPage extends React.Component {
     PropTypes.number
   ]),
   className: PropTypes.string,
+  // Apply class to the popper component
+  popperClassName: PropTypes.string,
   // Apply class to the inner-tooltip
   innerClassName: PropTypes.string,
   // Apply class to the arrow-tooltip ('arrow' by default)

@@ -206,7 +206,7 @@ class Dropdown extends React.Component {
       addonType,
       tag,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled', 'inNavbar']);
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'a11y']);
 
     const Tag = tag || (nav ? 'li' : 'div');
 
