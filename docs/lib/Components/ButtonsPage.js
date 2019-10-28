@@ -16,6 +16,9 @@ const ButtonStatefulSource = require('!!raw-loader!../examples/ButtonStateful');
 import ButtonCloseIcon from '../examples/ButtonCloseIcon';
 const ButtonCloseIconSource = require('!!raw-loader!../examples/ButtonCloseIcon');
 
+import ButtonToggle from '../examples/ButtonToggle';
+const ButtonToggleSource = require('!!raw-loader!../examples/ButtonToggle');
+
 export default class ButtonsPage extends React.Component {
   render() {
     return (
@@ -160,6 +163,19 @@ Button.defaultProps = {
         <pre>
           <PrismCode className="language-jsx">
             {ButtonCloseIconSource}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>Button Toggle</SectionTitle>
+        <p>
+          Button toggle state
+        </p>
+        <div className="docs-example">
+          <ButtonToggle />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ButtonToggleSource}
           </PrismCode>
         </pre>
       </div>
