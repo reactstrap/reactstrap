@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 const Example = (props) => {
-  const [collapse, setCollapse] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setCollapse(!collapse);
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
       <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
-      <Collapse isOpen={collapse}>
+      <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
           Anim pariatur cliche reprehenderit,
