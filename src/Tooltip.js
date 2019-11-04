@@ -6,7 +6,7 @@ const defaultProps = {
   placement: 'top',
   autohide: true,
   placementPrefix: 'bs-tooltip',
-  trigger: 'click hover focus',
+  trigger: 'hover focus',
 };
 
 const Tooltip = (props) => {
