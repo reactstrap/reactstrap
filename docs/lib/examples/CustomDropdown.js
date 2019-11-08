@@ -10,7 +10,6 @@ const Example = () => {
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle
         tag="span"
-        onClick={toggle}
         data-toggle="dropdown"
         aria-expanded={dropdownOpen}
       >
