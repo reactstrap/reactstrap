@@ -10,7 +10,7 @@ const propTypes = {
   caret: PropTypes.bool,
   color: PropTypes.string,
   children: PropTypes.node,
-  className: PropTypes.oneOfType(PropTypes.string, PropTypes.object)
+  className: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
