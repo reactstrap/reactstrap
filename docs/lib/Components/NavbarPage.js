@@ -50,7 +50,7 @@ export default class NavsPage extends React.Component {
         <h4>NavbarText Properties</h4>
         <pre>
           <PrismCode className="language-jsx">
-{`NavbarToggler.propTypes = {
+{`NavbarText.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
   // pass in custom element to use
 }`}
