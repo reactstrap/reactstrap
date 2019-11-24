@@ -3,9 +3,9 @@ import { shallow } from 'enzyme';
 import { Carousel, UncontrolledCarousel } from '../';
 
 const items = [
-  { src: '', altText: 'a', caption: 'caption 1' },
-  { src: '', altText: 'b', caption: 'caption 2' },
-  { src: '', altText: 'c', caption: 'caption 3' }
+  { src: '', altText: 'a', caption: 'caption 1', key: '1' },
+  { src: '', altText: 'b', caption: 'caption 2', key: '2' },
+  { src: '', altText: 'c', caption: 'caption 3', key: '3' }
 ];
 
 describe('UncontrolledCarousel', () => {
@@ -133,5 +133,15 @@ describe('UncontrolledCarousel', () => {
     expect(instance.animating).toBe(true);
     instance.onExited();
     expect(instance.animating).toBe(false);
+  });
+
+  it('should render carousel items with provided key', () => {
+    const carousel = shallow(<UncontrolledCarousel items={items} indicators={false} />);
+    const carouselItem1 = carousel.childAt(0);
+    const carouselItem2 = carousel.childAt(1);
+    const carouselItem3 = carousel.childAt(2);
+    expect(carouselItem1.key()).toBe('1');
+    expect(carouselItem2.key()).toBe('2');
+    expect(carouselItem3.key()).toBe('3');
   });
 });

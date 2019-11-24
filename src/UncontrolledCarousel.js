@@ -60,11 +60,12 @@ class UncontrolledCarousel extends Component {
     const { activeIndex } = this.state;
 
     const slides = items.map((item) => {
+      const key = item.key || item.src;
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
+          key={key}
         >
           <img className="d-block w-100" src={item.src} alt={item.altText} />
           <CarouselCaption captionText={item.caption} captionHeader={item.header || item.caption} />

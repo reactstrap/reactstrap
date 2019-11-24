@@ -1,3 +1,36 @@
+## [8.1.1](https://github.com/reactstrap/reactstrap/compare/8.1.0...8.1.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* **Carousel:** rename unsafe lifecycles ([940438f](https://github.com/reactstrap/reactstrap/commit/940438f))
+* **Dropdown:** fixed a11y property error message ([#1673](https://github.com/reactstrap/reactstrap/issues/1673))([87d28b6](https://github.com/reactstrap/reactstrap/commit/87d28b6)), closes [#1670](https://github.com/reactstrap/reactstrap/issues/1670)
+
+
+
+# [8.1.0](https://github.com/reactstrap/reactstrap/compare/8.0.1...8.1.0) (2019-10-18)
+
+
+### Bug Fixes
+
+* **ButtonDropdown:** add close event when Escape key is pressed ([#1634](https://github.com/reactstrap/reactstrap/issues/1634)) ([#1635](https://github.com/reactstrap/reactstrap/issues/1635)) ([911d779](https://github.com/reactstrap/reactstrap/commit/911d779))
+* **Carousel:** Add pointer on hover for controls ([#1654](https://github.com/reactstrap/reactstrap/issues/1654)) ([32f0c0d](https://github.com/reactstrap/reactstrap/commit/32f0c0d)), closes [#1631](https://github.com/reactstrap/reactstrap/issues/1631)
+* **Collapse:** add aria-expanded attribute ([#1657](https://github.com/reactstrap/reactstrap/issues/1657)) ([2fdf15a](https://github.com/reactstrap/reactstrap/commit/2fdf15a))
+* **CustomInput:** remove type prop from input node when type is select ([3e4c23f](https://github.com/reactstrap/reactstrap/commit/3e4c23f))
+* **CustomInput[type=file]:** add CustomFileInput component ([#1461](https://github.com/reactstrap/reactstrap/issues/1461)) ([25e2480](https://github.com/reactstrap/reactstrap/commit/25e2480)), closes [#1460](https://github.com/reactstrap/reactstrap/issues/1460)
+* **Dropdown:** disabled toggle ([#1571](https://github.com/reactstrap/reactstrap/issues/1571)) ([b4edeb8](https://github.com/reactstrap/reactstrap/commit/b4edeb8)), closes [#1542](https://github.com/reactstrap/reactstrap/issues/1542)
+* **Tooltip:** Support for multiple target elements ([#1465](https://github.com/reactstrap/reactstrap/issues/1465)) ([45775c0](https://github.com/reactstrap/reactstrap/commit/45775c0)), closes [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185)
+* **UncontrolledCarousel:** use item.key instead of item.src as… ([#1649](https://github.com/reactstrap/reactstrap/issues/1649)) ([5b9e758](https://github.com/reactstrap/reactstrap/commit/5b9e758)), closes [#1536](https://github.com/reactstrap/reactstrap/issues/1536)
+* **Popover:** PopperContent memory leak ([#1669](https://github.com/reactstrap/reactstrap/issues/1669)) ([54d459c](https://github.com/reactstrap/reactstrap/commit/5b9e758)), closes [#1482](https://github.com/reactstrap/reactstrap/issues/1482) [#1488](https://github.com/reactstrap/reactstrap/issues/1488) [#1664](https://github.com/reactstrap/reactstrap/issues/1664)
+
+
+### Features
+
+* **Dropdown:** add a11y prop to tab moves focus ([#1600](https://github.com/reactstrap/reactstrap/issues/1600)) ([1bd965f](https://github.com/reactstrap/reactstrap/commit/1bd965f)), closes [#1441](https://github.com/reactstrap/reactstrap/issues/1441)
+* **NavbarToggler:** add aria-label to NavbarToggler ([#1633](https://github.com/reactstrap/reactstrap/issues/1633)) ([dc0b8ae](https://github.com/reactstrap/reactstrap/commit/dc0b8ae)), closes [#1632](https://github.com/reactstrap/reactstrap/issues/1632)
+
+
+
 <a name="8.0.1"></a>
 ## [8.0.1](https://github.com/reactstrap/reactstrap/compare/8.0.0...8.0.1) (2019-07-10)
 
@@ -33,8 +66,8 @@
 
 ### Features
 
-* **CustomerInput:** added htmlFor prop ([#1417](https://github.com/reactstrap/reactstrap/issues/1417)) ([a590880](https://github.com/reactstrap/reactstrap/commit/a590880))
-* **modal:** add optional return focus after close ([#1424](https://github.com/reactstrap/reactstrap/issues/1424)) ([33cfce6](https://github.com/reactstrap/reactstrap/commit/33cfce6))
+* **CustomInput:** added htmlFor prop ([#1417](https://github.com/reactstrap/reactstrap/issues/1417)) ([a590880](https://github.com/reactstrap/reactstrap/commit/a590880))
+* **Modal:** add optional return focus after close ([#1424](https://github.com/reactstrap/reactstrap/issues/1424)) ([33cfce6](https://github.com/reactstrap/reactstrap/commit/33cfce6))
 * **Modal:** add scrollable prop ([#1435](https://github.com/reactstrap/reactstrap/issues/1435)) ([9f7dd45](https://github.com/reactstrap/reactstrap/commit/9f7dd45))
 * **pagination-links:** added props for first and last. changed carets… ([#1410](https://github.com/reactstrap/reactstrap/issues/1410)) ([70cfca2](https://github.com/reactstrap/reactstrap/commit/70cfca2))
 * **Popover:** add default toggleable fade support ([#1364](https://github.com/reactstrap/reactstrap/issues/1364)) ([#1364](https://github.com/reactstrap/reactstrap/issues/1364)) ([ee15c86](https://github.com/reactstrap/reactstrap/commit/ee15c86)), closes [#363](https://github.com/reactstrap/reactstrap/issues/363)

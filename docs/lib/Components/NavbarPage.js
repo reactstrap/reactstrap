@@ -47,6 +47,15 @@ export default class NavsPage extends React.Component {
 }`}
           </PrismCode>
         </pre>
+        <h4>NavbarText Properties</h4>
+        <pre>
+          <PrismCode className="language-jsx">
+{`NavbarText.propTypes = {
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  // pass in custom element to use
+}`}
+          </PrismCode>
+        </pre>
         <SectionTitle>NavbarToggler</SectionTitle>
         <p>
           Place the <code>NavbarToggler</code> <b>after</b> <code>NavbarBrand</code> to have it appear on the right (typical setup).

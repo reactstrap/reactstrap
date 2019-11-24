@@ -11,7 +11,8 @@ const defaultProps = {
 const Popover = (props) => {
   const popperClasses = classNames(
     'popover',
-    'show'
+    'show',
+    props.popperClassName
   );
 
   const classes = classNames(
