@@ -12,7 +12,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'ul'
+  tag: 'ul',
+  horizontal: false
 };
 
 const getHorizontalClass = horizontal => {
