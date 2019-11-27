@@ -42,6 +42,8 @@ export default class ListGroupPage extends React.Component {
     tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
     // boolean to render list group items edge-to-edge in a parent container
     flush: PropTypes.bool,
+    // boolean to render list group items horizontal. string for specific breakpoint, or true to be always horizontal
+    horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     className: PropTypes.string,
     cssModule: PropTypes.object,
   }`
