@@ -891,7 +891,7 @@ describe('Modal', () => {
     );
 
     const instance = wrapper.instance();
-    expect(instance.getFocusedChild()).not.toBe(instance.getFocusableChildren()[0]);
+    expect(instance.getFocusedChild()).toBe(instance.getFocusableChildren()[0]);
     wrapper.find('.modal').hostNodes().simulate('keyDown', { which: 9, key: 'Tab', keyCode: 9 });
     expect(instance.getFocusedChild()).toBe(instance.getFocusableChildren()[0]);
     expect(mock).toHaveBeenCalled();

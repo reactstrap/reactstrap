@@ -106,7 +106,13 @@ class Modal extends React.Component {
 
   componentDidMount() {
     const { isOpen, autoFocus, onEnter } = this.props;
-
+    document.addEventListener("keydown", (event)=> {
+      if (event.keyCode == 9) {
+        if(this._element) {
+          this.handleTab(event);
+        }
+      }
+  })
     if (isOpen) {
       this.init();
       this.setState({ isOpen: true })
@@ -183,6 +189,10 @@ class Modal extends React.Component {
   }
 
   getFocusableChildren() {
+    if(this._element) {
+      return this._element.querySelectorAll(focusableElements.join(', '));
+    }
+    this.init()
     return this._element.querySelectorAll(focusableElements.join(', '));
   }
 
@@ -192,7 +202,15 @@ class Modal extends React.Component {
 
     try {
       currentFocus = document.activeElement;
+      for (let i = 0; i < focusableChildren.length; i += 1) {
+        if (focusableChildren[i] === currentFocus) {
+          return currentFocus;
+        }
+      }
+      focusableChildren[0].focus();
+      return focusableChildren[0];
     } catch (err) {
+      focusableChildren[0].focus();
       currentFocus = focusableChildren[0];
     }
     return currentFocus;
