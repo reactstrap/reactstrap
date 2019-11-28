@@ -10,6 +10,7 @@ import ListGroupAnchorsAndButtonsExample from '../examples/ListGroupAnchorsAndBu
 import ListGroupContextualClassesExample from '../examples/ListGroupContextualClasses';
 import ListGroupCustomContentExample from '../examples/ListGroupCustomContent';
 import ListGroupFlushExample from '../examples/ListGroupFlush';
+import ListGroupHorizontalExample from '../examples/ListGroupHorizontal';
 
 const ListGroupBadgeExampleSource = require('!!raw-loader!../examples/ListGroupBadge');
 const ListGroupExampleSource = require('!!raw-loader!../examples/ListGroup');
@@ -18,6 +19,7 @@ const ListGroupAnchorsAndButtonsExampleSource = require('!!raw-loader!../example
 const ListGroupContextualClassesExampleSource = require('!!raw-loader!../examples/ListGroupContextualClasses');
 const ListGroupCustomContentExampleSource = require('!!raw-loader!../examples/ListGroupCustomContent');
 const ListGroupFlushExampleSource = require('!!raw-loader!../examples/ListGroupFlush')
+const ListGroupHorizontalExampleSource = require("!!raw-loader!../examples/ListGroupHorizontal");
 
 export default class ListGroupPage extends React.Component {
   render() {
@@ -40,6 +42,8 @@ export default class ListGroupPage extends React.Component {
     tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
     // boolean to render list group items edge-to-edge in a parent container
     flush: PropTypes.bool,
+    // boolean to render list group items horizontal. string for specific breakpoint, or true to be always horizontal
+    horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     className: PropTypes.string,
     cssModule: PropTypes.object,
   }`
@@ -105,6 +109,16 @@ export default class ListGroupPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ListGroupFlushExampleSource}
+          </PrismCode>
+        </pre>
+
+        <legend>Horizontal</legend>
+        <div className="docs-example">
+          <ListGroupHorizontalExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ListGroupHorizontalExampleSource}
           </PrismCode>
         </pre>
       </div>

@@ -5,7 +5,9 @@ const Example = (props) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">
+          <InputGroupText>@</InputGroupText>
+        </InputGroupAddon>
         <Input placeholder="username" />
       </InputGroup>
       <br />

@@ -301,10 +301,17 @@ export function isArrayOrNodeList(els) {
 
 export function getTarget(target, allElements) {
   const els = findDOMElements(target);
-  if (isArrayOrNodeList(els) && !allElements) {
-    return els[0];
+  if (allElements) {
+    if (isArrayOrNodeList(els)) {
+      return els;
+    }
+    return [els];
+  } else {
+    if (isArrayOrNodeList(els)) {
+      return els[0];
+    }
+    return els;
   }
-  return els;
 }
 
 export const defaultToggleEvents = ['touchstart', 'click'];

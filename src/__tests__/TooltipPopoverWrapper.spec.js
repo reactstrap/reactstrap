@@ -364,6 +364,7 @@ describe('Tooltip', () => {
 
   it('should not throw when passed a ref object as the target', () => {
     const targetObj = React.createRef();
+    targetObj.current = createSpyObj('div', ['addEventListener', 'removeEventListener']);
     const event = createSpyObj('event', ['preventDefault']);
     const wrapper = mount(
       <TooltipPopoverWrapper target={targetObj}>Yo!</TooltipPopoverWrapper>,
@@ -373,6 +374,9 @@ describe('Tooltip', () => {
     instance.toggle(event);
 
     wrapper.detach();
+
+    expect(targetObj.current.addEventListener).toHaveBeenCalled();
+    expect(targetObj.current.removeEventListener).toHaveBeenCalled();
   });
 
   describe('multi target', () => {
