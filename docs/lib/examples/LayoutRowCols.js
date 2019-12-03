@@ -4,31 +4,31 @@ import { Container, Row, Col } from 'reactstrap';
 const Example = (props) => {
   return (
     <Container>
-      <Row colsXs="2">
+      <Row xs="2">
         <Col>Column</Col>
         <Col>Column</Col>
         <Col>Column</Col>
         <Col>Column</Col>
       </Row>
-      <Row colsXs="3">
+      <Row xs="3">
         <Col>Column</Col>
         <Col>Column</Col>
         <Col>Column</Col>
         <Col>Column</Col>
       </Row>
-      <Row colsXs="4">
+      <Row xs="4">
         <Col>Column</Col>
         <Col>Column</Col>
         <Col>Column</Col>
         <Col>Column</Col>
       </Row>
-      <Row colsXs="4">
+      <Row xs="4">
         <Col>Column</Col>
         <Col>Column</Col>
         <Col xs="6">Column</Col>
         <Col>Column</Col>
       </Row>
-      <Row colsXs="1" colsSm="2" colsMd="4">
+      <Row xs="1" sm="2" md="4">
         <Col>Column</Col>
         <Col>Column</Col>
         <Col>Column</Col>

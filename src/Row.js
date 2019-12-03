@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
-const rowColsProps = ['colsXs', 'colsSm', 'colsMd', 'colsLg', 'colsXl'];
-const rowColsPropsWidthMapping = ['xs', 'sm', 'md', 'lg', 'xl'];
+const rowColWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 const rowColsPropType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const propTypes = {
@@ -13,16 +12,16 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   form: PropTypes.bool,
-  colsXs: rowColsPropType,
-  colsSm: rowColsPropType,
-  colsMd: rowColsPropType,
-  colsLg: rowColsPropType,
-  colsXl: rowColsPropType
+  xs: rowColsPropType,
+  sm: rowColsPropType,
+  md: rowColsPropType,
+  lg: rowColsPropType,
+  xl: rowColsPropType
 };
 
 const defaultProps = {
   tag: 'div',
-  widths: rowColsProps
+  widths: rowColWidths
 };
 
 const Row = (props) => {
@@ -43,12 +42,12 @@ const Row = (props) => {
 
     delete attributes[colWidth];
 
-    if (!colSize || colSize === '') {
+    if (!colSize) {
       return;
     }
 
     const isXs = !i;
-    colClasses.push(isXs ? `row-cols-${colSize}` : `row-cols-${rowColsPropsWidthMapping[i]}-${colSize}`);
+    colClasses.push(isXs ? `row-cols-${colSize}` : `row-cols-${colWidth}-${colSize}`);
   });
 
   const classes = mapToCssModules(classNames(

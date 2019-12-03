@@ -36,13 +36,13 @@ describe('Row', () => {
   });
 
   it('should pass row col size specific classes as strings', () => {
-    const wrapper = shallow(<Row colsSm="6" />);
+    const wrapper = shallow(<Row sm="6" />);
 
     expect(wrapper.hasClass('row-cols-sm-6')).toBe(true);
   });
 
   it('should pass row col size specific classes as numbers', () => {
-    const wrapper = shallow(<Row colsSm={6} />);
+    const wrapper = shallow(<Row sm={6} />);
 
     expect(wrapper.hasClass('row-cols-sm-6')).toBe(true);
   });

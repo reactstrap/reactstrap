@@ -38,11 +38,11 @@ export default class LayoutsPage extends React.Component {
   noGutters: PropTypes.bool,
   // see https://reactstrap.github.io/components/form Form Grid with Form Row
   form: PropTypes.bool,
-  colsXs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  colsSm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  colsMd: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  colsLg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  colsXl: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }`}
           </PrismCode>
         </pre>
