@@ -4,7 +4,10 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import LayoutExample from '../examples/Layout';
+import LayoutRowColsExample from '../examples/LayoutRowCols';
+
 const LayoutExampleSource = require('!!raw-loader!../examples/Layout');
+const LayoutRowColsExampleSource = require('!!raw-loader!../examples/LayoutRowCols');
 
 export default class LayoutsPage extends React.Component {
   render() {
@@ -34,7 +37,12 @@ export default class LayoutsPage extends React.Component {
 {`Row.propTypes = {
   noGutters: PropTypes.bool,
   // see https://reactstrap.github.io/components/form Form Grid with Form Row
-  form: PropTypes.bool
+  form: PropTypes.bool,
+  xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  md: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  xl: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }`}
           </PrismCode>
         </pre>
@@ -67,6 +75,15 @@ Col.propTypes = {
   // see https://github.com/reactstrap/reactstrap/issues/297#issuecomment-273556116
   widths: PropTypes.array,
 }`}
+          </PrismCode>
+        </pre>
+        <h4>Row Columns</h4>
+        <div className="docs-example">
+          <LayoutRowColsExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {LayoutRowColsExampleSource}
           </PrismCode>
         </pre>
       </div>
