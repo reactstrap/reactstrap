@@ -44,6 +44,7 @@ export default class CarouselPage extends React.Component {
   // This is how bootstrap defines it... I would prefer a bool named autoplay or something...
   ride: PropTypes.oneOf(['carousel']),
   // the interval at which the carousel automatically cycles (default: 5000)
+  // If set to false, carousel will not Autoplay (i.e. will not automatically cycle).
   interval: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
