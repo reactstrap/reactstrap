@@ -5,9 +5,11 @@ import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import LayoutExample from '../examples/Layout';
 import LayoutRowColsExample from '../examples/LayoutRowCols';
+import ContainerResponsiveExample from '../examples/ContainerResponsive';
 
 const LayoutExampleSource = require('!!raw-loader!../examples/Layout');
 const LayoutRowColsExampleSource = require('!!raw-loader!../examples/LayoutRowCols');
+const ContainerResponsiveExampleSource = require('!!raw-loader!../examples/ContainerResponsive');
 
 export default class LayoutsPage extends React.Component {
   render() {
@@ -26,8 +28,8 @@ export default class LayoutsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Container.propTypes = {
-  fluid:  PropTypes.bool
-  // applies .container-fluid class
+  fluid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+  // applies .container-fluid class if bool or .container-{breakpoint} if string
 }`}
           </PrismCode>
         </pre>
@@ -75,6 +77,15 @@ Col.propTypes = {
   // see https://github.com/reactstrap/reactstrap/issues/297#issuecomment-273556116
   widths: PropTypes.array,
 }`}
+          </PrismCode>
+        </pre>
+        <h4>Container</h4>
+        <div className="docs-example">
+          <ContainerResponsiveExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ContainerResponsiveExampleSource}
           </PrismCode>
         </pre>
         <h4>Row Columns</h4>

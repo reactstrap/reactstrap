@@ -5,7 +5,7 @@ import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   tag: tagPropType,
-  fluid: PropTypes.bool,
+  fluid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -23,9 +23,17 @@ const Container = (props) => {
     ...attributes
   } = props;
 
+  let containerClass = 'container';
+  if (fluid === true) {
+    containerClass = 'container-fluid';
+  }
+  else if (fluid) {
+    containerClass = `container-${fluid}`;
+  }
+
   const classes = mapToCssModules(classNames(
     className,
-    fluid ? 'container-fluid' : 'container'
+    containerClass
   ), cssModule);
 
   return (

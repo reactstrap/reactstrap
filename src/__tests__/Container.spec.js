@@ -35,4 +35,11 @@ describe('Container', () => {
     expect(wrapper.hasClass('container')).toBe(true);
     expect(wrapper.type()).toBe('main');
   });
+
+  it('should render responsive breakpoints with string fluid props', () => {
+    const wrapper = shallow(<Container fluid="md" />);
+
+    expect(wrapper.hasClass('container')).toBe(false);
+    expect(wrapper.hasClass('container-md')).toBe(true);
+  });
 });

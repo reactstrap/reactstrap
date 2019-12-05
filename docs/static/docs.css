@@ -205,6 +205,47 @@ pre, code {
   margin-bottom: 1rem;
 }
 
+.docs-example .themed-container {
+  padding: 15px;
+  margin-bottom: 30px;
+  background-color: rgba(0, 123, 255, .15);
+  border: 1px solid rgba(0, 123, 255, .2);
+}
+
+/* Use fixed widths to illustrate responsive container behavior in the narrow content area */
+@media (min-width: 576px) {
+  .themed-container.container,
+  .themed-container.container-sm {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 768px) {
+  .themed-container.container,
+  .themed-container.container-sm,
+  .themed-container.container-md {
+    max-width: 440px;
+  }
+}
+
+@media (min-width: 992px) {
+  .themed-container.container,
+  .themed-container.container-sm,
+  .themed-container.container-md,
+  .themed-container.container-lg {
+    max-width: 580px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .themed-container.container,
+  .themed-container.container-sm,
+  .themed-container.container-md,
+  .themed-container.container-lg,
+  .themed-container.container-xl {
+    max-width: 620px;
+  }
+}
 
 /* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+jsx&plugins=autolinker */
 /**
