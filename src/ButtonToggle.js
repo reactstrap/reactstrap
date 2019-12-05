@@ -20,7 +20,7 @@ class ButtonToggle extends React.Component {
     super(props);
 
     this.state = {
-      toggle: props.defaultValue,
+      toggled: props.defaultValue,
       focus: false,
     }
 
@@ -50,17 +50,12 @@ class ButtonToggle extends React.Component {
   }
 
   onClick(e) {
-    if (this.props.disabled) {
-      e.preventDefault();
-      return;
-    }
-
     if(this.props.onClick) {
       this.props.onClick(e);
     }
 
-    this.setState(({ toggle }) => ({
-      toggle: !toggle,
+    this.setState(({ toggled }) => ({
+      toggled: !toggled,
     }));
   }
 
@@ -78,7 +73,7 @@ class ButtonToggle extends React.Component {
       ), this.props.cssModule);
 
     return <Button
-      active={this.state.toggle}
+      active={this.state.toggled}
       onBlur={this.onBlur} 
       onFocus={this.onFocus} 
       onClick={this.onClick}

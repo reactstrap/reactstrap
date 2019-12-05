@@ -1,3 +1,24 @@
+# [8.2.0](https://github.com/reactstrap/reactstrap/compare/8.1.1...8.2.0) (2019-12-05)
+
+
+### Bug Fixes
+
+* **getTarget:** return array like when allElements parameter is true ([#1687](https://github.com/reactstrap/reactstrap/issues/1687)) ([0702c45](https://github.com/reactstrap/reactstrap/commit/0702c45))
+* **Tooltip:** default value of trigger changed ([#1695](https://github.com/reactstrap/reactstrap/issues/1695)) ([ae48d93](https://github.com/reactstrap/reactstrap/commit/ae48d93)), closes [#1676](https://github.com/reactstrap/reactstrap/issues/1676)
+
+
+### Features
+
+* **ButtonToggle:** add focus styling on button and toggle ([#1660](https://github.com/reactstrap/reactstrap/issues/1660)) ([8980713](https://github.com/reactstrap/reactstrap/commit/8980713)), closes [#1648](https://github.com/reactstrap/reactstrap/issues/1648)
+* **Container:** Added responsive container support ([#1724](https://github.com/reactstrap/reactstrap/issues/1724)) ([31bb211](https://github.com/reactstrap/reactstrap/commit/31bb211)), closes [#1721](https://github.com/reactstrap/reactstrap/issues/1721)
+* **ListGroup:** Add horizontal prop ([#1715](https://github.com/reactstrap/reactstrap/issues/1715)) ([284a543](https://github.com/reactstrap/reactstrap/commit/284a543))
+* **Navbar:** adds NavbarText component ([#1711](https://github.com/reactstrap/reactstrap/issues/1711)) ([6db1083](https://github.com/reactstrap/reactstrap/commit/6db1083)), closes [#1707](https://github.com/reactstrap/reactstrap/issues/1707)
+* **Popover/Tooltip:** add popperClassName property ([#1674](https://github.com/reactstrap/reactstrap/issues/1674)) ([44e85a8](https://github.com/reactstrap/reactstrap/commit/44e85a8)), closes [#1484](https://github.com/reactstrap/reactstrap/issues/1484)
+* **Row:** Add row columns support ([#1720](https://github.com/reactstrap/reactstrap/issues/1720)) ([1fb3c17](https://github.com/reactstrap/reactstrap/commit/1fb3c17))
+* **UncontrolledDropdown:** add onToggle callback ([#1705](https://github.com/reactstrap/reactstrap/issues/1705)) ([d9cae30](https://github.com/reactstrap/reactstrap/commit/d9cae30))
+
+
+
 ## [8.1.1](https://github.com/reactstrap/reactstrap/compare/8.1.0...8.1.1) (2019-10-18)
 
 
