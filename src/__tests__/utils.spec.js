@@ -229,8 +229,8 @@ describe('Utils', () => {
       expect(Utils.isFunction(toArgs([1, 2, 3]))).toBe(false);
       expect(Utils.isFunction([1, 2, 3])).toBe(false);
       expect(Utils.isFunction(true)).toBe(false);
-      expect(Utils.isFunction(new Date)).toBe(false);
-      expect(Utils.isFunction(new Error)).toBe(false);
+      expect(Utils.isFunction(new Date())).toBe(false);
+      expect(Utils.isFunction(new Error())).toBe(false);
       expect(Utils.isFunction({ 'a': 1 })).toBe(false);
       expect(Utils.isFunction(1)).toBe(false);
       expect(Utils.isFunction(/x/)).toBe(false);
@@ -246,13 +246,10 @@ describe('Utils', () => {
 
   describe('isObject', function() {
     it('should return `true` for objects', function() {
-      function toArgs(array) {
-        return (function() { return arguments; }.apply(undefined, array));
-      }
       expect(Utils.isObject([1, 2, 3])).toBe(true);
       expect(Utils.isObject(Object(false))).toBe(true);
-      expect(Utils.isObject(new Date)).toBe(true);
-      expect(Utils.isObject(new Error)).toBe(true);
+      expect(Utils.isObject(new Date())).toBe(true);
+      expect(Utils.isObject(new Error())).toBe(true);
       expect(Utils.isObject({ 'a': 1 })).toBe(true);
       expect(Utils.isObject({ 'a': 1 })).toBe(true);
       expect(Utils.isObject(Object(0))).toBe(true);

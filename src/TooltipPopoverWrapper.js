@@ -322,7 +322,6 @@ class TooltipPopoverWrapper extends React.Component {
       className,
       cssModule,
       innerClassName,
-      target,
       isOpen,
       hideArrow,
       boundariesElement,
