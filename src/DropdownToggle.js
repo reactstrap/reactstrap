@@ -33,7 +33,7 @@ class DropdownToggle extends React.Component {
   }
 
   onClick(e) {
-    if (this.props.disabled || this.context.disabled) {
+    if (this.props.disabled || this.props.context.disabled) {
       e.preventDefault();
       return;
     }
@@ -46,7 +46,7 @@ class DropdownToggle extends React.Component {
       this.props.onClick(e);
     }
 
-    this.context.toggle(e);
+    this.props.context.toggle(e);
   }
 
   render() {
@@ -75,13 +75,13 @@ class DropdownToggle extends React.Component {
       Tag = tag;
     }
 
-    if (this.context.inNavbar) {
+    if (this.props.context.inNavbar) {
       return (
         <Tag
           {...props}
           className={classes}
           onClick={this.onClick}
-          aria-expanded={this.context.isOpen}
+          aria-expanded={this.props.context.isOpen}
           children={children}
         />
       );
@@ -96,7 +96,7 @@ class DropdownToggle extends React.Component {
             
             className={classes}
             onClick={this.onClick}
-            aria-expanded={this.context.isOpen}
+            aria-expanded={this.props.context.isOpen}
             children={children}
           />
         )}
@@ -107,6 +107,9 @@ class DropdownToggle extends React.Component {
 
 DropdownToggle.propTypes = propTypes;
 DropdownToggle.defaultProps = defaultProps;
-DropdownToggle.contextType = DropdownContext;
 
-export default DropdownToggle;
+export default React.forwardRef((props, ref) => (
+  <DropdownContext.Consumer>
+    {ctx => <DropdownToggle {...props} context={ctx} ref={ref} />}
+  </DropdownContext.Consumer>
+));

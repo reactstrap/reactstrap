@@ -41,7 +41,7 @@ class DropdownItem extends React.Component {
     }
 
     if (this.props.toggle) {
-      this.context.toggle(e);
+      this.props.context.toggle(e);
     }
   }
 
@@ -101,6 +101,9 @@ class DropdownItem extends React.Component {
 
 DropdownItem.propTypes = propTypes;
 DropdownItem.defaultProps = defaultProps;
-DropdownItem.contextType = DropdownContext;
 
-export default DropdownItem;
+export default React.forwardRef((props, ref) => (
+  <DropdownContext.Consumer>
+    {ctx => <DropdownItem {...props} context={ctx} ref={ref} />}
+  </DropdownContext.Consumer>
+));
