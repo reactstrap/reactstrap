@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import toNumber from 'lodash.tonumber';
-import { mapToCssModules, tagPropType } from './utils';
+import { mapToCssModules, tagPropType, toNumber } from './utils';
 
 const propTypes = {
   children: PropTypes.node,

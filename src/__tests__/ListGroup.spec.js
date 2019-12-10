@@ -18,6 +18,31 @@ describe('ListGroup', () => {
     expect(wrapper.hasClass('list-group-flush')).toBe(true);
   });
 
+  it('should render with "horizontal"', () => {
+    const wrapper = shallow(<ListGroup horizontal>Yo!</ListGroup>);
+
+    expect(wrapper.text()).toBe("Yo!");
+    expect(wrapper.hasClass("list-group")).toBe(true);
+    expect(wrapper.hasClass("list-group-horizontal")).toBe(true);
+  });
+
+  it('should not render with "horizontal" if flush is true', () => {
+    const wrapper = shallow(<ListGroup flush horizontal>Yo!</ListGroup>);
+
+    expect(wrapper.text()).toBe("Yo!");
+    expect(wrapper.hasClass("list-group")).toBe(true);
+    expect(wrapper.hasClass("list-group-flush")).toBe(true);
+    expect(wrapper.hasClass("list-group-horizontal")).toBe(false);
+  });
+
+  it('should render with "horizontal-{breakpoint}"', () => {
+    const wrapper = shallow(<ListGroup horizontal="lg">Yo!</ListGroup>);
+
+    expect(wrapper.text()).toBe("Yo!");
+    expect(wrapper.hasClass("list-group")).toBe(true);
+    expect(wrapper.hasClass("list-group-horizontal-lg")).toBe(true);
+  });
+
   it('should render additional classes', () => {
     const wrapper = shallow(<ListGroup className="other">Yo!</ListGroup>);
 

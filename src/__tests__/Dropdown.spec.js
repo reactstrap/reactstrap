@@ -68,6 +68,22 @@ describe('Dropdown', () => {
   });
 
   describe('handleProps', () => {
+    it('should not pass custom props to html attrs', () => {
+      const wrapper = mount(
+        <Dropdown inNavbar a11y isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.find('.dropdown').prop('inNavbar')).toBe(undefined);
+      expect(wrapper.find('.dropdown').prop('toggle')).toBe(undefined);
+      expect(wrapper.find('.dropdown').prop('a11y')).toBe(undefined);
+      expect(wrapper.find('.dropdown').prop('isOpen')).toBe(undefined);
+    });
+
     it('should be called on componentDidUpdate when isOpen changed', () => {
       jest.spyOn(Dropdown.prototype, 'componentDidUpdate');
       jest.spyOn(Dropdown.prototype, 'handleProps');
@@ -735,7 +751,7 @@ describe('Dropdown', () => {
 
       wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
       expect(click.mock.calls.length).toBe(1);
 
       wrapper.detach();
@@ -761,7 +777,7 @@ describe('Dropdown', () => {
 
       wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
       expect(click.mock.calls.length).toBe(1);
 
       wrapper.detach();

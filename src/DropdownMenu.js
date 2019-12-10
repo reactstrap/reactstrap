@@ -14,6 +14,7 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
+  positionFixed: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -33,32 +34,34 @@ const directionPositionMap = {
 class DropdownMenu extends React.Component { 
 
   render() {
-    const { className, cssModule, right, tag, flip, modifiers, persist, ...attrs } = this.props;
+    const { className, cssModule, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
       {
         'dropdown-menu-right': right,
-        show: this.context.isOpen,
+        show: this.props.context.isOpen,
       }
     ), cssModule);
 
     const Tag = tag;
 
-    if (persist || (this.context.isOpen && !this.context.inNavbar)) {
+    if (persist || (this.props.context.isOpen && !this.props.context.inNavbar)) {
 
-      const position1 = directionPositionMap[this.context.direction] || 'bottom';
+      const position1 = directionPositionMap[this.props.context.direction] || 'bottom';
       const position2 = right ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
       const poperModifiers = !flip ? {
         ...modifiers,
         ...noFlipModifier,
       } : modifiers;
+      const popperPositionFixed = !!positionFixed;
 
       return (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
+          positionFixed={popperPositionFixed}
         >
           {({ ref, style, placement }) => (
             <Tag
@@ -67,7 +70,7 @@ class DropdownMenu extends React.Component {
               ref={ref}
               style={style}
               {...attrs}
-              aria-hidden={!this.context.isOpen}
+              aria-hidden={!this.props.context.isOpen}
               className={classes}
               x-placement={placement}
             />
@@ -81,7 +84,7 @@ class DropdownMenu extends React.Component {
         tabIndex="-1"
         role="menu"
         {...attrs}
-        aria-hidden={!this.context.isOpen}
+        aria-hidden={!this.props.context.isOpen}
         className={classes}
         x-placement={attrs.placement}
       />
@@ -91,6 +94,9 @@ class DropdownMenu extends React.Component {
 
 DropdownMenu.propTypes = propTypes;
 DropdownMenu.defaultProps = defaultProps;
-DropdownMenu.contextType = DropdownContext;
 
-export default DropdownMenu;
+export default React.forwardRef((props, ref) => (
+  <DropdownContext.Consumer>
+    {ctx => <DropdownMenu {...props} context={ctx} ref={ref} />}
+  </DropdownContext.Consumer>
+));

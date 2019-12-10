@@ -160,6 +160,17 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(Popper).prop('modifiers')).toEqual({ flip: { enabled: false } });
   });
 
+  it('should position using fixed mode when positionFixed is true', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+        <DropdownMenu positionFixed>Ello world</DropdownMenu>
+      </DropdownContext.Provider>
+    );
+
+    expect(wrapper.find(Popper).prop('positionFixed')).toBe(true);
+  });
+
   it('should not render multiple children when isOpen is false', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
@@ -167,7 +178,7 @@ describe('DropdownMenu', () => {
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.childAt(0).children().length).toBe(0);
+    expect(wrapper.childAt(0).childAt(0).children().length).toBe(0);
   });
 
   it('should render custom tag', () => {
@@ -178,7 +189,7 @@ describe('DropdownMenu', () => {
     );
 
     expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.childAt(0).hasClass('dropdown-menu')).toBe(true);
+    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-menu')).toBe(true);
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
   });
 });

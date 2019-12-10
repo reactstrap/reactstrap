@@ -48,14 +48,12 @@ export default () => {
               </PrismCode>
             </pre>
             <h3 className="mt-5">Getting Started with Create React App</h3>
-            <p>Follow the <a href="https://github.com/facebookincubator/create-react-app#getting-started" target="_blank">create-react-app instructions</a> up to the <code>Adding Bootstrap</code> section and instead follow the reactstrap version of adding bootstrap.</p>
+            <p>Follow the <a href="https://facebook.github.io/create-react-app/docs/getting-started" target="_blank">Create React App instructions</a> and then follow the <a href="https://facebook.github.io/create-react-app/docs/adding-bootstrap" target="_blank">Adding Bootstrap instructions</a>.</p>
             <h4>tl;dr</h4>
             <pre>
               <PrismCode className="language-bash">
-{`npm install -g create-react-app
-
-create-react-app my-app
-cd my-app/
+{`npx create-react-app my-app
+cd my-app
 npm start`}
               </PrismCode>
             </pre>
@@ -66,7 +64,7 @@ npm start`}
             <p>Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:</p>
             <pre>
               <PrismCode className="language-bash">
-  {`npm install bootstrap --save
+  {`npm install --save bootstrap
 npm install --save reactstrap react react-dom`}
               </PrismCode>
             </pre>

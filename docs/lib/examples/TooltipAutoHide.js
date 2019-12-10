@@ -1,31 +1,20 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-import React from 'react';
+import React, { useState } from 'react';
 import { Tooltip } from 'reactstrap';
 
-export default class Example extends React.Component {
-  constructor(props) {
-    super(props);
+const Example = (props) => {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      tooltipOpen: false
-    };
-  }
+  const toggle = () => setTooltipOpen(!tooltipOpen);
 
-  toggle() {
-    this.setState({
-      tooltipOpen: !this.state.tooltipOpen
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <p>Sometimes you need to allow users to select text within a <span style={{textDecoration: "underline", color:"blue"}} href="#" id="DisabledAutoHideExample">tooltip</span>.</p>
-        <Tooltip placement="top" isOpen={this.state.tooltipOpen} autohide={false} target="DisabledAutoHideExample" toggle={this.toggle}>
-          Try to select this text!
-        </Tooltip>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <p>Sometimes you need to allow users to select text within a <span style={{textDecoration: "underline", color:"blue"}} href="#" id="DisabledAutoHideExample">tooltip</span>.</p>
+      <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="DisabledAutoHideExample" toggle={toggle}>
+        Try to select this text!
+      </Tooltip>
+    </div>
+  );
 }
+
+export default Example;

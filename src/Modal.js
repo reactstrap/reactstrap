@@ -100,21 +100,23 @@ class Modal extends React.Component {
     this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
 
     this.state = {
-      isOpen: props.isOpen,
+      isOpen: false,
     };
-
-    if (props.isOpen) {
-      this.init();
-    }
   }
 
   componentDidMount() {
-    if (this.props.onEnter) {
-      this.props.onEnter();
+    const { isOpen, autoFocus, onEnter } = this.props;
+
+    if (isOpen) {
+      this.init();
+      this.setState({ isOpen: true })
+      if (autoFocus) {
+        this.setFocus();
+      }
     }
 
-    if (this.state.isOpen && this.props.autoFocus) {
-      this.setFocus();
+    if (onEnter) {
+      onEnter();
     }
 
     this._isMounted = true;
@@ -341,7 +343,6 @@ class Modal extends React.Component {
     } = this.props;
 
     if (!!this._element && (this.state.isOpen || !unmountOnClose)) {
-
       const isModalHidden = !!this._element && !this.state.isOpen && !unmountOnClose;
       this._element.style.display = isModalHidden ? 'none' : 'block';
 
@@ -415,7 +416,6 @@ class Modal extends React.Component {
         </Portal>
       );
     }
-
     return null;
   }
 }

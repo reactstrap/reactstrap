@@ -104,7 +104,9 @@ const ModalsPage = () => {
   modalTransition: PropTypes.shape(Fade.propTypes),
   innerRef: PropTypes.object,
   // if modal should be destructed/removed from DOM after closing
-  unmountOnClose: PropTypes.bool // defaults to true
+  unmountOnClose: PropTypes.bool, // defaults to true
+  // if the element which triggered the modal to open should focused after the modal closes (see example somewhere below)
+  returnFocusAfterClose: PropTypes.bool // defaults to true
 }`}
         </PrismCode>
       </pre>

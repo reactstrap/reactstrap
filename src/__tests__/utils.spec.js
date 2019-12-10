@@ -116,6 +116,29 @@ describe('Utils', () => {
       expect(spy).toHaveBeenCalled();
     });
 
+    it('should return all matching elements if allElement param is true', () => {
+      const element = document.createElement('div');
+       element.innerHTML = `<span class='example'>span 1</span>
+       <span class='example'>span 2</span>`;
+      document.body.appendChild(element);
+
+      jest.spyOn(document, 'querySelectorAll');
+      const elements = Utils.getTarget('.example', true);
+      expect(elements.length).toEqual(2);
+      expect(elements[1].textContent).toEqual('span 2');
+      expect(document.querySelectorAll).toHaveBeenCalledWith('.example');
+      document.querySelectorAll.mockRestore();
+    });
+
+    it('should return elements as array like object if allElement param is true', () => {
+      const data = {};
+      const spy = jest.fn(() => data);
+      const elements = Utils.getTarget(spy, true);
+      expect(elements).toHaveProperty('length');
+      expect(elements).toContain(data);
+      expect(spy).toHaveBeenCalled();
+    });
+
     it('should query the document for the target if the target is a string', () => {
       const element = document.createElement('div');
       element.className = 'thing';
@@ -178,6 +201,83 @@ describe('Utils', () => {
       };
       Utils.setGlobalCssModule(globalCssModule);
       expect(Utils.mapToCssModules('btn btn-primary')).toBe('a1 c2');
+    });
+  });
+
+  describe('isFunction', function() {
+    it('should return `true` for functions', function() {
+      function test(){}
+      expect(Utils.isFunction(test)).toBe(true);
+      expect(Utils.isFunction(Array.prototype.slice)).toBe(true);
+    });
+
+    it('should return `true` for async functions', function() {
+      async function asyncFunc() {}
+      expect(Utils.isFunction(asyncFunc)).toEqual(typeof asyncFunc === 'function');
+    });
+
+    it('should return `true` for generator functions', function() {
+      function* genFunc() {}
+      expect(Utils.isFunction(genFunc)).toEqual(typeof genFunc === 'function');
+    });
+
+
+    it('should return `false` for non-functions', function() {
+      function toArgs(array) {
+        return (function() { return arguments; }.apply(undefined, array));
+      }
+      expect(Utils.isFunction(toArgs([1, 2, 3]))).toBe(false);
+      expect(Utils.isFunction([1, 2, 3])).toBe(false);
+      expect(Utils.isFunction(true)).toBe(false);
+      expect(Utils.isFunction(new Date())).toBe(false);
+      expect(Utils.isFunction(new Error())).toBe(false);
+      expect(Utils.isFunction({ 'a': 1 })).toBe(false);
+      expect(Utils.isFunction(1)).toBe(false);
+      expect(Utils.isFunction(/x/)).toBe(false);
+      expect(Utils.isFunction('a')).toBe(false);
+      expect(Utils.isFunction(Symbol("a"))).toBe(false);
+      //
+      if (document) {
+        expect(Utils.isFunction(document.getElementsByTagName('body'))).toBe(false);
+      }
+    });
+
+  });
+
+  describe('isObject', function() {
+    it('should return `true` for objects', function() {
+      expect(Utils.isObject([1, 2, 3])).toBe(true);
+      expect(Utils.isObject(Object(false))).toBe(true);
+      expect(Utils.isObject(new Date())).toBe(true);
+      expect(Utils.isObject(new Error())).toBe(true);
+      expect(Utils.isObject({ 'a': 1 })).toBe(true);
+      expect(Utils.isObject({ 'a': 1 })).toBe(true);
+      expect(Utils.isObject(Object(0))).toBe(true);
+      expect(Utils.isObject(/x/)).toBe(true);
+      expect(Utils.isObject(Object("a"))).toBe(true);
+      if (document) {
+        expect(Utils.isObject(document.body)).toBe(true);
+      }
+    });
+
+    it('should return `false` for non-objects', function() {
+
+      expect(Utils.isObject(0)).toBe(false);
+      expect(Utils.isObject(false)).toBe(false);
+      expect(Utils.isObject(1)).toBe(false);
+    });
+
+  });
+
+  describe('toNumber', function() {
+    it('should return number', function() {
+      expect(Utils.toNumber("5")).toEqual(5);
+      expect(Utils.toNumber("5.0")).toEqual(5);
+      expect(Utils.toNumber("1.1")).toEqual(1.1);
+      expect(Utils.toNumber("-1.1")).toEqual(-1.1);
+      expect(Utils.toNumber(0/0)).toEqual(NaN);
+      expect(Utils.toNumber(0)).toEqual(0);
+
     });
   });
 

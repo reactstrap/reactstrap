@@ -6,13 +6,14 @@ const defaultProps = {
   placement: 'top',
   autohide: true,
   placementPrefix: 'bs-tooltip',
-  trigger: 'click hover focus',
+  trigger: 'hover focus',
 };
 
 const Tooltip = (props) => {
   const popperClasses = classNames(
     'tooltip',
-    'show'
+    'show',
+    props.popperClassName
   );
 
   const classes = classNames(
