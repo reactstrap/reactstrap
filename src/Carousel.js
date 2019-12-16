@@ -115,6 +115,10 @@ class Carousel extends React.Component {
   }
 
   handleTouchStart(e) {
+    if(!this.props.enableTouch) {
+      return;
+    }
+
     this.setState({ 
       touchStartX: e.changedTouches[0].screenX,
       touchStartY: e.changedTouches[0].screenY,
@@ -122,6 +126,10 @@ class Carousel extends React.Component {
   }
 
   handleTouchEnd(e) {
+    if(!this.props.enableTouch) {
+      return;
+    }
+    
     const SWIPE_THRESHOLD = 40;
     const currentX = e.changedTouches[0].screenX;
     const currentY = e.changedTouches[0].screenY;
@@ -256,6 +264,7 @@ Carousel.propTypes = {
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
   className: PropTypes.string,
+  enableTouch: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
@@ -263,6 +272,7 @@ Carousel.defaultProps = {
   pause: 'hover',
   keyboard: true,
   slide: true,
+  enableTouch: true,
 };
 
 Carousel.childContextTypes = {
