@@ -11,10 +11,13 @@ class Carousel extends React.Component {
     this.renderItems = this.renderItems.bind(this);
     this.hoverStart = this.hoverStart.bind(this);
     this.hoverEnd = this.hoverEnd.bind(this);
+    this.handleTouchStart = this.handleTouchStart.bind(this);
+    this.handleTouchEnd = this.handleTouchEnd.bind(this);
     this.state = {
       activeIndex: this.props.activeIndex,
       direction: 'right',
       indicatorClicked: false,
+      touchStartX: 0,
     };
   }
 
@@ -110,6 +113,25 @@ class Carousel extends React.Component {
     }
   }
 
+  handleTouchStart(e) {
+    this.setState({ touchStartX: e.changedTouches[0].screenX });
+  }
+
+  handleTouchEnd(e) {
+    const SWIPE_THRESHOLD = 40;
+    const currentX = e.changedTouches[0].screenX;
+
+    if(Math.abs(this.state.touchStartX - currentX) < SWIPE_THRESHOLD) {
+      return;
+    }
+
+    if(currentX < this.state.touchStartX) {
+      this.props.next();
+    } else {
+      this.props.previous();
+    }
+  }
+
   renderItems(carouselItems, className) {
     const { slide } = this.props;
     return (
@@ -179,7 +201,8 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
+      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}
+        onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
         {wrappedIndicators}
         {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
