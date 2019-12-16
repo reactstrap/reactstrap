@@ -18,6 +18,7 @@ class Carousel extends React.Component {
       direction: 'right',
       indicatorClicked: false,
       touchStartX: 0,
+      touchStartY: 0,
     };
   }
 
@@ -114,14 +115,25 @@ class Carousel extends React.Component {
   }
 
   handleTouchStart(e) {
-    this.setState({ touchStartX: e.changedTouches[0].screenX });
+    this.setState({ 
+      touchStartX: e.changedTouches[0].screenX,
+      touchStartY: e.changedTouches[0].screenY,
+    });
   }
 
   handleTouchEnd(e) {
     const SWIPE_THRESHOLD = 40;
     const currentX = e.changedTouches[0].screenX;
+    const currentY = e.changedTouches[0].screenY;
+    const diffX = Math.abs(this.state.touchStartX - currentX);
+    const diffY = Math.abs(this.state.touchStartY - currentY);
 
-    if(Math.abs(this.state.touchStartX - currentX) < SWIPE_THRESHOLD) {
+    // Don't swipe if Y-movement is bigger than X-movement
+    if(diffX < diffY) {
+      return;
+    }
+
+    if(diffX < SWIPE_THRESHOLD) {
       return;
     }
 
