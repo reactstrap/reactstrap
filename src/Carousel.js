@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
 import { mapToCssModules } from './utils';
+    
+const SWIPE_THRESHOLD = 40;
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -13,12 +15,12 @@ class Carousel extends React.Component {
     this.hoverEnd = this.hoverEnd.bind(this);
     this.handleTouchStart = this.handleTouchStart.bind(this);
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
+    this.touchStartX = 0,
+    this.touchStartY = 0,
     this.state = {
       activeIndex: this.props.activeIndex,
       direction: 'right',
       indicatorClicked: false,
-      touchStartX: 0,
-      touchStartY: 0,
     };
   }
 
@@ -118,23 +120,19 @@ class Carousel extends React.Component {
     if(!this.props.enableTouch) {
       return;
     }
-
-    this.setState({ 
-      touchStartX: e.changedTouches[0].screenX,
-      touchStartY: e.changedTouches[0].screenY,
-    });
+    this.touchStartX = e.changedTouches[0].screenX;
+    this.touchStartY = e.changedTouches[0].screenY;
   }
 
   handleTouchEnd(e) {
     if(!this.props.enableTouch) {
       return;
     }
-    
-    const SWIPE_THRESHOLD = 40;
+
     const currentX = e.changedTouches[0].screenX;
     const currentY = e.changedTouches[0].screenY;
-    const diffX = Math.abs(this.state.touchStartX - currentX);
-    const diffY = Math.abs(this.state.touchStartY - currentY);
+    const diffX = Math.abs(this.touchStartX - currentX);
+    const diffY = Math.abs(this.touchStartY - currentY);
 
     // Don't swipe if Y-movement is bigger than X-movement
     if(diffX < diffY) {
@@ -145,7 +143,7 @@ class Carousel extends React.Component {
       return;
     }
 
-    if(currentX < this.state.touchStartX) {
+    if(currentX < this.touchStartX) {
       this.props.next();
     } else {
       this.props.previous();
