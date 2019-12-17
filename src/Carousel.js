@@ -15,8 +15,8 @@ class Carousel extends React.Component {
     this.hoverEnd = this.hoverEnd.bind(this);
     this.handleTouchStart = this.handleTouchStart.bind(this);
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
-    this.touchStartX = 0,
-    this.touchStartY = 0,
+    this.touchStartX = 0;
+    this.touchStartY = 0;
     this.state = {
       activeIndex: this.props.activeIndex,
       direction: 'right',
