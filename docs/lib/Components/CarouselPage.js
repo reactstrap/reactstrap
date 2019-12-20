@@ -58,6 +58,8 @@ export default class CarouselPage extends React.Component {
   // controls whether the slide animation on the Carousel works or not
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
+  // controls whether the touch gestures on the Carousel works or not (default: true)
+  enableTouch: PropTypes.bool,
 };`}
           </PrismCode>
         </pre>
