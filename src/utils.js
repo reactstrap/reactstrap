@@ -305,6 +305,9 @@ export function getTarget(target, allElements) {
     if (isArrayOrNodeList(els)) {
       return els;
     }
+    if (els === null) {
+      return [];
+    }
     return [els];
   } else {
     if (isArrayOrNodeList(els)) {

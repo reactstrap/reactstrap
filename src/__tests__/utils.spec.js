@@ -189,6 +189,7 @@ describe('Utils', () => {
     it('should return null if the `current` property of the target is null', () => {
       const target = { current: null };
       expect(Utils.getTarget(target)).toBeNull();
+      expect(Utils.getTarget(target, true)).toStrictEqual([]);
     });
   });
 
