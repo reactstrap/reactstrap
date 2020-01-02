@@ -44,7 +44,7 @@ export const propTypes = {
 
 const DEFAULT_DELAYS = {
   show: 0,
-  hide: 0
+  hide: 50
 };
 
 const defaultProps = {
@@ -307,7 +307,7 @@ class TooltipPopoverWrapper extends React.Component {
     if (this.props.disabled || !this._isMounted) {
       return e && e.preventDefault();
     }
-    
+
     return this.props.toggle(e);
   }
 
