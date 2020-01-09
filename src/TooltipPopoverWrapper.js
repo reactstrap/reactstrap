@@ -162,7 +162,7 @@ class TooltipPopoverWrapper extends React.Component {
   show(e) {
     if (!this.props.isOpen) {
       this.clearShowTimeout();
-      this.currentTargetElement = e && e.target;
+      this.currentTargetElement = e && e.currentTarget;
       this.toggle(e);
     }
   }
