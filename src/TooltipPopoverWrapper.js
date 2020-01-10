@@ -365,7 +365,6 @@ class TooltipPopoverWrapper extends React.Component {
           ref={this.getRef}
           className={classes}
           role="tooltip"
-          aria-hidden={isOpen}
           onMouseOver={this.onMouseOverTooltipContent}
           onMouseLeave={this.onMouseLeaveTooltipContent}
           onKeyDown={this.onEscKeyDown}
