@@ -2,6 +2,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '../';
+import { keyCodes } from '../utils';
 
 const didMount = (component) => {
   const wrapper = mount(component);
@@ -621,6 +622,34 @@ describe('Modal', () => {
     expect(isOpen).toBe(true);
 
     document.getElementsByClassName('modal-backdrop')[0].click();
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should not close modal when escape key pressed when backdrop is "static"', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    const escapeKeyUpEvent = {
+      keyCode: keyCodes.esc,
+      preventDefault: jest.fn(() => {}),
+      stopPropagation: jest.fn(() => {}),
+    };
+
+    instance.handleEscape(escapeKeyUpEvent);
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);

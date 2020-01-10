@@ -10,7 +10,8 @@ import {
   mapToCssModules,
   omit,
   focusableElements,
-  TransitionTimeouts
+  TransitionTimeouts,
+  keyCodes
 } from './utils';
 
 function noop() { }
@@ -94,6 +95,7 @@ class Modal extends React.Component {
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
+    this.handleStaticBackdropAnimation = this.handleStaticBackdropAnimation.bind(this);
     this.handleTab = this.handleTab.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
@@ -101,6 +103,7 @@ class Modal extends React.Component {
 
     this.state = {
       isOpen: false,
+      showStaticBackdropAnimation: false
     };
   }
 
@@ -202,6 +205,11 @@ class Modal extends React.Component {
   handleBackdropClick(e) {
     if (e.target === this._mouseDownElement) {
       e.stopPropagation();
+
+      if (this.props.backdrop === 'static') {
+        this.handleStaticBackdropAnimation();
+      }
+
       if (!this.props.isOpen || this.props.backdrop !== true) return;
 
       const backdrop = this._dialog ? this._dialog.parentNode : null;
@@ -243,11 +251,24 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
-    if (this.props.isOpen && this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
+    if (this.props.isOpen && this.props.keyboard && e.keyCode === keyCodes.esc && this.props.toggle) {
       e.preventDefault();
       e.stopPropagation();
+
+      if (this.props.backdrop === 'static') {
+        this.handleStaticBackdropAnimation();
+        return;
+      }
+
       this.props.toggle(e);
     }
+  }
+
+  handleStaticBackdropAnimation() {
+    this.setState({ showStaticBackdropAnimation: true });
+    setTimeout(() => {
+      this.setState({ showStaticBackdropAnimation: false });
+    }, 100);
   }
 
   init() {
@@ -405,7 +426,7 @@ class Modal extends React.Component {
               onEntered={this.onOpened}
               onExited={this.onClosed}
               cssModule={cssModule}
-              className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
+              className={mapToCssModules(classNames('modal', modalClassName, this.state.showStaticBackdropAnimation && 'modal-static'), cssModule)}
               innerRef={innerRef}
             >
               {external}
