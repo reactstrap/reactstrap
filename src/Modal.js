@@ -100,6 +100,7 @@ class Modal extends React.Component {
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
     this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
+    this.clearBackdropAnimationTimeout = this.clearBackdropAnimationTimeout.bind(this);
 
     this.state = {
       isOpen: false,
@@ -144,6 +145,8 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
+    this.clearBackdropAnimationTimeout();
+
     if (this.props.onExit) {
       this.props.onExit();
     }
@@ -265,8 +268,9 @@ class Modal extends React.Component {
   }
 
   handleStaticBackdropAnimation() {
+    this.clearBackdropAnimationTimeout();
     this.setState({ showStaticBackdropAnimation: true });
-    setTimeout(() => {
+    this._backdropAnimationTimeout = setTimeout(() => {
       this.setState({ showStaticBackdropAnimation: false });
     }, 100);
   }
@@ -438,6 +442,13 @@ class Modal extends React.Component {
       );
     }
     return null;
+  }
+
+  clearBackdropAnimationTimeout() {
+    if (this._backdropAnimationTimeout) {
+      clearTimeout(this._backdropAnimationTimeout);
+      this._backdropAnimationTimeout = undefined;
+    }
   }
 }
 
