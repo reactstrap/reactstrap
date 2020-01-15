@@ -1,5 +1,15 @@
+## [8.3.1](https://github.com/reactstrap/reactstrap/compare/8.3.0...8.3.1) (2020-01-15)
+
+
+### Bug Fixes
+
+* **build:** fix DropdownContext import/export ([96188f4](https://github.com/reactstrap/reactstrap/commit/96188f4))
+
+
+
 # [8.3.0](https://github.com/reactstrap/reactstrap/compare/8.2.0...8.3.0) (2020-01-15)
 
+## NOT PUBLISHED TO NPM DUE TO RELEASE BUILD FAILURE, USE 8.3.1
 
 ### Bug Fixes
 
