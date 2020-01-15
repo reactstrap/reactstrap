@@ -657,6 +657,94 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should animate when backdrop is "static" and escape key pressed', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    const escapeKeyUpEvent = {
+      keyCode: keyCodes.esc,
+      preventDefault: jest.fn(() => {}),
+      stopPropagation: jest.fn(() => {}),
+    };
+
+    wrapper.instance().handleEscape(escapeKeyUpEvent);
+    expect(spy).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
+  it('should animate when backdrop is "static" and backdrop is clicked', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+
+    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+    
+    const modal = document.getElementsByClassName('modal')[0];
+
+    const mouseDownEvent = document.createEvent('MouseEvents');
+    mouseDownEvent.initEvent('mousedown', true, true);
+    modal.dispatchEvent(mouseDownEvent);
+
+    const clickEvent = document.createEvent('MouseEvents');
+    clickEvent.initEvent('click', true, true);
+    modal.dispatchEvent(clickEvent);
+
+    jest.runTimersToTime(300);
+    expect(spy).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
+  it('should not animate when backdrop is "static" and modal is clicked', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+
+    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+    
+    const modalDialog = document.getElementsByClassName('modal-dialog')[0];
+
+    const mouseDownEvent = document.createEvent('MouseEvents');
+    mouseDownEvent.initEvent('mousedown', true, true);
+    modalDialog.dispatchEvent(mouseDownEvent);
+
+    const clickEvent = document.createEvent('MouseEvents');
+    clickEvent.initEvent('click', true, true);
+    modalDialog.dispatchEvent(clickEvent);
+
+    jest.runTimersToTime(300);
+    expect(spy).not.toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
   it('should destroy this._element', () => {
     isOpen = true;
     const wrapper = didMount(
