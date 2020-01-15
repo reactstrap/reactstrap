@@ -209,13 +209,13 @@ class Modal extends React.Component {
     if (e.target === this._mouseDownElement) {
       e.stopPropagation();
 
-      if (this.props.backdrop === 'static') {
+      const backdrop = this._dialog ? this._dialog.parentNode : null;
+
+      if (backdrop && e.target === backdrop && this.props.backdrop === 'static') {
         this.handleStaticBackdropAnimation();
       }
 
       if (!this.props.isOpen || this.props.backdrop !== true) return;
-
-      const backdrop = this._dialog ? this._dialog.parentNode : null;
 
       if (backdrop && e.target === backdrop && this.props.toggle) {
         this.props.toggle(e);
