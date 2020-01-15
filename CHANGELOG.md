@@ -1,3 +1,25 @@
+# [8.3.0](https://github.com/reactstrap/reactstrap/compare/8.2.0...8.3.0) (2020-01-15)
+
+
+### Bug Fixes
+
+* remove aria-hidden attribute from tooltips and popovers ([#1747](https://github.com/reactstrap/reactstrap/issues/1747)) ([009a2bd](https://github.com/reactstrap/reactstrap/commit/009a2bd))
+* **Dropdown:** Avoid preventDefault for things like F5 ([#1464](https://github.com/reactstrap/reactstrap/issues/1464)) ([305d3f0](https://github.com/reactstrap/reactstrap/commit/305d3f0)), closes [#1453](https://github.com/reactstrap/reactstrap/issues/1453)
+* **DropdownContext:** wrap dropdown components to provide context prop ([64847df](https://github.com/reactstrap/reactstrap/commit/64847df)), closes [#1457](https://github.com/reactstrap/reactstrap/issues/1457) [#1462](https://github.com/reactstrap/reactstrap/issues/1462)
+* **DropdownToggle:** pass innerRef to popper ([c088c58](https://github.com/reactstrap/reactstrap/commit/c088c58)), closes [#1471](https://github.com/reactstrap/reactstrap/issues/1471)
+* **Modal:** run close based on prop, not state ([310b061](https://github.com/reactstrap/reactstrap/commit/310b061)), closes [#1626](https://github.com/reactstrap/reactstrap/issues/1626)
+* **Tooltip:** autohide broken since default delay was zero ([#1733](https://github.com/reactstrap/reactstrap/issues/1733)) ([87a6bda](https://github.com/reactstrap/reactstrap/commit/87a6bda)), closes [#1692](https://github.com/reactstrap/reactstrap/issues/1692)
+* **Tooltip:** fix nested elements within target ([#1746](https://github.com/reactstrap/reactstrap/issues/1746)) ([fed4bcf](https://github.com/reactstrap/reactstrap/commit/fed4bcf)), closes [#1736](https://github.com/reactstrap/reactstrap/issues/1736)
+* **Tooltip:** fix render failure if target ref is null ([#1734](https://github.com/reactstrap/reactstrap/issues/1734)) ([853b56e](https://github.com/reactstrap/reactstrap/commit/853b56e)), closes [#1686](https://github.com/reactstrap/reactstrap/issues/1686)
+
+
+### Features
+
+* **Carousel:** Add touch swipe support ([#1731](https://github.com/reactstrap/reactstrap/issues/1731)) ([8a12330](https://github.com/reactstrap/reactstrap/commit/8a12330))
+* **Modal:** Added static backdrop animation defined in Bootstr… ([#1750](https://github.com/reactstrap/reactstrap/issues/1750)) ([7d44f36](https://github.com/reactstrap/reactstrap/commit/7d44f36))
+
+
+
 # [8.2.0](https://github.com/reactstrap/reactstrap/compare/8.1.1...8.2.0) (2019-12-05)
 
 
