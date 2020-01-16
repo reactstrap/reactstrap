@@ -122,12 +122,4 @@ describe('Collapse', () => {
     expect(wrapper.state('height')).toBe(null);
     wrapper.unmount();
   });
-
-  it('should set aria-expanded', () => {
-    isOpen = false;
-    wrapper = mount(<Collapse isOpen={isOpen} />);
-    expect(wrapper.find('div').prop('aria-expanded')).toBe('false');
-    toggle();
-    expect(wrapper.find('div').prop('aria-expanded')).toBe('true');
-  });
 });
