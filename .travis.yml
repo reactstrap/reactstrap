@@ -24,16 +24,13 @@ branches:
 jobs:
   include:
     - stage: deploy
+      if: tag IS present
       node_js: 12
       before_script:
         - chmod +x scripts/docs
       script: echo "Deploying ..."
       after_success:
         - scripts/docs
-      branches:
-        only:
-        - master
-        - "/^\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
       before_deploy:
       - echo 'Preparing to publish'
       - npm run build
