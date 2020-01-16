@@ -7,7 +7,7 @@ BUMP_TYPE=$1
 if [ -z "$TRAVIS" ]; then
   git checkout master
   git pull
-  npm install
+  yarn
 fi
 
 CURRENT_BRANCH="$(git symbolic-ref --short -q HEAD)"

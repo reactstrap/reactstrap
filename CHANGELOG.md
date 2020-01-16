@@ -1,3 +1,12 @@
+## [8.3.2](https://github.com/reactstrap/reactstrap/compare/8.3.1...8.3.2) (2020-01-16)
+
+
+### Bug Fixes
+
+* **Modal:** Prevent static backdrop animation when modal clicked ([#1755](https://github.com/reactstrap/reactstrap/issues/1755)) ([79efb4a](https://github.com/reactstrap/reactstrap/commit/79efb4a))
+
+
+
 ## [8.3.1](https://github.com/reactstrap/reactstrap/compare/8.3.0...8.3.1) (2020-01-15)
 
 
