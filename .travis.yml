@@ -1,6 +1,12 @@
 sudo: false
 dist: trusty
 language: node_js
+node_js:
+  - 10
+  - 11
+  - 12
+script: npm run cover -- --runInBand
+after_script: npm run report-coverage
 cache:
   directories:
   - node_modules
@@ -18,19 +24,13 @@ jobs:
     - stage: lint
       node_js: 12
       script: npm run lint
-    - stage: test
-      node_js:
-        - 10
-        - 11
-        - 12
-      script: npm run cover -- --runInBand
-      after_script: npm run report-coverage
     - stage: deploy
       if: tag IS present
       node_js: 12
       before_script:
         - chmod +x scripts/docs
       script: echo "Deploying ..."
+      after_script: skip
       after_success:
         - scripts/docs
       before_deploy:
