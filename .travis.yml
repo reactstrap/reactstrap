@@ -1,28 +1,30 @@
 sudo: false
 dist: trusty
 language: node_js
-node_js:
-- 10
-- 11
-- 12
 cache:
   directories:
   - node_modules
-script:
-- npm run lint
-- npm run cover -- --runInBand
-after_script:
-- npm run report-coverage
 env:
   global:
     secure: Jb9Q9+XnCh+n5uNJuqUmLmPG6mUUv7iTi5bNeK6TpLdrVKk+2mLdobV3iRUy/DEqNLwt2lxwzp1oq4YI/lZ0vlUam7HpFWpSf4PAI8ckGRqFdus7K45o+zxHLJ2zBQwXacsZB204qtO8RDdXaNb9PjRGNFdKm3ZuqZTv6PkO+hS05EFxmcW95HiSHpV/qPxKjEsDdCpoTNEA3MP0dNtSKygeht2nFQVr7WkOhkjDvUtU9EypkGbJeBCd0AckqXM0Qvmdi++csyz5VRQhhUwI/2BKSjbBVUZ6Q3m8sX2p4G/wFEbhXl5eKTzAYLuf+9kT9Jg+gKdT30PoChx2NPKHv0XS8BOrKQScs6KIwOVH2/CNCKqAxh3HkCMSONmqEQRqBK1V/gSCZ4zDX9PgrfyE23FLN/GM4YtBlkVCMLh8Y/hiapXUaDobxh/o2tfOoQkeoZWZeoeIydhwULTDSG2R3PKV7rkGYas0VQ+qtU+i8VG+PzjPT4DRf4xIKzNzJbFIq9oTNYBTasWi6+OKzNw0uH3ydmRzf+GxaTwOIdR3nRQMQN60dH+6qeJkrIvpfrGAB5gqTutXPfe0xf2rMrW6dyipnSgGlk1JOgA+cU4CPyHql1OA+ox/kIQ4I3PIJBu5YYE3amFmKLu3vnDHELSzM1CYeOs0sDasRyiDkKE79l0=
-branches:
-  only:
-  - master
-  - "/^\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+
+stages:
+  - lint
+  - test
+  - deploy
 
 jobs:
   include:
+    - stage: lint
+      node_js: 12
+      script: npm run lint
+    - stage: test
+      node_js:
+        - 10
+        - 11
+        - 12
+      script: npm run cover -- --runInBand
+      after_script: npm run report-coverage
     - stage: deploy
       if: tag IS present
       node_js: 12
