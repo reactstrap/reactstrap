@@ -178,7 +178,7 @@ describe('DropdownMenu', () => {
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.childAt(0).childAt(0).children().length).toBe(0);
+    expect(wrapper.childAt(0).children().length).toBe(0);
   });
 
   it('should render custom tag', () => {
@@ -189,7 +189,7 @@ describe('DropdownMenu', () => {
     );
 
     expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-menu')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('dropdown-menu')).toBe(true);
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
   });
 });

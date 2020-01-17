@@ -68,7 +68,7 @@ describe('DropdownToggle', () => {
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.childAt(0).childAt(0).childAt(0).hasClass('dropdown-toggle')).toBe(true);
+    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle')).toBe(true);
   });
 
   describe('color', () => {
@@ -124,7 +124,7 @@ describe('DropdownToggle', () => {
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.childAt(0).childAt(0).childAt(0).hasClass('dropdown-toggle-split')).toBe(true);
+    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle-split')).toBe(true);
   });
 
   describe('onClick', () => {
@@ -136,7 +136,7 @@ describe('DropdownToggle', () => {
         </DropdownContext.Provider>
       );
 
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick({});
       expect(onClick).toHaveBeenCalled();
@@ -150,7 +150,7 @@ describe('DropdownToggle', () => {
         </DropdownContext.Provider>
       );
       
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick({
         preventDefault: () => {
@@ -168,7 +168,7 @@ describe('DropdownToggle', () => {
           <DropdownToggle disabled>Ello world</DropdownToggle>
         </DropdownContext.Provider>
       );
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick(e);
       expect(e.preventDefault).toHaveBeenCalled();
@@ -204,7 +204,7 @@ describe('DropdownToggle', () => {
           <DropdownToggle nav>Ello world</DropdownToggle>
         </DropdownContext.Provider>
       );
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick(e);
       expect(e.preventDefault).toHaveBeenCalled();
