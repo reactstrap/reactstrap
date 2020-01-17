@@ -261,6 +261,5 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
-Dropdown.Context = DropdownContext;
 
 export default Dropdown;

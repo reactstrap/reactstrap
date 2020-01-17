@@ -104,7 +104,7 @@ describe('DropdownItem', () => {
     it('should not be called when disabled', () => {
       const e = { preventDefault: jest.fn() };
       const wrapper = mount(<DropdownItem disabled>Item</DropdownItem>);
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick(e);
       expect(e.preventDefault).toHaveBeenCalled();
@@ -113,7 +113,7 @@ describe('DropdownItem', () => {
     it('should not be called when divider is set', () => {
       const e = { preventDefault: jest.fn() };
       const wrapper = mount(<DropdownItem divider />);
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick(e);
       expect(e.preventDefault).toHaveBeenCalled();
@@ -122,7 +122,7 @@ describe('DropdownItem', () => {
     it('should not be called when header item', () => {
       const e = { preventDefault: jest.fn() };
       const wrapper = mount(<DropdownItem header>Header</DropdownItem>);
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick(e);
       expect(e.preventDefault).toHaveBeenCalled();
@@ -136,7 +136,7 @@ describe('DropdownItem', () => {
           <DropdownItem onClick={() => onClick()}>Click me</DropdownItem>
         </DropdownContext.Provider>
       );
-      const instance = wrapper.childAt(0).instance();
+      const instance = wrapper.instance();
 
       instance.onClick(e);
       expect(onClick).toHaveBeenCalled();
