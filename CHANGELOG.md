@@ -1,3 +1,12 @@
+# [8.4.0](https://github.com/reactstrap/reactstrap/compare/8.3.2...8.4.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* revert breaking change ([#1760](https://github.com/reactstrap/reactstrap/issues/1760)) ([eb37426](https://github.com/reactstrap/reactstrap/commit/eb37426))
+
+
+
 ## [8.3.2](https://github.com/reactstrap/reactstrap/compare/8.3.1...8.3.2) (2020-01-16)
 
 
