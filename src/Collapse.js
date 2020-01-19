@@ -127,7 +127,6 @@ class Collapse extends Component {
               style={{ ...childProps.style, ...style }}
               className={classes}
               ref={this.props.innerRef}
-              aria-expanded={isOpen ? 'true' : 'false'}
             >
               {children}
             </Tag>
