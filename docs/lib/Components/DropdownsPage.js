@@ -117,7 +117,7 @@ DropdownItem.propTypes = {
         <SectionTitle>Alignment</SectionTitle>
         <p>To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to <code>Dropdown</code>.</p>
         <div className="docs-example">
-          <div style={{ display: 'inline-block' }}>
+          <div className="d-flex justify-content-center">
             <Dropdown isOpen={this.state.example2} toggle={this.toggleExample2}>
               <DropdownToggle caret>
                 Dropdown's menu is right-aligned
@@ -136,14 +136,14 @@ DropdownItem.propTypes = {
           <PrismCode className="language-jsx">
 {`<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
   <DropdownToggle caret>
-    This dropdown's menu is right-aligned
+    Dropdown's menu is right-aligned
   </DropdownToggle>
   <DropdownMenu right>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>
     <DropdownItem>Another Action</DropdownItem>
     <DropdownItem divider/>
-    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
   </DropdownMenu>
 </Dropdown>`}
           </PrismCode>
