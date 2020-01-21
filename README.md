@@ -258,6 +258,7 @@ You can create a new tag via the GitHub user interface. If you do it this way, m
 Organizations and projects using `reactstrap`
 
 - [availity-reactstrap-validation](https://availity.github.io/availity-reactstrap-validation/)
+- [airframe-react](https://github.com/0wczar/airframe-react) - [demo](http://dashboards.webkom.co/react/airframe/) - Airframe provides all the components a developer needs to build data-intensive web apps using React.
 - [component-template](https://reactstrap.github.io/component-template/)
 - [video-react](https://video-react.github.io/)
 - [CoreUI-Free-Bootstrap-Admin-Template](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template) - [demo](http://coreui.io/demo/React_Demo/#/)
