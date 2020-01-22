@@ -254,16 +254,19 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
-    if (this.props.isOpen && this.props.keyboard && e.keyCode === keyCodes.esc && this.props.toggle) {
-      e.preventDefault();
-      e.stopPropagation();
+    if (this.props.isOpen && e.keyCode === keyCodes.esc && this.props.toggle) {
+      if (this.props.keyboard) {
+        e.preventDefault();
+        e.stopPropagation();
 
-      if (this.props.backdrop === 'static') {
-        this.handleStaticBackdropAnimation();
-        return;
+        this.props.toggle(e);
       }
-
-      this.props.toggle(e);
+      else if (this.props.backdrop === 'static') {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        this.handleStaticBackdropAnimation();
+      }
     }
   }
 
