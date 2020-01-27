@@ -306,7 +306,7 @@
     "react-helmet": "^5.0.3",
     "react-prism": "^4.3.2",
     "react-router": "^3.2.1",
-    "react-scripts": "2.1.1",
+    "react-scripts": "3.3.0",
     "react-test-renderer": "^16.3.2",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.2.0",
