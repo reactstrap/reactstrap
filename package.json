@@ -310,7 +310,7 @@
     "react-test-renderer": "^16.3.2",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.2.0",
-    "rollup-plugin-babel-minify": "^6.2.0",
+    "rollup-plugin-babel-minify": "^9.1.1",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
