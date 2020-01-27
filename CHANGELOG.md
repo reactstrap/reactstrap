@@ -1,3 +1,13 @@
+## [8.4.1](https://github.com/reactstrap/reactstrap/compare/8.4.0...8.4.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* **Modal:** Allow esc to close static backdrop modal when keybo… ([#1767](https://github.com/reactstrap/reactstrap/issues/1767)) ([49da7b5](https://github.com/reactstrap/reactstrap/commit/49da7b5)), closes [#1766](https://github.com/reactstrap/reactstrap/issues/1766)
+* **Tooltip,Popover:** account for shadowDOM target ([#1769](https://github.com/reactstrap/reactstrap/issues/1769)) ([10ccf12](https://github.com/reactstrap/reactstrap/commit/10ccf12)), closes [#1691](https://github.com/reactstrap/reactstrap/issues/1691)
+
+
+
 # [8.4.0](https://github.com/reactstrap/reactstrap/compare/8.3.2...8.4.0) (2020-01-17)
 
 
