@@ -126,6 +126,10 @@ const Example = (props) => {
           It's a bit lighter and easily wraps to a new line.
         </FormText>
       </FormGroup>
+      <FormGroup>
+        <Label for="exampleRange">Range</Label>
+        <Input type="range" name="range" id="exampleRange" />
+      </FormGroup>
       <FormGroup check>
         <Label check>
           <Input type="radio" /> Option one is this and that—be sure to
