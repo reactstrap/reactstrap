@@ -221,4 +221,11 @@ describe('Input', () => {
     expect(input.find('[type="select"]').exists()).toBe(false);
     expect(textarea.find('[type="textarea"]').exists()).toBe(false);
   });
+
+  it('should render with "form-control-range" not "form-control" class when type is range', () => {
+    const wrapper = shallow(<Input type="range" />);
+
+    expect(wrapper.hasClass('form-control-range')).toBe(true);
+    expect(wrapper.hasClass('form-control')).toBe(false);
+  });
 });
