@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { mapToCssModules } from "./utils";
-import CustomFileInput from "./CustomFileInput";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { mapToCssModules } from './utils';
+import CustomFileInput from './CustomFileInput';
 
 const propTypes = {
   className: PropTypes.string,
