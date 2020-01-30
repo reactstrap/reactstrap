@@ -31,11 +31,8 @@ function CustomInput(props) {
 		bsSize,
 		innerRef,
 		htmlFor,
-		hidden,
 		...attributes
 	} = props;
-
-	console.log(hidden);
 
 	const type = attributes.type;
 
@@ -86,11 +83,11 @@ function CustomInput(props) {
 		)
 	);
 
+	const { hidden, ...rest } = attributes;
 	return (
-		<div className={wrapperClasses}>
+		<div className={wrapperClasses} hidden={hidden || false}>
 			<input
-				{...attributes}
-				hidden={true}
+				{...rest}
 				type={type === "switch" ? "checkbox" : type}
 				ref={innerRef}
 				className={classNames(
