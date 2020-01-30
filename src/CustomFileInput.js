@@ -4,21 +4,21 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
-  className: PropTypes.string,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  label: PropTypes.node,
-  valid: PropTypes.bool,
-  invalid: PropTypes.bool,
-  bsSize: PropTypes.string,
-  htmlFor: PropTypes.string,
-  cssModule: PropTypes.object,
-  onChange: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ])
+    className: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    label: PropTypes.node,
+    valid: PropTypes.bool,
+    invalid: PropTypes.bool,
+    bsSize: PropTypes.string,
+    htmlFor: PropTypes.string,
+    cssModule: PropTypes.object,
+    onChange: PropTypes.func,
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
+    innerRef: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.string,
+        PropTypes.func,
+    ])
 };
 
 class CustomFileInput extends React.Component {
@@ -26,7 +26,7 @@ class CustomFileInput extends React.Component {
         super(props);
 
         this.state = {
-            files:null,
+            files: null,
         };
 
         this.onChange = this.onChange.bind(this);
@@ -34,18 +34,18 @@ class CustomFileInput extends React.Component {
 
     onChange(e) {
         let input = e.target;
-        let {onChange} = this.props;
+        let { onChange } = this.props;
         let files = this.getSelectedFiles(input);
 
-        if (typeof(onChange) === 'function') {
+        if (typeof (onChange) === 'function') {
             onChange(...arguments);
         }
 
-        this.setState({files})
+        this.setState({ files })
     }
 
     getSelectedFiles(input) {
-        let {multiple} = this.props;
+        let { multiple } = this.props;
 
         if (multiple && input.files) {
             let files = [].slice.call(input.files);
@@ -76,6 +76,7 @@ class CustomFileInput extends React.Component {
             type,
             onChange,
             dataBrowse,
+            hidden,
             ...attributes
         } = this.props;
 
@@ -96,12 +97,12 @@ class CustomFileInput extends React.Component {
         );
 
         const labelHtmlFor = htmlFor || attributes.id;
-        const {files} = this.state;
+        const { files } = this.state;
 
         return (
-            <div className={customClass}>
-                <input type="file" {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} onChange={this.onChange}/>
-                <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor} data-browse={ dataBrowse }>{files || label || 'Choose file'}</label>
+            <div className={customClass} hidden={hidden || false}>
+                <input type="file" {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} onChange={this.onChange} />
+                <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor} data-browse={dataBrowse}>{files || label || 'Choose file'}</label>
                 {children}
             </div>
         );
