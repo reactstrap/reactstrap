@@ -1,93 +1,112 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { mapToCssModules } from './utils';
-import CustomFileInput from './CustomFileInput';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { mapToCssModules } from "./utils";
+import CustomFileInput from "./CustomFileInput";
 
 const propTypes = {
-  className: PropTypes.string,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  type: PropTypes.string.isRequired,
-  label: PropTypes.node,
-  inline: PropTypes.bool,
-  valid: PropTypes.bool,
-  invalid: PropTypes.bool,
-  bsSize: PropTypes.string,
-  htmlFor: PropTypes.string,
-  cssModule: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ])
+	className: PropTypes.string,
+	id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+	type: PropTypes.string.isRequired,
+	label: PropTypes.node,
+	inline: PropTypes.bool,
+	valid: PropTypes.bool,
+	invalid: PropTypes.bool,
+	bsSize: PropTypes.string,
+	htmlFor: PropTypes.string,
+	cssModule: PropTypes.object,
+	children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
+	innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func])
 };
 
 function CustomInput(props) {
-  const {
-    className,
-    label,
-    inline,
-    valid,
-    invalid,
-    cssModule,
-    children,
-    bsSize,
-    innerRef,
-    htmlFor,
-    ...attributes
-  } = props;
+	const {
+		className,
+		label,
+		inline,
+		valid,
+		invalid,
+		cssModule,
+		children,
+		bsSize,
+		innerRef,
+		htmlFor,
+		hidden,
+		...attributes
+	} = props;
 
-  const type = attributes.type;
+	console.log(hidden);
 
-  const customClass = mapToCssModules(classNames(
-    className,
-    `custom-${type}`,
-    bsSize ? `custom-${type}-${bsSize}` : false,
-  ), cssModule);
+	const type = attributes.type;
 
-  const validationClassNames = mapToCssModules(classNames(
-    invalid && 'is-invalid',
-    valid && 'is-valid',
-  ), cssModule);
+	const customClass = mapToCssModules(
+		classNames(className, `custom-${type}`, bsSize ? `custom-${type}-${bsSize}` : false),
+		cssModule
+	);
 
-  const labelHtmlFor = htmlFor || attributes.id;
+	const validationClassNames = mapToCssModules(
+		classNames(invalid && "is-invalid", valid && "is-valid"),
+		cssModule
+	);
 
-  if (type === 'select') {
-    const { type, ...rest } = attributes;
-    return <select {...rest} ref={innerRef} className={classNames(validationClassNames, customClass)}>{children}</select>;
-  }
+	const labelHtmlFor = htmlFor || attributes.id;
 
-  if (type === 'file') {
-    return (
-      <CustomFileInput {...props}/>
-    );
-  }
+	if (type === "select") {
+		const { type, ...rest } = attributes;
+		return (
+			<select
+				{...rest}
+				ref={innerRef}
+				className={classNames(validationClassNames, customClass)}
+			>
+				{children}
+			</select>
+		);
+	}
 
-  if (type !== 'checkbox' && type !== 'radio' && type !== 'switch') {
-    return <input {...attributes} ref={innerRef} className={classNames(validationClassNames, customClass)} />;
-  }
+	if (type === "file") {
+		return <CustomFileInput {...props} />;
+	}
 
-  const wrapperClasses = classNames(
-    customClass,
-    mapToCssModules(classNames(
-      'custom-control',
-      { 'custom-control-inline': inline }
-    ), cssModule)
-  );
+	if (type !== "checkbox" && type !== "radio" && type !== "switch") {
+		return (
+			<input
+				{...attributes}
+				ref={innerRef}
+				className={classNames(validationClassNames, customClass)}
+			/>
+		);
+	}
 
-  return (
-    <div className={wrapperClasses}>
-      <input
-        {...attributes}
-        type={type === 'switch' ? 'checkbox' : type}
-        ref={innerRef}
-        className={classNames(validationClassNames, mapToCssModules('custom-control-input', cssModule))}
-      />
-      <label className={mapToCssModules('custom-control-label', cssModule)} htmlFor={labelHtmlFor}>{label}</label>
-      {children}
-    </div>
-  );
+	const wrapperClasses = classNames(
+		customClass,
+		mapToCssModules(
+			classNames("custom-control", { "custom-control-inline": inline }),
+			cssModule
+		)
+	);
+
+	return (
+		<div className={wrapperClasses}>
+			<input
+				{...attributes}
+				hidden={true}
+				type={type === "switch" ? "checkbox" : type}
+				ref={innerRef}
+				className={classNames(
+					validationClassNames,
+					mapToCssModules("custom-control-input", cssModule)
+				)}
+			/>
+			<label
+				className={mapToCssModules("custom-control-label", cssModule)}
+				htmlFor={labelHtmlFor}
+			>
+				{label}
+			</label>
+			{children}
+		</div>
+	);
 }
 
 CustomInput.propTypes = propTypes;
