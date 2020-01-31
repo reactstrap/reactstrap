@@ -2,55 +2,55 @@ import React from 'react';
 import { Card, Button, CardBody, CardHeader, Container, Row, Col, Jumbotron } from 'reactstrap';
 
 const creativeTimProducts = [
-  {
-    productTitle: "Now UI Kit PRO with Reactstrap",
-    productTagline: "Premium Kit Template for Bootstrap 4 and Reactstrap",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/now-ui-kit-pro-react/opt_nukp_react_thumbnail.jpg",
-    productURL: "https://www.creative-tim.com/product/now-ui-kit-pro-react"
-  },
-  {
-    productTitle: "Now UI Dashboard PRO with Reactstrap",
-    productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/now-ui-dashboard-pro-react/now-ui-dashboard-pro-react.jpg",
-    productURL: "https://www.creative-tim.com/product/now-ui-dashboard-pro-react"
-  },
-  {
-    productTitle: "Argon Design System with Reactstrap",
-    productTagline: "Free Design System for Bootstrap 4 and Reactstrap",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-design-system-react/argon-design-system-react.jpg",
-    productURL: "https://www.creative-tim.com/product/argon-design-system-react"
-  },
-  {
-    productTitle: "Argon Dashboard PRO with Reactstrap",
-    productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro-react/argon-dashboard-pro-react.jpg",
-    productURL: "https://www.creative-tim.com/product/argon-dashboard-pro-react"
-  },
-  {
-    productTitle: "Paper Kit PRO with Reactstrap",
-    productTagline: "Premium Kit Template for Bootstrap 4 and Reactstrap",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/paper-kit-pro-react/opt_pkp_react_thumbnail.jpg",
-    productURL: "https://www.creative-tim.com/product/paper-kit-pro-react"
-  },
-  {
-    productTitle: "Paper Dashboard PRO with Reactstrap",
-    productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/paper-dashboard-2-pro-react/opt_pdp_react.jpg",
-    productURL: "https://www.creative-tim.com/product/paper-dashboard-pro-react"
-  },
-  {
-    productTitle: "BLK• Design System PRO with Reactstrap",
-    productTagline: "Premium Design System for Bootstrap 4 and Reactstrap",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/blk-design-system-pro-react/blk-design-system-pro-react.jpg",
-    productURL: "https://www.creative-tim.com/product/blk-design-system-pro-react"
-  },
-  {
-    productTitle: "Black Dashboard PRO with Reactstrap",
-    productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
-    productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/black-dashboard-pro-react/black-dashboard-pro-react.jpg",
-    productURL: "https://www.creative-tim.com/product/black-dashboard-pro-react"
-  }
-]
+    {
+        productTitle: "Now UI Kit PRO with Reactstrap",
+        productTagline: "Premium Kit Template for Bootstrap 4 and Reactstrap",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/now-ui-kit-pro-react/opt_nukp_react_thumbnail.jpg",
+        productURL: "https://www.creative-tim.com/product/now-ui-kit-pro-react"
+    },
+    {
+        productTitle: "Now UI Dashboard PRO with Reactstrap",
+        productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/now-ui-dashboard-pro-react/now-ui-dashboard-pro-react.jpg",
+        productURL: "https://www.creative-tim.com/product/now-ui-dashboard-pro-react"
+    },
+    {
+        productTitle: "Argon Design System with Reactstrap",
+        productTagline: "Free Design System for Bootstrap 4 and Reactstrap",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-design-system-react/argon-design-system-react.jpg",
+        productURL: "https://www.creative-tim.com/product/argon-design-system-react"
+    },
+    {
+        productTitle: "Argon Dashboard PRO with Reactstrap",
+        productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro-react/argon-dashboard-pro-react.jpg",
+        productURL: "https://www.creative-tim.com/product/argon-dashboard-pro-react"
+    },
+    {
+        productTitle: "Paper Kit PRO with Reactstrap",
+        productTagline: "Premium Kit Template for Bootstrap 4 and Reactstrap",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/paper-kit-pro-react/opt_pkp_react_thumbnail.jpg",
+        productURL: "https://www.creative-tim.com/product/paper-kit-pro-react"
+    },
+    {
+        productTitle: "Paper Dashboard PRO with Reactstrap",
+        productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/paper-dashboard-2-pro-react/opt_pdp_react.jpg",
+        productURL: "https://www.creative-tim.com/product/paper-dashboard-pro-react"
+    },
+    {
+        productTitle: "BLK• Design System PRO with Reactstrap",
+        productTagline: "Premium Design System for Bootstrap 4 and Reactstrap",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/blk-design-system-pro-react/blk-design-system-pro-react.jpg",
+        productURL: "https://www.creative-tim.com/product/blk-design-system-pro-react"
+    },
+    {
+        productTitle: "Black Dashboard PRO with Reactstrap",
+        productTagline: "Premium Reactstrap (Bootstrap 4) Admin Template",
+        productImageLink: "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/black-dashboard-pro-react/black-dashboard-pro-react.jpg",
+        productURL: "https://www.creative-tim.com/product/black-dashboard-pro-react"
+    }
+];
 
 export default () => {
     return (
