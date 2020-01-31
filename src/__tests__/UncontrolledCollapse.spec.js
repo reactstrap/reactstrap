@@ -95,14 +95,4 @@ describe('UncontrolledCollapse', () => {
 
     expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(1);
   });
-
-  it('should set aria-expanded', () => {
-    const collapse = mount(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
-
-    expect(collapse.find('div').prop('aria-expanded')).toBe('false');
-    toggler.click();
-    collapse.update();
-
-    expect(collapse.find('div').prop('aria-expanded')).toBe('true');
-  });
 });

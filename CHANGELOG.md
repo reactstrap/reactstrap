@@ -1,3 +1,84 @@
+## [8.4.1](https://github.com/reactstrap/reactstrap/compare/8.4.0...8.4.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* **Modal:** Allow esc to close static backdrop modal when keybo… ([#1767](https://github.com/reactstrap/reactstrap/issues/1767)) ([49da7b5](https://github.com/reactstrap/reactstrap/commit/49da7b5)), closes [#1766](https://github.com/reactstrap/reactstrap/issues/1766)
+* **Tooltip,Popover:** account for shadowDOM target ([#1769](https://github.com/reactstrap/reactstrap/issues/1769)) ([10ccf12](https://github.com/reactstrap/reactstrap/commit/10ccf12)), closes [#1691](https://github.com/reactstrap/reactstrap/issues/1691)
+
+
+
+# [8.4.0](https://github.com/reactstrap/reactstrap/compare/8.3.2...8.4.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* revert breaking change ([#1760](https://github.com/reactstrap/reactstrap/issues/1760)) ([eb37426](https://github.com/reactstrap/reactstrap/commit/eb37426))
+
+
+
+## [8.3.2](https://github.com/reactstrap/reactstrap/compare/8.3.1...8.3.2) (2020-01-16)
+
+
+### Bug Fixes
+
+* **Modal:** Prevent static backdrop animation when modal clicked ([#1755](https://github.com/reactstrap/reactstrap/issues/1755)) ([79efb4a](https://github.com/reactstrap/reactstrap/commit/79efb4a))
+
+
+
+## [8.3.1](https://github.com/reactstrap/reactstrap/compare/8.3.0...8.3.1) (2020-01-15)
+
+
+### Bug Fixes
+
+* **build:** fix DropdownContext import/export ([96188f4](https://github.com/reactstrap/reactstrap/commit/96188f4))
+
+
+
+# [8.3.0](https://github.com/reactstrap/reactstrap/compare/8.2.0...8.3.0) (2020-01-15)
+
+## NOT PUBLISHED TO NPM DUE TO RELEASE BUILD FAILURE, USE 8.3.1
+
+### Bug Fixes
+
+* remove aria-hidden attribute from tooltips and popovers ([#1747](https://github.com/reactstrap/reactstrap/issues/1747)) ([009a2bd](https://github.com/reactstrap/reactstrap/commit/009a2bd))
+* **Dropdown:** Avoid preventDefault for things like F5 ([#1464](https://github.com/reactstrap/reactstrap/issues/1464)) ([305d3f0](https://github.com/reactstrap/reactstrap/commit/305d3f0)), closes [#1453](https://github.com/reactstrap/reactstrap/issues/1453)
+* **DropdownContext:** wrap dropdown components to provide context prop ([64847df](https://github.com/reactstrap/reactstrap/commit/64847df)), closes [#1457](https://github.com/reactstrap/reactstrap/issues/1457) [#1462](https://github.com/reactstrap/reactstrap/issues/1462)
+* **DropdownToggle:** pass innerRef to popper ([c088c58](https://github.com/reactstrap/reactstrap/commit/c088c58)), closes [#1471](https://github.com/reactstrap/reactstrap/issues/1471)
+* **Modal:** run close based on prop, not state ([310b061](https://github.com/reactstrap/reactstrap/commit/310b061)), closes [#1626](https://github.com/reactstrap/reactstrap/issues/1626)
+* **Tooltip:** autohide broken since default delay was zero ([#1733](https://github.com/reactstrap/reactstrap/issues/1733)) ([87a6bda](https://github.com/reactstrap/reactstrap/commit/87a6bda)), closes [#1692](https://github.com/reactstrap/reactstrap/issues/1692)
+* **Tooltip:** fix nested elements within target ([#1746](https://github.com/reactstrap/reactstrap/issues/1746)) ([fed4bcf](https://github.com/reactstrap/reactstrap/commit/fed4bcf)), closes [#1736](https://github.com/reactstrap/reactstrap/issues/1736)
+* **Tooltip:** fix render failure if target ref is null ([#1734](https://github.com/reactstrap/reactstrap/issues/1734)) ([853b56e](https://github.com/reactstrap/reactstrap/commit/853b56e)), closes [#1686](https://github.com/reactstrap/reactstrap/issues/1686)
+
+
+### Features
+
+* **Carousel:** Add touch swipe support ([#1731](https://github.com/reactstrap/reactstrap/issues/1731)) ([8a12330](https://github.com/reactstrap/reactstrap/commit/8a12330))
+* **Modal:** Added static backdrop animation defined in Bootstr… ([#1750](https://github.com/reactstrap/reactstrap/issues/1750)) ([7d44f36](https://github.com/reactstrap/reactstrap/commit/7d44f36))
+
+
+
+# [8.2.0](https://github.com/reactstrap/reactstrap/compare/8.1.1...8.2.0) (2019-12-05)
+
+
+### Bug Fixes
+
+* **getTarget:** return array like when allElements parameter is true ([#1687](https://github.com/reactstrap/reactstrap/issues/1687)) ([0702c45](https://github.com/reactstrap/reactstrap/commit/0702c45))
+* **Tooltip:** default value of trigger changed ([#1695](https://github.com/reactstrap/reactstrap/issues/1695)) ([ae48d93](https://github.com/reactstrap/reactstrap/commit/ae48d93)), closes [#1676](https://github.com/reactstrap/reactstrap/issues/1676)
+
+
+### Features
+
+* **ButtonToggle:** add focus styling on button and toggle ([#1660](https://github.com/reactstrap/reactstrap/issues/1660)) ([8980713](https://github.com/reactstrap/reactstrap/commit/8980713)), closes [#1648](https://github.com/reactstrap/reactstrap/issues/1648)
+* **Container:** Added responsive container support ([#1724](https://github.com/reactstrap/reactstrap/issues/1724)) ([31bb211](https://github.com/reactstrap/reactstrap/commit/31bb211)), closes [#1721](https://github.com/reactstrap/reactstrap/issues/1721)
+* **ListGroup:** Add horizontal prop ([#1715](https://github.com/reactstrap/reactstrap/issues/1715)) ([284a543](https://github.com/reactstrap/reactstrap/commit/284a543))
+* **Navbar:** adds NavbarText component ([#1711](https://github.com/reactstrap/reactstrap/issues/1711)) ([6db1083](https://github.com/reactstrap/reactstrap/commit/6db1083)), closes [#1707](https://github.com/reactstrap/reactstrap/issues/1707)
+* **Popover/Tooltip:** add popperClassName property ([#1674](https://github.com/reactstrap/reactstrap/issues/1674)) ([44e85a8](https://github.com/reactstrap/reactstrap/commit/44e85a8)), closes [#1484](https://github.com/reactstrap/reactstrap/issues/1484)
+* **Row:** Add row columns support ([#1720](https://github.com/reactstrap/reactstrap/issues/1720)) ([1fb3c17](https://github.com/reactstrap/reactstrap/commit/1fb3c17))
+* **UncontrolledDropdown:** add onToggle callback ([#1705](https://github.com/reactstrap/reactstrap/issues/1705)) ([d9cae30](https://github.com/reactstrap/reactstrap/commit/d9cae30))
+
+
+
 ## [8.1.1](https://github.com/reactstrap/reactstrap/compare/8.1.0...8.1.1) (2019-10-18)
 
 

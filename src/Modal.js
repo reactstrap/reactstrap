@@ -10,7 +10,8 @@ import {
   mapToCssModules,
   omit,
   focusableElements,
-  TransitionTimeouts
+  TransitionTimeouts,
+  keyCodes
 } from './utils';
 
 function noop() { }
@@ -94,13 +95,16 @@ class Modal extends React.Component {
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
+    this.handleStaticBackdropAnimation = this.handleStaticBackdropAnimation.bind(this);
     this.handleTab = this.handleTab.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
     this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
+    this.clearBackdropAnimationTimeout = this.clearBackdropAnimationTimeout.bind(this);
 
     this.state = {
       isOpen: false,
+      showStaticBackdropAnimation: false
     };
   }
 
@@ -141,13 +145,15 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
+    this.clearBackdropAnimationTimeout();
+
     if (this.props.onExit) {
       this.props.onExit();
     }
 
     if (this._element) {
       this.destroy();
-      if (this.state.isOpen) {
+      if (this.props.isOpen) {
         this.close();
       }
     }
@@ -202,9 +208,14 @@ class Modal extends React.Component {
   handleBackdropClick(e) {
     if (e.target === this._mouseDownElement) {
       e.stopPropagation();
-      if (!this.props.isOpen || this.props.backdrop !== true) return;
 
       const backdrop = this._dialog ? this._dialog.parentNode : null;
+
+      if (backdrop && e.target === backdrop && this.props.backdrop === 'static') {
+        this.handleStaticBackdropAnimation();
+      }
+
+      if (!this.props.isOpen || this.props.backdrop !== true) return;
 
       if (backdrop && e.target === backdrop && this.props.toggle) {
         this.props.toggle(e);
@@ -243,11 +254,28 @@ class Modal extends React.Component {
   }
 
   handleEscape(e) {
-    if (this.props.isOpen && this.props.keyboard && e.keyCode === 27 && this.props.toggle) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.props.toggle(e);
+    if (this.props.isOpen && e.keyCode === keyCodes.esc && this.props.toggle) {
+      if (this.props.keyboard) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.props.toggle(e);
+      }
+      else if (this.props.backdrop === 'static') {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        this.handleStaticBackdropAnimation();
+      }
     }
+  }
+
+  handleStaticBackdropAnimation() {
+    this.clearBackdropAnimationTimeout();
+    this.setState({ showStaticBackdropAnimation: true });
+    this._backdropAnimationTimeout = setTimeout(() => {
+      this.setState({ showStaticBackdropAnimation: false });
+    }, 100);
   }
 
   init() {
@@ -405,7 +433,7 @@ class Modal extends React.Component {
               onEntered={this.onOpened}
               onExited={this.onClosed}
               cssModule={cssModule}
-              className={mapToCssModules(classNames('modal', modalClassName), cssModule)}
+              className={mapToCssModules(classNames('modal', modalClassName, this.state.showStaticBackdropAnimation && 'modal-static'), cssModule)}
               innerRef={innerRef}
             >
               {external}
@@ -417,6 +445,13 @@ class Modal extends React.Component {
       );
     }
     return null;
+  }
+
+  clearBackdropAnimationTimeout() {
+    if (this._backdropAnimationTimeout) {
+      clearTimeout(this._backdropAnimationTimeout);
+      this._backdropAnimationTimeout = undefined;
+    }
   }
 }
 

@@ -928,6 +928,76 @@ describe('Dropdown', () => {
 
       wrapper.detach();
     });
+
+    it('should not call preventDefault when dropdown has focus and f5 key is pressed', () => {
+      isOpen = false;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      const event = { preventDefault: ()=>{} };
+      const spy = jest.spyOn(event, 'preventDefault');
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 116/*f5 key*/});
+      expect(spy).not.toHaveBeenCalled(); 
+      
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 16/*shift key*/});
+      expect(spy).not.toHaveBeenCalled();  
+
+      wrapper.detach();
+    });
+
+    it('should call preventDefault when dropdown has focus and any key(up, down, esc, enter, home, end or any alphanumeric key) is pressed', () => {
+      isOpen = false;
+      jest.spyOn(Dropdown.prototype, 'toggle');
+
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>, { attachTo: element });
+
+      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      const event = { preventDefault: ()=>{} };
+      const spy = jest.spyOn(event, 'preventDefault');
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.down});
+      expect(spy).toHaveBeenCalled();      
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.up});
+      expect(spy).toHaveBeenCalled();
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.esc});
+      expect(spy).toHaveBeenCalled();
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.end});
+      expect(spy).toHaveBeenCalled();
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.home});
+      expect(spy).toHaveBeenCalled();
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.enter});
+      expect(spy).toHaveBeenCalled();
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 65 /*A key*/});
+      expect(spy).toHaveBeenCalled();
+
+      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 90 /*A key*/});
+      expect(spy).toHaveBeenCalled();
+
+      wrapper.detach();
+    });
   });
 
   it('should render different size classes', () => {

@@ -44,6 +44,7 @@ export default class CarouselPage extends React.Component {
   // This is how bootstrap defines it... I would prefer a bool named autoplay or something...
   ride: PropTypes.oneOf(['carousel']),
   // the interval at which the carousel automatically cycles (default: 5000)
+  // If set to false, carousel will not Autoplay (i.e. will not automatically cycle).
   interval: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -57,6 +58,8 @@ export default class CarouselPage extends React.Component {
   // controls whether the slide animation on the Carousel works or not
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
+  // controls whether the touch gestures on the Carousel works or not (default: true)
+  enableTouch: PropTypes.bool,
 };`}
           </PrismCode>
         </pre>

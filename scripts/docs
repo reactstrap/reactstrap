@@ -47,7 +47,7 @@ fi
 git config user.name "Travis-CI"
 git config user.email "reactstrap@github.io"
 git add --all
-git commit -m "docs(travis): publish documentation for $TRAVIS_COMMIT"
+git commit -m "docs(travis): publish documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)"
 git push origin $BRANCH > /dev/null 2>&1
 
-success "Successfully published documentation for $TRAVIS_COMMIT!"
+success "Successfully published documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)!"

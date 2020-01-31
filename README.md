@@ -258,6 +258,7 @@ You can create a new tag via the GitHub user interface. If you do it this way, m
 Organizations and projects using `reactstrap`
 
 - [availity-reactstrap-validation](https://availity.github.io/availity-reactstrap-validation/)
+- [airframe-react](https://github.com/0wczar/airframe-react) - [demo](http://dashboards.webkom.co/react/airframe/) - Airframe provides all the components a developer needs to build data-intensive web apps using React.
 - [component-template](https://reactstrap.github.io/component-template/)
 - [video-react](https://video-react.github.io/)
 - [CoreUI-Free-Bootstrap-Admin-Template](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template) - [demo](http://coreui.io/demo/React_Demo/#/)
@@ -265,6 +266,7 @@ Organizations and projects using `reactstrap`
 - [DevExtreme React Grid](https://devexpress.github.io/devextreme-reactive/react/grid/) - It's a stateless data grid built on top of `reactstrap` with paging, sorting, filtering, grouping, selection, editing and virtual scrolling features.
 - [DevExtreme React Chart](https://devexpress.github.io/devextreme-reactive/react/chart/) - A chart built on top of `reactstrap` that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more.
 - [reactstrap-scrollspy](https://github.com/keidrun/reactstrap-scrollspy/) - [demo](https://keidrun.github.io/reactstrap-scrollspy/)
+- [formstrap](https://github.com/pedox/formstrap/) - [demo](https://pedox.github.io/formstrap/) - Let your `reactstrap` input component integrate seamlessly using `Formik` 
 
 Submit a PR to add to this list!
 

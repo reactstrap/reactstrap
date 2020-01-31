@@ -38,6 +38,14 @@ const defaultProps = {
   setActiveFromChild: false
 };
 
+const preventDefaultKeys = [
+  keyCodes.space,
+  keyCodes.enter,
+  keyCodes.up,
+  keyCodes.down,
+  keyCodes.end,
+  keyCodes.home
+]
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -121,7 +129,9 @@ class Dropdown extends React.Component {
       return;
     }
 
-    e.preventDefault();
+    if (preventDefaultKeys.indexOf(e.which) !== -1 || ((e.which >= 48) && (e.which <= 90))) {
+      e.preventDefault();
+    }
 
     if (this.props.disabled) return;
 
@@ -238,7 +248,7 @@ class Dropdown extends React.Component {
       <DropdownContext.Provider value={this.getContextValue()}>
         <Manager>
           <Tag
-            {...attrs} 
+            {...attrs}
             {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef }}
             onKeyDown={this.handleKeyDown}
             className={classes}

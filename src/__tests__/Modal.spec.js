@@ -2,6 +2,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '../';
+import { keyCodes } from '../utils';
 
 const didMount = (component) => {
   const wrapper = mount(component);
@@ -510,7 +511,7 @@ describe('Modal', () => {
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
     const escapeKeyUpEvent = {
-      keyCode: 27,
+      keyCode: keyCodes.esc,
       preventDefault: jest.fn(() => {}),
       stopPropagation: jest.fn(() => {}),
     };
@@ -624,6 +625,150 @@ describe('Modal', () => {
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should not close modal when escape key pressed and backdrop is "static" and keyboard=false', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    const escapeKeyUpEvent = {
+      keyCode: keyCodes.esc,
+      preventDefault: jest.fn(() => {}),
+      stopPropagation: jest.fn(() => {}),
+    };
+
+    instance.handleEscape(escapeKeyUpEvent);
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+
+    wrapper.unmount();
+  });
+
+  it('should close modal when escape key pressed and backdrop is "static" and keyboard=true', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={true}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    const escapeKeyUpEvent = {
+      keyCode: keyCodes.esc,
+      preventDefault: jest.fn(() => {}),
+      stopPropagation: jest.fn(() => {}),
+    };
+
+    instance.handleEscape(escapeKeyUpEvent);
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(false);
+
+    wrapper.unmount();
+  });
+
+  it('should animate when backdrop is "static" and escape key pressed and keyboard=false', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    const escapeKeyUpEvent = {
+      keyCode: keyCodes.esc,
+      preventDefault: jest.fn(() => {}),
+      stopPropagation: jest.fn(() => {}),
+    };
+
+    wrapper.instance().handleEscape(escapeKeyUpEvent);
+    expect(spy).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
+  it('should animate when backdrop is "static" and backdrop is clicked', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+
+    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+    
+    const modal = document.getElementsByClassName('modal')[0];
+
+    const mouseDownEvent = document.createEvent('MouseEvents');
+    mouseDownEvent.initEvent('mousedown', true, true);
+    modal.dispatchEvent(mouseDownEvent);
+
+    const clickEvent = document.createEvent('MouseEvents');
+    clickEvent.initEvent('click', true, true);
+    modal.dispatchEvent(clickEvent);
+
+    jest.runTimersToTime(300);
+    expect(spy).toHaveBeenCalled();
+
+    wrapper.unmount();
+  });
+
+  it('should not animate when backdrop is "static" and modal is clicked', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+
+    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+    
+    const modalDialog = document.getElementsByClassName('modal-dialog')[0];
+
+    const mouseDownEvent = document.createEvent('MouseEvents');
+    mouseDownEvent.initEvent('mousedown', true, true);
+    modalDialog.dispatchEvent(mouseDownEvent);
+
+    const clickEvent = document.createEvent('MouseEvents');
+    clickEvent.initEvent('click', true, true);
+    modalDialog.dispatchEvent(clickEvent);
+
+    jest.runTimersToTime(300);
+    expect(spy).not.toHaveBeenCalled();
 
     wrapper.unmount();
   });

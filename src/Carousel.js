@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
 import { mapToCssModules } from './utils';
+    
+const SWIPE_THRESHOLD = 40;
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -11,6 +13,10 @@ class Carousel extends React.Component {
     this.renderItems = this.renderItems.bind(this);
     this.hoverStart = this.hoverStart.bind(this);
     this.hoverEnd = this.hoverEnd.bind(this);
+    this.handleTouchStart = this.handleTouchStart.bind(this);
+    this.handleTouchEnd = this.handleTouchEnd.bind(this);
+    this.touchStartX = 0;
+    this.touchStartY = 0;
     this.state = {
       activeIndex: this.props.activeIndex,
       direction: 'right',
@@ -110,6 +116,40 @@ class Carousel extends React.Component {
     }
   }
 
+  handleTouchStart(e) {
+    if(!this.props.enableTouch) {
+      return;
+    }
+    this.touchStartX = e.changedTouches[0].screenX;
+    this.touchStartY = e.changedTouches[0].screenY;
+  }
+
+  handleTouchEnd(e) {
+    if(!this.props.enableTouch) {
+      return;
+    }
+
+    const currentX = e.changedTouches[0].screenX;
+    const currentY = e.changedTouches[0].screenY;
+    const diffX = Math.abs(this.touchStartX - currentX);
+    const diffY = Math.abs(this.touchStartY - currentY);
+
+    // Don't swipe if Y-movement is bigger than X-movement
+    if(diffX < diffY) {
+      return;
+    }
+
+    if(diffX < SWIPE_THRESHOLD) {
+      return;
+    }
+
+    if(currentX < this.touchStartX) {
+      this.props.next();
+    } else {
+      this.props.previous();
+    }
+  }
+
   renderItems(carouselItems, className) {
     const { slide } = this.props;
     return (
@@ -179,7 +219,8 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
+      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}
+        onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
         {wrappedIndicators}
         {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
@@ -221,6 +262,7 @@ Carousel.propTypes = {
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
   className: PropTypes.string,
+  enableTouch: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
@@ -228,6 +270,7 @@ Carousel.defaultProps = {
   pause: 'hover',
   keyboard: true,
   slide: true,
+  enableTouch: true,
 };
 
 Carousel.childContextTypes = {
