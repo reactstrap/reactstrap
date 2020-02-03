@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import Home from './Home';
+import PremiumThemes from './PremiumThemes';
 import LayoutPage from './Components/LayoutPage';
 import NavsPage from './Components/NavsPage';
 import NavbarPage from './Components/NavbarPage';
@@ -37,46 +38,47 @@ import Utilities from './Utilities';
 import UI from './UI';
 
 const routes = (
-  <Route path="/" component={UI.Layout}>
-    <IndexRoute component={Home} />
-    <Route path="/components/" component={Components}>
-      <IndexRedirect to="alerts/" />
-      <Route path="breadcrumbs/" component={BreadcrumbsPage} />
-      <Route path="buttons/" component={ButtonsPage} />
-      <Route path="button-group/" component={ButtonGroupPage} />
-      <Route path="button-dropdown/" component={ButtonDropdownPage} />
-      <Route path="dropdowns/" component={DropdownsPage} />
-      <Route path="fade/" component={FadePage} />
-      <Route path="form/" component={FormPage} />
-      <Route path="input-group/" component={InputGroupPage} />
-      <Route path="popovers/" component={PopoversPage} />
-      <Route path="progress/" component={ProgressPage} />
-      <Route path="tooltips/" component={TooltipsPage} />
-      <Route path="badge/" component={BadgePage} />
-      <Route path="card/" component={CardPage} />
-      <Route path="tables/" component={TablesPage} />
-      <Route path="modals/" component={ModalsPage} />
-      <Route path="layout/" component={LayoutPage} />
-      <Route path="navs/" component={NavsPage} />
-      <Route path="navbar/" component={NavbarPage} />
-      <Route path="media/" component={MediaPage} />
-      <Route path="pagination/" component={PaginationPage} />
-      <Route path="tabs/" component={TabsPage} />
-      <Route path="alerts/" component={AlertsPage} />
-      <Route path="toasts/" component={ToastsPage} />
-      <Route path="jumbotron/" component={JumbotronPage} />
-      <Route path="collapse/" component={CollapsePage} />
-      <Route path="carousel/" component={CarouselPage} />
-      <Route path="listgroup/" component={ListGroupPage} />
-      <Route path="spinners/" component={SpinnersPage} />
+    <Route path="/" component={UI.Layout}>
+      <IndexRoute component={Home} />
+      <Route path="/components/" component={Components}>
+        <IndexRedirect to="alerts/" />
+        <Route path="breadcrumbs/" component={BreadcrumbsPage} />
+        <Route path="buttons/" component={ButtonsPage} />
+        <Route path="button-group/" component={ButtonGroupPage} />
+        <Route path="button-dropdown/" component={ButtonDropdownPage} />
+        <Route path="dropdowns/" component={DropdownsPage} />
+        <Route path="fade/" component={FadePage} />
+        <Route path="form/" component={FormPage} />
+        <Route path="input-group/" component={InputGroupPage} />
+        <Route path="popovers/" component={PopoversPage} />
+        <Route path="progress/" component={ProgressPage} />
+        <Route path="tooltips/" component={TooltipsPage} />
+        <Route path="badge/" component={BadgePage} />
+        <Route path="card/" component={CardPage} />
+        <Route path="tables/" component={TablesPage} />
+        <Route path="modals/" component={ModalsPage} />
+        <Route path="layout/" component={LayoutPage} />
+        <Route path="navs/" component={NavsPage} />
+        <Route path="navbar/" component={NavbarPage} />
+        <Route path="media/" component={MediaPage} />
+        <Route path="pagination/" component={PaginationPage} />
+        <Route path="tabs/" component={TabsPage} />
+        <Route path="alerts/" component={AlertsPage} />
+        <Route path="toasts/" component={ToastsPage} />
+        <Route path="jumbotron/" component={JumbotronPage} />
+        <Route path="collapse/" component={CollapsePage} />
+        <Route path="carousel/" component={CarouselPage} />
+        <Route path="listgroup/" component={ListGroupPage} />
+        <Route path="spinners/" component={SpinnersPage} />
+      </Route>
+      <Route path="premium-themes/" component={PremiumThemes} />
+      <Route path="/utilities/" component={Utilities}>
+        <IndexRedirect to="colors/" />
+        <Route path="colors/" component={ColorsPage} />
+        <Route path="clearfix/" component={ClearfixPage} />
+      </Route>
+      <Route path="*" component={NotFound} />
     </Route>
-    <Route path="/utilities/" component={Utilities}>
-      <IndexRedirect to="colors/" />
-      <Route path="colors/" component={ColorsPage} />
-      <Route path="clearfix/" component={ClearfixPage} />
-    </Route>
-    <Route path="*" component={NotFound} />
-  </Route>
 );
 
 export default routes;

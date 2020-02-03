@@ -13,11 +13,11 @@ fi
 CURRENT_BRANCH="$(git symbolic-ref --short -q HEAD)"
 
 success() {
-  echo -e "\033[32;1m$1"
+  echo -e "\033[32;1m$1\033[0m"
 }
 
 error() {
-  echo -e "\033[31;1m$1"
+  echo -e "\033[31;1m$1 \033[0m"
 }
 
 if [ -z "$GITHUB_TOKEN" ]; then

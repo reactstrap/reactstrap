@@ -511,7 +511,7 @@ describe('Modal', () => {
     expect(document.getElementsByClassName('modal').length).toBe(1);
 
     const escapeKeyUpEvent = {
-      keyCode: 27,
+      keyCode: keyCodes.esc,
       preventDefault: jest.fn(() => {}),
       stopPropagation: jest.fn(() => {}),
     };
@@ -629,10 +629,10 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should not close modal when escape key pressed when backdrop is "static"', () => {
+  it('should not close modal when escape key pressed and backdrop is "static" and keyboard=false', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
         <button id="clicker">Does Nothing</button>
       </Modal>
     );
@@ -657,10 +657,38 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
-  it('should animate when backdrop is "static" and escape key pressed', () => {
+  it('should close modal when escape key pressed and backdrop is "static" and keyboard=true', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={true}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>
+    );
+    const instance = wrapper.instance();
+
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(true);
+    expect(document.getElementsByClassName('modal').length).toBe(1);
+
+    const escapeKeyUpEvent = {
+      keyCode: keyCodes.esc,
+      preventDefault: jest.fn(() => {}),
+      stopPropagation: jest.fn(() => {}),
+    };
+
+    instance.handleEscape(escapeKeyUpEvent);
+    jest.runTimersToTime(300);
+
+    expect(isOpen).toBe(false);
+
+    wrapper.unmount();
+  });
+
+  it('should animate when backdrop is "static" and escape key pressed and keyboard=false', () => {
+    isOpen = true;
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
         <button id="clicker">Does Nothing</button>
       </Modal>
     );
