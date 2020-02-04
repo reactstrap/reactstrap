@@ -62,7 +62,7 @@ function isInDOMSubtree(element, subtreeRoot) {
 }
 
 function isInDOMSubtrees(element, subtreeRoots = []) {
-  return subtreeRoots && subtreeRoots.length && subtreeRoots.find(subTreeRoot=> isInDOMSubtree(element, subTreeRoot));
+  return subtreeRoots && subtreeRoots.length && subtreeRoots.filter(subTreeRoot=> isInDOMSubtree(element, subTreeRoot))[0];
 }
 
 class TooltipPopoverWrapper extends React.Component {

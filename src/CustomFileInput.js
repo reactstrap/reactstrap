@@ -13,99 +13,113 @@ const propTypes = {
   htmlFor: PropTypes.string,
   cssModule: PropTypes.object,
   onChange: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.array,
+    PropTypes.func
+  ]),
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,
-    PropTypes.func,
+    PropTypes.func
   ])
 };
 
 class CustomFileInput extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            files:null,
-        };
+    this.state = {
+      files: null
+    };
 
-        this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    let input = e.target;
+    let { onChange } = this.props;
+    let files = this.getSelectedFiles(input);
+
+    if (typeof onChange === "function") {
+      onChange(...arguments);
     }
 
-    onChange(e) {
-        let input = e.target;
-        let {onChange} = this.props;
-        let files = this.getSelectedFiles(input);
+    this.setState({ files });
+  }
 
-        if (typeof(onChange) === 'function') {
-            onChange(...arguments);
-        }
+  getSelectedFiles(input) {
+    let { multiple } = this.props;
 
-        this.setState({files})
+    if (multiple && input.files) {
+      let files = [].slice.call(input.files);
+
+      return files.map(file => file.name).join(", ");
     }
 
-    getSelectedFiles(input) {
-        let {multiple} = this.props;
+    if (input.value.indexOf("fakepath") !== -1) {
+      let parts = input.value.split("\\");
 
-        if (multiple && input.files) {
-            let files = [].slice.call(input.files);
-
-            return files.map(file => file.name).join(', ');
-        }
-
-        if (input.value.indexOf('fakepath') !== -1) {
-            let parts = input.value.split('\\');
-
-            return parts[parts.length - 1];
-        }
-
-        return input.value;
+      return parts[parts.length - 1];
     }
 
-    render() {
-        const {
-            className,
-            label,
-            valid,
-            invalid,
-            cssModule,
-            children,
-            bsSize,
-            innerRef,
-            htmlFor,
-            type,
-            onChange,
-            dataBrowse,
-            ...attributes
-        } = this.props;
+    return input.value;
+  }
 
-        const customClass = mapToCssModules(
-            classNames(
-                className,
-                `custom-file`,
-            ),
-            cssModule
-        );
+  render() {
+    const {
+      className,
+      label,
+      valid,
+      invalid,
+      cssModule,
+      children,
+      bsSize,
+      innerRef,
+      htmlFor,
+      type,
+      onChange,
+      dataBrowse,
+      hidden,
+      ...attributes
+    } = this.props;
 
-        const validationClassNames = mapToCssModules(
-            classNames(
-                invalid && 'is-invalid',
-                valid && 'is-valid',
-            ),
-            cssModule
-        );
+    const customClass = mapToCssModules(
+      classNames(className, `custom-file`),
+      cssModule
+    );
 
-        const labelHtmlFor = htmlFor || attributes.id;
-        const {files} = this.state;
+    const validationClassNames = mapToCssModules(
+      classNames(invalid && "is-invalid", valid && "is-valid"),
+      cssModule
+    );
 
-        return (
-            <div className={customClass}>
-                <input type="file" {...attributes} ref={innerRef} className={classNames(validationClassNames, mapToCssModules('custom-file-input', cssModule))} onChange={this.onChange}/>
-                <label className={mapToCssModules('custom-file-label', cssModule)} htmlFor={labelHtmlFor} data-browse={ dataBrowse }>{files || label || 'Choose file'}</label>
-                {children}
-            </div>
-        );
-    }
+    const labelHtmlFor = htmlFor || attributes.id;
+    const { files } = this.state;
+
+    return (
+      <div className={customClass} hidden={hidden || false}>
+        <input
+          type="file"
+          {...attributes}
+          ref={innerRef}
+          className={classNames(
+            validationClassNames,
+            mapToCssModules("custom-file-input", cssModule)
+          )}
+          onChange={this.onChange}
+        />
+        <label
+          className={mapToCssModules("custom-file-label", cssModule)}
+          htmlFor={labelHtmlFor}
+          data-browse={dataBrowse}
+        >
+          {files || label || "Choose file"}
+        </label>
+        {children}
+      </div>
+    );
+  }
 }
 
 CustomFileInput.propTypes = propTypes;
