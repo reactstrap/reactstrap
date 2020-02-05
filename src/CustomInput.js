@@ -55,6 +55,7 @@ function CustomInput(props) {
         {...rest}
         ref={innerRef}
         className={classNames(validationClassNames, customClass)}
+        aria-invalid={invalid}
       >
         {children}
       </select>
@@ -70,6 +71,7 @@ function CustomInput(props) {
       <input
         {...attributes}
         ref={innerRef}
+        aria-invalid={invalid}
         className={classNames(validationClassNames, customClass)}
       />
     );
@@ -90,6 +92,7 @@ function CustomInput(props) {
         {...rest}
         type={type === "switch" ? "checkbox" : type}
         ref={innerRef}
+        aria-invalid={invalid}
         className={classNames(
           validationClassNames,
           mapToCssModules("custom-control-input", cssModule)
