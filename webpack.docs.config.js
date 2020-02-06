@@ -41,6 +41,7 @@ const paths = [
   '/utilities/',
   '/utilities/colors/',
   '/utilities/clearfix/',
+  '/premium-themes/',
   '/404.html'
 ];
 
