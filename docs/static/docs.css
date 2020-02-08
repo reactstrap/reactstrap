@@ -246,6 +246,10 @@ pre, code {
     max-width: 620px;
   }
 }
+.premium-section + .premium-section {
+  border-top: 1px solid lightgrey;
+  padding-top: 3em;
+}
 
 /* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+jsx&plugins=autolinker */
 /**
