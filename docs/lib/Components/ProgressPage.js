@@ -43,6 +43,10 @@ export default class ProgressPage extends React.Component {
     PropTypes.string,
     PropTypes.number,
   ]),
+  min: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   max: PropTypes.oneOf([
     PropTypes.string,
     PropTypes.number,
@@ -51,7 +55,9 @@ export default class ProgressPage extends React.Component {
   striped: PropTypes.bool,
   color: PropTypes.string,
   className: PropTypes.string,
-  barClassName: PropTypes.string // used to add class to the inner progress-bar element
+  barClassName: PropTypes.string, // used to add class to the inner progress-bar element
+  barAriaValueText: PropTypes.string,
+  barAriaLabelledBy: PropTypes.string,
 };
 
 Progress.defaultProps = {
