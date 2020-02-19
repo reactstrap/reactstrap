@@ -726,5 +726,36 @@ describe('Tooltip', () => {
       expect(instance._hideTimeout).toBeFalsy();
       wrapper.detach();
     });
+
+    it('should allow a function to be used as children', () => {
+      const renderChildren = jest.fn();
+      const wrapper = mount(
+        <TooltipPopoverWrapper target="target" isOpen toggle={toggle}>
+          {renderChildren}
+        </TooltipPopoverWrapper>
+      );
+      expect(renderChildren).toHaveBeenCalled();
+    });
+
+    it('should render children properly when children is a function', () => {
+      isOpen = true;
+      const wrapper = mount(
+        <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle} className="tooltip show" trigger="hover">
+          {() => 'Tooltip Content'}
+        </TooltipPopoverWrapper>,
+        { attachTo: container }
+      );
+  
+      const Tooltips = document.getElementsByClassName('tooltip');
+      expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
+      expect(Tooltips.length).toBe(1);
+      expect(Tooltips[0].textContent).toBe('Tooltip Content');
+  
+      expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
+      expect(Tooltips.length).toBe(1);
+      expect(Tooltips[0].textContent).toBe('Tooltip Content');
+  
+      wrapper.detach();
+    });
   });
 });

@@ -145,4 +145,24 @@ describe('PopperContent', () => {
 
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
   });
+
+  it('should allow a function to be used as children', () => {
+    const renderChildren = jest.fn();
+    const wrapper = mount(
+      <PopperContent target="target" isOpen>
+        {renderChildren}
+      </PopperContent>
+    );
+    expect(renderChildren).toHaveBeenCalled();
+  });
+
+  it('should render children properly when children is a function', () => {
+    const wrapper = mount(
+      <PopperContent target="target" isOpen>
+        {() => 'Yo!'}
+      </PopperContent>
+    );
+
+    expect(wrapper.text()).toBe('Yo!');
+  });
 });

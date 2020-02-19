@@ -11,6 +11,8 @@ import PopoverFocusExample from '../examples/PopoverFocus';
 const PopoverFocusExampleSource = require('!!raw-loader!../examples/PopoverFocus');
 import UncontrolledPopoverExample from '../examples/PopoverUncontrolled';
 const UncontrolledPopoverExampleSource = require('!!raw-loader!../examples/PopoverUncontrolled');
+import PopoverScheduleUpdateExample from '../examples/PopoverScheduleUpdate';
+const PopoverScheduleUpdateExampleSource = require('!!raw-loader!../examples/PopoverScheduleUpdate');
 
 export default class PopoversPage extends React.Component {
   render() {
@@ -30,6 +32,7 @@ export default class PopoversPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Popover.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   // space separated list of triggers (e.g. "click hover focus")
   trigger: PropTypes.string,
   // boolean to control the state of the popover
@@ -118,6 +121,20 @@ export default class PopoversPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {UncontrolledPopoverExampleSource}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Repositioning Popovers</SectionTitle>
+        <p>
+          If you need to reposition a popover due to content changes or target placement changes, use
+          the <code>scheduleUpdate</code> function to manually reposition it. This function is exposed
+          as a render prop for <code>children</code>.
+        </p>
+        <div className="docs-example">
+          <PopoverScheduleUpdateExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {PopoverScheduleUpdateExampleSource}
           </PrismCode>
         </pre>
       </div>
