@@ -153,7 +153,7 @@ class Modal extends React.Component {
 
     if (this._element) {
       this.destroy();
-      if (this.props.isOpen) {
+      if (this.props.isOpen || this.state.isOpen) {
         this.close();
       }
     }
