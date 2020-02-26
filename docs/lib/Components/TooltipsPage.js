@@ -47,7 +47,7 @@ export default class TooltipsPage extends React.Component {
   ]).isRequired,
   // Where to inject the popper DOM node, default to body
   container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
-  // optionally override show/hide delays - default { show: 0, hide: 250 }
+  // optionally override show/hide delays - default { show: 0, hide: 50 }
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number

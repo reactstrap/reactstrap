@@ -8,6 +8,7 @@ const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
+  PropTypes.bool,
   PropTypes.string,
   PropTypes.number,
   PropTypes.shape({

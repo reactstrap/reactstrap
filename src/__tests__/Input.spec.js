@@ -4,7 +4,7 @@ import { Input } from '../';
 
 describe('Input', () => {
   it('should render with "input" tag when no type is provided', () => {
-    const wrapper = shallow(<Input>Yo!</Input>);
+    const wrapper = shallow(<Input />);
 
     expect(wrapper.type()).toBe('input');
   });
@@ -16,7 +16,7 @@ describe('Input', () => {
   });
 
   it('should render with "textarea" tag when type is "textarea"', () => {
-    const wrapper = shallow(<Input type="textarea">Yo!</Input>);
+    const wrapper = shallow(<Input type="textarea" />);
 
     expect(wrapper.type()).toBe('textarea');
   });
@@ -111,14 +111,14 @@ describe('Input', () => {
     expect(wrapper.hasClass('is-valid')).toBe(true);
   });
 
-  it('should render with "form-control-${size}" class when size is "lg" or "sm"', () => {
-    const wrapper = shallow(<Input size="lg" />);
+  it('should render with "form-control-${bsSize}" class when bsSize is "lg" or "sm"', () => {
+    const wrapper = shallow(<Input bsSize="lg" />);
 
     expect(wrapper.hasClass('form-control-lg')).toBe(true);
   });
 
   it('should render with "form-control" class when size is nor "lg" nor "sm"', () => {
-    const wrapper = shallow(<Input size="5" />);
+    const wrapper = shallow(<Input bsSize="5" />);
 
     expect(wrapper.hasClass('form-control-sm')).toBe(false);
     expect(wrapper.hasClass('form-control-lg')).toBe(false);
@@ -209,16 +209,23 @@ describe('Input', () => {
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<Input className="other">Yo!</Input>);
+    const wrapper = shallow(<Input className="other" />);
 
     expect(wrapper.hasClass('other')).toBe(true);
   });
 
   it('should render "select" and "textarea" without type property', () => {
     const input = shallow(<Input type="select">Yo!</Input>);
-    const textarea = shallow(<Input type="textarea">Yo!</Input>);
+    const textarea = shallow(<Input type="textarea" />);
 
     expect(input.find('[type="select"]').exists()).toBe(false);
     expect(textarea.find('[type="textarea"]').exists()).toBe(false);
+  });
+
+  it('should render with "form-control-range" not "form-control" class when type is range', () => {
+    const wrapper = shallow(<Input type="range" />);
+
+    expect(wrapper.hasClass('form-control-range')).toBe(true);
+    expect(wrapper.hasClass('form-control')).toBe(false);
   });
 });

@@ -27,6 +27,12 @@ describe('Progress', () => {
     expect(wrapper.prop('max')).toBe(100);
   });
 
+  it('should render with "style" empty object by default', () => {
+    const wrapper = mount(<Progress />);
+
+    expect(wrapper.prop('style')).toEqual({});
+  });
+
   it('should render with the given "value" when passed as string prop', () => {
     const wrapper = mount(<Progress value="10" />);
 
