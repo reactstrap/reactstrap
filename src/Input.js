@@ -69,6 +69,7 @@ class Input extends React.Component {
     const fileInput = type === 'file';
     const textareaInput = type === 'textarea';
     const selectInput = type === 'select';
+    const rangeInput = type === 'range';
     let Tag = tag || (selectInput || textareaInput ? type : 'input');
 
     let formControlClass = 'form-control';
@@ -78,6 +79,8 @@ class Input extends React.Component {
       Tag = tag || 'input';
     } else if (fileInput) {
       formControlClass = `${formControlClass}-file`;
+    } else if (rangeInput) {
+      formControlClass = `${formControlClass}-range`;
     } else if (checkInput) {
       if (addon) {
         formControlClass = null;

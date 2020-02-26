@@ -171,14 +171,14 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(Popper).prop('positionFixed')).toBe(true);
   });
 
-  it('should not render multiple children when isOpen is false', () => {
+  it('should not render Popper when isOpen is false', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu right>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.childAt(0).children().length).toBe(0);
+    expect(wrapper.find(Popper).length).toBe(0);
   });
 
   it('should render custom tag', () => {

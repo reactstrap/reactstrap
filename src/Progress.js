@@ -22,12 +22,14 @@ const propTypes = {
   className: PropTypes.string,
   barClassName: PropTypes.string,
   cssModule: PropTypes.object,
+  style: PropTypes.object,
 };
 
 const defaultProps = {
   tag: 'div',
   value: 0,
   max: 100,
+  style: {},
 };
 
 const Progress = (props) => {
@@ -44,6 +46,7 @@ const Progress = (props) => {
     bar,
     multi,
     tag: Tag,
+    style,
     ...attributes
   } = props;
 
@@ -65,7 +68,10 @@ const Progress = (props) => {
   const ProgressBar = multi ? children : (
     <div
       className={progressBarClasses}
-      style={{ width: `${percent}%` }}
+      style={{
+        ...style,
+        width: `${percent}%`,
+      }}
       role="progressbar"
       aria-valuenow={value}
       aria-valuemin="0"

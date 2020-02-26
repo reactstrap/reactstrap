@@ -31,8 +31,8 @@ describe('Carousel', () => {
 
   describe('items', () => {
     it('should render custom tag', () => {
-      const wrapper = mount(<CarouselItem tag="image" />);
-      expect(wrapper.find('image').length).toBe(1);
+      const wrapper = mount(<CarouselItem tag="img" />);
+      expect(wrapper.find('img').length).toBe(1);
     });
 
     it('should render an image if one is passed in', () => {

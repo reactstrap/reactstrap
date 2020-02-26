@@ -89,3 +89,4 @@ export UncontrolledDropdown from './UncontrolledDropdown';
 export UncontrolledTooltip from './UncontrolledTooltip';
 export Spinner from './Spinner';
 export * as Util from './utils';
+export * as Polyfill from './polyfill'
