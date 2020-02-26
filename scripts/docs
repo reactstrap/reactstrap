@@ -49,5 +49,7 @@ git config user.email "reactstrap@github.io"
 git add --all
 git commit -m "docs(travis): publish documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)"
 git push origin $BRANCH > /dev/null 2>&1
+git tag -a $VERSION -m "docs $TRAVIS_TAG"
+git push --tags > /dev/null 2>&1
 
 success "Successfully published documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)!"

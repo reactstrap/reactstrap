@@ -5,17 +5,17 @@ import { CustomInput } from '../';
 describe('Custom Inputs', () => {
   describe('CustomCheckbox', () => {
     it('should render an optional label', () => {
-      const checkbox = mount(<CustomInput type="checkbox" label="Yo!" />);
+      const checkbox = mount(<CustomInput type="checkbox" id="yo" label="Yo!" />);
       expect(checkbox.find('label').text()).toBe('Yo!');
     });
 
     it('should render children in the outer div', () => {
-      const checkbox = shallow(<CustomInput type="checkbox" />);
+      const checkbox = shallow(<CustomInput type="checkbox" id="yo" />);
       expect(checkbox.type()).toBe('div');
     });
 
     it('should render an input with the type of checkbox', () => {
-      const checkbox = mount(<CustomInput type="checkbox" />);
+      const checkbox = mount(<CustomInput type="checkbox" id="yo" />);
       expect(checkbox.find('input').prop('type')).toBe('checkbox');
     });
 
@@ -32,28 +32,28 @@ describe('Custom Inputs', () => {
     });
 
     it('should pass classNames to the outer div', () => {
-      const checkbox = mount(<CustomInput type="checkbox" className="yo" />);
+      const checkbox = mount(<CustomInput type="checkbox" id="yo" className="yo" />);
       expect(checkbox.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
     });
 
     it('should add class is-invalid when invalid is true', () => {
-      const checkbox = mount(<CustomInput type="checkbox" invalid />);
+      const checkbox = mount(<CustomInput type="checkbox" id="yo" invalid />);
       expect(checkbox.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
     });
 
     it('should add class is-valid when valid is true', () => {
-      const checkbox = mount(<CustomInput type="checkbox" valid />);
+      const checkbox = mount(<CustomInput type="checkbox" id="yo" valid />);
       expect(checkbox.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
     });
 
     it('should pass all other props to the input node', () => {
-      const checkbox = mount(<CustomInput type="checkbox" data-testprop="yo" />);
+      const checkbox = mount(<CustomInput type="checkbox" id="yo" data-testprop="yo" />);
       expect(checkbox.find('input').prop('data-testprop')).toBe('yo');
     });
 
     it('should reference innerRef to the input node', () => {
       const ref = React.createRef();
-      mount(<CustomInput type="checkbox" innerRef={ref} />);
+      mount(<CustomInput type="checkbox" id="yo" innerRef={ref} />);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
@@ -61,27 +61,27 @@ describe('Custom Inputs', () => {
 
   describe('CustomRadio', () => {
     it('should render an optional label', () => {
-      const radio = mount(<CustomInput type="radio" label="Yo!" />);
+      const radio = mount(<CustomInput type="radio" id="yo" label="Yo!" />);
       expect(radio.find('label').text()).toBe('Yo!');
     });
 
     it('should render children in the outer div', () => {
-      const radio = shallow(<CustomInput type="radio" />);
+      const radio = shallow(<CustomInput type="radio" id="yo" />);
       expect(radio.type()).toBe('div');
     });
 
     it('should render an input with the type of radio', () => {
-      const radio = mount(<CustomInput type="radio" />);
+      const radio = mount(<CustomInput type="radio" id="yo" />);
       expect(radio.find('input').prop('type')).toBe('radio');
     });
 
     it('should add class is-invalid when invalid is true', () => {
-      const radio = mount(<CustomInput type="radio" invalid />);
+      const radio = mount(<CustomInput type="radio" id="yo" invalid />);
       expect(radio.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
     });
 
     it('should add class is-valid when valid is true', () => {
-      const radio = mount(<CustomInput type="radio" valid />);
+      const radio = mount(<CustomInput type="radio" id="yo" valid />);
       expect(radio.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
     });
 
@@ -98,18 +98,18 @@ describe('Custom Inputs', () => {
     });
 
     it('should pass classNames to the outer div', () => {
-      const radio = mount(<CustomInput type="radio" className="yo" />);
+      const radio = mount(<CustomInput type="radio" id="yo" className="yo" />);
       expect(radio.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
     });
 
     it('should pass all other props to the input node', () => {
-      const radio = mount(<CustomInput type="radio" data-testprop="yo" />);
+      const radio = mount(<CustomInput type="radio" id="yo" data-testprop="yo" />);
       expect(radio.find('input').prop('data-testprop')).toBe('yo');
     });
 
     it('should reference innerRef to the input node', () => {
       const ref = React.createRef();
-      mount(<CustomInput type="radio" innerRef={ref} />);
+      mount(<CustomInput type="radio" id="yo" innerRef={ref} />);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
@@ -117,17 +117,17 @@ describe('Custom Inputs', () => {
 
   describe('CustomSwitch', () => {
     it('should render an optional label', () => {
-      const checkbox = mount(<CustomInput type="switch" label="Yo!" />);
+      const checkbox = mount(<CustomInput type="switch" id="yo" label="Yo!" />);
       expect(checkbox.find('label').text()).toBe('Yo!');
     });
 
     it('should render children in the outer div', () => {
-      const checkbox = shallow(<CustomInput type="switch" />);
+      const checkbox = shallow(<CustomInput type="switch" id="yo" />);
       expect(checkbox.type()).toBe('div');
     });
 
     it('should render an input with the type of checkbox', () => {
-      const checkbox = mount(<CustomInput type="switch" />);
+      const checkbox = mount(<CustomInput type="switch" id="yo" />);
       expect(checkbox.find('input').prop('type')).toBe('checkbox');
     });
 
@@ -144,28 +144,28 @@ describe('Custom Inputs', () => {
     });
 
     it('should pass classNames to the outer div', () => {
-      const checkbox = mount(<CustomInput type="switch" className="yo" />);
+      const checkbox = mount(<CustomInput type="switch" id="yo" className="yo" />);
       expect(checkbox.find('.custom-control').prop('className').indexOf('yo') > -1).toBeTruthy();
     });
 
     it('should add class is-invalid when invalid is true', () => {
-      const checkbox = mount(<CustomInput type="switch" invalid />);
+      const checkbox = mount(<CustomInput type="switch" id="yo" invalid />);
       expect(checkbox.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
     });
 
     it('should add class is-valid when valid is true', () => {
-      const checkbox = mount(<CustomInput type="switch" valid />);
+      const checkbox = mount(<CustomInput type="switch" id="yo" valid />);
       expect(checkbox.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
     });
 
     it('should pass all other props to the input node', () => {
-      const checkbox = mount(<CustomInput type="switch" data-testprop="yo" />);
+      const checkbox = mount(<CustomInput type="switch" id="yo" data-testprop="yo" />);
       expect(checkbox.find('input').prop('data-testprop')).toBe('yo');
     });
 
     it('should reference innerRef to the input node', () => {
       const ref = React.createRef();
-      mount(<CustomInput type="switch" innerRef={ref} />);
+      mount(<CustomInput type="switch" id="yo" innerRef={ref} />);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
@@ -173,43 +173,43 @@ describe('Custom Inputs', () => {
 
   describe('CustomSelect', () => {
     it('should render children in the outer div', () => {
-      const select = shallow(<CustomInput type="select" />);
+      const select = shallow(<CustomInput type="select" id="yo" />);
       expect(select.type()).toBe('select');
     });
 
     it('should add class is-invalid when invalid is true', () => {
-      const select = mount(<CustomInput type="select" invalid />);
+      const select = mount(<CustomInput type="select" id="yo" invalid />);
       expect(select.find('select').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
     });
 
     it('should add class is-valid when valid is true', () => {
-      const select = mount(<CustomInput type="select" valid />);
+      const select = mount(<CustomInput type="select" id="yo" valid />);
       expect(select.find('select').prop('className').indexOf('is-valid') > -1).toBeTruthy();
     });
 
     it('should add the size class when bsSize is provided', () => {
-      const select = mount(<CustomInput type="select" bsSize="lg" />);
+      const select = mount(<CustomInput type="select" id="yo" bsSize="lg" />);
       expect(select.find('select').prop('className').indexOf('custom-select-lg') > -1).toBeTruthy();
     });
 
     it('should pass classNames to the outer div', () => {
-      const select = mount(<CustomInput type="select" className="yo" />);
+      const select = mount(<CustomInput type="select" id="yo" className="yo" />);
       expect(select.find('.custom-select').prop('className').indexOf('yo') > -1).toBeTruthy();
     });
 
     it('should pass all other props to the input node', () => {
-      const select = mount(<CustomInput type="select" data-testprop="yo" />);
+      const select = mount(<CustomInput type="select" id="yo" data-testprop="yo" />);
       expect(select.find('select').prop('data-testprop')).toBe('yo');
     });
 
     it('should remove type prop from the input node', () => {
-      const select = mount(<CustomInput type="select" />);
+      const select = mount(<CustomInput type="select" id="yo" />);
       expect(select.find('select').prop('type')).toBeUndefined();
     });
 
     it('should reference innerRef to the select node', () => {
       const ref = React.createRef();
-      mount(<CustomInput type="select" innerRef={ref} />);
+      mount(<CustomInput type="select" id="yo" innerRef={ref} />);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLSelectElement);
     });
@@ -217,22 +217,22 @@ describe('Custom Inputs', () => {
 
   describe('CustomFile', () => {
     it('should render children in the outer div', () => {
-      const file = mount(<CustomInput type="file" />);
+      const file = mount(<CustomInput type="file" id="yo" />);
       expect(file.find('.custom-file').first().type()).toBe('div');
     });
 
     it('should add class is-invalid when invalid is true', () => {
-      const file = mount(<CustomInput type="file" invalid />);
+      const file = mount(<CustomInput type="file" id="yo" invalid />);
       expect(file.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
     });
 
     it('should add class is-valid when valid is true', () => {
-      const file = mount(<CustomInput type="file" valid />);
+      const file = mount(<CustomInput type="file" id="yo" valid />);
       expect(file.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
     });
 
     it('should render an input with the type of file', () => {
-      const file = mount(<CustomInput type="file" />);
+      const file = mount(<CustomInput type="file" id="yo" />);
       expect(file.find('input').prop('type')).toBe('file');
     });
 
@@ -249,23 +249,23 @@ describe('Custom Inputs', () => {
     });
 
     it('should pass classNames to the outer div', () => {
-      const file = mount(<CustomInput type="file" className="yo" />);
+      const file = mount(<CustomInput type="file" id="yo" className="yo" />);
       expect(file.find('.custom-file').prop('className').indexOf('yo') > -1).toBeTruthy();
     });
 
     it('should set the label when provided', () => {
-      const file = mount(<CustomInput type="file" label="yo" />);
+      const file = mount(<CustomInput type="file" id="yo" label="yo" />);
       expect(file.find('label').text()).toBe('yo');
     });
 
     it('should pass all other props to the input node', () => {
-      const file = mount(<CustomInput type="file" data-testprop="yo" />);
+      const file = mount(<CustomInput type="file" id="yo" data-testprop="yo" />);
       expect(file.find('input').prop('data-testprop')).toBe('yo');
     });
 
     it('should reference innerRef to the input node', () => {
       const ref = React.createRef();
-      mount(<CustomInput type="file" innerRef={ref} />);
+      mount(<CustomInput type="file" id="yo" innerRef={ref} />);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
@@ -273,7 +273,7 @@ describe('Custom Inputs', () => {
     describe('onChange', () => {
       it('calls props.onChange if it exists', () => {
         const onChange = jest.fn();
-        const file = mount(<CustomInput type="file" onChange={onChange} />);
+        const file = mount(<CustomInput type="file" id="yo" onChange={onChange} />);
 
         file.find('input').hostNodes().simulate('change');
         expect(onChange).toHaveBeenCalled();
@@ -281,7 +281,7 @@ describe('Custom Inputs', () => {
     });
 
     it('removes fakepath from file name', () => {
-      const file = mount(<CustomInput type="file" />);
+      const file = mount(<CustomInput type="file" id="yo" />);
 
       file.find('input').hostNodes().simulate('change', {
         target:{
@@ -293,7 +293,7 @@ describe('Custom Inputs', () => {
     });
 
     it('lists multiple files when supported', () => {
-      const file = mount(<CustomInput type="file" multiple/>);
+      const file = mount(<CustomInput type="file" id="yo" multiple/>);
 
       file.find('input').hostNodes().simulate('change', {
         target:{
@@ -312,33 +312,33 @@ describe('Custom Inputs', () => {
 
   describe('CustomRange', () => {
     it('should render children in the outer div', () => {
-      const range = shallow(<CustomInput type="range" />);
+      const range = shallow(<CustomInput type="range" id="yo" />);
       expect(range.type()).toBe('input');
     });
 
     it('should add class is-invalid when invalid is true', () => {
-      const range = mount(<CustomInput type="range" invalid />);
+      const range = mount(<CustomInput type="range" id="yo" invalid />);
       expect(range.find('input').prop('className').indexOf('is-invalid') > -1).toBeTruthy();
     });
 
     it('should add class is-valid when valid is true', () => {
-      const range = mount(<CustomInput type="range" valid />);
+      const range = mount(<CustomInput type="range" id="yo" valid />);
       expect(range.find('input').prop('className').indexOf('is-valid') > -1).toBeTruthy();
     });
 
     it('should render an input with the type of range', () => {
-      const range = mount(<CustomInput type="range" />);
+      const range = mount(<CustomInput type="range" id="yo" />);
       expect(range.find('input').prop('type')).toBe('range');
     });
 
     it('should pass all other props to the input node', () => {
-      const range = mount(<CustomInput type="range" data-testprop="yo" />);
+      const range = mount(<CustomInput type="range" id="yo" data-testprop="yo" />);
       expect(range.find('input').prop('data-testprop')).toBe('yo');
     });
 
     it('should reference innerRef to the input node', () => {
       const ref = React.createRef();
-      mount(<CustomInput type="range" innerRef={ref} />);
+      mount(<CustomInput type="range" id="yo" innerRef={ref} />);
       expect(ref.current).not.toBeNull();
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
