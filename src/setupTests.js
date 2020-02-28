@@ -1,9 +1,13 @@
 /* global jest */
 /* eslint-disable import/no-extraneous-dependencies */
 import Enzyme, { ReactWrapper } from 'enzyme';
+import { createElement, StrictMode } from 'react'
 import Adapter from 'enzyme-adapter-react-16';
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({
+  adapter: new Adapter(),
+  wrappingComponent: props => createElement(StrictMode, props) 
+});
 
 global.requestAnimationFrame = function (cb) { cb(0); };
 global.window.cancelAnimationFrame = function () { };
