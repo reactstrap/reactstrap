@@ -31,6 +31,19 @@
     display: block;
     margin: 0 0 1rem 0;
   }
+
+  .mr-1, .mr-2, .mr-3, .mr-4, .mr-5 {
+    margin-right: 0 !important;
+  }
+  
+  .ml-1, .ml-2, .ml-3, .ml-4, .ml-5 {
+    margin-left: 0 !important;
+  }
+
+  .my-1, .my-2, .my-3, .my-4, .my-5 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
 }
 
 .content {
