@@ -57,7 +57,8 @@ const propTypes = {
     PropTypes.func,
   ]),
   unmountOnClose: PropTypes.bool,
-  returnFocusAfterClose: PropTypes.bool
+  returnFocusAfterClose: PropTypes.bool,
+  container: PropTypes.string
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -82,7 +83,8 @@ const defaultProps = {
     timeout: TransitionTimeouts.Fade, // uses standard fade transition
   },
   unmountOnClose: true,
-  returnFocusAfterClose: true
+  returnFocusAfterClose: true,
+  container: 'body'
 };
 
 class Modal extends React.Component {
@@ -290,7 +292,8 @@ class Modal extends React.Component {
       this._element.setAttribute('tabindex', '-1');
       this._element.style.position = 'relative';
       this._element.style.zIndex = this.props.zIndex;
-      document.body.appendChild(this._element);
+      this._mountContainer = document.querySelector(this.props.container) || document.querySelector('body');
+      this._mountContainer.appendChild(this._element);
     }
 
     this._originalBodyPadding = getOriginalBodyPadding();
@@ -308,7 +311,7 @@ class Modal extends React.Component {
 
   destroy() {
     if (this._element) {
-      document.body.removeChild(this._element);
+      this._mountContainer.removeChild(this._element);
       this._element = null;
     }
 
