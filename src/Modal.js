@@ -292,7 +292,8 @@ class Modal extends React.Component {
       this._element.setAttribute('tabindex', '-1');
       this._element.style.position = 'relative';
       this._element.style.zIndex = this.props.zIndex;
-      document.querySelector(this.props.container).appendChild(this._element);
+      this._mountContainer = document.querySelector(this.props.container) || document.querySelector('body');
+      this._mountContainer.appendChild(this._element);
     }
 
     this._originalBodyPadding = getOriginalBodyPadding();
@@ -310,7 +311,7 @@ class Modal extends React.Component {
 
   destroy() {
     if (this._element) {
-      document.querySelector(this.props.container).removeChild(this._element);
+      this._mountContainer.removeChild(this._element);
       this._element = null;
     }
 
