@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { TabContext } from './TabContext';
@@ -53,7 +52,6 @@ class TabContent extends Component {
   }
 }
 
-polyfill(TabContent);
 export default TabContent;
 
 TabContent.propTypes = propTypes;
