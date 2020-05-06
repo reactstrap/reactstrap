@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
+import { CarouselContext } from './CarouselContext'
 import { mapToCssModules } from './utils';
-    
+
 const SWIPE_THRESHOLD = 40;
 
 class Carousel extends React.Component {
@@ -22,10 +23,6 @@ class Carousel extends React.Component {
       direction: 'right',
       indicatorClicked: false,
     };
-  }
-
-  getChildContext() {
-    return { direction: this.state.direction };
   }
 
   componentDidMount() {
@@ -153,15 +150,17 @@ class Carousel extends React.Component {
   renderItems(carouselItems, className) {
     const { slide } = this.props;
     return (
-      <div className={className}>
-        {carouselItems.map((item, index) => {
-          const isIn = (index === this.state.activeIndex);
-          return React.cloneElement(item, {
-            in: isIn,
-            slide: slide,
-          });
-        })}
-      </div>
+      <CarouselContext.Provider value={this.state}>
+        <div className={className}>
+          {carouselItems.map((item, index) => {
+            const isIn = (index === this.state.activeIndex);
+            return React.cloneElement(item, {
+              in: isIn,
+              slide: slide,
+            });
+          })}
+        </div>
+      </CarouselContext.Provider>
     );
   }
 
@@ -220,7 +219,7 @@ class Carousel extends React.Component {
 
     return (
       <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}
-        onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
+           onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
         {wrappedIndicators}
         {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
@@ -271,10 +270,6 @@ Carousel.defaultProps = {
   keyboard: true,
   slide: true,
   enableTouch: true,
-};
-
-Carousel.childContextTypes = {
-  direction: PropTypes.string
 };
 
 export default Carousel;
