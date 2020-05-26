@@ -84,4 +84,35 @@ export default [
       },
     ],
   },
+   {
+    creator: {
+      name: 'WrapPixel',
+      tagLine:
+        'Check out some examples that our partners from WrapPixel created using the Reactstrap components library.',
+      link: 'https://www.wrappixel.com',
+    },
+    products: [
+      {
+        title: 'MaterialPro Admin with Reactstrap',
+        tagLine: 'Premium Admin Template for Bootstrap 4 and Reactstrap',
+        imgUrl:
+          'https://www.wrappixel.com/wp-content/uploads/edd/2020/04/materialpro-react-admin-y.jpg',
+        link: 'https://www.wrappixel.com/templates/materialpro-react-redux-admin/',
+      },
+      {
+        title: 'Xtreme Admin & Dashboard Template with Reactstrap',
+        tagLine: 'Premium Reactstrap (Bootstrap 4) Admin Template',
+        imgUrl:
+          'https://www.wrappixel.com/wp-content/uploads/edd/2020/04/xtreme-react-admin-template-y.jpg',
+        link: 'https://www.wrappixel.com/templates/xtreme-react-redux-admin/',
+      },
+      {
+        title: 'AdminPro React Admin Template with Reactstrap',
+        tagLine: 'Best admin templates for Bootstrap 4 and Reactstrap',
+        imgUrl:
+          'https://www.wrappixel.com/wp-content/uploads/edd/2020/04/adminpro-react-dashboard-y.jpg',
+        link: 'https://www.wrappixel.com/templates/adminpro-react-redux-admin/',
+      },
+      ],
+   }, 
 ];
