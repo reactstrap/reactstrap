@@ -15,6 +15,7 @@ function Content({ items, children, title }) {
       <Row>
         <Col className="docSearch-navigation" tag="main" md={{ size: 3, order: 2 }}>
           <div className="docs-sidebar mb-3">
+            <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7IPK3E&placement=reactstrapgithubio" id="_carbonads_js"></script>
             <h1 className="h5">{title}</h1>
             <Nav className="flex-column">
               {items.sort((a, b) => a.name.localeCompare(b.name)).map(item => (
