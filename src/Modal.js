@@ -86,7 +86,7 @@ const defaultProps = {
   },
   unmountOnClose: true,
   returnFocusAfterClose: true,
-  container: targetPropType
+  container: 'body'
 };
 
 class Modal extends React.Component {
