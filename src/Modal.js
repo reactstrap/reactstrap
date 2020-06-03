@@ -11,7 +11,9 @@ import {
   omit,
   focusableElements,
   TransitionTimeouts,
-  keyCodes
+  keyCodes,
+  targetPropType,
+  getTarget
 } from './utils';
 
 function noop() { }
@@ -58,7 +60,7 @@ const propTypes = {
   ]),
   unmountOnClose: PropTypes.bool,
   returnFocusAfterClose: PropTypes.bool,
-  container: PropTypes.string
+  container: targetPropType
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -292,7 +294,7 @@ class Modal extends React.Component {
       this._element.setAttribute('tabindex', '-1');
       this._element.style.position = 'relative';
       this._element.style.zIndex = this.props.zIndex;
-      this._mountContainer = document.querySelector(this.props.container) || document.querySelector('body');
+      this._mountContainer = getTarget(this.props.container);
       this._mountContainer.appendChild(this._element);
     }
 

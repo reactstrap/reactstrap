@@ -108,7 +108,7 @@ const ModalsPage = () => {
   // if the element which triggered the modal to open should focused after the modal closes (see example somewhere below)
   returnFocusAfterClose: PropTypes.bool, // defaults to true
   // container to append the modal to
-  container: PropTypes.string // css selector, defauls to "body"
+  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
 }`}
         </PrismCode>
       </pre>
