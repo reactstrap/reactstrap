@@ -72,7 +72,7 @@ const ModalsPage = () => {
   // if body of modal should be scrollable when content is long
   scrollable: PropTypes.bool,
   // allows for a node/component to exist next to the modal (outside of it). Useful for external close buttons
-  // external: PropTypes.node,
+  external: PropTypes.node,
   // called on componentDidMount
   onEnter: PropTypes.func,
   // called on componentWillUnmount
@@ -108,7 +108,7 @@ const ModalsPage = () => {
   // if the element which triggered the modal to open should focused after the modal closes (see example somewhere below)
   returnFocusAfterClose: PropTypes.bool, // defaults to true
   // container to append the modal to
-  container: PropTypes.string // css selector, defauls to "body"
+  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
 }`}
         </PrismCode>
       </pre>
