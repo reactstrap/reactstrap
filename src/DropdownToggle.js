@@ -60,7 +60,12 @@ class DropdownToggle extends React.Component {
         'nav-link': nav
       }
     ), cssModule);
-    const children = props.children ?? <span className="sr-only">{ariaLabel}</span>;
+    const children =
+      typeof props.children !== 'undefined' ? (
+        props.children
+      ) : (
+        <span className="sr-only">{ariaLabel}</span>
+      );
 
     let Tag;
 
