@@ -9,7 +9,7 @@ import Fade from './Fade';
 function noop() {  }
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   popperClassName: PropTypes.string,
   placement: PropTypes.string,
   placementPrefix: PropTypes.string,
@@ -151,9 +151,9 @@ class PopperContent extends React.Component {
           modifiers={extendedModifiers}
           placement={placement}
         >
-          {({ ref, style, placement, outOfBoundaries, arrowProps }) => (
+          {({ ref, style, placement, outOfBoundaries, arrowProps, scheduleUpdate }) => (
             <div ref={ref} style={style} className={popperClassName} x-placement={placement} x-out-of-boundaries={outOfBoundaries ? 'true' : undefined}>
-              {children}
+              {typeof children === 'function' ? children({ scheduleUpdate }) : children}
               {!hideArrow && <span ref={arrowProps.ref} className={arrowClassName} style={arrowProps.style} />}
             </div>
           )}

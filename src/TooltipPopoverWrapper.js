@@ -11,6 +11,7 @@ import {
 } from './utils';
 
 export const propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   placement: PropTypes.oneOf(PopperPlacements),
   target: targetPropType.isRequired,
   container: targetPropType,
@@ -338,6 +339,7 @@ class TooltipPopoverWrapper extends React.Component {
       offset,
       fade,
       flip,
+      children
     } = this.props;
 
     const attributes = omit(this.props, Object.keys(propTypes));
@@ -364,15 +366,20 @@ class TooltipPopoverWrapper extends React.Component {
         fade={fade}
         flip={flip}
       >
-        <div
-          {...attributes}
-          ref={this.getRef}
-          className={classes}
-          role="tooltip"
-          onMouseOver={this.onMouseOverTooltipContent}
-          onMouseLeave={this.onMouseLeaveTooltipContent}
-          onKeyDown={this.onEscKeyDown}
-        />
+        {({ scheduleUpdate }) => (
+          <div
+            {...attributes}
+            ref={this.getRef}
+            className={classes}
+            role="tooltip"
+            onMouseOver={this.onMouseOverTooltipContent}
+            onMouseLeave={this.onMouseLeaveTooltipContent}
+            onKeyDown={this.onEscKeyDown}
+          >
+            {typeof children === 'function' ? children({ scheduleUpdate }) : children}
+          </div>
+        )}
+
       </PopperContent>
     );
   }

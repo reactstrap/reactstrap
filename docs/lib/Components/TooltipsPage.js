@@ -11,6 +11,8 @@ import TooltipExampleMulti from '../examples/TooltipMulti';
 const TooltipExampleMultiSource = require('!!raw-loader!../examples/TooltipMulti');
 import TooltipExampleUncontrolled from '../examples/TooltipUncontrolled';
 const TooltipExampleUncontrolledSource = require('!!raw-loader!../examples/TooltipUncontrolled');
+import TooltipScheduleUpdateExample from '../examples/TooltipScheduleUpdate';
+const TooltipScheduleUpdateExampleSource = require('!!raw-loader!../examples/TooltipScheduleUpdate');
 
 export default class TooltipsPage extends React.Component {
   render() {
@@ -30,6 +32,7 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Tooltip.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   // space separated list of triggers (e.g. "click hover focus")
   trigger: PropTypes.string,
   // boundaries for popper, can be scrollParent, window, viewport, or any DOM element
@@ -131,6 +134,20 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {TooltipExampleUncontrolledSource}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Repositioning Tooltips</SectionTitle>
+        <p>
+          If you need to reposition a tooltip due to content changes or target placement changes, use
+          the <code>scheduleUpdate</code> function to manually reposition it. This function is exposed
+          as a render prop for <code>children</code>.
+        </p>
+        <div className="docs-example">
+          <TooltipScheduleUpdateExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {TooltipScheduleUpdateExampleSource}
           </PrismCode>
         </pre>
       </div>
