@@ -103,6 +103,7 @@ class CustomFileInput extends React.Component {
           type="file"
           {...attributes}
           ref={innerRef}
+          aria-invalid={invalid}
           className={classNames(
             validationClassNames,
             mapToCssModules("custom-file-input", cssModule)

@@ -127,7 +127,7 @@ class Input extends React.Component {
       delete attributes.children;
     }
 
-    return <Tag {...attributes} ref={innerRef} className={classes} />;
+    return <Tag {...attributes} ref={innerRef} className={classes} aria-invalid={invalid} />;
   }
 }
 
