@@ -12,6 +12,10 @@ const propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  min: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   max: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -23,11 +27,14 @@ const propTypes = {
   barClassName: PropTypes.string,
   cssModule: PropTypes.object,
   style: PropTypes.object,
+  barAriaValueText: PropTypes.string,
+  barAriaLabelledBy: PropTypes.string,
 };
 
 const defaultProps = {
   tag: 'div',
   value: 0,
+  min: 0,
   max: 100,
   style: {},
 };
@@ -39,6 +46,7 @@ const Progress = (props) => {
     barClassName,
     cssModule,
     value,
+    min,
     max,
     animated,
     striped,
@@ -47,6 +55,8 @@ const Progress = (props) => {
     multi,
     tag: Tag,
     style,
+    barAriaValueText,
+    barAriaLabelledBy,
     ...attributes
   } = props;
 
@@ -74,8 +84,10 @@ const Progress = (props) => {
       }}
       role="progressbar"
       aria-valuenow={value}
-      aria-valuemin="0"
+      aria-valuemin={min}
       aria-valuemax={max}
+      aria-valuetext={barAriaValueText}
+      aria-labelledby={barAriaLabelledBy}
       children={children}
     />
   );
