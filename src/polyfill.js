@@ -1,5 +1,5 @@
 (() => {
-  if ( typeof window.CustomEvent === 'function' ) return;
+  if ( typeof window !== 'object' || typeof window.CustomEvent === 'function' ) return;
 
   const CustomEvent = (( event, params ) => {
     params = params || { bubbles: false, cancelable: false, detail: null };
