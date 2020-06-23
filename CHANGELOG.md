@@ -1,3 +1,28 @@
+# [8.5.0](https://github.com/reactstrap/reactstrap/compare/8.4.1...8.5.0) (2020-06-23)
+
+
+### Bug Fixes
+
+* **Carousel:** ie11 compatibility changes([#799](https://github.com/reactstrap/reactstrap/issues/799)) ([#1585](https://github.com/reactstrap/reactstrap/issues/1585)) ([1fd2d22](https://github.com/reactstrap/reactstrap/commit/1fd2d22)), closes [/github.com/reactjs/react-transition-group/blob/9e3b2d3c09b78e755bdc837b7b38337812ede2c9/src/TransitionGroup.js#L11](https://github.com//github.com/reactjs/react-transition-group/blob/9e3b2d3c09b78e755bdc837b7b38337812ede2c9/src/TransitionGroup.js/issues/L11)
+* **CustomInput:** hidden attribute [#1741](https://github.com/reactstrap/reactstrap/issues/1741) ([#1777](https://github.com/reactstrap/reactstrap/issues/1777)) ([bb39b55](https://github.com/reactstrap/reactstrap/commit/bb39b55))
+* **DropdownToggle:** fix 0 value [#1496](https://github.com/reactstrap/reactstrap/issues/1496) ([#1780](https://github.com/reactstrap/reactstrap/issues/1780)) ([c4f86d5](https://github.com/reactstrap/reactstrap/commit/c4f86d5))
+* **Input:** Aria-invalid attribute ([#1782](https://github.com/reactstrap/reactstrap/issues/1782)) ([ca113f1](https://github.com/reactstrap/reactstrap/commit/ca113f1))
+* **Modal:** fix modal close immediately unmounted ([c8def29](https://github.com/reactstrap/reactstrap/commit/c8def29)), closes [#1323](https://github.com/reactstrap/reactstrap/issues/1323)
+* **TooltipPopoverWrapper:** replacing find with filter to preve… ([#1776](https://github.com/reactstrap/reactstrap/issues/1776)) ([54648b6](https://github.com/reactstrap/reactstrap/commit/54648b6)), closes [#1774](https://github.com/reactstrap/reactstrap/issues/1774)
+
+
+### Features
+
+* **Input:** Use form-control-range for range inputs ([#1772](https://github.com/reactstrap/reactstrap/issues/1772)) ([56c1d77](https://github.com/reactstrap/reactstrap/commit/56c1d77))
+* **Modal:** Allow passing in an element selector to append mod… ([#1817](https://github.com/reactstrap/reactstrap/issues/1817)) ([8f8cc98](https://github.com/reactstrap/reactstrap/commit/8f8cc98))
+* **Modal:** match container behaviour to targetPropType like of Popover and Tooltip ([#1844](https://github.com/reactstrap/reactstrap/issues/1844)) ([6ea2488](https://github.com/reactstrap/reactstrap/commit/6ea2488))
+* **PopoverContent:** add x-out-of-boundaries attribute ([607ce10](https://github.com/reactstrap/reactstrap/commit/607ce10)), closes [#1835](https://github.com/reactstrap/reactstrap/issues/1835)
+* **Progress:** add aria props ([#1681](https://github.com/reactstrap/reactstrap/issues/1681)) ([#1787](https://github.com/reactstrap/reactstrap/issues/1787)) ([93f171d](https://github.com/reactstrap/reactstrap/commit/93f171d))
+* **Progress:** Allow passing in custom style object ([#1771](https://github.com/reactstrap/reactstrap/issues/1771)) ([a79417a](https://github.com/reactstrap/reactstrap/commit/a79417a))
+* **TooltipPopoverWrapper:** scheduleUpdate as render prop ([#1792](https://github.com/reactstrap/reactstrap/issues/1792)) ([cda6fe9](https://github.com/reactstrap/reactstrap/commit/cda6fe9))
+
+
+
 ## [8.4.1](https://github.com/reactstrap/reactstrap/compare/8.4.0...8.4.1) (2020-01-27)
 
 
