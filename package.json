@@ -279,7 +279,7 @@
     "clean-webpack-plugin": "^1.0.0",
     "conventional-changelog-cli": "^2.0.21",
     "conventional-recommended-bump": "^0.3.0",
-    "copy-webpack-plugin": "^4.6.0",
+    "copy-webpack-plugin": "^5.1.1",
     "coveralls": "^2.11.12",
     "cross-env": "^2.0.0",
     "css-loader": "^2.1.0",
