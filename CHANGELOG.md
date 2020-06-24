@@ -1,3 +1,12 @@
+## [8.5.1](https://github.com/reactstrap/reactstrap/compare/8.5.0...8.5.1) (2020-06-24)
+
+
+### Bug Fixes
+
+* **polyfill:** check that window exists before defining CustomEvent ([#1855](https://github.com/reactstrap/reactstrap/issues/1855)) ([74b6802](https://github.com/reactstrap/reactstrap/commit/74b6802))
+
+
+
 # [8.5.0](https://github.com/reactstrap/reactstrap/compare/8.4.1...8.5.0) (2020-06-23)
 
 
