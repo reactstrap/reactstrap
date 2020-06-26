@@ -306,7 +306,7 @@
     "react-router": "^3.2.1",
     "react-scripts": "2.1.1",
     "react-test-renderer": "^16.3.2",
-    "rollup": "^1.0.0",
+    "rollup": "^2.18.0",
     "rollup-plugin-babel": "^4.2.0",
     "rollup-plugin-babel-minify": "^6.2.0",
     "rollup-plugin-commonjs": "^9.2.0",
