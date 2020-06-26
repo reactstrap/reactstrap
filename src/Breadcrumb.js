@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  listTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
+  listTag: tagPropType,
   className: PropTypes.string,
   listClassName: PropTypes.string,
   cssModule: PropTypes.object,

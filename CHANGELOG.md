@@ -1,3 +1,312 @@
+## [8.5.1](https://github.com/reactstrap/reactstrap/compare/8.5.0...8.5.1) (2020-06-24)
+
+
+### Bug Fixes
+
+* **polyfill:** check that window exists before defining CustomEvent ([#1855](https://github.com/reactstrap/reactstrap/issues/1855)) ([74b6802](https://github.com/reactstrap/reactstrap/commit/74b6802))
+
+
+
+# [8.5.0](https://github.com/reactstrap/reactstrap/compare/8.4.1...8.5.0) (2020-06-23)
+
+
+### Bug Fixes
+
+* **Carousel:** ie11 compatibility changes([#799](https://github.com/reactstrap/reactstrap/issues/799)) ([#1585](https://github.com/reactstrap/reactstrap/issues/1585)) ([1fd2d22](https://github.com/reactstrap/reactstrap/commit/1fd2d22)), closes [/github.com/reactjs/react-transition-group/blob/9e3b2d3c09b78e755bdc837b7b38337812ede2c9/src/TransitionGroup.js#L11](https://github.com//github.com/reactjs/react-transition-group/blob/9e3b2d3c09b78e755bdc837b7b38337812ede2c9/src/TransitionGroup.js/issues/L11)
+* **CustomInput:** hidden attribute [#1741](https://github.com/reactstrap/reactstrap/issues/1741) ([#1777](https://github.com/reactstrap/reactstrap/issues/1777)) ([bb39b55](https://github.com/reactstrap/reactstrap/commit/bb39b55))
+* **DropdownToggle:** fix 0 value [#1496](https://github.com/reactstrap/reactstrap/issues/1496) ([#1780](https://github.com/reactstrap/reactstrap/issues/1780)) ([c4f86d5](https://github.com/reactstrap/reactstrap/commit/c4f86d5))
+* **Input:** Aria-invalid attribute ([#1782](https://github.com/reactstrap/reactstrap/issues/1782)) ([ca113f1](https://github.com/reactstrap/reactstrap/commit/ca113f1))
+* **Modal:** fix modal close immediately unmounted ([c8def29](https://github.com/reactstrap/reactstrap/commit/c8def29)), closes [#1323](https://github.com/reactstrap/reactstrap/issues/1323)
+* **TooltipPopoverWrapper:** replacing find with filter to preve… ([#1776](https://github.com/reactstrap/reactstrap/issues/1776)) ([54648b6](https://github.com/reactstrap/reactstrap/commit/54648b6)), closes [#1774](https://github.com/reactstrap/reactstrap/issues/1774)
+
+
+### Features
+
+* **Input:** Use form-control-range for range inputs ([#1772](https://github.com/reactstrap/reactstrap/issues/1772)) ([56c1d77](https://github.com/reactstrap/reactstrap/commit/56c1d77))
+* **Modal:** Allow passing in an element selector to append mod… ([#1817](https://github.com/reactstrap/reactstrap/issues/1817)) ([8f8cc98](https://github.com/reactstrap/reactstrap/commit/8f8cc98))
+* **Modal:** match container behaviour to targetPropType like of Popover and Tooltip ([#1844](https://github.com/reactstrap/reactstrap/issues/1844)) ([6ea2488](https://github.com/reactstrap/reactstrap/commit/6ea2488))
+* **PopoverContent:** add x-out-of-boundaries attribute ([607ce10](https://github.com/reactstrap/reactstrap/commit/607ce10)), closes [#1835](https://github.com/reactstrap/reactstrap/issues/1835)
+* **Progress:** add aria props ([#1681](https://github.com/reactstrap/reactstrap/issues/1681)) ([#1787](https://github.com/reactstrap/reactstrap/issues/1787)) ([93f171d](https://github.com/reactstrap/reactstrap/commit/93f171d))
+* **Progress:** Allow passing in custom style object ([#1771](https://github.com/reactstrap/reactstrap/issues/1771)) ([a79417a](https://github.com/reactstrap/reactstrap/commit/a79417a))
+* **TooltipPopoverWrapper:** scheduleUpdate as render prop ([#1792](https://github.com/reactstrap/reactstrap/issues/1792)) ([cda6fe9](https://github.com/reactstrap/reactstrap/commit/cda6fe9))
+
+
+
+## [8.4.1](https://github.com/reactstrap/reactstrap/compare/8.4.0...8.4.1) (2020-01-27)
+
+
+### Bug Fixes
+
+* **Modal:** Allow esc to close static backdrop modal when keybo… ([#1767](https://github.com/reactstrap/reactstrap/issues/1767)) ([49da7b5](https://github.com/reactstrap/reactstrap/commit/49da7b5)), closes [#1766](https://github.com/reactstrap/reactstrap/issues/1766)
+* **Tooltip,Popover:** account for shadowDOM target ([#1769](https://github.com/reactstrap/reactstrap/issues/1769)) ([10ccf12](https://github.com/reactstrap/reactstrap/commit/10ccf12)), closes [#1691](https://github.com/reactstrap/reactstrap/issues/1691)
+
+
+
+# [8.4.0](https://github.com/reactstrap/reactstrap/compare/8.3.2...8.4.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* revert breaking change ([#1760](https://github.com/reactstrap/reactstrap/issues/1760)) ([eb37426](https://github.com/reactstrap/reactstrap/commit/eb37426))
+
+
+
+## [8.3.2](https://github.com/reactstrap/reactstrap/compare/8.3.1...8.3.2) (2020-01-16)
+
+
+### Bug Fixes
+
+* **Modal:** Prevent static backdrop animation when modal clicked ([#1755](https://github.com/reactstrap/reactstrap/issues/1755)) ([79efb4a](https://github.com/reactstrap/reactstrap/commit/79efb4a))
+
+
+
+## [8.3.1](https://github.com/reactstrap/reactstrap/compare/8.3.0...8.3.1) (2020-01-15)
+
+
+### Bug Fixes
+
+* **build:** fix DropdownContext import/export ([96188f4](https://github.com/reactstrap/reactstrap/commit/96188f4))
+
+
+
+# [8.3.0](https://github.com/reactstrap/reactstrap/compare/8.2.0...8.3.0) (2020-01-15)
+
+## NOT PUBLISHED TO NPM DUE TO RELEASE BUILD FAILURE, USE 8.3.1
+
+### Bug Fixes
+
+* remove aria-hidden attribute from tooltips and popovers ([#1747](https://github.com/reactstrap/reactstrap/issues/1747)) ([009a2bd](https://github.com/reactstrap/reactstrap/commit/009a2bd))
+* **Dropdown:** Avoid preventDefault for things like F5 ([#1464](https://github.com/reactstrap/reactstrap/issues/1464)) ([305d3f0](https://github.com/reactstrap/reactstrap/commit/305d3f0)), closes [#1453](https://github.com/reactstrap/reactstrap/issues/1453)
+* **DropdownContext:** wrap dropdown components to provide context prop ([64847df](https://github.com/reactstrap/reactstrap/commit/64847df)), closes [#1457](https://github.com/reactstrap/reactstrap/issues/1457) [#1462](https://github.com/reactstrap/reactstrap/issues/1462)
+* **DropdownToggle:** pass innerRef to popper ([c088c58](https://github.com/reactstrap/reactstrap/commit/c088c58)), closes [#1471](https://github.com/reactstrap/reactstrap/issues/1471)
+* **Modal:** run close based on prop, not state ([310b061](https://github.com/reactstrap/reactstrap/commit/310b061)), closes [#1626](https://github.com/reactstrap/reactstrap/issues/1626)
+* **Tooltip:** autohide broken since default delay was zero ([#1733](https://github.com/reactstrap/reactstrap/issues/1733)) ([87a6bda](https://github.com/reactstrap/reactstrap/commit/87a6bda)), closes [#1692](https://github.com/reactstrap/reactstrap/issues/1692)
+* **Tooltip:** fix nested elements within target ([#1746](https://github.com/reactstrap/reactstrap/issues/1746)) ([fed4bcf](https://github.com/reactstrap/reactstrap/commit/fed4bcf)), closes [#1736](https://github.com/reactstrap/reactstrap/issues/1736)
+* **Tooltip:** fix render failure if target ref is null ([#1734](https://github.com/reactstrap/reactstrap/issues/1734)) ([853b56e](https://github.com/reactstrap/reactstrap/commit/853b56e)), closes [#1686](https://github.com/reactstrap/reactstrap/issues/1686)
+
+
+### Features
+
+* **Carousel:** Add touch swipe support ([#1731](https://github.com/reactstrap/reactstrap/issues/1731)) ([8a12330](https://github.com/reactstrap/reactstrap/commit/8a12330))
+* **Modal:** Added static backdrop animation defined in Bootstr… ([#1750](https://github.com/reactstrap/reactstrap/issues/1750)) ([7d44f36](https://github.com/reactstrap/reactstrap/commit/7d44f36))
+
+
+
+# [8.2.0](https://github.com/reactstrap/reactstrap/compare/8.1.1...8.2.0) (2019-12-05)
+
+
+### Bug Fixes
+
+* **getTarget:** return array like when allElements parameter is true ([#1687](https://github.com/reactstrap/reactstrap/issues/1687)) ([0702c45](https://github.com/reactstrap/reactstrap/commit/0702c45))
+* **Tooltip:** default value of trigger changed ([#1695](https://github.com/reactstrap/reactstrap/issues/1695)) ([ae48d93](https://github.com/reactstrap/reactstrap/commit/ae48d93)), closes [#1676](https://github.com/reactstrap/reactstrap/issues/1676)
+
+
+### Features
+
+* **ButtonToggle:** add focus styling on button and toggle ([#1660](https://github.com/reactstrap/reactstrap/issues/1660)) ([8980713](https://github.com/reactstrap/reactstrap/commit/8980713)), closes [#1648](https://github.com/reactstrap/reactstrap/issues/1648)
+* **Container:** Added responsive container support ([#1724](https://github.com/reactstrap/reactstrap/issues/1724)) ([31bb211](https://github.com/reactstrap/reactstrap/commit/31bb211)), closes [#1721](https://github.com/reactstrap/reactstrap/issues/1721)
+* **ListGroup:** Add horizontal prop ([#1715](https://github.com/reactstrap/reactstrap/issues/1715)) ([284a543](https://github.com/reactstrap/reactstrap/commit/284a543))
+* **Navbar:** adds NavbarText component ([#1711](https://github.com/reactstrap/reactstrap/issues/1711)) ([6db1083](https://github.com/reactstrap/reactstrap/commit/6db1083)), closes [#1707](https://github.com/reactstrap/reactstrap/issues/1707)
+* **Popover/Tooltip:** add popperClassName property ([#1674](https://github.com/reactstrap/reactstrap/issues/1674)) ([44e85a8](https://github.com/reactstrap/reactstrap/commit/44e85a8)), closes [#1484](https://github.com/reactstrap/reactstrap/issues/1484)
+* **Row:** Add row columns support ([#1720](https://github.com/reactstrap/reactstrap/issues/1720)) ([1fb3c17](https://github.com/reactstrap/reactstrap/commit/1fb3c17))
+* **UncontrolledDropdown:** add onToggle callback ([#1705](https://github.com/reactstrap/reactstrap/issues/1705)) ([d9cae30](https://github.com/reactstrap/reactstrap/commit/d9cae30))
+
+
+
+## [8.1.1](https://github.com/reactstrap/reactstrap/compare/8.1.0...8.1.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* **Carousel:** rename unsafe lifecycles ([940438f](https://github.com/reactstrap/reactstrap/commit/940438f))
+* **Dropdown:** fixed a11y property error message ([#1673](https://github.com/reactstrap/reactstrap/issues/1673))([87d28b6](https://github.com/reactstrap/reactstrap/commit/87d28b6)), closes [#1670](https://github.com/reactstrap/reactstrap/issues/1670)
+
+
+
+# [8.1.0](https://github.com/reactstrap/reactstrap/compare/8.0.1...8.1.0) (2019-10-18)
+
+
+### Bug Fixes
+
+* **ButtonDropdown:** add close event when Escape key is pressed ([#1634](https://github.com/reactstrap/reactstrap/issues/1634)) ([#1635](https://github.com/reactstrap/reactstrap/issues/1635)) ([911d779](https://github.com/reactstrap/reactstrap/commit/911d779))
+* **Carousel:** Add pointer on hover for controls ([#1654](https://github.com/reactstrap/reactstrap/issues/1654)) ([32f0c0d](https://github.com/reactstrap/reactstrap/commit/32f0c0d)), closes [#1631](https://github.com/reactstrap/reactstrap/issues/1631)
+* **Collapse:** add aria-expanded attribute ([#1657](https://github.com/reactstrap/reactstrap/issues/1657)) ([2fdf15a](https://github.com/reactstrap/reactstrap/commit/2fdf15a))
+* **CustomInput:** remove type prop from input node when type is select ([3e4c23f](https://github.com/reactstrap/reactstrap/commit/3e4c23f))
+* **CustomInput[type=file]:** add CustomFileInput component ([#1461](https://github.com/reactstrap/reactstrap/issues/1461)) ([25e2480](https://github.com/reactstrap/reactstrap/commit/25e2480)), closes [#1460](https://github.com/reactstrap/reactstrap/issues/1460)
+* **Dropdown:** disabled toggle ([#1571](https://github.com/reactstrap/reactstrap/issues/1571)) ([b4edeb8](https://github.com/reactstrap/reactstrap/commit/b4edeb8)), closes [#1542](https://github.com/reactstrap/reactstrap/issues/1542)
+* **Tooltip:** Support for multiple target elements ([#1465](https://github.com/reactstrap/reactstrap/issues/1465)) ([45775c0](https://github.com/reactstrap/reactstrap/commit/45775c0)), closes [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185) [#1185](https://github.com/reactstrap/reactstrap/issues/1185)
+* **UncontrolledCarousel:** use item.key instead of item.src as… ([#1649](https://github.com/reactstrap/reactstrap/issues/1649)) ([5b9e758](https://github.com/reactstrap/reactstrap/commit/5b9e758)), closes [#1536](https://github.com/reactstrap/reactstrap/issues/1536)
+* **Popover:** PopperContent memory leak ([#1669](https://github.com/reactstrap/reactstrap/issues/1669)) ([54d459c](https://github.com/reactstrap/reactstrap/commit/5b9e758)), closes [#1482](https://github.com/reactstrap/reactstrap/issues/1482) [#1488](https://github.com/reactstrap/reactstrap/issues/1488) [#1664](https://github.com/reactstrap/reactstrap/issues/1664)
+
+
+### Features
+
+* **Dropdown:** add a11y prop to tab moves focus ([#1600](https://github.com/reactstrap/reactstrap/issues/1600)) ([1bd965f](https://github.com/reactstrap/reactstrap/commit/1bd965f)), closes [#1441](https://github.com/reactstrap/reactstrap/issues/1441)
+* **NavbarToggler:** add aria-label to NavbarToggler ([#1633](https://github.com/reactstrap/reactstrap/issues/1633)) ([dc0b8ae](https://github.com/reactstrap/reactstrap/commit/dc0b8ae)), closes [#1632](https://github.com/reactstrap/reactstrap/issues/1632)
+
+
+
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/reactstrap/reactstrap/compare/8.0.0...8.0.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* **DropdownMenu:** Allow positionFixed prop to be passed through ([#1538](https://github.com/reactstrap/reactstrap/issues/1538)) ([01466ae](https://github.com/reactstrap/reactstrap/commit/01466ae)), closes [#1473](https://github.com/reactstrap/reactstrap/issues/1473)
+* **FormGroup:** allow disable when tag is fieldset ([#1547](https://github.com/reactstrap/reactstrap/issues/1547)) ([0736f80](https://github.com/reactstrap/reactstrap/commit/0736f80)), closes [#1546](https://github.com/reactstrap/reactstrap/issues/1546)
+* **Modal:** handle init modal in SSR ([#1495](https://github.com/reactstrap/reactstrap/issues/1495)) ([c844ab1](https://github.com/reactstrap/reactstrap/commit/c844ab1))
+* **Modal:** update condition to call `setFocus` in case open mo… ([#1514](https://github.com/reactstrap/reactstrap/issues/1514)) ([ae6fe93](https://github.com/reactstrap/reactstrap/commit/ae6fe93))
+* **Tooltip:** clear timeouts on unmount ([#1562](https://github.com/reactstrap/reactstrap/issues/1562)) ([e85238b](https://github.com/reactstrap/reactstrap/commit/e85238b)), closes [#1255](https://github.com/reactstrap/reactstrap/issues/1255)
+
+
+
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/reactstrap/reactstrap/compare/7.1.0...8.0.0) (2019-04-03)
+
+
+### Bug Fixes
+
+* **Carousel:** remove inappropriate role=listbox ([#1385](https://github.com/reactstrap/reactstrap/issues/1385)) ([32eb8ed](https://github.com/reactstrap/reactstrap/commit/32eb8ed))
+* **Modal:** fix exception in focus management ([#1382](https://github.com/reactstrap/reactstrap/issues/1382)) ([5cc9af5](https://github.com/reactstrap/reactstrap/commit/5cc9af5))
+* **Modal:** set Modal.openCount floor to 0 ([#1368](https://github.com/reactstrap/reactstrap/issues/1368)) ([71f9574](https://github.com/reactstrap/reactstrap/commit/71f9574))
+* **Popover:** touch not opening popover on mobile ([#1425](https://github.com/reactstrap/reactstrap/issues/1425)) ([#1426](https://github.com/reactstrap/reactstrap/issues/1426)) ([ad2a9a0](https://github.com/reactstrap/reactstrap/commit/ad2a9a0))
+* **Table:** add CSS Module support for responsive Table ([#1429](https://github.com/reactstrap/reactstrap/issues/1429)) ([#1430](https://github.com/reactstrap/reactstrap/issues/1430)) ([1e2dc5b](https://github.com/reactstrap/reactstrap/commit/1e2dc5b))
+* **utils:** Shim Element in non-DOM environments ([#1387](https://github.com/reactstrap/reactstrap/issues/1387)) ([eb4ee93](https://github.com/reactstrap/reactstrap/commit/eb4ee93))
+
+
+### Code Refactoring
+
+* **Modal, Dropdown{*}, PopperContent, Tabs:** go to React Async Rendering ([#1427](https://github.com/reactstrap/reactstrap/issues/1427)) ([1afb2c2](https://github.com/reactstrap/reactstrap/commit/1afb2c2))
+
+
+### Features
+
+* **CustomInput:** added htmlFor prop ([#1417](https://github.com/reactstrap/reactstrap/issues/1417)) ([a590880](https://github.com/reactstrap/reactstrap/commit/a590880))
+* **Modal:** add optional return focus after close ([#1424](https://github.com/reactstrap/reactstrap/issues/1424)) ([33cfce6](https://github.com/reactstrap/reactstrap/commit/33cfce6))
+* **Modal:** add scrollable prop ([#1435](https://github.com/reactstrap/reactstrap/issues/1435)) ([9f7dd45](https://github.com/reactstrap/reactstrap/commit/9f7dd45))
+* **pagination-links:** added props for first and last. changed carets… ([#1410](https://github.com/reactstrap/reactstrap/issues/1410)) ([70cfca2](https://github.com/reactstrap/reactstrap/commit/70cfca2))
+* **Popover:** add default toggleable fade support ([#1364](https://github.com/reactstrap/reactstrap/issues/1364)) ([#1364](https://github.com/reactstrap/reactstrap/issues/1364)) ([ee15c86](https://github.com/reactstrap/reactstrap/commit/ee15c86)), closes [#363](https://github.com/reactstrap/reactstrap/issues/363)
+* **Popover/Tooltip:** ability to pass through flip prop ([#1443](https://github.com/reactstrap/reactstrap/issues/1443)) ([4a5a8a3](https://github.com/reactstrap/reactstrap/commit/4a5a8a3))
+* **Toast:** add support for Toasts ([#1447](https://github.com/reactstrap/reactstrap/issues/1447)) ([7ea7610](https://github.com/reactstrap/reactstrap/commit/7ea7610)), closes [#1384](https://github.com/reactstrap/reactstrap/issues/1384) [#1346](https://github.com/reactstrap/reactstrap/issues/1346)
+
+
+### BREAKING CHANGES
+
+* **Modal, Dropdown{*}, PopperContent, Tabs:** using new Context API, react-popper v. '1.3.3'
+* **pagination-links:** Now the `next` and `previous` props are displaying single carets instead of double caret. To get the old style, use `first` and `last` props instead of `previous` and `next` respectfully and set `aria-label` to `Next` or `Previous`. 
+* **Popover:** Popover and Tooltip will now fade in and out (like bootstrap's default). To get the previous behavior use fade={false}
+
+
+### Removed Deprecations
+
+* **`Card`'s `block` prop**: use `Card`s `body` prop.
+* **`Input`'s `static` prop**: use `Input`s `plaintext` prop.
+* **`Dropdown`'s `dropup` prop**: use `Dropdown`s `direction` prop with the value of `"up"`.
+* **`Navbar`'s `toggleable` prop**: use `Navbar`s `expand` prop (see docs)`.
+* **inverse prop**: use `dark` prop.
+* **CardBlock**: use `CardBody`.
+* **InputGroupButton**: use `InputGroupAddon`.
+* **NavDropdown**: use `Dropdown` with `nav` prop.
+* **PopoverContent**: use `PopoverBody`.
+* **PopoverTitle**: use `PopoverHeader`.
+* **UncontrolledNavDropdown**: use `UncontrolledDropdown` with `nav` prop.
+
+
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/reactstrap/reactstrap/compare/7.0.2...7.1.0) (2019-01-15)
+
+
+### Bug Fixes
+
+* **NavLink:** console error while using [@reach](https://github.com/reach)/Router ([#1350](https://github.com/reactstrap/reactstrap/issues/1350)) ([477e1a8](https://github.com/reactstrap/reactstrap/commit/477e1a8)), closes [#1308](https://github.com/reactstrap/reactstrap/issues/1308)
+
+
+### Features
+
+* support forwardRef components as tag ([4cda8bf](https://github.com/reactstrap/reactstrap/commit/4cda8bf))
+* **Popover:** add legacy trigger, replacing unreleased isInteractive prop ([6b3c3ce](https://github.com/reactstrap/reactstrap/commit/6b3c3ce))
+* **Popover:** backward-compatible Popover behavior ([#1360](https://github.com/reactstrap/reactstrap/issues/1360)) ([1d5ce83](https://github.com/reactstrap/reactstrap/commit/1d5ce83)), closes [#1349](https://github.com/reactstrap/reactstrap/issues/1349)
+* **Spinner:** Add spinner component ([#1352](https://github.com/reactstrap/reactstrap/issues/1352)) ([45952e2](https://github.com/reactstrap/reactstrap/commit/45952e2)), closes [#1347](https://github.com/reactstrap/reactstrap/issues/1347)
+* **Switch:** Add support for CustomInput type='switch' ([#1353](https://github.com/reactstrap/reactstrap/issues/1353)) ([7c1e166](https://github.com/reactstrap/reactstrap/commit/7c1e166)), closes [#1348](https://github.com/reactstrap/reactstrap/issues/1348)
+
+
+
+<a name="7.0.2"></a>
+## [7.0.2](https://github.com/reactstrap/reactstrap/compare/7.0.0...7.0.2) (2018-12-31)
+
+
+### Bug Fixes
+
+* fix release artifacts ([#1345](https://github.com/reactstrap/reactstrap/issues/1345)) ([b5710ef](https://github.com/reactstrap/reactstrap/commit/b5710ef))
+* **npm:** fix published files ([7eedbab](https://github.com/reactstrap/reactstrap/commit/7eedbab))
+
+
+
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/reactstrap/reactstrap/compare/7.0.0...7.0.1) (2018-12-31)
+
+
+### Bug Fixes
+
+* fix release artifacts ([#1345](https://github.com/reactstrap/reactstrap/issues/1345)) ([b5710ef](https://github.com/reactstrap/reactstrap/commit/b5710ef))
+
+
+
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/reactstrap/reactstrap/compare/6.5.0...7.0.0) (2018-12-29)
+
+
+### Bug Fixes
+
+* **CardTitle,CardSubtitle:** div as default tag ([#1298](https://github.com/reactstrap/reactstrap/issues/1298)) ([ea0f1f0](https://github.com/reactstrap/reactstrap/commit/ea0f1f0)), closes [#1297](https://github.com/reactstrap/reactstrap/issues/1297)
+* **CarouselIndicators:** li key generate from provided item values ([#1311](https://github.com/reactstrap/reactstrap/issues/1311)) ([fd7506d](https://github.com/reactstrap/reactstrap/commit/fd7506d)), closes [#1310](https://github.com/reactstrap/reactstrap/issues/1310)
+* **Dropdown:** enter key triggers onClick -- correction ([#1306](https://github.com/reactstrap/reactstrap/issues/1306)) ([6b50732](https://github.com/reactstrap/reactstrap/commit/6b50732))
+* **Dropdown:** improve keyboard ux, WAI-ARIA ([#1293](https://github.com/reactstrap/reactstrap/issues/1293)) ([506c46a](https://github.com/reactstrap/reactstrap/commit/506c46a))
+* **Dropdown:** Null check on children ([#1294](https://github.com/reactstrap/reactstrap/issues/1294)) ([#1295](https://github.com/reactstrap/reactstrap/issues/1295)) ([dcfde3b](https://github.com/reactstrap/reactstrap/commit/dcfde3b))
+* **FormGroup:** remove `.position-relative` ([#1270](https://github.com/reactstrap/reactstrap/issues/1270)) ([01eb5f9](https://github.com/reactstrap/reactstrap/commit/01eb5f9)), closes [#1269](https://github.com/reactstrap/reactstrap/issues/1269)
+* **Input:** make plaintext output input by default ([#1226](https://github.com/reactstrap/reactstrap/issues/1226)) ([ff64c76](https://github.com/reactstrap/reactstrap/commit/ff64c76)), closes [#1225](https://github.com/reactstrap/reactstrap/issues/1225)
+* **Modal:** don't propagate handled escape key event ([#1317](https://github.com/reactstrap/reactstrap/issues/1317)) ([5d45b26](https://github.com/reactstrap/reactstrap/commit/5d45b26))
+* **Modal:** only show backdrop when prop is true ([#1271](https://github.com/reactstrap/reactstrap/issues/1271)) ([07ec4b5](https://github.com/reactstrap/reactstrap/commit/07ec4b5)), closes [#1267](https://github.com/reactstrap/reactstrap/issues/1267)
+* **PopperContent:** Use create portal instead of unstable_renderSubtreeIntoContainer ([#1254](https://github.com/reactstrap/reactstrap/issues/1254)) ([81da8c5](https://github.com/reactstrap/reactstrap/commit/81da8c5)), closes [#1216](https://github.com/reactstrap/reactstrap/issues/1216)
+
+
+### Features
+
+* **Badge:** allow innerRef ([#1264](https://github.com/reactstrap/reactstrap/issues/1264)) ([2caaaa5](https://github.com/reactstrap/reactstrap/commit/2caaaa5))
+* **CardBody:** add innerRef to CardBody ([#1318](https://github.com/reactstrap/reactstrap/issues/1318)) ([4b0474f](https://github.com/reactstrap/reactstrap/commit/4b0474f)), closes [#1314](https://github.com/reactstrap/reactstrap/issues/1314)
+* **Table:** add innerRef prop ([#1296](https://github.com/reactstrap/reactstrap/issues/1296)) ([bb84c85](https://github.com/reactstrap/reactstrap/commit/bb84c85))
+* **Tooltip,Popover:** base component for Tooltip and Popover ([#1222](https://github.com/reactstrap/reactstrap/issues/1222)) ([b45907b](https://github.com/reactstrap/reactstrap/commit/b45907b)), closes [#1022](https://github.com/reactstrap/reactstrap/issues/1022) [#1181](https://github.com/reactstrap/reactstrap/issues/1181)
+
+
+### BREAKING CHANGES
+
+* **Input:** previously plaintext on Input would output a 'p' tag. To better line up with bootstrap it will not output an 'input' tag. If you need a 'p' tag, provide tag="p" prop
+* **Popover:** Popover will no longer dismiss when clicking away from it. To get this behaviour please use trigger="focus". In 7.1.0, trigger="legacy" has been added to get the exact previous behavior.
+
+
+
+<a name="6.5.0"></a>
+# [6.5.0](https://github.com/reactstrap/reactstrap/compare/6.4.0...6.5.0) (2018-10-04)
+
+
+### Bug Fixes
+
+* **boundariesElement:** add DOMElement to allowed proptypes ([#1238](https://github.com/reactstrap/reactstrap/issues/1238)) ([cfe7318](https://github.com/reactstrap/reactstrap/commit/cfe7318))
+* **Dropdown:** enter key triggers onClick ([#1232](https://github.com/reactstrap/reactstrap/issues/1232)) ([f2528da](https://github.com/reactstrap/reactstrap/commit/f2528da)), closes [#1228](https://github.com/reactstrap/reactstrap/issues/1228)
+* **Modal:** do not trigger focus on SVG elements ([#1212](https://github.com/reactstrap/reactstrap/issues/1212)) ([c7e6ef5](https://github.com/reactstrap/reactstrap/commit/c7e6ef5)), closes [#1208](https://github.com/reactstrap/reactstrap/issues/1208)
+* **Modal:** use static openCount to become resilient to classList modification ([#1190](https://github.com/reactstrap/reactstrap/issues/1190)) ([c8ceeeb](https://github.com/reactstrap/reactstrap/commit/c8ceeeb)), closes [#1189](https://github.com/reactstrap/reactstrap/issues/1189)
+* **Tooltip:** clear timers on component unmount ([#1180](https://github.com/reactstrap/reactstrap/issues/1180)) ([9fea409](https://github.com/reactstrap/reactstrap/commit/9fea409))
+
+
+### Features
+
+* **Button:** add close icon support ([#1206](https://github.com/reactstrap/reactstrap/issues/1206)) ([02f5e9a](https://github.com/reactstrap/reactstrap/commit/02f5e9a)), closes [#1182](https://github.com/reactstrap/reactstrap/issues/1182)
+* **FormGrid:** Add form-row ([#1237](https://github.com/reactstrap/reactstrap/issues/1237)) ([205e80d](https://github.com/reactstrap/reactstrap/commit/205e80d)), closes [#1195](https://github.com/reactstrap/reactstrap/issues/1195)
+* **Modal:** add custom close button ([#1168](https://github.com/reactstrap/reactstrap/issues/1168)) ([5f33a1a](https://github.com/reactstrap/reactstrap/commit/5f33a1a))
+* **Popover/Tooltip:** Implented usage of react 16.3 RefObject as target ([#1200](https://github.com/reactstrap/reactstrap/issues/1200)) ([0eade39](https://github.com/reactstrap/reactstrap/commit/0eade39)), closes [#1198](https://github.com/reactstrap/reactstrap/issues/1198)
+
+
+
 <a name="6.4.0"></a>
 # [6.4.0](https://github.com/reactstrap/reactstrap/compare/6.3.1...6.4.0) (2018-08-17)
 

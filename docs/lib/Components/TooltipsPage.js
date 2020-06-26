@@ -4,13 +4,15 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import TooltipExample from '../examples/Tooltip';
-const TooltipExampleSource = require('!!raw!../examples/Tooltip');
+const TooltipExampleSource = require('!!raw-loader!../examples/Tooltip');
 import TooltipAutoHideExample from '../examples/TooltipAutoHide';
-const TooltipExampleAutoHideSource = require('!!raw!../examples/TooltipAutoHide');
+const TooltipExampleAutoHideSource = require('!!raw-loader!../examples/TooltipAutoHide');
 import TooltipExampleMulti from '../examples/TooltipMulti';
-const TooltipExampleMultiSource = require('!!raw!../examples/TooltipMulti');
+const TooltipExampleMultiSource = require('!!raw-loader!../examples/TooltipMulti');
 import TooltipExampleUncontrolled from '../examples/TooltipUncontrolled';
-const TooltipExampleUncontrolledSource = require('!!raw!../examples/TooltipUncontrolled');
+const TooltipExampleUncontrolledSource = require('!!raw-loader!../examples/TooltipUncontrolled');
+import TooltipScheduleUpdateExample from '../examples/TooltipScheduleUpdate';
+const TooltipScheduleUpdateExampleSource = require('!!raw-loader!../examples/TooltipScheduleUpdate');
 
 export default class TooltipsPage extends React.Component {
   render() {
@@ -30,8 +32,11 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Tooltip.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  // space separated list of triggers (e.g. "click hover focus")
+  trigger: PropTypes.string,
   // boundaries for popper, can be scrollParent, window, viewport, or any DOM element
-  boundariesElement: PropTypes.string,
+  boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   // boolean to control the state of the tooltip
   isOpen: PropTypes.bool,
   hideArrow: PropTypes.bool,
@@ -45,12 +50,14 @@ export default class TooltipsPage extends React.Component {
   ]).isRequired,
   // Where to inject the popper DOM node, default to body
   container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
-  // optionally override show/hide delays - default { show: 0, hide: 250 }
+  // optionally override show/hide delays - default { show: 0, hide: 50 }
   delay: PropTypes.oneOfType([
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
   ]),
   className: PropTypes.string,
+  // Apply class to the popper component
+  popperClassName: PropTypes.string,
   // Apply class to the inner-tooltip
   innerClassName: PropTypes.string,
   // Apply class to the arrow-tooltip ('arrow' by default)
@@ -87,7 +94,15 @@ export default class TooltipsPage extends React.Component {
     PropTypes.string,
     PropTypes.object
   ]),
-  trigger: PropTypes.string,
+
+  // Whether to show/hide the popover with a fade effect
+  // (default: true)
+  fade: PropTypes.bool,
+
+  // Whether to flip the direction of the popover if too close to
+  // the container edge
+  // (default: true)
+  flip: PropTypes.bool,
 }`}
           </PrismCode>
         </pre>
@@ -119,6 +134,20 @@ export default class TooltipsPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {TooltipExampleUncontrolledSource}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Repositioning Tooltips</SectionTitle>
+        <p>
+          If you need to reposition a tooltip due to content changes or target placement changes, use
+          the <code>scheduleUpdate</code> function to manually reposition it. This function is exposed
+          as a render prop for <code>children</code>.
+        </p>
+        <div className="docs-example">
+          <TooltipScheduleUpdateExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {TooltipScheduleUpdateExampleSource}
           </PrismCode>
         </pre>
       </div>

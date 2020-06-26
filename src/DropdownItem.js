@@ -1,23 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, omit } from './utils';
+import { DropdownContext } from './DropdownContext';
+import { mapToCssModules, omit, tagPropType } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   active: PropTypes.bool,
   disabled: PropTypes.bool,
   divider: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   header: PropTypes.bool,
   onClick: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.bool
-};
-
-const contextTypes = {
-  toggle: PropTypes.func
 };
 
 const defaultProps = {
@@ -58,6 +55,7 @@ class DropdownItem extends React.Component {
 
   render() {
     const tabIndex = this.getTabIndex();
+    const role = tabIndex > -1 ? 'menuitem' : undefined;
     let {
       className,
       cssModule,
@@ -93,6 +91,7 @@ class DropdownItem extends React.Component {
         type={(Tag === 'button' && (props.onClick || this.props.toggle)) ? 'button' : undefined}
         {...props}
         tabIndex={tabIndex}
+        role={role}
         className={classes}
         onClick={this.onClick}
       />
@@ -102,6 +101,6 @@ class DropdownItem extends React.Component {
 
 DropdownItem.propTypes = propTypes;
 DropdownItem.defaultProps = defaultProps;
-DropdownItem.contextTypes = contextTypes;
+DropdownItem.contextType = DropdownContext;
 
 export default DropdownItem;

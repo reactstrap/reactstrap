@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
 import { mapToCssModules } from './utils';
+    
+const SWIPE_THRESHOLD = 40;
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -11,7 +13,12 @@ class Carousel extends React.Component {
     this.renderItems = this.renderItems.bind(this);
     this.hoverStart = this.hoverStart.bind(this);
     this.hoverEnd = this.hoverEnd.bind(this);
+    this.handleTouchStart = this.handleTouchStart.bind(this);
+    this.handleTouchEnd = this.handleTouchEnd.bind(this);
+    this.touchStartX = 0;
+    this.touchStartY = 0;
     this.state = {
+      activeIndex: this.props.activeIndex,
       direction: 'right',
       indicatorClicked: false,
     };
@@ -31,19 +38,35 @@ class Carousel extends React.Component {
     document.addEventListener('keyup', this.handleKeyPress);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setInterval(nextProps);
-    // Calculate the direction to turn
-    if (this.props.activeIndex + 1 === nextProps.activeIndex) {
-      this.setState({ direction: 'right' });
-    } else if (this.props.activeIndex - 1 === nextProps.activeIndex) {
-      this.setState({ direction: 'left' });
-    } else if (this.props.activeIndex > nextProps.activeIndex) {
-      this.setState({ direction: this.state.indicatorClicked ? 'left' : 'right' });
-    } else if (this.props.activeIndex !== nextProps.activeIndex) {
-      this.setState({ direction: this.state.indicatorClicked ? 'right' : 'left' });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let newState = null;
+    let { activeIndex, direction, indicatorClicked } = prevState;
+
+    if (nextProps.activeIndex !== activeIndex) {
+      // Calculate the direction to turn
+      if (nextProps.activeIndex === activeIndex + 1) {
+        direction = 'right';
+      } else if (nextProps.activeIndex === activeIndex -1) {
+        direction = 'left';
+      } else if (nextProps.activeIndex < activeIndex) {
+        direction = indicatorClicked ? 'left' : 'right';
+      } else if (nextProps.activeIndex !== activeIndex) {
+        direction = indicatorClicked ? 'right' : 'left';
+      }
+
+      newState = {
+        activeIndex: nextProps.activeIndex,
+        direction,
+        indicatorClicked: false,
+      }
     }
-    this.setState({ indicatorClicked: false });
+
+    return newState;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activeIndex === this.state.activeIndex) return;
+    this.setInterval(this.props);
   }
 
   componentWillUnmount() {
@@ -93,12 +116,46 @@ class Carousel extends React.Component {
     }
   }
 
+  handleTouchStart(e) {
+    if(!this.props.enableTouch) {
+      return;
+    }
+    this.touchStartX = e.changedTouches[0].screenX;
+    this.touchStartY = e.changedTouches[0].screenY;
+  }
+
+  handleTouchEnd(e) {
+    if(!this.props.enableTouch) {
+      return;
+    }
+
+    const currentX = e.changedTouches[0].screenX;
+    const currentY = e.changedTouches[0].screenY;
+    const diffX = Math.abs(this.touchStartX - currentX);
+    const diffY = Math.abs(this.touchStartY - currentY);
+
+    // Don't swipe if Y-movement is bigger than X-movement
+    if(diffX < diffY) {
+      return;
+    }
+
+    if(diffX < SWIPE_THRESHOLD) {
+      return;
+    }
+
+    if(currentX < this.touchStartX) {
+      this.props.next();
+    } else {
+      this.props.previous();
+    }
+  }
+
   renderItems(carouselItems, className) {
     const { slide } = this.props;
     return (
-      <div role="listbox" className={className}>
+      <div className={className}>
         {carouselItems.map((item, index) => {
-          const isIn = (index === this.props.activeIndex);
+          const isIn = (index === this.state.activeIndex);
           return React.cloneElement(item, {
             in: isIn,
             slide: slide,
@@ -162,7 +219,8 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
+      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}
+        onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
         {wrappedIndicators}
         {this.renderItems(carouselItems, innerClasses)}
         {controlLeft}
@@ -204,6 +262,7 @@ Carousel.propTypes = {
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
   className: PropTypes.string,
+  enableTouch: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
@@ -211,6 +270,7 @@ Carousel.defaultProps = {
   pause: 'hover',
   keyboard: true,
   slide: true,
+  enableTouch: true,
 };
 
 Carousel.childContextTypes = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   body: PropTypes.bool,
@@ -15,7 +15,7 @@ const propTypes = {
   middle: PropTypes.bool,
   object: PropTypes.bool,
   right: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   top: PropTypes.bool,
 };
 

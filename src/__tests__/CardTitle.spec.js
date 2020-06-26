@@ -25,9 +25,9 @@ describe('CardTitle', () => {
     expect(wrapper.find('h1').length).toBe(1);
   });
 
-  it('should render a "h5" tag by default', () => {
+  it('should render a "div" tag by default', () => {
     const wrapper = shallow(<CardTitle>Yo!</CardTitle>);
 
-    expect(wrapper.find('h5').length).toBe(1);
+    expect(wrapper.find('div').length).toBe(1);
   });
 });

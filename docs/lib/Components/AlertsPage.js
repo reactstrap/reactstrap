@@ -6,22 +6,22 @@ import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import AlertExample from '../examples/Alert';
-const AlertExampleSource = require('!!raw!../examples/Alert');
+const AlertExampleSource = require('!!raw-loader!../examples/Alert');
 
 import AlertLinkExample from '../examples/AlertLink';
-const AlertLinkExampleSource = require('!!raw!../examples/AlertLink');
+const AlertLinkExampleSource = require('!!raw-loader!../examples/AlertLink');
 
 import AlertContentExample from '../examples/AlertContent';
-const AlertContentExampleSource = require('!!raw!../examples/AlertContent');
+const AlertContentExampleSource = require('!!raw-loader!../examples/AlertContent');
 
 import AlertDismissExample from '../examples/AlertDismiss';
-const AlertDismissExampleSource = require('!!raw!../examples/AlertDismiss');
+const AlertDismissExampleSource = require('!!raw-loader!../examples/AlertDismiss');
 
 import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
-const AlertUncontrolledDismissExampleSource = require('!!raw!../examples/AlertUncontrolledDismiss');
+const AlertUncontrolledDismissExampleSource = require('!!raw-loader!../examples/AlertUncontrolledDismiss');
 
 import {AlertFadelessExample, UncontrolledAlertFadelessExample} from '../examples/AlertFadeless';
-const AlertFadelessExampleSource = require('!!raw!../examples/AlertFadeless');
+const AlertFadelessExampleSource = require('!!raw-loader!../examples/AlertFadeless');
 
 export default class AlertsPage extends React.Component {
   render() {
@@ -47,6 +47,7 @@ export default class AlertsPage extends React.Component {
   isOpen: PropTypes.bool,  // default: true
   toggle: PropTypes.func,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  fade: PropTypes.bool, // default: true
   // Controls the transition of the alert fading in and out
   // See [Fade](/components/fade/) for more details
   transition: PropTypes.shape(Fade.propTypes),
@@ -99,7 +100,7 @@ export default class AlertsPage extends React.Component {
 
         <SectionTitle>Alerts without fade</SectionTitle>
         <p>
-          Fade can be disbaled using <code>fade=false</code>.
+          Fade can be disabled using <code>fade=false</code>.
         </p>
         <div className="docs-example">
           <AlertFadelessExample />

@@ -5,10 +5,6 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-// TODO remove when enzyme releases https://github.com/airbnb/enzyme/pull/1179
-ReactWrapper.prototype.hostNodes = function () {
-  return this.filterWhere(n => typeof n.type() === 'string');
-};
 global.requestAnimationFrame = function (cb) { cb(0); };
 global.window.cancelAnimationFrame = function () { };
 global.createSpyObj = (baseName, methodNames) => {

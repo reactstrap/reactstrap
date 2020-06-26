@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import toNumber from 'lodash.tonumber';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType, toNumber } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
   bar: PropTypes.bool,
   multi: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: tagPropType,
   value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  min: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
@@ -23,12 +26,17 @@ const propTypes = {
   className: PropTypes.string,
   barClassName: PropTypes.string,
   cssModule: PropTypes.object,
+  style: PropTypes.object,
+  barAriaValueText: PropTypes.string,
+  barAriaLabelledBy: PropTypes.string,
 };
 
 const defaultProps = {
   tag: 'div',
   value: 0,
+  min: 0,
   max: 100,
+  style: {},
 };
 
 const Progress = (props) => {
@@ -38,6 +46,7 @@ const Progress = (props) => {
     barClassName,
     cssModule,
     value,
+    min,
     max,
     animated,
     striped,
@@ -45,6 +54,9 @@ const Progress = (props) => {
     bar,
     multi,
     tag: Tag,
+    style,
+    barAriaValueText,
+    barAriaLabelledBy,
     ...attributes
   } = props;
 
@@ -66,11 +78,16 @@ const Progress = (props) => {
   const ProgressBar = multi ? children : (
     <div
       className={progressBarClasses}
-      style={{ width: `${percent}%` }}
+      style={{
+        ...style,
+        width: `${percent}%`,
+      }}
       role="progressbar"
       aria-valuenow={value}
-      aria-valuemin="0"
+      aria-valuemin={min}
       aria-valuemax={max}
+      aria-valuetext={barAriaValueText}
+      aria-labelledby={barAriaLabelledBy}
       children={children}
     />
   );

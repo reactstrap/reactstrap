@@ -4,11 +4,11 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 import CarouselExample from '../examples/Carousel';
-const CarouselExampleSource = require('!!raw!../examples/Carousel');
+const CarouselExampleSource = require('!!raw-loader!../examples/Carousel');
 import CarouselUncontrolledExample from '../examples/CarouselUncontrolled';
-const CarouselUncontrolledExampleSource = require('!!raw!../examples/CarouselUncontrolled');
+const CarouselUncontrolledExampleSource = require('!!raw-loader!../examples/CarouselUncontrolled');
 import CarouselCustomTagExample from '../examples/CarouselCustomTag';
-const CarouselCustomTagExampleSource = require('!!raw!../examples/CarouselCustomTag');
+const CarouselCustomTagExampleSource = require('!!raw-loader!../examples/CarouselCustomTag');
 
 export default class CarouselPage extends React.Component {
   render() {
@@ -44,6 +44,7 @@ export default class CarouselPage extends React.Component {
   // This is how bootstrap defines it... I would prefer a bool named autoplay or something...
   ride: PropTypes.oneOf(['carousel']),
   // the interval at which the carousel automatically cycles (default: 5000)
+  // If set to false, carousel will not Autoplay (i.e. will not automatically cycle).
   interval: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -57,6 +58,8 @@ export default class CarouselPage extends React.Component {
   // controls whether the slide animation on the Carousel works or not
   slide: PropTypes.bool,
   cssModule: PropTypes.object,
+  // controls whether the touch gestures on the Carousel works or not (default: true)
+  enableTouch: PropTypes.bool,
 };`}
           </PrismCode>
         </pre>
@@ -103,8 +106,8 @@ export default class CarouselPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`CarouselCaption.propTypes = {
-  captionHeader: PropTypes.string,
-  captionText: PropTypes.string.isRequired,
+  captionHeader: PropTypes.node,
+  captionText: PropTypes.node.isRequired,
   cssModule: PropTypes.object
 };`}
           </PrismCode>

@@ -1,20 +1,36 @@
 {
   "presets": [
-    ["es2015", {"modules": false}],
-    "react"
+    [
+      "@babel/env",
+      {
+        "loose": true,
+        "shippedProposals": true,
+        "modules": "commonjs",
+        "targets": {
+          "ie": 9
+        }
+      }
+    ],
+    "@babel/react"
   ],
-  "plugins": [
-    "transform-object-rest-spread"
-  ],
+  "plugins": ["@babel/plugin-proposal-export-default-from", "@babel/plugin-proposal-export-namespace-from", "@babel/plugin-transform-runtime", "@babel/plugin-proposal-object-rest-spread"],
   "env": {
-    "lib-dir": {
-      "plugins": ["transform-es2015-modules-commonjs"]
-    },
-    "webpack": {
-      "plugins": ["transform-es2015-modules-commonjs"]
-    },
-    "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+    "esm-dir": {
+      "presets": [
+        [
+          "@babel/env",
+          {
+            "loose": true,
+            "shippedProposals": true,
+            "modules": false,
+            "targets": {
+              "ie": 9
+            }
+          }
+        ],
+        "@babel/react"
+      ],
+      "plugins": [["@babel/plugin-transform-runtime", { "useESModules": true }]]
     }
   }
 }

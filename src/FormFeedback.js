@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
-  tag: PropTypes.string,
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   valid: PropTypes.bool,

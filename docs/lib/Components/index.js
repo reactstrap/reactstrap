@@ -31,12 +31,12 @@ const items = [
     to: '/components/card/'
   },
   {
-    name: 'Collapse',
-    to: '/components/collapse/',
-  },
-  {
     name: 'Carousel',
     to: '/components/carousel/'
+  },
+  {
+    name: 'Collapse',
+    to: '/components/collapse/'
   },
   {
     name: 'Dropdowns',
@@ -83,6 +83,14 @@ const items = [
     to: '/components/navs/'
   },
   {
+    name: 'Spinners',
+    to: '/components/spinners/'
+  },
+  {
+    name: 'Toasts',
+    to: '/components/toasts/'
+  },
+  {
     name: 'Pagination',
     to: '/components/pagination/'
   },
@@ -109,9 +117,7 @@ const items = [
 ];
 
 function Components(props) {
-  return (
-    <Content title="Components" items={items} {...props} />
-  );
+  return <Content title="Components" items={items} {...props} />;
 }
 
 export default Components;

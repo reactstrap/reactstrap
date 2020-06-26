@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
 };
 
 const defaultProps = {
@@ -17,6 +22,7 @@ const CardBody = (props) => {
   const {
     className,
     cssModule,
+    innerRef,
     tag: Tag,
     ...attributes
   } = props;
@@ -26,7 +32,7 @@ const CardBody = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes} ref={innerRef} />
   );
 };
 

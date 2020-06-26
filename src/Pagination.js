@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   children: PropTypes.node,
@@ -9,8 +9,8 @@ const propTypes = {
   listClassName: PropTypes.string,
   cssModule: PropTypes.object,
   size: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  listTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
+  listTag: tagPropType,
   'aria-label': PropTypes.string
 };
 

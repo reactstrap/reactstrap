@@ -1,17 +1,12 @@
-import React from 'react';
 
-export function Manager({ tag: Tag = 'div', ...props }) {
-  return <Tag {...props} />;
+export function Manager({ children }) {
+  return (children);
 }
 
-export function Popper({ component: Tag = 'div', ...props }) {
-  return <Tag {...props} />;
+export function Popper({ children, placement }) {
+  return children({ ref: () => {}, placement, style: {}, arrowProps: { ref: () => {}, style: {} } });
 }
 
-export function Arrow({ component: Tag = 'div', ...props }) {
-  return <Tag {...props} />;
-}
-
-export function Target({ component: Tag = 'div', ...props }) {
-  return <Tag {...props} />;
+export function Reference({ children }) {
+  return children({ ref: () => {} });
 }

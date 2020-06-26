@@ -4,7 +4,7 @@ import { Input } from '../';
 
 describe('Input', () => {
   it('should render with "input" tag when no type is provided', () => {
-    const wrapper = shallow(<Input>Yo!</Input>);
+    const wrapper = shallow(<Input />);
 
     expect(wrapper.type()).toBe('input');
   });
@@ -16,15 +16,15 @@ describe('Input', () => {
   });
 
   it('should render with "textarea" tag when type is "textarea"', () => {
-    const wrapper = shallow(<Input type="textarea">Yo!</Input>);
+    const wrapper = shallow(<Input type="textarea" />);
 
     expect(wrapper.type()).toBe('textarea');
   });
 
-  it('should render with "p" tag when plaintext prop is truthy', () => {
+  it('should render with "input" tag when plaintext prop is truthy', () => {
     const wrapper = shallow(<Input type="select" plaintext />);
 
-    expect(wrapper.type()).toBe('p');
+    expect(wrapper.type()).toBe('input');
   });
 
   it('should render with "form-control-plaintext" class when plaintext prop is truthy', () => {
@@ -87,25 +87,6 @@ describe('Input', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render with "is-invalid" class when state is "danger" [DEPRECATED]', () => {
-    const wrapper = shallow(<Input state="danger" />);
-
-    expect(wrapper.hasClass('is-invalid')).toBe(true);
-  });
-
-  it('should render with "is-valid" class when state is "success" [DEPRECATED]', () => {
-    const wrapper = shallow(<Input state="success" />);
-
-    expect(wrapper.hasClass('is-valid')).toBe(true);
-  });
-
-  it('should not render with "is-valid" nor "is-invalid" class when state is "warning" [DEPRECATED]', () => {
-    const wrapper = shallow(<Input state="warning" />);
-
-    expect(wrapper.hasClass('is-valid')).toBe(false);
-    expect(wrapper.hasClass('is-invalid')).toBe(false);
-  });
-
   it('should not render with "is-invalid" class when valid is false', () => {
     const wrapper = shallow(<Input valid={false} />);
 
@@ -130,14 +111,14 @@ describe('Input', () => {
     expect(wrapper.hasClass('is-valid')).toBe(true);
   });
 
-  it('should render with "form-control-${size}" class when size is "lg" or "sm"', () => {
-    const wrapper = shallow(<Input size="lg" />);
+  it('should render with "form-control-${bsSize}" class when bsSize is "lg" or "sm"', () => {
+    const wrapper = shallow(<Input bsSize="lg" />);
 
     expect(wrapper.hasClass('form-control-lg')).toBe(true);
   });
 
   it('should render with "form-control" class when size is nor "lg" nor "sm"', () => {
-    const wrapper = shallow(<Input size="5" />);
+    const wrapper = shallow(<Input bsSize="5" />);
 
     expect(wrapper.hasClass('form-control-sm')).toBe(false);
     expect(wrapper.hasClass('form-control-lg')).toBe(false);
@@ -179,15 +160,6 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-control')).toBe(false);
     expect(wrapper.hasClass('form-check-input')).toBe(false);
   });
-
-  it('should not render with "form-control-file" nor "form-control" nor "form-check-input" class when static prop is truthy [DEPRECATED]', () => {
-    const wrapper = shallow(<Input type="file" static />);
-
-    expect(wrapper.hasClass('form-control-file')).toBe(false);
-    expect(wrapper.hasClass('form-control')).toBe(false);
-    expect(wrapper.hasClass('form-check-input')).toBe(false);
-  });
-
   it('should not render with "form-control-file" nor "form-control-plaintext" nor "form-control" class when type is radio', () => {
     const wrapper = shallow(<Input type="radio" />);
 
@@ -237,16 +209,23 @@ describe('Input', () => {
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<Input className="other">Yo!</Input>);
+    const wrapper = shallow(<Input className="other" />);
 
     expect(wrapper.hasClass('other')).toBe(true);
   });
 
   it('should render "select" and "textarea" without type property', () => {
     const input = shallow(<Input type="select">Yo!</Input>);
-    const textarea = shallow(<Input type="textarea">Yo!</Input>);
+    const textarea = shallow(<Input type="textarea" />);
 
     expect(input.find('[type="select"]').exists()).toBe(false);
     expect(textarea.find('[type="textarea"]').exists()).toBe(false);
+  });
+
+  it('should render with "form-control-range" not "form-control" class when type is range', () => {
+    const wrapper = shallow(<Input type="range" />);
+
+    expect(wrapper.hasClass('form-control-range')).toBe(true);
+    expect(wrapper.hasClass('form-control')).toBe(false);
   });
 });

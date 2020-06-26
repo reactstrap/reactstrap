@@ -11,7 +11,7 @@ export default (props) => {
         title="React Bootstrap 4 components"
         defaultTitle="React Bootstrap 4 components"
         meta={[
-            { 'name': 'description', 'content': 'reactstrap - easy to use React Bootstrap 4 components compatible with React 0.14.x and 15' },
+            { 'name': 'description', 'content': 'reactstrap - easy to use React Bootstrap 4 components compatible with React 16+' },
             { 'property': 'og:type', 'content': 'article' }
         ]}
       />

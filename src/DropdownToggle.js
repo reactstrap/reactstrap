@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Target } from 'react-popper';
-import { mapToCssModules } from './utils';
+import { Reference } from 'react-popper';
+import { DropdownContext } from './DropdownContext';
+import { mapToCssModules, tagPropType } from './utils';
 import Button from './Button';
 
 const propTypes = {
@@ -15,19 +16,13 @@ const propTypes = {
   onClick: PropTypes.func,
   'aria-haspopup': PropTypes.bool,
   split: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   nav: PropTypes.bool,
 };
 
 const defaultProps = {
   'aria-haspopup': true,
   color: 'secondary',
-};
-
-const contextTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
-  inNavbar: PropTypes.bool.isRequired,
 };
 
 class DropdownToggle extends React.Component {
@@ -38,7 +33,7 @@ class DropdownToggle extends React.Component {
   }
 
   onClick(e) {
-    if (this.props.disabled) {
+    if (this.props.disabled || this.context.disabled) {
       e.preventDefault();
       return;
     }
@@ -55,7 +50,7 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, color, cssModule, caret, split, nav, tag, ...props } = this.props;
+    const { className, color, cssModule, caret, split, nav, tag, innerRef, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
       className,
@@ -65,7 +60,12 @@ class DropdownToggle extends React.Component {
         'nav-link': nav
       }
     ), cssModule);
-    const children = props.children || <span className="sr-only">{ariaLabel}</span>;
+    const children =
+      typeof props.children !== 'undefined' ? (
+        props.children
+      ) : (
+        <span className="sr-only">{ariaLabel}</span>
+      );
 
     let Tag;
 
@@ -93,20 +93,25 @@ class DropdownToggle extends React.Component {
     }
 
     return (
-      <Target
-        {...props}
-        className={classes}
-        component={Tag}
-        onClick={this.onClick}
-        aria-expanded={this.context.isOpen}
-        children={children}
-      />
+      <Reference innerRef={innerRef}>
+        {({ ref }) => (
+          <Tag
+            {...props}
+            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: ref }}
+
+            className={classes}
+            onClick={this.onClick}
+            aria-expanded={this.context.isOpen}
+            children={children}
+          />
+        )}
+      </Reference>
     );
   }
 }
 
 DropdownToggle.propTypes = propTypes;
 DropdownToggle.defaultProps = defaultProps;
-DropdownToggle.contextTypes = contextTypes;
+DropdownToggle.contextType = DropdownContext;
 
 export default DropdownToggle;

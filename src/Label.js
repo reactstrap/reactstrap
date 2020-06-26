@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import isobject from 'lodash.isobject';
-import { mapToCssModules, deprecated } from './utils';
+import { mapToCssModules, tagPropType, isObject } from './utils';
 
 const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const columnProps = PropTypes.oneOfType([
+  PropTypes.bool,
   PropTypes.string,
   PropTypes.number,
   PropTypes.shape({
     size: stringOrNumberProp,
-    push: deprecated(stringOrNumberProp, 'Please use the prop "order"'),
-    pull: deprecated(stringOrNumberProp, 'Please use the prop "order"'),
     order: stringOrNumberProp,
     offset: stringOrNumberProp,
   }),
@@ -26,7 +24,7 @@ const propTypes = {
   check: PropTypes.bool,
   size: PropTypes.string,
   for: PropTypes.string,
-  tag: PropTypes.string,
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   xs: columnProps,
@@ -79,7 +77,7 @@ const Label = (props) => {
     const isXs = !i;
     let colClass;
 
-    if (isobject(columnProp)) {
+    if (isObject(columnProp)) {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
       colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 

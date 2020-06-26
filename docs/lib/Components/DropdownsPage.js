@@ -17,10 +17,10 @@ import CustomDropdownExample from '../examples/CustomDropdown';
 import DropdownUncontrolledExample from '../examples/DropdownUncontrolled';
 import DropdownSetActiveFromChildExample from '../examples/DropdownSetActiveFromChild';
 
-const DropdownExampleSource = require('!!raw!../examples/Dropdown');
-const CustomDropdownExampleSource = require('!!raw!../examples/CustomDropdown');
-const DropdownUncontrolledExampleSource = require('!!raw!../examples/DropdownUncontrolled');
-const DropdownSetActiveFromChildSource = require('!!raw!../examples/DropdownSetActiveFromChild');
+const DropdownExampleSource = require('!!raw-loader!../examples/Dropdown');
+const CustomDropdownExampleSource = require('!!raw-loader!../examples/CustomDropdown');
+const DropdownUncontrolledExampleSource = require('!!raw-loader!../examples/DropdownUncontrolled');
+const DropdownSetActiveFromChildSource = require('!!raw-loader!../examples/DropdownSetActiveFromChild');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {
@@ -57,6 +57,7 @@ export default class DropdownPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
 {`Dropdown.propTypes = {
+  a11y: PropTypes.bool, // defaults to true. Set to false to enable more bootstrap like tabbing behavior
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
@@ -94,7 +95,9 @@ DropdownMenu.propTypes = {
   cssModule: PropTypes.object,
   // Custom modifiers that are passed to DropdownMenu.js, see https://popper.js.org/popper-documentation.html#modifiers
   modifiers: PropTypes.object,
-  persist: PropTypes.bool // presist the popper, even when closed. See #779 for reasoning
+  persist: PropTypes.bool, // presist the popper, even when closed. See #779 for reasoning
+  // passed to popper, see https://popper.js.org/popper-documentation.html#Popper.Defaults.positionFixed
+  positionFixed: PropTypes.bool
 };
 
 DropdownItem.propTypes = {
@@ -114,7 +117,7 @@ DropdownItem.propTypes = {
         <SectionTitle>Alignment</SectionTitle>
         <p>To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to <code>Dropdown</code>.</p>
         <div className="docs-example">
-          <div style={{ display: 'inline-block' }}>
+          <div className="d-flex justify-content-center">
             <Dropdown isOpen={this.state.example2} toggle={this.toggleExample2}>
               <DropdownToggle caret>
                 Dropdown's menu is right-aligned
@@ -133,14 +136,14 @@ DropdownItem.propTypes = {
           <PrismCode className="language-jsx">
 {`<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
   <DropdownToggle caret>
-    This dropdown's menu is right-aligned
+    Dropdown's menu is right-aligned
   </DropdownToggle>
   <DropdownMenu right>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>
     <DropdownItem>Another Action</DropdownItem>
     <DropdownItem divider/>
-    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
   </DropdownMenu>
 </Dropdown>`}
           </PrismCode>
@@ -323,7 +326,7 @@ DropdownItem.propTypes = {
                           styles: {
                             ...data.styles,
                             overflow: 'auto',
-                            maxHeight: 100,
+                            maxHeight: '100px',
                           },
                         };
                       },
@@ -362,7 +365,7 @@ DropdownItem.propTypes = {
             styles: {
               ...data.styles,
               overflow: 'auto',
-              maxHeight: 100,
+              maxHeight: '100px',
             },
           };
         },

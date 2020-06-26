@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 import InputGroupText from './InputGroupText';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   addonType: PropTypes.oneOf(['prepend', 'append']).isRequired,
   children: PropTypes.node,
   className: PropTypes.string,

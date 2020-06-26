@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, omit } from './utils';
+import { TabContext } from './TabContext';
+import { mapToCssModules, omit, tagPropType } from './utils';
 
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   activeTab: PropTypes.any,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -16,9 +16,6 @@ const defaultProps = {
   tag: 'div',
 };
 
-const childContextTypes = {
-  activeTabId: PropTypes.any
-};
 
 class TabContent extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -35,11 +32,7 @@ class TabContent extends Component {
       activeTab: this.props.activeTab
     };
   }
-  getChildContext() {
-    return {
-      activeTabId: this.state.activeTab
-    };
-  }
+
   render() {
     const {
       className,
@@ -52,14 +45,15 @@ class TabContent extends Component {
     const classes = mapToCssModules(classNames('tab-content', className), cssModule);
 
     return (
-      <Tag {...attributes} className={classes} />
+      <TabContext.Provider value={{activeTabId: this.state.activeTab}}>
+        <Tag {...attributes} className={classes} />
+      </TabContext.Provider>
     );
   }
 }
 
-polyfill(TabContent);
 export default TabContent;
 
 TabContent.propTypes = propTypes;
 TabContent.defaultProps = defaultProps;
-TabContent.childContextTypes = childContextTypes;
+

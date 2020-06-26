@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ButtonDropdown from './ButtonDropdown';
+import { omit } from './utils';
+
+const omitKeys = ['defaultOpen'];
 
 export default class UncontrolledButtonDropdown extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false };
+    this.state = { isOpen: props.defaultOpen || false };
     this.toggle = this.toggle.bind(this);
   }
 
@@ -14,6 +18,11 @@ export default class UncontrolledButtonDropdown extends Component {
   }
 
   render() {
-    return <ButtonDropdown isOpen={this.state.isOpen} toggle={this.toggle} {...this.props} />;
+    return <ButtonDropdown isOpen={this.state.isOpen} toggle={this.toggle} {...omit(this.props, omitKeys)} />;
   }
 }
+
+UncontrolledButtonDropdown.propTypes = {
+  defaultOpen: PropTypes.bool,
+  ...ButtonDropdown.propTypes
+};

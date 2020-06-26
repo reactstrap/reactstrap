@@ -1,4 +1,4 @@
-import isFunction from 'lodash.isfunction';
+import PropTypes from 'prop-types';
 
 // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.4/js/src/modal.js#L436-L443
 export function getScrollbarWidth() {
@@ -63,7 +63,7 @@ export function mapToCssModules(className = '', cssModule = globalCssModule) {
  */
 export function omit(obj, omitKeys) {
   const result = {};
-  Object.keys(obj).forEach((key) => {
+  Object.keys(obj).forEach(key => {
     if (omitKeys.indexOf(key) === -1) {
       result[key] = obj[key];
     }
@@ -112,6 +112,9 @@ export function deprecated(propType, explanation) {
   };
 }
 
+// Shim Element if needed (e.g. in Node environment)
+const Element = (typeof window === 'object' && window.Element) || function() {};
+
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
@@ -124,6 +127,24 @@ export function DOMElement(props, propName, componentName) {
   }
 }
 
+export const targetPropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.func,
+  DOMElement,
+  PropTypes.shape({ current: PropTypes.any }),
+]);
+
+export const tagPropType = PropTypes.oneOfType([
+  PropTypes.func,
+  PropTypes.string,
+  PropTypes.shape({ $$typeof: PropTypes.symbol, render: PropTypes.func }),
+  PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+    PropTypes.shape({ $$typeof: PropTypes.symbol, render: PropTypes.func }),
+  ]))
+]);
+
 /* eslint key-spacing: ["error", { afterColon: true, align: "value" }] */
 // These are all setup to match what is in the bootstrap _variables.scss
 // https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
@@ -131,7 +152,7 @@ export const TransitionTimeouts = {
   Fade:     150, // $transition-fade
   Collapse: 350, // $transition-collapse
   Modal:    300, // $modal-transition
-  Carousel: 600 // $carousel-transition
+  Carousel: 600, // $carousel-transition
 };
 
 // Duplicated Transition.propType keys to ensure that Reactstrap builds
@@ -150,22 +171,27 @@ export const TransitionPropTypeKeys = [
   'onEntered',
   'onExit',
   'onExiting',
-  'onExited'
+  'onExited',
 ];
 
 export const TransitionStatuses = {
   ENTERING: 'entering',
   ENTERED:  'entered',
   EXITING:  'exiting',
-  EXITED:   'exited'
+  EXITED:   'exited',
 };
 
 export const keyCodes = {
   esc:   27,
   space: 32,
+  enter: 13,
   tab:   9,
   up:    38,
-  down:  40
+  down:  40,
+  home:  36,
+  end:   35,
+  n:     78,
+  p:     80,
 };
 
 export const PopperPlacements = [
@@ -183,7 +209,7 @@ export const PopperPlacements = [
   'bottom-start',
   'left-end',
   'left',
-  'left-start'
+  'left-start',
 ];
 
 export const canUseDOM = !!(
@@ -192,7 +218,62 @@ export const canUseDOM = !!(
   window.document.createElement
 );
 
+export function isReactRefObj(target) {
+  if (target && typeof target === 'object') {
+    return 'current' in target;
+  }
+  return false;
+}
+
+function getTag(value) {
+  if (value == null) {
+        return value === undefined ? '[object Undefined]' : '[object Null]'
+    }
+    return Object.prototype.toString.call(value)
+}
+
+export function toNumber(value) {
+  const type = typeof value;
+  const NAN = 0 / 0;
+  if (type === 'number') {
+    return value
+  }
+  if (type === 'symbol' || (type === 'object' && getTag(value) === '[object Symbol]')) {
+    return NAN
+  }
+  if (isObject(value)) {
+    const other = typeof value.valueOf === 'function' ? value.valueOf() : value;
+    value = isObject(other) ? `${other}` : other
+  }
+  if (type !== 'string') {
+    return value === 0 ? value : +value
+  }
+  value = value.replace(/^\s+|\s+$/g, '');
+  const isBinary = /^0b[01]+$/i.test(value);
+  return (isBinary || /^0o[0-7]+$/i.test(value))
+    ? parseInt(value.slice(2), isBinary ? 2 : 8)
+    : (/^[-+]0x[0-9a-f]+$/i.test(value) ? NAN : +value)
+}
+
+export function isObject(value) {
+  const type = typeof value;
+  return value != null && (type === 'object' || type === 'function')
+}
+
+export function isFunction(value) {
+  if (!isObject(value)) {
+    return false
+  }
+
+  const tag = getTag(value);
+  return tag === '[object Function]' || tag === '[object AsyncFunction]' ||
+    tag === '[object GeneratorFunction]' || tag === '[object Proxy]'
+}
+
 export function findDOMElements(target) {
+  if (isReactRefObj(target)) {
+    return target.current;
+  }
   if (isFunction(target)) {
     return target();
   }
@@ -212,20 +293,33 @@ export function findDOMElements(target) {
 }
 
 export function isArrayOrNodeList(els) {
+  if (els === null) {
+    return false;
+  }
   return Array.isArray(els) || (canUseDOM && typeof els.length === 'number');
 }
 
-export function getTarget(target) {
+export function getTarget(target, allElements) {
   const els = findDOMElements(target);
-  if (isArrayOrNodeList(els)) {
-    return els[0];
+  if (allElements) {
+    if (isArrayOrNodeList(els)) {
+      return els;
+    }
+    if (els === null) {
+      return [];
+    }
+    return [els];
+  } else {
+    if (isArrayOrNodeList(els)) {
+      return els[0];
+    }
+    return els;
   }
-  return els;
 }
 
 export const defaultToggleEvents = ['touchstart', 'click'];
 
-export function addMultipleEventListeners(_els, handler, _events) {
+export function addMultipleEventListeners(_els, handler, _events, useCapture) {
   let els = _els;
   if (!isArrayOrNodeList(els)) {
     els = [els];
@@ -247,15 +341,16 @@ export function addMultipleEventListeners(_els, handler, _events) {
       The third is a string or an array of strings that represents DOM events
     `);
   }
-  events.forEach((event) => {
-    els.forEach((el) => {
-      el.addEventListener(event, handler);
+
+  Array.prototype.forEach.call(events, event => {
+    Array.prototype.forEach.call(els, el => {
+      el.addEventListener(event, handler, useCapture);
     });
   });
   return function removeEvents() {
-    events.forEach((event) => {
-      els.forEach((el) => {
-        el.removeEventListener(event, handler);
+    Array.prototype.forEach.call(events, event => {
+      Array.prototype.forEach.call(els, el => {
+        el.removeEventListener(event, handler, useCapture);
       });
     });
   };

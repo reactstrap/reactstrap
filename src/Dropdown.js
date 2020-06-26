@@ -3,14 +3,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
-import { mapToCssModules, omit, keyCodes, deprecated } from './utils';
+import { DropdownContext } from './DropdownContext';
+import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
 
 const propTypes = {
+  a11y: PropTypes.bool,
   disabled: PropTypes.bool,
-  dropup: deprecated(PropTypes.bool, 'Please use the prop "direction" with the value "up".'),
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
@@ -18,7 +18,7 @@ const propTypes = {
   active: PropTypes.bool,
   addonType: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['prepend', 'append'])]),
   size: PropTypes.string,
-  tag: PropTypes.string,
+  tag: tagPropType,
   toggle: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
@@ -28,6 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11y: true,
   isOpen: false,
   direction: 'down',
   nav: false,
@@ -37,12 +38,14 @@ const defaultProps = {
   setActiveFromChild: false
 };
 
-const childContextTypes = {
-  toggle: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']).isRequired,
-  inNavbar: PropTypes.bool.isRequired,
-};
+const preventDefaultKeys = [
+  keyCodes.space,
+  keyCodes.enter,
+  keyCodes.up,
+  keyCodes.down,
+  keyCodes.end,
+  keyCodes.home
+]
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -53,14 +56,17 @@ class Dropdown extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
+
+    this.containerRef = React.createRef();
   }
 
-  getChildContext() {
+  getContextValue() {
     return {
-      toggle: this.props.toggle,
+      toggle: this.toggle,
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
+      disabled: this.props.disabled
     };
   }
 
@@ -79,7 +85,17 @@ class Dropdown extends React.Component {
   }
 
   getContainer() {
-    return ReactDOM.findDOMNode(this);
+    return this.containerRef.current;
+  }
+
+  getMenuCtrl() {
+    if (this._$menuCtrl) return this._$menuCtrl;
+    this._$menuCtrl = this.getContainer().querySelector('[aria-expanded]');
+    return this._$menuCtrl;
+  }
+
+  getMenuItems() {
+    return [].slice.call(this.getContainer().querySelectorAll('[role="menuitem"]'));
   }
 
   addEvents() {
@@ -106,60 +122,68 @@ class Dropdown extends React.Component {
   }
 
   handleKeyDown(e) {
-    if (keyCodes.tab === e.which ||
-      (/button/i.test(e.target.tagName) && e.which === keyCodes.space) ||
-      /input|textarea/i.test(e.target.tagName)) {
+    if (
+      /input|textarea/i.test(e.target.tagName)
+      || (keyCodes.tab === e.which && (e.target.getAttribute('role') !== 'menuitem' || !this.props.a11y))
+    ) {
       return;
     }
 
-    e.preventDefault();
+    if (preventDefaultKeys.indexOf(e.which) !== -1 || ((e.which >= 48) && (e.which <= 90))) {
+      e.preventDefault();
+    }
+
     if (this.props.disabled) return;
 
-    const container = this.getContainer();
-
-    if (e.which === keyCodes.space && this.props.isOpen && container !== e.target) {
-      e.target.click();
-    }
-
-    if (e.which === keyCodes.esc || !this.props.isOpen) {
-      this.toggle(e);
-      container.querySelector('[aria-expanded]').focus();
-      return;
-    }
-
-    const menuClass = mapToCssModules('dropdown-menu', this.props.cssModule);
-    const itemClass = mapToCssModules('dropdown-item', this.props.cssModule);
-    const disabledClass = mapToCssModules('disabled', this.props.cssModule);
-
-    const items = container.querySelectorAll(`.${menuClass} .${itemClass}:not(.${disabledClass})`);
-    if (!items.length) return;
-
-    let index = -1;
-
-    const charPressed = String.fromCharCode(e.which).toLowerCase();
-
-    for (let i = 0; i < items.length; i += 1) {
-      const firstLetter = items[i].textContent && items[i].textContent[0].toLowerCase();
-      if (firstLetter === charPressed || items[i] === e.target) {
-        index = i;
-        break;
+    if (this.getMenuCtrl() === e.target) {
+      if (
+        !this.props.isOpen
+        && ([keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(e.which) > -1)
+      ) {
+        this.toggle(e);
+        setTimeout(() => this.getMenuItems()[0].focus());
+      } else if (this.props.isOpen && e.which === keyCodes.esc) {
+        this.toggle(e); 
       }
     }
 
-    if (e.which === keyCodes.up && index > 0) {
-      index -= 1;
+    if (this.props.isOpen && (e.target.getAttribute('role') === 'menuitem')) {
+      if ([keyCodes.tab, keyCodes.esc].indexOf(e.which) > -1) {
+        this.toggle(e);
+        this.getMenuCtrl().focus();
+      } else if ([keyCodes.space, keyCodes.enter].indexOf(e.which) > -1) {
+        e.target.click();
+        this.getMenuCtrl().focus();
+      } else if (
+        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1
+        || ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
+      ) {
+        const $menuitems = this.getMenuItems();
+        let index = $menuitems.indexOf(e.target);
+        if (keyCodes.up === e.which || (keyCodes.p === e.which && e.ctrlKey)) {
+          index = index !== 0 ? index - 1 : $menuitems.length - 1;
+        } else if (keyCodes.down === e.which || (keyCodes.n === e.which && e.ctrlKey)) {
+          index = index === $menuitems.length - 1 ? 0 : index + 1;
+        }
+        $menuitems[index].focus();
+      } else if (keyCodes.end === e.which) {
+        const $menuitems = this.getMenuItems();
+        $menuitems[$menuitems.length - 1].focus();
+      } else if (keyCodes.home === e.which) {
+        const $menuitems = this.getMenuItems();
+        $menuitems[0].focus();
+      } else if ((e.which >= 48) && (e.which <= 90)) {
+        const $menuitems = this.getMenuItems();
+        const charPressed = String.fromCharCode(e.which).toLowerCase();
+        for (let i = 0; i < $menuitems.length; i += 1) {
+          const firstLetter = $menuitems[i].textContent && $menuitems[i].textContent[0].toLowerCase();
+          if (firstLetter === charPressed) {
+            $menuitems[i].focus();
+            break;
+          }
+        }
+      }
     }
-
-    if (e.which === keyCodes.down && index < items.length - 1) {
-      index += 1;
-    }
-
-
-    if (index < 0) {
-      index = 0;
-    }
-
-    items[index].focus();
   }
 
   handleProps() {
@@ -182,7 +206,7 @@ class Dropdown extends React.Component {
     const {
       className,
       cssModule,
-      dropup,
+      direction,
       isOpen,
       group,
       size,
@@ -190,18 +214,17 @@ class Dropdown extends React.Component {
       setActiveFromChild,
       active,
       addonType,
+      tag,
       ...attrs
-    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'direction']);
+    } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'a11y']);
 
-    const direction = (this.props.direction === 'down' && dropup) ? 'up' : this.props.direction;
-
-    attrs.tag = attrs.tag || (nav ? 'li' : 'div');
+    const Tag = tag || (nav ? 'li' : 'div');
 
     let subItemIsActive = false;
     if (setActiveFromChild) {
       React.Children.map(this.props.children[1].props.children,
         (dropdownItem) => {
-          if (dropdownItem.props.active) subItemIsActive = true;
+          if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
         }
       );
     }
@@ -221,12 +244,22 @@ class Dropdown extends React.Component {
       }
     ), cssModule);
 
-    return <Manager {...attrs} className={classes} onKeyDown={this.handleKeyDown} />;
+    return (
+      <DropdownContext.Provider value={this.getContextValue()}>
+        <Manager>
+          <Tag
+            {...attrs}
+            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef }}
+            onKeyDown={this.handleKeyDown}
+            className={classes}
+          />
+        </Manager>
+      </DropdownContext.Provider>
+    );
   }
 }
 
 Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
-Dropdown.childContextTypes = childContextTypes;
 
 export default Dropdown;

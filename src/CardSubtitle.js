@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
 const defaultProps = {
-  tag: 'h6'
+  tag: 'div'
 };
 
 const CardSubtitle = (props) => {

@@ -5,7 +5,9 @@ const Example = (props) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+        <InputGroupAddon addonType="prepend">
+          <InputGroupText>@</InputGroupText>
+        </InputGroupAddon>
         <Input placeholder="username" />
       </InputGroup>
       <br />
@@ -20,7 +22,9 @@ const Example = (props) => {
       <br />
       <InputGroup>
         <Input placeholder="username" />
-        <InputGroupAddon addonType="append">@example.com</InputGroupAddon>
+        <InputGroupAddon addonType="append">
+          <InputGroupText>@example.com</InputGroupText>
+        </InputGroupAddon>
       </InputGroup>
       <br />
       <InputGroup>
@@ -37,7 +41,7 @@ const Example = (props) => {
       <br />
       <InputGroup>
         <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-        <Input placeholder="Amount" type="number" step="1" />
+        <Input placeholder="Amount" min={0} max={100} type="number" step="1" />
         <InputGroupAddon addonType="append">.00</InputGroupAddon>
       </InputGroup>
     </div>

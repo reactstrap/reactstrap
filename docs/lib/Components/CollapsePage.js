@@ -9,10 +9,10 @@ import UncontrolledCollapseExample from '../examples/CollapseUncontrolled';
 
 import CollapseEventsExample from '../examples/CollapseEvents';
 
-const CollapseExampleSource = require('!!raw!../examples/Collapse');
-const CollapseEventsExampleSource = require('!!raw!../examples/CollapseEvents');
+const CollapseExampleSource = require('!!raw-loader!../examples/Collapse');
+const CollapseEventsExampleSource = require('!!raw-loader!../examples/CollapseEvents');
 
-const UncontrolledCollapseExampleSource = require('!!raw!../examples/CollapseUncontrolled');
+const UncontrolledCollapseExampleSource = require('!!raw-loader!../examples/CollapseUncontrolled');
 
 export default class CollapsePage extends React.Component {
   render() {
@@ -30,7 +30,7 @@ export default class CollapsePage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {`Collapse.propTypes = {
-  ...Transition.propTypes,
+  ...Transition.propTypes, // see note below
   isOpen: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -44,6 +44,12 @@ export default class CollapsePage extends React.Component {
 };`}
           </PrismCode>
         </pre>
+        <p>
+          Collapse is wrapped in a <code>Transition</code> component
+          from <code>react-transition-group/transition</code>. Transition props are passed through to
+          this wrapper. Refer to the <code>Transition</code> documentation for details: <a href="http://reactcommunity.org/react-transition-group/transition/">
+          http://reactcommunity.org/react-transition-group/transition/</a>.
+        </p>
 
         <SectionTitle>Events</SectionTitle>
         <p>

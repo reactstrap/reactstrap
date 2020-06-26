@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, deprecated } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   className: PropTypes.string,
@@ -10,12 +10,12 @@ const propTypes = {
   bordered: PropTypes.bool,
   borderless: PropTypes.bool,
   striped: PropTypes.bool,
-  inverse: deprecated(PropTypes.bool, 'Please use the prop "dark"'),
   dark: PropTypes.bool,
   hover: PropTypes.bool,
   responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  responsiveTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
+  responsiveTag: tagPropType,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.object]),
 };
 
 const defaultProps = {
@@ -31,12 +31,12 @@ const Table = (props) => {
     bordered,
     borderless,
     striped,
-    inverse,
     dark,
     hover,
     responsive,
     tag: Tag,
     responsiveTag: ResponsiveTag,
+    innerRef,
     ...attributes
   } = props;
 
@@ -47,14 +47,14 @@ const Table = (props) => {
     bordered ? 'table-bordered' : false,
     borderless ? 'table-borderless' : false,
     striped ? 'table-striped' : false,
-    (dark || inverse) ? 'table-dark' : false,
+    dark ? 'table-dark' : false,
     hover ? 'table-hover' : false,
   ), cssModule);
 
-  const table = <Tag {...attributes} className={classes} />;
+  const table = <Tag {...attributes} ref={innerRef} className={classes} />;
 
   if (responsive) {
-    const responsiveClassName = responsive === true ? 'table-responsive' : `table-responsive-${responsive}`;
+    const responsiveClassName = mapToCssModules(responsive === true ? 'table-responsive' : `table-responsive-${responsive}`, cssModule);
 
     return (
       <ResponsiveTag className={responsiveClassName}>{table}</ResponsiveTag>

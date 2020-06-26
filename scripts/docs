@@ -15,7 +15,7 @@ error() {
   echo -e "\033[31;1m$1"
 }
 
-if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+if [ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo "Deploying documentation"
 else
   success "Not building master branch. Skipping deploy."
@@ -27,7 +27,7 @@ if [ -z "$GITHUB_TOKEN" ]; then
   exit 1
 fi
 
-npm run build-docs
+npm run build:docs
 
 if [ ! -d $BUILD_DIR ]; then
   error "Build directory does not exist. Stopping deploy."
@@ -47,7 +47,9 @@ fi
 git config user.name "Travis-CI"
 git config user.email "reactstrap@github.io"
 git add --all
-git commit -m "docs(travis): publish documentation for $TRAVIS_COMMIT"
+git commit -m "docs(travis): publish documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)"
 git push origin $BRANCH > /dev/null 2>&1
+git tag -a $VERSION -m "docs $TRAVIS_TAG"
+git push --tags > /dev/null 2>&1
 
-success "Successfully published documentation for $TRAVIS_COMMIT!"
+success "Successfully published documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)!"

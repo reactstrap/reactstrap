@@ -97,12 +97,12 @@ describe('Tabs', () => {
       </TabContent>
     );
 
-    expect(wrapper.type()).toBe('main');
+    expect(wrapper.childAt(0).type()).toBe('main');
   });
 
   it('should render custom TabPane tag', () => {
-    const wrapper = shallow(<TabPane tag="main" tabId="1">Tab Content 1</TabPane>, { context: {} });
+    const wrapper = mount(<TabPane tag="main" tabId="1">Tab Content 1</TabPane>, { context: {} });
 
-    expect(wrapper.type()).toBe('main');
+    expect(wrapper.childAt(0).type()).toBe('main');
   });
 });

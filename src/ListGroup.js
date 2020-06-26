@@ -1,17 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   flush: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 
 const defaultProps = {
-  tag: 'ul'
+  tag: 'ul',
+  horizontal: false
+};
+
+const getHorizontalClass = horizontal => {
+  if (horizontal === false) {
+    return false;
+  } else if (horizontal === true || horizontal === "xs") {
+    return "list-group-horizontal";
+  }
+  return `list-group-horizontal-${horizontal}`;
 };
 
 const ListGroup = (props) => {
@@ -20,12 +31,15 @@ const ListGroup = (props) => {
     cssModule,
     tag: Tag,
     flush,
+    horizontal,
     ...attributes
   } = props;
   const classes = mapToCssModules(classNames(
     className,
     'list-group',
-    flush ? 'list-group-flush' : false
+    // list-group-horizontal cannot currently be mixed with list-group-flush
+    // we only try to apply horizontal classes if flush is false
+    flush ? 'list-group-flush' : getHorizontalClass(horizontal)
   ), cssModule);
 
   return (

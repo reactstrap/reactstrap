@@ -8,30 +8,47 @@ const packageJson = require('./package.json');
 
 const peerDependencies = Object.keys(packageJson.peerDependencies);
 const dependencies = Object.keys(packageJson.dependencies);
+dependencies.push('react-transition-group/Transition');
+
+function globals() {
+  return {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  };
+}
 
 function baseConfig() {
   return {
-    moduleName: 'Reactstrap',
-    entry: 'src/index.js',
+    input: 'src/index.js',
     plugins: [
       nodeResolve(),
       commonjs({
         include: 'node_modules/**'
       }),
       babel({
-        plugins: ['external-helpers'],
+        babelrc: false,
+        presets: [
+          [
+            '@babel/env',
+            {
+              loose: true,
+              shippedProposals: true,
+              modules: false,
+              targets: {
+                ie: 9
+              }
+            }
+          ],
+          '@babel/react'
+        ],
+        plugins: ['@babel/plugin-proposal-export-default-from', '@babel/plugin-proposal-export-namespace-from']
       }),
-    ],
-    sourceMap: true,
+    ]
   };
 }
 
 function baseUmdConfig(minified) {
   const config = Object.assign(baseConfig(), {
-    globals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-    },
     external: peerDependencies,
   });
   config.plugins.push(replace({
@@ -55,9 +72,9 @@ function baseUmdConfig(minified) {
 const libConfig = baseConfig();
 // Do not include any of the dependencies
 libConfig.external = peerDependencies.concat(dependencies);
-libConfig.targets = [
-  { dest: 'dist/reactstrap.cjs.js', format: 'cjs' },
-  { dest: 'dist/reactstrap.es.js', format: 'es' },
+libConfig.output = [
+  { sourcemap: true, name: 'Reactstrap', file: 'dist/reactstrap.cjs.js', format: 'cjs' },
+  { sourcemap: true, name: 'Reactstrap', file: 'dist/reactstrap.es.js', format: 'es' },
 ];
 
 /*
@@ -69,7 +86,7 @@ libConfig.targets = [
   marked as peer dependencies. ** See below
 
   Defining this config will also check that all peer dependencies are set up
-  correctly in the globals entry.
+  correctly in the globals input.
 
   Reactstrap has two versions:
 
@@ -86,12 +103,12 @@ libConfig.targets = [
 
 */
 const umdFullConfig = baseUmdConfig(false);
-umdFullConfig.targets = [
-  { dest: 'dist/reactstrap.full.js', format: 'umd' },
+umdFullConfig.output = [
+  { globals: globals(), sourcemap: true, name: 'Reactstrap', file: 'dist/reactstrap.full.js', format: 'umd' },
 ];
 
 // Validate globals in main UMD config
-const missingGlobals = peerDependencies.filter(dep => !(dep in umdFullConfig.globals));
+const missingGlobals = peerDependencies.filter(dep => !(dep in globals()));
 if (missingGlobals.length) {
   console.error('All peer dependencies need to be mentioned in globals, please update rollup.config.js.');
   console.error('Missing: ' + missingGlobals.join(', '));
@@ -100,31 +117,29 @@ if (missingGlobals.length) {
 }
 
 const umdFullConfigMin = baseUmdConfig(true);
-umdFullConfigMin.targets = [
-  { dest: 'dist/reactstrap.full.min.js', format: 'umd' },
+umdFullConfigMin.output = [
+  { globals: globals(), sourcemap: true, name: 'Reactstrap', file: 'dist/reactstrap.full.min.js', format: 'umd' },
 ];
 
 const external = umdFullConfig.external.slice();
 external.push('react-transition-group/Transition');
 external.push('react-popper');
 
-const globals = Object.assign({}, umdFullConfig.globals, {
+const allGlobals = Object.assign({}, globals(), {
   'react-popper': 'ReactPopper',
   'react-transition-group/Transition': 'ReactTransitionGroup.Transition',
 });
 
 const umdConfig = baseUmdConfig(false);
 umdConfig.external = external;
-umdConfig.globals = globals;
-umdConfig.targets = [
-  { dest: 'dist/reactstrap.js', format: 'umd' },
+umdConfig.output = [
+  { globals: allGlobals, sourcemap: true, name: 'Reactstrap', file: 'dist/reactstrap.js', format: 'umd' },
 ];
 
 const umdConfigMin = baseUmdConfig(true);
 umdConfigMin.external = external;
-umdConfigMin.globals = globals;
-umdConfigMin.targets = [
-  { dest: 'dist/reactstrap.min.js', format: 'umd' },
+umdConfigMin.output = [
+  { globals: allGlobals, sourcemap: true, name: 'Reactstrap', file: 'dist/reactstrap.min.js', format: 'umd' },
 ];
 
 

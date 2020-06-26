@@ -8,9 +8,16 @@ Stateless React Components for Bootstrap 4.
 
 ## Getting Started
 
-Follow the [create-react-app instructions](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) **up to** the `Adding Bootstrap` section and instead follow the reactstrap version of [adding bootstrap](#adding-bootstrap).
+Follow the [create-react-app instructions](https://create-react-app.dev/docs/getting-started) to get started and then follow the reactstrap version of [adding bootstrap](#adding-bootstrap).
 
 ### tl;dr
+
+ ```
+npx create-react-app my-app
+cd my-app/
+npm start
+```
+or,  if npx (Node >= 6 and npm >= 5.2 ) not available 
 
 ```
 npm install -g create-react-app
@@ -18,7 +25,7 @@ npm install -g create-react-app
 create-react-app my-app
 cd my-app/
 npm start
-```
+``` 
 
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The initial structure of your app is setup. Next, let's [add reactstrap and bootstrap](#adding-bootstrap).
 
@@ -27,8 +34,8 @@ Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The 
 Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:
 
 ```
-npm install --save bootstrap@4.1.1
-npm install --save reactstrap react@^16.3.2 react-dom@^16.3.2
+npm i bootstrap
+npm i reactstrap react react-dom
 ```
 
 Import Bootstrap CSS in the ```src/index.js``` file:
@@ -251,12 +258,15 @@ You can create a new tag via the GitHub user interface. If you do it this way, m
 Organizations and projects using `reactstrap`
 
 - [availity-reactstrap-validation](https://availity.github.io/availity-reactstrap-validation/)
+- [airframe-react](https://github.com/0wczar/airframe-react) - [demo](http://dashboards.webkom.co/react/airframe/) - Airframe provides all the components a developer needs to build data-intensive web apps using React.
 - [component-template](https://reactstrap.github.io/component-template/)
 - [video-react](https://video-react.github.io/)
 - [CoreUI-Free-Bootstrap-Admin-Template](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template) - [demo](http://coreui.io/demo/React_Demo/#/)
 - [Admin dashboard example app built with reactstrap](https://github.com/reduction-admin/react-reduction) - [demo](https://reduction-admin.firebaseapp.com/)
 - [DevExtreme React Grid](https://devexpress.github.io/devextreme-reactive/react/grid/) - It's a stateless data grid built on top of `reactstrap` with paging, sorting, filtering, grouping, selection, editing and virtual scrolling features.
 - [DevExtreme React Chart](https://devexpress.github.io/devextreme-reactive/react/chart/) - A chart built on top of `reactstrap` that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more.
+- [reactstrap-scrollspy](https://github.com/keidrun/reactstrap-scrollspy/) - [demo](https://keidrun.github.io/reactstrap-scrollspy/)
+- [formstrap](https://github.com/pedox/formstrap/) - [demo](https://pedox.github.io/formstrap/) - Let your `reactstrap` input component integrate seamlessly using `Formik` 
 
 Submit a PR to add to this list!
 

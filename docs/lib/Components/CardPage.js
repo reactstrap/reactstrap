@@ -17,18 +17,18 @@ import CardGroupsExample from '../examples/CardGroups';
 import CardDecksExample from '../examples/CardDecks';
 import CardColumnsExample from '../examples/CardColumns';
 
-const CardExampleSource = require('!!raw!../examples/Card');
-const CardContentExampleSource = require('!!raw!../examples/CardContentTypes');
-const CardSizingExampleSource = require('!!raw!../examples/CardSizing');
-const CardAlignmentExampleSource = require('!!raw!../examples/CardAlignment');
-const CardHeaderFooterExampleSource = require('!!raw!../examples/CardHeaderFooter');
-const CardImageCapsExampleSource = require('!!raw!../examples/CardImageCaps');
-const CardImageOverlayExampleSource = require('!!raw!../examples/CardImageOverlay');
-const CardBackgroundsExampleSource = require('!!raw!../examples/CardBackgrounds');
-const CardOutlineExampleSource = require('!!raw!../examples/CardOutline');
-const CardGroupsExampleSource = require('!!raw!../examples/CardGroups');
-const CardDecksExampleSource = require('!!raw!../examples/CardDecks');
-const CardColumnsExampleSource = require('!!raw!../examples/CardColumns');
+const CardExampleSource = require('!!raw-loader!../examples/Card');
+const CardContentExampleSource = require('!!raw-loader!../examples/CardContentTypes');
+const CardSizingExampleSource = require('!!raw-loader!../examples/CardSizing');
+const CardAlignmentExampleSource = require('!!raw-loader!../examples/CardAlignment');
+const CardHeaderFooterExampleSource = require('!!raw-loader!../examples/CardHeaderFooter');
+const CardImageCapsExampleSource = require('!!raw-loader!../examples/CardImageCaps');
+const CardImageOverlayExampleSource = require('!!raw-loader!../examples/CardImageOverlay');
+const CardBackgroundsExampleSource = require('!!raw-loader!../examples/CardBackgrounds');
+const CardOutlineExampleSource = require('!!raw-loader!../examples/CardOutline');
+const CardGroupsExampleSource = require('!!raw-loader!../examples/CardGroups');
+const CardDecksExampleSource = require('!!raw-loader!../examples/CardDecks');
+const CardColumnsExampleSource = require('!!raw-loader!../examples/CardColumns');
 
 export default class CardPage extends React.Component {
   render() {

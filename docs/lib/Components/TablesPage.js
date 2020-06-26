@@ -13,14 +13,14 @@ import TableResponsiveExample from '../examples/TableResponsive';
 import TableSizingExample from '../examples/TableSizing';
 import TableStripedExample from '../examples/TableStriped';
 
-const TableExampleSource = require('!!raw!../examples/Table');
-const TableBorderedExampleSource = require('!!raw!../examples/TableBordered');
-const TableBorderlessExampleSource = require('!!raw!../examples/TableBorderless');
-const TableHoverExampleSource = require('!!raw!../examples/TableHover');
-const TableDarkExampleSource = require('!!raw!../examples/TableDark');
-const TableResponsiveExampleSource = require('!!raw!../examples/TableResponsive');
-const TableSizingExampleSource = require('!!raw!../examples/TableSizing');
-const TableStripedExampleSource = require('!!raw!../examples/TableStriped');
+const TableExampleSource = require('!!raw-loader!../examples/Table');
+const TableBorderedExampleSource = require('!!raw-loader!../examples/TableBordered');
+const TableBorderlessExampleSource = require('!!raw-loader!../examples/TableBorderless');
+const TableHoverExampleSource = require('!!raw-loader!../examples/TableHover');
+const TableDarkExampleSource = require('!!raw-loader!../examples/TableDark');
+const TableResponsiveExampleSource = require('!!raw-loader!../examples/TableResponsive');
+const TableSizingExampleSource = require('!!raw-loader!../examples/TableSizing');
+const TableStripedExampleSource = require('!!raw-loader!../examples/TableStriped');
 
 export default class TablesPage extends React.Component {
   render() {
@@ -48,7 +48,13 @@ borderless: PropTypes.bool,
 striped: PropTypes.bool,
 dark: PropTypes.bool,
 hover: PropTypes.bool,
-responsive: PropTypes.bool
+responsive: PropTypes.bool,
+// Custom ref handler that will be assigned to the "ref" of the inner <table> element
+innerRef: PropTypes.oneOfType([
+  PropTypes.func,
+  PropTypes.string,
+  PropTypes.object
+])
 };`}
         </PrismCode>
         </pre>

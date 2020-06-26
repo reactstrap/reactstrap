@@ -3,6 +3,7 @@ node_modules
 /dist
 /build
 /lib
+/es
 .idea
 .history
 npm-debug.log

@@ -6,8 +6,8 @@ import SectionTitle from '../UI/SectionTitle';
 import JumbotronExample from '../examples/Jumbotron';
 import JumbotronFluidExample from "../examples/JumbotronFluid";
 
-const JumbotronExampleSource = require('!!raw!../examples/Jumbotron');
-const JumbotronFluidExampleSource = require('!!raw!../examples/JumbotronFluid');
+const JumbotronExampleSource = require('!!raw-loader!../examples/Jumbotron');
+const JumbotronFluidExampleSource = require('!!raw-loader!../examples/JumbotronFluid');
 
 export default class JumbotronPage extends React.Component {
   render() {

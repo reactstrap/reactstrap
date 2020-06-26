@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: tagPropType,
   type: PropTypes.string,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -31,7 +31,7 @@ const NavbarToggler = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes}>
+    <Tag aria-label="Toggle navigation" {...attributes} className={classes}>
       {children || <span className={mapToCssModules('navbar-toggler-icon', cssModule)} />}
     </Tag>
   );
