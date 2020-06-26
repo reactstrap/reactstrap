@@ -280,7 +280,7 @@
     "conventional-changelog-cli": "^2.0.21",
     "conventional-recommended-bump": "^0.3.0",
     "copy-webpack-plugin": "^6.0.2",
-    "coveralls": "^2.11.12",
+    "coveralls": "^3.1.0",
     "cross-env": "^2.0.0",
     "css-loader": "^2.1.0",
     "customize-cra": "^0.2.8",
