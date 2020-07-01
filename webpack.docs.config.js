@@ -38,6 +38,7 @@ const paths = [
   '/components/collapse/',
   '/components/carousel/',
   '/components/listgroup/',
+  '/components/spinners/',
   '/utilities/',
   '/utilities/colors/',
   '/utilities/clearfix/',
