@@ -77,6 +77,7 @@ const Progress = (props) => {
 
   const ProgressBar = multi ? children : (
     <div
+      {...attributes}
       className={progressBarClasses}
       style={{
         ...style,
