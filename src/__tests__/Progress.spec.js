@@ -161,4 +161,15 @@ describe('Progress', () => {
     expect(wrapper.find('.progress').hostNodes().length).toBe(1);
     expect(wrapper.find('.progress-bar').hostNodes().length).toBe(5);
   });
+
+  it('should render nested progress bars and id attribute', () => {
+    const wrapper = mount(
+      <Progress multi>
+        <Progress bar id="ruh-roh" />
+      </Progress>
+    );
+
+    expect(wrapper.find('.progress').hostNodes().length).toBe(1);
+    expect(wrapper.find('#ruh-roh').hostNodes().length).toBe(1);
+  });
 });
