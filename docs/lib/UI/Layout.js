@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Footer from './Footer';
 import Nav from './Nav';
+import Banner from './Banner';
 
 export default (props) => {
   return (
@@ -15,6 +16,7 @@ export default (props) => {
             { 'property': 'og:type', 'content': 'article' }
         ]}
       />
+      <Banner />
       <Nav />
       {props.children}
       <Footer />
