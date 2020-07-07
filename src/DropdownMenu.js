@@ -1,9 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType } from './utils';
+import { mapToCssModules, tagPropType, targetPropType } from './utils';
 
 const propTypes = {
   tag: tagPropType,
@@ -15,11 +16,13 @@ const propTypes = {
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
   positionFixed: PropTypes.bool,
+  container: targetPropType
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
+  container: 'inline'
 };
 
 const noFlipModifier = { flip: { enabled: false } };
@@ -31,10 +34,10 @@ const directionPositionMap = {
   down: 'bottom',
 };
 
-class DropdownMenu extends React.Component { 
+class DropdownMenu extends React.Component {
 
   render() {
-    const { className, cssModule, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
+    const { className, cssModule, right, tag, flip, modifiers, persist, positionFixed, container, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
@@ -57,7 +60,7 @@ class DropdownMenu extends React.Component {
       } : modifiers;
       const popperPositionFixed = !!positionFixed;
 
-      return (
+      const popper = (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
@@ -77,6 +80,10 @@ class DropdownMenu extends React.Component {
           )}
         </Popper>
       );
+      if (container === 'inline') {
+        return popper;
+      }
+      return ReactDOM.createPortal(popper, container);
     }
 
     return (

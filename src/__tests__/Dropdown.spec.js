@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
 import { Popper, Reference } from 'react-popper';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../';
@@ -8,12 +9,16 @@ describe('Dropdown', () => {
   let isOpen;
   let toggle;
   let element;
+  let container;
 
   beforeEach(() => {
     isOpen = false;
     toggle = () => { isOpen = !isOpen; };
     element = document.createElement('div');
+    container = document.createElement('div');
+    container.id = 'container';
     document.body.appendChild(element);
+    document.body.appendChild(container);
   });
 
   afterEach(() => {
@@ -22,6 +27,7 @@ describe('Dropdown', () => {
     if (jest.isMockFunction(Dropdown.prototype.toggle)) Dropdown.prototype.toggle.mockRestore();
     if (jest.isMockFunction(Dropdown.prototype.handleDocumentClick)) Dropdown.prototype.handleDocumentClick.mockRestore();
     document.body.removeChild(element);
+    document.body.removeChild(container);
     document.body.innerHTML = '';
     element = null;
   });
@@ -947,10 +953,10 @@ describe('Dropdown', () => {
       const spy = jest.spyOn(event, 'preventDefault');
 
       wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 116/*f5 key*/});
-      expect(spy).not.toHaveBeenCalled(); 
-      
+      expect(spy).not.toHaveBeenCalled();
+
       wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 16/*shift key*/});
-      expect(spy).not.toHaveBeenCalled();  
+      expect(spy).not.toHaveBeenCalled();
 
       wrapper.detach();
     });
@@ -973,7 +979,7 @@ describe('Dropdown', () => {
       const spy = jest.spyOn(event, 'preventDefault');
 
       wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.down});
-      expect(spy).toHaveBeenCalled();      
+      expect(spy).toHaveBeenCalled();
 
       wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.up});
       expect(spy).toHaveBeenCalled();
@@ -1114,5 +1120,21 @@ describe('Dropdown', () => {
     expect(dropup.childAt(0).childAt(0).hasClass('dropup')).toBe(true);
     expect(dropleft.childAt(0).childAt(0).hasClass('dropleft')).toBe(true);
     expect(dropright.childAt(0).childAt(0).hasClass('dropright')).toBe(true);
+  });
+
+  it('should render multiple children inside a container', () => {
+    isOpen = true;
+    ReactDOM.render(
+      <Dropdown isOpen={isOpen} toggle={toggle}>
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu container={container}>
+          <DropdownItem>Test</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>, element);
+
+    expect(element.querySelector('.btn').textContent).toBe('Toggle');
+    expect(element.querySelectorAll('.dropdown').length).toBe(1);
+    expect(element.querySelectorAll('.dropdown-item').length).toBe(0);
+    expect(container.querySelectorAll('.dropdown-menu .dropdown-item').length).toBe(1);
   });
 });
