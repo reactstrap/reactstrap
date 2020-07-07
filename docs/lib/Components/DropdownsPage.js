@@ -16,11 +16,13 @@ import DropdownSizingExample from '../examples/DropdownSizing';
 import CustomDropdownExample from '../examples/CustomDropdown';
 import DropdownUncontrolledExample from '../examples/DropdownUncontrolled';
 import DropdownSetActiveFromChildExample from '../examples/DropdownSetActiveFromChild';
+import DropdownWithContainer from '../examples/DropdownWithContainer';
 
 const DropdownExampleSource = require('!!raw-loader!../examples/Dropdown');
 const CustomDropdownExampleSource = require('!!raw-loader!../examples/CustomDropdown');
 const DropdownUncontrolledExampleSource = require('!!raw-loader!../examples/DropdownUncontrolled');
 const DropdownSetActiveFromChildSource = require('!!raw-loader!../examples/DropdownSetActiveFromChild');
+const DropdownWithContainerSource = require('!!raw-loader!../examples/DropdownWithContainer');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {
@@ -397,6 +399,19 @@ DropdownItem.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
             {DropdownSetActiveFromChildSource}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>Container prop for the DropdownMenu</SectionTitle>
+        <p>
+          Use <code>container</code> prop to define a different DOM node to render the DropdownMenu component. This configuration can be used to enable rendering the DropdownMenu component, independently of the size of the wrapper of the Dropdown component.
+        </p>
+        <div className="docs-example">
+          <DropdownWithContainer />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {DropdownWithContainerSource}
           </PrismCode>
         </pre>
       </div>
