@@ -14,6 +14,7 @@ function globals() {
   return {
     react: 'React',
     'react-dom': 'ReactDOM',
+    '@popperjs/core': 'PopperJS',
   };
 }
 
