@@ -19,13 +19,15 @@ describe('Toast', () => {
   });
 
   it('should have default transitionTimeouts', () => {
-    const toast = mount(<Toast>Yo!</Toast>);
+    const toastRef = React.createRef();
+    const toast = mount(<Toast innerRef={toastRef}>Yo!</Toast>);
 
     const transition = toast.find('Transition');
     expect(transition.prop('timeout')).toEqual(150);
     expect(transition.prop('appear')).toBe(true);
     expect(transition.prop('enter')).toBe(true);
     expect(transition.prop('exit')).toBe(true);
+    expect(transition.prop('nodeRef')).toBe(toastRef);
   });
 
   it('should have support configurable transitionTimeouts', () => {

@@ -100,9 +100,10 @@ describe('Modal', () => {
   });
 
   it('should not render with the backdrop with the class "modal-backdrop" when backdrop is "false"', () => {
+    const modalRef = React.createRef();
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop={false}>
+      <Modal isOpen={isOpen} toggle={toggle} backdrop={false} innerRef={modalRef}>
         Yo!
       </Modal>
     );
@@ -110,6 +111,7 @@ describe('Modal', () => {
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
+    expect(wrapper.find('Transition').prop('nodeRef')).toBe(modalRef);
     wrapper.unmount();
   });
 
@@ -725,7 +727,7 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
-    
+
     const modal = document.getElementsByClassName('modal')[0];
 
     const mouseDownEvent = document.createEvent('MouseEvents');
@@ -756,7 +758,7 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
-    
+
     const modalDialog = document.getElementsByClassName('modal-dialog')[0];
 
     const mouseDownEvent = document.createEvent('MouseEvents');

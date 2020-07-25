@@ -61,7 +61,7 @@ class Collapse extends Component {
   }
 
   onEntering(node, isAppearing) {
-    this.setState({ height: getHeight(node) });
+    this.setState({ height: getHeight(node || this.props.innerRef.current) });
     this.props.onEntering(node, isAppearing);
   }
 
@@ -71,13 +71,13 @@ class Collapse extends Component {
   }
 
   onExit(node) {
-    this.setState({ height: getHeight(node) });
+    this.setState({ height: getHeight(node || this.props.innerRef.current) });
     this.props.onExit(node);
   }
 
   onExiting(node) {
     // getting this variable triggers a reflow
-    const _unused = node.offsetHeight; // eslint-disable-line no-unused-vars
+    const _unused = (node || this.props.innerRef.current).offsetHeight; // eslint-disable-line no-unused-vars
     this.setState({ height: 0 });
     this.props.onExiting(node);
   }
@@ -112,6 +112,7 @@ class Collapse extends Component {
         onExit={this.onExit}
         onExiting={this.onExiting}
         onExited={this.onExited}
+        nodeRef={innerRef}
       >
         {(status) => {
           let collapseClass = getTransitionClass(status);
@@ -126,7 +127,7 @@ class Collapse extends Component {
               {...childProps}
               style={{ ...childProps.style, ...style }}
               className={classes}
-              ref={this.props.innerRef}
+              ref={innerRef}
             >
               {children}
             </Tag>

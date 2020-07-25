@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Alert } from 'reactstrap';
 
 const Example = (props) => {
+  const alertRef = useRef(null);
   return (
     <div>
-      <Alert color="success">
+      <Alert color="success" innerRef={alertRef}>
         <h4 className="alert-heading">Well done!</h4>
         <p>
           Aww yeah, you successfully read this important alert message. This example text is going

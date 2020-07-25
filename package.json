@@ -258,7 +258,7 @@
     "classnames": "^2.2.3",
     "prop-types": "^15.5.8",
     "react-popper": "^2.2.0",
-    "react-transition-group": "^2.3.1"
+    "react-transition-group": "^4.4.0"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.0.0",
