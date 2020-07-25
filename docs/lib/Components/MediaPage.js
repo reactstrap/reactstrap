@@ -2,7 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
-import SectionTitle from '../UI/SectionTitle';
+// import SectionTitle from '../UI/SectionTitle';
 
 import MediaExample from '../examples/Media';
 const MediaExampleSource = require('!!raw-loader!../examples/Media');

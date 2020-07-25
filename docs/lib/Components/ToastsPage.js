@@ -13,11 +13,11 @@ const ToastHeaderIconExampleSource = require('!!raw-loader!../examples/ToastHead
 import ToastDismissExample from '../examples/ToastDismiss';
 const ToastDismissExampleSource = require('!!raw-loader!../examples/ToastDismiss');
 
-import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
-const AlertUncontrolledDismissExampleSource = require('!!raw-loader!../examples/AlertUncontrolledDismiss');
+// import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
+// const AlertUncontrolledDismissExampleSource = require('!!raw-loader!../examples/AlertUncontrolledDismiss');
 
-import { AlertFadelessExample, UncontrolledAlertFadelessExample } from '../examples/AlertFadeless';
-const AlertFadelessExampleSource = require('!!raw-loader!../examples/AlertFadeless');
+// import { AlertFadelessExample, UncontrolledAlertFadelessExample } from '../examples/AlertFadeless';
+// const AlertFadelessExampleSource = require('!!raw-loader!../examples/AlertFadeless');
 
 export default class ToastsPage extends React.Component {
   render() {

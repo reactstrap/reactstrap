@@ -1,3 +1,4 @@
+/* eslint jsx-a11y/iframe-has-title: 0 */
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 

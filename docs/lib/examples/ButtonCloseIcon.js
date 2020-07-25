@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Card, CardBody, CardText, CardGroup, CardTitle } from 'reactstrap';
 
 const Example = () => (
@@ -24,14 +24,10 @@ const Example = () => (
             </Button>
 
           </CardTitle>
-          <CardText>
-          Custom content and aria-label
-          </CardText>
+          <CardText>Custom content and aria-label</CardText>
         </CardBody>
       </Card>
     </CardGroup>
-
-
   </div>
 );
 

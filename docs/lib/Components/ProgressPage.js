@@ -2,8 +2,9 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
-import { Card, CardText } from 'reactstrap';
+// import { Card, CardText } from 'reactstrap';
 import SectionTitle from '../UI/SectionTitle';
+
 import ProgressExample from '../examples/Progress';
 const ProgressExampleSource = require('!!raw-loader!../examples/Progress');
 import ProgressColorExample from '../examples/ProgressColor';

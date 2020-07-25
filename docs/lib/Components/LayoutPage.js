@@ -2,7 +2,7 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
-import SectionTitle from '../UI/SectionTitle';
+// import SectionTitle from '../UI/SectionTitle';
 import LayoutExample from '../examples/Layout';
 import LayoutRowColsExample from '../examples/LayoutRowCols';
 import ContainerResponsiveExample from '../examples/ContainerResponsive';
