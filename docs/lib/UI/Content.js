@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
@@ -10,12 +10,23 @@ const propTypes = {
 };
 
 function Content({ items, children, title }) {
+  const carbonRef = useRef(null);
+
+  useEffect(() => {
+    if (!carbonRef.current) return;
+    const scriptEl = document.createElement('script');
+    scriptEl.src = '//cdn.carbonads.com/carbon.js?serve=CE7IPK3E&placement=reactstrapgithubio';
+    scriptEl.async = true;
+    scriptEl.id = '_carbonads_js';
+    carbonRef.current.appendChild(scriptEl);
+  }, [carbonRef]);
+
   return (
     <Container className="content">
       <Row>
         <Col className="docSearch-navigation" tag="main" md={{ size: 3, order: 2 }}>
           <div className="docs-sidebar mb-3">
-            <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7IPK3E&placement=reactstrapgithubio" id="_carbonads_js"></script>
+            <div className="carbon-ads-wrapper" ref={carbonRef} />
             <h1 className="h5">{title}</h1>
             <Nav className="flex-column">
               {items.sort((a, b) => a.name.localeCompare(b.name)).map(item => (
