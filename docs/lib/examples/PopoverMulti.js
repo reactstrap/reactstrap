@@ -40,6 +40,10 @@ const PopoverExampleMulti = props => {
     <>
       {[
         {
+          placement: "right",
+          text: "Right"
+        },
+        {
           placement: "top",
           text: "Top"
         },
@@ -51,10 +55,6 @@ const PopoverExampleMulti = props => {
           placement: "left",
           text: "Left"
         },
-        {
-          placement: "right",
-          text: "Right"
-        }
       ].map((popover, i) => {
         return <PopoverItem key={i} item={popover} id={i} />;
       })}
