@@ -12,19 +12,13 @@ const Example = (props) => {
   return (
     <div>
       <Nav tabs>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === '1' })}
-            onClick={() => { toggle('1'); }}
-          >
+        <NavItem className={classnames({ active: activeTab === '1' })}>
+          <NavLink onClick={() => { toggle('1'); }}>
             Tab1
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === '2' })}
-            onClick={() => { toggle('2'); }}
-          >
+        <NavItem className={classnames({ active: activeTab === '2' })}>
+          <NavLink onClick={() => { toggle('2'); }}>
             More Tabs
           </NavLink>
         </NavItem>
