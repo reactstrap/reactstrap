@@ -725,7 +725,7 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
-    
+
     const modal = document.getElementsByClassName('modal')[0];
 
     const mouseDownEvent = document.createEvent('MouseEvents');
@@ -756,7 +756,7 @@ describe('Modal', () => {
 
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
-    
+
     const modalDialog = document.getElementsByClassName('modal-dialog')[0];
 
     const mouseDownEvent = document.createEvent('MouseEvents');
@@ -1133,5 +1133,74 @@ describe('Modal', () => {
     jest.runAllTimers();
 
     expect(document.activeElement === button).toEqual(false);
+    wrapper.unmount();
+  });
+
+  it('should trap focus inside the open dialog', () => {
+    const MockComponent = () => (
+          <>
+            <Button className={'first'}>Focused</Button>
+            <Modal isOpen={true}>
+              <ModalBody>
+                  Something else to see
+                  <Button className={'focus'}>focusable element</Button>
+              </ModalBody>
+            </Modal>
+          </>),
+          wrapper = didMount(<MockComponent />);
+    const button = wrapper.find('.first').hostNodes().getDOMNode(),
+          button2 = wrapper.find('.focus').hostNodes().getDOMNode(),
+          modal_instance = wrapper.find(Modal).instance(),
+          ev_mock = {
+            target: button,
+            preventDefault: jest.fn(),
+            stopPropagation: jest.fn()
+          };
+    button.focus();
+    modal_instance.trapFocus(ev_mock);
+    jest.runAllTimers();
+
+    expect(document.activeElement).not.toBe(button);
+    expect(document.activeElement).toBe(button2);
+    expect(ev_mock.preventDefault.mock.calls.length).toBe(1);
+    expect(ev_mock.stopPropagation.mock.calls.length).toBe(1);
+    wrapper.unmount();
+  });
+
+  it('should not trap focus when there is a nested modal', () => {
+    isOpen = true;
+
+    const wrapper = didMount(
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalBody>
+          <Button className={'b0'} onClick={toggle}>Cancel</Button>
+          <Modal isOpen={true}>
+            <ModalBody>
+                <Button className={'b1'}>Click 1</Button>
+                <Button className={'b2'}>Click 2</Button>
+            </ModalBody>
+          </Modal>
+        </ModalBody>
+      </Modal>
+    );
+
+    const instance = wrapper.instance(),
+          nested = wrapper.find(Modal).at(1).instance(),
+          button = wrapper.find('.b0').hostNodes().getDOMNode(),
+          button1 = wrapper.find('.b1').hostNodes().getDOMNode(),
+          button2 = wrapper.find('.b2').hostNodes().getDOMNode(),
+          ev_mock = {
+            target: button,
+            preventDefault: jest.fn(),
+            stopPropagation: jest.fn()
+          };
+    button2.focus();
+    instance.trapFocus(ev_mock);
+    jest.runAllTimers();
+
+    expect(document.activeElement).not.toBe(button);
+    expect(document.activeElement).toBe(button2);
+
+    wrapper.unmount();
   });
 });

@@ -105,6 +105,7 @@ class Modal extends React.Component {
     this.onClosed = this.onClosed.bind(this);
     this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
     this.clearBackdropAnimationTimeout = this.clearBackdropAnimationTimeout.bind(this);
+    this.trapFocus = this.trapFocus.bind(this);
 
     this.state = {
       isOpen: false,
@@ -126,6 +127,8 @@ class Modal extends React.Component {
     if (onEnter) {
       onEnter();
     }
+
+    document.addEventListener('focus', this.trapFocus, true);
 
     this._isMounted = true;
   }
@@ -162,7 +165,32 @@ class Modal extends React.Component {
       }
     }
 
+    document.removeEventListener('focus', this.trapFocus);
     this._isMounted = false;
+  }
+
+  trapFocus (ev) {
+    if (!this._element)
+        return ;
+
+    if (this._dialog && this._dialog.parentNode === ev.target)
+        return ;
+
+    if (this.modalCount < Modal.openCount)
+        return ;
+
+    const children = this.getFocusableChildren();
+
+    for (let i = 0; i < children.length; i++) {
+        if (children[i] === ev.target)
+            return ;
+    }
+
+    if (children.length > 0) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      children[0].focus();
+    }
   }
 
   onOpened(node, isAppearing) {
@@ -268,7 +296,7 @@ class Modal extends React.Component {
       else if (this.props.backdrop === 'static') {
         e.preventDefault();
         e.stopPropagation();
-        
+
         this.handleStaticBackdropAnimation();
       }
     }
@@ -309,6 +337,7 @@ class Modal extends React.Component {
     }
 
     Modal.openCount += 1;
+    this.modalCount = Modal.openCount;
   }
 
   destroy() {
