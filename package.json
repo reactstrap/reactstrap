@@ -23,7 +23,7 @@
     "postbuild": "node ./scripts/postbuild.js",
     "create-release": "npm run cover && sh ./scripts/release",
     "publish-release": "npm run cover && sh ./scripts/publish",
-    "lint": "eslint src docs"
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -246,7 +246,8 @@
     "wlockiv (https://github.com/wlockiv)",
     "wwwouter (https://github.com/wwwouter)",
     "x0a (https://github.com/x0a)",
-    "yagi_ <yagitoshiro@gmail.com> (https://github.com/yagitoshiro)"
+    "yagi_ <yagitoshiro@gmail.com> (https://github.com/yagitoshiro)",
+    "Thach Nguyen (https://github.com/nthachus)"
   ],
   "license": "MIT",
   "bugs": {
@@ -292,7 +293,6 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "^7.0.0",
-    "holderjs": "^2.9.3",
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.9.0",
     "raw-loader": "^1.0.0",
