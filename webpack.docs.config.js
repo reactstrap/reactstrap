@@ -43,7 +43,7 @@ const paths = [
   '/utilities/colors/',
   '/utilities/clearfix/',
   '/premium-themes/',
-  '/404.html'
+  '/404.html',
 ];
 
 const config = {
@@ -54,66 +54,60 @@ const config = {
     disableHostCheck: true,
     contentBase: './build',
     historyApiFallback: true,
-    stats: {
-      chunks: false
-    }
+    stats: { chunks: false },
   },
   entry: './docs/lib/app',
   node: {
-    fs: 'empty'
+    fs: 'empty',
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve('./build'),
     libraryTarget: 'umd',
-    // globalObject: '(typeof self !== \'undefined\' ? self : this)'
   },
   plugins: [
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
-      patterns: [{ from: './docs/static', to: 'assets' }]
+      patterns: [{ from: './docs/static', to: 'assets' }],
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env)
+      'process.env.NODE_ENV': JSON.stringify(env),
     }),
     new StaticSiteGeneratorPlugin({
       paths,
       globals: {
-        window: { },
-      }
+        window: {},
+      },
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
-      chunkFilename: 'assets/[id].css'
-    })
+      chunkFilename: 'assets/[id].css',
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.json$/,
-        use: 'json-loader?cacheDirectory'
+        use: 'json-loader?cacheDirectory',
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader?cacheDirectory'
+        use: 'babel-loader?cacheDirectory',
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
-    ]
+    ],
   },
   resolve: {
     extensions: ['.js', '.json'],
     alias: {
       'bootstrap-css': path.join(__dirname, 'node_modules/bootstrap/dist/css/bootstrap.css'),
-      reactstrap: path.resolve('./src')
-    }
-  }
+      reactstrap: path.resolve('./src'),
+    },
+  },
 };
 
 module.exports = config;
