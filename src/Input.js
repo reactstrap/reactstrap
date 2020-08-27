@@ -8,7 +8,7 @@ import { mapToCssModules, warnOnce, tagPropType } from './utils';
 const propTypes = {
   children: PropTypes.node,
   type: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   bsSize: PropTypes.string,
   valid: PropTypes.bool,
   invalid: PropTypes.bool,
