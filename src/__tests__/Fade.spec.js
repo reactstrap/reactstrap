@@ -91,8 +91,10 @@ describe('Fade', () => {
   });
 
   it('should pass className down', () => {
-    const alert = mount(<Fade className="test-class-name">Yo!</Fade>);
+    const fadeRef = React.createRef();
+    const alert = mount(<Fade className="test-class-name" innerRef={fadeRef}>Yo!</Fade>);
     expect(alert.find('.fade').hostNodes().prop('className')).toContain('test-class-name');
+    expect(alert.find('Transition').prop('nodeRef')).toBe(fadeRef);
   });
 
   it('should pass other props down', () => {

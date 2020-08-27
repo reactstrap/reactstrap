@@ -13,11 +13,11 @@ const ToastHeaderIconExampleSource = require('!!raw-loader!../examples/ToastHead
 import ToastDismissExample from '../examples/ToastDismiss';
 const ToastDismissExampleSource = require('!!raw-loader!../examples/ToastDismiss');
 
-import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
-const AlertUncontrolledDismissExampleSource = require('!!raw-loader!../examples/AlertUncontrolledDismiss');
+// import AlertUncontrolledDismissExample from '../examples/AlertUncontrolledDismiss';
+// const AlertUncontrolledDismissExampleSource = require('!!raw-loader!../examples/AlertUncontrolledDismiss');
 
-import { AlertFadelessExample, UncontrolledAlertFadelessExample } from '../examples/AlertFadeless';
-const AlertFadelessExampleSource = require('!!raw-loader!../examples/AlertFadeless');
+// import { AlertFadelessExample, UncontrolledAlertFadelessExample } from '../examples/AlertFadeless';
+// const AlertFadelessExampleSource = require('!!raw-loader!../examples/AlertFadeless');
 
 export default class ToastsPage extends React.Component {
   render() {
@@ -44,6 +44,7 @@ export default class ToastsPage extends React.Component {
   // Controls the transition of the toast fading in and out
   // See [Fade](/components/fade/) for more details
   transition: PropTypes.shape(Fade.propTypes),
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
 }`}
           </PrismCode>
         </pre>

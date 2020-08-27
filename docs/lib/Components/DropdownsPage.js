@@ -236,6 +236,17 @@ DropdownItem.propTypes = {
         <div className="docs-example">
           <Row>
             <Col>
+              <Dropdown direction="right" isOpen={this.state.ddDropright} toggle={() => { this.setState({ ddDropright: !this.state.ddDropright }); }}>
+                <DropdownToggle caret>
+                  Dropright
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Col>
+            <Col>
               <Dropdown direction="up" isOpen={this.state.ddDropup} toggle={() => { this.setState({ ddDropup: !this.state.ddDropup }); }}>
                 <DropdownToggle caret>
                   Dropup
@@ -257,22 +268,21 @@ DropdownItem.propTypes = {
                 </DropdownMenu>
               </Dropdown>
             </Col>
-            <Col>
-              <Dropdown direction="right" isOpen={this.state.ddDropright} toggle={() => { this.setState({ ddDropright: !this.state.ddDropright }); }}>
-                <DropdownToggle caret>
-                  Dropright
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </Col>
           </Row>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<Dropdown direction="up" isOpen={isOpen} toggle={toggle}>
+{`<Dropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+  <DropdownToggle caret>
+    Dropright
+  </DropdownToggle>
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+
+<Dropdown direction="up" isOpen={isOpen} toggle={toggle}>
   <DropdownToggle caret>
     Dropup
   </DropdownToggle>
@@ -285,16 +295,6 @@ DropdownItem.propTypes = {
 <Dropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
   <DropdownToggle caret>
     Dropleft
-  </DropdownToggle>
-  <DropdownMenu>
-    <DropdownItem>Another Action</DropdownItem>
-    <DropdownItem>Another Action</DropdownItem>
-  </DropdownMenu>
-</Dropdown>
-
-<Dropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
-  <DropdownToggle caret>
-    Dropright
   </DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>

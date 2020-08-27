@@ -17,7 +17,7 @@ export default function ClearfixPage() {
         Utilizes <a href="http://nicolasgallagher.com/micro-clearfix-hack/">
         the micro clearfix</a> as popularized by Nicolas Gallagher.
         Can also be used as a mixin.
-        <div className="clearfix">...</div>
+        <span className="d-block clearfix">...</span>
       </p>
       <div className="docs-example">
         <ClearfixExample />

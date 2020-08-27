@@ -50,7 +50,7 @@ function Fade(props) {
   const childProps = omit(otherProps, TransitionPropTypeKeys);
 
   return (
-    <Transition {...transitionProps}>
+    <Transition {...transitionProps} nodeRef={innerRef}>
       {(status) => {
         const isActive = status === 'entered';
         const classes = mapToCssModules(classNames(

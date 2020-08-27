@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import { Alert } from 'reactstrap';
+// import { Alert } from 'reactstrap';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
@@ -27,7 +27,7 @@ export default class FadePage extends React.Component {
           <PrismCode className="language-jsx">
 {`Fade.propTypes = {
     // Controls if the fade is currently showing or not (default: true)
-    in: PropTypes.bool, 
+    in: PropTypes.bool,
 
     // All of these match [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/#Transition) props
     mountOnEnter: PropTypes.bool,
@@ -65,6 +65,7 @@ export default class FadePage extends React.Component {
     // Other classes that should always be applied
     className: PropTypes.string,
     cssModule: PropTypes.object,
+    innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
 
     // Any other props provided will be applied to the element created (specified by tag)
 }`}

@@ -729,7 +729,8 @@ describe('Tooltip', () => {
 
     it('should allow a function to be used as children', () => {
       const renderChildren = jest.fn();
-      const wrapper = mount(
+      // const wrapper =
+      mount(
         <TooltipPopoverWrapper target="target" isOpen toggle={toggle}>
           {renderChildren}
         </TooltipPopoverWrapper>

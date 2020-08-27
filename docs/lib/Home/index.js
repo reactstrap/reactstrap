@@ -49,7 +49,7 @@ export default () => {
               </PrismCode>
             </pre>
               <h3 className="mt-5">Getting Started with Create React App</h3>
-              <p>Follow the <a href="https://facebook.github.io/create-react-app/docs/getting-started" target="_blank">Create React App instructions</a> and then follow the <a href="https://facebook.github.io/create-react-app/docs/adding-bootstrap" target="_blank">Adding Bootstrap instructions</a>.</p>
+              <p>Follow the <a href="https://facebook.github.io/create-react-app/docs/getting-started" target="_blank" rel="noreferrer">Create React App instructions</a> and then follow the <a href="https://facebook.github.io/create-react-app/docs/adding-bootstrap" target="_blank" rel="noreferrer">Adding Bootstrap instructions</a>.</p>
               <h4>tl;dr</h4>
               <pre>
               <PrismCode className="language-bash">
@@ -59,7 +59,7 @@ npm start`}
               </PrismCode>
             </pre>
               <p>
-                Then open <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a> to see your app. The initial structure of your app is setup. Next, let's add reactstrap and bootstrap.
+                Then open <a href="http://localhost:3000/" target="_blank" rel="noreferrer">http://localhost:3000/</a> to see your app. The initial structure of your app is setup. Next, let's add reactstrap and bootstrap.
               </p>
               <h4>Adding Bootstrap</h4>
               <p>Install reactstrap and Bootstrap from NPM. Reactstrap does not include Bootstrap CSS so this needs to be installed as well:</p>
@@ -79,7 +79,7 @@ npm install --save reactstrap react react-dom`}
                 {`import { Button } from 'reactstrap';`}
               </PrismCode>
             </pre>
-              <p>Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example <a href="https://gist.github.com/Thomas-Smyth/006fd507a7295f17a8473451938f9935" target="_blank"><code>App.js</code></a> redone using reactstrap.</p>
+              <p>Now you are ready to use the imported reactstrap components within your component hierarchy defined in the render method. Here is an example <a href="https://gist.github.com/Thomas-Smyth/006fd507a7295f17a8473451938f9935" target="_blank" rel="noreferrer"><code>App.js</code></a> redone using reactstrap.</p>
               <h2 className="mt-5">CDN</h2>
               <p>Reactstrap can be included directly in your application's bundle or excluded during compilation and linked directly to a CDN.</p>
               <pre>
@@ -92,8 +92,8 @@ npm install --save reactstrap react react-dom`}
                   <strong>Note</strong>: When using the external CDN library, be sure to include the required dependencies as necessary <strong>prior</strong> to the Reactstrap library:
                 </p>
                 <ul>
-                  <li><a href="//cdnjs.com/libraries/react" target="_blank">React</a></li>
-                  <li><a href="//unpkg.com/react-transition-group/dist/react-transition-group.min.js" target="_blank">ReactTransitionGroup</a></li>
+                  <li><a href="//cdnjs.com/libraries/react" target="_blank" rel="noreferrer">React</a></li>
+                  <li><a href="//unpkg.com/react-transition-group/dist/react-transition-group.min.js" target="_blank" rel="noreferrer">ReactTransitionGroup</a></li>
                 </ul>
               </blockquote>
               <p>Check out the demo <a href="http://output.jsbin.com/dimive/latest">here</a></p>

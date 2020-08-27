@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 
-import Carbon from './Carbon';
+import CarbonAds from './CarbonAds';
 
 const propTypes = {
   children: PropTypes.node,
@@ -17,7 +17,7 @@ function Content({ items, children, title }) {
       <Row>
         <Col className="docSearch-navigation" tag="main" md={{ size: 3, order: 2 }}>
           <div className="docs-sidebar mb-3">
-            <Carbon/>
+            <CarbonAds />
             <h1 className="h5">{title}</h1>
             <Nav className="flex-column">
               {items.sort((a, b) => a.name.localeCompare(b.name)).map(item => (

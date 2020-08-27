@@ -25,13 +25,15 @@ describe('Alert', () => {
   });
 
   it('should have default transitionTimeouts', () => {
-    const alert = mount(<Alert>Yo!</Alert>);
+    const alertRef = React.createRef();
+    const alert = mount(<Alert innerRef={alertRef}>Yo!</Alert>);
 
     const transition = alert.find('Transition');
     expect(transition.prop('timeout')).toEqual(150);
     expect(transition.prop('appear')).toBe(true);
     expect(transition.prop('enter')).toBe(true);
     expect(transition.prop('exit')).toBe(true);
+    expect(transition.prop('nodeRef')).toBe(alertRef);
   });
 
   it('should have support configurable transitionTimeouts', () => {

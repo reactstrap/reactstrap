@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import { Alert } from 'reactstrap';
+// import { Alert } from 'reactstrap';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
@@ -51,6 +51,7 @@ export default class AlertsPage extends React.Component {
   // Controls the transition of the alert fading in and out
   // See [Fade](/components/fade/) for more details
   transition: PropTypes.shape(Fade.propTypes),
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
 }`}
           </PrismCode>
         </pre>

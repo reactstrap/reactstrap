@@ -196,6 +196,16 @@ export default function Example () => {
         <SectionTitle>Drop direction variations</SectionTitle>
         <div className="docs-example">
           <div>
+            <ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+              <DropdownToggle caret>
+                Dropright
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>Another Action</DropdownItem>
+                <DropdownItem>Another Action</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+            {' '}
             <ButtonDropdown direction="up" isOpen={this.state.btnDropup} toggle={() => { this.setState({ btnDropup: !this.state.btnDropup }); }}>
               <DropdownToggle caret>
                 Dropup
@@ -215,21 +225,21 @@ export default function Example () => {
                 <DropdownItem>Another Action</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
-            {' '}
-            <ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
-              <DropdownToggle caret>
-                Dropright
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem>Another Action</DropdownItem>
-                <DropdownItem>Another Action</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
           </div>
         </div>
         <pre>
           <PrismCode className="language-jsx">
-{`<ButtonDropdown direction="up" isOpen={isOpen} toggle={toggle}>
+{`<ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+  <DropdownToggle caret>
+    Dropright
+  </DropdownToggle>
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</ButtonDropdown>
+
+<ButtonDropdown direction="up" isOpen={isOpen} toggle={toggle}>
   <DropdownToggle caret>
     Dropup
   </DropdownToggle>
@@ -242,16 +252,6 @@ export default function Example () => {
 <ButtonDropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
   <DropdownToggle caret>
     Dropleft
-  </DropdownToggle>
-  <DropdownMenu>
-    <DropdownItem>Another Action</DropdownItem>
-    <DropdownItem>Another Action</DropdownItem>
-  </DropdownMenu>
-</ButtonDropdown>
-
-<ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
-  <DropdownToggle caret>
-    Dropright
   </DropdownToggle>
   <DropdownMenu>
     <DropdownItem>Another Action</DropdownItem>

@@ -31,6 +31,10 @@ const TooltipExampleMulti = props => {
     <>
       {[
         {
+          placement: "right",
+          text: "Right"
+        },
+        {
           placement: "top",
           text: "Top"
         },
@@ -42,10 +46,6 @@ const TooltipExampleMulti = props => {
           placement: "left",
           text: "Left"
         },
-        {
-          placement: "right",
-          text: "Right"
-        }
       ].map((tooltip, i) => {
         return <TooltipItem key={i} item={tooltip} id={i} />;
       })}

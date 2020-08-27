@@ -106,7 +106,7 @@ export default class PopoversPage extends React.Component {
           </PrismCode>
         </pre>
         <SectionTitle>Popovers Placements</SectionTitle>
-        <div className="docs-example">
+        <div className="d-flex justify-content-around docs-example">
           <PopoverExampleMulti />
         </div>
         <pre>

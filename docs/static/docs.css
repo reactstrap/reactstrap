@@ -8,14 +8,16 @@
 
 @media (max-width: 575px) {
   .navbar-toggleable > .container {
-      width: 100%;
-      padding-right: 15px;
-      padding-left: 15px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
-.jumbotron-header, .jumbotron-header p:last-child, .navbar {
-  margin-bottom: 0
+.jumbotron-header,
+.jumbotron-header p:last-child,
+.navbar {
+  margin-bottom: 0;
 }
 
 .jumbotron-header .btn {
@@ -29,7 +31,7 @@
 @media (max-width: 543px) {
   .jumbotron-header .btn {
     display: block;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem 0 !important;
   }
 }
 
@@ -37,16 +39,27 @@
   margin-top: 2rem;
 }
 
-@media(min-width: 768px) {
-  html,body,#app,#app > .wrapper,#app >.wrapper > .container,  #app >.wrapper > .container > .row{
-    height:100%;
+@media (min-width: 768px) {
+  html,
+  body,
+  #app,
+  #app > .wrapper,
+  #app > .wrapper > .container,
+  #app > .wrapper > .container > .row {
+    height: 100%;
   }
   .docSearch-navigation, .docSearch-content {
     overflow-y: scroll;
-    height:100%;
+    height: 100%;
+  }
+  .jumbotron-header + .container > .row > .docSearch-content {
+    overflow-y: visible;
   }
 }
 
+#app > .wrapper {
+  padding-top: 100px;
+}
 
 .header .navbar-nav .nav-link.active {
   color: #333;
@@ -77,45 +90,54 @@
 
 .navbar-collapse .container-fluid {
   padding: 2rem 2.5rem;
-  border-bottom: 1px solid #55595c
+  border-bottom: 1px solid #55595c;
 }
 .navbar-collapse .text-muted, .navbar-collapse h4 {
-  color: #818a91
+  color: #818a91;
 }
 .about {
   float: left;
   max-width: 30rem;
-  margin-right: 3rem
+  margin-right: 3rem;
 }
 .social a {
   font-weight: 500;
-  color: #eceeef
+  color: #eceeef;
 }
 .social a:hover {
-  color: #fff
+  color: #fff;
 }
 .jumbotron-header {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  background-color: #fff
+  background-color: #fff;
 }
 .jumbotron-heading {
-  font-weight: 300
+  font-weight: 300;
 }
 
 footer {
   padding-top: 3rem;
-  padding-bottom: 3rem
+  padding-bottom: 3rem;
 }
 footer p {
-  margin-bottom: .25rem
+  margin-bottom: .25rem;
 }
 
-h1,h2,h3,h4,h5,h6,strong,b {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
   font-weight: 300;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
   margin-bottom: 1rem;
 }
 
@@ -173,7 +195,7 @@ pre, code {
 }
 
 .docs-sidebar .nav-link:hover {
-  color: #777
+  color: #777;
 }
 
 .docs-sidebar .nav-link.active {
@@ -194,7 +216,7 @@ pre, code {
 }
 
 .docs-example .form-control + .form-control {
-    margin-top: .5rem;
+  margin-top: .5rem;
 }
 
 .docs-example .nav-tabs {

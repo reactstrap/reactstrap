@@ -23,7 +23,7 @@ function baseConfig() {
     plugins: [
       nodeResolve(),
       commonjs({
-        include: 'node_modules/**'
+        include: 'node_modules/**',
       }),
       babel({
         babelrc: false,
@@ -34,16 +34,14 @@ function baseConfig() {
               loose: true,
               shippedProposals: true,
               modules: false,
-              targets: {
-                ie: 9
-              }
-            }
+              targets: { ie: 9 },
+            },
           ],
-          '@babel/react'
+          '@babel/react',
         ],
-        plugins: ['@babel/plugin-proposal-export-default-from', '@babel/plugin-proposal-export-namespace-from']
+        plugins: ['@babel/plugin-proposal-export-default-from', '@babel/plugin-proposal-export-namespace-from'],
       }),
-    ]
+    ],
   };
 }
 
@@ -51,9 +49,11 @@ function baseUmdConfig(minified) {
   const config = Object.assign(baseConfig(), {
     external: peerDependencies,
   });
-  config.plugins.push(replace({
-    'process.env.NODE_ENV': JSON.stringify('production'),
-  }));
+  config.plugins.push(
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    })
+  );
 
   if (minified) {
     config.plugins.push(minify({ comments: false }));
