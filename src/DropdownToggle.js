@@ -14,7 +14,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  'aria-haspopup': PropTypes.bool,
+  'aria-haspopup': PropTypes.oneOfType(PropTypes.bool, PropTypes.oneOf(["menu", "listbox", "tree", "grid", "dialog"])),
   split: PropTypes.bool,
   tag: tagPropType,
   nav: PropTypes.bool,
@@ -33,6 +33,9 @@ class DropdownToggle extends React.Component {
   }
 
   onClick(e) {
+    console.log("Should i toggle here")
+    console.log(e)
+
     if (this.props.disabled || this.context.disabled) {
       e.preventDefault();
       return;
