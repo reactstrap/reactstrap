@@ -75,30 +75,34 @@ const Progress = (props) => {
     striped || animated ? 'progress-bar-striped' : null
   ), cssModule);
 
-  const ProgressBar = multi ? children : (
-    <div
-      {...attributes}
-      className={progressBarClasses}
-      style={{
-        ...style,
-        width: `${percent}%`,
-      }}
-      role="progressbar"
-      aria-valuenow={value}
-      aria-valuemin={min}
-      aria-valuemax={max}
-      aria-valuetext={barAriaValueText}
-      aria-labelledby={barAriaLabelledBy}
-      children={children}
-    />
-  );
+  const progressBarProps = {
+    className: progressBarClasses,
+    style: {
+      ...style,
+      width: `${percent}%`,
+    },
+    role: 'progressbar',
+    'aria-valuenow': value,
+    'aria-valuemin': min,
+    'aria-valuemax': max,
+    'aria-valuetext': barAriaValueText,
+    'aria-labelledby': barAriaLabelledBy,
+    children: children
+  };
 
   if (bar) {
-    return ProgressBar;
+    return (
+      <Tag 
+        {...attributes}
+        {...progressBarProps} 
+      />
+    );
   }
 
   return (
-    <Tag {...attributes} className={progressClasses} children={ProgressBar} />
+    <Tag {...attributes} className={progressClasses}>
+      {multi ? children : <div {...progressBarProps} />}
+    </Tag>
   );
 };
 
