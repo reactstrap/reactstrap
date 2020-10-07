@@ -89,7 +89,7 @@ class DropdownItem extends React.Component {
       } else if (props.href) {
         Tag = 'a';
       } else if (text) {
-        Tag = 'span'
+        Tag = 'span';
       }
     }
 
