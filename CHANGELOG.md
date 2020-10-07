@@ -1,3 +1,18 @@
+# [8.6.0](https://github.com/reactstrap/reactstrap/compare/8.5.1...8.6.0) (2020-09-18)
+
+
+### Bug Fixes
+
+* **Input:** Allow numbers for size prop ([#1948](https://github.com/reactstrap/reactstrap/issues/1948)) ([b4c45af](https://github.com/reactstrap/reactstrap/commit/b4c45afe658ee5008274fbf687b22d35dfe12c51))
+* **Progress:** pass attributes to nested Progress bar ([#1919](https://github.com/reactstrap/reactstrap/issues/1919)) ([f3c2586](https://github.com/reactstrap/reactstrap/commit/f3c2586bbf1cc86459b5c2fd4cb025512aead432)), closes [#1847](https://github.com/reactstrap/reactstrap/issues/1847) [#1847](https://github.com/reactstrap/reactstrap/issues/1847)
+
+
+### Features
+
+* **Button:** onClick of inner button returns value of props.onClick. ([f09cdd6](https://github.com/reactstrap/reactstrap/commit/f09cdd6c2fb496948760e962383b1fa657a2c5e0))
+
+
+
 ## [8.5.1](https://github.com/reactstrap/reactstrap/compare/8.5.0...8.5.1) (2020-06-24)
 
 
