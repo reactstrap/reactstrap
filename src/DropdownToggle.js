@@ -33,9 +33,6 @@ class DropdownToggle extends React.Component {
   }
 
   onClick(e) {
-    console.log("Should i toggle here")
-    console.log(e)
-
     if (this.props.disabled || this.context.disabled) {
       e.preventDefault();
       return;
