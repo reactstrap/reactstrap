@@ -110,7 +110,8 @@ DropdownItem.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  toggle: PropTypes.bool // default: true
+  toggle: PropTypes.bool, // default: true
+  text: PropTypes.bool
 };`}
           </PrismCode>
         </pre>
@@ -170,6 +171,12 @@ DropdownItem.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
 {'<DropdownItem disabled>Action</DropdownItem>'}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Plaintext Menu Items</SectionTitle>
+        <pre>
+          <PrismCode className="language-jsx">
+{'<DropdownItem text>Dropdown item text</DropdownItem>'}
           </PrismCode>
         </pre>
         <SectionTitle>Sizing</SectionTitle>
