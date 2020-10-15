@@ -14,7 +14,8 @@ const propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  toggle: PropTypes.bool
+  toggle: PropTypes.bool,
+  text: PropTypes.bool
 };
 
 const defaultProps = {
@@ -31,7 +32,8 @@ class DropdownItem extends React.Component {
   }
 
   onClick(e) {
-    if (this.props.disabled || this.props.header || this.props.divider) {
+    const { disabled, header, divider, text } = this.props;
+    if (disabled || header || divider || text) {
       e.preventDefault();
       return;
     }
@@ -46,7 +48,8 @@ class DropdownItem extends React.Component {
   }
 
   getTabIndex() {
-    if (this.props.disabled || this.props.header || this.props.divider) {
+    const { disabled, header, divider, text } = this.props;
+    if (disabled || header || divider || text) {
       return '-1';
     }
 
@@ -63,16 +66,18 @@ class DropdownItem extends React.Component {
       tag: Tag,
       header,
       active,
+      text,
       ...props } = omit(this.props, ['toggle']);
 
     const classes = mapToCssModules(classNames(
       className,
       {
         disabled: props.disabled,
-        'dropdown-item': !divider && !header,
+        'dropdown-item': !divider && !header && !text,
         active: active,
         'dropdown-header': header,
-        'dropdown-divider': divider
+        'dropdown-divider': divider,
+        'dropdown-item-text': text
       }
     ), cssModule);
 
@@ -83,6 +88,8 @@ class DropdownItem extends React.Component {
         Tag = 'div';
       } else if (props.href) {
         Tag = 'a';
+      } else if (text) {
+        Tag = 'span';
       }
     }
 

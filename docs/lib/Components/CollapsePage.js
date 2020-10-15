@@ -68,7 +68,8 @@ export default class CollapsePage extends React.Component {
           wanted without the need to manage/control the state of the component.{' '}
           <code>UncontrolledCollapse</code> does not require an <code>isOpen</code> prop. Instead
           pass a <code>toggler</code> prop. The <code>toggler</code> prop is a string which will run
-          querySelectorAll to find dom elements which will trigger toggle.
+          querySelectorAll to find dom elements which will trigger toggle. The <code>defaultOpen</code>
+          prop controls the initial state.
         </p>
         <div className="docs-example">
           <UncontrolledCollapseExample />
