@@ -113,8 +113,12 @@ class Dropdown extends React.Component {
   handleDocumentClick(e) {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
     const container = this.getContainer();
-
-    if (container.contains(e.target) && container !== e.target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    let target = e.target;
+    if (e.composedPath && typeof e.composedPath === 'function') {
+      const path = e.composedPath();
+      target = path && path[0] || target;
+    }
+    if (container.contains(target) && container !== target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
       return;
     }
 
