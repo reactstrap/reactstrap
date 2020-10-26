@@ -30,6 +30,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLElement> {
   unmountOnClose?: boolean;
   returnFocusAfterClose?: boolean;
   container?: string | HTMLElement | React.RefObject<HTMLElement>;
+  innerRef?: React.Ref<HTMLElement>;
 }
 
 declare class Modal extends React.Component<ModalProps> {}
