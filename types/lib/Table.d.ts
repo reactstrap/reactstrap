@@ -15,6 +15,7 @@ export interface TableProps
   responsive?: boolean | string;
   tag?: React.ElementType;
   responsiveTag?: React.ElementType;
+  innerRef?: React.Ref<HTMLTableElement>;
 }
 
 declare class Table extends React.Component<TableProps> {}
