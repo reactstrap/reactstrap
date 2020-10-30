@@ -8,6 +8,7 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
   tag: tagPropType,
   children: PropTypes.node.isRequired,
+  dark: PropTypes.bool,
   right: PropTypes.bool,
   flip: PropTypes.bool,
   modifiers: PropTypes.object,
@@ -31,14 +32,15 @@ const directionPositionMap = {
   down: 'bottom',
 };
 
-class DropdownMenu extends React.Component { 
+class DropdownMenu extends React.Component {
 
   render() {
-    const { className, cssModule, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
+    const { className, cssModule, dark, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
       {
+        'dropdown-menu-dark': dark,
         'dropdown-menu-right': right,
         show: this.context.isOpen,
       }

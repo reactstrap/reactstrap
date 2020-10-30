@@ -192,4 +192,30 @@ describe('DropdownMenu', () => {
     expect(wrapper.childAt(0).hasClass('dropdown-menu')).toBe(true);
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
   });
+
+  it('should not have the class "dropdown-menu-dark" by default', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+        <DropdownMenu>
+          <p>Keep it light</p>
+        </DropdownMenu>
+      </DropdownContext.Provider>
+    );
+
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-dark')).toBe(false);
+  });
+
+  it('should have the class "dropdown-menu-dark" when dark is true', () => {
+    isOpen = true;
+    const wrapper = mount(
+      <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+        <DropdownMenu dark>
+          <p>Let's go dark</p>
+        </DropdownMenu>
+      </DropdownContext.Provider>
+    );
+
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-dark')).toBe(true);
+  });
 });
