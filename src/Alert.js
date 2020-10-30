@@ -59,7 +59,7 @@ function Alert(props) {
     { 'alert-dismissible': toggle }
   ), cssModule);
 
-  const closeClasses = mapToCssModules(classNames('close', closeClassName), cssModule);
+  const closeClasses = mapToCssModules(classNames('btn-close', closeClassName), cssModule);
 
   const alertTransition = {
     ...Fade.defaultProps,
