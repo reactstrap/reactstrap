@@ -9,6 +9,7 @@ import { mapToCssModules, tagPropType, targetPropType, getTarget } from './utils
 const propTypes = {
   tag: tagPropType,
   children: PropTypes.node.isRequired,
+  dark: PropTypes.bool,
   right: PropTypes.bool,
   flip: PropTypes.bool,
   modifiers: PropTypes.object,
@@ -34,7 +35,6 @@ const directionPositionMap = {
 };
 
 class DropdownMenu extends React.Component {
-
   getRole() {
     if(this.context.menuRole === 'listbox') {
       return 'listbox'
@@ -46,6 +46,7 @@ class DropdownMenu extends React.Component {
     const {
       className,
       cssModule,
+      dark,
       right,
       tag,
       flip,
@@ -60,6 +61,7 @@ class DropdownMenu extends React.Component {
       className,
       'dropdown-menu',
       {
+        'dropdown-menu-dark': dark,
         'dropdown-menu-right': right,
         show: this.context.isOpen,
       }
