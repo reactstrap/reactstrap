@@ -251,7 +251,7 @@ const PreferredExample = (props) => {
               </li>
               <li>
                 boolean based props (attributes) when possible for alternative
-                style classes or sr-only content
+                style classes or visually-hidden content
               </li>
             </ul>
           </Col>
