@@ -15,10 +15,10 @@ describe('FormGroup', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render with "form-group" class by default', () => {
+  it('should render with "mb-3" class by default', () => {
     const wrapper = shallow(<FormGroup>Yo!</FormGroup>);
 
-    expect(wrapper.hasClass('form-group')).toBe(true);
+    expect(wrapper.hasClass('mb-3')).toBe(true);
   });
 
   it('should not render with "form-check" nor "form-check-inline"  class by default', () => {
@@ -53,10 +53,10 @@ describe('FormGroup', () => {
     expect(wrapper.hasClass('form-check-inline')).toBe(false);
   });
 
-  it('should not render with "form-group" class when check prop is truthy', () => {
+  it('should not render with "mb-3" class when check prop is truthy', () => {
     const wrapper = shallow(<FormGroup check>Yo!</FormGroup>);
 
-    expect(wrapper.hasClass('form-group')).toBe(false);
+    expect(wrapper.hasClass('mb-3')).toBe(false);
   });
 
   it('should not render with "disabled" class when disabled prop is truthy but check is not', () => {
