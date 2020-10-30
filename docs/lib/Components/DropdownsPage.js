@@ -9,7 +9,8 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownItem,
-  DropdownMenu } from 'reactstrap';
+  DropdownMenu,
+  UncontrolledDropdown } from 'reactstrap';
 import SectionTitle from '../UI/SectionTitle';
 import DropdownExample from '../examples/Dropdown';
 import DropdownSizingExample from '../examples/DropdownSizing';
@@ -92,6 +93,7 @@ DropdownToggle.propTypes = {
 DropdownMenu.propTypes = {
   tag: PropTypes.string,
   children: PropTypes.node.isRequired,
+  dark: PropTypes.bool,
   right: PropTypes.bool,
   flip: PropTypes.bool, // default: true,
   className: PropTypes.string,
@@ -152,6 +154,36 @@ DropdownItem.propTypes = {
     <DropdownItem>Another Action</DropdownItem>
     <DropdownItem divider/>
     <DropdownItem>Another Really Really Long Action (Really!)</DropdownItem>
+  </DropdownMenu>
+</Dropdown>`}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Dark dropdowns</SectionTitle>
+        <p>To opt into darker <code>DropdownMenu</code> to match a dark <code>Navbar</code>, add a <code>dark</code> prop to <code>DropdownMenu</code>.</p>
+        <div className="docs-example">
+          <div>
+            <UncontrolledDropdown>
+              <DropdownToggle caret>
+                Dropdown's menu is dark
+              </DropdownToggle>
+              <DropdownMenu dark>
+                <DropdownItem header>Header</DropdownItem>
+                <DropdownItem active>Active Action</DropdownItem>
+                <DropdownItem>Another Action</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </div>
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+{`<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+  <DropdownToggle caret>
+    Dropdown's menu is dark
+  </DropdownToggle>
+  <DropdownMenu dark>
+    <DropdownItem header>Header</DropdownItem>
+    <DropdownItem active>Active Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
   </DropdownMenu>
 </Dropdown>`}
           </PrismCode>
