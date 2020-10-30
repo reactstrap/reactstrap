@@ -117,7 +117,7 @@ FormGroup.propTypes = {
   children: PropTypes.node,
   // Applied the row class when true, does nothing when false
   row: PropTypes.bool,
-  // Applied the form-check class when true, form-group when false
+  // Applied the form-check class when true, mb-3 when false
   check: PropTypes.bool,
   inline: PropTypes.bool,
   // Applied the disabled class when the check and disabled props are true, does nothing when false
