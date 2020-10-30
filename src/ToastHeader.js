@@ -49,7 +49,7 @@ const ToastHeader = (props) => {
   if (!close && toggle) {
     const closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
     closeButton = (
-      <button type="button" onClick={toggle} className={mapToCssModules('close', cssModule)} aria-label={closeAriaLabel}>
+      <button type="button" onClick={toggle} className={mapToCssModules('btn-close', cssModule)} aria-label={closeAriaLabel}>
         <span aria-hidden="true">{closeIcon}</span>
       </button>
     );
