@@ -94,7 +94,7 @@ const Label = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    hidden ? 'sr-only' : false,
+    hidden ? 'visually-hidden' : false,
     check ? 'form-check-label' : false,
     size ? `col-form-label-${size}` : false,
     colClasses,
