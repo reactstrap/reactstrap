@@ -67,7 +67,7 @@ class Button extends React.Component {
 
     const classes = mapToCssModules(classNames(
       className,
-      { close },
+      close && 'btn-close',
       close || 'btn',
       close || btnOutlineColor,
       size ? `btn-${size}` : false,

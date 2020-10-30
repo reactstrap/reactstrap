@@ -22,7 +22,7 @@ describe('ModalHeader', () => {
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('modal-header')).toBe(true);
-    expect(wrapper.find('button.close').length).toBe(1);
+    expect(wrapper.find('button.btn-close').length).toBe(1);
   });
 
   it('should render custom tag', () => {
@@ -41,14 +41,14 @@ describe('ModalHeader', () => {
   it('should render close button with custom aria-label', () => {
     const wrapper = shallow(<ModalHeader toggle={() => {}} className="other" closeAriaLabel="oseclay">Yo!</ModalHeader>);
 
-    const closeButton = wrapper.find('button.close').first();
+    const closeButton = wrapper.find('button.btn-close').first();
     expect(closeButton.prop('aria-label')).toBe('oseclay');
   });
 
   it('should render close button with default icon', () => {
     const wrapper = shallow(<ModalHeader toggle={() => {}}>Yo!</ModalHeader>);
 
-    const closeButtonIcon = wrapper.find('button.close span');
+    const closeButtonIcon = wrapper.find('button.btn-close span');
     const defaultIcon = String.fromCharCode(215);
     expect(closeButtonIcon.text()).toEqual(defaultIcon);
   });
@@ -56,7 +56,7 @@ describe('ModalHeader', () => {
   it('should render close button with custom icon', () => {
     const wrapper = shallow(<ModalHeader toggle={() => {}} charCode={'X'}>Yo!</ModalHeader>);
 
-    const closeButtonIcon = wrapper.find('button.close span');
+    const closeButtonIcon = wrapper.find('button.btn-close span');
     expect(closeButtonIcon.text()).toEqual('X');
   });
 });
