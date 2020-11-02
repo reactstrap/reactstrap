@@ -36,7 +36,7 @@ export interface InputProps
   valid?: boolean;
   invalid?: boolean;
   tag?: React.ElementType;
-  innerRef?: React.Ref<HTMLInputElement>;
+  innerRef?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
   plaintext?: boolean;
   addon?: boolean;
   cssModule?: CSSModule;
