@@ -33,7 +33,7 @@ const FormGroup = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     row ? 'row' : false,
-    check ? 'form-check' : 'form-group',
+    check ? 'form-check' : 'mb-3',
     check && inline ? 'form-check-inline' : false,
     check && disabled ? 'disabled' : false
   ), cssModule);
