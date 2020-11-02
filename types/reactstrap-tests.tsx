@@ -746,7 +746,7 @@ const Example26 = (props: any) => {
 const Example27 = (props: any) => {
   return (
     <Row noGutters>
-      <Col sm="6">
+      <Col sm="6" cssModule={{ col: 'test' }}>
         <Card body>
           <CardTitle>Special Title Treatment</CardTitle>
           <CardText>
@@ -2151,9 +2151,7 @@ class Example61 extends React.Component {
           <Col sm="4">.col .col-sm-4</Col>
         </Row>
         <Row>
-          <Col sm={{ size: 6, offset: 1 }}>
-            .col .col-sm-6 .col-sm-offset-2
-          </Col>
+          <Col sm={{ size: 6, offset: 1 }}>.col .col-sm-6 .col-sm-offset-2</Col>
         </Row>
         <Row>
           <Col sm="12" md={{ size: 8, offset: 2 }}>
@@ -4400,7 +4398,7 @@ class Example107 extends React.Component {
     return (
       <Input
         type="file"
-        innerRef={(input) => {
+        innerRef={(input: HTMLInputElement) => {
           this.input = input;
         }}
       />
@@ -5746,6 +5744,8 @@ const MegaTest = () => {
       <FormGroup ref={React.createRef<FormGroup>()} {...htmlProps} />
       <FormText ref={React.createRef<FormText>()} {...htmlProps} />
       <Input ref={React.createRef<Input>()} {...htmlProps} />
+      <Input innerRef={React.createRef<HTMLTextAreaElement>()} />
+      <Input innerRef={React.createRef<HTMLInputElement>()} />
       <InputGroup ref={React.createRef<InputGroup>()} {...htmlProps} />
       <InputGroupAddon
         ref={React.createRef<InputGroupAddon>()}
