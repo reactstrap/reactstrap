@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from '../index';
+import { CSSModule } from './index';
 import { FadeProps } from './Fade';
 
 export interface ToastProps extends React.HTMLAttributes<HTMLElement> {
