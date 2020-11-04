@@ -1,3 +1,13 @@
+## [8.7.1](https://github.com/reactstrap/reactstrap/compare/8.7.0...8.7.1) (2020-11-03)
+
+
+### Bug Fixes
+
+* **types:** Fix Col and Input types ([#2008](https://github.com/reactstrap/reactstrap/issues/2008)) ([363dfbe](https://github.com/reactstrap/reactstrap/commit/363dfbe6a46ef04c61f0b249bd5c0a80ec1c1e3e))
+* **types:** Fix reference to CSSModule ([#2007](https://github.com/reactstrap/reactstrap/issues/2007)) ([54afca4](https://github.com/reactstrap/reactstrap/commit/54afca47879fbb8a2713b57ff452fa566e5255d1))
+
+
+
 # [8.7.0](https://github.com/reactstrap/reactstrap/compare/8.6.0...8.7.0) (2020-10-31)
 
 
