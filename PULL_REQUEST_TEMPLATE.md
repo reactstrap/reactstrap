@@ -16,7 +16,6 @@ What types of changes does your code introduce? Put an `x` in all the boxes that
   - [ ] I have updated the typings accordingly.
 - [ ] I have added tests to cover my changes.
 - [ ] All new and existing tests passed.
-- [ ] I did not introduce any linting errors (`npm run lint` or `yarn lint`).
 
 <!-- Put any other information you believe would be useful to know when reviewing this PR below -->
 
