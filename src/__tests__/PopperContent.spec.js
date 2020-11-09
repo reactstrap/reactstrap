@@ -44,7 +44,7 @@ describe('PopperContent', () => {
 
   it('should render children when isOpen is true and container is inline and DOM node passed directly for target', () => {
     const targetElement = element.querySelector('#target');
-    
+
     const wrapper = mount(<PopperContent target={targetElement} isOpen container="inline">Yo!</PopperContent>);
     expect(targetElement).toBeDefined();
     expect(wrapper.text()).toBe('Yo!');
@@ -148,7 +148,7 @@ describe('PopperContent', () => {
 
   it('should allow a function to be used as children', () => {
     const renderChildren = jest.fn();
-    const wrapper = mount(
+    mount(
       <PopperContent target="target" isOpen>
         {renderChildren}
       </PopperContent>
