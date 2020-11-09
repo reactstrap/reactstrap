@@ -729,7 +729,7 @@ describe('Tooltip', () => {
 
     it('should allow a function to be used as children', () => {
       const renderChildren = jest.fn();
-      const wrapper = mount(
+      mount(
         <TooltipPopoverWrapper target="target" isOpen toggle={toggle}>
           {renderChildren}
         </TooltipPopoverWrapper>
@@ -745,16 +745,16 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container }
       );
-  
+
       const Tooltips = document.getElementsByClassName('tooltip');
       expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
       expect(Tooltips.length).toBe(1);
       expect(Tooltips[0].textContent).toBe('Tooltip Content');
-  
+
       expect(wrapper.find('.tooltip.show').hostNodes().length).toBe(1);
       expect(Tooltips.length).toBe(1);
       expect(Tooltips[0].textContent).toBe('Tooltip Content');
-  
+
       wrapper.detach();
     });
   });
