@@ -56,8 +56,14 @@ class Dropdown extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleMenuRef = this.handleMenuRef.bind(this);
 
     this.containerRef = React.createRef();
+    this.menuRef = React.createRef();
+  }
+
+  handleMenuRef(menuRef) {
+    this.menuRef.current = menuRef;
   }
 
   getContextValue() {
@@ -66,7 +72,10 @@ class Dropdown extends React.Component {
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
-      disabled: this.props.disabled
+      disabled: this.props.disabled,
+      // Callback that should be called by DropdownMenu to provide a ref to
+      // a HTML tag that's used for the DropdownMenu
+      onMenuRef: this.handleMenuRef,
     };
   }
 
@@ -113,8 +122,10 @@ class Dropdown extends React.Component {
   handleDocumentClick(e) {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
     const container = this.getContainer();
-
-    if (container.contains(e.target) && container !== e.target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    const menu = this.menuRef.current;
+    const clickIsInContainer = container.contains(e.target) && container !== e.target;
+    const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
+    if ((clickIsInContainer || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
       return;
     }
 
@@ -143,7 +154,7 @@ class Dropdown extends React.Component {
         this.toggle(e);
         setTimeout(() => this.getMenuItems()[0].focus());
       } else if (this.props.isOpen && e.which === keyCodes.esc) {
-        this.toggle(e); 
+        this.toggle(e);
       }
     }
 
