@@ -11,9 +11,12 @@ What types of changes does your code introduce? Put an `x` in all the boxes that
 - [ ] My commits follow the [Git Commit Guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
 - [ ] My code follows the code style of this project.
 - [ ] My change requires a change to the documentation.
-- - [ ] I have updated the documentation accordingly.
+  - [ ] I have updated the documentation accordingly.
+- [ ] My change requires a change to [Typescript typings](./types/lib).
+  - [ ] I have updated the typings accordingly.
 - [ ] I have added tests to cover my changes.
 - [ ] All new and existing tests passed.
+- [ ] I did not introduce any linting errors (`npm run lint` or `yarn lint`).
 
 <!-- Put any other information you believe would be useful to know when reviewing this PR below -->
 
