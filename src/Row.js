@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType, deprecated } from './utils';
 
-const rowColWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
+const rowColWidths = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 const rowColsPropType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const propTypes = {
@@ -16,7 +16,8 @@ const propTypes = {
   sm: rowColsPropType,
   md: rowColsPropType,
   lg: rowColsPropType,
-  xl: rowColsPropType
+  xl: rowColsPropType,
+  xxl: rowColsPropType
 };
 
 const defaultProps = {
