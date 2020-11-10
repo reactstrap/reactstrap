@@ -2150,6 +2150,9 @@ const ExampleResponsiveContainer = (props: any) => {
       <Container className="themed-container" fluid="xl">
         .container-xl
       </Container>
+      <Container className="themed-container" fluid="xxl">
+        .container-xxl
+      </Container>
       <Container className="themed-container" fluid={true}>
         .container-fluid
       </Container>
