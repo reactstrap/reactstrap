@@ -86,8 +86,6 @@ export { default as Input } from './Input';
 export { InputProps } from './Input';
 export { default as InputGroup } from './InputGroup';
 export { InputGroupProps } from './InputGroup';
-export { default as InputGroupAddon } from './InputGroupAddon';
-export { InputGroupAddonProps } from './InputGroupAddon';
 export { default as InputGroupButtonDropdown } from './InputGroupButtonDropdown';
 export { InputGroupButtonDropdownProps } from './InputGroupButtonDropdown';
 export { default as InputGroupText } from './InputGroupText';
