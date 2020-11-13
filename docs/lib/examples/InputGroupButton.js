@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import {
   InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
+  Dropdown,
   Input,
   Button,
   DropdownToggle,
@@ -21,13 +20,13 @@ const Example = (props) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend"><Button>I'm a button</Button></InputGroupAddon>
+        <Button>I'm a button</Button>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
-        <InputGroupButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={toggleDropDown}>
+        <Dropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
           <DropdownToggle caret>
             Button Dropdown
           </DropdownToggle>
@@ -38,11 +37,11 @@ const Example = (props) => {
             <DropdownItem divider />
             <DropdownItem>Another Action</DropdownItem>
           </DropdownMenu>
-        </InputGroupButtonDropdown>
+        </Dropdown>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupButtonDropdown addonType="prepend" isOpen={splitButtonOpen} toggle={toggleSplit}>
+        <Dropdown isOpen={splitButtonOpen} toggle={toggleSplit}>
           <Button outline>Split Button</Button>
           <DropdownToggle split outline />
           <DropdownMenu>
@@ -52,9 +51,9 @@ const Example = (props) => {
             <DropdownItem divider />
             <DropdownItem>Another Action</DropdownItem>
           </DropdownMenu>
-        </InputGroupButtonDropdown>
+        </Dropdown>
         <Input placeholder="and..." />
-        <InputGroupAddon addonType="append"><Button color="secondary">I'm a button</Button></InputGroupAddon>
+        <Button color="secondary">I'm a button</Button>
       </InputGroup>
     </div>
   );
