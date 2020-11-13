@@ -63,18 +63,21 @@ class DropdownMenu extends React.Component {
           modifiers={poperModifiers}
           positionFixed={popperPositionFixed}
         >
-          {({ ref, style, placement }) => (
-            <Tag
-              tabIndex="-1"
-              role="menu"
-              ref={ref}
-              style={style}
-              {...attrs}
-              aria-hidden={!this.context.isOpen}
-              className={classes}
-              x-placement={placement}
-            />
-          )}
+          {({ ref, style, placement }) => {
+            let combinedStyle = { ...this.props.style, ...style };
+            return (
+              <Tag
+                tabIndex="-1"
+                role="menu"
+                ref={ref}
+                {...attrs}
+                style={combinedStyle}
+                aria-hidden={!this.context.isOpen}
+                className={classes}
+                x-placement={placement}
+              />
+            );
+          }}
         </Popper>
       );
     }
