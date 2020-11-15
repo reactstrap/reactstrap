@@ -415,7 +415,7 @@ DropdownItem.propTypes = {
 
         <SectionTitle>container</SectionTitle>
         <p>
-          Use the <code>container</code> prop to allow the dropdown menu to be placed inside an alternate container through a React Portal. This can be used to allow the dropdown menu to escape a container with the style `overflow: hidden`.
+          Use the <code>container</code> prop to allow the dropdown menu to be placed inside an alternate container through a React Portal. This can be used to allow the dropdown menu to escape a container with the style <code>overflow: hidden</code>.
         </p>
         <div className="docs-example">
           <DropdownContainerExample />
