@@ -108,7 +108,11 @@ class Dropdown extends React.Component {
   }
 
   getMenuItems() {
-    return [].slice.call(this.getMenu().querySelectorAll('[role="menuitem"]'));
+    // In a real menu with a child DropdownMenu, `this.getMenu()` should never
+    // be null, but it is sometimes null in tests. To mitigate that, we just
+    // use `this.getContainer()` as the fallback `menuContainer`.
+    const menuContainer = this.getMenu() || this.getContainer();
+    return [].slice.call(menuContainer.querySelectorAll('[role="menuitem"]'));
   }
 
   addEvents() {
