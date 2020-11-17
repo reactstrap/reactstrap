@@ -192,4 +192,32 @@ describe('DropdownMenu', () => {
     expect(wrapper.childAt(0).hasClass('dropdown-menu')).toBe(true);
     expect(wrapper.getDOMNode().tagName.toLowerCase()).toBe('main');
   });
+
+  describe('using container', () => {
+    let element;
+
+    beforeEach(() => {
+      element = document.createElement('div');
+      document.body.appendChild(element);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(element);
+      element = null;
+    });
+
+    it('should render inside container', () => {
+      isOpen = true;
+      element.innerHTML = '<div id="anotherContainer"></div>';
+      const wrapper = mount(
+        <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
+          <DropdownMenu container="#anotherContainer">My body</DropdownMenu>
+        </DropdownContext.Provider>
+      );
+
+      expect(document.getElementById('anotherContainer').innerHTML).toContain('My body');
+      expect(wrapper.text()).toBe('My body');
+    });
+  })
+
 });
