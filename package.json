@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "8.6.0",
+  "version": "8.7.1",
   "description": "React Bootstrap 4 components",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -265,8 +265,8 @@
     "react-transition-group": "^2.3.1"
   },
   "peerDependencies": {
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": ">=16.3.0",
+    "react-dom": ">=16.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

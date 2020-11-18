@@ -29,6 +29,7 @@ If you wish to submit a pull request for a new feature or issue, you should star
 - All changes from every developer must go through code review before they will be merged.
 - All changes must pass the CI build. Travis CI will automatically update your PR with the build status.
 - All changes must have unit tests.
+- All changes must have Typescript types in the [`types`](./types) directory.
 - All components must have a demo implementation in the `docs/lib/examples` directory.
 
 ## Resources

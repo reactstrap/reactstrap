@@ -1,7 +1,3 @@
-export interface CSSModule {
-  [className: string]: string;
-}
-
 export { default as Alert } from './lib/Alert';
 export { AlertProps } from './lib/Alert';
 export { default as Badge } from './lib/Badge';
