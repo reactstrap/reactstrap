@@ -195,6 +195,12 @@ https://reactstrap.github.io
 
 Documentation search is powered by [Algolia's DocSearch](https://community.algolia.com/docsearch/).
 
+## [CodeSandbox Examples](https://github.com/reactstrap/code-sandbox-examples)
+
+Here are some ready-to-go examples for [CodeSandbox](https://codesandbox.io/) that you can experiment with.
+
+https://github.com/reactstrap/code-sandbox-examples
+
 ## [Contributing](CONTRIBUTING.md)
 
 ## Development
