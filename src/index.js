@@ -83,6 +83,7 @@ export ListGroupItem from './ListGroupItem';
 export ListGroupItemHeading from './ListGroupItemHeading';
 export ListGroupItemText from './ListGroupItemText';
 export ListInline from './ListInline';
+export ListInlineItem from './ListInlineItem';
 export UncontrolledAlert from './UncontrolledAlert';
 export UncontrolledButtonDropdown from './UncontrolledButtonDropdown';
 export UncontrolledCollapse from './UncontrolledCollapse';

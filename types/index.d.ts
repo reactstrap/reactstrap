@@ -102,6 +102,8 @@ export { default as ListGroupItemText } from './lib/ListGroupItemText';
 export { ListGroupItemTextProps } from './lib/ListGroupItemText';
 export { default as ListInline } from './lib/ListInline';
 export { ListInlineProps } from './lib/ListInline';
+export { default as ListInlineItem } from './lib/ListInlineItem';
+export { ListInlineItemProps } from './lib/ListInlineItem';
 export { default as Media } from './lib/Media';
 export { MediaProps } from './lib/Media';
 export { default as Modal } from './lib/Modal';
