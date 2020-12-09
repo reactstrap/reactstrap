@@ -67,6 +67,10 @@ const items = [
     to: '/components/listgroup/'
   },
   {
+    name: 'List Inline',
+    to: '/components/listinline/'
+  },
+  {
     name: 'Media',
     to: '/components/media/'
   },

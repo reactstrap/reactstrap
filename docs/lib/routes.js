@@ -29,6 +29,7 @@ import ToastsPage from './Components/ToastsPage';
 import CollapsePage from './Components/CollapsePage';
 import CarouselPage from './Components/CarouselPage';
 import ListGroupPage from './Components/ListGroupPage';
+import ListInlinePage from './Components/ListInlinePage';
 import SpinnersPage from './Components/SpinnersPage';
 import ClearfixPage from './Utilities/ClearfixPage';
 import ColorsPage from './Utilities/ColorsPage';
@@ -69,6 +70,7 @@ const routes = (
         <Route path="collapse/" component={CollapsePage} />
         <Route path="carousel/" component={CarouselPage} />
         <Route path="listgroup/" component={ListGroupPage} />
+        <Route path="listinline/" component={ListInlinePage} />
         <Route path="spinners/" component={SpinnersPage} />
       </Route>
       <Route path="premium-themes/" component={PremiumThemes} />
