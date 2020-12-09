@@ -100,6 +100,8 @@ export { default as ListGroupItemHeading } from './lib/ListGroupItemHeading';
 export { ListGroupItemHeadingProps } from './lib/ListGroupItemHeading';
 export { default as ListGroupItemText } from './lib/ListGroupItemText';
 export { ListGroupItemTextProps } from './lib/ListGroupItemText';
+export { default as ListInline } from './lib/ListInline';
+export { ListInlineProps } from './lib/ListInline';
 export { default as Media } from './lib/Media';
 export { MediaProps } from './lib/Media';
 export { default as Modal } from './lib/Modal';
