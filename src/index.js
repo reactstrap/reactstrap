@@ -82,7 +82,7 @@ export Collapse from './Collapse';
 export ListGroupItem from './ListGroupItem';
 export ListGroupItemHeading from './ListGroupItemHeading';
 export ListGroupItemText from './ListGroupItemText';
-export ListInline from './ListInline';
+export List from './List';
 export ListInlineItem from './ListInlineItem';
 export UncontrolledAlert from './UncontrolledAlert';
 export UncontrolledButtonDropdown from './UncontrolledButtonDropdown';

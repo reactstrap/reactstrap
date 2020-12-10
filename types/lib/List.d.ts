@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { CSSModule } from './index';
 
-export interface ListInlineProps extends React.HTMLAttributes<HTMLElement> {
+export interface ListProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: any;
   tag?: React.ElementType;
   cssModule?: CSSModule;
+  type?: string;
+  innerRef?: React.Ref<HTMLElement>;
 }
 
-declare class ListInline extends React.Component<ListInlineProps> {}
-export default ListInline;
+declare class List extends React.Component<ListProps> {}
+export default List;

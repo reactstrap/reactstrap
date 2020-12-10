@@ -6,31 +6,35 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
     tag: tagPropType,
     className: PropTypes.string,
-    cssModule: PropTypes.object
+    cssModule: PropTypes.object,
+    type: PropTypes.string,
+    innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func])
 };
 
 const defaultProps ={
     tag: 'ul'
 };
 
-const ListInline = (props) => {
+const List = (props) => {
     const {
         className,
         cssModule,
         tag: Tag,
+        type,
+        innerRef,
         ...attributes
     } = props;
     const classes = mapToCssModules(classNames(
         className,
-        'list-inline'
+        type ? `list-${type}` : false
     ), cssModule);
 
     return (
-        <Tag {...attributes} className={classes} />
+        <Tag {...attributes} className={classes} ref={innerRef} />
     );
 };
 
-ListInline.propTypes = propTypes;
-ListInline.defaultProps = defaultProps;
+List.propTypes = propTypes;
+List.defaultProps = defaultProps;
 
-export default ListInline;
+export default List;
