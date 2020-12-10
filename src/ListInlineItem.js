@@ -6,7 +6,8 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
     tag: tagPropType,
     className: PropTypes.string,
-    cssModule: PropTypes.object
+    cssModule: PropTypes.object,
+    innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func])
 };
 
 const defaultProps ={
@@ -18,6 +19,7 @@ const ListInlineItem = (props) => {
         className,
         cssModule,
         tag: Tag,
+        innerRef,
         ...attributes
     } = props;
     const classes = mapToCssModules(classNames(
@@ -26,7 +28,7 @@ const ListInlineItem = (props) => {
     ), cssModule);
 
     return (
-        <Tag {...attributes} className={classes} />
+        <Tag {...attributes} className={classes} ref={innerRef} />
     );
 };
 
