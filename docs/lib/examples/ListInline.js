@@ -1,13 +1,13 @@
 import React from 'react';
-import { ListInline, ListInlineItem } from 'reactstrap';
+import { List, ListInlineItem } from 'reactstrap';
 
 const Example = (props) => {
   return (
-    <ListInline>
+    <List type="inline">
       <ListInlineItem>Lorem ipsum</ListInlineItem>
       <ListInlineItem>Phasellus iaculis</ListInlineItem>
       <ListInlineItem>Nulla volutpat</ListInlineItem>
-    </ListInline>
+    </List>
   );
 }
 

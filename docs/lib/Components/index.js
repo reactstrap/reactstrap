@@ -63,12 +63,12 @@ const items = [
     to: '/components/layout/'
   },
   {
-    name: 'List Group',
-    to: '/components/listgroup/'
+    name: 'List',
+    to: '/components/list/'
   },
   {
-    name: 'List Inline',
-    to: '/components/listinline/'
+    name: 'List Group',
+    to: '/components/listgroup/'
   },
   {
     name: 'Media',
