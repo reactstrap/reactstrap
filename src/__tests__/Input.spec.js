@@ -117,6 +117,12 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-control-lg')).toBe(true);
   });
 
+  it('should render with "form-select-${bsSize}" class when bsSize is "lg" or "sm" and type is select', () => {
+    const wrapper = shallow(<Input type="select" bsSize="lg" />);
+
+    expect(wrapper.hasClass('form-select-lg')).toBe(true);
+  });
+
   it('should render with "form-control" class when size is nor "lg" nor "sm"', () => {
     const wrapper = shallow(<Input bsSize="5" />);
 
@@ -125,10 +131,24 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-control')).toBe(true);
   });
 
+  it('should render with "form-select" class when size is nor "lg" nor "sm" and type is select', () => {
+    const wrapper = shallow(<Input type="select" bsSize="5" />);
+
+    expect(wrapper.hasClass('form-select-sm')).toBe(false);
+    expect(wrapper.hasClass('form-select-lg')).toBe(false);
+    expect(wrapper.hasClass('form-select')).toBe(true);
+  });
+
   it('should render with "form-control-${bsSize}" class when bsSize is provided', () => {
     const wrapper = shallow(<Input bsSize="sm" />);
 
     expect(wrapper.hasClass('form-control-sm')).toBe(true);
+  });
+
+  it('should render with "form-select-${bsSize}" class when bsSize is provided and type is select', () => {
+    const wrapper = shallow(<Input type="select" bsSize="sm" />);
+
+    expect(wrapper.hasClass('form-select-sm')).toBe(true);
   });
 
   it('should render with "form-control" class by default', () => {
@@ -147,6 +167,14 @@ describe('Input', () => {
 
   it('should not render with "form-control" nor "form-control-plaintext" nor "form-check-input" class when type is file', () => {
     const wrapper = shallow(<Input type="file" />);
+
+    expect(wrapper.hasClass('form-control')).toBe(false);
+    expect(wrapper.hasClass('form-control-plaintext')).toBe(false);
+    expect(wrapper.hasClass('form-check-input')).toBe(false);
+  });
+
+  it('should not render with "form-control" nor "form-control-plaintext" nor "form-check-input" class when type is select', () => {
+    const wrapper = shallow(<Input type="select" />);
 
     expect(wrapper.hasClass('form-control')).toBe(false);
     expect(wrapper.hasClass('form-control-plaintext')).toBe(false);
@@ -200,6 +228,12 @@ describe('Input', () => {
 
     expect(wrapper.hasClass('form-check-input')).toBe(false);
     expect(wrapper.hasClass('form-control')).toBe(false);
+  });
+
+  it('should render with "form-select" class when type is select', () => {
+    const wrapper = shallow(<Input type="select" />);
+
+    expect(wrapper.hasClass('form-select')).toBe(true);
   });
 
   it('should render with "form-control-file" class when type is file', () => {
