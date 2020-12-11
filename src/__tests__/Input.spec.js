@@ -157,18 +157,16 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-control')).toBe(true);
   });
 
-  it('should not render with "form-control-file" nor "form-control-plaintext" nor "form-check-input" class by default', () => {
+  it('should not render with "form-control-plaintext" nor "form-check-input" class by default', () => {
     const wrapper = shallow(<Input />);
 
-    expect(wrapper.hasClass('form-control-file')).toBe(false);
     expect(wrapper.hasClass('form-control-plaintext')).toBe(false);
     expect(wrapper.hasClass('form-check-input')).toBe(false);
   });
 
-  it('should not render with "form-control" nor "form-control-plaintext" nor "form-check-input" class when type is file', () => {
+  it('should not render with "form-control-plaintext" nor "form-check-input" class when type is file', () => {
     const wrapper = shallow(<Input type="file" />);
 
-    expect(wrapper.hasClass('form-control')).toBe(false);
     expect(wrapper.hasClass('form-control-plaintext')).toBe(false);
     expect(wrapper.hasClass('form-check-input')).toBe(false);
   });
@@ -181,25 +179,22 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-check-input')).toBe(false);
   });
 
-  it('should not render with "form-control-file" nor "form-control" nor "form-check-input" class when plaintext prop is truthy', () => {
+  it('should not render with "form-control" nor "form-check-input" class when plaintext prop is truthy', () => {
     const wrapper = shallow(<Input type="file" plaintext />);
 
-    expect(wrapper.hasClass('form-control-file')).toBe(false);
     expect(wrapper.hasClass('form-control')).toBe(false);
     expect(wrapper.hasClass('form-check-input')).toBe(false);
   });
-  it('should not render with "form-control-file" nor "form-control-plaintext" nor "form-control" class when type is radio', () => {
+  it('should not render nor "form-control-plaintext" nor "form-control" class when type is radio', () => {
     const wrapper = shallow(<Input type="radio" />);
 
-    expect(wrapper.hasClass('form-control-file')).toBe(false);
     expect(wrapper.hasClass('form-control-plaintext')).toBe(false);
     expect(wrapper.hasClass('form-control')).toBe(false);
   });
 
-  it('should not render with "form-control-file" nor "form-control-plaintext" nor "form-control" class when type is checkbox', () => {
+  it('should not render nor "form-control-plaintext" nor "form-control" class when type is checkbox', () => {
     const wrapper = shallow(<Input type="checkbox" />);
 
-    expect(wrapper.hasClass('form-control-file')).toBe(false);
     expect(wrapper.hasClass('form-control-plaintext')).toBe(false);
     expect(wrapper.hasClass('form-control')).toBe(false);
   });
@@ -236,10 +231,10 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-select')).toBe(true);
   });
 
-  it('should render with "form-control-file" class when type is file', () => {
+  it('should render with "form-control" class when type is file', () => {
     const wrapper = shallow(<Input type="file" />);
 
-    expect(wrapper.hasClass('form-control-file')).toBe(true);
+    expect(wrapper.hasClass('form-control')).toBe(true);
   });
 
   it('should render additional classes', () => {
