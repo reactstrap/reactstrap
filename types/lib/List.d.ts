@@ -6,7 +6,6 @@ export interface ListProps extends React.HTMLAttributes<HTMLElement> {
   tag?: React.ElementType;
   cssModule?: CSSModule;
   type?: string;
-  innerRef?: React.Ref<HTMLElement>;
 }
 
 declare class List extends React.Component<ListProps> {}
