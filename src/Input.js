@@ -81,6 +81,8 @@ class Input extends React.Component {
       formControlClass = `${formControlClass}-file`;
     } else if (rangeInput) {
       formControlClass = `${formControlClass}-range`;
+    } else if (selectInput) {
+      formControlClass = "form-select";
     } else if (checkInput) {
       if (addon) {
         formControlClass = null;
@@ -102,7 +104,11 @@ class Input extends React.Component {
         className,
         invalid && 'is-invalid',
         valid && 'is-valid',
-        bsSize ? `form-control-${bsSize}` : false,
+        bsSize
+          ? selectInput
+            ? `form-select-${bsSize}`
+            : `form-control-${bsSize}`
+          : false,
         formControlClass
       ),
       cssModule
