@@ -39,8 +39,7 @@ export default class ListPage extends React.Component {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  type: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func])
+  type: PropTypes.string
 };`
             }
           </PrismCode>
@@ -52,8 +51,7 @@ export default class ListPage extends React.Component {
 `ListInlineItem.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
-  cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func])
+  cssModule: PropTypes.object
 };`
             }
           </PrismCode>
