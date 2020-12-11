@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { InputGroup } from '../';
+import Dropdown from '../Dropdown';
 
 describe('InputGroup', () => {
   it('should render with "div" tag', () => {
@@ -38,5 +39,11 @@ describe('InputGroup', () => {
     const wrapper = shallow(<InputGroup tag="main">Yo!</InputGroup>);
 
     expect(wrapper.type()).toBe('main');
+  });
+
+  it('should render Dropdown when type is dropdown', () => {
+    const wrapper = shallow(<InputGroup type="dropdown" />);
+
+    expect(wrapper.type()).toBe(Dropdown);
   });
 });

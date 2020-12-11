@@ -24,34 +24,30 @@ const Example = (props) => {
         <Input />
       </InputGroup>
       <br />
-      <InputGroup>
+      <InputGroup type="dropdown" isOpen={dropdownOpen} toggle={toggleDropDown}>
         <Input />
-        <Dropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
-          <DropdownToggle caret>
-            Button Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+        <DropdownToggle caret>
+          Button Dropdown
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem header>Header</DropdownItem>
+          <DropdownItem disabled>Action</DropdownItem>
+          <DropdownItem>Another Action</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem>Another Action</DropdownItem>
+        </DropdownMenu>
       </InputGroup>
       <br />
-      <InputGroup>
-        <Dropdown isOpen={splitButtonOpen} toggle={toggleSplit}>
-          <Button outline>Split Button</Button>
-          <DropdownToggle split outline />
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+      <InputGroup type="dropdown" isOpen={splitButtonOpen} toggle={toggleSplit}>
+        <Button outline>Split Button</Button>
+        <DropdownToggle split outline />
+        <DropdownMenu>
+          <DropdownItem header>Header</DropdownItem>
+          <DropdownItem disabled>Action</DropdownItem>
+          <DropdownItem>Another Action</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem>Another Action</DropdownItem>
+        </DropdownMenu>
         <Input placeholder="and..." />
         <Button color="secondary">I'm a button</Button>
       </InputGroup>
