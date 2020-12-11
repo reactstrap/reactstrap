@@ -66,7 +66,6 @@ class Input extends React.Component {
     const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
     const isNotaNumber = new RegExp('\\D', 'g');
 
-    const fileInput = type === 'file';
     const textareaInput = type === 'textarea';
     const selectInput = type === 'select';
     const rangeInput = type === 'range';
@@ -77,8 +76,6 @@ class Input extends React.Component {
     if (plaintext) {
       formControlClass = `${formControlClass}-plaintext`;
       Tag = tag || 'input';
-    } else if (fileInput) {
-      formControlClass = `${formControlClass}-file`;
     } else if (rangeInput) {
       formControlClass = `${formControlClass}-range`;
     } else if (selectInput) {
