@@ -211,6 +211,12 @@ describe('Input', () => {
     expect(wrapper.hasClass('form-check-input')).toBe(true);
   });
 
+  it('should render with "form-check-input" class when type is switch', () => {
+    const wrapper = shallow(<Input type="switch" />);
+
+    expect(wrapper.hasClass('form-check-input')).toBe(true);
+  });
+
   it('should not render with "form-check-input" nor "form-control" class when type is checkbox and addon is truthy', () => {
     const wrapper = shallow(<Input addon type="checkbox" />);
 
@@ -241,6 +247,12 @@ describe('Input', () => {
     const wrapper = shallow(<Input className="other" />);
 
     expect(wrapper.hasClass('other')).toBe(true);
+  });
+
+  it('should render checkbox type when type is switch', () => {
+    const input = shallow(<Input type="switch" />);
+
+    expect(input.find('[type="checkbox"]').exists()).toBe(true);
   });
 
   it('should render "select" and "textarea" without type property', () => {
