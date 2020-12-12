@@ -36,7 +36,6 @@ import {
   Col,
   Container,
   Collapse,
-  CustomInput,
   Fade,
   Form,
   FormFeedback,
@@ -4786,7 +4785,6 @@ import { default as CarouselCaption_ } from './lib/CarouselCaption'; /* tslint:d
 import { default as Col_ } from './lib/Col'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Collapse_ } from './lib/Collapse'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Container_ } from './lib/Container'; /* tslint:disable-line: no-relative-import-in-test */
-import { default as CustomInput_ } from './lib/CustomInput'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Dropdown_ } from './lib/Dropdown'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as DropdownItem_ } from './lib/DropdownItem'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as DropdownMenu_ } from './lib/DropdownMenu'; /* tslint:disable-line: no-relative-import-in-test */
@@ -4886,7 +4884,6 @@ function AnyPropExample() {
       <Col_ foo={1} bar={false} foobar="example" />
       <Collapse_ foo={1} bar={false} foobar="example" />
       <Container_ foo={1} bar={false} foobar="example" />
-      <CustomInput_ id="as" foo={1} bar={false} foobar="example" type="file" />
       <Dropdown_ foo={1} bar={false} foobar="example" />
       <DropdownItem_ foo={1} bar={false} foobar="example" />
       <DropdownMenu_ foo={1} bar={false} foobar="example" />
@@ -4947,219 +4944,6 @@ interface GenericInterface {
   foo: number;
   bar: boolean;
   foobar?: string;
-}
-
-class Example119 extends React.Component<any, any> {
-  render() {
-    return (
-      <Form>
-        <FormGroup>
-          <Label for="exampleCheckbox">Checkboxes</Label>
-          <div>
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomCheckbox"
-              label="Check this custom checkbox"
-            />
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomCheckbox2"
-              label="Or this one"
-            />
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomCheckbox3"
-              label={<span>Or this one</span>}
-            />
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomCheckbox4"
-              label="But not this disabled one"
-              disabled
-            />
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomCheckbox5"
-              label="Can't click this label to check!"
-              htmlFor="exampleCustomCheckbox5_X"
-              disabled
-            />
-          </div>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCheckbox">Radios</Label>
-          <div>
-            <CustomInput
-              type="radio"
-              id="exampleCustomRadio"
-              name="customRadio"
-              label="Select this custom radio"
-            />
-            <CustomInput
-              type="radio"
-              id="exampleCustomRadio2"
-              name="customRadio"
-              label="Or this one"
-            />
-            <CustomInput
-              type="radio"
-              id="exampleCustomRadio3"
-              name="customRadio"
-              label={<span>Or this one</span>}
-            />
-            <CustomInput
-              type="radio"
-              id="exampleCustomRadio4"
-              label="But not this disabled one"
-              disabled
-            />
-            <CustomInput
-              type="radio"
-              id="exampleCustomRadio5"
-              label="Can't click this label to select!"
-              htmlFor="exampleCustomRadio5_X"
-              disabled
-            />
-          </div>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCheckbox">Inline</Label>
-          <div>
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomInline"
-              label="An inline custom input"
-              inline
-            />
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomInline2"
-              label="and another one"
-              inline
-            />
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomInline3"
-              label={<span>and this one</span>}
-              inline
-            />
-          </div>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomSelect">Custom Select</Label>
-          <CustomInput
-            type="select"
-            id="exampleCustomSelect"
-            name="customSelect"
-          >
-            <option value="">Select</option>
-            <option>Value 1</option>
-            <option>Value 2</option>
-            <option>Value 3</option>
-            <option>Value 4</option>
-            <option>Value 5</option>
-          </CustomInput>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomMutlipleSelect">
-            Custom Multiple Select
-          </Label>
-          <CustomInput
-            type="select"
-            id="exampleCustomMutlipleSelect"
-            name="customSelect"
-            multiple
-          >
-            <option value="">Select</option>
-            <option>Value 1</option>
-            <option>Value 2</option>
-            <option>Value 3</option>
-            <option>Value 4</option>
-            <option>Value 5</option>
-          </CustomInput>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomSelectDisabled">
-            Custom Select Disabled
-          </Label>
-          <CustomInput
-            type="select"
-            id="exampleCustomSelectDisabled"
-            name="customSelect"
-            disabled
-          >
-            <option value="">Select</option>
-            <option>Value 1</option>
-            <option>Value 2</option>
-            <option>Value 3</option>
-            <option>Value 4</option>
-            <option>Value 5</option>
-          </CustomInput>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomMutlipleSelectDisabled">
-            Custom Multiple Select Disabled
-          </Label>
-          <CustomInput
-            type="select"
-            id="exampleCustomMutlipleSelectDisabled"
-            name="customSelect"
-            multiple
-            disabled
-          >
-            <option value="">Select</option>
-            <option>Value 1</option>
-            <option>Value 2</option>
-            <option>Value 3</option>
-            <option>Value 4</option>
-            <option>Value 5</option>
-          </CustomInput>
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomRange">Custom Range</Label>
-          <CustomInput
-            type="range"
-            id="exampleCustomRange"
-            name="customRange"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomFileBrowser">File Browser</Label>
-          <CustomInput
-            type="file"
-            id="exampleCustomFileBrowser"
-            name="customFile"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomFileBrowser">
-            File Browser with Custom Label
-          </Label>
-          <CustomInput
-            type="file"
-            id="exampleCustomFileBrowser"
-            name="customFile"
-            label="Yo, pick a file!"
-          />
-          <CustomInput
-            type="file"
-            id="exampleCustomFileBrowser1"
-            name="customFile"
-            label={<span>Yo, pick a file!</span>}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleCustomFileBrowser">File Browser Disabled</Label>
-          <CustomInput
-            type="file"
-            id="exampleCustomFileBrowser"
-            name="customFile"
-            disabled
-          />
-        </FormGroup>
-      </Form>
-    );
-  }
 }
 
 class Example120 extends React.Component<any, any> {
@@ -5511,11 +5295,6 @@ class Example130 extends React.Component {
   }
 }
 
-const CustomInputTestInnerRef = () => {
-  const ref = React.createRef<HTMLButtonElement>();
-  return <CustomInput id="aa" type="checkbox" innerRef={ref} />;
-};
-
 const PopoverTestInnerRef = () => {
   const target = React.createRef<HTMLButtonElement>();
   const container = React.createRef<HTMLDivElement>();
@@ -5627,12 +5406,6 @@ const MegaTest = () => {
       <Col ref={React.createRef<Col>()} {...htmlProps} />
       <Collapse ref={React.createRef<Collapse>()} {...htmlProps} />
       <Container ref={React.createRef<Container>()} {...htmlProps} />
-      <CustomInput
-        id="aa"
-        ref={React.createRef<CustomInput>()}
-        {...htmlProps}
-        type="checkbox"
-      />
       <Dropdown ref={React.createRef<Dropdown>()} {...htmlProps} />
       <DropdownItem ref={React.createRef<DropdownItem>()} {...htmlProps} />
       <DropdownMenu ref={React.createRef<DropdownMenu>()} {...htmlProps} />
