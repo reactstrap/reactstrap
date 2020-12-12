@@ -77,7 +77,7 @@ class Input extends React.Component {
       formControlClass = `${formControlClass}-plaintext`;
       Tag = tag || 'input';
     } else if (rangeInput) {
-      formControlClass = `${formControlClass}-range`;
+      formControlClass = 'form-range';
     } else if (selectInput) {
       formControlClass = "form-select";
     } else if (checkInput) {
