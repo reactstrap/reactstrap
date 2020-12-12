@@ -63,7 +63,7 @@ class Input extends React.Component {
       ...attributes
     } = this.props;
 
-    const checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
+    const checkInput = ['switch', 'radio', 'checkbox'].indexOf(type) > -1;
     const isNotaNumber = new RegExp('\\D', 'g');
 
     const textareaInput = type === 'textarea';
@@ -112,7 +112,7 @@ class Input extends React.Component {
     );
 
     if (Tag === 'input' || (tag && typeof tag === 'function')) {
-      attributes.type = type;
+      attributes.type = type === 'switch' ? 'checkbox' : type;
     }
 
     if (
