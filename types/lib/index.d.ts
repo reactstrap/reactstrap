@@ -62,8 +62,6 @@ export { default as Collapse } from './Collapse';
 export { CollapseProps } from './Collapse';
 export { default as Container } from './Container';
 export { ContainerProps } from './Container';
-export { default as CustomInput } from './CustomInput';
-export { CustomInputProps } from './CustomInput';
 export { default as Dropdown } from './Dropdown';
 export { DropdownProps } from './Dropdown';
 export { default as DropdownItem } from './DropdownItem';
