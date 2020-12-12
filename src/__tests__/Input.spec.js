@@ -251,10 +251,10 @@ describe('Input', () => {
     expect(textarea.find('[type="textarea"]').exists()).toBe(false);
   });
 
-  it('should render with "form-control-range" not "form-control" class when type is range', () => {
+  it('should render with "form-range" not "form-control" class when type is range', () => {
     const wrapper = shallow(<Input type="range" />);
 
-    expect(wrapper.hasClass('form-control-range')).toBe(true);
+    expect(wrapper.hasClass('form-range')).toBe(true);
     expect(wrapper.hasClass('form-control')).toBe(false);
   });
 });
