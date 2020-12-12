@@ -140,6 +140,10 @@ const Example = (props) => {
         <Input id="InputType-checkbox" type="checkbox" />
         <Label for="InputType-checkbox" check>Check me out</Label>
       </FormGroup>
+      <FormGroup switch>
+        <Input id="InputType-switch" type="switch" />
+        <Label for="InputType-switch" check>Check me out</Label>
+      </FormGroup>
     </Form>
   );
 }
