@@ -192,6 +192,24 @@ describe('Tooltip', () => {
     wrapper.detach();
   });
 
+  it('should handle inner target click and correct placement', () => {
+    const wrapper = mount(
+      <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle}>
+        Tooltip Content
+      </TooltipPopoverWrapper>,
+      { attachTo: container }
+    );
+    const instance = wrapper.instance();
+
+    expect(isOpen).toBe(false);
+    instance.handleDocumentClick({ target: innerTarget });
+    jest.runTimersToTime(200);
+    expect(isOpen).toBe(true);
+    wrapper.setProps({ isOpen: true });
+    expect(wrapper.find(PopperContent).props().target.id).toBe('target');
+    wrapper.detach();
+  });
+
   it('should not do anything when document click outside of target', () => {
     const wrapper = mount(
       <TooltipPopoverWrapper target="target" isOpen={isOpen} toggle={toggle}>
