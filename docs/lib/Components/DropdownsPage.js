@@ -16,11 +16,13 @@ import DropdownSizingExample from '../examples/DropdownSizing';
 import CustomDropdownExample from '../examples/CustomDropdown';
 import DropdownUncontrolledExample from '../examples/DropdownUncontrolled';
 import DropdownSetActiveFromChildExample from '../examples/DropdownSetActiveFromChild';
+import DropdownContainerExample from '../examples/DropdownContainer';
 
 const DropdownExampleSource = require('!!raw-loader!../examples/Dropdown');
 const CustomDropdownExampleSource = require('!!raw-loader!../examples/CustomDropdown');
 const DropdownUncontrolledExampleSource = require('!!raw-loader!../examples/DropdownUncontrolled');
 const DropdownSetActiveFromChildSource = require('!!raw-loader!../examples/DropdownSetActiveFromChild');
+const DropdownContainerSource = require('!!raw-loader!../examples/DropdownContainer');
 
 export default class DropdownPage extends React.Component {
   constructor(props) {
@@ -97,7 +99,11 @@ DropdownMenu.propTypes = {
   modifiers: PropTypes.object,
   persist: PropTypes.bool, // presist the popper, even when closed. See #779 for reasoning
   // passed to popper, see https://popper.js.org/popper-documentation.html#Popper.Defaults.positionFixed
-  positionFixed: PropTypes.bool
+  positionFixed: PropTypes.bool,
+  // Element to place the menu in. Used to show the menu as a child of 'body'
+  // or other elements in the DOM instead of where it naturally is. This can be
+  // used to make the Dropdown escape a container with overflow: hidden
+  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
 };
 
 DropdownItem.propTypes = {
@@ -404,6 +410,19 @@ DropdownItem.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
             {DropdownSetActiveFromChildSource}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>container</SectionTitle>
+        <p>
+          Use the <code>container</code> prop to allow the dropdown menu to be placed inside an alternate container through a React Portal. This can be used to allow the dropdown menu to escape a container with the style <code>overflow: hidden</code>.
+        </p>
+        <div className="docs-example">
+          <DropdownContainerExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {DropdownContainerSource}
           </PrismCode>
         </pre>
       </div>

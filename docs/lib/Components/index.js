@@ -63,6 +63,10 @@ const items = [
     to: '/components/layout/'
   },
   {
+    name: 'List',
+    to: '/components/list/'
+  },
+  {
     name: 'List Group',
     to: '/components/listgroup/'
   },

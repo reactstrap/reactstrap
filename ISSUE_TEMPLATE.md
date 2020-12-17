@@ -29,8 +29,12 @@ paste error message with stacktrack here
 ### Code
 
 <!--
-Fork the link and update it to demonstrate your issue.
-https://stackblitz.com/edit/reactstrap?file=Example.js
+Please add a minimal reproducible example.
+
+Fork one of the following links and update it to demonstrate your issue.
+[StackBlitz](https://stackblitz.com/edit/reactstrap?file=Example.js)
+[CodeSandbox Starter](https://codesandbox.io/s/github/reactstrap/code-sandbox-examples/tree/main/starter)
+[CodeSandbox TypeScript Starter](https://codesandbox.io/s/github/reactstrap/code-sandbox-examples/tree/main/starter-ts)
  
 and/or add the code which causes the issue directly here
  -->  

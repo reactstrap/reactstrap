@@ -56,8 +56,14 @@ class Dropdown extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleMenuRef = this.handleMenuRef.bind(this);
 
     this.containerRef = React.createRef();
+    this.menuRef = React.createRef();
+  }
+
+  handleMenuRef(menuRef) {
+    this.menuRef.current = menuRef;
   }
 
   getContextValue() {
@@ -66,7 +72,10 @@ class Dropdown extends React.Component {
       isOpen: this.props.isOpen,
       direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
       inNavbar: this.props.inNavbar,
-      disabled: this.props.disabled
+      disabled: this.props.disabled,
+      // Callback that should be called by DropdownMenu to provide a ref to
+      // a HTML tag that's used for the DropdownMenu
+      onMenuRef: this.handleMenuRef,
     };
   }
 
@@ -88,6 +97,10 @@ class Dropdown extends React.Component {
     return this.containerRef.current;
   }
 
+  getMenu() {
+    return this.menuRef.current;
+  }
+
   getMenuCtrl() {
     if (this._$menuCtrl) return this._$menuCtrl;
     this._$menuCtrl = this.getContainer().querySelector('[aria-expanded]');
@@ -95,7 +108,11 @@ class Dropdown extends React.Component {
   }
 
   getMenuItems() {
-    return [].slice.call(this.getContainer().querySelectorAll('[role="menuitem"]'));
+    // In a real menu with a child DropdownMenu, `this.getMenu()` should never
+    // be null, but it is sometimes null in tests. To mitigate that, we just
+    // use `this.getContainer()` as the fallback `menuContainer`.
+    const menuContainer = this.getMenu() || this.getContainer();
+    return [].slice.call(menuContainer.querySelectorAll('[role="menuitem"]'));
   }
 
   addEvents() {
@@ -113,8 +130,10 @@ class Dropdown extends React.Component {
   handleDocumentClick(e) {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
     const container = this.getContainer();
-
-    if (container.contains(e.target) && container !== e.target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    const menu = this.getMenu();
+    const clickIsInContainer = container.contains(e.target) && container !== e.target;
+    const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
+    if ((clickIsInContainer || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
       return;
     }
 
@@ -122,9 +141,14 @@ class Dropdown extends React.Component {
   }
 
   handleKeyDown(e) {
+    const isTargetMenuItem = e.target.getAttribute('role') === 'menuitem';
+    const isTargetMenuCtrl = this.getMenuCtrl() === e.target;
+    const isTab = keyCodes.tab === e.which;
+
     if (
       /input|textarea/i.test(e.target.tagName)
-      || (keyCodes.tab === e.which && (e.target.getAttribute('role') !== 'menuitem' || !this.props.a11y))
+      || (isTab && !this.props.a11y)
+      || (isTab && !(isTargetMenuItem || isTargetMenuCtrl))
     ) {
       return;
     }
@@ -135,15 +159,21 @@ class Dropdown extends React.Component {
 
     if (this.props.disabled) return;
 
-    if (this.getMenuCtrl() === e.target) {
-      if (
-        !this.props.isOpen
-        && ([keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(e.which) > -1)
-      ) {
-        this.toggle(e);
+    if (isTargetMenuCtrl) {
+      if ([keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(e.which) > -1) {
+        // Open the menu (if not open) and focus the first menu item
+        if (!this.props.isOpen) {
+          this.toggle(e);
+        }
         setTimeout(() => this.getMenuItems()[0].focus());
+      } else if (this.props.isOpen && isTab) {
+        // Focus the first menu item if tabbing from an open menu. We need this
+        // for cases where the DropdownMenu sets a custom container, which may
+        // not be the natural next item to tab to from the DropdownToggle.
+        e.preventDefault();
+        this.getMenuItems()[0].focus();
       } else if (this.props.isOpen && e.which === keyCodes.esc) {
-        this.toggle(e); 
+        this.toggle(e);
       }
     }
 

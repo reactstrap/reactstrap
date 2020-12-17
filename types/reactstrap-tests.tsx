@@ -53,6 +53,8 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
+  List,
+  ListInlineItem,
   ModalFooter,
   Modal,
   ModalBody,
