@@ -108,6 +108,7 @@ class PopperContent extends React.Component {
       tag,
       container,
       modifiers,
+      positionFixed,
       boundariesElement,
       onClosed,
       fade,
@@ -150,6 +151,7 @@ class PopperContent extends React.Component {
           referenceElement={this.targetNode}
           modifiers={extendedModifiers}
           placement={placement}
+          positionFixed={positionFixed}
         >
           {({ ref, style, placement, outOfBoundaries, arrowProps, scheduleUpdate }) => (
             <div ref={ref} style={style} className={popperClassName} x-placement={placement} x-out-of-boundaries={outOfBoundaries ? 'true' : undefined}>

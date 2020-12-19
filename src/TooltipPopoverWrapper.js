@@ -32,6 +32,7 @@ export const propTypes = {
     PropTypes.number
   ]),
   modifiers: PropTypes.object,
+  positionFixed: PropTypes.bool,
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
@@ -336,6 +337,7 @@ class TooltipPopoverWrapper extends React.Component {
       popperClassName,
       container,
       modifiers,
+      positionFixed,
       offset,
       fade,
       flip,
@@ -361,6 +363,7 @@ class TooltipPopoverWrapper extends React.Component {
         popperClassName={popperClasses}
         container={container}
         modifiers={modifiers}
+        positionFixed={positionFixed}
         offset={offset}
         cssModule={cssModule}
         fade={fade}
