@@ -398,17 +398,19 @@ describe('Tooltip', () => {
   });
 
   describe('multi target', () => {
-    let targets, targetContainer;
+    let targets, innerTarget, targetContainer;
     beforeEach(() => {
       targetContainer = document.createElement('div');
-      targetContainer.innerHTML = `<span class='example'>Target 1</span><span class='example'>Target 2</span>`
+      targetContainer.innerHTML = `<span class='example first'>Target 1</span><span class='example second'>Target 2<span class='inner_example'>Inner target</span></span>`
       element.appendChild(targetContainer);
       targets = targetContainer.querySelectorAll('.example');
+      innerTarget = targetContainer.querySelector('.inner_example');
     });
 
     afterEach(() => {
       element.removeChild(targetContainer);
       targets = null;
+      innerTarget = null;
     });
 
     it("should attach tooltip on multiple target when a target selector matches multiple elements", () => {
@@ -431,6 +433,19 @@ describe('Tooltip', () => {
       targets[1].dispatchEvent(new Event('click'));
       jest.runTimersToTime(0)
       expect(isOpen).toBe(false);
+      wrapper.detach();
+    });
+
+    it("should attach tooltip on second target with correct placement, when inner element is clicked", () => {
+      const wrapper = mount(
+        <TooltipPopoverWrapper target=".example" isOpen={isOpen} toggle={toggle} delay={0}>Yo!</TooltipPopoverWrapper>,
+        { attachTo: container });
+
+      innerTarget.dispatchEvent(new Event('click'));
+      jest.runTimersToTime(0)
+      expect(isOpen).toBe(true);
+      wrapper.setProps({ isOpen: true });
+      expect(wrapper.find(PopperContent).props().target.className).toBe('example second');
       wrapper.detach();
     });
   });
