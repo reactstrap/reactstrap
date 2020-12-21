@@ -109,6 +109,7 @@ FormFeedback.propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   valid: PropTypes.bool, // default: undefined
+  // The parent element must contain the 'position: relative' style to work
   tooltip: PropTypes.bool
 };
 

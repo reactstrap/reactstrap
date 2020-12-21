@@ -64,6 +64,14 @@ describe('DropdownItem', () => {
     expect(wrapper.text()).toBe('Home');
   });
 
+  it('should render dropdown item text', () => {
+    const wrapper = mount(<DropdownItem text>text</DropdownItem>);
+
+    expect(wrapper.find('span').hostNodes().length).toBe(1);
+    expect(wrapper.find('span').hostNodes().hasClass('dropdown-item-text')).toBe(true);
+    expect(wrapper.text()).toBe('text');
+  });
+
   describe('header', () => {
     it('should render h6 tag heading', () => {
       const wrapper = mount(<DropdownItem header>Heading</DropdownItem>);

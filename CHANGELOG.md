@@ -1,3 +1,45 @@
+## [8.7.1](https://github.com/reactstrap/reactstrap/compare/8.7.0...8.7.1) (2020-11-03)
+
+
+### Bug Fixes
+
+* **types:** Fix Col and Input types ([#2008](https://github.com/reactstrap/reactstrap/issues/2008)) ([363dfbe](https://github.com/reactstrap/reactstrap/commit/363dfbe6a46ef04c61f0b249bd5c0a80ec1c1e3e))
+* **types:** Fix reference to CSSModule ([#2007](https://github.com/reactstrap/reactstrap/issues/2007)) ([54afca4](https://github.com/reactstrap/reactstrap/commit/54afca47879fbb8a2713b57ff452fa566e5255d1))
+
+
+
+# [8.7.0](https://github.com/reactstrap/reactstrap/compare/8.6.0...8.7.0) (2020-10-31)
+
+
+### Bug Fixes
+
+* **DropdownMenu:** Prevent manual styles from overriding popper styles ([#1984](https://github.com/reactstrap/reactstrap/issues/1984)) ([dc2401b](https://github.com/reactstrap/reactstrap/commit/dc2401b388777b011bc6c75426a86a78013a2b8c))
+* **Progress:** Fix parent element props being spread to children ([#1970](https://github.com/reactstrap/reactstrap/issues/1970)) ([c6a790c](https://github.com/reactstrap/reactstrap/commit/c6a790c7f4bdbfac0540d53896834638edf9c793))
+* **types:** Add missing innerRef typings ([#1994](https://github.com/reactstrap/reactstrap/issues/1994)) ([fe24f69](https://github.com/reactstrap/reactstrap/commit/fe24f69be2dc9953896c49be73254f7787ad34ff)), closes [#1993](https://github.com/reactstrap/reactstrap/issues/1993)
+
+
+### Features
+
+* Add typescript definitions ([#1976](https://github.com/reactstrap/reactstrap/issues/1976)) ([2a47626](https://github.com/reactstrap/reactstrap/commit/2a47626dc088f1983239f606c91f6294c7e756d7))
+* **DropdownItem:** Add support for .dropdown-item-text ([#1971](https://github.com/reactstrap/reactstrap/issues/1971)) ([c41b172](https://github.com/reactstrap/reactstrap/commit/c41b172180b92ba3f53444ca8f409c1cd10f895d))
+
+
+
+# [8.6.0](https://github.com/reactstrap/reactstrap/compare/8.5.1...8.6.0) (2020-09-18)
+
+
+### Bug Fixes
+
+* **Input:** Allow numbers for size prop ([#1948](https://github.com/reactstrap/reactstrap/issues/1948)) ([b4c45af](https://github.com/reactstrap/reactstrap/commit/b4c45afe658ee5008274fbf687b22d35dfe12c51))
+* **Progress:** pass attributes to nested Progress bar ([#1919](https://github.com/reactstrap/reactstrap/issues/1919)) ([f3c2586](https://github.com/reactstrap/reactstrap/commit/f3c2586bbf1cc86459b5c2fd4cb025512aead432)), closes [#1847](https://github.com/reactstrap/reactstrap/issues/1847) [#1847](https://github.com/reactstrap/reactstrap/issues/1847)
+
+
+### Features
+
+* **Button:** onClick of inner button returns value of props.onClick. ([f09cdd6](https://github.com/reactstrap/reactstrap/commit/f09cdd6c2fb496948760e962383b1fa657a2c5e0))
+
+
+
 ## [8.5.1](https://github.com/reactstrap/reactstrap/compare/8.5.0...8.5.1) (2020-06-24)
 
 
