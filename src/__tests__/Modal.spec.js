@@ -1203,4 +1203,40 @@ describe('Modal', () => {
 
     wrapper.unmount();
   });
+
+  it('should not handle tab if there is a nested Modal', () => {
+    const wrapper = didMount(
+      <Modal isOpen={true} toggle={toggle}>
+        <ModalBody>
+          <Button className={'b0'} onClick={toggle}>Cancel</Button>
+          <Modal isOpen={true}>
+            <ModalBody>
+                <Button className={'b1'}>Click 1</Button>
+            </ModalBody>
+          </Modal>
+        </ModalBody>
+      </Modal>
+    );
+
+    const instance = wrapper.instance(),
+          nested = wrapper.find(Modal).at(1).instance(),
+          button = wrapper.find('.b0').hostNodes().getDOMNode(),
+          button1 = wrapper.find('.b1').hostNodes().getDOMNode(),
+          ev_mock = {
+            target: button1,
+            which: 9,
+            shiftKey: true,
+            preventDefault: jest.fn(),
+            stopPropagation: jest.fn()
+          };
+    button1.focus();
+    instance.getFocusableChildren = jest.fn();
+    instance.getFocusableChildren.mockReturnValue([]);
+    instance.handleTab(ev_mock);
+    jest.runAllTimers();
+
+    expect(instance.getFocusableChildren.mock.calls.length).toBe(0);
+
+    wrapper.unmount();
+  });
 });

@@ -257,6 +257,7 @@ class Modal extends React.Component {
 
   handleTab(e) {
     if (e.which !== 9) return;
+    if (this.modalCount < Modal.openCount) return;
 
     const focusableChildren = this.getFocusableChildren();
     const totalFocusable = focusableChildren.length;
