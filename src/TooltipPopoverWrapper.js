@@ -160,10 +160,19 @@ class TooltipPopoverWrapper extends React.Component {
     return delay;
   }
 
+  getCurrentTarget(target) {
+    if (!target)
+      return null;
+    const index = this._targets.indexOf(target);
+    if (index >= 0)
+      return this._targets[index];
+    return this.getCurrentTarget(target.parentElement);
+  }
+
   show(e) {
     if (!this.props.isOpen) {
       this.clearShowTimeout();
-      this.currentTargetElement = e ? e.currentTarget || e.target : null;
+      this.currentTargetElement = e ? e.currentTarget || this.getCurrentTarget(e.target) : null;
       if (e && e.composedPath && typeof e.composedPath === 'function') {
         const path = e.composedPath();
         this.currentTargetElement = (path && path[0]) || this.currentTargetElement;
