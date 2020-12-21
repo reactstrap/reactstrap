@@ -24,6 +24,7 @@ const propTypes = {
   container: targetPropType,
   target: targetPropType.isRequired,
   modifiers: PropTypes.object,
+  positionFixed: PropTypes.bool,
   boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   onClosed: PropTypes.func,
   fade: PropTypes.bool,
