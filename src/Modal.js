@@ -128,6 +128,7 @@ class Modal extends React.Component {
       onEnter();
     }
 
+    // traps focus inside the Modal, even if the browser address bar is focused
     document.addEventListener('focus', this.trapFocus, true);
 
     this._isMounted = true;
@@ -170,23 +171,23 @@ class Modal extends React.Component {
   }
 
   trapFocus (ev) {
-    if (!this._element)
-        return ;
+    if (!this._element) //element is not attached
+      return ;
 
-    if (this._dialog && this._dialog.parentNode === ev.target)
-        return ;
+    if (this._dialog && this._dialog.parentNode === ev.target) // initial focus when the Modal is opened
+      return ;
 
     if (this.modalIndex < (Modal.openCount - 1)) // last opened modal
-        return ;
+      return ;
 
     const children = this.getFocusableChildren();
 
-    for (let i = 0; i < children.length; i++) {
-        if (children[i] === ev.target)
-            return ;
+    for (let i = 0; i < children.length; i++) { // focus is already inside the Modal
+      if (children[i] === ev.target)
+        return ;
     }
 
-    if (children.length > 0) {
+    if (children.length > 0) { // otherwise focus the first focusable element in the Modal
       ev.preventDefault();
       ev.stopPropagation();
       children[0].focus();
