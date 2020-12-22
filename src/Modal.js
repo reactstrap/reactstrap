@@ -176,7 +176,7 @@ class Modal extends React.Component {
     if (this._dialog && this._dialog.parentNode === ev.target)
         return ;
 
-    if (this.modalCount < Modal.openCount)
+    if (this.modalIndex < (Modal.openCount - 1)) // last opened modal
         return ;
 
     const children = this.getFocusableChildren();
@@ -257,7 +257,7 @@ class Modal extends React.Component {
 
   handleTab(e) {
     if (e.which !== 9) return;
-    if (this.modalCount < Modal.openCount) return;
+    if (this.modalIndex < (Modal.openCount - 1)) return; // last opened modal
 
     const focusableChildren = this.getFocusableChildren();
     const totalFocusable = focusableChildren.length;
@@ -337,8 +337,8 @@ class Modal extends React.Component {
       );
     }
 
+    this.modalIndex = Modal.openCount;
     Modal.openCount += 1;
-    this.modalCount = Modal.openCount;
   }
 
   destroy() {
