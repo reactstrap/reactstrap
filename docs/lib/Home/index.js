@@ -185,8 +185,8 @@ npm install --save reactstrap react react-dom`}
               composition and control. The library does not depend on jQuery or
               Bootstrap javascript. However,{' '}
               <a href="https://popper.js.org/">https://popper.js.org/</a> via{' '}
-              <a href="https://github.com/souporserious/react-popper">
-                https://github.com/souporserious/react-popper
+              <a href="https://github.com/popperjs/react-popper">
+                https://github.com/popperjs/react-popper
               </a>{' '}
               is relied upon for advanced positioning of content like Tooltips,
               Popovers, and auto-flipping Dropdowns.
