@@ -74,7 +74,7 @@ describe('DropdownToggle', () => {
 
       const wrapperDialogue = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle  aria-haspopup="dialogue" >Ello world</DropdownToggle>
+          <DropdownToggle  aria-haspopup="dialog" >Ello world</DropdownToggle>
         </DropdownContext.Provider>
       )
     })

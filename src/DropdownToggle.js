@@ -14,7 +14,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  'aria-haspopup': PropTypes.bool,
+  'aria-haspopup': PropTypes.oneOf([true, false, 'menu', 'listbox', 'tree', 'grid', 'dialog']),
   split: PropTypes.bool,
   tag: tagPropType,
   nav: PropTypes.bool,
