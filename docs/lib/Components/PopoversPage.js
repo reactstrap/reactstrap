@@ -19,7 +19,7 @@ export default class PopoversPage extends React.Component {
     return (
       <div>
         <PageTitle title="Popovers" />
-        <p>Popovers are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
+        <p>Popovers are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/popperjs/react-popper">https://github.com/popperjs/react-popper</a>.</p>
         <div className="docs-example">
           <PopoverExample />
         </div>
