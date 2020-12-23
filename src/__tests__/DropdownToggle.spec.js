@@ -48,31 +48,31 @@ describe('DropdownToggle', () => {
     })
 
     it('accepts allowed strings', () => {
-      const wrapperMenu = mount(
+      mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle  aria-haspopup="menu" >Ello world</DropdownToggle>
         </DropdownContext.Provider>
       )   
 
-      const wrapperListbox = mount(
+      mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle  aria-haspopup="listbox" >Ello world</DropdownToggle>
         </DropdownContext.Provider>
       )   
 
-      const wrapperTree = mount(
+      mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle  aria-haspopup="tree" >Ello world</DropdownToggle>
         </DropdownContext.Provider>
       )
 
-      const wrapperGrid = mount(
+      mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle  aria-haspopup="grid" >Ello world</DropdownToggle>
         </DropdownContext.Provider>
       )
 
-      const wrapperDialogue = mount(
+      mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle  aria-haspopup="dialog" >Ello world</DropdownToggle>
         </DropdownContext.Provider>
