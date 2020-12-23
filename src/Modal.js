@@ -166,7 +166,7 @@ class Modal extends React.Component {
       }
     }
 
-    document.removeEventListener('focus', this.trapFocus);
+    document.removeEventListener('focus', this.trapFocus, true);
     this._isMounted = false;
   }
 

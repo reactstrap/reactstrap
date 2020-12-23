@@ -1136,6 +1136,36 @@ describe('Modal', () => {
     wrapper.unmount();
   });
 
+  it('should attach/detach trapFocus for dialogs', () => {
+    const addEventListenerFn = document.addEventListener,
+          removeEventListenerFn = document.removeEventListener;
+    document.addEventListener = jest.fn();
+    document.removeEventListener = jest.fn();
+
+    const MockComponent = () => (
+          <>
+            <Modal isOpen={true}>
+              <ModalBody>
+                  <Button className={'focus'}>focusable element</Button>
+              </ModalBody>
+            </Modal>
+          </>),
+          wrapper = didMount(<MockComponent />),
+          modal_instance = wrapper.find(Modal).instance();
+
+    expect(document.addEventListener.mock.calls.length).toBe(1);
+    expect(document.addEventListener.mock.calls[0]).toEqual(['focus', modal_instance.trapFocus, true]);
+
+    wrapper.unmount();
+
+    expect(document.removeEventListener.mock.calls.length).toBe(1);
+    expect(document.removeEventListener.mock.calls[0]).toEqual(['focus', modal_instance.trapFocus, true]);
+
+    // restore global document mock
+    document.addEventListener = addEventListenerFn;
+    document.removeEventListener = removeEventListenerFn;
+  });
+
   it('should trap focus inside the open dialog', () => {
     const MockComponent = () => (
           <>
