@@ -327,11 +327,9 @@ class TooltipPopoverWrapper extends React.Component {
   }
 
   render() {
-    if (!this.props.isOpen) {
-      return null;
+    if (this.props.isOpen) {
+      this.updateTarget();
     }
-
-    this.updateTarget();
 
     const {
       className,
