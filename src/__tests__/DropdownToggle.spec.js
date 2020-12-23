@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import { DropdownToggle } from '../';
 import { DropdownContext } from '../DropdownContext';
 
+
 describe('DropdownToggle', () => {
   const setReferenceNode = jest.fn();
   let isOpen;
@@ -17,6 +18,67 @@ describe('DropdownToggle', () => {
       isOpen = !isOpen;
     };
   });
+
+  describe('aria-haspopup', () => {
+    beforeEach(() => {
+      const originalConsoleError = global.console.error
+
+      global.console.error = (...args) => {
+        const propTypeFailures = [/Failed prop type/, /Warning: Received/]
+    
+        if (propTypeFailures.some(p => p.test(args[0]))) {
+          throw new Error(args[0])
+        }
+    
+        originalConsoleError(...args)
+      }
+    })
+    it('accepts bools', () => {
+      mount(
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle  aria-haspopup={true} >Ello world</DropdownToggle>
+        </DropdownContext.Provider>
+      )   
+
+     mount(
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle  aria-haspopup={false} >Ello world</DropdownToggle>
+        </DropdownContext.Provider>
+      )   
+    })
+
+    it('accepts allowed strings', () => {
+      const wrapperMenu = mount(
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle  aria-haspopup="menu" >Ello world</DropdownToggle>
+        </DropdownContext.Provider>
+      )   
+
+      const wrapperListbox = mount(
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle  aria-haspopup="listbox" >Ello world</DropdownToggle>
+        </DropdownContext.Provider>
+      )   
+
+      const wrapperTree = mount(
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle  aria-haspopup="tree" >Ello world</DropdownToggle>
+        </DropdownContext.Provider>
+      )
+
+      const wrapperGrid = mount(
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle  aria-haspopup="grid" >Ello world</DropdownToggle>
+        </DropdownContext.Provider>
+      )
+
+      const wrapperDialogue = mount(
+        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
+          <DropdownToggle  aria-haspopup="dialogue" >Ello world</DropdownToggle>
+        </DropdownContext.Provider>
+      )
+    })
+  })
 
   it('should wrap text', () => {
     const wrapper = mount(
