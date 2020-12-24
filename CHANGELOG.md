@@ -1,3 +1,21 @@
+# [8.8.0](https://github.com/reactstrap/reactstrap/compare/8.7.1...8.8.0) (2020-12-23)
+
+
+### Bug Fixes
+
+* **Modal:** Trap focus on opened modal ([#1941](https://github.com/reactstrap/reactstrap/issues/1941)) ([bf46484](https://github.com/reactstrap/reactstrap/commit/bf46484d2ee1e0d570170d59152fcd0346bfe434)), closes [#1497](https://github.com/reactstrap/reactstrap/issues/1497) [#1679](https://github.com/reactstrap/reactstrap/issues/1679)
+* Make tooltips fade out ([#2041](https://github.com/reactstrap/reactstrap/issues/2041)) ([3fb5476](https://github.com/reactstrap/reactstrap/commit/3fb5476515aa01e658426e72dfbe5e7bc517b460))
+* **Popover:** Select correct parent target when target children clicked ([#2038](https://github.com/reactstrap/reactstrap/issues/2038)) ([6740a57](https://github.com/reactstrap/reactstrap/commit/6740a57268dd87704c0215aa45a7e38babb5b426)), closes [#1990](https://github.com/reactstrap/reactstrap/issues/1990)
+
+
+### Features
+
+* add List and ListInlineItem components ([#2033](https://github.com/reactstrap/reactstrap/issues/2033)) ([a97a834](https://github.com/reactstrap/reactstrap/commit/a97a8345f3998e9388d42550b8e70aaa62a5be50))
+* add positionFixed prop to Tooltip and Popover ([#2039](https://github.com/reactstrap/reactstrap/issues/2039)) ([a330ce6](https://github.com/reactstrap/reactstrap/commit/a330ce65e1a38dd0a14e1bc0ca37f86740964df1))
+* **Dropdown:** Added container prop to DropdownMenu using React.portal ([#2016](https://github.com/reactstrap/reactstrap/issues/2016)) ([bd313c2](https://github.com/reactstrap/reactstrap/commit/bd313c23e5d1dee984e65e5fdc167fe83f3831a9))
+
+
+
 ## [8.7.1](https://github.com/reactstrap/reactstrap/compare/8.7.0...8.7.1) (2020-11-03)
 
 
