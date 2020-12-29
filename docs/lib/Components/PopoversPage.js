@@ -19,7 +19,7 @@ export default class PopoversPage extends React.Component {
     return (
       <div>
         <PageTitle title="Popovers" />
-        <p>Popovers are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
+        <p>Popovers are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/popperjs/react-popper">https://github.com/popperjs/react-popper</a>.</p>
         <div className="docs-example">
           <PopoverExample />
         </div>
@@ -79,6 +79,9 @@ export default class PopoversPage extends React.Component {
   ]),
   // Custom modifiers that are passed to Popper.js, see https://popper.js.org/popper-documentation.html#modifiers
   modifiers: PropTypes.object,
+  // Whether the element the tooltip is pointing to has "position: fixed" styling. This is passed to Popper.js and
+  // will make the tooltip itself have "position: fixed" as well
+  positionFixed: PropTypes.bool,
   offset: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number

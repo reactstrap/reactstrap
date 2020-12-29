@@ -32,6 +32,7 @@ export const propTypes = {
     PropTypes.number
   ]),
   modifiers: PropTypes.object,
+  positionFixed: PropTypes.bool,
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
@@ -160,10 +161,19 @@ class TooltipPopoverWrapper extends React.Component {
     return delay;
   }
 
+  getCurrentTarget(target) {
+    if (!target)
+      return null;
+    const index = this._targets.indexOf(target);
+    if (index >= 0)
+      return this._targets[index];
+    return this.getCurrentTarget(target.parentElement);
+  }
+
   show(e) {
     if (!this.props.isOpen) {
       this.clearShowTimeout();
-      this.currentTargetElement = e ? e.currentTarget || e.target : null;
+      this.currentTargetElement = e ? e.currentTarget || this.getCurrentTarget(e.target) : null;
       if (e && e.composedPath && typeof e.composedPath === 'function') {
         const path = e.composedPath();
         this.currentTargetElement = (path && path[0]) || this.currentTargetElement;
@@ -317,11 +327,14 @@ class TooltipPopoverWrapper extends React.Component {
   }
 
   render() {
-    if (!this.props.isOpen) {
-      return null;
+    if (this.props.isOpen) {
+      this.updateTarget();
     }
 
-    this.updateTarget();
+    const target = this.currentTargetElement || this._targets[0];
+    if (!target) {
+      return null;
+    }
 
     const {
       className,
@@ -336,6 +349,7 @@ class TooltipPopoverWrapper extends React.Component {
       popperClassName,
       container,
       modifiers,
+      positionFixed,
       offset,
       fade,
       flip,
@@ -351,7 +365,7 @@ class TooltipPopoverWrapper extends React.Component {
     return (
       <PopperContent
         className={className}
-        target={this.currentTargetElement || this._targets[0]}
+        target={target}
         isOpen={isOpen}
         hideArrow={hideArrow}
         boundariesElement={boundariesElement}
@@ -361,6 +375,7 @@ class TooltipPopoverWrapper extends React.Component {
         popperClassName={popperClasses}
         container={container}
         modifiers={modifiers}
+        positionFixed={positionFixed}
         offset={offset}
         cssModule={cssModule}
         fade={fade}
