@@ -1,3 +1,12 @@
+## [8.8.1](https://github.com/reactstrap/reactstrap/compare/8.8.0...8.8.1) (2020-12-29)
+
+
+### Bug Fixes
+
+* Prevent popover/tooltip rendering if target not resolved ([#2059](https://github.com/reactstrap/reactstrap/issues/2059)) ([de06e9f](https://github.com/reactstrap/reactstrap/commit/de06e9ff12e954c92ba0964e615723e9a44f9269))
+
+
+
 # [8.8.0](https://github.com/reactstrap/reactstrap/compare/8.7.1...8.8.0) (2020-12-23)
 
 
