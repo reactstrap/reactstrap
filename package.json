@@ -3,6 +3,7 @@
   "version": "8.8.1",
   "description": "React Bootstrap 4 components",
   "main": "lib/index.js",
+  "types": "es/index.d.ts",
   "jsnext:main": "es/index.js",
   "module": "es/index.js",
   "jsdelivr": "dist/reactstrap.min.js",
