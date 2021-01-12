@@ -27,6 +27,7 @@ const propTypes = {
   barClassName: PropTypes.string,
   cssModule: PropTypes.object,
   style: PropTypes.object,
+  barStyle: PropTypes.object,
   barAriaValueText: PropTypes.string,
   barAriaLabelledBy: PropTypes.string,
 };
@@ -37,6 +38,7 @@ const defaultProps = {
   min: 0,
   max: 100,
   style: {},
+  barStyle: {}
 };
 
 const Progress = (props) => {
@@ -55,6 +57,7 @@ const Progress = (props) => {
     multi,
     tag: Tag,
     style,
+    barStyle,
     barAriaValueText,
     barAriaLabelledBy,
     ...attributes
@@ -78,7 +81,8 @@ const Progress = (props) => {
   const progressBarProps = {
     className: progressBarClasses,
     style: {
-      ...style,
+      ...(bar ? style : {}),
+      ...barStyle,
       width: `${percent}%`,
     },
     role: 'progressbar',
@@ -100,7 +104,7 @@ const Progress = (props) => {
   }
 
   return (
-    <Tag {...attributes} className={progressClasses}>
+    <Tag {...attributes} style={style} className={progressClasses}>
       {multi ? children : <div {...progressBarProps} />}
     </Tag>
   );

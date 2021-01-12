@@ -14,6 +14,7 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLElement> {
   color?: string;
   cssModule?: CSSModule;
   barClassName?: string;
+  barStyle?: React.CSSProperties;
   barAriaValueText?: string;
   barAriaLabelledBy?: string;
 }
