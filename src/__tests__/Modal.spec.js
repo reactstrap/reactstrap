@@ -1170,7 +1170,7 @@ describe('Modal', () => {
     const MockComponent = () => (
           <>
             <Button className={'first'}>Focused</Button>
-            <Modal isOpen={true}>
+            <Modal isOpen={true} trapFocus>
               <ModalBody>
                   Something else to see
                   <Button className={'focus'}>focusable element</Button>
