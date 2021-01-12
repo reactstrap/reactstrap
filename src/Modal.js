@@ -60,7 +60,8 @@ const propTypes = {
   ]),
   unmountOnClose: PropTypes.bool,
   returnFocusAfterClose: PropTypes.bool,
-  container: targetPropType
+  container: targetPropType,
+  trapFocus: PropTypes.bool
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -86,7 +87,8 @@ const defaultProps = {
   },
   unmountOnClose: true,
   returnFocusAfterClose: true,
-  container: 'body'
+  container: 'body',
+  trapFocus: false
 };
 
 class Modal extends React.Component {
@@ -171,20 +173,24 @@ class Modal extends React.Component {
   }
 
   trapFocus (ev) {
+    if (!this.props.trapFocus) {
+      return;
+    }
+
     if (!this._element) //element is not attached
-      return ;
+      return;
 
     if (this._dialog && this._dialog.parentNode === ev.target) // initial focus when the Modal is opened
-      return ;
+      return;
 
     if (this.modalIndex < (Modal.openCount - 1)) // last opened modal
-      return ;
+      return;
 
     const children = this.getFocusableChildren();
 
     for (let i = 0; i < children.length; i++) { // focus is already inside the Modal
       if (children[i] === ev.target)
-        return ;
+        return;
     }
 
     if (children.length > 0) { // otherwise focus the first focusable element in the Modal
