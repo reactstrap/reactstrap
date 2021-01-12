@@ -109,6 +109,7 @@ const ModalsPage = () => {
   returnFocusAfterClose: PropTypes.bool, // defaults to true
   // container to append the modal to
   container: PropTypes.oneOfType([PropTypes.string, PropTypes.func, DOMElement]),
+  trapFocus: PropTypes.bool // Traps focus within modal
 }`}
         </PrismCode>
       </pre>
