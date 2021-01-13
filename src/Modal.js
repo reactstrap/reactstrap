@@ -60,7 +60,8 @@ const propTypes = {
   ]),
   unmountOnClose: PropTypes.bool,
   returnFocusAfterClose: PropTypes.bool,
-  container: targetPropType
+  container: targetPropType,
+  trapFocus: PropTypes.bool
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -86,7 +87,8 @@ const defaultProps = {
   },
   unmountOnClose: true,
   returnFocusAfterClose: true,
-  container: 'body'
+  container: 'body',
+  trapFocus: false
 };
 
 class Modal extends React.Component {
@@ -105,6 +107,7 @@ class Modal extends React.Component {
     this.onClosed = this.onClosed.bind(this);
     this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
     this.clearBackdropAnimationTimeout = this.clearBackdropAnimationTimeout.bind(this);
+    this.trapFocus = this.trapFocus.bind(this);
 
     this.state = {
       isOpen: false,
@@ -126,6 +129,9 @@ class Modal extends React.Component {
     if (onEnter) {
       onEnter();
     }
+
+    // traps focus inside the Modal, even if the browser address bar is focused
+    document.addEventListener('focus', this.trapFocus, true);
 
     this._isMounted = true;
   }
@@ -162,7 +168,36 @@ class Modal extends React.Component {
       }
     }
 
+    document.removeEventListener('focus', this.trapFocus, true);
     this._isMounted = false;
+  }
+
+  trapFocus (ev) {
+    if (!this.props.trapFocus) {
+      return;
+    }
+
+    if (!this._element) //element is not attached
+      return;
+
+    if (this._dialog && this._dialog.parentNode === ev.target) // initial focus when the Modal is opened
+      return;
+
+    if (this.modalIndex < (Modal.openCount - 1)) // last opened modal
+      return;
+
+    const children = this.getFocusableChildren();
+
+    for (let i = 0; i < children.length; i++) { // focus is already inside the Modal
+      if (children[i] === ev.target)
+        return;
+    }
+
+    if (children.length > 0) { // otherwise focus the first focusable element in the Modal
+      ev.preventDefault();
+      ev.stopPropagation();
+      children[0].focus();
+    }
   }
 
   onOpened(node, isAppearing) {
@@ -229,6 +264,7 @@ class Modal extends React.Component {
 
   handleTab(e) {
     if (e.which !== 9) return;
+    if (this.modalIndex < (Modal.openCount - 1)) return; // last opened modal
 
     const focusableChildren = this.getFocusableChildren();
     const totalFocusable = focusableChildren.length;
@@ -268,7 +304,7 @@ class Modal extends React.Component {
       else if (this.props.backdrop === 'static') {
         e.preventDefault();
         e.stopPropagation();
-        
+
         this.handleStaticBackdropAnimation();
       }
     }
@@ -308,6 +344,7 @@ class Modal extends React.Component {
       );
     }
 
+    this.modalIndex = Modal.openCount;
     Modal.openCount += 1;
   }
 

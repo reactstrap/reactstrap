@@ -31,6 +31,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLElement> {
   returnFocusAfterClose?: boolean;
   container?: string | HTMLElement | React.RefObject<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
+  trapFocus?: boolean;
 }
 
 declare class Modal extends React.Component<ModalProps> {}

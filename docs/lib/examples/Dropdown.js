@@ -10,7 +10,7 @@ const Example = (props) => {
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>
         Dropdown
-        </DropdownToggle>
+      </DropdownToggle>
       <DropdownMenu>
         <DropdownItem header>Header</DropdownItem>
         <DropdownItem>Some Action</DropdownItem>

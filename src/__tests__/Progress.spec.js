@@ -27,10 +27,22 @@ describe('Progress', () => {
     expect(wrapper.prop('max')).toBe(100);
   });
 
-  it('should render with "style" empty object by default', () => {
-    const wrapper = mount(<Progress />);
+  it('should render with "style" on the parent element', () => {
+    const wrapper = mount(<Progress style={{ height: '20px' }} />);
 
-    expect(wrapper.prop('style')).toEqual({});
+    expect(getComputedStyle(wrapper.getDOMNode()).getPropertyValue('height')).toBe('20px');
+  });
+
+  it('should render with "style" on the progress bar element if bar=true', () => {
+    const wrapper = mount(<Progress bar style={{ height: '20px' }} />);
+
+    expect(getComputedStyle(wrapper.find('.progress-bar').getDOMNode()).getPropertyValue('height')).toBe('20px');
+  });
+
+  it('should render "barStyle" on the progress bar element', () => {
+    const wrapper = mount(<Progress style={{ height: '20px' }} barStyle={{ height: '10px' }} />);
+    
+    expect(getComputedStyle(wrapper.find('.progress-bar').getDOMNode()).getPropertyValue('height')).toBe('10px');
   });
 
   it('should render with the given "value" when passed as string prop', () => {
