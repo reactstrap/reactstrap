@@ -14,14 +14,12 @@ const propTypes = {
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  'aria-haspopup': PropTypes.bool,
   split: PropTypes.bool,
   tag: tagPropType,
   nav: PropTypes.bool,
 };
 
 const defaultProps = {
-  'aria-haspopup': true,
   color: 'secondary',
 };
 
@@ -47,6 +45,16 @@ class DropdownToggle extends React.Component {
     }
 
     this.context.toggle(e);
+  }
+
+  getRole() {
+    const menuRole = this.context.menuRole
+    if(menuRole === true || menuRole === 'menu') {
+      return 'menu'
+    }
+    if(menuRole === 'listbox') {
+      return menuRole
+    }
   }
 
   render() {
@@ -87,6 +95,7 @@ class DropdownToggle extends React.Component {
           className={classes}
           onClick={this.onClick}
           aria-expanded={this.context.isOpen}
+          aria-haspopup={this.getRole()}
           children={children}
         />
       );
@@ -102,6 +111,7 @@ class DropdownToggle extends React.Component {
             className={classes}
             onClick={this.onClick}
             aria-expanded={this.context.isOpen}
+            aria-haspopup={this.getRole()}
             children={children}
           />
         )}

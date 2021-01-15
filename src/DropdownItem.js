@@ -31,6 +31,16 @@ class DropdownItem extends React.Component {
     this.getTabIndex = this.getTabIndex.bind(this);
   }
 
+  getRole() {
+    const menuRole = this.context.menuRole
+    if(menuRole === true || menuRole === 'menu' || menuRole === undefined) {
+      return 'menuitem'
+    }
+    if(menuRole === 'listbox') {
+      return 'option'
+    }
+  }
+
   onClick(e) {
     const { disabled, header, divider, text } = this.props;
     if (disabled || header || divider || text) {
@@ -58,7 +68,7 @@ class DropdownItem extends React.Component {
 
   render() {
     const tabIndex = this.getTabIndex();
-    const role = tabIndex > -1 ? 'menuitem' : undefined;
+    const role = tabIndex > -1 ? this.getRole() : undefined;
     let {
       className,
       cssModule,

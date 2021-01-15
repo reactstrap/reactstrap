@@ -19,6 +19,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLElement> {
   cssModule?: CSSModule;
   inNavbar?: boolean;
   setActiveFromChild?: boolean;
+  menuRole?: boolean | string;
 }
 
 export interface UncontrolledDropdownProps extends DropdownProps {
