@@ -1,3 +1,13 @@
+# [8.9.0](https://github.com/reactstrap/reactstrap/compare/8.8.1...8.9.0) (2021-01-19)
+
+
+### Features
+
+* **Modal:** Add trapFocus prop ([#2073](https://github.com/reactstrap/reactstrap/issues/2073)) ([6e0fd56](https://github.com/reactstrap/reactstrap/commit/6e0fd565b66c9a16b3187adcb71d52d2d9db2902))
+* **Progress:** Add barStyle prop ([#2075](https://github.com/reactstrap/reactstrap/issues/2075)) ([27faa8e](https://github.com/reactstrap/reactstrap/commit/27faa8e5c575314070f1a35e1969c81e25b13942))
+
+
+
 ## [8.8.1](https://github.com/reactstrap/reactstrap/compare/8.8.0...8.8.1) (2020-12-29)
 
 
