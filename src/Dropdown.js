@@ -25,7 +25,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
-  menuRole: PropTypes.oneOf('listbox', 'menu', true)
+  menuRole: PropTypes.oneOf(['listbox', 'menu'])
 };
 
 const defaultProps = {
@@ -36,8 +36,7 @@ const defaultProps = {
   active: false,
   addonType: false,
   inNavbar: false,
-  setActiveFromChild: false,
-  menuRole: true
+  setActiveFromChild: false
 };
 
 const preventDefaultKeys = [
@@ -110,12 +109,22 @@ class Dropdown extends React.Component {
     return this._$menuCtrl;
   }
 
+  getItemType() {
+    if(this.context.menuRole === 'listbox') {
+      return 'option'
+    }
+    return 'menu'
+  }
+
   getMenuItems() {
     // In a real menu with a child DropdownMenu, `this.getMenu()` should never
     // be null, but it is sometimes null in tests. To mitigate that, we just
     // use `this.getContainer()` as the fallback `menuContainer`.
     const menuContainer = this.getMenu() || this.getContainer();
-    return [].slice.call(menuContainer.querySelectorAll('[role="menuitem"], [role="option"]'));
+    if(this.context.menuRole) {
+      return [].slice.call(menuContainer.querySelectorAll('[role="' + this.getItemType() + '"]'));
+    }
+    return [].slice.call(menuContainer.querySelectorAll('[role="menuitem"]'));
   }
 
   addEvents() {
@@ -180,7 +189,7 @@ class Dropdown extends React.Component {
       }
     }
 
-    if (this.props.isOpen && (e.target.getAttribute('role') === 'menuitem' || e.target.getAttribute('role') === 'option')) {
+    if (this.props.isOpen && isTargetMenuItem) {
       if ([keyCodes.tab, keyCodes.esc].indexOf(e.which) > -1) {
         this.toggle(e);
         this.getMenuCtrl().focus();

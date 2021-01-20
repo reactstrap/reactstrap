@@ -1117,25 +1117,6 @@ describe('Dropdown', () => {
   });
 
   describe('menuRole prop', () => {
-    it('should defaut to true with the corresponding roles for children', () => {
-      const wrapper = mount(
-        <Dropdown menuRole={true} toggle={toggle}>
-          <DropdownToggle nav caret>
-            Options
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem active>
-              Test
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      );
-
-      expect(wrapper.props().menuRole).toEqual(true)
-      expect(wrapper.find('[aria-haspopup="menu"]').length).toEqual(1)
-      expect(wrapper.find('[role="menuitem"]').length).toEqual(1)
-      expect(wrapper.find('[role="menu"]').length).toEqual(1)
-    })
 
     it('should set correct roles for children when menuRole is menu', () => {
       const wrapper = mount(

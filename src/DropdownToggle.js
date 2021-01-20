@@ -14,6 +14,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
+  'aria-haspopup': PropTypes.bool,
   split: PropTypes.bool,
   tag: tagPropType,
   nav: PropTypes.bool,
@@ -21,6 +22,7 @@ const propTypes = {
 
 const defaultProps = {
   color: 'secondary',
+  'aria-haspopup': true
 };
 
 class DropdownToggle extends React.Component {
@@ -48,16 +50,11 @@ class DropdownToggle extends React.Component {
   }
 
   getRole() {
-    const menuRole = this.context.menuRole
-    if(menuRole === true || menuRole === 'menu') {
-      return 'menu'
-    }
-    if(menuRole === 'listbox') {
-      return menuRole
-    }
+    return this.context.menuRole || this.props['aria-haspopup'];
   }
 
   render() {
+    console.log(this.getRole())
     const { className, color, cssModule, caret, split, nav, tag, innerRef, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
