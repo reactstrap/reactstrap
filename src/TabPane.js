@@ -8,17 +8,20 @@ const propTypes = {
   tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  renderOnlyIfActive: PropTypes.bool, // If set true then tab pane is not rendered unless active. If set false (default) then tab pane is simply hidden.
   tabId: PropTypes.any,
 };
 
 const defaultProps = {
   tag: 'div',
+  renderOnlyIfActive: false,
 };
 
 export default function TabPane(props) {
   const {
     className,
     cssModule,
+    renderOnlyIfActive,
     tabId,
     tag: Tag,
     ...attributes
@@ -26,7 +29,12 @@ export default function TabPane(props) {
   const getClasses = (activeTabId) => mapToCssModules(classNames('tab-pane', className, { active: tabId === activeTabId }), cssModule);
   return (
     <TabContext.Consumer>
-      {({activeTabId}) => <Tag {...attributes} className={getClasses(activeTabId)} />}
+      {({activeTabId}) => {
+        if (renderOnlyIfActive && tabId !== activeTabId) {
+          return null;
+        }
+        return <Tag {...attributes} className={getClasses(activeTabId)} />;
+      }}
     </TabContext.Consumer>
   );
 }

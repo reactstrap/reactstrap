@@ -100,6 +100,22 @@ describe('Tabs', () => {
     expect(wrapper.childAt(0).type()).toBe('main');
   });
 
+  it('should only render the active tab pane because renderOnlyIfActive is true', () => {
+    const tab1 = mount(
+      <TabContent activeTab={"ab"}>
+        <TabPane tabId="aa" renderOnlyIfActive={true}>
+          Tab Content 1
+        </TabPane>
+        <TabPane tabId="ab" renderOnlyIfActive={true}>
+          Tab Content 2
+        </TabPane>
+      </TabContent>
+    );
+
+    expect(tab1.find('.tab-content .tab-pane').hostNodes().length).toBe(1);
+    expect(tab1.find('.tab-content .tab-pane').hostNodes().at(0).text()).toBe("Tab Content 2");
+  });
+
   it('should render custom TabPane tag', () => {
     const wrapper = mount(<TabPane tag="main" tabId="1">Tab Content 1</TabPane>, { context: {} });
 
