@@ -113,7 +113,7 @@ class Dropdown extends React.Component {
     if(this.context.menuRole === 'listbox') {
       return 'option'
     }
-    return 'menu'
+    return 'menuitem'
   }
 
   getMenuItems() {
@@ -121,10 +121,7 @@ class Dropdown extends React.Component {
     // be null, but it is sometimes null in tests. To mitigate that, we just
     // use `this.getContainer()` as the fallback `menuContainer`.
     const menuContainer = this.getMenu() || this.getContainer();
-    if(this.context.menuRole) {
-      return [].slice.call(menuContainer.querySelectorAll('[role="' + this.getItemType() + '"]'));
-    }
-    return [].slice.call(menuContainer.querySelectorAll('[role="menuitem"]'));
+    return [].slice.call(menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`));
   }
 
   addEvents() {

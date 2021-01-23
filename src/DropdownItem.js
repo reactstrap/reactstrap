@@ -32,13 +32,10 @@ class DropdownItem extends React.Component {
   }
 
   getRole() {
-    const menuRole = this.context.menuRole
-    if(menuRole === true || menuRole === 'menu' || menuRole === undefined) {
-      return 'menuitem'
-    }
-    if(menuRole === 'listbox') {
+    if(this.context.menuRole === 'listbox') {
       return 'option'
     }
+    return 'menuitem'
   }
 
   onClick(e) {

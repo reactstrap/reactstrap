@@ -54,7 +54,6 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    console.log(this.getRole())
     const { className, color, cssModule, caret, split, nav, tag, innerRef, ...props } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
