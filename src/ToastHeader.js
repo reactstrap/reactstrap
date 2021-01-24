@@ -19,7 +19,7 @@ const propTypes = {
 const defaultProps = {
   tag: 'strong',
   wrapTag: 'div',
-  tagClassName: 'mr-auto',
+  tagClassName: 'me-auto',
   closeAriaLabel: 'Close',
   charCode: 215,
 };
@@ -72,7 +72,7 @@ const ToastHeader = (props) => {
   return (
     <WrapTag {...attributes} className={classes}>
       {icon}
-      <Tag className={mapToCssModules(classNames(tagClassName, { "ml-2": icon != null }), cssModule)}>
+      <Tag className={mapToCssModules(classNames(tagClassName, { "ms-2": icon != null }), cssModule)}>
         {children}
       </Tag>
       {close || closeButton}
