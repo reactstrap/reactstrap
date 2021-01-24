@@ -16,7 +16,6 @@ const propTypes = {
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
   active: PropTypes.bool,
-  addonType: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['prepend', 'append'])]),
   size: PropTypes.string,
   tag: tagPropType,
   toggle: PropTypes.func,
@@ -33,7 +32,6 @@ const defaultProps = {
   direction: 'down',
   nav: false,
   active: false,
-  addonType: false,
   inNavbar: false,
   setActiveFromChild: false
 };
@@ -143,7 +141,7 @@ class Dropdown extends React.Component {
         this.toggle(e);
         setTimeout(() => this.getMenuItems()[0].focus());
       } else if (this.props.isOpen && e.which === keyCodes.esc) {
-        this.toggle(e); 
+        this.toggle(e);
       }
     }
 
@@ -213,7 +211,6 @@ class Dropdown extends React.Component {
       nav,
       setActiveFromChild,
       active,
-      addonType,
       tag,
       ...attrs
     } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'a11y']);
@@ -235,10 +232,9 @@ class Dropdown extends React.Component {
       nav && active ? 'active' : false,
       setActiveFromChild && subItemIsActive ? 'active' : false,
       {
-        [`input-group-${addonType}`]: addonType,
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
-        dropdown: !group && !addonType,
+        dropdown: !group,
         show: isOpen,
         'nav-item': nav
       }
