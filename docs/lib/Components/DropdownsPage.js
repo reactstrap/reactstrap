@@ -62,7 +62,7 @@ export default class DropdownPage extends React.Component {
   a11y: PropTypes.bool, // defaults to true. Set to false to enable more bootstrap like tabbing behavior
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right', 'start', 'end']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   // For Dropdown usage inside a Nav
@@ -92,6 +92,8 @@ DropdownToggle.propTypes = {
 DropdownMenu.propTypes = {
   tag: PropTypes.string,
   children: PropTypes.node.isRequired,
+  dark: PropTypes.bool,
+  end: PropTypes.bool,
   right: PropTypes.bool,
   flip: PropTypes.bool, // default: true,
   className: PropTypes.string,
@@ -123,14 +125,14 @@ DropdownItem.propTypes = {
           </PrismCode>
         </pre>
         <SectionTitle>Alignment</SectionTitle>
-        <p>To align the <code>DropdownMenu</code> to the right, add a <code>right</code> prop to <code>Dropdown</code>.</p>
+        <p>To align the <code>DropdownMenu</code> to the right, add a <code>end</code> prop to <code>Dropdown</code>.</p>
         <div className="docs-example">
           <div className="d-flex justify-content-center">
             <Dropdown isOpen={this.state.example2} toggle={this.toggleExample2}>
               <DropdownToggle caret>
                 Dropdown's menu is right-aligned
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu end>
                 <DropdownItem header>Header</DropdownItem>
                 <DropdownItem disabled>Action</DropdownItem>
                 <DropdownItem>Another Action</DropdownItem>
@@ -146,7 +148,7 @@ DropdownItem.propTypes = {
   <DropdownToggle caret>
     Dropdown's menu is right-aligned
   </DropdownToggle>
-  <DropdownMenu right>
+  <DropdownMenu end>
     <DropdownItem header>Header</DropdownItem>
     <DropdownItem disabled>Action</DropdownItem>
     <DropdownItem>Another Action</DropdownItem>
@@ -261,7 +263,7 @@ DropdownItem.propTypes = {
               </Dropdown>
             </Col>
             <Col>
-              <Dropdown direction="left" isOpen={this.state.ddDropleft} toggle={() => { this.setState({ ddDropleft: !this.state.ddDropleft }); }}>
+              <Dropdown direction="start" isOpen={this.state.ddDropleft} toggle={() => { this.setState({ ddDropleft: !this.state.ddDropleft }); }}>
                 <DropdownToggle caret>
                   Dropleft
                 </DropdownToggle>
@@ -272,7 +274,7 @@ DropdownItem.propTypes = {
               </Dropdown>
             </Col>
             <Col>
-              <Dropdown direction="right" isOpen={this.state.ddDropright} toggle={() => { this.setState({ ddDropright: !this.state.ddDropright }); }}>
+              <Dropdown direction="end" isOpen={this.state.ddDropright} toggle={() => { this.setState({ ddDropright: !this.state.ddDropright }); }}>
                 <DropdownToggle caret>
                   Dropright
                 </DropdownToggle>
@@ -296,7 +298,7 @@ DropdownItem.propTypes = {
   </DropdownMenu>
 </Dropdown>
 
-<Dropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
+<Dropdown direction="start" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
   <DropdownToggle caret>
     Dropleft
   </DropdownToggle>
@@ -306,7 +308,7 @@ DropdownItem.propTypes = {
   </DropdownMenu>
 </Dropdown>
 
-<Dropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+<Dropdown direction="end" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
   <DropdownToggle caret>
     Dropright
   </DropdownToggle>

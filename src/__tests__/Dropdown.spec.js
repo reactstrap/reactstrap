@@ -168,7 +168,7 @@ describe('Dropdown', () => {
       mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -191,7 +191,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown id="test" isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>, { attachTo: element });
@@ -215,7 +215,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -239,7 +239,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -260,7 +260,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -283,7 +283,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="test">Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -305,7 +305,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -327,7 +327,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -439,7 +439,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
             <DropdownItem onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -469,7 +469,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
             <DropdownItem onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -499,7 +499,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Reactstrap</DropdownItem>
             <DropdownItem onFocus={focus2}>4</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -529,7 +529,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
             <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -559,7 +559,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
             <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -589,7 +589,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
             <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -619,7 +619,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
             <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -649,7 +649,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
             <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -739,7 +739,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem href="#" id="first" onClick={click}>Test</DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -765,7 +765,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onClick={click}>Test</DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -792,7 +792,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><input id="input" /></DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -822,7 +822,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><textarea id="input" /></DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -878,7 +878,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle} disabled>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -908,7 +908,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem disabled tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
             <DropdownItem disabled id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
@@ -936,7 +936,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -962,7 +962,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
@@ -1108,11 +1108,11 @@ describe('Dropdown', () => {
 
   it('should render with correct class when direction is set', () => {
     const dropup = shallow(<Dropdown direction="up" />);
-    const dropleft = shallow(<Dropdown direction="left" />);
-    const dropright = shallow(<Dropdown direction="right" />);
+    const dropleft = shallow(<Dropdown direction="start" />);
+    const dropright = shallow(<Dropdown direction="end" />);
 
     expect(dropup.childAt(0).childAt(0).hasClass('dropup')).toBe(true);
-    expect(dropleft.childAt(0).childAt(0).hasClass('dropleft')).toBe(true);
-    expect(dropright.childAt(0).childAt(0).hasClass('dropright')).toBe(true);
+    expect(dropleft.childAt(0).childAt(0).hasClass('dropstart')).toBe(true);
+    expect(dropright.childAt(0).childAt(0).hasClass('dropend')).toBe(true);
   });
 });

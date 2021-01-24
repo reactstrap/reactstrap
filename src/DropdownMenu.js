@@ -4,12 +4,14 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType, targetPropType, getTarget } from './utils';
+import { deprecated, mapToCssModules, tagPropType, targetPropType, getTarget } from './utils';
 
 const propTypes = {
   tag: tagPropType,
   children: PropTypes.node.isRequired,
-  right: PropTypes.bool,
+  dark: PropTypes.bool,
+  end: PropTypes.bool,
+  right: deprecated(PropTypes.bool, 'Please use the prop "end"'),
   flip: PropTypes.bool,
   modifiers: PropTypes.object,
   className: PropTypes.string,
@@ -31,29 +33,20 @@ const directionPositionMap = {
   left: 'left',
   right: 'right',
   down: 'bottom',
+  start: 'left',
+  end: 'right'
 };
 
 class DropdownMenu extends React.Component {
 
   render() {
-    const {
-      className,
-      cssModule,
-      right,
-      tag,
-      flip,
-      modifiers,
-      persist,
-      positionFixed,
-      container,
-      ...attrs
-    } = this.props;
-
+    const { className, cssModule, dark, end, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
       {
-        'dropdown-menu-right': right,
+        'dropdown-menu-dark': dark,
+        'dropdown-menu-end': end || right,
         show: this.context.isOpen,
       }
     ), cssModule);
@@ -63,7 +56,7 @@ class DropdownMenu extends React.Component {
     if (persist || (this.context.isOpen && !this.context.inNavbar)) {
 
       const position1 = directionPositionMap[this.context.direction] || 'bottom';
-      const position2 = right ? 'end' : 'start';
+      const position2 = (end || right) ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
       const poperModifiers = !flip ? {
         ...modifiers,
