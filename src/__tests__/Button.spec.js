@@ -94,7 +94,7 @@ describe('Button', () => {
   it('should render block level buttons', () => {
     const block = shallow(<Button block>Block Level Button</Button>);
 
-    expect(block.hasClass('btn-block')).toBe(true);
+    expect(block.hasClass('d-block w-100')).toBe(true);
   });
 
   it('should render close icon utility with default props', () => {
