@@ -3026,7 +3026,7 @@ class Example75 extends React.Component<any, any> {
           <NavbarBrand href="/">reactstrap</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ms-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
@@ -3075,10 +3075,10 @@ class Example76 extends React.Component<any, any> {
     return (
       <div>
         <Navbar color="faded" light>
-          <NavbarBrand href="/" className="mr-auto">
+          <NavbarBrand href="/" className="me-auto">
             reactstrap
           </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <NavbarToggler onClick={this.toggleNavbar} className="me-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
@@ -3473,7 +3473,7 @@ class PopoverItem extends React.Component<any, any> {
     return (
       <span>
         <Button
-          className="mr-1"
+          className="me-1"
           color="secondary"
           id={'Popover-' + this.props.id}
           onClick={this.toggle}
@@ -4166,7 +4166,7 @@ class Example102 extends React.Component<any, any> {
           .
         </p>
         <Tooltip
-          placement="right"
+          placement="end"
           isOpen={this.state.tooltipOpen}
           target="TooltipExample"
           toggle={this.toggle}
@@ -4240,7 +4240,7 @@ class TooltipItem extends React.Component<any, any> {
     return (
       <span>
         <Button
-          className="mr-1"
+          className="me-1"
           color="secondary"
           id={'Tooltip-' + this.props.id}
         >
@@ -4320,7 +4320,7 @@ function Example() {
         .
       </p>
       <UncontrolledTooltip
-        placement="right"
+        placement="end"
         target="UncontrolledTooltipExample"
         popperClassName="popperClassName"
       >
@@ -4430,7 +4430,7 @@ class Example108 extends React.Component<any, any> {
           <NavbarToggler onClick={this.toggle} />
           <NavbarBrand href="/">reactstrap</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ms-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
@@ -4469,7 +4469,7 @@ class Example109 extends React.Component<any, any> {
           <NavbarToggler onClick={this.toggle} />
           <NavbarBrand href="/">reactstrap</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ms-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
@@ -4508,7 +4508,7 @@ class Example110 extends React.Component<any, any> {
           <NavbarToggler onClick={this.toggle} />
           <NavbarBrand href="/">reactstrap</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ms-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
@@ -4549,7 +4549,7 @@ class Example111 extends React.Component<any, any> {
             reactstrap
           </NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ms-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
@@ -4590,7 +4590,7 @@ class Example112 extends React.Component<any, any> {
             reactstrap
           </NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ms-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
