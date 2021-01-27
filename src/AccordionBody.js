@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
+import Collapse from './Collapse';
 import { AccordionContext } from './AccordionContext';
 
 const propTypes = {
@@ -14,49 +15,43 @@ const propTypes = {
     PropTypes.func,
   ]),
   children: PropTypes.node,
-  targetId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
-  tag: 'h2'
+  tag: 'div'
 };
 
-const AccordionHeader = (props) => {
+const AccordionItem = (props) => {
   const {
     className,
     cssModule,
     tag: Tag,
     innerRef,
     children,
-    targetId,
+    id,
     ...attributes
   } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'accordion-header',
-  ), cssModule);
 
   return (
     <AccordionContext.Consumer>
-      {({ openId, toggle}) => {
-        const buttonClasses = mapToCssModules(classNames(
-          'accordion-button',
-          { collapsed: openId !== targetId },
+      {({ openId }) => {
+        const classes = mapToCssModules(classNames(
+          className,
+          'accordion-collapse',
         ), cssModule);
 
         return (
-          <Tag {...attributes} className={classes} ref={innerRef}>
-            <button type="button" className={buttonClasses} onClick={() => toggle(targetId)}>
-              {children}
-            </button>
-          </Tag>
+          <Collapse id={id} tag={Tag} {...attributes} className={classes} ref={innerRef} isOpen={openId === id}>
+            <Tag className="accordion-body">{children}</Tag>
+          </Collapse>
         );
       }}
     </AccordionContext.Consumer>
   );
 };
 
-AccordionHeader.propTypes = propTypes;
-AccordionHeader.defaultProps = defaultProps;
+AccordionItem.propTypes = propTypes;
+AccordionItem.defaultProps = defaultProps;
 
-export default AccordionHeader;
+export default AccordionItem;

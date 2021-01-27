@@ -12,6 +12,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
+  children: PropTypes.node,
 };
 
 const defaultProps = {

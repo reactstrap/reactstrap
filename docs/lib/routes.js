@@ -17,6 +17,7 @@ import PopoversPage from './Components/PopoversPage';
 import ProgressPage from './Components/ProgressPage';
 import TooltipsPage from './Components/TooltipsPage';
 import BadgePage from './Components/BadgePage';
+import AccordionPage from './Components/AccordionPage';
 import MediaPage from './Components/MediaPage';
 import ModalsPage from './Components/ModalsPage';
 import CardPage from './Components/CardPage';
@@ -70,6 +71,7 @@ const routes = (
         <Route path="carousel/" component={CarouselPage} />
         <Route path="listgroup/" component={ListGroupPage} />
         <Route path="spinners/" component={SpinnersPage} />
+        <Route path="accordion/" component={AccordionPage} />
       </Route>
       <Route path="premium-themes/" component={PremiumThemes} />
       <Route path="/utilities/" component={Utilities}>
