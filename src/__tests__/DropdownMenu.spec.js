@@ -65,18 +65,18 @@ describe('DropdownMenu', () => {
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-right')).toBe(false);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-end')).toBe(false);
   });
 
   it('should render right aligned menus', () => {
     isOpen = true;
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
-        <DropdownMenu right>Ello world</DropdownMenu>
+        <DropdownMenu end>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-right')).toBe(true);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-end')).toBe(true);
   });
 
   it('should render down when direction is unknown on the context', () => {
@@ -114,9 +114,9 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(Popper).prop('placement')).toBe('top-start');
   });
 
-  it('should render left when direction is "left" on the context', () => {
+  it('should render left when direction is "start" on the context', () => {
     isOpen = true;
-    direction = 'left';
+    direction = 'start';
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
@@ -126,9 +126,9 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(Popper).prop('placement')).toBe('left-start');
   });
 
-  it('should render right when direction is "right" on the context', () => {
+  it('should render right when direction is "end" on the context', () => {
     isOpen = true;
-    direction = 'right';
+    direction = 'end';
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
@@ -176,7 +176,7 @@ describe('DropdownMenu', () => {
   it('should not render Popper when isOpen is false', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
-        <DropdownMenu right>Ello world</DropdownMenu>
+        <DropdownMenu end>Ello world</DropdownMenu>
       </DropdownContext.Provider>
     );
 
