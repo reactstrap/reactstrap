@@ -11,7 +11,7 @@ import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
 const propTypes = {
   a11y: PropTypes.bool,
   disabled: PropTypes.bool,
-  direction: PropTypes.oneOf(['up', 'down', 'start', 'end']),
+  direction: PropTypes.oneOf(['up', 'down', 'start', 'end', 'left', 'right']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
@@ -269,13 +269,15 @@ class Dropdown extends React.Component {
 
     const classes = mapToCssModules(classNames(
       className,
-      direction !== 'down' && `drop${direction}`,
       nav && active ? 'active' : false,
       setActiveFromChild && subItemIsActive ? 'active' : false,
       {
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
         dropdown: !group,
+        dropup: direction === 'up',
+        dropstart: direction === 'start' || direction === 'left',
+        dropend: direction === 'end' || direction === 'right',
         show: isOpen,
         'nav-item': nav
       }
