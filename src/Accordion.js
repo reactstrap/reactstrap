@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
+import { AccordionContext } from './AccordionContext';
 
 const propTypes = {
   tag: tagPropType,
@@ -12,6 +13,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
+  children: PropTypes.node,
 };
 
 const defaultProps = {
@@ -31,8 +33,17 @@ const Accordion = (props) => {
     'accordion',
   ), cssModule);
 
+  const [openId, setOpenId] = useState();
+
   return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
+    <AccordionContext.Provider value={{
+      openId,
+      toggle: (id) => {
+        openId === id ? setOpenId(undefined) : setOpenId(id);
+      },
+    }}>
+      <Tag {...attributes} className={classes} ref={innerRef} />
+    </AccordionContext.Provider>
   );
 };
 
