@@ -9,7 +9,7 @@ const propTypes = {
   tag: tagPropType,
   children: PropTypes.node.isRequired,
   dark: PropTypes.bool,
-  right: PropTypes.bool,
+  end: PropTypes.bool,
   flip: PropTypes.bool,
   modifiers: PropTypes.object,
   className: PropTypes.string,
@@ -27,21 +27,21 @@ const noFlipModifier = { flip: { enabled: false } };
 
 const directionPositionMap = {
   up: 'top',
-  left: 'left',
-  right: 'right',
+  start: 'left',
+  end: 'right',
   down: 'bottom',
 };
 
 class DropdownMenu extends React.Component {
 
   render() {
-    const { className, cssModule, dark, right, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
+    const { className, cssModule, dark, end, tag, flip, modifiers, persist, positionFixed, ...attrs } = this.props;
     const classes = mapToCssModules(classNames(
       className,
       'dropdown-menu',
       {
         'dropdown-menu-dark': dark,
-        'dropdown-menu-right': right,
+        'dropdown-menu-end': end,
         show: this.context.isOpen,
       }
     ), cssModule);
@@ -51,7 +51,7 @@ class DropdownMenu extends React.Component {
     if (persist || (this.context.isOpen && !this.context.inNavbar)) {
 
       const position1 = directionPositionMap[this.context.direction] || 'bottom';
-      const position2 = right ? 'end' : 'start';
+      const position2 = end ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
       const poperModifiers = !flip ? {
         ...modifiers,

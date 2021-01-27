@@ -11,7 +11,7 @@ import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
 const propTypes = {
   a11y: PropTypes.bool,
   disabled: PropTypes.bool,
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+  direction: PropTypes.oneOf(['up', 'down', 'start', 'end']),
   group: PropTypes.bool,
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
