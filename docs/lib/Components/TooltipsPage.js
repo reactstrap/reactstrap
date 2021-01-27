@@ -19,7 +19,7 @@ export default class TooltipsPage extends React.Component {
     return (
       <div>
         <PageTitle title="Tooltips" />
-        <p>Tooltips are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/souporserious/react-popper">https://github.com/souporserious/react-popper</a>.</p>
+        <p>Tooltips are built with <a href="https://popper.js.org/">https://popper.js.org/</a> via <a href="https://github.com/popperjs/react-popper">https://github.com/popperjs/react-popper</a>.</p>
         <div className="docs-example">
           <TooltipExample />
         </div>
