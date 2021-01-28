@@ -43,7 +43,8 @@ const routes = (
     <Route path="/" component={UI.Layout}>
       <IndexRoute component={Home} />
       <Route path="/components/" component={Components}>
-        <IndexRedirect to="alerts/" />
+        <IndexRedirect to="accordion/" />
+        <Route path="accordion/" component={AccordionPage} />
         <Route path="breadcrumbs/" component={BreadcrumbsPage} />
         <Route path="buttons/" component={ButtonsPage} />
         <Route path="button-group/" component={ButtonGroupPage} />
@@ -73,7 +74,6 @@ const routes = (
         <Route path="list/" component={ListPage} />
         <Route path="listgroup/" component={ListGroupPage} />
         <Route path="spinners/" component={SpinnersPage} />
-        <Route path="accordion/" component={AccordionPage} />
       </Route>
       <Route path="premium-themes/" component={PremiumThemes} />
       <Route path="/utilities/" component={Utilities}>
