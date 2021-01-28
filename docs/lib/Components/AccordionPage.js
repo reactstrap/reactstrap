@@ -4,48 +4,75 @@ import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
-import Accordion from '../../../src/Accordion';
-import AccordionItem from '../../../src/AccordionItem';
-import AccordionHeader from '../../../src/AccordionHeader';
-import AccordionBody from '../../../src/AccordionBody';
+import AccordionExample from '../examples/Accordion';
+const AccordionExampleSource = require('!!raw-loader!../examples/Accordion');
 
 export default class AccordionPage extends React.Component {
   render() {
     return (
       <div>
         <PageTitle title="Accordion" />
-        <hr />
         <div className="docs-example">
-          <Accordion>
-            <AccordionItem>
-              <AccordionHeader targetId="1">
-                Title 1
-              </AccordionHeader>
-              <AccordionBody id="1">
-                Body 1
-              </AccordionBody>
-            </AccordionItem>
-            <AccordionItem>
-              <AccordionHeader targetId="2">
-                Title 2
-              </AccordionHeader>
-              <AccordionBody id="2">
-                Body 2
-              </AccordionBody>
-            </AccordionItem>
-            <AccordionItem>
-              <AccordionHeader targetId="3">
-                Title 3
-              </AccordionHeader>
-              <AccordionBody id="3">
-                Body 3
-              </AccordionBody>
-            </AccordionItem>
-          </Accordion>
+          <AccordionExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {}
+            { AccordionExampleSource}
+          </PrismCode>
+        </pre>
+        <SectionTitle>Properties</SectionTitle>
+        <pre>
+          <PrismCode className="language-jsx">
+{`Accordion.propTypes = {
+    tag: tagPropType,
+    className: PropTypes.string,
+    cssModule: PropTypes.object,
+    innerRef: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+    children: PropTypes.node,
+};
+
+AccordionBody.propTypes = {
+  tag: tagPropType,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+  children: PropTypes.node,
+  id: PropTypes.string.isRequired,
+};
+
+AccordionHeader.propTypes = {
+  tag: tagPropType,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+  children: PropTypes.node,
+  targetId: PropTypes.string.isRequired,
+};
+
+AccordionItem.propTypes = {
+  tag: tagPropType,
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+  children: PropTypes.node,
+};
+`}
           </PrismCode>
         </pre>
       </div>
