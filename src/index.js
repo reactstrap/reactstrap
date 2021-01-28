@@ -24,6 +24,7 @@ export Fade from './Fade';
 export Accordion from './Accordion';
 export AccordionHeader from './AccordionHeader';
 export AccordionItem from './AccordionItem';
+export AccordionBody from './AccordionBody';
 export Badge from './Badge';
 export Card from './Card';
 export CardGroup from './CardGroup';
