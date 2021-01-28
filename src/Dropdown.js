@@ -25,6 +25,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
+  menuRole: PropTypes.oneOf(['listbox', 'menu'])
 };
 
 const defaultProps = {
@@ -76,6 +77,7 @@ class Dropdown extends React.Component {
       // Callback that should be called by DropdownMenu to provide a ref to
       // a HTML tag that's used for the DropdownMenu
       onMenuRef: this.handleMenuRef,
+      menuRole: this.props.menuRole
     };
   }
 
@@ -107,12 +109,19 @@ class Dropdown extends React.Component {
     return this._$menuCtrl;
   }
 
+  getItemType() {
+    if(this.context.menuRole === 'listbox') {
+      return 'option'
+    }
+    return 'menuitem'
+  }
+
   getMenuItems() {
     // In a real menu with a child DropdownMenu, `this.getMenu()` should never
     // be null, but it is sometimes null in tests. To mitigate that, we just
     // use `this.getContainer()` as the fallback `menuContainer`.
     const menuContainer = this.getMenu() || this.getContainer();
-    return [].slice.call(menuContainer.querySelectorAll('[role="menuitem"]'));
+    return [].slice.call(menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`));
   }
 
   addEvents() {
@@ -141,7 +150,7 @@ class Dropdown extends React.Component {
   }
 
   handleKeyDown(e) {
-    const isTargetMenuItem = e.target.getAttribute('role') === 'menuitem';
+    const isTargetMenuItem = e.target.getAttribute('role') === 'menuitem' || e.target.getAttribute('role') === 'option';
     const isTargetMenuCtrl = this.getMenuCtrl() === e.target;
     const isTab = keyCodes.tab === e.which;
 
@@ -177,7 +186,7 @@ class Dropdown extends React.Component {
       }
     }
 
-    if (this.props.isOpen && (e.target.getAttribute('role') === 'menuitem')) {
+    if (this.props.isOpen && isTargetMenuItem) {
       if ([keyCodes.tab, keyCodes.esc].indexOf(e.which) > -1) {
         this.toggle(e);
         this.getMenuCtrl().focus();
@@ -245,6 +254,7 @@ class Dropdown extends React.Component {
       active,
       addonType,
       tag,
+      menuRole,
       ...attrs
     } = omit(this.props, ['toggle', 'disabled', 'inNavbar', 'a11y']);
 

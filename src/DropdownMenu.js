@@ -35,6 +35,13 @@ const directionPositionMap = {
 
 class DropdownMenu extends React.Component {
 
+  getRole() {
+    if(this.context.menuRole === 'listbox') {
+      return 'listbox'
+    }
+    return 'menu'
+  }
+
   render() {
     const {
       className,
@@ -92,7 +99,7 @@ class DropdownMenu extends React.Component {
             return (
               <Tag
                 tabIndex="-1"
-                role="menu"
+                role={this.getRole()}
                 ref={handleRef}
                 {...attrs}
                 style={combinedStyle}
@@ -115,7 +122,7 @@ class DropdownMenu extends React.Component {
     return (
       <Tag
         tabIndex="-1"
-        role="menu"
+        role={this.getRole()}
         {...attrs}
         aria-hidden={!this.context.isOpen}
         className={classes}
