@@ -25,6 +25,7 @@ export Accordion from './Accordion';
 export AccordionHeader from './AccordionHeader';
 export AccordionItem from './AccordionItem';
 export AccordionBody from './AccordionBody';
+export { AccordionContext } from './AccordionContext';
 export Badge from './Badge';
 export Card from './Card';
 export CardGroup from './CardGroup';
