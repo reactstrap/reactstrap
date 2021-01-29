@@ -172,8 +172,8 @@ class PopperContent extends React.Component {
           placement={placement}
           positionFixed={positionFixed}
         >
-          {({ ref, style, placement, outOfBoundaries, arrowProps, update }) => (
-            <div ref={ref} style={style} className={popperClassName} data-popper-placement={placement} data-popper-reference-hidden={outOfBoundaries ? 'true' : undefined}>
+          {({ ref, style, placement, isReferenceHidden, arrowProps, update }) => (
+            <div ref={ref} style={style} className={popperClassName} data-popper-placement={placement} data-popper-reference-hidden={isReferenceHidden ? 'true' : undefined}>
               {typeof children === 'function' ? children({ update }) : children}
               {!hideArrow && <span ref={arrowProps.ref} className={arrowClassName} style={arrowProps.style} />}
             </div>
