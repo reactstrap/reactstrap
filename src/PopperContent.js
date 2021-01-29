@@ -19,11 +19,11 @@ const propTypes = {
   isOpen: PropTypes.bool.isRequired,
   cssModule: PropTypes.object,
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  fallbackPlacement: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  fallbackPlacements: PropTypes.array,
   flip: PropTypes.bool,
   container: targetPropType,
   target: targetPropType.isRequired,
-  modifiers: PropTypes.object,
+  modifiers: PropTypes.array,
   boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   onClosed: PropTypes.func,
   fade: PropTypes.bool,
@@ -36,10 +36,10 @@ const defaultProps = {
   hideArrow: false,
   isOpen: false,
   offset: 0,
-  fallbackPlacement: 'flip',
+  fallbackPlacements: ['flip'],
   flip: true,
   container: 'body',
-  modifiers: {},
+  modifiers: [],
   onClosed: noop,
   fade: true,
   transition: {
@@ -100,7 +100,7 @@ class PopperContent extends React.Component {
       flip,
       target,
       offset,
-      fallbackPlacement,
+      fallbackPlacements,
       placementPrefix,
       arrowClassName: _arrowClassName,
       hideArrow,
@@ -124,12 +124,30 @@ class PopperContent extends React.Component {
       placementPrefix ? `${placementPrefix}-auto` : ''
     ), this.props.cssModule);
 
-    const extendedModifiers = {
-      offset: { offset },
-      flip: { enabled: flip, behavior: fallbackPlacement },
-      preventOverflow: { boundariesElement },
+    const extendedModifiers = [
+      {
+        name: 'offset',
+        options: {
+          offset: [offset],
+        },
+      },
+      {
+        name: 'flip',
+        enabled: flip,
+        options: {
+          fallbackPlacements,
+        },
+      },
+      {
+        name: 'preventOverflow',
+        options: {
+          boundary: boundariesElement,
+        },
+      },
       ...modifiers,
-    };
+    ]
+
+    console.log(extendedModifiers);
 
     const popperTransition = {
       ...Fade.defaultProps,
