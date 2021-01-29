@@ -60,13 +60,12 @@ class DropdownMenu extends React.Component {
         ...modifiers,
         ...noFlipModifier,
       } : modifiers;
-      const popperPositionFixed = !!positionFixed;
 
       return (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
-          positionFixed={popperPositionFixed}
+          strategy={positionFixed ? 'fixed' : undefined}
         >
           {({ ref, style, placement }) => {
             let combinedStyle = { ...this.props.style, ...style };
