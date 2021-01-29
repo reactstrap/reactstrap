@@ -98,8 +98,8 @@ DropdownMenu.propTypes = {
   flip: PropTypes.bool, // default: true,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  // Custom modifiers that are passed to DropdownMenu.js, see https://popper.js.org/popper-documentation.html#modifiers
-  modifiers: PropTypes.object,
+  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/docs/v2/modifiers/
+  modifiers: PropTypes.array,
   persist: PropTypes.bool, // presist the popper, even when closed. See #779 for reasoning
   // passed to popper, see https://popper.js.org/popper-documentation.html#Popper.Defaults.positionFixed
   positionFixed: PropTypes.bool,

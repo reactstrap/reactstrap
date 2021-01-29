@@ -11,8 +11,8 @@ import TooltipExampleMulti from '../examples/TooltipMulti';
 const TooltipExampleMultiSource = require('!!raw-loader!../examples/TooltipMulti');
 import TooltipExampleUncontrolled from '../examples/TooltipUncontrolled';
 const TooltipExampleUncontrolledSource = require('!!raw-loader!../examples/TooltipUncontrolled');
-import TooltipScheduleUpdateExample from '../examples/TooltipScheduleUpdate';
-const TooltipScheduleUpdateExampleSource = require('!!raw-loader!../examples/TooltipScheduleUpdate');
+import TooltipUpdateExample from '../examples/TooltipUpdate';
+const TooltipUpdateExampleSource = require('!!raw-loader!../examples/TooltipUpdate');
 
 export default class TooltipsPage extends React.Component {
   render() {
@@ -82,15 +82,12 @@ export default class TooltipsPage extends React.Component {
     'left-start',
     'left-end',
   ]),
-  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/popper-documentation.html#modifiers
-  modifiers: PropTypes.object,
+  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/docs/v2/modifiers/
+  modifiers: PropTypes.array,
   // Whether the element the tooltip is pointing to has "position: fixed" styling. This is passed to Popper.js and
   // will make the tooltip itself have "position: fixed" as well
   positionFixed: PropTypes.bool,
-  offset: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  offset: PropTypes.arrayOf(PropTypes.number),
   // Custom ref handler that will be assigned to the "ref" of the <div> wrapping the tooltip elements
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
@@ -142,15 +139,15 @@ export default class TooltipsPage extends React.Component {
         <SectionTitle>Repositioning Tooltips</SectionTitle>
         <p>
           If you need to reposition a tooltip due to content changes or target placement changes, use
-          the <code>scheduleUpdate</code> function to manually reposition it. This function is exposed
+          the <code>update</code> function to manually reposition it. This function is exposed
           as a render prop for <code>children</code>.
         </p>
         <div className="docs-example">
-          <TooltipScheduleUpdateExample />
+          <TooltipUpdateExample />
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            {TooltipScheduleUpdateExampleSource}
+            {TooltipUpdateExampleSource}
           </PrismCode>
         </pre>
       </div>
