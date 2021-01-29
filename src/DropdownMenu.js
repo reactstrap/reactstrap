@@ -79,7 +79,7 @@ class DropdownMenu extends React.Component {
                 style={combinedStyle}
                 aria-hidden={!this.context.isOpen}
                 className={classes}
-                x-placement={placement}
+                data-popper-placement={placement}
               />
             );
           }}
@@ -94,7 +94,7 @@ class DropdownMenu extends React.Component {
         {...attrs}
         aria-hidden={!this.context.isOpen}
         className={classes}
-        x-placement={attrs.placement}
+        data-popper-placement={attrs.placement}
       />
     );
   }

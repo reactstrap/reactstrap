@@ -152,7 +152,7 @@ class PopperContent extends React.Component {
           placement={placement}
         >
           {({ ref, style, placement, outOfBoundaries, arrowProps, scheduleUpdate }) => (
-            <div ref={ref} style={style} className={popperClassName} x-placement={placement} x-out-of-boundaries={outOfBoundaries ? 'true' : undefined}>
+            <div ref={ref} style={style} className={popperClassName} data-popper-placement={placement} data-popper-reference-hidden={outOfBoundaries ? 'true' : undefined}>
               {typeof children === 'function' ? children({ scheduleUpdate }) : children}
               {!hideArrow && <span ref={arrowProps.ref} className={arrowClassName} style={arrowProps.style} />}
             </div>
