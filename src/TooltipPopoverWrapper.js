@@ -381,7 +381,7 @@ class TooltipPopoverWrapper extends React.Component {
         fade={fade}
         flip={flip}
       >
-        {({ scheduleUpdate }) => (
+        {({ update }) => (
           <div
             {...attributes}
             ref={this.getRef}
@@ -391,7 +391,7 @@ class TooltipPopoverWrapper extends React.Component {
             onMouseLeave={this.onMouseLeaveTooltipContent}
             onKeyDown={this.onEscKeyDown}
           >
-            {typeof children === 'function' ? children({ scheduleUpdate }) : children}
+            {typeof children === 'function' ? children({ update }) : children}
           </div>
         )}
 
