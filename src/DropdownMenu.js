@@ -11,7 +11,7 @@ const propTypes = {
   dark: PropTypes.bool,
   end: PropTypes.bool,
   flip: PropTypes.bool,
-  modifiers: PropTypes.object,
+  modifiers: PropTypes.array,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
@@ -22,9 +22,8 @@ const propTypes = {
 const defaultProps = {
   tag: 'div',
   flip: true,
+  modifiers: [],
 };
-
-const noFlipModifier = { flip: { enabled: false } };
 
 const directionPositionMap = {
   up: 'top',
@@ -56,17 +55,19 @@ class DropdownMenu extends React.Component {
       const position1 = directionPositionMap[this.context.direction] || 'bottom';
       const position2 = (end || right) ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
-      const poperModifiers = !flip ? {
+      const poperModifiers = [
         ...modifiers,
-        ...noFlipModifier,
-      } : modifiers;
-      const popperPositionFixed = !!positionFixed;
+        {
+          name: 'flip',
+          enabled: !!flip,
+        },
+       ];
 
       return (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
-          positionFixed={popperPositionFixed}
+          strategy={positionFixed ? 'fixed' : undefined}
         >
           {({ ref, style, placement }) => {
             let combinedStyle = { ...this.props.style, ...style };
@@ -79,7 +80,7 @@ class DropdownMenu extends React.Component {
                 style={combinedStyle}
                 aria-hidden={!this.context.isOpen}
                 className={classes}
-                x-placement={placement}
+                data-popper-placement={placement}
               />
             );
           }}
@@ -94,7 +95,7 @@ class DropdownMenu extends React.Component {
         {...attrs}
         aria-hidden={!this.context.isOpen}
         className={classes}
-        x-placement={attrs.placement}
+        data-popper-placement={attrs.placement}
       />
     );
   }
