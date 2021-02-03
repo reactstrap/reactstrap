@@ -125,7 +125,8 @@ class PopperContent extends React.Component {
       placementPrefix ? `${placementPrefix}-auto` : ''
     ), this.props.cssModule);
 
-    const extendedModifiers = [
+    const modifierNames = modifiers.map(m => m.name);
+    const baseModifiers = [
       {
         name: 'offset',
         options: {
@@ -146,7 +147,8 @@ class PopperContent extends React.Component {
         },
       },
       ...modifiers,
-    ]
+    ].filter(m => !modifierNames.includes(m.name));
+    const extendedModifiers = [ ...baseModifiers, ...modifiers];
 
     const popperTransition = {
       ...Fade.defaultProps,

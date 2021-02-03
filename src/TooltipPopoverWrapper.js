@@ -31,7 +31,7 @@ export const propTypes = {
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
   ]),
-  modifiers: PropTypes.object,
+  modifiers: PropTypes.array,
   positionFixed: PropTypes.bool,
   offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   innerRef: PropTypes.oneOfType([
