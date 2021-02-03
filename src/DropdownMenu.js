@@ -22,6 +22,7 @@ const propTypes = {
 const defaultProps = {
   tag: 'div',
   flip: true,
+  modifiers: [],
 };
 
 const directionPositionMap = {
