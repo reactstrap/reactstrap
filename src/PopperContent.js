@@ -18,7 +18,7 @@ const propTypes = {
   tag: tagPropType,
   isOpen: PropTypes.bool.isRequired,
   cssModule: PropTypes.object,
-  offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  offset: PropTypes.arrayOf(PropTypes.number),
   fallbackPlacements: PropTypes.array,
   flip: PropTypes.bool,
   container: targetPropType,
@@ -35,8 +35,7 @@ const defaultProps = {
   placement: 'auto',
   hideArrow: false,
   isOpen: false,
-  offset: 0,
-  fallbackPlacements: ['flip'],
+  offset: [0, 0],
   flip: true,
   container: 'body',
   modifiers: [],
@@ -128,7 +127,7 @@ class PopperContent extends React.Component {
       {
         name: 'offset',
         options: {
-          offset: [offset],
+          offset: [offset, offset],
         },
       },
       {
@@ -146,8 +145,6 @@ class PopperContent extends React.Component {
       },
       ...modifiers,
     ]
-
-    console.log(extendedModifiers);
 
     const popperTransition = {
       ...Fade.defaultProps,
@@ -169,8 +166,8 @@ class PopperContent extends React.Component {
           modifiers={extendedModifiers}
           placement={placement}
         >
-          {({ ref, style, placement, isReferenceHidden, arrowProps, update }) => (
-            <div ref={ref} style={style} className={popperClassName} data-popper-placement={placement} data-popper-reference-hidden={isReferenceHidden ? 'true' : undefined}>
+          {({ ref, style, placement: popperPlacement, isReferenceHidden, arrowProps, update }) => (
+            <div ref={ref} style={style} className={popperClassName} data-popper-placement={popperPlacement} data-popper-reference-hidden={isReferenceHidden ? 'true' : undefined}>
               {typeof children === 'function' ? children({ update }) : children}
               {!hideArrow && <span ref={arrowProps.ref} className={arrowClassName} style={arrowProps.style} />}
             </div>
