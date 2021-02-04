@@ -37,40 +37,4 @@ describe('ToastHeader', () => {
 
     expect(wrapper.type()).toBe('main');
   });
-
-  it('should render close button with custom aria-label', () => {
-    const wrapper = shallow(<ToastHeader toggle={() => { }} className="other" closeAriaLabel="oseclay">Yo!</ToastHeader>);
-
-    const closeButton = wrapper.find('button.btn-close').first();
-    expect(closeButton.prop('aria-label')).toBe('oseclay');
-  });
-
-  it('should render close button with default icon', () => {
-    const wrapper = shallow(<ToastHeader toggle={() => { }}>Yo!</ToastHeader>);
-
-    const closeButtonIcon = wrapper.find('button.btn-close span');
-    const defaultIcon = String.fromCharCode(215);
-    expect(closeButtonIcon.text()).toEqual(defaultIcon);
-  });
-
-  it('should render close button with custom icon', () => {
-    const wrapper = shallow(<ToastHeader toggle={() => { }} charCode={'X'}>Yo!</ToastHeader>);
-
-    const closeButtonIcon = wrapper.find('button.btn-close span');
-    expect(closeButtonIcon.text()).toEqual('X');
-  });
-
-  it('should render icon with a color', () => {
-    const wrapper = shallow(<ToastHeader icon="primary">Yo!</ToastHeader>);
-
-    const closeButtonIcon = wrapper.find('svg');
-    expect(closeButtonIcon.hasClass('text-primary')).toBe(true);
-  });
-
-  it('should render a custom icon', () => {
-    const wrapper = shallow(<ToastHeader icon={<span className="my-header">icon</span>}>Yo!</ToastHeader>);
-
-    const closeButtonIcon = wrapper.find('span.my-header');
-    expect(closeButtonIcon.text()).toEqual("icon");
-  });
 });
