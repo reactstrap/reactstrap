@@ -7,6 +7,7 @@ const propTypes = {
   children: PropTypes.node,
   row: PropTypes.bool,
   check: PropTypes.bool,
+  floating: PropTypes.bool,
   switch: PropTypes.bool,
   inline: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -25,6 +26,7 @@ const FormGroup = (props) => {
     cssModule,
     row,
     disabled,
+    floating,
     check,
     inline,
     tag: Tag,
@@ -38,8 +40,10 @@ const FormGroup = (props) => {
     row ? 'row' : false,
     formCheck ? 'form-check' : 'mb-3',
     props.switch ? 'form-switch' : false,
+    floating ? 'form-floating' : false,
     formCheck && inline ? 'form-check-inline' : false,
-    formCheck && disabled ? 'disabled' : false
+    formCheck && disabled ? 'disabled' : false,
+
   ), cssModule);
 
   if (Tag === 'fieldset') {

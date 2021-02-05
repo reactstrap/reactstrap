@@ -118,6 +118,12 @@ describe('FormGroup', () => {
     expect(wrapper.hasClass('row')).toBe(false);
   });
 
+  it('should render with "form-floating" class when floating prop is truthy', () => {
+    const wrapper = shallow(<FormGroup floating>Yo!</FormGroup>);
+
+    expect(wrapper.hasClass('form-floating')).toBe(true);
+  });
+
   it('should render additional classes', () => {
     const wrapper = shallow(<FormGroup className="other">Yo!</FormGroup>);
 

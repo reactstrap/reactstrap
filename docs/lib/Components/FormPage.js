@@ -34,6 +34,9 @@ const InputGridSizingExampleSource = require('!!raw-loader!../examples/InputGrid
 import LabelHiddenExample from '../examples/LabelHidden';
 const LabelHiddenExampleSource = require('!!raw-loader!../examples/LabelHidden');
 
+import FloatingLabelExample from '../examples/FloatingLabel';
+const FloatingLabelExampleSource = require('!!raw-loader!../examples/FloatingLabel');
+
 export default class FormPage extends React.Component {
   render() {
     return (
@@ -205,6 +208,16 @@ FormText.propTypes = {
         <pre>
           <PrismCode className="language-jsx">
             {LabelHiddenExampleSource}
+          </PrismCode>
+        </pre>
+
+        <SectionTitle>Floating Labels</SectionTitle>
+        <div className="docs-example">
+          <FloatingLabelExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {FloatingLabelExampleSource}
           </PrismCode>
         </pre>
       </div>
