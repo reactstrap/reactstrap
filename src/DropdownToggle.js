@@ -21,8 +21,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  'aria-haspopup': true,
   color: 'secondary',
+  'aria-haspopup': true
 };
 
 class DropdownToggle extends React.Component {
@@ -47,6 +47,10 @@ class DropdownToggle extends React.Component {
     }
 
     this.context.toggle(e);
+  }
+
+  getRole() {
+    return this.context.menuRole || this.props['aria-haspopup'];
   }
 
   render() {
@@ -87,6 +91,7 @@ class DropdownToggle extends React.Component {
           className={classes}
           onClick={this.onClick}
           aria-expanded={this.context.isOpen}
+          aria-haspopup={this.getRole()}
           children={children}
         />
       );
@@ -102,6 +107,7 @@ class DropdownToggle extends React.Component {
             className={classes}
             onClick={this.onClick}
             aria-expanded={this.context.isOpen}
+            aria-haspopup={this.getRole()}
             children={children}
           />
         )}

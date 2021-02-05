@@ -1115,4 +1115,47 @@ describe('Dropdown', () => {
     expect(dropleft.childAt(0).childAt(0).hasClass('dropleft')).toBe(true);
     expect(dropright.childAt(0).childAt(0).hasClass('dropright')).toBe(true);
   });
+
+  describe('menuRole prop', () => {
+
+    it('should set correct roles for children when menuRole is menu', () => {
+      const wrapper = mount(
+        <Dropdown menuRole={'menu'} toggle={toggle}>
+          <DropdownToggle nav caret>
+            Options
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem active>
+              Test
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.props().menuRole).toEqual('menu')
+      expect(wrapper.find('[aria-haspopup="menu"]').length).toEqual(1)
+      expect(wrapper.find('[role="menuitem"]').length).toEqual(1)
+      expect(wrapper.find('[role="menu"]').length).toEqual(1)
+    })
+
+    it('should set correct roles for children when menuRole is menu', () => {
+      const wrapper = mount(
+        <Dropdown menuRole={'listbox'} toggle={toggle}>
+          <DropdownToggle nav caret>
+            Options
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem active>
+              Test
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+
+      expect(wrapper.props().menuRole).toEqual('listbox')
+      expect(wrapper.find('[aria-haspopup="listbox"]').length).toEqual(1)
+      expect(wrapper.find('[role="option"]').length).toEqual(1)
+      expect(wrapper.find('[role="listbox"]').length).toEqual(1)
+    })
+  })
 });
