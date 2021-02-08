@@ -111,8 +111,10 @@ class Dropdown extends React.Component {
   handleDocumentClick(e) {
     if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
     const container = this.getContainer();
+    const clickIsInContainer = container.contains(e.target) && container !== e.target;
+    const clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
 
-    if (container.contains(e.target) && container !== e.target && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    if ((clickIsInContainer && !clickIsInInput) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
       return;
     }
 
