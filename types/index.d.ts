@@ -82,8 +82,6 @@ export { default as Input } from './lib/Input';
 export { InputProps } from './lib/Input';
 export { default as InputGroup } from './lib/InputGroup';
 export { InputGroupProps } from './lib/InputGroup';
-export { default as InputGroupButtonDropdown } from './lib/InputGroupButtonDropdown';
-export { InputGroupButtonDropdownProps } from './lib/InputGroupButtonDropdown';
 export { default as InputGroupText } from './lib/InputGroupText';
 export { InputGroupTextProps } from './lib/InputGroupText';
 export { default as Label } from './lib/Label';

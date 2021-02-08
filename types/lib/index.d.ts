@@ -86,8 +86,6 @@ export { default as Input } from './Input';
 export { InputProps } from './Input';
 export { default as InputGroup } from './InputGroup';
 export { InputGroupProps } from './InputGroup';
-export { default as InputGroupButtonDropdown } from './InputGroupButtonDropdown';
-export { InputGroupButtonDropdownProps } from './InputGroupButtonDropdown';
 export { default as InputGroupText } from './InputGroupText';
 export { InputGroupTextProps } from './InputGroupText';
 export { default as Label } from './Label';
