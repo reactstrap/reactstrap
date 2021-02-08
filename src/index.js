@@ -63,7 +63,6 @@ export FormGroup from './FormGroup';
 export FormText from './FormText';
 export Input from './Input';
 export InputGroup from './InputGroup';
-export InputGroupButtonDropdown from './InputGroupButtonDropdown';
 export InputGroupText from './InputGroupText';
 export Label from './Label';
 export Media from './Media';
