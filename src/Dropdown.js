@@ -139,8 +139,9 @@ class Dropdown extends React.Component {
     const container = this.getContainer();
     const menu = this.getMenu();
     const clickIsInContainer = container.contains(e.target) && container !== e.target;
+    const clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
     const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
-    if ((clickIsInContainer || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    if (((clickIsInContainer && !clickIsInInput) || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
       return;
     }
 
