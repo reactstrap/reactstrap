@@ -44,7 +44,6 @@ import {
   FormText,
   Input,
   InputGroup,
-  InputGroupButtonDropdown,
   InputGroupText,
   Pagination,
   Label,
@@ -4718,35 +4717,6 @@ const Example116 = (props: any) => {
         <Input />
       </InputGroup>
       <br />
-      <InputGroup>
-        <Input />
-        <InputGroupButtonDropdown addonType="append" isOpen={false}>
-          <DropdownToggle caret>Button Dropdown</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </InputGroupButtonDropdown>
-      </InputGroup>
-      <br />
-      <InputGroup>
-        <InputGroupButtonDropdown addonType="prepend" isOpen={true}>
-          <Button outline>Split Button</Button>
-          <DropdownToggle split outline />
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </InputGroupButtonDropdown>
-        <Input placeholder="and..." />
-        <Button color="secondary">I'm a button</Button>
-      </InputGroup>
     </div>
   );
 };
@@ -4828,7 +4798,6 @@ import { default as FormGroup_ } from './lib/FormGroup'; /* tslint:disable-line:
 import { default as FormText_ } from './lib/FormText'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Input_ } from './lib/Input'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as InputGroup_ } from './lib/InputGroup'; /* tslint:disable-line: no-relative-import-in-test */
-import { default as InputGroupButtonDropdown_ } from './lib/InputGroupButtonDropdown'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as InputGroupText_ } from './lib/InputGroupText'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Label_ } from './lib/Label'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as ListGroup_ } from './lib/ListGroup'; /* tslint:disable-line: no-relative-import-in-test */
@@ -4929,12 +4898,6 @@ function AnyPropExample() {
       <FormText_ foo={1} bar={false} foobar="example" />
       <Input_ foo={1} bar={false} foobar="example" />
       <InputGroup_ foo={1} bar={false} foobar="example" />
-      <InputGroupButtonDropdown_
-        foo={1}
-        bar={false}
-        foobar="example"
-        addonType="prepend"
-      />
       <InputGroupText_ foo={1} bar={false} foobar="example" />
       <Label_ foo={1} bar={false} foobar="example" />
       <ListGroup_ foo={1} bar={false} foobar="example" />
