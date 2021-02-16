@@ -77,12 +77,9 @@ export default class PopoversPage extends React.Component {
     'left-start',
     'left-end',
   ]),
-  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/popper-documentation.html#modifiers
-  modifiers: PropTypes.object,
-  offset: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/docs/v2/modifiers/
+  modifiers: PropTypes.array,
+  offset: PropTypes.arrayOf(PropTypes.number),
 
   // Whether to show/hide the popover with a fade effect
   // (default: true)

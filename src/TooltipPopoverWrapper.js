@@ -32,7 +32,7 @@ export const propTypes = {
     PropTypes.number
   ]),
   modifiers: PropTypes.array,
-  offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  offset: PropTypes.arrayOf(PropTypes.number),
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
