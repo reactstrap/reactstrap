@@ -82,12 +82,9 @@ export default class TooltipsPage extends React.Component {
     'left-start',
     'left-end',
   ]),
-  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/popper-documentation.html#modifiers
-  modifiers: PropTypes.object,
-  offset: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  // Custom modifiers that are passed to Popper.js, see https://popper.js.org/docs/v2/modifiers/
+  modifiers: PropTypes.array,
+  offset: PropTypes.arrayOf(PropTypes.number),
   // Custom ref handler that will be assigned to the "ref" of the <div> wrapping the tooltip elements
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
