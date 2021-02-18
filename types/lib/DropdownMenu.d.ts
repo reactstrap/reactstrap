@@ -11,7 +11,7 @@ export interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
   modifiers?: Popper.Modifiers;
   cssModule?: CSSModule;
   persist?: boolean;
-  positionFixed?: boolean;
+  strategy?: string;
   container?: string | HTMLElement | React.RefObject<HTMLElement>;
 }
 
