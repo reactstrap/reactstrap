@@ -1,3 +1,9 @@
+export { default as Accordion } from './lib/Accordion';
+export { AccordionProps } from './lib/Accordion';
+export { default as AccordionHeader } from './lib/AccordionHeader';
+export { AccordionHeaderProps } from './lib/AccordionHeader';
+export { default as AccordionItem } from './lib/AccordionItem';
+export { AccordionItemProps } from './lib/AccordionItem';
 export { default as Alert } from './lib/Alert';
 export { AlertProps } from './lib/Alert';
 export { default as Badge } from './lib/Badge';
