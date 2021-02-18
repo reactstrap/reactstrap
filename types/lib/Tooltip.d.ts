@@ -21,7 +21,7 @@ export interface UncontrolledTooltipProps
   autohide?: boolean;
   placement?: Popper.Placement;
   modifiers?: Popper.Modifiers;
-  positionFixed?: boolean;
+  strategy?: string;
   cssModule?: CSSModule;
   fade?: boolean;
   flip?: boolean;
