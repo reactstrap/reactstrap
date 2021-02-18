@@ -79,9 +79,8 @@ export default class PopoversPage extends React.Component {
   ]),
   // Custom modifiers that are passed to Popper.js, see https://popper.js.org/docs/v2/modifiers/
   modifiers: PropTypes.array,
-  // Whether the element the tooltip is pointing to has "position: fixed" styling. This is passed to Popper.js and
-  // will make the tooltip itself have "position: fixed" as well
-  positionFixed: PropTypes.bool,
+  // https://popper.js.org/docs/v2/constructors/#strategy
+  strategy: PropTypes.string,
   offset: PropTypes.arrayOf(PropTypes.number),
 
   // Whether to show/hide the popover with a fade effect
