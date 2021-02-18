@@ -24,7 +24,7 @@ const propTypes = {
   container: targetPropType,
   target: targetPropType.isRequired,
   modifiers: PropTypes.array,
-  positionFixed: PropTypes.bool,
+  strategy: PropTypes.string,
   boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   onClosed: PropTypes.func,
   fade: PropTypes.bool,
@@ -108,7 +108,7 @@ class PopperContent extends React.Component {
       tag,
       container,
       modifiers,
-      positionFixed,
+      strategy,
       boundariesElement,
       onClosed,
       fade,
@@ -168,7 +168,7 @@ class PopperContent extends React.Component {
           referenceElement={this.targetNode}
           modifiers={extendedModifiers}
           placement={placement}
-          strategy={positionFixed ? 'fixed' : undefined}
+          strategy={strategy}
         >
           {({ ref, style, placement: popperPlacement, isReferenceHidden, arrowProps, update }) => (
             <div ref={ref} style={style} className={popperClassName} data-popper-placement={popperPlacement} data-popper-reference-hidden={isReferenceHidden ? 'true' : undefined}>

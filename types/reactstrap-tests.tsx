@@ -5465,7 +5465,7 @@ class Example129 extends React.Component<any, any> {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>Dropdown</DropdownToggle>
-        <DropdownMenu persist positionFixed>
+        <DropdownMenu persist strategy="fixed">
           <DropdownItem header>Header</DropdownItem>
           <DropdownItem disabled>Action</DropdownItem>
           <DropdownItem>Another Action</DropdownItem>

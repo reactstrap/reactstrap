@@ -101,8 +101,8 @@ DropdownMenu.propTypes = {
   // Custom modifiers that are passed to Popper.js, see https://popper.js.org/docs/v2/modifiers/
   modifiers: PropTypes.array,
   persist: PropTypes.bool, // presist the popper, even when closed. See #779 for reasoning
-  // passed to popper, see https://popper.js.org/popper-documentation.html#Popper.Defaults.positionFixed
-  positionFixed: PropTypes.bool,
+  // passed to popper, see https://popper.js.org/docs/v2/constructors/#strategy
+  strategy: PropTypes.string,
   // Element to place the menu in. Used to show the menu as a child of 'body'
   // or other elements in the DOM instead of where it naturally is. This can be
   // used to make the Dropdown escape a container with overflow: hidden

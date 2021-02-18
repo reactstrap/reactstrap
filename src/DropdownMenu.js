@@ -16,7 +16,7 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
-  positionFixed: PropTypes.bool,
+  strategy: PropTypes.string,
   container: targetPropType,
 };
 
@@ -52,7 +52,7 @@ class DropdownMenu extends React.Component {
       flip,
       modifiers,
       persist,
-      positionFixed,
+      strategy,
       container,
       ...attrs
     } = this.props;
@@ -86,7 +86,7 @@ class DropdownMenu extends React.Component {
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
-          strategy={positionFixed ? 'fixed' : undefined}
+          strategy={strategy}
         >
           {({ ref, style, placement }) => {
             let combinedStyle = { ...this.props.style, ...style };
