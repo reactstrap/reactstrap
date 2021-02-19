@@ -35,7 +35,6 @@ const ToastHeader = (props) => {
     tag: Tag,
     wrapTag: WrapTag,
     closeAriaLabel,
-    charCode,
     close,
     tagClassName,
     icon: iconProp,
@@ -47,11 +46,8 @@ const ToastHeader = (props) => {
   ), cssModule);
 
   if (!close && toggle) {
-    const closeIcon = typeof charCode === 'number' ? String.fromCharCode(charCode) : charCode;
     closeButton = (
-      <button type="button" onClick={toggle} className={mapToCssModules('close', cssModule)} aria-label={closeAriaLabel}>
-        <span aria-hidden="true">{closeIcon}</span>
-      </button>
+      <button type="button" onClick={toggle} className={mapToCssModules('btn-close', cssModule)} aria-label={closeAriaLabel} />
     );
   }
 
