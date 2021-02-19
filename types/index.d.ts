@@ -88,8 +88,6 @@ export { default as InputGroupButtonDropdown } from './lib/InputGroupButtonDropd
 export { InputGroupButtonDropdownProps } from './lib/InputGroupButtonDropdown';
 export { default as InputGroupText } from './lib/InputGroupText';
 export { InputGroupTextProps } from './lib/InputGroupText';
-export { default as Jumbotron } from './lib/Jumbotron';
-export { JumbotronProps } from './lib/Jumbotron';
 export { default as Label } from './lib/Label';
 export { LabelProps } from './lib/Label';
 export { default as ListGroup } from './lib/ListGroup';
