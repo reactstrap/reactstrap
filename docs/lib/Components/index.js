@@ -55,10 +55,6 @@ const items = [
     to: '/components/input-group/'
   },
   {
-    name: 'Jumbotron',
-    to: '/components/jumbotron/'
-  },
-  {
     name: 'Layout',
     to: '/components/layout/'
   },

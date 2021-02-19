@@ -23,7 +23,6 @@ import CardPage from './Components/CardPage';
 import TablesPage from './Components/TablesPage';
 import PaginationPage from './Components/PaginationPage';
 import TabsPage from './Components/TabsPage';
-import JumbotronPage from './Components/JumbotronPage';
 import AlertsPage from './Components/AlertsPage';
 import ToastsPage from './Components/ToastsPage';
 import CollapsePage from './Components/CollapsePage';
@@ -66,7 +65,6 @@ const routes = (
         <Route path="tabs/" component={TabsPage} />
         <Route path="alerts/" component={AlertsPage} />
         <Route path="toasts/" component={ToastsPage} />
-        <Route path="jumbotron/" component={JumbotronPage} />
         <Route path="collapse/" component={CollapsePage} />
         <Route path="carousel/" component={CarouselPage} />
         <Route path="list/" component={ListPage} />
