@@ -92,8 +92,6 @@ export { default as InputGroupButtonDropdown } from './InputGroupButtonDropdown'
 export { InputGroupButtonDropdownProps } from './InputGroupButtonDropdown';
 export { default as InputGroupText } from './InputGroupText';
 export { InputGroupTextProps } from './InputGroupText';
-export { default as Jumbotron } from './Jumbotron';
-export { JumbotronProps } from './Jumbotron';
 export { default as Label } from './Label';
 export { LabelProps } from './Label';
 export { default as ListGroup } from './ListGroup';

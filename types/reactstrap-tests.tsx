@@ -59,7 +59,6 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
-  Jumbotron,
   Media,
   Nav,
   Navbar,
@@ -2079,44 +2078,6 @@ const Example58 = (props: any) => {
           To the Right!
         </InputGroupAddon>
       </InputGroup>
-    </div>
-  );
-};
-
-const Example59 = (props: any) => {
-  return (
-    <div>
-      <Jumbotron>
-        <h1 className="display-3">Hello, world!</h1>
-        <p className="lead">
-          This is a simple hero unit, a simple Jumbotron-style component for
-          calling extra attention to featured content or information.
-        </p>
-        <hr className="my-2" />
-        <p>
-          It uses utility classes for typgraphy and spacing to space content out
-          within the larger container.
-        </p>
-        <p className="lead">
-          <Button color="primary">Learn More</Button>
-        </p>
-      </Jumbotron>
-    </div>
-  );
-};
-
-const Example60 = (props: any) => {
-  return (
-    <div>
-      <Jumbotron fluid>
-        <Container fluid>
-          <h1 className="display-3">Fluid jumbotron</h1>
-          <p className="lead">
-            This is a modified jumbotron that occupies the entire horizontal
-            space of its parent.
-          </p>
-        </Container>
-      </Jumbotron>
     </div>
   );
 };
@@ -4888,7 +4849,6 @@ import { default as InputGroup_ } from './lib/InputGroup'; /* tslint:disable-lin
 import { default as InputGroupAddon_ } from './lib/InputGroupAddon'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as InputGroupButtonDropdown_ } from './lib/InputGroupButtonDropdown'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as InputGroupText_ } from './lib/InputGroupText'; /* tslint:disable-line: no-relative-import-in-test */
-import { default as Jumbotron_ } from './lib/Jumbotron'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Label_ } from './lib/Label'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as ListGroup_ } from './lib/ListGroup'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as ListGroupItem_ } from './lib/ListGroupItem'; /* tslint:disable-line: no-relative-import-in-test */
@@ -5001,7 +4961,6 @@ function AnyPropExample() {
         addonType="prepend"
       />
       <InputGroupText_ foo={1} bar={false} foobar="example" />
-      <Jumbotron_ foo={1} bar={false} foobar="example" />
       <Label_ foo={1} bar={false} foobar="example" />
       <ListGroup_ foo={1} bar={false} foobar="example" />
       <ListGroupItem_ foo={1} bar={false} foobar="example" />
@@ -5755,7 +5714,6 @@ const MegaTest = () => {
         addonType="append"
       />
       <InputGroupText ref={React.createRef<InputGroupText>()} {...htmlProps} />
-      <Jumbotron ref={React.createRef<Jumbotron>()} {...htmlProps} />
       <Label ref={React.createRef<Label>()} {...htmlProps} />
       <ListGroup ref={React.createRef<ListGroup>()} {...htmlProps} />
       <ListGroupItem ref={React.createRef<ListGroupItem>()} {...htmlProps} />
