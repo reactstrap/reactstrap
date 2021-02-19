@@ -7,14 +7,13 @@ import {
   Container,
   Row,
   Col,
-  Jumbotron,
 } from 'reactstrap';
 import premiumThemes from './premium';
 
 export default () => {
   return (
     <div>
-      <Jumbotron tag="section" className="jumbotron-header text-center mb-3">
+      <section className="jumbotron-header rounded px-3 px-sm-4 py-3 py-sm-5 text-center mb-3">
         <p className="lead">
           <img src="/assets/logo.png" alt="" width="110px" />
         </p>
@@ -23,7 +22,7 @@ export default () => {
           A collection of free and premium React templates and themes powered by
           Reactstrap
         </h4>
-      </Jumbotron>
+      </section>
       {premiumThemes.map(company => (
         <Container key={company.creator.name} className="premium-section">
           <h2 className="font-weight-bold">{company.creator.name}</h2>
