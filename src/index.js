@@ -73,7 +73,6 @@ export PaginationItem from './PaginationItem';
 export PaginationLink from './PaginationLink';
 export TabContent from './TabContent';
 export TabPane from './TabPane';
-export Jumbotron from './Jumbotron';
 export Alert from './Alert';
 export Toast from './Toast';
 export ToastBody from './ToastBody';

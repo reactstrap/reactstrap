@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrismCode } from 'react-prism';
-import { Button, Container, Row, Col, Jumbotron } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router';
 import Example from '../examples/import-basic';
 
@@ -9,7 +9,7 @@ const importBasic = require('!!raw-loader!../examples/import-basic');
 export default () => {
   return (
     <div>
-      <Jumbotron tag="section" className="jumbotron-header text-center mb-3">
+      <section className="jumbotron-header rounded px-3 px-sm-4 py-3 py-sm-5 text-center mb-3">
         <Container>
           <Row>
             <Col>
@@ -40,7 +40,7 @@ export default () => {
             </Col>
           </Row>
         </Container>
-      </Jumbotron>
+      </section>
       <Container>
         <Row className="justify-content-sm-center">
           <Col sm={8} className="docSearch-content">
