@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, tagPropType } from './utils';
+import { mapToCssModules, tagPropType, deprecated } from './utils';
 
 const rowColWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
 const rowColsPropType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 const propTypes = {
   tag: tagPropType,
-  noGutters: PropTypes.bool,
+  noGutters: deprecated(PropTypes.bool, "Please use Bootstrap 5 gutter utility classes. https://getbootstrap.com/docs/5.0/layout/gutters/"),
   className: PropTypes.string,
   cssModule: PropTypes.object,
   form: PropTypes.bool,
@@ -52,7 +52,7 @@ const Row = (props) => {
 
   const classes = mapToCssModules(classNames(
     className,
-    noGutters ? 'no-gutters' : null,
+    noGutters ? 'gx-0' : null,
     form ? 'form-row' : 'row',
     colClasses
   ), cssModule);
