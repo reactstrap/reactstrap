@@ -22,6 +22,7 @@ export DropdownToggle from './DropdownToggle';
 export { DropdownContext } from './DropdownContext';
 export Fade from './Fade';
 export Accordion from './Accordion';
+export UncontrolledAccordion from './UncontrolledAccordion';
 export AccordionHeader from './AccordionHeader';
 export AccordionItem from './AccordionItem';
 export AccordionBody from './AccordionBody';

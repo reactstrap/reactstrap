@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
@@ -14,6 +14,8 @@ const propTypes = {
     PropTypes.func,
   ]),
   children: PropTypes.node,
+  openId: PropTypes.string.isRequired,
+  toggle: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -22,6 +24,8 @@ const defaultProps = {
 
 const Accordion = (props) => {
   const {
+    openId,
+    toggle,
     className,
     cssModule,
     tag: Tag,
@@ -33,12 +37,9 @@ const Accordion = (props) => {
     'accordion',
   ), cssModule);
 
-  const [openId, setOpenId] = useState();
   const accordionContext = useMemo(() => ({
     openId,
-    toggle: (id) => {
-      openId === id ? setOpenId(undefined) : setOpenId(id);
-    },
+    toggle,
   }));
 
   return (
