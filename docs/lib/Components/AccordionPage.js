@@ -45,7 +45,7 @@ AccordionBody.propTypes = {
     PropTypes.func,
   ]),
   children: PropTypes.node,
-  id: PropTypes.string.isRequired,
+  accordionId: PropTypes.string.isRequired,
 };
 
 AccordionHeader.propTypes = {

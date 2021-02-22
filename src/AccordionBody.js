@@ -15,7 +15,7 @@ const propTypes = {
     PropTypes.func,
   ]),
   children: PropTypes.node,
-  id: PropTypes.string.isRequired,
+  accordionId: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
@@ -29,7 +29,7 @@ const AccordionItem = (props) => {
     tag: Tag,
     innerRef,
     children,
-    id,
+    accordionId,
     ...attributes
   } = props;
 
@@ -41,7 +41,7 @@ const AccordionItem = (props) => {
   ), cssModule);
 
   return (
-    <Collapse id={id} tag={Tag} {...attributes} className={classes} ref={innerRef} isOpen={openId === id}>
+    <Collapse tag={Tag} {...attributes} className={classes} ref={innerRef} isOpen={openId === accordionId}>
       <Tag className="accordion-body">{children}</Tag>
     </Collapse>    
   );

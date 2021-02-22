@@ -5,7 +5,7 @@ export interface AccordionBodyProps extends React.HTMLAttributes<HTMLElement> {
   tag?: React.ElementType;
   cssModule?: CSSModule;
   innerRef?: React.Ref<HTMLElement>;
-  id: string;
+  accordionId: string;
 }
 
 declare class AccordionBody extends React.Component<AccordionBodyProps> {}
