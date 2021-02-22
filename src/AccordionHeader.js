@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
@@ -31,28 +31,24 @@ const AccordionHeader = (props) => {
     targetId,
     ...attributes
   } = props;
+  const { openId, toggle } = useContext(AccordionContext);
+
   const classes = mapToCssModules(classNames(
     className,
     'accordion-header',
   ), cssModule);
 
-  return (
-    <AccordionContext.Consumer>
-      {({ openId, toggle}) => {
-        const buttonClasses = mapToCssModules(classNames(
-          'accordion-button',
-          { collapsed: openId !== targetId },
-        ), cssModule);
+  const buttonClasses = mapToCssModules(classNames(
+    'accordion-button',
+    { collapsed: openId !== targetId },
+  ), cssModule);
 
-        return (
-          <Tag {...attributes} className={classes} ref={innerRef}>
-            <button type="button" className={buttonClasses} onClick={() => toggle(targetId)}>
-              {children}
-            </button>
-          </Tag>
-        );
-      }}
-    </AccordionContext.Consumer>
+  return (
+    <Tag {...attributes} className={classes} ref={innerRef}>
+      <button type="button" className={buttonClasses} onClick={() => toggle(targetId)}>
+        {children}
+      </button>
+    </Tag>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
@@ -33,21 +33,17 @@ const AccordionItem = (props) => {
     ...attributes
   } = props;
 
-  return (
-    <AccordionContext.Consumer>
-      {({ openId }) => {
-        const classes = mapToCssModules(classNames(
-          className,
-          'accordion-collapse',
-        ), cssModule);
+  const { openId } = useContext(AccordionContext);
 
-        return (
-          <Collapse id={id} tag={Tag} {...attributes} className={classes} ref={innerRef} isOpen={openId === id}>
-            <Tag className="accordion-body">{children}</Tag>
-          </Collapse>
-        );
-      }}
-    </AccordionContext.Consumer>
+  const classes = mapToCssModules(classNames(
+    className,
+    'accordion-collapse',
+  ), cssModule);
+
+  return (
+    <Collapse id={id} tag={Tag} {...attributes} className={classes} ref={innerRef} isOpen={openId === id}>
+      <Tag className="accordion-body">{children}</Tag>
+    </Collapse>    
   );
 };
 

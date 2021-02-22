@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
@@ -34,14 +34,15 @@ const Accordion = (props) => {
   ), cssModule);
 
   const [openId, setOpenId] = useState();
+  const accordionContext = useMemo(() => ({
+    openId,
+    toggle: (id) => {
+      openId === id ? setOpenId(undefined) : setOpenId(id);
+    },
+  }));
 
   return (
-    <AccordionContext.Provider value={{
-      openId,
-      toggle: (id) => {
-        openId === id ? setOpenId(undefined) : setOpenId(id);
-      },
-    }}>
+    <AccordionContext.Provider value={accordionContext}>
       <Tag {...attributes} className={classes} ref={innerRef} />
     </AccordionContext.Provider>
   );
