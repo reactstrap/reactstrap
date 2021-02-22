@@ -41,7 +41,7 @@ const AccordionItem = (props) => {
   ), cssModule);
 
   return (
-    <Collapse tag={Tag} {...attributes} className={classes} ref={innerRef} isOpen={openId === accordionId}>
+    <Collapse {...attributes} className={classes} ref={innerRef} isOpen={openId === accordionId}>
       <Tag className="accordion-body">{children}</Tag>
     </Collapse>    
   );
