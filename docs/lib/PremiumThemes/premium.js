@@ -115,4 +115,19 @@ export default [
       },
       ],
    }, 
+  {
+    creator: {
+      name: 'PIXINVENT',
+      tagLine: 'PIXINVENT provides high quality, creative design and easy to use Premium & Free Bootstrap Admin Template',
+      link: 'https://1.envato.market/pixinvent_portfolio',
+    },
+    products: [
+      {
+        title: 'Vuexy - Vuejs, React, HTML & Laravel Admin Dashboard Template',
+        tagLine: 'Best selling, Production Ready, Carefully Crafted Admin Template',
+        imgUrl: 'https://www.pixinvent.com/demo/vuexy-html-bootstrap-admin-template/item-page/reactstrap.jpg',
+        link: 'https://1.envato.market/vuexy_admin',
+      },
+    ],
+  },
 ];
