@@ -12,20 +12,19 @@ const propTypes = {
   dark: PropTypes.bool,
   right: PropTypes.bool,
   flip: PropTypes.bool,
-  modifiers: PropTypes.object,
+  modifiers: PropTypes.array,
   className: PropTypes.string,
   cssModule: PropTypes.object,
   persist: PropTypes.bool,
-  positionFixed: PropTypes.bool,
+  strategy: PropTypes.string,
   container: targetPropType,
 };
 
 const defaultProps = {
   tag: 'div',
   flip: true,
+  modifiers: [],
 };
-
-const noFlipModifier = { flip: { enabled: false } };
 
 const directionPositionMap = {
   up: 'top',
@@ -53,7 +52,7 @@ class DropdownMenu extends React.Component {
       flip,
       modifiers,
       persist,
-      positionFixed,
+      strategy,
       container,
       ...attrs
     } = this.props;
@@ -75,17 +74,19 @@ class DropdownMenu extends React.Component {
       const position1 = directionPositionMap[this.context.direction] || 'bottom';
       const position2 = right ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
-      const poperModifiers = !flip ? {
+      const poperModifiers = [
         ...modifiers,
-        ...noFlipModifier,
-      } : modifiers;
-      const popperPositionFixed = !!positionFixed;
+        {
+          name: 'flip',
+          enabled: !!flip,
+        },
+       ];
 
       const popper = (
         <Popper
           placement={poperPlacement}
           modifiers={poperModifiers}
-          positionFixed={popperPositionFixed}
+          strategy={strategy}
         >
           {({ ref, style, placement }) => {
             let combinedStyle = { ...this.props.style, ...style };
@@ -108,7 +109,7 @@ class DropdownMenu extends React.Component {
                 style={combinedStyle}
                 aria-hidden={!this.context.isOpen}
                 className={classes}
-                x-placement={placement}
+                data-popper-placement={placement}
               />
             );
           }}
@@ -129,7 +130,7 @@ class DropdownMenu extends React.Component {
         {...attrs}
         aria-hidden={!this.context.isOpen}
         className={classes}
-        x-placement={attrs.placement}
+        data-popper-placement={attrs.placement}
       />
     );
   }

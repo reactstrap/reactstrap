@@ -18,13 +18,13 @@ const propTypes = {
   tag: tagPropType,
   isOpen: PropTypes.bool.isRequired,
   cssModule: PropTypes.object,
-  offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  fallbackPlacement: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  offset: PropTypes.arrayOf(PropTypes.number),
+  fallbackPlacements: PropTypes.array,
   flip: PropTypes.bool,
   container: targetPropType,
   target: targetPropType.isRequired,
-  modifiers: PropTypes.object,
-  positionFixed: PropTypes.bool,
+  modifiers: PropTypes.array,
+  strategy: PropTypes.string,
   boundariesElement: PropTypes.oneOfType([PropTypes.string, DOMElement]),
   onClosed: PropTypes.func,
   fade: PropTypes.bool,
@@ -36,11 +36,10 @@ const defaultProps = {
   placement: 'auto',
   hideArrow: false,
   isOpen: false,
-  offset: 0,
-  fallbackPlacement: 'flip',
+  offset: [0, 0],
   flip: true,
   container: 'body',
-  modifiers: {},
+  modifiers: [],
   onClosed: noop,
   fade: true,
   transition: {
@@ -101,7 +100,7 @@ class PopperContent extends React.Component {
       flip,
       target,
       offset,
-      fallbackPlacement,
+      fallbackPlacements,
       placementPrefix,
       arrowClassName: _arrowClassName,
       hideArrow,
@@ -109,7 +108,7 @@ class PopperContent extends React.Component {
       tag,
       container,
       modifiers,
-      positionFixed,
+      strategy,
       boundariesElement,
       onClosed,
       fade,
@@ -126,12 +125,29 @@ class PopperContent extends React.Component {
       placementPrefix ? `${placementPrefix}-auto` : ''
     ), this.props.cssModule);
 
-    const extendedModifiers = {
-      offset: { offset },
-      flip: { enabled: flip, behavior: fallbackPlacement },
-      preventOverflow: { boundariesElement },
-      ...modifiers,
-    };
+    const modifierNames = modifiers.map(m => m.name);
+    const baseModifiers = [
+      {
+        name: 'offset',
+        options: {
+          offset,
+        },
+      },
+      {
+        name: 'flip',
+        enabled: flip,
+        options: {
+          fallbackPlacements,
+        },
+      },
+      {
+        name: 'preventOverflow',
+        options: {
+          boundary: boundariesElement,
+        },
+      },
+    ].filter(m => !modifierNames.includes(m.name));
+    const extendedModifiers = [ ...baseModifiers, ...modifiers];
 
     const popperTransition = {
       ...Fade.defaultProps,
@@ -152,11 +168,11 @@ class PopperContent extends React.Component {
           referenceElement={this.targetNode}
           modifiers={extendedModifiers}
           placement={placement}
-          positionFixed={positionFixed}
+          strategy={strategy}
         >
-          {({ ref, style, placement, outOfBoundaries, arrowProps, scheduleUpdate }) => (
-            <div ref={ref} style={style} className={popperClassName} x-placement={placement} x-out-of-boundaries={outOfBoundaries ? 'true' : undefined}>
-              {typeof children === 'function' ? children({ scheduleUpdate }) : children}
+          {({ ref, style, placement: popperPlacement, isReferenceHidden, arrowProps, update }) => (
+            <div ref={ref} style={style} className={popperClassName} data-popper-placement={popperPlacement} data-popper-reference-hidden={isReferenceHidden ? 'true' : undefined}>
+              {typeof children === 'function' ? children({ update }) : children}
               {!hideArrow && <span ref={arrowProps.ref} className={arrowClassName} style={arrowProps.style} />}
             </div>
           )}

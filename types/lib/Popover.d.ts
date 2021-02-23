@@ -3,7 +3,7 @@ import * as Popper from 'popper.js';
 import { CSSModule } from './index';
 
 interface PopoverChildrenRenderProps {
-  scheduleUpdate: () => void;
+  update: () => void;
 }
 
 export type PopoverChildren =
@@ -25,7 +25,7 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLElement> {
   placementPrefix?: string;
   delay?: number | { show: number; hide: number };
   modifiers?: Popper.Modifiers;
-  positionFixed?: boolean;
+  strategy?: string;
   cssModule?: CSSModule;
   fade?: boolean;
   flip?: boolean;

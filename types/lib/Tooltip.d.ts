@@ -3,7 +3,7 @@ import * as Popper from 'popper.js';
 import { CSSModule } from './index';
 
 interface TooltipChildrenRenderProps {
-  scheduleUpdate: () => void;
+  update: () => void;
 }
 
 export type TooltipChildren =
@@ -21,7 +21,7 @@ export interface UncontrolledTooltipProps
   autohide?: boolean;
   placement?: Popper.Placement;
   modifiers?: Popper.Modifiers;
-  positionFixed?: boolean;
+  strategy?: string;
   cssModule?: CSSModule;
   fade?: boolean;
   flip?: boolean;

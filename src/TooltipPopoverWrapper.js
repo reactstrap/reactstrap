@@ -31,9 +31,9 @@ export const propTypes = {
     PropTypes.shape({ show: PropTypes.number, hide: PropTypes.number }),
     PropTypes.number
   ]),
-  modifiers: PropTypes.object,
-  positionFixed: PropTypes.bool,
-  offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  modifiers: PropTypes.array,
+  strategy: PropTypes.string,
+  offset: PropTypes.arrayOf(PropTypes.number),
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
@@ -349,7 +349,7 @@ class TooltipPopoverWrapper extends React.Component {
       popperClassName,
       container,
       modifiers,
-      positionFixed,
+      strategy,
       offset,
       fade,
       flip,
@@ -375,13 +375,13 @@ class TooltipPopoverWrapper extends React.Component {
         popperClassName={popperClasses}
         container={container}
         modifiers={modifiers}
-        positionFixed={positionFixed}
+        strategy={strategy}
         offset={offset}
         cssModule={cssModule}
         fade={fade}
         flip={flip}
       >
-        {({ scheduleUpdate }) => (
+        {({ update }) => (
           <div
             {...attributes}
             ref={this.getRef}
@@ -391,7 +391,7 @@ class TooltipPopoverWrapper extends React.Component {
             onMouseLeave={this.onMouseLeaveTooltipContent}
             onKeyDown={this.onEscKeyDown}
           >
-            {typeof children === 'function' ? children({ scheduleUpdate }) : children}
+            {typeof children === 'function' ? children({ update }) : children}
           </div>
         )}
 
