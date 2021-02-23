@@ -71,7 +71,7 @@ class Button extends React.Component {
       close || 'btn',
       close || btnOutlineColor,
       size ? `btn-${size}` : false,
-      block ? 'btn-block' : false,
+      block ? 'd-block w-100' : false,
       { active, disabled: this.props.disabled }
     ), cssModule);
 
