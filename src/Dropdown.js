@@ -16,7 +16,6 @@ const propTypes = {
   isOpen: PropTypes.bool,
   nav: PropTypes.bool,
   active: PropTypes.bool,
-  addonType: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['prepend', 'append'])]),
   size: PropTypes.string,
   tag: tagPropType,
   toggle: PropTypes.func,
@@ -34,7 +33,6 @@ const defaultProps = {
   direction: 'down',
   nav: false,
   active: false,
-  addonType: false,
   inNavbar: false,
   setActiveFromChild: false
 };
@@ -141,8 +139,9 @@ class Dropdown extends React.Component {
     const container = this.getContainer();
     const menu = this.getMenu();
     const clickIsInContainer = container.contains(e.target) && container !== e.target;
+    const clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
     const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
-    if ((clickIsInContainer || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    if (((clickIsInContainer && !clickIsInInput) || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
       return;
     }
 
@@ -252,7 +251,6 @@ class Dropdown extends React.Component {
       nav,
       setActiveFromChild,
       active,
-      addonType,
       tag,
       menuRole,
       ...attrs
@@ -275,10 +273,9 @@ class Dropdown extends React.Component {
       nav && active ? 'active' : false,
       setActiveFromChild && subItemIsActive ? 'active' : false,
       {
-        [`input-group-${addonType}`]: addonType,
         'btn-group': group,
         [`btn-group-${size}`]: !!size,
-        dropdown: !group && !addonType,
+        dropdown: !group,
         show: isOpen,
         'nav-item': nav
       }

@@ -44,8 +44,6 @@ import {
   FormText,
   Input,
   InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
   InputGroupText,
   Pagination,
   Label,
@@ -1897,42 +1895,38 @@ const Example52 = (props: any) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+        <InputGroupText>@</InputGroupText>
         <Input placeholder="username" />
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend">
+        <InputGroupText>
           <Input
             addon
             type="checkbox"
             aria-label="Checkbox for following text input"
           />
-        </InputGroupAddon>
+        </InputGroupText>
         <Input placeholder="Check it out" />
       </InputGroup>
       <br />
       <InputGroup>
         <Input placeholder="username" />
-        <InputGroupAddon addonType="prepend">@example.com</InputGroupAddon>
+        <InputGroupText>@example.com</InputGroupText>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend">
-          <InputGroupText>$</InputGroupText>
-          <InputGroupText>$</InputGroupText>
-        </InputGroupAddon>
+        <InputGroupText>$</InputGroupText>
+        <InputGroupText>$</InputGroupText>
         <Input placeholder="Dolla dolla billz yo!" />
-        <InputGroupAddon addonType="append">
-          <InputGroupText>$</InputGroupText>
-          <InputGroupText>$</InputGroupText>
-        </InputGroupAddon>
+        <InputGroupText>$</InputGroupText>
+        <InputGroupText>$</InputGroupText>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+        <InputGroupText>$</InputGroupText>
         <Input placeholder="Amount" type="number" step="1" />
-        <InputGroupAddon addonType="append">.00</InputGroupAddon>
+        <InputGroupText>.00</InputGroupText>
       </InputGroup>
     </div>
   );
@@ -1942,19 +1936,19 @@ const Example53 = (props: any) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">To the Left!</InputGroupAddon>
+        <InputGroupText>To the Left!</InputGroupText>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
-        <InputGroupAddon addonType="append">To the Right!</InputGroupAddon>
+        <InputGroupText>To the Right!</InputGroupText>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend">To the Left!</InputGroupAddon>
+        <InputGroupText>To the Left!</InputGroupText>
         <Input placeholder="and..." />
-        <InputGroupAddon addonType="append">To the Right!</InputGroupAddon>
+        <InputGroupText>To the Right!</InputGroupText>
       </InputGroup>
     </div>
   );
@@ -1964,17 +1958,17 @@ const Example54 = (props: any) => {
   return (
     <div>
       <InputGroup size="lg">
-        <InputGroupAddon addonType="prepend">@lg</InputGroupAddon>
+        <InputGroupText>@lg</InputGroupText>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend">@normal</InputGroupAddon>
+        <InputGroupText>@normal</InputGroupText>
         <Input />
       </InputGroup>
       <br />
       <InputGroup size="sm">
-        <InputGroupAddon addonType="prepend">@sm</InputGroupAddon>
+        <InputGroupText>@sm</InputGroupText>
         <Input />
       </InputGroup>
     </div>
@@ -1985,23 +1979,17 @@ const Example55 = (props: any) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">
-          <Button>I'm a button</Button>
-        </InputGroupAddon>
+        <Button>I'm a button</Button>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
-        <InputGroupAddon addonType="append"></InputGroupAddon>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend"></InputGroupAddon>
         <Input placeholder="and..." />
-        <InputGroupAddon addonType="append">
-          <Button color="secondary">I'm a button</Button>
-        </InputGroupAddon>
+        <Button color="secondary">I'm a button</Button>
       </InputGroup>
     </div>
   );
@@ -2011,17 +1999,17 @@ const Example56 = (props: any) => {
   return (
     <div>
       <InputGroup size="lg">
-        <InputGroupAddon addonType="prepend">@lg</InputGroupAddon>
+        <InputGroupText>@lg</InputGroupText>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend">@normal</InputGroupAddon>
+        <InputGroupText>@normal</InputGroupText>
         <Input />
       </InputGroup>
       <br />
       <InputGroup size="sm">
-        <InputGroupAddon addonType="prepend">@sm</InputGroupAddon>
+        <InputGroupText>@sm</InputGroupText>
         <Input />
       </InputGroup>
     </div>
@@ -2032,23 +2020,17 @@ const Example57 = (props: any) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">
-          <Button>I'm a button</Button>
-        </InputGroupAddon>
+        <Button>I'm a button</Button>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
-        <InputGroupAddon addonType="prepend"></InputGroupAddon>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend"></InputGroupAddon>
         <Input placeholder="and..." />
-        <InputGroupAddon addonType="append">
-          <Button color="secondary">I'm a button</Button>
-        </InputGroupAddon>
+        <Button color="secondary">I'm a button</Button>
       </InputGroup>
     </div>
   );
@@ -2058,25 +2040,25 @@ const Example58 = (props: any) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">To the Left!</InputGroupAddon>
+        <InputGroupText>To the Left!</InputGroupText>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
-        <InputGroupAddon addonType="append" color="secondary">
+        <InputGroupText color="secondary">
           To the Right!
-        </InputGroupAddon>
+        </InputGroupText>
       </InputGroup>
       <br />
       <InputGroup>
-        <InputGroupAddon addonType="prepend" color="danger">
+        <InputGroupText color="danger">
           To the Left!
-        </InputGroupAddon>
+        </InputGroupText>
         <Input placeholder="and..." />
-        <InputGroupAddon addonType="append" color="success">
+        <InputGroupText color="success">
           To the Right!
-        </InputGroupAddon>
+        </InputGroupText>
       </InputGroup>
     </div>
   );
@@ -4731,43 +4713,10 @@ const Example116 = (props: any) => {
   return (
     <div>
       <InputGroup>
-        <InputGroupAddon addonType="prepend">
-          <Button>I'm a button</Button>
-        </InputGroupAddon>
+        <Button>I'm a button</Button>
         <Input />
       </InputGroup>
       <br />
-      <InputGroup>
-        <Input />
-        <InputGroupButtonDropdown addonType="append" isOpen={false}>
-          <DropdownToggle caret>Button Dropdown</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </InputGroupButtonDropdown>
-      </InputGroup>
-      <br />
-      <InputGroup>
-        <InputGroupButtonDropdown addonType="prepend" isOpen={true}>
-          <Button outline>Split Button</Button>
-          <DropdownToggle split outline />
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </InputGroupButtonDropdown>
-        <Input placeholder="and..." />
-        <InputGroupAddon addonType="append">
-          <Button color="secondary">I'm a button</Button>
-        </InputGroupAddon>
-      </InputGroup>
     </div>
   );
 };
@@ -4849,8 +4798,6 @@ import { default as FormGroup_ } from './lib/FormGroup'; /* tslint:disable-line:
 import { default as FormText_ } from './lib/FormText'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Input_ } from './lib/Input'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as InputGroup_ } from './lib/InputGroup'; /* tslint:disable-line: no-relative-import-in-test */
-import { default as InputGroupAddon_ } from './lib/InputGroupAddon'; /* tslint:disable-line: no-relative-import-in-test */
-import { default as InputGroupButtonDropdown_ } from './lib/InputGroupButtonDropdown'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as InputGroupText_ } from './lib/InputGroupText'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as Label_ } from './lib/Label'; /* tslint:disable-line: no-relative-import-in-test */
 import { default as ListGroup_ } from './lib/ListGroup'; /* tslint:disable-line: no-relative-import-in-test */
@@ -4951,18 +4898,6 @@ function AnyPropExample() {
       <FormText_ foo={1} bar={false} foobar="example" />
       <Input_ foo={1} bar={false} foobar="example" />
       <InputGroup_ foo={1} bar={false} foobar="example" />
-      <InputGroupAddon_
-        foo={1}
-        bar={false}
-        foobar="example"
-        addonType="prepend"
-      />
-      <InputGroupButtonDropdown_
-        foo={1}
-        bar={false}
-        foobar="example"
-        addonType="prepend"
-      />
       <InputGroupText_ foo={1} bar={false} foobar="example" />
       <Label_ foo={1} bar={false} foobar="example" />
       <ListGroup_ foo={1} bar={false} foobar="example" />
@@ -5711,11 +5646,6 @@ const MegaTest = () => {
       <Input innerRef={React.createRef<HTMLTextAreaElement>()} />
       <Input innerRef={React.createRef<HTMLInputElement>()} />
       <InputGroup ref={React.createRef<InputGroup>()} {...htmlProps} />
-      <InputGroupAddon
-        ref={React.createRef<InputGroupAddon>()}
-        {...htmlProps}
-        addonType="append"
-      />
       <InputGroupText ref={React.createRef<InputGroupText>()} {...htmlProps} />
       <Label ref={React.createRef<Label>()} {...htmlProps} />
       <ListGroup ref={React.createRef<ListGroup>()} {...htmlProps} />
