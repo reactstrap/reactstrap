@@ -4,10 +4,16 @@ import { PaginationLink } from '../';
 import { PaginationItemContext } from '../PaginationItemContext';
 
 describe('PaginationLink', () => {
-  it('should render default `a` tag when `href` is present', () => {
-    const wrapper = mount(<PaginationLink href="#" />);
+  it('should render default `a` tag when `href` is present and different than #', () => {
+    const wrapper = shallow(<PaginationLink href="#cool_anchor" />);
 
-    expect(wrapper.find('a').hostNodes().length).toBe(1);
+    expect(wrapper.is('a')).toBe(true);
+  });
+
+  it('should render default `button` tag when `href` is #', () => {
+    const wrapper = shallow(<PaginationLink href="#" />);
+
+    expect(wrapper.is('button')).toBe(true);
   });
 
   it('should render default `button` tag when no `href` is present', () => {
