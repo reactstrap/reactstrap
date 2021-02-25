@@ -69,7 +69,7 @@ const PaginationLink = (props) => {
     children = null;
   }
 
-  if (!attributes.href && Tag === 'a') {
+  if ((!attributes.href || attributes.href === '#') && Tag === 'a') {
     Tag = 'button';
   }
 
