@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { PaginationLink } from '../';
+import { PaginationItemContext } from '../PaginationItemContext';
 
 describe('PaginationLink', () => {
   it('should render default `a` tag when `href` is present', () => {
@@ -110,4 +111,23 @@ describe('PaginationLink', () => {
     expect(wrapper.find('.visually-hidden').text()).toBe('Last');
   });
 
+  it('should render aria-disabled if disabled context is passed', () => {
+    const wrapper = mount(
+      <PaginationItemContext.Provider value={{ disabled: true }}>
+        <PaginationLink />
+      </PaginationItemContext.Provider>
+    );
+
+    expect(wrapper.find({ 'aria-disabled': 'true' }).hostNodes().length).toBe(1);
+  });
+
+  it('should not render aria-disabled if disabled context is passed', () => {
+    const wrapper = mount(
+      <PaginationItemContext.Provider value={{ disabled: false }}>
+        <PaginationLink />
+      </PaginationItemContext.Provider>
+    );
+
+    expect(wrapper.find({ 'aria-disabled': 'true' }).hostNodes().length).toBe(0);
+  });
 });
