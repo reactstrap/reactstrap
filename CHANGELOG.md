@@ -1,3 +1,45 @@
+# [9.0.0-0](https://github.com/reactstrap/reactstrap/compare/8.9.0...9.0.0-0) (2021-03-03)
+
+
+### Bug Fixes
+
+* **InputGroup:** toggle if clicking dropdown input ([6915b7b](https://github.com/reactstrap/reactstrap/commit/6915b7b9ff463d84dd3064c1560018bd322ad175))
+
+
+### Code Refactoring
+
+* **PopperContent:** update positionedFix prop to strategy ([fa1f1ed](https://github.com/reactstrap/reactstrap/commit/fa1f1eddcab1d3a5b70ad8861aef128eafa19fc1))
+
+
+### Features
+
+* **bs5:** add accordion ([#2105](https://github.com/reactstrap/reactstrap/issues/2105)) ([115d204](https://github.com/reactstrap/reactstrap/commit/115d20476c1916106a35eb6e4010f488d99cffb9))
+* **bs5:** Convert Dropdown & DropdownMenu to RTL ([aa51131](https://github.com/reactstrap/reactstrap/commit/aa511319d30a109efb0245afe8b7b275ceff167e))
+* **bs5:** Update tooltip/popover arrow classes ([1c9c037](https://github.com/reactstrap/reactstrap/commit/1c9c037ad9129a68f99acbdda6779fa8ca23193d))
+* **Dropdown:** Add backwards compatible left & right ([61aca5d](https://github.com/reactstrap/reactstrap/commit/61aca5db428c05beb9a2c5f1631d1cf57e357b0a))
+* remove form-control-file class ([6ea074a](https://github.com/reactstrap/reactstrap/commit/6ea074aa0feecb19fe6a33524362eb8cae1fbb6b)), closes [/getbootstrap.com/docs/5.0/migration/#forms-2](https://github.com//getbootstrap.com/docs/5.0/migration//issues/forms-2)
+* remove InputGroupAddon ([706869f](https://github.com/reactstrap/reactstrap/commit/706869fa0b05019e38d78d8877afab7d3481a67a))
+* replace form-control-range with form-range ([bd8383d](https://github.com/reactstrap/reactstrap/commit/bd8383d5bb68f74c3a17e7bafe58196e41ae3992)), closes [/getbootstrap.com/docs/5.0/migration/#forms-2](https://github.com//getbootstrap.com/docs/5.0/migration//issues/forms-2)
+* support form switch ([87156f5](https://github.com/reactstrap/reactstrap/commit/87156f589eb585ddcc01a2120f757bbd38c0ab62))
+* use form-select class with native select ([1764eb3](https://github.com/reactstrap/reactstrap/commit/1764eb32a39ac4788086922aac55d3fbd72dea83)), closes [/getbootstrap.com/docs/5.0/migration/#forms-2](https://github.com//getbootstrap.com/docs/5.0/migration//issues/forms-2)
+* **bs5:**  Rename margin utils ([407546c](https://github.com/reactstrap/reactstrap/commit/407546cb490ea7522b38bd0b9d81a54efde6f2f0))
+* **bs5:**  Replace .btn-block with utility classes ([755ede1](https://github.com/reactstrap/reactstrap/commit/755ede18b943667a94e40875e7bc82b38c53cb70))
+* **bs5:** change .close to .btn-close ([#2116](https://github.com/reactstrap/reactstrap/issues/2116)) ([0cdc1ce](https://github.com/reactstrap/reactstrap/commit/0cdc1ced7ca505b9899b327a9cf39288acc1b6c8))
+* **bs5:** change no-gutters class to gx-0 in Row ([#2119](https://github.com/reactstrap/reactstrap/issues/2119)) ([884bc98](https://github.com/reactstrap/reactstrap/commit/884bc9841d53030de5fb1a33dc3cc58e7e3651c5))
+* **bs5:** convert .sr-only to .visually-hidden ([4b5b9e5](https://github.com/reactstrap/reactstrap/commit/4b5b9e57933c0321c94a1951a96d40c1f59e305a))
+* **bs5:** replace form-group class with mb-3 ([c807567](https://github.com/reactstrap/reactstrap/commit/c807567a6f9b460211f34f6d477eb24794a4cd11))
+* **bs5:** update badge classes ([#2117](https://github.com/reactstrap/reactstrap/issues/2117)) ([695f06b](https://github.com/reactstrap/reactstrap/commit/695f06b876eda563715e7619e32106cdea246084))
+* update input group to have type dropdown ([5ce2b49](https://github.com/reactstrap/reactstrap/commit/5ce2b492c607372863d5b8d81d6953a7435ef557))
+* **bs5:** Support xxl breakpoint ([13d5311](https://github.com/reactstrap/reactstrap/commit/13d5311d6a6d4eb1ef14bc5667bf1bbe83c07107))
+* **Carousel:** Add dark prop ([ba25aa0](https://github.com/reactstrap/reactstrap/commit/ba25aa0d9219b0441af3b1fe0c475596725821b6))
+* **DropdownMenu:** add-dark-prop ([5cc8c49](https://github.com/reactstrap/reactstrap/commit/5cc8c493565528b2cefd15882852eacf72bfa2f4))
+* **modal:** add fullscreen option to Modal component ([e6eb36e](https://github.com/reactstrap/reactstrap/commit/e6eb36e4e0e8ea7f329c969aaff60b6e807efbc9))
+
+
+### BREAKING CHANGES
+
+* **PopperContent:** to update the old `positionFixed` popper prop to the new `strategy` prop.
+
 # [8.10.0](https://github.com/reactstrap/reactstrap/compare/8.9.0...8.10.0) (2021-09-02)
 
 
