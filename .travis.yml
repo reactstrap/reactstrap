@@ -57,6 +57,7 @@ jobs:
       - npm run build
       deploy:
         provider: npm
+        tag: next
         email:
           secure: AUw8fn5gmJKKXzSvLs+vUZRz/htXtUAApRCy6SD7EZyQMHiFMfXCXdOIcSCyiOsxlvsh+Wv12qmfKySd3Yi3exeGbuZ/rQcK+i582iVBiBVRru2wcQ5iN9E21zgaRYk8c3lHWGDzorrJfr3dMbhmi4atmvrMg/u/jVLmz5h4Y8pHZeJ24WSl26NJo4WH2ibjOADfwKZmTH4jPMICKXpMvmUJ7K49LPE8MRHJRwSefadwtVcLuHHBqNOmDmUfNF9bEgTm0FnOtwEycsS6y1seB6pTOyidz9N5F5fB1eCyVuc/ev27Bvw6HL+i8anchtgGlGJyW/yL6yxycNfkGWaoJ243GhMbt4PTNwtiksolGvbgJ071yoRVqV/8m8tnTJWyShy16Y96hD2vFKV8lj4Fru3Ad8s0VU40ebslOa1IlzrmxxuUYOhX9Ir1ryHgnf7AEnVwie0p0IbJJY/SqPsa3kIyeoG9RePoruzS+v685GMRM+O7ZN34x4H2UogzWIql9IvpGAUdO5FDP9Ww8BkuLEv4myTZh7x4chqYLKQXoPIBzCzdbO8Hl4t7BYgFB2OLaTdcqPvjeANp7EtDzemCYFtNLuS34HKHQCwKcfr+Ar6/ZDlSKdWu0w7XC5jk0rYrDn97BKnbnNmn77d6ZWr6bzo439pCu91jW6DEyI6iAOM=
         api_key:
