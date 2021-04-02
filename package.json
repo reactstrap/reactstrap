@@ -292,7 +292,7 @@
     "dtslint": "^4.0.4",
     "ejs": "^2.5.9",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^5.0.0",
     "eslint-config-react-app": "^3.0.6",
     "eslint-plugin-flowtype": "^3.13.0",
