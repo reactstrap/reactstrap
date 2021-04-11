@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { PrismCode } from 'react-prism';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
