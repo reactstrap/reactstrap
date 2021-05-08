@@ -5,6 +5,7 @@ import PremiumThemes from './PremiumThemes';
 import LayoutPage from './Components/LayoutPage';
 import NavsPage from './Components/NavsPage';
 import NavbarPage from './Components/NavbarPage';
+import OffcanvasPage from './Components/OffcanvasPage';
 import BreadcrumbsPage from './Components/BreadcrumbsPage';
 import ButtonsPage from './Components/ButtonsPage';
 import ButtonGroupPage from './Components/ButtonGroupPage';
@@ -63,6 +64,7 @@ const routes = (
         <Route path="layout/" component={LayoutPage} />
         <Route path="navs/" component={NavsPage} />
         <Route path="navbar/" component={NavbarPage} />
+        <Route path="offcanvas/" component={OffcanvasPage} />
         <Route path="media/" component={MediaPage} />
         <Route path="pagination/" component={PaginationPage} />
         <Route path="tabs/" component={TabsPage} />
