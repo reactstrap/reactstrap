@@ -43,6 +43,14 @@ describe('ListGroup', () => {
     expect(wrapper.hasClass("list-group-horizontal-lg")).toBe(true);
   });
 
+  it('should render with "numbered"', () => {
+    const wrapper = shallow(<ListGroup numbered>Yo!</ListGroup>);
+
+    expect(wrapper.text()).toBe("Yo!");
+    expect(wrapper.hasClass("list-group")).toBe(true);
+    expect(wrapper.hasClass("list-group-numbered")).toBe(true);
+  });
+
   it('should render additional classes', () => {
     const wrapper = shallow(<ListGroup className="other">Yo!</ListGroup>);
 
