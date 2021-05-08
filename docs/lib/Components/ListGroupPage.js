@@ -11,6 +11,7 @@ import ListGroupContextualClassesExample from '../examples/ListGroupContextualCl
 import ListGroupCustomContentExample from '../examples/ListGroupCustomContent';
 import ListGroupFlushExample from '../examples/ListGroupFlush';
 import ListGroupHorizontalExample from '../examples/ListGroupHorizontal';
+import ListGroupNumberedExample from '../examples/ListGroupNumbered';
 
 const ListGroupBadgeExampleSource = require('!!raw-loader!../examples/ListGroupBadge');
 const ListGroupExampleSource = require('!!raw-loader!../examples/ListGroup');
@@ -20,6 +21,7 @@ const ListGroupContextualClassesExampleSource = require('!!raw-loader!../example
 const ListGroupCustomContentExampleSource = require('!!raw-loader!../examples/ListGroupCustomContent');
 const ListGroupFlushExampleSource = require('!!raw-loader!../examples/ListGroupFlush')
 const ListGroupHorizontalExampleSource = require("!!raw-loader!../examples/ListGroupHorizontal");
+const ListGroupNumberedExampleSource = require("!!raw-loader!../examples/ListGroupNumbered");
 
 export default class ListGroupPage extends React.Component {
   render() {
@@ -119,6 +121,16 @@ export default class ListGroupPage extends React.Component {
         <pre>
           <PrismCode className="language-jsx">
             {ListGroupHorizontalExampleSource}
+          </PrismCode>
+        </pre>
+
+        <legend>Numbered</legend>
+        <div className="docs-example">
+          <ListGroupNumberedExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            {ListGroupNumberedExampleSource}
           </PrismCode>
         </pre>
       </div>
