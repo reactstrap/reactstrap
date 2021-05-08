@@ -153,6 +153,7 @@ export const TransitionTimeouts = {
   Collapse: 350, // $transition-collapse
   Modal:    300, // $modal-transition
   Carousel: 600, // $carousel-transition
+  Offcanvas: 300, // $offcanvas-transition
 };
 
 // Duplicated Transition.propType keys to ensure that Reactstrap builds
