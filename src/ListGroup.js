@@ -8,12 +8,14 @@ const propTypes = {
   flush: PropTypes.bool,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+  horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  numbered: PropTypes.bool
 };
 
 const defaultProps = {
   tag: 'ul',
-  horizontal: false
+  horizontal: false,
+  numbered: false
 };
 
 const getHorizontalClass = horizontal => {
@@ -32,6 +34,7 @@ const ListGroup = (props) => {
     tag: Tag,
     flush,
     horizontal,
+    numbered,
     ...attributes
   } = props;
   const classes = mapToCssModules(classNames(
@@ -39,7 +42,10 @@ const ListGroup = (props) => {
     'list-group',
     // list-group-horizontal cannot currently be mixed with list-group-flush
     // we only try to apply horizontal classes if flush is false
-    flush ? 'list-group-flush' : getHorizontalClass(horizontal)
+    flush ? 'list-group-flush' : getHorizontalClass(horizontal),
+    {
+      'list-group-numbered': numbered
+    }
   ), cssModule);
 
   return (
