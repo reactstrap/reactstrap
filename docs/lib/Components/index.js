@@ -87,6 +87,10 @@ const items = [
     to: '/components/navs/'
   },
   {
+    name: 'Offcanvas',
+    to: '/components/offcanvas/'
+  },
+  {
     name: 'Placeholder',
     to: '/components/placeholder/'
   },
