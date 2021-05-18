@@ -19,7 +19,7 @@ class Carousel extends React.Component {
     this.touchStartY = 0;
     this.state = {
       activeIndex: this.props.activeIndex,
-      direction: 'right',
+      direction: 'end',
       indicatorClicked: false,
     };
   }
@@ -45,13 +45,13 @@ class Carousel extends React.Component {
     if (nextProps.activeIndex !== activeIndex) {
       // Calculate the direction to turn
       if (nextProps.activeIndex === activeIndex + 1) {
-        direction = 'right';
+        direction = 'end';
       } else if (nextProps.activeIndex === activeIndex -1) {
-        direction = 'left';
+        direction = 'start';
       } else if (nextProps.activeIndex < activeIndex) {
-        direction = indicatorClicked ? 'left' : 'right';
+        direction = indicatorClicked ? 'start' : 'end';
       } else if (nextProps.activeIndex !== activeIndex) {
-        direction = indicatorClicked ? 'right' : 'left';
+        direction = indicatorClicked ? 'end' : 'start';
       }
 
       newState = {
@@ -166,10 +166,11 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { cssModule, slide, className, dark } = this.props;
+    const { cssModule, slide, className, dark, fade } = this.props;
     const outerClasses = mapToCssModules(classNames(
       className,
       'carousel',
+      'carousel-fade' && fade,
       slide && 'slide',
       dark && 'carousel-dark'
     ), cssModule);
@@ -274,6 +275,7 @@ Carousel.defaultProps = {
   keyboard: true,
   slide: true,
   enableTouch: true,
+  fade: false,
 };
 
 Carousel.childContextTypes = {
