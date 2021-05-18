@@ -114,8 +114,8 @@ describe('Carousel', () => {
   describe('indicators', () => {
     it('should render a list with the right number of items', () => {
       const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />);
-      expect(wrapper.find('ol').length).toEqual(1);
-      expect(wrapper.find('li').length).toEqual(3);
+      expect(wrapper.find('div').length).toEqual(1);
+      expect(wrapper.find('button').length).toEqual(3);
     });
 
     it('should append the correct active class', () => {
@@ -126,7 +126,7 @@ describe('Carousel', () => {
     it('should call the click hanlder', () => {
       const onClick = jest.fn();
       const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={onClick} />);
-      wrapper.find('li').first().simulate('click');
+      wrapper.find('button').first().simulate('click');
       expect(onClick).toHaveBeenCalled();
     });
   });
@@ -314,7 +314,7 @@ describe('Carousel', () => {
         </Carousel>
       );
 
-      wrapper.find(CarouselIndicators).find('li').first().simulate('click');
+      wrapper.find(CarouselIndicators).find('button').first().simulate('click');
       expect(wrapper.state().indicatorClicked).toEqual(true);
     });
 
