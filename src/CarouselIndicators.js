@@ -12,20 +12,24 @@ const CarouselIndicators = (props) => {
       { active: activeIndex === idx }
     ), cssModule);
     return (
-      <li
+      <button
+        aria-label={item.caption}
+        data-bs-target
         key={`${item.key || Object.values(item).join('')}`}
         onClick={(e) => {
           e.preventDefault();
           onClickHandler(idx);
         }}
         className={indicatorClasses}
-      />);
+      >
+        {item.caption}
+      </button>);
   });
 
   return (
-    <ol className={listClasses}>
+    <div className={listClasses}>
       {indicators}
-    </ol>
+    </div>
   );
 };
 

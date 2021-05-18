@@ -68,9 +68,9 @@ class CarouselItem extends React.Component {
           const isActive = (status === TransitionStatuses.ENTERED) || (status === TransitionStatuses.EXITING);
           const directionClassName = (status === TransitionStatuses.ENTERING || status === TransitionStatuses.EXITING) &&
             this.state.startAnimation &&
-            (direction === 'right' ? 'carousel-item-left' : 'carousel-item-right');
+            (direction === 'end' ? 'carousel-item-start' : 'carousel-item-end');
           const orderClassName = (status === TransitionStatuses.ENTERING) &&
-            (direction === 'right' ? 'carousel-item-next' : 'carousel-item-prev');
+            (direction === 'end' ? 'carousel-item-next' : 'carousel-item-prev');
           const itemClasses = mapToCssModules(classNames(
             className,
             'carousel-item',

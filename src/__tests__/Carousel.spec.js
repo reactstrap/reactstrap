@@ -55,27 +55,27 @@ describe('Carousel', () => {
 
     describe('transitions', () => {
       it('should add the appropriate classes when entering right', () => {
-        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'right' } });
+        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'end' } });
 
         wrapper.setProps({ in: true });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-left carousel-item-next');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-start carousel-item-next');
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active');
         wrapper.setProps({ in: false });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-left');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-start');
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item');
       });
 
       it('should add the appropriate classes when entering left', () => {
-        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'left' } });
+        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'start' } });
 
         wrapper.setProps({ in: true });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-right carousel-item-prev');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-end carousel-item-prev');
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active');
         wrapper.setProps({ in: false });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-right');
+        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-end');
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item');
       });
@@ -114,8 +114,8 @@ describe('Carousel', () => {
   describe('indicators', () => {
     it('should render a list with the right number of items', () => {
       const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />);
-      expect(wrapper.find('ol').length).toEqual(1);
-      expect(wrapper.find('li').length).toEqual(3);
+      expect(wrapper.find('div').length).toEqual(1);
+      expect(wrapper.find('button').length).toEqual(3);
     });
 
     it('should append the correct active class', () => {
@@ -126,7 +126,7 @@ describe('Carousel', () => {
     it('should call the click hanlder', () => {
       const onClick = jest.fn();
       const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={onClick} />);
-      wrapper.find('li').first().simulate('click');
+      wrapper.find('button').first().simulate('click');
       expect(onClick).toHaveBeenCalled();
     });
   });
@@ -314,7 +314,7 @@ describe('Carousel', () => {
         </Carousel>
       );
 
-      wrapper.find(CarouselIndicators).find('li').first().simulate('click');
+      wrapper.find(CarouselIndicators).find('button').first().simulate('click');
       expect(wrapper.state().indicatorClicked).toEqual(true);
     });
 
@@ -336,7 +336,7 @@ describe('Carousel', () => {
       );
 
       wrapper.setProps({ activeIndex: 1 });
-      expect(wrapper.state().direction).toEqual('right');
+      expect(wrapper.state().direction).toEqual('end');
     });
 
     it('should go left when the index decreases', () => {
@@ -357,7 +357,7 @@ describe('Carousel', () => {
       );
 
       wrapper.setProps({ activeIndex: 0 });
-      expect(wrapper.state().direction).toEqual('left');
+      expect(wrapper.state().direction).toEqual('start');
     });
 
     it('should go right if transitioning from the last to first slide by non-indicator', () => {
@@ -378,7 +378,7 @@ describe('Carousel', () => {
       );
 
       wrapper.setProps({ activeIndex: 0 });
-      expect(wrapper.state().direction).toEqual('right');
+      expect(wrapper.state().direction).toEqual('end');
     });
 
     it('should go left if transitioning from the last to first slide by indicator', () => {
@@ -403,7 +403,7 @@ describe('Carousel', () => {
 
       wrapper.setState({ indicatorClicked: true });
       wrapper.setProps({ activeIndex: 0 });
-      expect(wrapper.state().direction).toEqual('left');
+      expect(wrapper.state().direction).toEqual('start');
     });
 
     it('should go left if transitioning from the first to last slide by non-indicator', () => {
@@ -424,7 +424,7 @@ describe('Carousel', () => {
       );
 
       wrapper.setProps({ activeIndex: 2 });
-      expect(wrapper.state().direction).toEqual('left');
+      expect(wrapper.state().direction).toEqual('start');
     });
   });
 
@@ -450,7 +450,7 @@ describe('Carousel', () => {
 
     wrapper.setState({ indicatorClicked: true });
     wrapper.setProps({ activeIndex: 2 });
-    expect(wrapper.state().direction).toEqual('right');
+    expect(wrapper.state().direction).toEqual('end');
   });
 
   describe('interval', () => {
