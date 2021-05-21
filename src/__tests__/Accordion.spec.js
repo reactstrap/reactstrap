@@ -9,6 +9,12 @@ describe('Accordion', () => {
     expect(wrapper.find('.accordion').length).toBe(1);
   });
 
+  it('should render with "accordion-flush" class', () => {
+    const wrapper = mount(<Accordion flush openId="this accordion" toggle={() => {}} />);
+
+    expect(wrapper.find('.accordion-flush').length).toBe(1);
+  });
+
   it('should render additional classes', () => {
     const wrapper = mount(<Accordion className="other" openId="this accordion" toggle={() => {}} />);
 
