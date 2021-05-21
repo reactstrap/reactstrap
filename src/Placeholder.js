@@ -2,17 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
-import { getColumnClasses } from './Col';
+import Col, { getColumnClasses } from './Col';
 
 const propTypes = {
+  ...Col.propTypes,
   color: PropTypes.string,
   tag: tagPropType,
   animation: PropTypes.oneOf(['glow', 'wave']),
   innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
   size: PropTypes.oneOf(['lg', 'sm', 'xs']),
-  widths: PropTypes.array,
 };
 
 const defaultProps = {
@@ -32,7 +30,7 @@ const Placeholder = (props) => {
     ...attributes
   } = props;
 
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule)
+  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths)
 
   const classes = mapToCssModules(classNames(
     className,
