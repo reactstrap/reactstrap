@@ -27,4 +27,26 @@ describe('Placeholder', () => {
     const wrapper = shallow(<Placeholder size="lg" xs={12} />);
     expect(wrapper.hasClass('placeholder-lg')).toBe(true);
   })
+
+  it('should render different widths for different breakpoints', () => {
+    const wrapper = shallow(<Placeholder size="lg" xs={12} lg={8}/>);
+    expect(wrapper.hasClass('col-lg-8')).toBe(true)
+    expect(wrapper.hasClass('col-12')).toBe(true)
+  })
+
+  it('should allow custom columns to be defined', () => {
+    const wrapper = shallow(<Placeholder widths={['base', 'jumbo']} base="4" jumbo="6" />);
+    expect(wrapper.hasClass('col-4')).toBe(true);
+    expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
+  });
+
+
+  it('should allow custom columns to be defined with objects', () => {
+    const wrapper = shallow(<Placeholder widths={['base', 'jumbo', 'custom']} custom={{ size: 1, order: 2, offset: 4 }} />);
+
+    expect(wrapper.hasClass('col-custom-1')).toBe(true);
+    expect(wrapper.hasClass('order-custom-2')).toBe(true);
+    expect(wrapper.hasClass('offset-custom-4')).toBe(true);
+    expect(wrapper.hasClass('col')).toBe(false);
+  });
 })
