@@ -7,6 +7,9 @@ import SectionTitle from '../UI/SectionTitle';
 import AccordionExample from '../examples/Accordion';
 const AccordionExampleSource = require('!!raw-loader!../examples/Accordion');
 
+import AccordionFlushExample from '../examples/AccordionFlush';
+const AccordionFlushExampleSource = require('!!raw-loader!../examples/AccordionFlush');
+
 import UncontrolledAccordionExample from '../examples/UncontrolledAccordion';
 const UncontrolledAccordionExampleSource = require('!!raw-loader!../examples/UncontrolledAccordion');
 
@@ -31,6 +34,7 @@ export default class AccordionPage extends React.Component {
     toggle: Proptypes.func.isRequired,
     tag: tagPropType,
     className: PropTypes.string,
+    flush: PropTypes.boolean,
     cssModule: PropTypes.object,
     innerRef: PropTypes.oneOfType([
       PropTypes.object,
@@ -80,6 +84,19 @@ AccordionItem.propTypes = {
 `}
           </PrismCode>
         </pre>
+
+        <SectionTitle>Flush</SectionTitle>
+        <p>
+          Add <code>flush</code> to remove the default background-color, some borders,
+          and some rounded corners to render Accordions edge-to-edge with their parent container.
+        </p>
+        <div className="docs-example">
+          <AccordionFlushExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">{AccordionFlushExampleSource}</PrismCode>
+        </pre>
+
         <div className="docs-example">
           <UncontrolledAccordionExample />
         </div>
