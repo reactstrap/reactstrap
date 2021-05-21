@@ -6,6 +6,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLElement> {
   cssModule?: CSSModule;
   flush?: boolean;
   innerRef?: React.Ref<HTMLElement>;
+  open: string | string[];
 }
 
 declare class Accordion extends React.Component<AccordionProps> {}

@@ -3,15 +3,16 @@ import React from 'react';
 import { PrismCode } from 'react-prism';
 import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
-
 import AccordionExample from '../examples/Accordion';
-const AccordionExampleSource = require('!!raw-loader!../examples/Accordion');
-
 import AccordionFlushExample from '../examples/AccordionFlush';
-const AccordionFlushExampleSource = require('!!raw-loader!../examples/AccordionFlush');
-
 import UncontrolledAccordionExample from '../examples/UncontrolledAccordion';
+import UncontrolledAccordionStayOpenExample from '../examples/UncontrolledAccordionStayOpen';
+
+const AccordionExampleSource = require('!!raw-loader!../examples/Accordion');
+const AccordionFlushExampleSource = require('!!raw-loader!../examples/AccordionFlush');
 const UncontrolledAccordionExampleSource = require('!!raw-loader!../examples/UncontrolledAccordion');
+const UncontrolledAccordionStayOpenExampleSource =
+    require('!!raw-loader!../examples/UncontrolledAccordionStayOpen');
 
 export default class AccordionPage extends React.Component {
   render() {
@@ -97,6 +98,7 @@ AccordionItem.propTypes = {
           <PrismCode className="language-jsx">{AccordionFlushExampleSource}</PrismCode>
         </pre>
 
+        <SectionTitle>Uncontrolled</SectionTitle>
         <div className="docs-example">
           <UncontrolledAccordionExample />
         </div>
@@ -105,6 +107,20 @@ AccordionItem.propTypes = {
             { UncontrolledAccordionExampleSource }
           </PrismCode>
         </pre>
+
+        <SectionTitle>Stay Open</SectionTitle>
+        <p>
+          Add the <code>stayOpen</code> prop to make accordion items stay open when another item is opened.
+        </p>
+        <div className="docs-example">
+          <UncontrolledAccordionStayOpenExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">
+            { UncontrolledAccordionStayOpenExampleSource }
+          </PrismCode>
+        </pre>
+
         <SectionTitle>Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
