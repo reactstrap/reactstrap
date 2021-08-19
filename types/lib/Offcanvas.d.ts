@@ -8,7 +8,6 @@ export interface OffcanvasProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: any;
   isOpen?: boolean;
   autoFocus?: boolean;
-  size?: string;
   toggle?: React.KeyboardEventHandler<any> | React.MouseEventHandler<any>;
   keyboard?: boolean;
   backdrop?: boolean | 'static';
@@ -27,9 +26,6 @@ export interface OffcanvasProps extends React.HTMLAttributes<HTMLElement> {
   fade?: boolean;
   backdropTransition?: FadeProps;
   offcanvasTransition?: FadeProps;
-  centered?: boolean;
-  fullscreen?: boolean | 'sm' | 'md' | 'lg' | 'xl';
-  external?: React.ReactNode;
   labelledBy?: string;
   unmountOnClose?: boolean;
   returnFocusAfterClose?: boolean;
