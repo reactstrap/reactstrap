@@ -8,7 +8,6 @@ import {
   conditionallyUpdateScrollbar,
   setScrollbarWidth,
   mapToCssModules,
-  omit,
   focusableElements,
   TransitionTimeouts,
   keyCodes,
@@ -42,7 +41,6 @@ const propTypes = {
   wrapClassName: PropTypes.string,
   offcanvasClassName: PropTypes.string,
   backdropClassName: PropTypes.string,
-  external: PropTypes.node,
   fade: PropTypes.bool,
   cssModule: PropTypes.object,
   zIndex: PropTypes.oneOfType([
@@ -62,12 +60,9 @@ const propTypes = {
   trapFocus: PropTypes.bool
 };
 
-const propsToOmit = Object.keys(propTypes);
-
 const defaultProps = {
   isOpen: false,
   autoFocus: true,
-  centered: false,
   direction: 'start',
   scrollable: false,
   role: 'dialog',
@@ -246,8 +241,7 @@ class Offcanvas extends React.Component {
   handleBackdropClick(e) {
     if (e.target === this._mouseDownElement) {
       e.stopPropagation();
-
-      const backdrop = this._dialog ? this._dialog.parentNode : null;
+      const backdrop = this._dialog;
 
       if (backdrop && e.target === backdrop && this.props.backdrop === 'static') {
         this.handleStaticBackdropAnimation();
@@ -339,7 +333,7 @@ class Offcanvas extends React.Component {
     // if (Offcanvas.openCount === 0) {
     //   document.body.className = classNames(
     //     document.body.className,
-    //     mapToCssModules('modal-backdrop', this.props.cssModule)
+    //     mapToCssModules('offcanvas-backdrop', this.props.cssModule)
     //   );
     // }
 
@@ -366,7 +360,7 @@ class Offcanvas extends React.Component {
 
   close() {
     if (Offcanvas.openCount <= 1) {
-      const offcanvasOpenClassName = mapToCssModules('modal-backdrop', this.props.cssModule);
+      const offcanvasOpenClassName = mapToCssModules('offcanvas-backdrop', this.props.cssModule);
       // Use regex to prevent matching `offcanvas-open` as part of a different class, e.g. `my-offcanvas-opened`
       const offcanvasOpenClassNameRegex = new RegExp(`(^| )${offcanvasOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(offcanvasOpenClassNameRegex, ' ').trim();
@@ -375,34 +369,6 @@ class Offcanvas extends React.Component {
     Offcanvas.openCount = Math.max(0, Offcanvas.openCount - 1);
 
     setScrollbarWidth(this._originalBodyPadding);
-  }
-
-  renderOffcanvasDialog() {
-    const attributes = omit(this.props, propsToOmit);
-    const dialogBaseClass = 'offcanvas-dialog';
-
-    return (
-      <div
-        {...attributes}
-        className={mapToCssModules(classNames(dialogBaseClass, this.props.className, {
-          [`offcanvas-${this.props.direction}`]: this.props.size,
-          [`${dialogBaseClass}-scrollable`]: this.props.scrollable
-        }), this.props.cssModule)}
-        role="document"
-        ref={(c) => {
-          this._dialog = c;
-        }}
-      >
-        <div
-          className={mapToCssModules(
-            classNames('offcanvas-content'),
-            this.props.cssModule
-          )}
-        >
-          {this.props.children}
-        </div>
-      </div>
-    );
   }
 
   render() {
@@ -424,13 +390,10 @@ class Offcanvas extends React.Component {
         backdrop,
         role,
         labelledBy,
-        external,
         innerRef,
       } = this.props;
 
       const offcanvasAttributes = {
-        onClick: this.handleBackdropClick,
-        onMouseDown: this.handleBackdropMouseDown,
         onKeyUp: this.handleEscape,
         onKeyDown: this.handleTab,
         style: { display: 'block' },
@@ -458,10 +421,19 @@ class Offcanvas extends React.Component {
           (<Fade
             {...backdropTransition}
             in={isOpen && !!backdrop}
+            innerRef={(c) => {
+              this._dialog = c;
+            }}
             cssModule={cssModule}
-            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+            className={mapToCssModules(classNames('offcanvas-backdrop', backdropClassName), cssModule)}
+            onClick={this.handleBackdropClick}
+            onMouseDown={this.handleBackdropMouseDown}
           />)
-          : <div className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)} />
+          : <div
+              className={mapToCssModules(classNames('offcanvas-backdrop', 'show', backdropClassName), cssModule)}
+              onClick={this.handleBackdropClick}
+              onMouseDown={this.handleBackdropMouseDown}
+            />
       );
 
       return (
@@ -483,8 +455,7 @@ class Offcanvas extends React.Component {
                 visibility: isOpen ? 'visible' : 'hidden'
               }}
             >
-              {external}
-              {this.renderOffcanvasDialog()}
+              {this.props.children}
             </Fade>
             {Backdrop}
           </div>
