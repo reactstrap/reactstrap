@@ -17,118 +17,60 @@ export default class OffcanvasPage extends React.Component {
         </div>
         <pre>
           <PrismCode className="language-jsx">
-            { OffcanvasExampleSource}
+            {OffcanvasExampleSource}
           </PrismCode>
         </pre>
         <SectionTitle>Properties</SectionTitle>
         <pre>
           <PrismCode className="language-jsx">
-{`Offcanvas.propTypes = {
-    openId: Proptypes.string.isRequired,
-    toggle: Proptypes.func.isRequired,
-    tag: tagPropType,
-    className: PropTypes.string,
-    cssModule: PropTypes.object,
-    innerRef: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-    children: PropTypes.node,
-};
+{`
+Offcanvas.propTypes = {
+  autoFocus: PropTypes.bool,
+  backdrop: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['static'])]),
+  backdropClassName: PropTypes.string,
+  backdropTransition: FadePropTypes,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  container: targetPropType,
+  cssModule: PropTypes.object,
+  direction: PropTypes.oneOf(['start', 'end', 'bottom', 'left', 'right']),
+  fade: PropTypes.bool,
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func,]),
+  isOpen: PropTypes.bool,
+  keyboard: PropTypes.bool,
+  labelledBy: PropTypes.string,
+  offcanvasClassName: PropTypes.string,
+  offcanvasTransition: FadePropTypes,
+  onClosed: PropTypes.func,
+  onEnter: PropTypes.func,
+  onExit: PropTypes.func,
+  onOpened: PropTypes.func,
+  returnFocusAfterClose: PropTypes.bool,
+  role: PropTypes.string,
+  scrollable: PropTypes.bool,
+  toggle: PropTypes.func,
+  trapFocus: PropTypes.bool,
+  unmountOnClose: PropTypes.bool,
+  wrapClassName: PropTypes.string,
+  zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string,])
+}
 
 OffcanvasBody.propTypes = {
   tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  children: PropTypes.node,
-  accordionId: PropTypes.string.isRequired,
-};
+}
 
 OffcanvasHeader.propTypes = {
-  tag: tagPropType,
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
   children: PropTypes.node,
-  targetId: PropTypes.string.isRequired,
-};
-
-OffcanvasItem.propTypes = {
-  tag: tagPropType,
   className: PropTypes.string,
+  close: PropTypes.object,
+  closeAriaLabel: PropTypes.string,
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  children: PropTypes.node,
-};
-`}
-          </PrismCode>
-        </pre>
-        <SectionTitle>Properties</SectionTitle>
-        <pre>
-          <PrismCode className="language-jsx">
-{`UncontrolledOffcanvas.propTypes = {
-    tag: tagPropType,
-    className: PropTypes.string,
-    cssModule: PropTypes.object,
-    innerRef: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-    children: PropTypes.node,
-};
-
-OffcanvasBody.propTypes = {
   tag: tagPropType,
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  children: PropTypes.node,
-  accordionId: PropTypes.string.isRequired,
-};
-
-OffcanvasHeader.propTypes = {
-  tag: tagPropType,
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  children: PropTypes.node,
-  targetId: PropTypes.string.isRequired,
-};
-
-OffcanvasItem.propTypes = {
-  tag: tagPropType,
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  children: PropTypes.node,
-};
+  toggle: PropTypes.func,
+  wrapTag: tagPropType
+}
 `}
           </PrismCode>
         </pre>
