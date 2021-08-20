@@ -1,20 +1,56 @@
 import React, { useState } from 'react';
-import { Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
+import { Button, ButtonToolbar, Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
 
-const Example = (props) => {
+const Example = () => {
+  const [direction, setDirection] = useState();
   const [open, setOpen] = useState();
   const toggle = () => setOpen(!open);
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>Open</Button>
-      <Offcanvas isOpen={open} toggle={toggle}>
+      <ButtonToolbar>
+        <Button
+          color="primary"
+          onClick={() => {
+            setDirection('start');
+            setOpen(true);
+          }}
+        >
+          Open Start (default)
+        </Button>
+        <Button
+          onClick={() => {
+            setDirection('end');
+            setOpen(true);
+          }}
+        >
+          Open End
+        </Button>
+        <Button
+          color="success"
+          onClick={() => {
+            setDirection('top');
+            setOpen(true);
+          }}
+        >
+          Open Top
+        </Button>
+        <Button
+          color="danger"
+          onClick={() => {
+            setDirection('bottom');
+            setOpen(true);
+          }}
+        >
+          Open Bottom
+        </Button>
+      </ButtonToolbar>
+      <Offcanvas isOpen={open} direction={direction} toggle={toggle}>
         <OffcanvasHeader toggle={toggle}>
-          Offcanvas Item 1
+          Offcanvas {direction}
         </OffcanvasHeader>
         <OffcanvasBody>
-          <strong>This is the first item's accordion body.</strong>
-          You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+          <strong>This is the Offcanvas body.</strong>
         </OffcanvasBody>
       </Offcanvas>
     </div>
