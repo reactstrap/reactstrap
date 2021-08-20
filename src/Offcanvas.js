@@ -20,44 +20,34 @@ function noop() { }
 const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
 const propTypes = {
-  isOpen: PropTypes.bool,
   autoFocus: PropTypes.bool,
+  backdrop: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['static'])]),
+  backdropClassName: PropTypes.string,
+  backdropTransition: FadePropTypes,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  container: targetPropType,
+  cssModule: PropTypes.object,
   direction: PropTypes.oneOf(['start', 'end', 'bottom', 'left', 'right']),
-  scrollable: PropTypes.bool,
-  toggle: PropTypes.func,
+  fade: PropTypes.bool,
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func,]),
+  isOpen: PropTypes.bool,
   keyboard: PropTypes.bool,
-  role: PropTypes.string,
   labelledBy: PropTypes.string,
-  backdrop: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['static'])
-  ]),
+  offcanvasClassName: PropTypes.string,
+  offcanvasTransition: FadePropTypes,
+  onClosed: PropTypes.func,
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
   onOpened: PropTypes.func,
-  onClosed: PropTypes.func,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  wrapClassName: PropTypes.string,
-  offcanvasClassName: PropTypes.string,
-  backdropClassName: PropTypes.string,
-  fade: PropTypes.bool,
-  cssModule: PropTypes.object,
-  zIndex: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  backdropTransition: FadePropTypes,
-  offcanvasTransition: FadePropTypes,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  unmountOnClose: PropTypes.bool,
   returnFocusAfterClose: PropTypes.bool,
-  container: targetPropType,
-  trapFocus: PropTypes.bool
+  role: PropTypes.string,
+  scrollable: PropTypes.bool,
+  toggle: PropTypes.func,
+  trapFocus: PropTypes.bool,
+  unmountOnClose: PropTypes.bool,
+  wrapClassName: PropTypes.string,
+  zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string,])
 };
 
 const defaultProps = {
@@ -174,7 +164,7 @@ class Offcanvas extends React.Component {
     if (!this._element) //element is not attached
       return;
 
-    if (this._dialog && this._dialog.parentNode === ev.target) // initial focus when the Offcanvas is opened
+    if (this._dialog === ev.target) // initial focus when the Offcanvas is opened
       return;
 
     if (this.offcanvasIndex < (Offcanvas.openCount - 1)) // last opened offcanvas
@@ -216,8 +206,8 @@ class Offcanvas extends React.Component {
   }
 
   setFocus() {
-    if (this._dialog && this._dialog.parentNode && typeof this._dialog.parentNode.focus === 'function') {
-      this._dialog.parentNode.focus();
+    if (this._dialog && typeof this._dialog.focus === 'function') {
+      this._dialog.focus();
     }
   }
 
@@ -241,7 +231,7 @@ class Offcanvas extends React.Component {
   handleBackdropClick(e) {
     if (e.target === this._mouseDownElement) {
       e.stopPropagation();
-      const backdrop = this._dialog;
+      const backdrop = this._backdrop;
 
       if (backdrop && e.target === backdrop && this.props.backdrop === 'static') {
         this.handleStaticBackdropAnimation();
@@ -330,12 +320,9 @@ class Offcanvas extends React.Component {
     this._originalBodyPadding = getOriginalBodyPadding();
     conditionallyUpdateScrollbar();
 
-    // if (Offcanvas.openCount === 0) {
-    //   document.body.className = classNames(
-    //     document.body.className,
-    //     mapToCssModules('offcanvas-backdrop', this.props.cssModule)
-    //   );
-    // }
+    if (Offcanvas.openCount === 0 && (this.props.backdrop && !this.props.scrollable)) {
+      document.body.style.overflow = 'hidden'; 
+    }
 
     this.offcanvasIndex = Offcanvas.openCount;
     Offcanvas.openCount += 1;
@@ -359,15 +346,10 @@ class Offcanvas extends React.Component {
   }
 
   close() {
-    if (Offcanvas.openCount <= 1) {
-      const offcanvasOpenClassName = mapToCssModules('offcanvas-backdrop', this.props.cssModule);
-      // Use regex to prevent matching `offcanvas-open` as part of a different class, e.g. `my-offcanvas-opened`
-      const offcanvasOpenClassNameRegex = new RegExp(`(^| )${offcanvasOpenClassName}( |$)`);
-      document.body.className = document.body.className.replace(offcanvasOpenClassNameRegex, ' ').trim();
-    }
     this.manageFocusAfterClose();
     Offcanvas.openCount = Math.max(0, Offcanvas.openCount - 1);
 
+    document.body.style.overflow = null; 
     setScrollbarWidth(this._originalBodyPadding);
   }
 
@@ -389,8 +371,7 @@ class Offcanvas extends React.Component {
         isOpen,
         backdrop,
         role,
-        labelledBy,
-        innerRef,
+        labelledBy
       } = this.props;
 
       const offcanvasAttributes = {
@@ -422,7 +403,7 @@ class Offcanvas extends React.Component {
             {...backdropTransition}
             in={isOpen && !!backdrop}
             innerRef={(c) => {
-              this._dialog = c;
+              this._backdrop = c;
             }}
             cssModule={cssModule}
             className={mapToCssModules(classNames('offcanvas-backdrop', backdropClassName), cssModule)}
@@ -450,7 +431,9 @@ class Offcanvas extends React.Component {
                 this.state.showStaticBackdropAnimation && 'offcanvas-static',
                 `offcanvas-${direction}`
               ), cssModule)}
-              innerRef={innerRef}
+              innerRef={(c) => {
+                this._dialog = c;
+              }}
               style={{
                 visibility: isOpen ? 'visible' : 'hidden'
               }}
