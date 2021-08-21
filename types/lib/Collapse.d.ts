@@ -6,6 +6,7 @@ export interface CollapseProps extends React.HTMLAttributes<HTMLElement> {
   isOpen?: boolean;
   cssModule?: CSSModule;
   tag?: React.ElementType;
+  horizontal?: boolean;
   navbar?: boolean;
   delay?: {
     show: number;
