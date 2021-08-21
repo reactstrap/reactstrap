@@ -87,6 +87,10 @@ const items = [
     to: '/components/navs/'
   },
   {
+    name: 'Placeholder',
+    to: '/components/placeholder/'
+  },
+  {
     name: 'Spinners',
     to: '/components/spinners/'
   },
