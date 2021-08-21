@@ -38,6 +38,11 @@ describe('Collapse', () => {
     expect(wrapper.find('div').hasClass('collapse')).toEqual(true);
   });
 
+  it('should render with class "collapse-horizontal" if it has prop horizontal', () => {
+    wrapper = mount(<Collapse horizontal />);
+    expect(wrapper.find('div').hasClass('collapse-horizontal')).toEqual(true);
+  });
+
   it('should render with class "navbar-collapse" if it has prop navbar', () => {
     wrapper = mount(<Collapse navbar />);
     expect(wrapper.find('div').hasClass('navbar-collapse')).toEqual(true);
@@ -50,12 +55,12 @@ describe('Collapse', () => {
 
   it('should set height to null when isOpen is true', () => {
     wrapper = shallow(<Collapse isOpen />);
-    expect(wrapper.state('height')).toBe(null);
+    expect(wrapper.state('dimension')).toBe(null);
   });
 
   it('should not set height when isOpen is false', () => {
     wrapper = shallow(<Collapse isOpen={false} />);
-    expect(wrapper.state('height')).toBe(null);
+    expect(wrapper.state('dimension')).toBe(null);
   });
 
   it('should forward all styles', () => {
@@ -111,7 +116,7 @@ describe('Collapse', () => {
     isOpen = true;
     wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
-    expect(wrapper.state('height')).toBe(0);
+    expect(wrapper.state('dimension')).toBe(0);
     wrapper.unmount();
   });
 
@@ -119,7 +124,7 @@ describe('Collapse', () => {
     wrapper = mount(<Collapse isOpen={isOpen} />);
     toggle();
     jest.runTimersToTime(380);
-    expect(wrapper.state('height')).toBe(null);
+    expect(wrapper.state('dimension')).toBe(null);
     wrapper.unmount();
   });
 });
