@@ -45,18 +45,12 @@ const getColumnSizeClass = (isXs, colWidth, colSize) => {
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 };
 
-const Col = (props) => {
-  const {
-    className,
-    cssModule,
-    widths,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const colClasses = [];
 
+export const getColumnClasses = (attributes, cssModule, widths=colWidths) => {
+  const colClasses = [];
+  
   widths.forEach((colWidth, i) => {
-    let columnProp = props[colWidth];
+    let columnProp = attributes[colWidth];
 
     delete attributes[colWidth];
 
@@ -81,6 +75,24 @@ const Col = (props) => {
     }
   });
 
+  return {
+    colClasses,
+    attributes
+  }
+}
+
+
+const Col = (props) => {
+  const {
+    className,
+    cssModule,
+    widths,
+    tag: Tag,
+    ...attributes
+  } = props;
+  
+  let { attributes : modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths)
+
   if (!colClasses.length) {
     colClasses.push('col');
   }
@@ -91,7 +103,7 @@ const Col = (props) => {
   ), cssModule);
 
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...modifiedAttributes} className={classes} />
   );
 };
 

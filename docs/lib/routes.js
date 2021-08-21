@@ -31,6 +31,7 @@ import CarouselPage from './Components/CarouselPage';
 import ListGroupPage from './Components/ListGroupPage';
 import ListPage from './Components/ListPage';
 import SpinnersPage from './Components/SpinnersPage';
+import PlaceholderPage from './Components/PlaceholderPage';
 import ClearfixPage from './Utilities/ClearfixPage';
 import ColorsPage from './Utilities/ColorsPage';
 import NotFound from './NotFound';
@@ -72,6 +73,7 @@ const routes = (
         <Route path="list/" component={ListPage} />
         <Route path="listgroup/" component={ListGroupPage} />
         <Route path="spinners/" component={SpinnersPage} />
+        <Route path="placeholder" component={PlaceholderPage} />
       </Route>
       <Route path="premium-themes/" component={PremiumThemes} />
       <Route path="/utilities/" component={Utilities}>
