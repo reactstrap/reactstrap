@@ -21,6 +21,7 @@ const defaultProps = {
 const PlaceholderButton = (props) => {
   let {
     cssModule,
+    className,
     tag: Tag,
     ...attributes
   } = props;
