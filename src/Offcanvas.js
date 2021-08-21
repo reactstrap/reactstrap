@@ -4,15 +4,16 @@ import classNames from 'classnames';
 import Portal from './Portal';
 import Fade from './Fade';
 import {
-  getOriginalBodyPadding,
-  conditionallyUpdateScrollbar,
-  setScrollbarWidth,
-  mapToCssModules,
-  focusableElements,
   TransitionTimeouts,
+  conditionallyUpdateScrollbar,
+  focusableElements,
+  getOriginalBodyPadding,
+  getTarget,
   keyCodes,
+  mapToCssModules,
+  omit,
+  setScrollbarWidth,
   targetPropType,
-  getTarget
 } from './utils';
 
 function noop() { }
@@ -21,20 +22,19 @@ const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
 const propTypes = {
   autoFocus: PropTypes.bool,
-  backdrop: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['static'])]),
+  backdrop: PropTypes.bool,
   backdropClassName: PropTypes.string,
   backdropTransition: FadePropTypes,
   children: PropTypes.node,
   className: PropTypes.string,
   container: targetPropType,
   cssModule: PropTypes.object,
-  direction: PropTypes.oneOf(['start', 'end', 'bottom', 'left', 'right']),
+  direction: PropTypes.oneOf(['start', 'end', 'bottom', 'top', 'left', 'right']),
   fade: PropTypes.bool,
   innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func,]),
   isOpen: PropTypes.bool,
   keyboard: PropTypes.bool,
   labelledBy: PropTypes.string,
-  offcanvasClassName: PropTypes.string,
   offcanvasTransition: FadePropTypes,
   onClosed: PropTypes.func,
   onEnter: PropTypes.func,
@@ -46,9 +46,10 @@ const propTypes = {
   toggle: PropTypes.func,
   trapFocus: PropTypes.bool,
   unmountOnClose: PropTypes.bool,
-  wrapClassName: PropTypes.string,
   zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string,])
 };
+
+const propsToOmit = Object.keys(propTypes);
 
 const defaultProps = {
   isOpen: false,
@@ -85,7 +86,6 @@ class Offcanvas extends React.Component {
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
-    this.handleStaticBackdropAnimation = this.handleStaticBackdropAnimation.bind(this);
     this.handleTab = this.handleTab.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
@@ -94,8 +94,7 @@ class Offcanvas extends React.Component {
     this.trapFocus = this.trapFocus.bind(this);
 
     this.state = {
-      isOpen: false,
-      showStaticBackdropAnimation: false
+      isOpen: false
     };
   }
 
@@ -123,8 +122,8 @@ class Offcanvas extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpen && !prevProps.isOpen) {
       this.init();
-      this.setState({ isOpen: true});
-      // let render() renders Offcanvas Dialog first
+      this.setState({ isOpen: true });
+
       return;
     }
 
@@ -233,10 +232,6 @@ class Offcanvas extends React.Component {
       e.stopPropagation();
       const backdrop = this._backdrop;
 
-      if (backdrop && e.target === backdrop && this.props.backdrop === 'static') {
-        this.handleStaticBackdropAnimation();
-      }
-
       if (!this.props.isOpen || this.props.backdrop !== true) return;
 
       if (backdrop && e.target === backdrop && this.props.toggle) {
@@ -284,21 +279,7 @@ class Offcanvas extends React.Component {
 
         this.props.toggle(e);
       }
-      else if (this.props.backdrop === 'static') {
-        e.preventDefault();
-        e.stopPropagation();
-
-        this.handleStaticBackdropAnimation();
-      }
     }
-  }
-
-  handleStaticBackdropAnimation() {
-    this.clearBackdropAnimationTimeout();
-    this.setState({ showStaticBackdropAnimation: true });
-    this._backdropAnimationTimeout = setTimeout(() => {
-      this.setState({ showStaticBackdropAnimation: false });
-    }, 100);
   }
 
   init() {
@@ -364,8 +345,7 @@ class Offcanvas extends React.Component {
       this._element.style.display = isOffcanvasHidden ? 'none' : 'block';
 
       const {
-        wrapClassName,
-        offcanvasClassName,
+        className,
         backdropClassName,
         cssModule,
         isOpen,
@@ -417,31 +397,31 @@ class Offcanvas extends React.Component {
             />
       );
 
+      const attributes = omit(this.props, propsToOmit);
+
       return (
         <Portal node={this._element}>
-          <div className={mapToCssModules(wrapClassName)}>
-            <Fade
-              {...offcanvasAttributes}
-              {...offcanvasTransition}
-              in={isOpen}
-              onEntered={this.onOpened}
-              onExited={this.onClosed}
-              cssModule={cssModule}
-              className={mapToCssModules(classNames('offcanvas', offcanvasClassName,
-                this.state.showStaticBackdropAnimation && 'offcanvas-static',
-                `offcanvas-${direction}`
-              ), cssModule)}
-              innerRef={(c) => {
-                this._dialog = c;
-              }}
-              style={{
-                visibility: isOpen ? 'visible' : 'hidden'
-              }}
-            >
-              {this.props.children}
-            </Fade>
-            {Backdrop}
-          </div>
+          <Fade
+            {...attributes}
+            {...offcanvasAttributes}
+            {...offcanvasTransition}
+            in={isOpen}
+            onEntered={this.onOpened}
+            onExited={this.onClosed}
+            cssModule={cssModule}
+            className={mapToCssModules(classNames('offcanvas', className,
+              `offcanvas-${direction}`
+            ), cssModule)}
+            innerRef={(c) => {
+              this._dialog = c;
+            }}
+            style={{
+              visibility: isOpen ? 'visible' : 'hidden'
+            }}
+          >
+            {this.props.children}
+          </Fade>
+          {Backdrop}
         </Portal>
       );
     }
