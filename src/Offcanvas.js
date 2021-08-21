@@ -351,13 +351,13 @@ class Offcanvas extends React.Component {
         isOpen,
         backdrop,
         role,
-        labelledBy
+        labelledBy,
+        style
       } = this.props;
 
       const offcanvasAttributes = {
         onKeyUp: this.handleEscape,
         onKeyDown: this.handleTab,
-        style: { display: 'block' },
         'aria-labelledby': labelledBy,
         role,
         tabIndex: '-1'
@@ -416,6 +416,7 @@ class Offcanvas extends React.Component {
               this._dialog = c;
             }}
             style={{
+              ...style,
               visibility: isOpen ? 'visible' : 'hidden'
             }}
           >
