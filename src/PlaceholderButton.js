@@ -14,17 +14,13 @@ const propTypes = {
 }
 
 const defaultProps = {
-  color: 'secondary',
+  color: 'primary',
   tag: Button
 }
 
 const PlaceholderButton = (props) => {
   let {
-    size,
-    color,
-    outline,
     cssModule,
-    className,
     tag: Tag,
     ...attributes
   } = props;
@@ -38,7 +34,7 @@ const PlaceholderButton = (props) => {
   ), cssModule);
 
   return (
-    <Button {...modifiedAttributes} color="primary" className={classes} disabled={true}></Button>
+    <Button {...modifiedAttributes} className={classes} disabled={true}></Button>
   )
 }
 
