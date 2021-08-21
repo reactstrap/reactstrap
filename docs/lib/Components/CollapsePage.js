@@ -5,11 +5,13 @@ import PageTitle from '../UI/PageTitle';
 import SectionTitle from '../UI/SectionTitle';
 
 import CollapseExample from '../examples/Collapse';
+import CollapseHorizontalExample from '../examples/CollapseHorizontal';
 import UncontrolledCollapseExample from '../examples/CollapseUncontrolled';
 
 import CollapseEventsExample from '../examples/CollapseEvents';
 
 const CollapseExampleSource = require('!!raw-loader!../examples/Collapse');
+const CollapseHorizontalExampleSource = require('!!raw-loader!../examples/CollapseHorizontal');
 const CollapseEventsExampleSource = require('!!raw-loader!../examples/CollapseEvents');
 
 const UncontrolledCollapseExampleSource = require('!!raw-loader!../examples/CollapseUncontrolled');
@@ -31,6 +33,7 @@ export default class CollapsePage extends React.Component {
           <PrismCode className="language-jsx">
             {`Collapse.propTypes = {
   ...Transition.propTypes, // see note below
+  horizontal: PropTypes.bool,
   isOpen: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -50,6 +53,14 @@ export default class CollapsePage extends React.Component {
           this wrapper. Refer to the <code>Transition</code> documentation for details: <a href="http://reactcommunity.org/react-transition-group/transition/">
           http://reactcommunity.org/react-transition-group/transition/</a>.
         </p>
+
+        <SectionTitle>Horizontal</SectionTitle>
+        <div className="docs-example">
+          <CollapseHorizontalExample />
+        </div>
+        <pre>
+          <PrismCode className="language-jsx">{CollapseHorizontalExampleSource}</PrismCode>
+        </pre>
 
         <SectionTitle>Events</SectionTitle>
         <p>
