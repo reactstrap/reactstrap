@@ -76,19 +76,6 @@ describe('Offcanvas', () => {
     wrapper.unmount();
   });
 
-  // it('should render with the class "offcanvas-scrollable" when scrollable is "true"', () => {
-  //   isOpen = true;
-  //   const wrapper = mount(
-  //     <Offcanvas isOpen={isOpen} toggle={toggle} scrollable={true}>
-  //       Yo!
-  //     </Offcanvas>
-  //   );
-
-  //   jest.runTimersToTime(300);
-  //   expect(document.getElementsByClassName('offcanvas-scrollable').length).toBe(1);
-  //   wrapper.unmount();
-  // });
-
   it('should render with class "offcanvas" and have custom class name if provided', () => {
     isOpen = true;
     const wrapper = mount(
@@ -859,7 +846,6 @@ describe('Offcanvas', () => {
         );
     const wrapper = mount(<MockComponent />);
     const button = wrapper.find('.first').hostNodes().getDOMNode();
-    const button2 = wrapper.find('.focus').hostNodes().getDOMNode();
     const offcanvas_instance = wrapper.find(Offcanvas).instance();
     const ev_mock = {
       target: button,
