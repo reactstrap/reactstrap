@@ -1,7 +1,7 @@
 {
   "name": "reactstrap",
   "version": "9.0.0-0",
-  "description": "React Bootstrap 4 components",
+  "description": "React Bootstrap components",
   "main": "lib/index.js",
   "types": "es/index.d.ts",
   "jsnext:main": "es/index.js",
