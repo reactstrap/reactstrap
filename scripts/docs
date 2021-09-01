@@ -15,12 +15,7 @@ error() {
   echo -e "\033[31;1m$1"
 }
 
-if [ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-  echo "Deploying documentation"
-else
-  success "Not building master branch. Skipping deploy."
-  exit 0
-fi
+echo "Deploying documentation"
 
 if [ -z "$GITHUB_TOKEN" ]; then
   error "Environment variable GITHUB_TOKEN does not exist. Stopping deploy."
@@ -44,12 +39,12 @@ if [ -z "$(git status --porcelain)" ]; then
   exit 0
 fi
 
-git config user.name "Travis-CI"
+git config user.name "Github Actions"
 git config user.email "reactstrap@github.io"
 git add --all
-git commit -m "docs(travis): publish documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)"
+git commit -m "docs(Github Actions): publish documentation for $RELEASE_TAG ($GITHUB_SHA)"
 git push origin $BRANCH > /dev/null 2>&1
-git tag -a $VERSION -m "docs $TRAVIS_TAG"
+git tag -a $VERSION -m "docs $RELEASE_TAG"
 git push --tags > /dev/null 2>&1
 
-success "Successfully published documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)!"
+success "Successfully published documentation for $RELEASE_TAG ($GITHUB_SHA)!"
