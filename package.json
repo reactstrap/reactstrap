@@ -12,7 +12,6 @@
   "esnext": "src/index.js",
   "sideEffects": false,
   "scripts": {
-    "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-app-rewired test --env=jsdom",
     "cover": "npm test -- --coverage",
     "start": "webpack-dev-server --config ./webpack.docs.config.js --watch",
@@ -286,7 +285,6 @@
     "conventional-changelog-cli": "^2.0.21",
     "conventional-recommended-bump": "^0.3.0",
     "copy-webpack-plugin": "^6.0.2",
-    "coveralls": "^3.1.0",
     "cross-env": "^2.0.0",
     "css-loader": "^2.1.0",
     "customize-cra": "^0.2.8",

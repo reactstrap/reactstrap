@@ -1,0 +1,30 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+        cache: 'yarn'
+
+    - run: rm -rf node_modules && yarn install --frozen-lockfile
+    - name: Run Coverage
+      run: |
+        npm run cover -- --runInBand
+    - name: Upload to Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
