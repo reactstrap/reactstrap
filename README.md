@@ -1,6 +1,6 @@
 [![reactstrap](https://cloud.githubusercontent.com/assets/399776/13906899/1de62f0c-ee9f-11e5-95c0-c515fee8e918.png)](https://reactstrap.github.io)
 
-[![CDNJS](https://img.shields.io/cdnjs/v/reactstrap.svg)](https://cdnjs.com/libraries/reactstrap) [![NPM Version](https://img.shields.io/npm/v/reactstrap.svg?branch=master)](https://www.npmjs.com/package/reactstrap) [![Build Status](https://github.com/reactstrap/reactstrap/actions/workflows/test.yml/badge.svg?branch=master)](https://travis-ci.org/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master) [![License](https://img.shields.io/npm/l/reactstrap.svg)](https://github.com/reactstrap/reactstrap/blob/master/LICENSE)
+[![CDNJS](https://img.shields.io/cdnjs/v/reactstrap.svg)](https://cdnjs.com/libraries/reactstrap) [![NPM Version](https://img.shields.io/npm/v/reactstrap.svg?branch=master)](https://www.npmjs.com/package/reactstrap) [![Build Status](https://github.com/reactstrap/reactstrap/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master) [![License](https://img.shields.io/npm/l/reactstrap.svg)](https://github.com/reactstrap/reactstrap/blob/master/LICENSE)
 
 # reactstrap
 
@@ -243,21 +243,11 @@ To create a release branch and changelog, run the following command, optionally 
 
 Verify changelog in branch. Create a PR if everything looks good. Merge when tests are green.
 
-#### Tagging and Publishing
+#### Publishing
 
 Note: you must have write permission to this repo do perform this action
 
-Once the release branch is merged, checkout master and run:
-
-```bash
-./scripts/publish
-```
-
-This will build the current state of master, tag it based on the release version and push the tag up to GitHub. Travis will detect the new tag and publish to npm.
-
-_OR_
-
-You can create a new tag via the GitHub user interface. If you do it this way, make sure to use the correct version as the tag name (eg. `6.2.0`).
+Once the release branch is merged, create a release from the tag generated in the release step via the Github UI. This will trigger a github action to publish the new version to npm and deploy the updated docs to https://reactstrap.github.io/.
 
 ## In the wild
 
