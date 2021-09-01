@@ -6017,7 +6017,7 @@ escalade@^3.1.1:
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
 
-escape-html@~1.0.1, escape-html@~1.0.3:
+escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
@@ -7648,11 +7648,9 @@ hoist-non-react-statics@^3.3.2:
     react-is "^16.7.0"
 
 holderjs@^2.9.3:
-  version "2.9.7"
-  resolved "https://registry.yarnpkg.com/holderjs/-/holderjs-2.9.7.tgz#1b1fd371082bb252fc2e5b2559cd9074bfb11d9d"
-  integrity sha512-m9CxwWddhpk+c2dWRBBk2RGlVGPNLHRpj6thSoSHyWGm8pW/vOm1QB60mSiE/7s5QwbcXrCHoKCksqiEPz9N3A==
-  dependencies:
-    shaven "^0.8.1"
+  version "2.9.9"
+  resolved "https://registry.yarnpkg.com/holderjs/-/holderjs-2.9.9.tgz#e0f65439ac658c4188abcea3c3b0a327d0ebb67d"
+  integrity sha512-ceWPz1MrR3dxOoZXiom+G48+l1VPG3TcjBw9fq5iwCiZAMvYX8Aia13GOxT7DoV/AcSyTH7Vvr11ygjZP9qn4w==
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -13252,13 +13250,6 @@ shallowequal@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
-
-shaven@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/shaven/-/shaven-0.8.1.tgz#0f42d4fb32c4048349ff9ee9c296f5effb2dcaaf"
-  integrity sha1-D0LU+zLEBINJ/57pwpb17/styq8=
-  dependencies:
-    escape-html "~1.0.1"
 
 shebang-command@^1.2.0:
   version "1.2.0"
