@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Example = () => {
+const Example = (props) => {
   return (
     <div>
       <p className="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>

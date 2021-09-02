@@ -25,6 +25,6 @@ const items = [
   }
 ];
 
-const Example = () => <UncontrolledCarousel items={items} />;
+const Example = (props) => <UncontrolledCarousel items={items} />;
 
 export default Example;

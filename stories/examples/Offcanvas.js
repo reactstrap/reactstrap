@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, ButtonToolbar, Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
 
-const Example = () => {
+const Example = (props) => {
   const [direction, setDirection] = useState();
   const [open, setOpen] = useState();
   const toggle = () => setOpen(!open);

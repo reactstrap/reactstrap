@@ -1,7 +1,7 @@
 import React from 'react';
 import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
 
-const Example = () => (
+const Example = (props) => (
   <div>
     <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
       Toggle

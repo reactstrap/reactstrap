@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardText, CardGroup, CardTitle } from 'reactstrap';
 
-const Example = () => (
+const Example = (props) => (
   <div>
     <CardGroup>
       <Card>
