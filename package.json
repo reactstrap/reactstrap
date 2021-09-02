@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "8.9.0",
+  "version": "8.10.0",
   "description": "React Bootstrap 4 components",
   "main": "lib/index.js",
   "types": "es/index.d.ts",
@@ -12,7 +12,6 @@
   "esnext": "src/index.js",
   "sideEffects": false,
   "scripts": {
-    "report-coverage": "coveralls < ./coverage/lcov.info",
     "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-app-rewired test --env=jsdom",
     "cover": "npm test -- --coverage",
     "start": "webpack-dev-server --config ./webpack.docs.config.js --watch",
@@ -21,6 +20,7 @@
     "build:umd": "rollup -c",
     "build:lib": "babel src --out-dir lib --ignore src/__tests__/",
     "build:esm": "cross-env BABEL_ENV=esm-dir babel src --out-dir es --ignore src/__tests__/",
+    "prepublishOnly": "npm run build",
     "postbuild": "node ./scripts/postbuild.js",
     "create-release": "npm run cover && sh ./scripts/release",
     "publish-release": "npm run cover && sh ./scripts/publish",
@@ -286,7 +286,6 @@
     "conventional-changelog-cli": "^2.0.21",
     "conventional-recommended-bump": "^0.3.0",
     "copy-webpack-plugin": "^6.0.2",
-    "coveralls": "^3.1.0",
     "cross-env": "^2.0.0",
     "css-loader": "^2.1.0",
     "customize-cra": "^0.2.8",
