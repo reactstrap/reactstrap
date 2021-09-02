@@ -1,3 +1,12 @@
+# [8.10.0](https://github.com/reactstrap/reactstrap/compare/8.9.0...8.10.0) (2021-09-02)
+
+
+### Features
+
+* **Dropdown:** add support for listbox or menu role ([#2077](https://github.com/reactstrap/reactstrap/issues/2077)) ([fd9e988](https://github.com/reactstrap/reactstrap/commit/fd9e9888b7712905a85684f7822fc75fde38c069))
+
+
+
 # [8.9.0](https://github.com/reactstrap/reactstrap/compare/8.8.1...8.9.0) (2021-01-19)
 
 

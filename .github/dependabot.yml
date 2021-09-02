@@ -1,0 +1,104 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: conventional-recommended-bump
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: conventional-recommended-bump
+    versions:
+    - ">= 6.a, < 7"
+  - dependency-name: cross-env
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: cross-env
+    versions:
+    - ">= 6.a, < 7"
+  - dependency-name: cross-env
+    versions:
+    - ">= 7.a, < 8"
+  - dependency-name: css-loader
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: customize-cra
+    versions:
+    - ">= 1.a, < 2"
+  - dependency-name: ejs
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: raw-loader
+    versions:
+    - ">= 4.a, < 5"
+  - dependency-name: react-app-rewired
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: react-helmet
+    versions:
+    - ">= 6.a, < 7"
+  - dependency-name: react-router
+    versions:
+    - ">= 4.a, < 5"
+  - dependency-name: react-router
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: react-scripts
+    versions:
+    - "> 2.1.1"
+  - dependency-name: react-scripts
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: react-transition-group
+    versions:
+    - ">= 4.a, < 5"
+  - dependency-name: rollup
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: rollup-plugin-babel-minify
+    versions:
+    - ">= 10.a, < 11"
+  - dependency-name: rollup-plugin-babel-minify
+    versions:
+    - ">= 9.a, < 10"
+  - dependency-name: rollup-plugin-node-resolve
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: style-loader
+    versions:
+    - ">= 1.a, < 2"
+  - dependency-name: css-loader
+    versions:
+    - 5.0.1
+    - 5.0.2
+    - 5.1.0
+    - 5.1.1
+    - 5.1.2
+    - 5.1.3
+    - 5.1.4
+    - 5.2.0
+    - 5.2.1
+    - 5.2.3
+  - dependency-name: "@types/react"
+    versions:
+    - 17.0.1
+    - 17.0.2
+    - 17.0.3
+  - dependency-name: mini-css-extract-plugin
+    versions:
+    - 1.3.5
+    - 1.3.6
+    - 1.3.7
+    - 1.3.8
+    - 1.3.9
+  - dependency-name: "@babel/plugin-proposal-object-rest-spread"
+    versions:
+    - 7.12.13
+    - 7.13.0
+  - dependency-name: webpack-cli
+    versions:
+    - 4.4.0
+    - 4.5.0

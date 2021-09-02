@@ -4,12 +4,6 @@ set -e
 
 BUMP_TYPE=$1
 
-if [ -z "$TRAVIS" ]; then
-  git checkout master
-  git pull
-  yarn
-fi
-
 CURRENT_BRANCH="$(git symbolic-ref --short -q HEAD)"
 
 success() {
@@ -19,11 +13,6 @@ success() {
 error() {
   echo -e "\033[31;1m$1 \033[0m"
 }
-
-if [ -z "$GITHUB_TOKEN" ]; then
-  error "Environment variable GITHUB_TOKEN does not exist. Stopping deploy."
-  exit 1
-fi
 
 if [ -z "$CURRENT_BRANCH" ]; then
   error "Not in a branch. Stopping release."
@@ -41,7 +30,7 @@ if [ -z "$BUMP_TYPE" ]; then
 fi
 
 echo "==> Bumping version"
-VERSION="$(npm version --no-git-tag-version $BUMP_TYPE | sed 's/v//g')"
+VERSION="$(npm version $BUMP_TYPE | sed 's/v//g')"
 
 echo "==> Updating Changelog"
 node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular
