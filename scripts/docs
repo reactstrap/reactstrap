@@ -6,6 +6,7 @@ BRANCH='master'
 BUILD_DIR='build/'
 REPOSITORY=`mktemp -d /tmp/reactstrap.XXXXXX`
 GITHUB_REPO='reactstrap/reactstrap.github.io'
+RELEASE_TAG=${GITHUB_REF##*/}
 
 success() {
   echo -e "\033[32;1m$1"
@@ -15,12 +16,7 @@ error() {
   echo -e "\033[31;1m$1"
 }
 
-if [ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-  echo "Deploying documentation"
-else
-  success "Not building master branch. Skipping deploy."
-  exit 0
-fi
+echo "Deploying documentation"
 
 if [ -z "$GITHUB_TOKEN" ]; then
   error "Environment variable GITHUB_TOKEN does not exist. Stopping deploy."
@@ -44,12 +40,12 @@ if [ -z "$(git status --porcelain)" ]; then
   exit 0
 fi
 
-git config user.name "Travis-CI"
+git config user.name "Github Actions"
 git config user.email "reactstrap@github.io"
 git add --all
-git commit -m "docs(travis): publish documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)"
-git push origin $BRANCH > /dev/null 2>&1
-git tag -a $VERSION -m "docs $TRAVIS_TAG"
-git push --tags > /dev/null 2>&1
+git commit -m "docs(Github Actions): publish documentation for $RELEASE_TAG ($GITHUB_SHA)"
+git remote remove origin
+git remote add origin https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git
+git push origin $BRANCH
 
-success "Successfully published documentation for $TRAVIS_TAG ($TRAVIS_COMMIT)!"
+success "Successfully published documentation for $RELEASE_TAG ($GITHUB_SHA)!"
