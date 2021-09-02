@@ -40,6 +40,8 @@ if [ -z "$(git status --porcelain)" ]; then
   exit 0
 fi
 
+git config user.name "Github Actions"
+git config user.email "reactstrap@github.io"
 git add --all
 git commit -m "docs(Github Actions): publish documentation for $RELEASE_TAG ($GITHUB_SHA)"
 git remote remove origin
