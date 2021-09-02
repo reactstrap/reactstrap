@@ -6,6 +6,7 @@ BRANCH='master'
 BUILD_DIR='build/'
 REPOSITORY=`mktemp -d /tmp/reactstrap.XXXXXX`
 GITHUB_REPO='reactstrap/reactstrap.github.io'
+RELEASE_TAG=${GITHUB_REF##*/}
 
 success() {
   echo -e "\033[32;1m$1"
