@@ -20,6 +20,7 @@
     "build:umd": "rollup -c",
     "build:lib": "babel src --out-dir lib --ignore src/__tests__/",
     "build:esm": "cross-env BABEL_ENV=esm-dir babel src --out-dir es --ignore src/__tests__/",
+    "prepublishOnly": "npm run build",
     "postbuild": "node ./scripts/postbuild.js",
     "create-release": "npm run cover && sh ./scripts/release",
     "publish-release": "npm run cover && sh ./scripts/publish",

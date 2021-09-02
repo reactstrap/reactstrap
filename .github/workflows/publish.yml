@@ -1,0 +1,25 @@
+name: Publish NPM Package & Docs
+on:
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+      - name: Publish NPM package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish Docs
+        run: |
+          echo "RELEASE_TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+          ./scripts/docs
