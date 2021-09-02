@@ -19,7 +19,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish Docs
-        run: |
-          echo "RELEASE_TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
-          ./scripts/docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.REACTSTRAP_DOCS_GITHUB_TOKEN }}
+        run: ./scripts/docs
