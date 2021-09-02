@@ -1,7 +1,7 @@
 import React from 'react';
 import { Media } from 'reactstrap';
 
-const Example = () => {
+const Example = (props) => {
   return (
     <Media>
       <Media left href="#">

@@ -2,7 +2,7 @@
 import React from 'react';
 import { UncontrolledButtonDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap';
 
-const Example = () => {
+const Example = (props) => {
 	return (
 		<UncontrolledButtonDropdown>
 			<DropdownToggle caret>

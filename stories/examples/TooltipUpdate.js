@@ -21,7 +21,7 @@ const TooltipContent = ({ scheduleUpdate }) => {
   );
 }
 
-const Example = () => {
+const Example = (props) => {
   return (
     <div className="text-center">
       <Button id="ScheduleUpdateTooltip">Click me</Button>
