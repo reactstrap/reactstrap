@@ -1,0 +1,18 @@
+name: Manually Publish Docs
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+      - name: Publish Docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.REACTSTRAP_DOCS_GITHUB_TOKEN }}
+        run: ./scripts/docs
