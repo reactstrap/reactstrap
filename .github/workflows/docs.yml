@@ -14,5 +14,5 @@ jobs:
         run: rm -rf node_modules && yarn install --frozen-lockfile
       - name: Publish Docs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REACTSTRAP_DOCS_GITHUB_TOKEN }}
         run: ./scripts/docs
