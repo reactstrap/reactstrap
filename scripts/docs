@@ -44,8 +44,6 @@ git config user.name "Github Actions"
 git config user.email "reactstrap@github.io"
 git add --all
 git commit -m "docs(Github Actions): publish documentation for $RELEASE_TAG ($GITHUB_SHA)"
-git push origin $BRANCH > /dev/null 2>&1
-git tag -a $VERSION -m "docs $RELEASE_TAG"
-git push --tags > /dev/null 2>&1
+git push origin $BRANCH
 
 success "Successfully published documentation for $RELEASE_TAG ($GITHUB_SHA)!"
