@@ -14,8 +14,8 @@
   "scripts": {
     "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-app-rewired test --env=jsdom",
     "cover": "npm test -- --coverage",
-    "start": "start-storybook -p 6006",
-    "build:docs": "build-storybook",
+    "start": "start-storybook -s ./static -p 6006",
+    "build:docs": "build-storybook -s ./static",
     "build": "npm run build:lib && npm run build:esm && npm run build:umd && npm run copy-dts",
     "build:umd": "rollup -c",
     "build:lib": "babel src --out-dir lib --ignore src/__tests__/",
