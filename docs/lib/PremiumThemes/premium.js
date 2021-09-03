@@ -130,4 +130,21 @@ export default [
       },
     ],
   },
+  {
+    creator: {
+      name: 'MDBootstrap',
+      tagLine:
+        'Check out some examples that our partners from MDBootstrap created using the Reactstrap components library.',
+      link: 'https://mdbootstrap.com/',
+    },
+    products: [
+      {
+        title: 'Material Design for Bootstrap 5 & React 17',
+        tagLine: '700+ components, stunning templates, 1-min installation, extensive tutorials & huge community.',
+        imgUrl:
+          'https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/react/about/assets/mdb5-react.jpg',
+        link: 'https://mdbootstrap.com/docs/b5/react/',
+      },
+      ],
+   }, 
 ];
