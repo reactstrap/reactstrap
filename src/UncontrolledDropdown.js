@@ -14,10 +14,12 @@ export default class UncontrolledDropdown extends Component {
   }
 
   toggle(e) {
-    this.setState({ isOpen: !this.state.isOpen });
-    if (this.props.onToggle) {
-      this.props.onToggle(e, !this.state.isOpen);
-    }
+    const isOpen = !this.state.isOpen;
+    this.setState({ isOpen }, () => {
+      if (this.props.onToggle) {
+        this.props.onToggle(e, isOpen);
+      }
+    });
   }
 
   render() {
