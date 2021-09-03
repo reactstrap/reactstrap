@@ -1,15 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import {
   Alert,
   ButtonDropdown,
   Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
   Tooltip,
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
   UncontrolledTooltip,
 } from '../';
+import { keyCodes } from '../utils';
 
 describe('UncontrolledAlert', () => {
   it('should be an Alert', () => {
@@ -62,6 +66,7 @@ describe('UncontrolledButtonDropdown', () => {
 });
 
 describe('UncontrolledDropdown', () => {
+
   it('should be an Dropdown', () => {
     const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
     expect(dropdown.type()).toBe(Dropdown);
@@ -84,6 +89,138 @@ describe('UncontrolledDropdown', () => {
     dropdown.update();
     expect(dropdown.prop('isOpen')).toBe(true);
   });
+
+  describe('onToggle', () => {
+    let handleToggle = jest.fn();
+    let element;
+
+    beforeEach(() => {
+      element = document.createElement('div');
+      document.body.appendChild(element);
+    });
+
+    afterEach(() => {
+      handleToggle.mockClear();
+    });
+
+    it('onToggle should be called on document click', () => {
+      mount(<UncontrolledDropdown onToggle={handleToggle} defaultOpen={true}>
+        <DropdownToggle id="toggle">Toggle</DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Test</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
+      </UncontrolledDropdown>);
+
+      expect(handleToggle.mock.calls.length).toBe(0);
+
+      document.body.click();
+
+      expect(handleToggle.mock.calls.length).toBe(1);
+      expect(handleToggle.mock.calls[0].length).toBe(2);
+      expect(handleToggle.mock.calls[0][1]).toBe(false);
+    });
+
+    it('onToggle should be called on container click', () => {
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={true}>
+        <DropdownToggle id="toggle">Toggle</DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Test</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
+      </UncontrolledDropdown>, { attachTo: element });
+
+      expect(handleToggle.mock.calls.length).toBe(0);
+
+      document.getElementById('test').click();
+
+      expect(handleToggle.mock.calls.length).toBe(1);
+      expect(handleToggle.mock.calls[0].length).toBe(2);
+      expect(handleToggle.mock.calls[0][1]).toBe(false);
+
+      wrapper.detach();
+    });
+
+    it('onToggle should be called on toggler click when closed', () => {
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={false}>
+        <DropdownToggle id="toggle">Toggle</DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Test</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
+      </UncontrolledDropdown>, { attachTo: element });
+
+      expect(handleToggle.mock.calls.length).toBe(0);
+
+      document.getElementById('toggle').click();
+
+      expect(handleToggle.mock.calls.length).toBe(1);
+      expect(handleToggle.mock.calls[0].length).toBe(2);
+      expect(handleToggle.mock.calls[0][1]).toBe(true);
+
+      wrapper.detach();
+    });
+
+    it('onToggle should be called on toggler click when opened', () => {
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={true}>
+        <DropdownToggle id="toggle">Toggle</DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Test</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
+      </UncontrolledDropdown>, { attachTo: element });
+
+      expect(handleToggle.mock.calls.length).toBe(0);
+
+      document.getElementById('toggle').click();
+
+      expect(handleToggle.mock.calls.length).toBe(1);
+      expect(handleToggle.mock.calls[0].length).toBe(2);
+      expect(handleToggle.mock.calls[0][1]).toBe(false);
+
+      wrapper.detach();
+    });
+
+    it('onToggle should be called on key closing', () => {
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={true}>
+        <DropdownToggle id="toggle">Toggle</DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Test</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
+      </UncontrolledDropdown>, { attachTo: element });
+
+      expect(handleToggle.mock.calls.length).toBe(0);
+
+      wrapper.find(Dropdown).instance().handleDocumentClick({ type: 'keyup', which: keyCodes.tab });
+
+      expect(handleToggle.mock.calls.length).toBe(1);
+      expect(handleToggle.mock.calls[0].length).toBe(2);
+      expect(handleToggle.mock.calls[0][1]).toBe(false);
+
+      wrapper.detach();
+    });
+
+    it('onToggle should be called on key opening', () => {
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={false}>
+        <DropdownToggle id="toggle">Toggle</DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Test</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
+      </UncontrolledDropdown>, { attachTo: element });
+
+      expect(handleToggle.mock.calls.length).toBe(0);
+
+      wrapper.find(Dropdown).instance().handleDocumentClick('keydown', { which: keyCodes.down });
+
+      expect(handleToggle.mock.calls.length).toBe(1);
+      expect(handleToggle.mock.calls[0].length).toBe(2);
+      expect(handleToggle.mock.calls[0][1]).toBe(true);
+
+      wrapper.detach();
+    });
+  })
 });
 
 describe('UncontrolledTooltip', () => {
