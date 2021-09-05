@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
+import { CarouselContext } from './CarouselContext';
 import { mapToCssModules } from './utils';
     
 const SWIPE_THRESHOLD = 40;
@@ -24,7 +25,7 @@ class Carousel extends React.Component {
     };
   }
 
-  getChildContext() {
+  getContextValue() {
     return { direction: this.state.direction };
   }
 
@@ -188,7 +189,9 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
-          {this.renderItems(children, innerClasses)}
+          <CarouselContext.Provider value={this.getContextValue()}>
+            {this.renderItems(children, innerClasses)}
+          </CarouselContext.Provider>
         </div>
       );
     }
@@ -201,9 +204,11 @@ class Carousel extends React.Component {
 
       return (
         <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
-          {this.renderItems(carouselItems, innerClasses)}
-          {controlLeft}
-          {controlRight}
+          <CarouselContext.Provider value={this.getContextValue()}>
+            {this.renderItems(carouselItems, innerClasses)}
+            {controlLeft}
+            {controlRight}
+          </CarouselContext.Provider>
         </div>
       );
     }
@@ -223,10 +228,12 @@ class Carousel extends React.Component {
     return (
       <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}
         onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
-        {wrappedIndicators}
-        {this.renderItems(carouselItems, innerClasses)}
-        {controlLeft}
-        {controlRight}
+        <CarouselContext.Provider value={this.getContextValue()}>
+          {wrappedIndicators}
+          {this.renderItems(carouselItems, innerClasses)}
+          {controlLeft}
+          {controlRight}
+        </CarouselContext.Provider>
       </div>
     );
   }
