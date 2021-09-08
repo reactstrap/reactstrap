@@ -2,10 +2,10 @@ import { addons } from '@storybook/addons';
 import { create } from '@storybook/theming';
 
 const theme = create({
-  base: 'dark',
+  base: 'light',
   brandTitle: 'Reactstrap',
   brandUrl: '/',
-  brandImage: 'logo-white.svg',
+  brandImage: 'logo.svg',
 });
 
 addons.setConfig({
