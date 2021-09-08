@@ -2,6 +2,13 @@ import React from 'react';
 
 export default {
   title: 'Components/Popover',
+  parameters: {
+    docs: {
+      description: {
+        component: '[Bootstrap Popovers](https://getbootstrap.com/docs/5.1/components/popovers/)'
+      }
+    }
+  }
 };
 
 export { default as Popover } from './examples/Popover';

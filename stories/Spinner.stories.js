@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/Spinner',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+  [Bootstrap Spinners](https://getbootstrap.com/docs/5.1/components/spinners/)
+  
+  Indicate the loading state of a component or page with Spinners.
+  `
+      }
+    }
+  }
 };
 
 export { default as Spinner } from './examples/Spinner';

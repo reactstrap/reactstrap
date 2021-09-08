@@ -2,6 +2,13 @@ import React from 'react';
 
 export default {
   title: 'Components/Progress',
+  parameters: {
+    docs: {
+      description: {
+        component: '[Bootstrap Progress](https://getbootstrap.com/docs/5.1/components/progress/)'
+      }
+    }
+  }
 };
 
 export { default as Progress } from './examples/Progress';

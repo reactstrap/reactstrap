@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/InputGroup',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+  [Bootstrap InputGroup](https://getbootstrap.com/docs/5.1/forms/input-group/)
+  
+  Extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.
+  `
+      }
+    }
+  }
 };
 
 export { default as Overview } from './examples/InputGroupOverview';

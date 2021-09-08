@@ -2,6 +2,13 @@ import React from 'react';
 
 export default {
   title: 'Components/Table',
+  parameters: {
+    docs: {
+      description: {
+        component: '[Bootstrap Tables](https://getbootstrap.com/docs/5.1/content/tables/)'
+      }
+    }
+  }
 };
 
 export { default as Table } from './examples/Table';

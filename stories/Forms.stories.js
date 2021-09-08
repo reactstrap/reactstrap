@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/Forms',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+  [Bootstrap Forms](https://getbootstrap.com/docs/5.1/forms/overview/)
+
+  Form controls, layout options, and custom components for creating a wide variety of forms.
+  `
+      }
+    }
+  }
 };
 
 export { default as Form } from './examples/Form';

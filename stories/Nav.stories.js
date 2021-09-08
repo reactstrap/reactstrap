@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/Nav',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+  [Bootstrap Navs](https://getbootstrap.com/docs/5.1/components/navs-tabs/)
+  
+  Bootstrap’s navigation components.
+  `
+      }
+    }
+  }
 };
 
 export { default as Navs } from './examples/Navs';

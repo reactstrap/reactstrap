@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/ListGroup',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+  [Bootstrap ListGroup](https://getbootstrap.com/docs/5.1/components/list-group/)
+  
+  A flexible and powerful component for displaying a series of content.
+  `
+      }
+    }
+  }
 };
 
 export { default as ListGroup } from './examples/ListGroup';
