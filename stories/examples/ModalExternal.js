@@ -16,7 +16,7 @@ const ModalExample = (props) => {
   const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={toggle}>&times;</button>;
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+      <Button color="danger" onClick={toggle}>Click Me</Button>
       <Modal isOpen={modal} toggle={toggle} className={className} external={externalCloseBtn}>
         <ModalHeader>Modal title</ModalHeader>
         <ModalBody>

@@ -15,7 +15,7 @@ const ModalExample = (props) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+      <Button color="danger" onClick={toggle}>Click Me</Button>
       <Modal isOpen={modal} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
         toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
