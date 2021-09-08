@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs';
+import { Button } from 'reactstrap';
 
 <Meta title="Home" />
 
@@ -8,7 +9,7 @@ import { Meta } from '@storybook/addon-docs';
 
 Reactstrap is currently compatible with Bootstrap 5.1.  If you are using Bootstrap 4, you'll need to use [Reactstrap v8](./v4)
 
-----
+## About
 
 Unlike some component libraries, Reactstrap does not embed its own styles, and instead depends on the Bootstrap CSS framework for its styles and theme.
 This allows you to have consistent styles across your React-based components and static parts of your site, and allows you to include your own custom Bootstrap theme when needed.
@@ -38,8 +39,8 @@ You can use:
 ```jsx
 // React
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
-
-<Modal>
+...
+<Modal isOpen={open} toggle={() => setOpen(false)}>
   <ModalHeader>
     Modal title
   </ModalHeader>
@@ -52,24 +53,13 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 ## Getting Started
 
-### Install
+### Install Reactstrap:
 
 ```sh
 npm install reactstrap react react-dom
 ```
 
-### Import components
-
-```jsx
-import React from 'react';
-import { Button } from 'reactstrap';
-
-export default (props) => {
-  return (
-    <Button color="danger">Danger!</Button>
-  );
-};
-```
+Reactstrap currently requires React 16.8 or higher.
 
 ### Include Bootstrap
 
@@ -84,8 +74,23 @@ npm install --save bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 ```
 
-2. or include Bootstrap from a CDN in your layout:
+2. or include Bootstrap from a CDN in your HTML layout:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+</head>
+```
+
+### Import components:
+
+```jsx
+import React from 'react';
+import { Button } from 'reactstrap';
+
+export default (props) => {
+  return (
+    <Button color="danger">Danger!</Button>
+  );
+};
 ```
