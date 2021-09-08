@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/Card',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+[Bootstrap Card](https://getbootstrap.com/docs/5.1/components/card/)
+
+Cards provide a flexible and extensible content container with multiple variants and options.
+        `,
+      }
+    }
+  }
 };
 
 export { default as Card } from './examples/Card';

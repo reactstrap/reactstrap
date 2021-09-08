@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/Badge',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+[Bootstrap Badge](https://getbootstrap.com/docs/5.1/components/badge/)
+
+A small count and labeling component.
+        `,
+      }
+    }
+  }
 };
 
 export { default as Button } from './examples/BadgeButton';

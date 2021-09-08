@@ -2,6 +2,13 @@ import React from 'react';
 
 export default {
   title: 'Components/Tooltip',
+  parameters: {
+    docs: {
+      description: {
+        component: '[Bootstrap Tooltips](https://getbootstrap.com/docs/5.1/components/tooltips/)'
+      }
+    }
+  }
 };
 
 export { default as Tooltip } from './examples/Tooltip';

@@ -2,6 +2,17 @@ import React from 'react';
 
 export default {
   title: 'Components/Modal',
+  parameters: {
+    docs: {
+      description: {
+        component: `
+  [Bootstrap Modal](https://getbootstrap.com/docs/5.1/components/modal/)
+  
+  Add dialogs to your site for lightboxes, user notifications, or completely custom content.
+  `
+      }
+    }
+  }
 };
 
 export { default as Modal } from './examples/Modal';
