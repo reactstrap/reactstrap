@@ -43,7 +43,7 @@ const ModalExample = (props) => {
           </Label>
         </FormGroup>
         {' '}
-        <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+        <Button color="danger" onClick={toggle}>Click Me</Button>
       </Form>
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop={backdrop} keyboard={keyboard}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>

@@ -29,7 +29,7 @@ const ModalExample = (props) => {
                     </Input>
                 </FormGroup>
                 {' '}
-                <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+                <Button color="danger" onClick={toggle}>Click Me</Button>
             </Form>
             <Modal isOpen={modal} toggle={toggle} className={className} unmountOnClose={unmountOnClose}>
                 <ModalHeader toggle={toggle}>Modal title</ModalHeader>

@@ -11,7 +11,7 @@ const ToastDismissExample = (props) => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>{buttonLabel}</Button>
+      <Button color="primary" onClick={toggle}>Click Me</Button>
       <br />
       <br />
       <Toast isOpen={show}>
