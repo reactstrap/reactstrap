@@ -9,6 +9,50 @@ import { Button } from 'reactstrap';
 
 Reactstrap is currently compatible with Bootstrap 5.1.  If you are using Bootstrap 4, you'll need to use [Reactstrap v8](./v4)
 
+## Getting Started
+
+### Install Reactstrap:
+
+```sh
+npm install reactstrap react react-dom
+```
+
+Reactstrap currently requires React 16.8 or higher.
+
+### Include Bootstrap
+
+Either:
+
+1. Import Bootstrap in your application code:
+
+```sh
+npm install --save bootstrap
+```
+```javascript
+import 'bootstrap/dist/css/bootstrap.min.css';
+```
+
+2. or include Bootstrap from a CDN URL in your HTML layout:
+
+```html
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+</head>
+```
+
+### Import components:
+
+```jsx
+import React from 'react';
+import { Button } from 'reactstrap';
+
+export default (props) => {
+  return (
+    <Button color="danger">Danger!</Button>
+  );
+};
+```
+
 ## About
 
 Unlike some component libraries, Reactstrap does not embed its own styles, and instead depends on the Bootstrap CSS framework for its styles and theme.
@@ -49,48 +93,4 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
   </ModalBody>
 </Modal>
 
-```
-
-## Getting Started
-
-### Install Reactstrap:
-
-```sh
-npm install reactstrap react react-dom
-```
-
-Reactstrap currently requires React 16.8 or higher.
-
-### Include Bootstrap
-
-Either:
-
-1. Import Bootstrap in your application code:
-
-```sh
-npm install --save bootstrap
-```
-```javascript
-import 'bootstrap/dist/css/bootstrap.min.css';
-```
-
-2. or include Bootstrap from a CDN in your HTML layout:
-
-```html
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
-</head>
-```
-
-### Import components:
-
-```jsx
-import React from 'react';
-import { Button } from 'reactstrap';
-
-export default (props) => {
-  return (
-    <Button color="danger">Danger!</Button>
-  );
-};
 ```
