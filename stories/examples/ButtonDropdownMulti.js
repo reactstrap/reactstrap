@@ -9,7 +9,7 @@ const Example = (props) => {
   return (
     <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle color={props.color} caret>
-        {props.text}
+        Click Me
       </DropdownToggle>
       <DropdownMenu>
         <DropdownItem header>Header</DropdownItem>
