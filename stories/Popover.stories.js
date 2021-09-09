@@ -16,3 +16,4 @@ export { default as Focus } from './examples/PopoverFocus';
 export { default as Multi } from './examples/PopoverMulti';
 export { default as Uncontrolled } from './examples/PopoverUncontrolled';
 export { default as Update } from './examples/PopoverUpdate';
+export { default as Props } from './examples/PopoverProps';

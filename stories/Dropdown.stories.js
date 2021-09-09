@@ -21,3 +21,4 @@ export { default as SetActiveFromChild } from './examples/DropdownSetActiveFromC
 export { default as Sizing } from './examples/DropdownSizing';
 export { default as Uncontrolled } from './examples/DropdownUncontrolled';
 export { default as CustomDropdown } from './examples/CustomDropdown';
+export { default as Props } from './examples/DropdownProps';

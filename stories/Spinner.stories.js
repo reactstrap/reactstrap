@@ -17,3 +17,4 @@ export default {
 
 export { default as Spinner } from './examples/Spinner';
 export { default as SpinnerGrower } from './examples/SpinnerGrower';
+export { default as Props } from './examples/SpinnerProps';

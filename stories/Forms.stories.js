@@ -25,3 +25,4 @@ export { default as InlineCheckboxes } from './examples/InlineCheckboxes';
 export { default as InputGridSizing } from './examples/InputGridSizing';
 export { default as InputSizing } from './examples/InputSizing';
 export { default as InputType } from './examples/InputType';
+export { default as Props } from './examples/FormProps';
