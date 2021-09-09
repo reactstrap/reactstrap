@@ -24,3 +24,4 @@ export { default as DisabledItems } from './examples/ListGroupDisabledItems';
 export { default as Flush } from './examples/ListGroupFlush';
 export { default as Horizontal } from './examples/ListGroupHorizontal';
 export { default as Numbered } from './examples/ListGroupNumbered';
+export { default as Props } from './examples/ListGroupProps';

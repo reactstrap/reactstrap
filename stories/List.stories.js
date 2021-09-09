@@ -11,5 +11,7 @@ export default {
   }
 };
 
-export { default as ListInline } from './examples/ListInline';
-export { default as ListUnstyled } from './examples/ListUnstyled';
+export { default as List } from './examples/ListInline';
+export { default as Unstyled } from './examples/ListUnstyled';
+export { default as Props } from './examples/ListProps';
+ 

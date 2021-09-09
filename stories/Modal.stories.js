@@ -26,3 +26,4 @@ export { default as Fadeless } from './examples/ModalFadeless';
 export { default as FocusAfterClose } from './examples/ModalFocusAfterClose';
 export { default as Fullscreen } from './examples/ModalFullscreen';
 export { default as Nested } from './examples/ModalNested';
+export { default as Props } from './examples/ModalProps';

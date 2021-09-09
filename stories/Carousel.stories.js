@@ -18,3 +18,4 @@ export default {
 export { default as Carousel } from './examples/Carousel';
 export { default as CustomTag } from './examples/CarouselCustomTag';
 export { default as Uncontrolled } from './examples/CarouselUncontrolled';
+export { default as Props } from './examples/CarouselProps';

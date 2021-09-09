@@ -17,3 +17,4 @@ export default {
 
 export { default as Navbar } from './examples/Navbar';
 export { default as NavbarToggler } from './examples/NavbarToggler';
+export { default as Props } from './examples/NavbarProps';

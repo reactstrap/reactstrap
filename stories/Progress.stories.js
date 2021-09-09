@@ -18,3 +18,4 @@ export { default as Labels } from './examples/ProgressLabels';
 export { default as Max } from './examples/ProgressMax';
 export { default as Multi } from './examples/ProgressMulti';
 export { default as Striped } from './examples/ProgressStriped';
+export { default as Props } from './examples/ProgressProps';

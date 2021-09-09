@@ -19,3 +19,4 @@ export { default as Hover } from './examples/TableHover';
 export { default as Responsive } from './examples/TableResponsive';
 export { default as Sizing } from './examples/TableSizing';
 export { default as Striped } from './examples/TableStriped';
+export { default as Props } from './examples/TableProps';

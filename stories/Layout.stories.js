@@ -18,3 +18,4 @@ export default {
 export { default as Layout } from './examples/Layout';
 export { default as LayoutRowCols } from './examples/LayoutRowCols';
 export { default as ContainerResponsive } from './examples/ContainerResponsive';
+export { default as Props } from './examples/LayoutProps';
