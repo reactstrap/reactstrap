@@ -1,10 +1,10 @@
 [![reactstrap](https://cloud.githubusercontent.com/assets/399776/13906899/1de62f0c-ee9f-11e5-95c0-c515fee8e918.png)](https://reactstrap.github.io)
 
-[![CDNJS](https://img.shields.io/cdnjs/v/reactstrap.svg)](https://cdnjs.com/libraries/reactstrap) [![NPM Version](https://img.shields.io/npm/v/reactstrap.svg?branch=master)](https://www.npmjs.com/package/reactstrap) [![Build Status](https://github.com/reactstrap/reactstrap/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master) [![License](https://img.shields.io/npm/l/reactstrap.svg)](https://github.com/reactstrap/reactstrap/blob/master/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/reactstrap.svg?branch=master)](https://www.npmjs.com/package/reactstrap) [![Build Status](https://github.com/reactstrap/reactstrap/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/reactstrap/reactstrap) [![Coverage Status](https://coveralls.io/repos/github/reactstrap/reactstrap/badge.svg?branch=master)](https://coveralls.io/github/reactstrap/reactstrap?branch=master) [![License](https://img.shields.io/npm/l/reactstrap.svg)](https://github.com/reactstrap/reactstrap/blob/master/LICENSE)
 
 # reactstrap
 
-Stateless React Components for Bootstrap 4.
+Stateless React Components for Bootstrap.
 
 ## Getting Started
 
@@ -63,94 +63,9 @@ These libraries are not bundled with Reactstrap and required at runtime:
   * [**react**](https://www.npmjs.com/package/react)
   * [**react-dom**](https://www.npmjs.com/package/react-dom)
 
-##### Optional Dependencies
-
-These libraries are not included in the main distribution file `reactstrap.min.js` and need to be manually
-included when using components that require transitions or popover effects (e.g. Tooltip, Modal, etc).
-
-  * [**react-transition-group**](https://www.npmjs.com/package/react-transition-group)
-  * [**react-popper**](https://www.npmjs.com/package/react-popper)
-
-
-### CDN
-
-If you prefer to include Reactstrap globally by marking `reactstrap` as external in your application, the
-`reactstrap` library provides various single-file distributions, which are hosted on the following CDNs:
-
-* [**cdnjs**](https://cdnjs.com/libraries/reactstrap)
-```html
-<!-- Main version -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.min.js"></script>
-
-<!-- All optional dependencies version -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.full.min.js"></script>
-```
-
-* [**unpkg**](https://unpkg.com/reactstrap/)
-```html
-<!-- Main version -->
-<script src="https://unpkg.com/reactstrap@6.0.1/dist/reactstrap.min.js"></script>
-
-<!-- All optional dependencies version -->
-<script src="https://unpkg.com/reactstrap@6.0.1/dist/reactstrap.full.min.js"></script>
-```
-
-> **Note**: To load a specific version of Reactstrap replace `6.0.1` with the version number.
-
-#### Versions
-
-Reactstrap has two primary distribution versions:
-
-1) `reactstrap.min.js`
-
-    This file **excludes** the optional dependencies – `react-popper` and `react-transition-group`.
-    This is the recommended approach (similar approach in Bootstrap's JavaScript components) for including
-    Reactstrap as it reduces the filesize and gives more flexibility in configuring needed dependencies.
-
-    **Recommended use cases:**
-
-      * Small, medium, or large applications
-      * Applications that do not use any transitions or popper components
-      * Applications that directly use `react-popper` or `react-transition-group` – Reactstrap and your application
-        will use the single global version included
-
- 2) `reactstrap.full.min.js`
-
-    This file **includes** the optional dependencies – `react-popper` and `react-transition-group`
-
-    **Recommended use cases:**
-
-      * Small applications
-
-
-#### Example
-
-```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required dependencies -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/16.3.2/umd/react.production.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.3.2/umd/react-dom.production.min.js"></script>
-    <!-- Optional dependencies -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.1/react-transition-group.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.10.4/umd/react-popper.min.js"></script>
-    <!-- Reactstrap -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/6.0.1/reactstrap.min.js"></script>
-    <!-- Lastly, include your app's bundle -->
-    <script type="text/javascript" src="/assets/bundle.js"></script>
-  </head>
-  <body>
-    <div id="my-app" />
-  </body>
-</html>
-```
-
 ## About the Project
 
-This library contains React Bootstrap 4 components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, [Poppers.js](https://popper.js.org/) via [react-popper](https://github.com/popperjs/react-popper) is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.
+This library contains React Bootstrap components that favor composition and control. The library does not depend on jQuery or Bootstrap javascript. However, [Poppers.js](https://popper.js.org/) via [react-popper](https://github.com/popperjs/react-popper) is relied upon for advanced positioning of content like Tooltips, Popovers, and auto-flipping Dropdowns.
 
 There are a few core concepts to understand in order to make the most out of this library.
 
