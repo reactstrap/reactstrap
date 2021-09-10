@@ -3,12 +3,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ModalExample = (props) => {
-  const {
-    buttonLabel,
-    className
-  } = props;
-
+const Example = (args) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -16,7 +11,7 @@ const ModalExample = (props) => {
   return (
     <div>
       <Button color="danger" onClick={toggle}>Click Me</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      <Modal isOpen={modal} toggle={toggle} {...args}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -30,4 +25,24 @@ const ModalExample = (props) => {
   );
 }
 
-export default ModalExample;
+Example.args = {
+  fullscreen: false,
+  size: undefined,
+  backdrop: true,
+  fade: true,
+  centered: false,
+  scrollable: false
+};
+
+Example.argTypes = {
+  fullscreen: {
+    control: { type: 'select' },
+    options: ['', true, 'sm', 'md', 'lg', 'xl']
+  },
+  size: {
+    control: { type: 'select' },
+    options: ['', 'sm', 'lg', 'xl']
+  },
+};
+
+export default Example;

@@ -1,17 +1,26 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
+import { colors } from './options';
 
-const Example = (props) => {
+const Example = (args) => {
   return (
     <div>
-      <h1>Heading <Badge color="secondary">New</Badge></h1>
-      <h2>Heading <Badge color="secondary">New</Badge></h2>
-      <h3>Heading <Badge color="secondary">New</Badge></h3>
-      <h4>Heading <Badge color="secondary">New</Badge></h4>
-      <h5>Heading <Badge color="secondary">New</Badge></h5>
-      <h6>Heading <Badge color="secondary">New</Badge></h6>
+      <Badge {...args} />
     </div>
   );
 }
+
+Example.args = {
+  children: 'New',
+  color: 'primary',
+  pill: false
+};
+
+Example.argTypes = {
+  color: {
+    control: { type: 'select' },
+    options: colors
+  }
+};
 
 export default Example;
