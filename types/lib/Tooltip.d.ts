@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Popper from 'popper.js';
+import type { Modifier, Placement } from '@popperjs/core';
 import { CSSModule } from './index';
 
 interface TooltipChildrenRenderProps {
@@ -19,8 +19,8 @@ export interface UncontrolledTooltipProps
   popperClassName?: string;
   innerClassName?: string;
   autohide?: boolean;
-  placement?: Popper.Placement;
-  modifiers?: Popper.Modifiers;
+  placement?: Placement;
+  modifiers?: Modifier<string, any>[];
   strategy?: string;
   cssModule?: CSSModule;
   fade?: boolean;
