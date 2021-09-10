@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Popper from 'popper.js';
+import type { Modifier } from '@popperjs/core';
 import { CSSModule } from './index';
 
 export interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
@@ -8,7 +8,7 @@ export interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
   dark?: boolean;
   right?: boolean;
   flip?: boolean;
-  modifiers?: Popper.Modifiers;
+  modifiers?: Modifier<string, any>[];
   cssModule?: CSSModule;
   persist?: boolean;
   strategy?: string;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Popper from 'popper.js';
+import type { Modifier, Boundary, Placement } from '@popperjs/core';
 import { CSSModule } from './index';
 
 interface PopoverChildrenRenderProps {
@@ -16,15 +16,15 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLElement> {
   toggle?: React.MouseEventHandler<any> | (() => void);
   target: string | HTMLElement | React.RefObject<HTMLElement>;
   container?: string | HTMLElement | React.RefObject<HTMLElement>;
-  boundariesElement?: Popper.Boundary | Element;
-  placement?: Popper.Placement;
+  boundariesElement?: Boundary | Element;
+  placement?: Placement;
   popperClassName?: string;
   innerClassName?: string;
   disabled?: boolean;
   hideArrow?: boolean;
   placementPrefix?: string;
   delay?: number | { show: number; hide: number };
-  modifiers?: Popper.Modifiers;
+  modifiers?: Modifier<string, any>[];
   strategy?: string;
   cssModule?: CSSModule;
   fade?: boolean;
