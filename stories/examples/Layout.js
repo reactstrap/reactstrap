@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import './Layout.css';
 
 const Example = (props) => {
   return (
