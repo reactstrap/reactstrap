@@ -1,9 +1,9 @@
 import React from 'react';
-import { Breadcrumb } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Props from './Props';
 
 const Example = () => (
-  <Props component={Breadcrumb} />
+  <Props components={[Breadcrumb, BreadcrumbItem]} />
 );
 
 export default Example;
