@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  Card, CardImg, CardText, CardBody,
+  Card, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import { colors } from './options';
 
-const Example = (props) => {
+const Example = (args) => {
   return (
     <div>
-      <Card>
-        <CardImg top width="100%" src="https://picsum.photos/318/180" alt="Card image cap" />
+      <Card {...args}>
         <CardBody>
           <CardTitle tag="h5">Card title</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
@@ -19,5 +19,19 @@ const Example = (props) => {
     </div>
   );
 };
+
+Example.args = {
+  color: undefined,
+  outline: false,
+  inverse: false,	
+  body: false,
+};
+
+Example.argTypes = {
+  color: {
+    control: { type: 'select' },
+    options: colors
+  }
+};	
 
 export default Example;

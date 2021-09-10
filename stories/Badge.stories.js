@@ -15,7 +15,7 @@ A small count and labeling component.
   }
 };
 
-export { default as Button } from './examples/BadgeButton';
+export { default as Badge } from './examples/Badge';
 export { default as Links } from './examples/BadgeLinks';
 export { default as Pills } from './examples/BadgePills';
 export { default as Sizing } from './examples/Badge';
