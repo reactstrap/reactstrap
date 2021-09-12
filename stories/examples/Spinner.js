@@ -1,19 +1,29 @@
 import React from 'react';
 import { Spinner } from 'reactstrap';
+import { colors } from './options';
 
-const Example = (props) => {
+const Example = (args) => {
   return (
-    <div>
-      <Spinner color="primary" />
-      <Spinner color="secondary" />
-      <Spinner color="success" />
-      <Spinner color="danger" />
-      <Spinner color="warning" />
-      <Spinner color="info" />
-      <Spinner color="light" />
-      <Spinner color="dark" />
-    </div>
+    <Spinner {...args} />
   );
 }
 
+Example.args = {
+  type: 'border'
+};
+
+Example.argTypes = {
+  type: {
+    control: { type: 'select' },
+    options: ['border', 'grow']
+  },
+  color: {
+    control: { type: 'select' },
+    options: colors
+  },
+  size: {
+    control: { type: 'select' },
+    options: ['', 'sm']
+  },
+};
 export default Example;
