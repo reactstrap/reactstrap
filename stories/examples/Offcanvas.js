@@ -1,53 +1,23 @@
 import React, { useState } from 'react';
-import { Button, ButtonToolbar, Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
+import { Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
 
-const Example = (props) => {
-  const [direction, setDirection] = useState();
+const Example = (args) => {
   const [open, setOpen] = useState();
   const toggle = () => setOpen(!open);
 
   return (
     <div>
-      <ButtonToolbar>
-        <Button
-          color="primary"
-          onClick={() => {
-            setDirection('start');
-            setOpen(true);
-          }}
-        >
-          Open Start (default)
-        </Button>
-        <Button
-          onClick={() => {
-            setDirection('end');
-            setOpen(true);
-          }}
-        >
-          Open End
-        </Button>
-        <Button
-          color="success"
-          onClick={() => {
-            setDirection('top');
-            setOpen(true);
-          }}
-        >
-          Open Top
-        </Button>
-        <Button
-          color="danger"
-          onClick={() => {
-            setDirection('bottom');
-            setOpen(true);
-          }}
-        >
-          Open Bottom
-        </Button>
-      </ButtonToolbar>
-      <Offcanvas isOpen={open} direction={direction} toggle={toggle}>
+      <Button
+        color="primary"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        Open
+      </Button>
+      <Offcanvas {...args} isOpen={open} toggle={toggle}>
         <OffcanvasHeader toggle={toggle}>
-          Offcanvas {direction}
+          Offcanvas
         </OffcanvasHeader>
         <OffcanvasBody>
           <strong>This is the Offcanvas body.</strong>
@@ -55,6 +25,19 @@ const Example = (props) => {
       </Offcanvas>
     </div>
   );
+};
+
+Example.args = {
+  backdrop: true,
+  fade: true,
+  scrollable: false
+};
+
+Example.argTypes = {
+  direction: {
+    control: { type: 'select' },
+    options: ['top', 'start', 'end', 'bottom']
+  },
 };
 
 export default Example;

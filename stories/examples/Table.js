@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const Example = (props) => {
+const Example = (args) => {
   return (
-    <Table>
+    <Table {...args}>
       <thead>
         <tr>
           <th>#</th>
@@ -35,5 +35,21 @@ const Example = (props) => {
     </Table>
   );
 }
+
+Example.args = {
+  bordered: false,
+  borderless: false,
+  dark: false,
+  hover: false,
+  responsive: false,
+  striped: false
+}
+
+Example.argTypes = {
+  size: {
+    control: { type: 'select' },
+    options: ['', 'sm']
+  },
+};
 
 export default Example;

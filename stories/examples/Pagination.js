@@ -1,10 +1,10 @@
 import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-const Example = (props) => {
+const Example = (args) => {
   return (
-    <Pagination aria-label="Page navigation example">
-    <PaginationItem>
+    <Pagination {...args}>
+      <PaginationItem>
         <PaginationLink first href="#" />
       </PaginationItem>
       <PaginationItem>
@@ -43,6 +43,13 @@ const Example = (props) => {
       </PaginationItem>
     </Pagination>
   );
+}
+
+Example.argTypes = {
+  size: {
+    control: { type: 'select' },
+    options: ['', 'sm', 'lg']
+  }
 }
 
 export default Example;
