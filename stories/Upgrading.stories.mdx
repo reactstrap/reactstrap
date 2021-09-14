@@ -23,11 +23,11 @@ Please see the Bootstrap [Migration Guide](https://getbootstrap.com/docs/5.1/mig
   Jumbotron fluid can be replaced with `<div class="bg-light mb-4 py-3 py-sm-5">`
 
 ### Components with breaking changes:
-- Tooltip/Popover - 
-  the `modifiers` prop will now conform to the new popper2 modifiers, which take an array instead of an object.
-  `offset` prop is now an array of 2 numbers that represent skidding and distance. See docs for more details.
+- Tooltip/Popover/DropdownMenu - 
+  The `modifiers` prop will now conform to the new popper2 modifiers, which take an array instead of an object.
+  `offset` prop is now an array of 2 numbers that represent skidding and distance. See [popper docs](https://popper.js.org/docs/v2/modifiers/) for more details.
 - ModalHeader/ToastHeader -
   Bootstrap 5 no longer supports custom close icons, so this feature was removed from ModalHeader and ToastHeader.
-- Dropdown/Dropdown Menu -
+- Dropdown/DropdownMenu -
   The `left` and `right` properties are deprecated, but still supported for backwards compatibility.
   Now replaced with `start` and `end` in Bootstrap 5.
