@@ -30,6 +30,7 @@ const ListInlineItem = forwardRef((props, ref) => {
   );
 });
 
+ListInlineItem.name = 'ListInlineItem';
 ListInlineItem.propTypes = propTypes;
 ListInlineItem.defaultProps = defaultProps;
 
