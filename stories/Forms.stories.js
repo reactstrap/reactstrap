@@ -15,15 +15,16 @@ export default {
   }
 };
 
-export { default as Input } from './examples/Input';
-export { default as Form } from './examples/Form';
-export { default as FormFeedback } from './examples/FormFeedback';
-export { default as FormGrid } from './examples/FormGrid';
-export { default as FormGridFormRow } from './examples/FormGridFormRow';
-export { default as FormInline } from './examples/FormInline';
-export { default as LabelHidden } from './examples/LabelHidden';
-export { default as InlineCheckboxes } from './examples/InlineCheckboxes';
-export { default as InputGridSizing } from './examples/InputGridSizing';
-export { default as InputSizing } from './examples/InputSizing';
-export { default as InputType } from './examples/InputType';
-export { default as Props } from './examples/FormProps';
+export { default as Input } from './examples/Form/Input';
+export { default as Form } from './examples/Form/Form';
+export { default as FormFeedback } from './examples/Form/FormFeedback';
+export { default as FormGrid } from './examples/Form/FormGrid';
+export { default as FormGridFormRow } from './examples/Form/FormGridFormRow';
+export { default as FormInline } from './examples/Form/FormInline';
+export { default as FloatingLabels } from './examples/Form/LabelFloating';
+export { default as HiddenLabels } from './examples/Form/LabelHidden';
+export { default as InlineCheckboxes } from './examples/Form/InlineCheckboxes';
+export { default as InputGridSizing } from './examples/Form/InputGridSizing';
+export { default as InputSizing } from './examples/Form/InputSizing';
+export { default as InputType } from './examples/Form/InputType';
+export { default as Props } from './examples/Form/FormProps';
