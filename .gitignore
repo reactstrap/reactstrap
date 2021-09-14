@@ -4,6 +4,7 @@ node_modules
 /build
 /lib
 /es
+.DS_Store
 .idea
 .history
 npm-debug.log

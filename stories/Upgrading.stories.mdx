@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Home/Upgrading" />
+
+# Upgrading to Reactstrap 9
+
+Reactstrap 9+ now requires on [Bootstrap 5.1+](https://getbootstrap.com/docs/5.1/getting-started/introduction/).
+Do not upgrade to Reactstrap v9 if you are using Bootstrap version 4.
+
+Please see the Bootstrap [Migration Guide](https://getbootstrap.com/docs/5.1/migration/#components) for more details.
+
+### Removed components
+
+- InputGroupAddon -
+  This in no longer needed in Bootstrap 5, you can now add Buttons, Inputs directly to InputGroups in the order you wish.
+- InputGroupButtonDropdown -
+  This can now be replaced with a regular Dropdown component.
+- CustomInput -
+  These are no longer needed in Bootstrap 5, since all form inputs will be styled by Bootstrap instead of browser default. 
+  The existing Input component now supports file, select, switch, and range types.
+- Jumbotron -
+  Jumbotrons have been removed from Bootstrap 5, can be replaced with `<div class="rounded px-3 px-sm-4 py-3 py-sm-5">`. 
+  Jumbotron fluid can be replaced with `<div class="bg-light mb-4 py-3 py-sm-5">`
+
+### Components with breaking changes:
+- Tooltip/Popover/DropdownMenu - 
+  The `modifiers` prop will now conform to the new popper2 modifiers, which take an array instead of an object.
+  `offset` prop is now an array of 2 numbers that represent skidding and distance. See [popper docs](https://popper.js.org/docs/v2/modifiers/) for more details.
+- ModalHeader/ToastHeader -
+  Bootstrap 5 no longer supports custom close icons, so this feature was removed from ModalHeader and ToastHeader.
+- Dropdown/DropdownMenu -
+  The `left` and `right` properties are deprecated, but still supported for backwards compatibility.
+  Now replaced with `start` and `end` in Bootstrap 5.

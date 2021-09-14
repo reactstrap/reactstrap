@@ -14,7 +14,7 @@ const propTypes = {
     PropTypes.func,
   ]),
   children: PropTypes.node,
-  flush: PropTypes.boolean,
+  flush: PropTypes.bool,
   open: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
   toggle: PropTypes.func.isRequired,
 };
