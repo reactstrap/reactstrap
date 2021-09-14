@@ -15,6 +15,7 @@ export default {
   }
 };
 
+export { default as Input } from './examples/Input';
 export { default as Form } from './examples/Form';
 export { default as FormFeedback } from './examples/FormFeedback';
 export { default as FormGrid } from './examples/FormGrid';
