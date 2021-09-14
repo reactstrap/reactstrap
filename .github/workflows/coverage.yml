@@ -2,9 +2,9 @@ name: Test Coverage
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, bootstrap5 ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, bootstrap5 ]
 
 jobs:
 
