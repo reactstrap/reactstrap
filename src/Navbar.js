@@ -12,14 +12,17 @@ const propTypes = {
   color: PropTypes.string,
   role: PropTypes.string,
   tag: tagPropType,
+  container: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
   expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  children: PropTypes.node,
 };
 
 const defaultProps = {
   tag: 'nav',
   expand: false,
+  container: 'fluid',
 };
 
 const getExpandClass = (expand) => {
@@ -42,7 +45,9 @@ const Navbar = (props) => {
     fixed,
     sticky,
     color,
+    container,
     tag: Tag,
+    children,
     ...attributes
   } = props;
 
@@ -59,8 +64,17 @@ const Navbar = (props) => {
     }
   ), cssModule);
 
+  const containerClass = container && (container === true) ? 'container' : `container-${container}`;
+
   return (
-    <Tag {...attributes} className={classes} />
+    <Tag {...attributes} className={classes}>
+      { container ?
+        <div className={containerClass}>
+          {children}
+        </div> :
+        children
+      }
+    </Tag>
   );
 };
 
