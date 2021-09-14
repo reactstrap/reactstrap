@@ -287,7 +287,7 @@
     "conventional-recommended-bump": "^4.1.1",
     "copy-webpack-plugin": "^6.0.2",
     "cross-env": "^4.0.0",
-    "css-loader": "^2.1.0",
+    "css-loader": "^5.2.7",
     "customize-cra": "^0.9.1",
     "dtslint": "^4.0.4",
     "ejs": "^2.5.9",
