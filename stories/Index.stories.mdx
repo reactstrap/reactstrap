@@ -1,0 +1,96 @@
+import { Meta } from '@storybook/addon-docs';
+import { Button } from 'reactstrap';
+
+<Meta title="Home/Installation" />
+
+![Reactstrap](logo.svg)
+
+### Reactstrap is a [React](https://reactjs.org) component library for [Bootstrap](https://getbootstrap.com)
+
+Reactstrap is currently compatible with Bootstrap 5.1.  If you are using Bootstrap 4, you'll need to use [Reactstrap v8](./v4)
+
+## Getting Started
+
+### Install Reactstrap:
+
+```sh
+npm install reactstrap react react-dom
+```
+
+Reactstrap currently requires React 16.8 or higher.
+
+### Include Bootstrap
+
+Either:
+
+1. Import Bootstrap in your application code:
+
+```sh
+npm install --save bootstrap
+```
+```javascript
+import 'bootstrap/dist/css/bootstrap.min.css';
+```
+
+2. or include Bootstrap from a CDN URL in your HTML layout:
+
+```html
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+</head>
+```
+
+### Import components:
+
+```jsx
+import React from 'react';
+import { Button } from 'reactstrap';
+
+export default (props) => {
+  return (
+    <Button color="danger">Danger!</Button>
+  );
+};
+```
+
+## About
+
+Unlike some component libraries, Reactstrap does not embed its own styles, and instead depends on the Bootstrap CSS framework for its styles and theme.
+This allows you to have consistent styles across your React-based components and static parts of your site, and allows you to include your own custom Bootstrap theme when needed.
+
+Unlike using Bootstrap in HTML, Reactstrap exports all the correct Bootstrap classes automatically, and don't need to use or include Bootstrap's JavaScript files or add data attributes to trigger functionality.  Instead, components are defined in React-friendly components with appropriate props for you to control.
+
+So instead of:
+
+```html
+<!-- HTML -->
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+You can use:
+```jsx
+// React
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
+...
+<Modal isOpen={open} toggle={() => setOpen(false)}>
+  <ModalHeader>
+    Modal title
+  </ModalHeader>
+  <ModalBody>
+    Modal body text goes here.
+  </ModalBody>
+</Modal>
+
+```
