@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { AccordionProps } from './Accordion';
 
 export interface UncontrolledAccordionProps extends AccordionProps {
