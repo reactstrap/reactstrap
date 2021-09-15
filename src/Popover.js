@@ -6,6 +6,7 @@ const defaultProps = {
   placement: 'right',
   placementPrefix: 'bs-popover',
   trigger: 'click',
+  offset: [0, 8]
 };
 
 const Popover = (props) => {
