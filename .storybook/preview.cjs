@@ -11,5 +11,8 @@ export const parameters = {
       order: ['Home', '*']
     }
   },
-  viewMode: 'docs'
+  viewMode: 'docs',
+  previewTabs: {
+    canvas: { hidden: true },
+  },
 }
