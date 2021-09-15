@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button, UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap';
 
-export default function () {
+const Example = (props) => {
   return (
     <div>
       <Button id="UncontrolledPopover" type="button">
@@ -15,3 +15,5 @@ export default function () {
     </div>
   );
 }
+
+export default Example;
