@@ -10,9 +10,9 @@ const PopoverItem = props => {
   const toggle = () => setPopoverOpen(!popoverOpen);
 
   return (
-    <span>
+    <>
       <Button
-        className="mr-1"
+        className="me-1"
         color="secondary"
         id={"Popover-" + id}
         type="button"
@@ -31,7 +31,7 @@ const PopoverItem = props => {
           Pellentesque ornare sem lacinia quam venenatis vestibulum.
         </PopoverBody>
       </Popover>
-    </span>
+    </>
   );
 };
 
