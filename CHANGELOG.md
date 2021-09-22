@@ -1,3 +1,17 @@
+# [9.0.0-2](https://github.com/reactstrap/reactstrap/compare/v9.0.0-0...v9.0.0-2) (2021-09-22)
+
+
+### Features
+
+* **accordion:** add `flush` support and `stayOpen` support ([272b773](https://github.com/reactstrap/reactstrap/commit/272b773972a16f60d581a13a5807277884a1693f))
+* **bs5:** add Offcanvas ([df61c93](https://github.com/reactstrap/reactstrap/commit/df61c937f941a166538e9c7012d6b51c56ea6a41))
+* **carousel:** add Bootstrap5 updates ([1cca298](https://github.com/reactstrap/reactstrap/commit/1cca298f74f85599fa8e5b22fa73e15ebc76315d))
+* **collapse:** add horizontal collapse ([45d28fe](https://github.com/reactstrap/reactstrap/commit/45d28fec7becf71f0e57fe0612db6b9ff74fdb9a))
+* **ListGroup:** Add ListGroupNumbered ([ea4621e](https://github.com/reactstrap/reactstrap/commit/ea4621e5d90f717dcc84e295658767eed6fef486))
+* **Placeholder:** add component ([0b315ab](https://github.com/reactstrap/reactstrap/commit/0b315abc0428f9fa6096115a39e6697b7e61abd8))
+
+
+
 # [9.0.0-0](https://github.com/reactstrap/reactstrap/compare/8.9.0...9.0.0-0) (2021-03-03)
 
 
