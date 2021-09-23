@@ -1,3 +1,20 @@
+# [9.0.0-3](https://github.com/reactstrap/reactstrap/compare/v9.0.0-2...v9.0.0-3) (2021-09-23)
+
+
+### Bug Fixes
+
+* **popover:** add default popper offset for popover ([d49dc3f](https://github.com/reactstrap/reactstrap/commit/d49dc3f215bea461d325e95b735f4a2becd7fc91))
+* **types:** import React for UncontrolledAccordion type defs ([#2292](https://github.com/reactstrap/reactstrap/issues/2292)) ([6e5ebb7](https://github.com/reactstrap/reactstrap/commit/6e5ebb7276bf0432f108f6f45335638e4343b9fc))
+* **types:** use types from @popperjs/core ([55da7db](https://github.com/reactstrap/reactstrap/commit/55da7dbdb1197abc0e858ba67298cd530c068e78))
+
+
+### Features
+
+* **forms:** Add support for floating labels ([b9ad8cc](https://github.com/reactstrap/reactstrap/commit/b9ad8ccdf084deec8510289e806fd7e51aadbc89))
+* **Navbar:** add container options ([00b88f7](https://github.com/reactstrap/reactstrap/commit/00b88f7ac97d20d9230af6d1ea43cb40e99916ca))
+
+
+
 # [9.0.0-2](https://github.com/reactstrap/reactstrap/compare/v9.0.0-0...v9.0.0-2) (2021-09-22)
 
 
