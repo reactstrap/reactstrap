@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { UncontrolledAccordionProps } from './Accordion';
 import { UncontrolledAlertProps } from './Alert';
 import { UncontrolledButtonDropdownProps } from './ButtonDropdown';
 import { UncontrolledDropdownProps } from './Dropdown';
@@ -8,6 +9,7 @@ import { UncontrolledCollapseProps } from './Collapse';
 import { UncontrolledCarouselProps } from './Carousel';
 import { UncontrolledPopoverProps } from './Popover';
 
+export class UncontrolledAccordion extends React.Component<UncontrolledAccordionProps> {}
 export class UncontrolledAlert extends React.Component<
   UncontrolledAlertProps
 > {}
