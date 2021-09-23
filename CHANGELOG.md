@@ -1,3 +1,12 @@
+# [9.0.0-4](https://github.com/reactstrap/reactstrap/compare/v9.0.0-3...v9.0.0-4) (2021-09-23)
+
+
+### Bug Fixes
+
+* **types:** export AccordionBody types ([#2312](https://github.com/reactstrap/reactstrap/issues/2312)) ([ef202b3](https://github.com/reactstrap/reactstrap/commit/ef202b39ada495bfdd25425a58635e3a633000a0))
+
+
+
 # [9.0.0-3](https://github.com/reactstrap/reactstrap/compare/v9.0.0-2...v9.0.0-3) (2021-09-23)
 
 
