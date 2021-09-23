@@ -9,5 +9,10 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLElement> {
   open: string | string[];
 }
 
+export interface UncontrolledAccordionProps extends AccordionProps {
+  defaultOpen?: string | string[];
+  stayOpen?: boolean;
+}
+
 declare class Accordion extends React.Component<AccordionProps> {}
 export default Accordion;
