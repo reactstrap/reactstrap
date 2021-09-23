@@ -30,10 +30,7 @@ if [ -z "$BUMP_TYPE" ]; then
 fi
 
 echo "==> Bumping version"
-VERSION="$(npm version $BUMP_TYPE | sed 's/v//g')"
-
-echo "==> Updating Changelog"
-node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular
+VERSION="$(npm version --no-git-tag-version $BUMP_TYPE | sed 's/v//g')"
 
 echo "==> Committing changes"
 
