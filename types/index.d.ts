@@ -169,6 +169,7 @@ export { ToastHeaderProps } from './lib/ToastHeader';
 export { default as Tooltip } from './lib/Tooltip';
 export { TooltipProps } from './lib/Tooltip';
 export {
+  UncontrolledAccordion,
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
