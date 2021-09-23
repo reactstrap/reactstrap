@@ -1,3 +1,12 @@
+# [9.0.0-5](https://github.com/reactstrap/reactstrap/compare/v9.0.0-4...v9.0.0-5) (2021-09-23)
+
+
+### Bug Fixes
+
+* **types:** export UncontrolledAccordion types ([#2313](https://github.com/reactstrap/reactstrap/issues/2313)) ([600e5d4](https://github.com/reactstrap/reactstrap/commit/600e5d4ccc2140d3fd9c5221cc2d5355b57e3afe))
+
+
+
 # [9.0.0-4](https://github.com/reactstrap/reactstrap/compare/v9.0.0-3...v9.0.0-4) (2021-09-23)
 
 
