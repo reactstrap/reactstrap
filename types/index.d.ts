@@ -1,5 +1,7 @@
 export { default as Accordion } from './lib/Accordion';
 export { AccordionProps } from './lib/Accordion';
+export { default as AccordionBody } from './lib/AccordionBody';
+export { AccordionBodyProps } from './lib/AccordionBody';
 export { default as AccordionHeader } from './lib/AccordionHeader';
 export { AccordionHeaderProps } from './lib/AccordionHeader';
 export { default as AccordionItem } from './lib/AccordionItem';
