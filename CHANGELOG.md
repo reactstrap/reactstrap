@@ -1,3 +1,12 @@
+# [9.0.0-6](https://github.com/reactstrap/reactstrap/compare/v9.0.0-5...v9.0.0-6) (2021-09-24)
+
+
+### Bug Fixes
+
+* **build:** set --compress false for microbundle build ([#2314](https://github.com/reactstrap/reactstrap/issues/2314)) ([a119aae](https://github.com/reactstrap/reactstrap/commit/a119aaedd6e598cb9bd7d4b4e1cde68e21b58f9c))
+
+
+
 # [9.0.0-5](https://github.com/reactstrap/reactstrap/compare/v9.0.0-4...v9.0.0-5) (2021-09-23)
 
 
