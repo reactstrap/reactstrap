@@ -16,7 +16,7 @@
     "cover": "npm test -- --coverage",
     "start": "start-storybook -s ./static -p 8080",
     "build:docs": "build-storybook -s ./static -o ./build",
-    "build": "microbundle --generateTypes false --jsx React.createElement",
+    "build": "microbundle --generateTypes false --jsx React.createElement --compress false",
     "version": "node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular && git add -A CHANGELOG.md",
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
