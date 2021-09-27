@@ -27,10 +27,10 @@ describe('Label', () => {
     expect(wrapper.hasClass('col-form-label')).toBe(true);
   });
 
-  it('should not render with "col-form-label" class when a col is not provided', () => {
+  it('should render with "form-label" class when a col is not provided', () => {
     const wrapper = shallow(<Label>Yo!</Label>);
 
-    expect(wrapper.hasClass('col-form-label')).toBe(false);
+    expect(wrapper.hasClass('form-label')).toBe(true);
   });
 
   it('should pass col size specific classes as Strings', () => {
