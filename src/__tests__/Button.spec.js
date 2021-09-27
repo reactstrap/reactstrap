@@ -97,20 +97,6 @@ describe('Button', () => {
     expect(block.hasClass('d-block w-100')).toBe(true);
   });
 
-  it('should render close icon utility with default props', () => {
-    const times = '×'; // unicode: U+00D7 MULTIPLICATION SIGN
-    const expectedInnerHTML = `<span aria-hidden="true">${times}</span>`;
-
-    const wrapper = shallow(<Button close />);
-    const actualInnerHTML = wrapper.children().html();
-
-    expect(wrapper.find('.btn-close').length).toBe(1);
-    expect(wrapper.find('.btn').length).toBe(0);
-    expect(wrapper.find('.btn-secondary').length).toBe(0);
-    expect(wrapper.find('button').prop('aria-label')).toMatch(/close/i);
-    expect(actualInnerHTML).toBe(expectedInnerHTML);
-  });
-
   it('should render close icon with custom child and props', () => {
     const testChild = 'close this thing';
     const wrapper = shallow(<Button close>{testChild}</Button>);

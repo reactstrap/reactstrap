@@ -59,10 +59,6 @@ class Button extends React.Component {
       ...attributes
     } = this.props;
 
-    if (close && typeof attributes.children === 'undefined') {
-      attributes.children = <span aria-hidden>×</span>;
-    }
-
     const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
 
     const classes = mapToCssModules(classNames(
