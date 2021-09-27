@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 
 export interface TabContentProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: any;

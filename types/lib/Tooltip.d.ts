@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Modifier, Placement } from '@popperjs/core';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 
 interface TooltipChildrenRenderProps {
   update: () => void;

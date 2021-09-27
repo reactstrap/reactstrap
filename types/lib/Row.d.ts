@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { Modifier } from '@popperjs/core';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 
 export interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: any;

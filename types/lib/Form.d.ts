@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 
 export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   [key: string]: any;
