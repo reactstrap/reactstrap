@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 import { FadeProps } from './Fade';
 
 export type Placement = 'start' | 'end' | 'left' | 'right' | 'bottom' | 'top';
