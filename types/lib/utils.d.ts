@@ -1,3 +1,5 @@
-import { CSSModule } from './index';
+export interface CSSModule {
+  [className: string]: string;
+}
 
-export function setGlobalCssModule(cssModule: CSSModule): void;
+export type setGlobalCssModule = (cssModule: CSSModule) => void;

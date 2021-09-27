@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   [key: string]: any;
