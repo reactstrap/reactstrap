@@ -99,7 +99,7 @@ const Label = (props) => {
     check ? 'form-check-label' : false,
     size ? `col-form-label-${size}` : false,
     colClasses,
-    colClasses.length ? 'col-form-label' : false
+    colClasses.length ? 'col-form-label' : 'form-label'
   ), cssModule);
 
   return (
