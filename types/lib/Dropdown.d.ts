@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 
 export type Direction = 'up' | 'down' | 'start' | 'end';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSModule } from './index';
+import { CSSModule } from './utils';
 import { ColumnProps } from './Col';
 
 export interface LabelProps
