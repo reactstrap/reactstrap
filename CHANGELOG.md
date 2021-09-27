@@ -1,3 +1,12 @@
+# [9.0.0-7](https://github.com/reactstrap/reactstrap/compare/v9.0.0-6...v9.0.0-7) (2021-09-27)
+
+
+### Bug Fixes
+
+* **types:** remove duplicate types/lib/index.d.ts ([#2316](https://github.com/reactstrap/reactstrap/issues/2316)) ([38f8060](https://github.com/reactstrap/reactstrap/commit/38f80603f42d114915c22f88549a1d73d6fd545d))
+
+
+
 # [9.0.0-6](https://github.com/reactstrap/reactstrap/compare/v9.0.0-5...v9.0.0-6) (2021-09-24)
 
 
