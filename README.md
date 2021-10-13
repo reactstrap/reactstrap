@@ -253,7 +253,6 @@ Once the release branch is merged, create a release from the tag generated in th
 
 Organizations and projects using `reactstrap`
 
-- [availity-reactstrap-validation](https://availity.github.io/availity-reactstrap-validation/)
 - [airframe-react](https://github.com/0wczar/airframe-react) - [demo](http://dashboards.webkom.co/react/airframe/) - Airframe provides all the components a developer needs to build data-intensive web apps using React.
 - [component-template](https://reactstrap.github.io/component-template/)
 - [video-react](https://video-react.github.io/)
