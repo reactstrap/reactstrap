@@ -8,6 +8,7 @@ export type InputType =
   | 'file'
   | 'radio'
   | 'checkbox'
+  | 'switch'
   | 'textarea'
   | 'button'
   | 'reset'
