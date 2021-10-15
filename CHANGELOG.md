@@ -1,3 +1,14 @@
+# [9.0.0-8](https://github.com/reactstrap/reactstrap/compare/v9.0.0-7...v9.0.0-8) (2021-10-15)
+
+
+### Bug Fixes
+
+* **Button:** remove extra close icon in `btn-close` ([#2318](https://github.com/reactstrap/reactstrap/issues/2318)) ([f1289c7](https://github.com/reactstrap/reactstrap/commit/f1289c79cc4828cf84b0d6d842297b52dc1fe102))
+* **Label:** add `form-label` class for labels of vertical forms ([#2317](https://github.com/reactstrap/reactstrap/issues/2317)) ([43d0a37](https://github.com/reactstrap/reactstrap/commit/43d0a37e597f3081a3ebe633f6d041e4f62e111d))
+* **types:** add 'swtch' to `InputType` ([#2340](https://github.com/reactstrap/reactstrap/issues/2340)) ([f449c1c](https://github.com/reactstrap/reactstrap/commit/f449c1c10e38af03719aebb19534075b6b46f40c))
+
+
+
 # [9.0.0-7](https://github.com/reactstrap/reactstrap/compare/v9.0.0-6...v9.0.0-7) (2021-09-27)
 
 
