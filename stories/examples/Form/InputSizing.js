@@ -4,16 +4,16 @@ import { Form, Input } from 'reactstrap';
 const Example = (props) => {
   return (
     <Form>
-      <Input placeholder="lg" bsSize="lg" />
-      <Input placeholder="default" />
-      <Input placeholder="sm" bsSize="sm" />
-      <Input type="select" bsSize="lg">
+      <Input className="mb-3" placeholder="lg" bsSize="lg" />
+      <Input className="mb-3" placeholder="default" />
+      <Input className="mb-3" placeholder="sm" bsSize="sm" />
+      <Input className="mb-3" type="select" bsSize="lg">
         <option>Large Select</option>
       </Input>
-      <Input type="select">
+      <Input className="mb-3" type="select">
         <option>Default Select</option>
       </Input>
-      <Input type="select" bsSize="sm">
+      <Input className="mb-3" type="select" bsSize="sm">
         <option>Small Select</option>
       </Input>
     </Form>
