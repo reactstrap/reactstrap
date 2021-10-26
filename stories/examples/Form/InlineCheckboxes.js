@@ -5,14 +5,12 @@ const Example = (props) => {
   return (
     <Form>
       <FormGroup check inline>
-        <Label check>
-          <Input type="checkbox" /> Some input
-        </Label>
+        <Input type="checkbox" />
+        <Label check>Some input</Label>
       </FormGroup>
       <FormGroup check inline>
-        <Label check>
-           <Input type="checkbox" /> Some other input
-        </Label>
+        <Input type="checkbox" />
+        <Label check>Some other input</Label>
       </FormGroup>
     </Form>
   );

@@ -47,27 +47,27 @@ const Example = (props) => {
       <FormGroup tag="fieldset">
         <legend>Radio Buttons</legend>
         <FormGroup check>
+          <Input type="radio" name="radio1" />{' '}
           <Label check>
-            <Input type="radio" name="radio1" />{' '}
             Option one is this and that—be sure to include why it's great
           </Label>
         </FormGroup>
         <FormGroup check>
+          <Input type="radio" name="radio1" />{' '}
           <Label check>
-            <Input type="radio" name="radio1" />{' '}
             Option two can be something else and selecting it will deselect option one
           </Label>
         </FormGroup>
         <FormGroup check disabled>
+          <Input type="radio" name="radio1" disabled />{' '}
           <Label check>
-            <Input type="radio" name="radio1" disabled />{' '}
             Option three is disabled
           </Label>
         </FormGroup>
       </FormGroup>
       <FormGroup check>
+        <Input type="checkbox" />{' '}
         <Label check>
-          <Input type="checkbox" />{' '}
           Check me out
         </Label>
       </FormGroup>
