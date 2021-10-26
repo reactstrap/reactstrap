@@ -6,7 +6,7 @@ BRANCH='master'
 BUILD_DIR='build/'
 REPOSITORY=`mktemp -d /tmp/reactstrap.XXXXXX`
 GITHUB_REPO='reactstrap/reactstrap.github.io'
-RELEASE_TAG=${GITHUB_REF##*/}
+VERSION=$(node -pe "require('./package.json').version")
 
 success() {
   echo -e "\033[32;1m$1"
@@ -43,9 +43,9 @@ fi
 git config user.name "Github Actions"
 git config user.email "reactstrap@github.io"
 git add --all
-git commit -m "docs(Github Actions): publish documentation for $RELEASE_TAG ($GITHUB_SHA)"
+git commit -m "docs(Github Actions): publish documentation for $VERSION ($GITHUB_SHA)"
 git remote remove origin
 git remote add origin https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git
 git push origin $BRANCH
 
-success "Successfully published documentation for $RELEASE_TAG ($GITHUB_SHA)!"
+success "Successfully published documentation for $VERSION ($GITHUB_SHA)!"

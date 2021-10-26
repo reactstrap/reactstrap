@@ -118,6 +118,15 @@
 
 * **PopperContent:** to update the old `positionFixed` popper prop to the new `strategy` prop.
 
+
+### [8.10.1](https://www.github.com/reactstrap/reactstrap/compare/v8.10.0...v8.10.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **UncontrolledDropdown:** Fix onToggle - a consistent isOpen value ([ee54164](https://www.github.com/reactstrap/reactstrap/commit/ee54164a142c9ae4d43a2a8db4f6a5c088b4eff9))
+
+
 # [8.10.0](https://github.com/reactstrap/reactstrap/compare/8.9.0...8.10.0) (2021-09-02)
 
 
@@ -134,7 +143,6 @@
 
 * **Modal:** Add trapFocus prop ([#2073](https://github.com/reactstrap/reactstrap/issues/2073)) ([6e0fd56](https://github.com/reactstrap/reactstrap/commit/6e0fd565b66c9a16b3187adcb71d52d2d9db2902))
 * **Progress:** Add barStyle prop ([#2075](https://github.com/reactstrap/reactstrap/issues/2075)) ([27faa8e](https://github.com/reactstrap/reactstrap/commit/27faa8e5c575314070f1a35e1969c81e25b13942))
-
 
 
 ## [8.8.1](https://github.com/reactstrap/reactstrap/compare/8.8.0...8.8.1) (2020-12-29)
@@ -1783,4 +1791,3 @@ custom elements should render their html “tags”.
 * **Buttons:** support block level buttons ([f9cf8db](https://github.com/reactstrap/reactstrap/commit/f9cf8db))
 * **Dropdowns:** add examples ([3d48e8c](https://github.com/reactstrap/reactstrap/commit/3d48e8c))
 * **Dropdowns:** basic dropdown, toggle, menu & menu items ([750aaf9](https://github.com/reactstrap/reactstrap/commit/750aaf9))
-
