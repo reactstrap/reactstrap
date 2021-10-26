@@ -231,23 +231,7 @@ npm run test-watch
 
 ## Releasing
 
-#### Create Release Branch
-
-Note: you must have the `GITHUB_TOKEN` environment variable set to a valid GitHub token with write access to your repo.
-
-To create a release branch and changelog, run the following command, optionally with a semantic release type (major, minor, patch) (if not provided, it will default to semver (it's best to let it default)):
-
-```bash
-./scripts/release <release-type>
-```
-
-Verify changelog in branch. Create a PR if everything looks good. Merge when tests are green.
-
-#### Publishing
-
-Note: you must have write permission to this repo do perform this action
-
-Once the release branch is merged, create a release from the tag generated in the release step via the Github UI. This will trigger a github action to publish the new version to npm and deploy the updated docs to https://reactstrap.github.io/.
+Release branches/versioning/notes will be automatically created and maintained by the [release-please](https://github.com/googleapis/release-please) github action. When you're ready to publish the release, just merge the release branch. The release will be created, the new package will be published, and the updated docs will be deployed to https://reactstrap.github.io/.
 
 ## In the wild
 
