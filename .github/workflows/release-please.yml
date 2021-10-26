@@ -7,6 +7,8 @@ jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - run: git tag -d $(git tag -l | grep -) # workaround for a bug with prerelease tags on the first run of release-please
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release-please
         with:
