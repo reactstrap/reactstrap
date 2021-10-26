@@ -17,6 +17,13 @@
 
 
 
+### [8.10.1](https://www.github.com/reactstrap/reactstrap/compare/v8.10.0...v8.10.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **UncontrolledDropdown:** Fix onToggle - a consistent isOpen value ([ee54164](https://www.github.com/reactstrap/reactstrap/commit/ee54164a142c9ae4d43a2a8db4f6a5c088b4eff9))
+
 ## [8.8.1](https://github.com/reactstrap/reactstrap/compare/8.8.0...8.8.1) (2020-12-29)
 
 
@@ -1663,4 +1670,3 @@ custom elements should render their html “tags”.
 * **Buttons:** support block level buttons ([f9cf8db](https://github.com/reactstrap/reactstrap/commit/f9cf8db))
 * **Dropdowns:** add examples ([3d48e8c](https://github.com/reactstrap/reactstrap/commit/3d48e8c))
 * **Dropdowns:** basic dropdown, toggle, menu & menu items ([750aaf9](https://github.com/reactstrap/reactstrap/commit/750aaf9))
-
