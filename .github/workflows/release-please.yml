@@ -1,0 +1,49 @@
+on:
+  push:
+    branches:
+      - master
+name: Release Bot
+jobs:
+  release-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        id: release-please
+        with:
+          release-type: node
+          package-name: "reactstrap"
+          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":true},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
+          command: release-pr
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        id: release
+        with:
+          release-type: node
+          package-name: "reactstrap"
+          command: github-release
+      - uses: actions/checkout@v2
+        if: ${{ steps.release.outputs.release_created }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://npm.pkg.github.com/'
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Install dependencies
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Build package
+        run: npm run build
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Publish Docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.REACTSTRAP_DOCS_GITHUB_TOKEN }}
+        run: ./scripts/docs
+        if: ${{ steps.release.outputs.release_created }}
