@@ -21,7 +21,6 @@ const defaultProps = {
   wrapTag: 'div',
   tagClassName: 'me-auto',
   closeAriaLabel: 'Close',
-  charCode: 215,
 };
 
 const ToastHeader = (props) => {
