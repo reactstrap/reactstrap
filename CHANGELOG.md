@@ -137,6 +137,71 @@
 
 
 
+## [9.0.0](https://www.github.com/reactstrap/reactstrap/compare/v8.10.1...v9.0.0) (2021-10-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* update positionedFix prop to strategy
+* upgrade to popper 2
+* remove CustomInput
+* remove old InputGroupButtonDropdown
+* remove InputGroupAddon
+* remove Jumbotron component (#2118)
+
+### Features
+
+* **accordion:** add `flush` support and `stayOpen` support ([a6050f5](https://www.github.com/reactstrap/reactstrap/commit/a6050f5ea6cc9ceba63db702663242b571e9f602))
+* **bs5:** add accordion ([#2105](https://www.github.com/reactstrap/reactstrap/issues/2105)) ([1c09448](https://www.github.com/reactstrap/reactstrap/commit/1c09448fdcfbe5db68e057911546ad2d036e805e))
+* **bs5:** add Offcanvas ([9a4bcca](https://www.github.com/reactstrap/reactstrap/commit/9a4bcca7b299f358bb3b953996a9d4afb2f7b602))
+* **bs5:** change .close to .btn-close ([#2116](https://www.github.com/reactstrap/reactstrap/issues/2116)) ([be4df60](https://www.github.com/reactstrap/reactstrap/commit/be4df609ac21cdcbb56c635600dce8eae6c819f1))
+* **bs5:** change no-gutters class to gx-0 in Row ([#2119](https://www.github.com/reactstrap/reactstrap/issues/2119)) ([85b8933](https://www.github.com/reactstrap/reactstrap/commit/85b8933304cb0ae529b6f5d24574b98a929a35bc))
+* **bs5:** convert .sr-only to .visually-hidden ([702ad55](https://www.github.com/reactstrap/reactstrap/commit/702ad553b37a25ab516fc147201622ad122c39d1))
+* **bs5:** Convert Dropdown & DropdownMenu to RTL ([7417984](https://www.github.com/reactstrap/reactstrap/commit/741798459178b825f53cedaa54c33326a81b8564))
+* **bs5:** Rename margin utils ([35a37ef](https://www.github.com/reactstrap/reactstrap/commit/35a37ef21d751207b4951aa5b6aca34b9efd4d5a))
+* **bs5:** Replace .btn-block with utility classes ([4dc1dcd](https://www.github.com/reactstrap/reactstrap/commit/4dc1dcd21bd51d7bd88b40a0b249e02b0edaf0b0))
+* **bs5:** replace form-group class with mb-3 ([cbcb2e3](https://www.github.com/reactstrap/reactstrap/commit/cbcb2e3abc240f64833967996cce4c4878529170))
+* **bs5:** Support xxl breakpoint ([4fb7cdd](https://www.github.com/reactstrap/reactstrap/commit/4fb7cdd7791d11071fdc473e990ca704e0374fc2))
+* **bs5:** update badge classes ([#2117](https://www.github.com/reactstrap/reactstrap/issues/2117)) ([7859900](https://www.github.com/reactstrap/reactstrap/commit/785990048f88699df5f31111c525fdaa7d34a640))
+* **bs5:** Update tooltip/popover arrow classes ([9ad870e](https://www.github.com/reactstrap/reactstrap/commit/9ad870ea3518a9a81716e945d46c06a7c341d7fe))
+* **carousel:** add Bootstrap5 updates ([a698814](https://www.github.com/reactstrap/reactstrap/commit/a69881437fe3d861c44e9493c1983c7c7d13ae34))
+* **Carousel:** Add dark prop ([01f64df](https://www.github.com/reactstrap/reactstrap/commit/01f64dfcf89a44e41754f7669d46830af942b826))
+* **collapse:** add horizontal collapse ([f780187](https://www.github.com/reactstrap/reactstrap/commit/f7801874dc5b8777c8624709f99d62feb19b3563))
+* **Dropdown:** Add backwards compatible left & right ([f8b415f](https://www.github.com/reactstrap/reactstrap/commit/f8b415f9a989b4363adc4ba79c190db9fb0d38f0))
+* **DropdownMenu:** add-dark-prop ([2e22d7b](https://www.github.com/reactstrap/reactstrap/commit/2e22d7bbfa3764399c41ae8d360346c255e4bc44))
+* **forms:** Add support for floating labels ([1cc8a14](https://www.github.com/reactstrap/reactstrap/commit/1cc8a14577b044d10fdea4f804996f49afca04d8))
+* **ListGroup:** Add ListGroupNumbered ([02b3b71](https://www.github.com/reactstrap/reactstrap/commit/02b3b71e62668493f61253a6a67919ec4c18ba97))
+* **modal:** add fullscreen option to Modal component ([a580f23](https://www.github.com/reactstrap/reactstrap/commit/a580f23a8eeefae21b0c6ba36b8da470ee925cd2))
+* **Navbar:** add container options ([f0054bf](https://www.github.com/reactstrap/reactstrap/commit/f0054bf6ef8945e591f79fe403ece3f33a5cef8a))
+* **Placeholder:** add component ([0c9294c](https://www.github.com/reactstrap/reactstrap/commit/0c9294c44108310a84c7f2518bfd9d631d51e835))
+* remove CustomInput ([c0e8a68](https://www.github.com/reactstrap/reactstrap/commit/c0e8a68348c52aaee55168d8601fb534597b6313))
+* remove form-control-file class ([f601576](https://www.github.com/reactstrap/reactstrap/commit/f6015765fb4988e484483b77b032ea00ebde59c2))
+* remove InputGroupAddon ([322d0ad](https://www.github.com/reactstrap/reactstrap/commit/322d0add23f42e917f50286ba796eea4af64c6ae))
+* remove Jumbotron component ([#2118](https://www.github.com/reactstrap/reactstrap/issues/2118)) ([2c912ab](https://www.github.com/reactstrap/reactstrap/commit/2c912abfb6027890d54ac091e18d515152cc395f))
+* remove old InputGroupButtonDropdown ([3df07f6](https://www.github.com/reactstrap/reactstrap/commit/3df07f62b62a2648e13f344cdc3a8c864b6a8b07))
+* replace form-control-range with form-range ([06868e2](https://www.github.com/reactstrap/reactstrap/commit/06868e28dd2a399297b5f9c9efc6b226487386b8))
+* support form switch ([f403595](https://www.github.com/reactstrap/reactstrap/commit/f40359558e083306e33cb0bdafba9ad615a6bbe3))
+* update input group to have type dropdown ([6c60226](https://www.github.com/reactstrap/reactstrap/commit/6c602261dd26f8eebf8a4ebd32e0bed8a08522ef))
+* update positionedFix prop to strategy ([65bf0f0](https://www.github.com/reactstrap/reactstrap/commit/65bf0f0dae5732dc4a7daef59717fa35c0a2a07d))
+* upgrade to popper 2 ([35840ef](https://www.github.com/reactstrap/reactstrap/commit/35840ef90ab6a3f5ae94a57cbde8331fc791870b))
+* use form-select class with native select ([1e6204b](https://www.github.com/reactstrap/reactstrap/commit/1e6204b925e23d97d38532265f4828964e0e1638))
+
+
+### Bug Fixes
+
+* **build:** set --compress false for microbundle build ([#2314](https://www.github.com/reactstrap/reactstrap/issues/2314)) ([26c85fb](https://www.github.com/reactstrap/reactstrap/commit/26c85fbdbf04399aab392565c3e6027023886538))
+* **Button:** remove extra close icon in `btn-close` ([#2318](https://www.github.com/reactstrap/reactstrap/issues/2318)) ([e4affb4](https://www.github.com/reactstrap/reactstrap/commit/e4affb41a15eb0e1d723b3f835cafb8959b4f5d9))
+* **InputGroup:** toggle if clicking dropdown input ([1adc147](https://www.github.com/reactstrap/reactstrap/commit/1adc147d600309705ad25116121b89ad65b6409d))
+* **Label:** add `form-label` class for labels of vertical forms ([#2317](https://www.github.com/reactstrap/reactstrap/issues/2317)) ([3bfce12](https://www.github.com/reactstrap/reactstrap/commit/3bfce12c4bdc9615399e8821629328f8a441d9b8))
+* **popover:** add default popper offset for popover ([cef32c6](https://www.github.com/reactstrap/reactstrap/commit/cef32c6a051fdfe532d6e3b1e86b8dcf60087558))
+* **ToastHeader:** Remove charCode default property. ([#2343](https://www.github.com/reactstrap/reactstrap/issues/2343)) ([03bbd15](https://www.github.com/reactstrap/reactstrap/commit/03bbd1508a2262a34a8960e1faa95585689fbaea)), closes [#2338](https://www.github.com/reactstrap/reactstrap/issues/2338)
+* **types:** add 'swtch' to `InputType` ([#2340](https://www.github.com/reactstrap/reactstrap/issues/2340)) ([302d41e](https://www.github.com/reactstrap/reactstrap/commit/302d41eb20054d5bf9c6fd1ddc651dbafcce46f1))
+* **types:** export AccordionBody types ([#2312](https://www.github.com/reactstrap/reactstrap/issues/2312)) ([d4c184b](https://www.github.com/reactstrap/reactstrap/commit/d4c184bd5c738b0905d02e56a6f2705e2cd9bb70))
+* **types:** export UncontrolledAccordion types ([#2313](https://www.github.com/reactstrap/reactstrap/issues/2313)) ([f7d5cd6](https://www.github.com/reactstrap/reactstrap/commit/f7d5cd664417cbbeb3e17f6ab0097ec024647c64))
+* **types:** import React for UncontrolledAccordion type defs ([#2292](https://www.github.com/reactstrap/reactstrap/issues/2292)) ([54df194](https://www.github.com/reactstrap/reactstrap/commit/54df194dd36205d782ec1985b383a1e18137186b))
+* **types:** remove duplicate types/lib/index.d.ts ([#2316](https://www.github.com/reactstrap/reactstrap/issues/2316)) ([52bd719](https://www.github.com/reactstrap/reactstrap/commit/52bd7192c453c5333c00603f6bc8555f4e10b5f6))
+* **types:** use types from @popperjs/core ([10fd0b2](https://www.github.com/reactstrap/reactstrap/commit/10fd0b28d661b368bead1006ea075435ad911d55))
+
 ### [8.10.1](https://www.github.com/reactstrap/reactstrap/compare/v8.10.0...v8.10.1) (2021-10-26)
 
 
