@@ -4,7 +4,9 @@
 
 # reactstrap
 
-Stateless React Components for Bootstrap.
+Stateless React Components for Bootstrap 5.
+
+If you're using Bootstrap 4, you'll need to use [Reactstrap v8](https://reactstrap.github.io/legacy/8.10.1)
 
 ## Getting Started
 
