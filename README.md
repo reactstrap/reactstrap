@@ -6,7 +6,7 @@
 
 Stateless React Components for Bootstrap 5.
 
-If you're using Bootstrap 4, you'll need to use [Reactstrap v8](https://reactstrap.github.io/legacy/8.10.1)
+If you're using Bootstrap 4, you'll need to use [Reactstrap v8](https://deploy-preview-2356--reactstrap.netlify.app/)
 
 ## Getting Started
 
