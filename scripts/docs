@@ -32,7 +32,7 @@ fi
 
 echo "Cloning ${GITHUB_REPO} & applying changes"
 git clone --branch $BRANCH https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git $REPOSITORY > /dev/null 2>&1
-rsync -rt --del --exclude=".git" $BUILD_DIR $REPOSITORY
+rsync -rt --del --exclude=".git" --exclude="legacy" $BUILD_DIR $REPOSITORY
 cd $REPOSITORY
 
 if [ -z "$(git status --porcelain)" ]; then
