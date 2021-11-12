@@ -10,6 +10,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release-please
         with:
+          token: ${{ secrets.REACTSTRAP_TOKEN }}
           release-type: node
           package-name: "reactstrap"
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":true},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
@@ -21,6 +22,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
+          token: ${{ secrets.REACTSTRAP_TOKEN }}
           release-type: node
           package-name: "reactstrap"
           command: github-release
@@ -41,6 +43,6 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish Docs
         env:
-          GITHUB_TOKEN: ${{ secrets.REACTSTRAP_DOCS_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REACTSTRAP_TOKEN }}
         run: ./scripts/docs
         if: ${{ steps.release.outputs.release_created }}
