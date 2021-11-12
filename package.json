@@ -4,7 +4,11 @@
   "description": "React Bootstrap components",
   "type": "module",
   "source": "src/index.js",
-  "exports": "./dist/reactstrap.modern.js",
+  "exports": {
+    "import": "./dist/reactstrap.modern.js",
+    "require": "./dist/reactstrap.cjs",
+    "default": "./dist/reactstrap.modern.js"
+  },
   "main": "./dist/reactstrap.cjs",
   "module": "./dist/reactstrap.module.js",
   "unpkg": "./dist/reactstrap.umd.js",
