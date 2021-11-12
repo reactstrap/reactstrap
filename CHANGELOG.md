@@ -137,6 +137,13 @@
 
 
 
+### [9.0.1](https://www.github.com/reactstrap/reactstrap/compare/v9.0.0...v9.0.1) (2021-11-12)
+
+
+### Bug Fixes
+
+* add common js bundle to exports field ([#2386](https://www.github.com/reactstrap/reactstrap/issues/2386)) ([c5bc0fe](https://www.github.com/reactstrap/reactstrap/commit/c5bc0fe54ea27cedb1a43a8dfe37738d13bd4eb6))
+
 ## [9.0.0](https://www.github.com/reactstrap/reactstrap/compare/v8.10.1...v9.0.0) (2021-10-27)
 
 
