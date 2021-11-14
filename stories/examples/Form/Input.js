@@ -1,59 +1,77 @@
-import React from 'react';
-import { Input } from 'reactstrap';
+import React from "react";
+import { FormGroup, Input } from "reactstrap";
 
 const Example = ({ direction, ...args }) => {
+  const { type } = args;
+
+  if (type === "checkbox") {
+    return (
+      <FormGroup check>
+        <Input {...args} />
+      </FormGroup>
+    );
+  }
+
+  if (type === "switch") {
+    return (
+      <FormGroup switch>
+        <Input {...args} />
+      </FormGroup>
+    );
+  }
+
   return (
-    <div>
+    <FormGroup>
       <Input {...args} />
-    </div>
+    </FormGroup>
   );
-}
+};
 
 Example.args = {
-  type: 'text',
+  type: "text",
   valid: false,
-  invalid: false
-}
+  invalid: false,
+};
 
 Example.argTypes = {
   valid: {
-    control: { type: 'boolean' }
+    control: { type: "boolean" },
   },
   invalid: {
-    control: { type: 'boolean' }
+    control: { type: "boolean" },
   },
   type: {
-    control: { type: 'select' },
+    control: { type: "select" },
     options: [
-      'button',
-      'checkbox',
-      'color',
-      'date',
-      'datetime-local',
-      'email',
-      'file',
-      'month',
-      'number',
-      'password',
-      'radio',
-      'range',
-      'reset',
-      'search',
-      'select',
-      'submit',
-      'switch',
-      'tel',
-      'text',
-      'textarea',
-      'time',
-      'url',
-      'week'
-    ]
+      "button",
+      "checkbox",
+      "color",
+      "date",
+      "datetime-local",
+      "email",
+      "file",
+      "month",
+      "number",
+      "password",
+      "radio",
+      "range",
+      "reset",
+      "search",
+      "select",
+      "submit",
+      "switch",
+      "tel",
+      "text",
+      "textarea",
+      "time",
+      "url",
+      "week",
+    ],
   },
   bsSize: {
-    control: { type: 'select' },
-    options: ['', 'sm', 'lg']
-  }
-}
+    control: { type: "select" },
+    options: ["", "sm", "lg"],
+  },
+};
 
 export default Example;
