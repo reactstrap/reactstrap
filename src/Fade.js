@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, omit, pick, TransitionPropTypeKeys, TransitionTimeouts, tagPropType } from './utils';
+import { mapToCssModules, omit, pick, TransitionPropTypeKeys, TransitionTimeouts, tagPropType, mergeRefs } from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
@@ -43,14 +43,17 @@ function Fade(props) {
     cssModule,
     children,
     innerRef,
+    nodeRef: propsNodeRef,
     ...otherProps
   } = props;
 
   const transitionProps = pick(otherProps, TransitionPropTypeKeys);
   const childProps = omit(otherProps, TransitionPropTypeKeys);
+  const nodeRef = React.useRef()
+  const mergedRefs = React.useCallback(mergeRefs(nodeRef, innerRef, propsNodeRef), [nodeRef, innerRef, propsNodeRef]);
 
   return (
-    <Transition {...transitionProps}>
+    <Transition {...transitionProps} nodeRef={nodeRef}>
       {(status) => {
         const isActive = status === 'entered';
         const classes = mapToCssModules(classNames(
@@ -59,7 +62,7 @@ function Fade(props) {
           isActive && baseClassActive
         ), cssModule);
         return (
-          <Tag className={classes} {...childProps} ref={innerRef}>
+          <Tag className={classes} {...childProps} ref={mergedRefs}>
             {children}
           </Tag>
         );

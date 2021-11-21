@@ -1,7 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { TransitionGroup } from 'react-transition-group';
-import { Fade } from '../';
+import { Fade as FadeComponent } from '../';
+
+function Fade(props) {
+  return (
+    <React.StrictMode>
+      <FadeComponent {...props} />
+    </React.StrictMode>
+  )
+}
 
 class Helper extends React.Component {
   constructor(props) {

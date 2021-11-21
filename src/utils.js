@@ -113,16 +113,16 @@ export function deprecated(propType, explanation) {
 }
 
 // Shim Element if needed (e.g. in Node environment)
-const Element = (typeof window === 'object' && window.Element) || function() {};
+const Element = (typeof window === 'object' && window.Element) || function () { };
 
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
       'Invalid prop `' +
-        propName +
-        '` supplied to `' +
-        componentName +
-        '`. Expected prop to be an instance of Element. Validation failed.'
+      propName +
+      '` supplied to `' +
+      componentName +
+      '`. Expected prop to be an instance of Element. Validation failed.'
     );
   }
 }
@@ -228,9 +228,9 @@ export function isReactRefObj(target) {
 
 function getTag(value) {
   if (value == null) {
-        return value === undefined ? '[object Undefined]' : '[object Null]'
-    }
-    return Object.prototype.toString.call(value)
+    return value === undefined ? '[object Undefined]' : '[object Null]'
+  }
+  return Object.prototype.toString.call(value)
 }
 
 export function toNumber(value) {
@@ -371,3 +371,13 @@ export const focusableElements = [
   'video[controls]',
   '[contenteditable]:not([contenteditable="false"])',
 ];
+
+export function mergeRefs(ref1, ref2, ref3) {
+  return (value) => [ref1, ref2, ref3].filter(Boolean).forEach(ref => {
+    if (typeof ref === 'function') {
+      ref(value)
+    } else if (ref != null) {
+      ref.current = value
+    }
+  })
+}

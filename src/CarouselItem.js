@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, TransitionTimeouts, TransitionStatuses, tagPropType } from './utils';
+import { mapToCssModules, TransitionTimeouts, TransitionStatuses, tagPropType, mergeRefs } from './utils';
 
 class CarouselItem extends React.Component {
   constructor(props) {
@@ -19,34 +19,37 @@ class CarouselItem extends React.Component {
     this.onExited = this.onExited.bind(this);
   }
 
-  onEnter(node, isAppearing) {
+  onEnter(isAppearing) {
     this.setState({ startAnimation: false });
-    this.props.onEnter(node, isAppearing);
+    this.props.onEnter(this.nodeRef.current, isAppearing);
   }
 
-  onEntering(node, isAppearing) {
+  onEntering(isAppearing) {
     // getting this variable triggers a reflow
-    const offsetHeight = node.offsetHeight;
+    const offsetHeight = this.nodeRef.current.offsetHeight;
     this.setState({ startAnimation: true });
-    this.props.onEntering(node, isAppearing);
+    this.props.onEntering(this.nodeRef.current, isAppearing);
     return offsetHeight;
   }
 
-  onExit(node) {
+  onExit() {
     this.setState({ startAnimation: false });
-    this.props.onExit(node);
+    this.props.onExit(this.nodeRef.current);
   }
 
-  onExiting(node) {
+  onExiting() {
     this.setState({ startAnimation: true });
-    node.dispatchEvent(new CustomEvent('slide.bs.carousel'));
-    this.props.onExiting(node);
+    this.nodeRef.current.dispatchEvent(new CustomEvent('slide.bs.carousel'));
+    this.props.onExiting(this.nodeRef.current);
   }
 
-  onExited(node) {
-    node.dispatchEvent(new CustomEvent('slid.bs.carousel'));
-    this.props.onExited(node);
+  onExited() {
+    this.nodeRef.current.dispatchEvent(new CustomEvent('slid.bs.carousel'));
+    this.props.onExited(this.nodeRef.current);
   }
+
+  nodeRef = React.createRef()
+  mergedRefs = mergeRefs(this.nodeRef, this.props.nodeRef)
 
   render() {
     const { in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps } = this.props;
@@ -62,6 +65,7 @@ class CarouselItem extends React.Component {
         onExit={this.onExit}
         onExiting={this.onExiting}
         onExited={this.onExited}
+        nodeRef={this.nodeRef}
       >
         {(status) => {
           const { direction } = this.context;
@@ -80,7 +84,7 @@ class CarouselItem extends React.Component {
           ), cssModule);
 
           return (
-            <Tag className={itemClasses}>
+            <Tag className={itemClasses} ref={this.mergedRefs}>
               {children}
             </Tag>
           );

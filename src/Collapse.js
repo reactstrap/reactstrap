@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, omit, pick, TransitionTimeouts, TransitionPropTypeKeys, TransitionStatuses, tagPropType } from './utils';
+import { mapToCssModules, omit, pick, TransitionTimeouts, TransitionPropTypeKeys, TransitionStatuses, tagPropType, mergeRefs } from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
@@ -62,32 +62,35 @@ class Collapse extends Component {
     return this.props.horizontal ? node.scrollWidth : node.scrollHeight;
   }
 
-  onEntering(node, isAppearing) {
-    this.setState({ dimension: this.getDimension(node) });
-    this.props.onEntering(node, isAppearing);
+  onEntering(isAppearing) {
+    this.setState({ dimension: this.getDimension(this.nodeRef.current) });
+    this.props.onEntering(this.nodeRef.current, isAppearing);
   }
 
-  onEntered(node, isAppearing) {
+  onEntered(isAppearing) {
     this.setState({ dimension: null });
-    this.props.onEntered(node, isAppearing);
+    this.props.onEntered(this.nodeRef.current, isAppearing);
   }
 
-  onExit(node) {
-    this.setState({ dimension: this.getDimension(node) });
-    this.props.onExit(node);
+  onExit() {
+    this.setState({ dimension: this.getDimension(this.nodeRef.current) });
+    this.props.onExit(this.nodeRef.current);
   }
 
-  onExiting(node) {
+  onExiting() {
     // getting this variable triggers a reflow
-    const _unused = this.getDimension(node); // eslint-disable-line no-unused-vars
+    const _unused = this.getDimension(this.nodeRef.current); // eslint-disable-line no-unused-vars
     this.setState({ dimension: 0 });
-    this.props.onExiting(node);
+    this.props.onExiting(this.nodeRef.current);
   }
 
-  onExited(node) {
+  onExited() {
     this.setState({ dimension: null });
-    this.props.onExited(node);
+    this.props.onExited(this.nodeRef.current);
   }
+
+  nodeRef = React.createRef()
+  mergedRefs = mergeRefs(this.nodeRef, this.props.innerRef, this.props.nodeRef)
 
   render() {
     const {
@@ -99,6 +102,7 @@ class Collapse extends Component {
       cssModule,
       children,
       innerRef,
+      nodeRef,
       ...otherProps
     } = this.props;
 
@@ -106,6 +110,7 @@ class Collapse extends Component {
 
     const transitionProps = pick(otherProps, TransitionPropTypeKeys);
     const childProps = omit(otherProps, TransitionPropTypeKeys);
+
     return (
       <Transition
         {...transitionProps}
@@ -115,6 +120,7 @@ class Collapse extends Component {
         onExit={this.onExit}
         onExiting={this.onExiting}
         onExited={this.onExited}
+        nodeRef={this.nodeRef}
       >
         {(status) => {
           let collapseClass = getTransitionClass(status);
@@ -130,7 +136,7 @@ class Collapse extends Component {
               {...childProps}
               style={{ ...childProps.style, ...style }}
               className={classes}
-              ref={this.props.innerRef}
+              ref={this.mergedRefs}
             >
               {children}
             </Tag>

@@ -1,6 +1,12 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Collapse } from '../';
+import { Collapse as CollapseComponent } from '../';
+
+class Collapse extends CollapseComponent {
+  render() {
+    return <React.StrictMode>{super.render()}</React.StrictMode>
+  }
+}
 
 describe('Collapse', () => {
   let isOpen;

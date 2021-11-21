@@ -1,10 +1,16 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Carousel } from '../';
+import { Carousel as CarouselComponent } from '../';
 import CarouselItem from '../CarouselItem';
 import CarouselIndicators from '../CarouselIndicators';
 import CarouselControl from '../CarouselControl';
 import CarouselCaption from '../CarouselCaption';
+
+class Carousel extends CarouselComponent {
+  render() {
+    return <React.StrictMode>{super.render()}</React.StrictMode>
+  }
+}
 
 describe('Carousel', () => {
   beforeEach(() => {
