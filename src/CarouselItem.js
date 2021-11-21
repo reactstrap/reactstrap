@@ -49,10 +49,10 @@ class CarouselItem extends React.Component {
   }
 
   nodeRef = React.createRef()
-  mergedRefs = mergeRefs(this.nodeRef, this.props.nodeRef)
 
   render() {
     const { in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps } = this.props;
+    const mergedRefs = mergeRefs(this.nodeRef, this.props.nodeRef)
 
     return (
       <Transition
@@ -84,7 +84,7 @@ class CarouselItem extends React.Component {
           ), cssModule);
 
           return (
-            <Tag className={itemClasses} ref={this.mergedRefs}>
+            <Tag className={itemClasses} ref={mergedRefs}>
               {children}
             </Tag>
           );

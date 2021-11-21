@@ -90,7 +90,6 @@ class Collapse extends Component {
   }
 
   nodeRef = React.createRef()
-  mergedRefs = mergeRefs(this.nodeRef, this.props.innerRef, this.props.nodeRef)
 
   render() {
     const {
@@ -110,6 +109,7 @@ class Collapse extends Component {
 
     const transitionProps = pick(otherProps, TransitionPropTypeKeys);
     const childProps = omit(otherProps, TransitionPropTypeKeys);
+    const mergedRefs = mergeRefs(this.nodeRef, this.props.innerRef, this.props.nodeRef)
 
     return (
       <Transition
@@ -136,7 +136,7 @@ class Collapse extends Component {
               {...childProps}
               style={{ ...childProps.style, ...style }}
               className={classes}
-              ref={this.mergedRefs}
+              ref={mergedRefs}
             >
               {children}
             </Tag>
