@@ -30,16 +30,17 @@ const FormGroup = (props) => {
     inline,
     floating,
     tag: Tag,
+    switch: switchProp,
     ...attributes
   } = props;
 
-  const formCheck = check || props.switch;
+  const formCheck = check || switchProp;
 
   const classes = mapToCssModules(classNames(
     className,
     row ? 'row' : false,
     formCheck ? 'form-check' : 'mb-3',
-    props.switch ? 'form-switch' : false,
+    switchProp ? 'form-switch' : false,
     formCheck && inline ? 'form-check-inline' : false,
     formCheck && disabled ? 'disabled' : false,
     floating && 'form-floating'
