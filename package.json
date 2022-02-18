@@ -25,7 +25,8 @@
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
     "lint": "eslint src",
-    "dtslint": "dtslint types --expectOnly"
+    "dtslint": "dtslint types --expectOnly",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
