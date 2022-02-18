@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 import { mapToCssModules, TransitionTimeouts, TransitionStatuses, tagPropType } from './utils';
+import { CarouselContext } from './CarouselContext';
 
 class CarouselItem extends React.Component {
   constructor(props) {
@@ -107,8 +108,6 @@ CarouselItem.defaultProps = {
   slide: true,
 };
 
-CarouselItem.contextTypes = {
-  direction: PropTypes.string
-};
+CarouselItem.contextTypes = CarouselContext;
 
 export default CarouselItem;
