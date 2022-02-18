@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
 import { CarouselContext } from './CarouselContext';
 import { mapToCssModules } from './utils';
-    
+
 const SWIPE_THRESHOLD = 40;
 
 class Carousel extends React.Component {
@@ -285,8 +285,8 @@ Carousel.defaultProps = {
   fade: false,
 };
 
-Carousel.childContextTypes = {
-  direction: PropTypes.string
-};
+// Carousel.childContextTypes = {
+//   direction: PropTypes.string
+// };
 
 export default Carousel;
