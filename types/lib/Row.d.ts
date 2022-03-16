@@ -9,7 +9,6 @@ export interface RowProps
   cssModule?: CSSModule;
   tag?: React.ElementType;
   noGutters?: boolean;
-  form?: boolean;
   xs?: number | string;
   sm?: number | string;
   md?: number | string;
