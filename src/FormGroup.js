@@ -38,7 +38,7 @@ const FormGroup = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     row ? 'row' : false,
-    formCheck ? 'form-check' : 'mb-3',
+    formCheck ? 'form-check' : 'form-group',
     props.switch ? 'form-switch' : false,
     formCheck && inline ? 'form-check-inline' : false,
     formCheck && disabled ? 'disabled' : false,
