@@ -21,7 +21,7 @@
     "start": "start-storybook -s ./static -p 8080",
     "build:docs": "build-storybook -s ./static -o ./build",
     "build": "microbundle --generateTypes false --jsx React.createElement --compress false",
-    "version": "node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular && git add -A CHANGELOG.md",
+    "version": "conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular && git add -A CHANGELOG.md",
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
     "lint": "eslint src",
@@ -237,7 +237,7 @@
     "Jeff-NZ (https://github.com/jeff-nz)",
     "lslv1243 (https://github.com/lslv1243)",
     "Denys Nykula (https://github.com/nykula)",
-    "npm-to-cdn-bot (by Forbes Lindesay) (https://github.com/npmcdn-to-unpkg-bot)",
+    "npm-to-cdn-bot (by Forbes Lindesay)",
     "philipstanislaus (https://github.com/philipstanislaus)",
     "polmauri (https://github.com/polmauri)",
     "reactstrapbot (https://github.com/reactstrapbot)",
@@ -308,5 +308,6 @@
     "react-test-renderer": "^16.3.2",
     "webpack": "^4.43.0",
     "typescript": "^4.0.3"
-  }
+  },
+  "author": ""
 }
