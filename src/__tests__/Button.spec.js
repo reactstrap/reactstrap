@@ -123,15 +123,11 @@ describe('Button', () => {
     });
 
     it('is not called when disabled', () => {
-      const e = createSpyObj('e', ['preventDefault']);
-      const wrapper = mount(<Button>Testing Click</Button>);
+      const onClick = jest.fn();
+      const wrapper = mount(<Button onClick={onClick} disabled>Testing Click</Button>);
 
-      wrapper.instance().onClick(e);
-      expect(e.preventDefault).not.toHaveBeenCalled();
-
-      wrapper.setProps({ disabled: true });
-      wrapper.instance().onClick(e);
-      expect(e.preventDefault).toHaveBeenCalled();
+      wrapper.find('button').hostNodes().simulate('click');
+      expect(onClick).not.toHaveBeenCalled();
     });
   });
 });
