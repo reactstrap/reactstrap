@@ -20,4 +20,4 @@ export { default as Flush } from './examples/AccordionFlush';
 export { default as Uncontrolled } from './examples/UncontrolledAccordion';
 export { default as StayOpen } from './examples/UncontrolledAccordionStayOpen';
 export { default as Props } from './examples/AccordionProps';
-export { default as Acessibility} from './examples/acessibility/Accordion'
+export { default as Acessibility} from './examples/Acessibility/Accordion'
