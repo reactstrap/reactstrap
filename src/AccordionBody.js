@@ -22,7 +22,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const AccordionItem = (props) => {
+const AccordionBody = (props) => {
   const {
     className,
     cssModule,
@@ -46,11 +46,11 @@ const AccordionItem = (props) => {
       className={classes}
       ref={innerRef} isOpen={Array.isArray(open) ? open.includes(accordionId) : open === accordionId }>
       <Tag className="accordion-body">{children}</Tag>
-    </Collapse>    
+    </Collapse>
   );
 };
 
-AccordionItem.propTypes = propTypes;
-AccordionItem.defaultProps = defaultProps;
+AccordionBody.propTypes = propTypes;
+AccordionBody.defaultProps = defaultProps;
 
-export default AccordionItem;
+export default AccordionBody;

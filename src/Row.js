@@ -11,7 +11,6 @@ const propTypes = {
   noGutters: deprecated(PropTypes.bool, "Please use Bootstrap 5 gutter utility classes. https://getbootstrap.com/docs/5.0/layout/gutters/"),
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  form: PropTypes.bool,
   xs: rowColsPropType,
   sm: rowColsPropType,
   md: rowColsPropType,
@@ -31,7 +30,6 @@ const Row = (props) => {
     cssModule,
     noGutters,
     tag: Tag,
-    form,
     widths,
     ...attributes
   } = props;
@@ -54,7 +52,7 @@ const Row = (props) => {
   const classes = mapToCssModules(classNames(
     className,
     noGutters ? 'gx-0' : null,
-    form ? 'form-row' : 'row',
+    'row',
     colClasses
   ), cssModule);
 

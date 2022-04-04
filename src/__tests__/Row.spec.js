@@ -28,13 +28,7 @@ describe('Row', () => {
     expect(wrapper.hasClass('gx-0')).toBe(true);
     expect(wrapper.hasClass('row')).toBe(true);
   });
-
-  it('show render form classes', () => {
-    const wrapper = shallow(<Row form />);
-
-    expect(wrapper.html()).toBe('<div class="form-row"></div>');
-  });
-
+  
   it('should pass row col size specific classes as strings', () => {
     const wrapper = shallow(<Row sm="6" />);
 
