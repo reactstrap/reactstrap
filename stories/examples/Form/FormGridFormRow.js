@@ -4,7 +4,7 @@ import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 const Example = (props) => {
   return (
     <Form>
-      <Row form>
+      <Row>
         <Col md={6}>
           <FormGroup>
             <Label for="exampleEmail">Email</Label>
@@ -26,7 +26,7 @@ const Example = (props) => {
         <Label for="exampleAddress2">Address 2</Label>
         <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor"/>
       </FormGroup>
-      <Row form>
+      <Row>
         <Col md={6}>
           <FormGroup>
             <Label for="exampleCity">City</Label>

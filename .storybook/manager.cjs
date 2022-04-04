@@ -5,7 +5,7 @@ import { create } from '@storybook/theming';
 const theme = create({
   base: 'light',
   brandTitle: 'Reactstrap',
-  brandUrl: '/',
+  brandUrl: 'https://github.com/reactstrap/reactstrap',
   brandImage: 'logo.svg',
 });
 

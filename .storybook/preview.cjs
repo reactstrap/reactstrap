@@ -8,7 +8,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Home', '*']
+      order: ['Home', ['Installation', 'GitHub', 'Upgrading', 'Themes'], '*']
     }
   },
   viewMode: 'docs',

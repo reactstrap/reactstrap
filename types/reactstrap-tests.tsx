@@ -5136,7 +5136,7 @@ function Example127() {
 function Example128() {
   return (
     <Form>
-      <Row form>
+      <Row>
         <Col md={6}>
           <FormGroup>
             <Label for="exampleEmail">Email</Label>
