@@ -137,6 +137,15 @@
 
 
 
+### [9.0.2](https://www.github.com/reactstrap/reactstrap/compare/v9.0.1...v9.0.2) (2022-04-13)
+
+
+### Bug Fixes
+
+* `form-row` was removed from Bootsttap 5 ([601845d](https://www.github.com/reactstrap/reactstrap/commit/601845d1c8b687d7c2a8494f5131c728ce1a532c))
+* **docs:** fixed naming in Accordion module ([29beb09](https://www.github.com/reactstrap/reactstrap/commit/29beb09ed4a353ebc2d77611a51cea4d34409bf6))
+* **FormGroup:** dont pass switch prop to tag [#2415](https://www.github.com/reactstrap/reactstrap/issues/2415) ([b63981e](https://www.github.com/reactstrap/reactstrap/commit/b63981eb54af34e1332dfb84c670e2cbca937ee8))
+
 ### [9.0.1](https://www.github.com/reactstrap/reactstrap/compare/v9.0.0...v9.0.1) (2021-11-12)
 
 
