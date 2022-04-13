@@ -19,3 +19,4 @@ export { default as Toast } from './examples/Toast';
 export { default as ToastDismiss } from './examples/ToastDismiss';
 export { default as ToastHeaderIcon } from './examples/ToastHeaderIcon';
 export { default as Props } from './examples/ToastProps';
+export { default as Acessibility} from './examples/Acessibility/Toast.js'
