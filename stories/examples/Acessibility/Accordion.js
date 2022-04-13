@@ -1,8 +1,9 @@
 import React from 'react';
 import AccordionTable from '../Acessibility/AccordionTable.js'
 import AccordionAria from '../Acessibility/AccordionAria.js'
+import AccordionExample from '../Acessibility/AccordionExample.js'
 
-const Acessibility = (props) => {
+const accordionAcessibility = (props) => {
 
     return (
         <div>
@@ -19,8 +20,10 @@ const Acessibility = (props) => {
                 <br></br> In accordion, it is necessary we have <strong>Roles, States and Properties:</strong>
             </p>
             <AccordionAria />
+            <h5>Acessibility Accordion Example</h5>
+            <AccordionExample />
         </div>
     );
 };
 
-export default Acessibility;
+export default accordionAcessibility;
