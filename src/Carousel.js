@@ -285,8 +285,4 @@ Carousel.defaultProps = {
   fade: false,
 };
 
-// Carousel.childContextTypes = {
-//   direction: PropTypes.string
-// };
-
 export default Carousel;
