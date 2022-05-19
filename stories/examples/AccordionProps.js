@@ -3,7 +3,7 @@ import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from 'reacts
 import Props from './Props';
 
 const Example = () => (
-  <Props components={[Accordion, AccordionBody, AccordionHeader, AccordionItem, AccordionHeader]} />
+  <Props components={[Accordion, AccordionBody, AccordionHeader, AccordionItem]} />
 );
 
 export default Example;
