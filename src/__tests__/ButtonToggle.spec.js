@@ -10,6 +10,12 @@ describe("ButtonToggle", () => {
     expect(wrapper.first(Button).shallow().text()).toBe("Ello world");
   });
 
+  it('should have button already toggled for defaultValue true', () => {
+    const wrapper = shallow(<ButtonToggle defaultValue>Ello world</ButtonToggle>);
+  
+    expect(wrapper.find(Button).props().active).toBe(true)
+  });
+
   describe('onClick', () => {
     it('calls props.onClick if it exists', () => {
       const onClick = jest.fn();
