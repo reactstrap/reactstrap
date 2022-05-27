@@ -2,13 +2,7 @@ import * as React from 'react';
 import type { Modifier, Placement } from '@popperjs/core';
 import { CSSModule } from './utils';
 
-interface TooltipChildrenRenderProps {
-  update: () => void;
-}
-
-export type TooltipChildren =
-  | ((props: TooltipChildrenRenderProps) => React.ReactNode)
-  | React.ReactNode;
+export type TooltipChildren = React.ReactNode;
 
 export interface UncontrolledTooltipProps
   extends React.HTMLAttributes<HTMLElement> {

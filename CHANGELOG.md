@@ -137,6 +137,13 @@
 
 
 
+### [9.0.3](https://www.github.com/reactstrap/reactstrap/compare/v9.0.2...v9.0.3) (2022-05-26)
+
+
+### Bug Fixes
+
+* **#2501:** Since React 18, errors on Popover and Tooltip ([1110c9c](https://www.github.com/reactstrap/reactstrap/commit/1110c9c39f6018cc0289b419ba887adbe434e301))
+
 ### [9.0.2](https://www.github.com/reactstrap/reactstrap/compare/v9.0.1...v9.0.2) (2022-04-13)
 
 
