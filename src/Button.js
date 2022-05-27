@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
@@ -25,69 +25,63 @@ const defaultProps = {
   tag: 'button',
 };
 
-class Button extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(e) {
-    if (this.props.disabled) {
+function Button(props) {
+  const onClick = useCallback((e) => {
+    if (props.disabled) {
       e.preventDefault();
       return;
     }
 
-    if (this.props.onClick) {
-      return this.props.onClick(e);
+    if (props.onClick) {
+      return props.onClick(e);
     }
+  }, [props.onClick, props.disabled])
+
+
+  let {
+    active,
+    'aria-label': ariaLabel,
+    block,
+    className,
+    close,
+    cssModule,
+    color,
+    outline,
+    size,
+    tag: Tag,
+    innerRef,
+    ...attributes
+  } = props;
+
+  const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
+
+  const classes = mapToCssModules(classNames(
+    className,
+    close && 'btn-close',
+    close || 'btn',
+    close || btnOutlineColor,
+    size ? `btn-${size}` : false,
+    block ? 'd-block w-100' : false,
+    { active, disabled: props.disabled }
+  ), cssModule);
+
+  if (attributes.href && Tag === 'button') {
+    Tag = 'a';
   }
 
-  render() {
-    let {
-      active,
-      'aria-label': ariaLabel,
-      block,
-      className,
-      close,
-      cssModule,
-      color,
-      outline,
-      size,
-      tag: Tag,
-      innerRef,
-      ...attributes
-    } = this.props;
+  const defaultAriaLabel = close ? 'Close' : null;
 
-    const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
-
-    const classes = mapToCssModules(classNames(
-      className,
-      close && 'btn-close',
-      close || 'btn',
-      close || btnOutlineColor,
-      size ? `btn-${size}` : false,
-      block ? 'd-block w-100' : false,
-      { active, disabled: this.props.disabled }
-    ), cssModule);
-
-    if (attributes.href && Tag === 'button') {
-      Tag = 'a';
-    }
-
-    const defaultAriaLabel = close ? 'Close' : null;
-
-    return (
-      <Tag
-        type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
-        {...attributes}
-        className={classes}
-        ref={innerRef}
-        onClick={this.onClick}
-        aria-label={ariaLabel || defaultAriaLabel}
-      />
-    );
-  }
+  return (
+    <Tag
+      type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
+      {...attributes}
+      className={classes}
+      ref={innerRef}
+      onClick={onClick}
+      aria-label={ariaLabel || defaultAriaLabel}
+    />
+  );
 }
 
 Button.propTypes = propTypes;
