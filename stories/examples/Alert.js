@@ -13,7 +13,6 @@ const Example = (args) => {
 Example.args = {
   children: 'Hey! Pay attention.',
   color: 'primary',
-  dismissible: false
 };
 
 Example.argTypes = {
