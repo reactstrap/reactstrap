@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CSSModule } from './utils';
 import { FadeProps } from './Fade';
 
-export type Placement = 'start' | 'end' | 'left' | 'right' | 'bottom' | 'top';
+export type Direction = 'start' | 'end' | 'bottom' | 'top';
 
 export interface OffcanvasProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: any;
@@ -24,7 +24,7 @@ export interface OffcanvasProps extends React.HTMLAttributes<HTMLElement> {
   onEnter?: () => void;
   onExit?: () => void;
   onOpened?: () => void;
-  placement?: Placement;
+  direction?: Direction;
   returnFocusAfterClose?: boolean;
   scrollable?: boolean;
   toggle?: React.KeyboardEventHandler<any> | React.MouseEventHandler<any>;
