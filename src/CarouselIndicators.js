@@ -6,7 +6,6 @@ import { mapToCssModules } from './utils';
 const CarouselIndicators = (props) => {
   const { items, activeIndex, cssModule, onClickHandler, className } = props;
 
-  
   const listClasses = mapToCssModules(classNames(className, 'carousel-indicators'), cssModule);
   const indicators = items.map((item, idx) => {
     const indicatorClasses = mapToCssModules(classNames(
@@ -22,8 +21,7 @@ const CarouselIndicators = (props) => {
           onClickHandler(idx);
         }}
         className={indicatorClasses}
-      >
-      </button>);
+      />);
   });
 
   return (
