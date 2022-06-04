@@ -7,11 +7,10 @@ const propTypes = {
   active: PropTypes.bool,
   'aria-label': PropTypes.string,
   onClick: PropTypes.func,
-  variant: PropTypes.oneOf(['white', 'black'])
+  variant: PropTypes.oneOf(['white'])
 }
 
 const defaultProps = {
-  variant: 'black',
   'aria-label': 'close'
 }
 
