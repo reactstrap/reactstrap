@@ -39,7 +39,7 @@ const directionPositionMap = {
 class DropdownMenu extends React.Component {
 
   getRole() {
-    if(this.context.menuRole === 'listbox') {
+    if (this.context.menuRole === 'listbox') {
       return 'listbox'
     }
     return 'menu'
@@ -84,7 +84,7 @@ class DropdownMenu extends React.Component {
           name: 'flip',
           enabled: !!flip,
         },
-       ];
+      ];
 
       const popper = (
         <Popper
@@ -126,12 +126,14 @@ class DropdownMenu extends React.Component {
         return popper;
       }
     }
+    const { onMenuRef } = this.context;
 
     return (
       <Tag
         tabIndex="-1"
         role={this.getRole()}
         {...attrs}
+        ref={onMenuRef}
         aria-hidden={!this.context.isOpen}
         className={classes}
         data-popper-placement={attrs.placement}

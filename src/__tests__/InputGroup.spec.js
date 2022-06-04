@@ -7,7 +7,7 @@ describe('InputGroup', () => {
   it('should render with "div" tag', () => {
     const wrapper = shallow(<InputGroup>Yo!</InputGroup>);
 
-    expect(wrapper.type()).toBe('div');
+    expect(wrapper.childAt(0).type()).toBe('div');
   });
 
   it('should render children', () => {
@@ -19,32 +19,32 @@ describe('InputGroup', () => {
   it('should render with "input-group" class', () => {
     const wrapper = shallow(<InputGroup>Yo!</InputGroup>);
 
-    expect(wrapper.hasClass('input-group')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('input-group')).toBe(true);
   });
 
   it('should render with "input-group-${size}" class when size is passed', () => {
     const wrapper = shallow(<InputGroup size="whatever">Yo!</InputGroup>);
 
-    expect(wrapper.hasClass('input-group-whatever')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('input-group-whatever')).toBe(true);
   });
 
   it('should render additional classes', () => {
     const wrapper = shallow(<InputGroup className="other">Yo!</InputGroup>);
 
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('input-group')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('other')).toBe(true);
+    expect(wrapper.childAt(0).hasClass('input-group')).toBe(true);
   });
 
   it('should render custom tag', () => {
     const wrapper = shallow(<InputGroup tag="main">Yo!</InputGroup>);
 
-    expect(wrapper.type()).toBe('main');
+    expect(wrapper.childAt(0).type()).toBe('main');
   });
 
   describe('When type="dropdown"', () => {
     it('should render Dropdown', () => {
       const wrapper = shallow(<InputGroup type="dropdown" />);
-  
+
       expect(wrapper.type()).toBe(Dropdown);
     });
 
@@ -52,7 +52,7 @@ describe('InputGroup', () => {
       jest.spyOn(Dropdown.prototype, 'toggle');
 
       const wrapper = mount(
-        <InputGroup type="dropdown" isOpen={true} toggle={() => {}}>
+        <InputGroup type="dropdown" isOpen={true} toggle={() => { }}>
           <Input />
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
@@ -60,7 +60,7 @@ describe('InputGroup', () => {
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </InputGroup>
-      , { attachTo: document.body });
+        , { attachTo: document.body });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
