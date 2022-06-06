@@ -34,7 +34,7 @@ const UncontrolledAccordion = ({ defaultOpen, stayOpen, ...props }) => {
   return <Accordion {...props} open={open} toggle={toggle} />;
 };
 
-Accordion.propTypes = propTypes;
-Accordion.defaultProps = defaultProps;
+UncontrolledAccordion.propTypes = propTypes;
+UncontrolledAccordion.defaultProps = defaultProps;
 
 export default UncontrolledAccordion;

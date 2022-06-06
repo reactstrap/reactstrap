@@ -93,13 +93,17 @@ const Label = (props) => {
     }
   });
 
+  const colFormLabel = size || colClasses.length;
+  const formLabel = !(check || colFormLabel);
+
   const classes = mapToCssModules(classNames(
     className,
     hidden ? 'visually-hidden' : false,
     check ? 'form-check-label' : false,
     size ? `col-form-label-${size}` : false,
     colClasses,
-    colClasses.length ? 'col-form-label' : 'form-label'
+    colFormLabel ? 'col-form-label' : false,
+    formLabel ? 'form-label' : false
   ), cssModule);
 
   return (
