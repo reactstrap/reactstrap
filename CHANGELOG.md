@@ -137,6 +137,21 @@
 
 
 
+### [9.0.4](https://www.github.com/reactstrap/reactstrap/compare/v9.0.3...v9.0.4) (2022-06-02)
+
+
+### Bug Fixes
+
+* **#2393:** captions visible twice ([c20fa93](https://www.github.com/reactstrap/reactstrap/commit/c20fa9397ea09811ed2b4da33b136f2aa1e98957))
+* **#2515:** Add missing Typescript exports for Placeholders ([f9e0dfa](https://www.github.com/reactstrap/reactstrap/commit/f9e0dfab37ae0ae2c2183964fa78dc863af320f3))
+* **#2521:** fix `form-check-label`/`form-label` class on Label ([6aee08b](https://www.github.com/reactstrap/reactstrap/commit/6aee08b3bebdbdb1320c4f18382b28d5bc474dd7))
+* **Offcanvas:** make types match existing `direction` prop ([6e60f08](https://www.github.com/reactstrap/reactstrap/commit/6e60f08db14b0f7896c703f41fb6c4c2b7362fd6))
+
+
+### Miscellaneous
+
+* **Button:** convert button to use hooks ([19f85d3](https://www.github.com/reactstrap/reactstrap/commit/19f85d30d3c01f8f60762db55b123efddb4d152b))
+
 ### [9.0.3](https://www.github.com/reactstrap/reactstrap/compare/v9.0.2...v9.0.3) (2022-05-26)
 
 
