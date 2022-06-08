@@ -4,33 +4,19 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  /**
-   * Set a custom element for this component
-   */
+  /** Set a custom element for this component */
   tag: tagPropType,
-  /**
-   * Change animation of spinner
-   */
+  /** Change animation of spinner */
   type: PropTypes.oneOf(['border', 'grow']),
-  /**
-   * Change size of spinner
-   */
-  size: PropTypes.string,
-  /**
-   * Change color of spinner
-   */
+  /** Change size of spinner */
+  size: PropTypes.oneOf(['sm']),
+  /** Change color of spinner */
   color: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark']),
-  /**
-   * Add custom class
-   */
+  /** Add custom class */
   className: PropTypes.string,
-  /**
-   * Change existing className with a new className
-   */
+  /** Change existing className with a new className */
   cssModule: PropTypes.object,
-  /**
-   * Pass children so this component can wrap the child elements
-   */
+  /** Pass children so this component can wrap the child elements*/
   children: PropTypes.string
 };
 
