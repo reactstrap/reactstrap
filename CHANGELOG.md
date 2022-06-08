@@ -137,6 +137,13 @@
 
 
 
+### [9.1.1](https://www.github.com/reactstrap/reactstrap/compare/v9.1.0...v9.1.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **DropdownMenu:** add types to updateOnSelect ([e5cd524](https://www.github.com/reactstrap/reactstrap/commit/e5cd52445ee5247a6408c75a212009f345f7270e))
+
 ## [9.1.0](https://www.github.com/reactstrap/reactstrap/compare/v9.0.4...v9.1.0) (2022-06-08)
 
 
