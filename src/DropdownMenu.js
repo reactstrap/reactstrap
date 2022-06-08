@@ -18,6 +18,7 @@ const propTypes = {
   persist: PropTypes.bool,
   strategy: PropTypes.string,
   container: targetPropType,
+  /** Update popper layout when a click event comes up. This leverages event bubbling. */
   updateOnSelect: PropTypes.bool,
   right: deprecated(PropTypes.bool, 'Please use "end" instead.'),
 };
