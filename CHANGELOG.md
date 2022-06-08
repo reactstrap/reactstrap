@@ -137,6 +137,19 @@
 
 
 
+## [9.1.0](https://www.github.com/reactstrap/reactstrap/compare/v9.0.4...v9.1.0) (2022-06-08)
+
+
+### Features
+
+* **CloseButton:** add close button ([9e656f5](https://www.github.com/reactstrap/reactstrap/commit/9e656f50c4d35cb8e32b826316f8761e80af9c3e))
+
+
+### Bug Fixes
+
+* **#2411:** remove scroll from body when modal open ([9d71faa](https://www.github.com/reactstrap/reactstrap/commit/9d71faada222f67683bf19acece3c20b3364a6df))
+* add a flag to DropdownMenu for Popper update ([74a9e4e](https://www.github.com/reactstrap/reactstrap/commit/74a9e4ef5ad8cfdf4e1ab2b9509a0e4ca52c8886))
+
 ### [9.0.4](https://www.github.com/reactstrap/reactstrap/compare/v9.0.3...v9.0.4) (2022-06-02)
 
 
