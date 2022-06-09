@@ -15,6 +15,7 @@ export ButtonToggle from './ButtonToggle';
 export ButtonDropdown from './ButtonDropdown';
 export ButtonGroup from './ButtonGroup';
 export ButtonToolbar from './ButtonToolbar';
+export CloseButton from './CloseButton';
 export Dropdown from './Dropdown';
 export DropdownItem from './DropdownItem';
 export DropdownMenu from './DropdownMenu';

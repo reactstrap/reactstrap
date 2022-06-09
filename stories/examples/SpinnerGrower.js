@@ -1,19 +1,23 @@
 import React from 'react';
 import { Spinner } from 'reactstrap';
+import { colors } from './options';
 
 const Example = (props) => {
   return (
-    <div>
-      <Spinner type="grow" color="primary" />
-      <Spinner type="grow" color="secondary" />
-      <Spinner type="grow" color="success" />
-      <Spinner type="grow" color="danger" />
-      <Spinner type="grow" color="warning" />
-      <Spinner type="grow" color="info" />
-      <Spinner type="grow" color="light" />
-      <Spinner type="grow" color="dark" />
-    </div>
+    <>
+      {colors.map((color) => (
+        <Spinner type="grow" color={color} key={color} />
+      ))}
+    </>
   );
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'If you don’t fancy a border spinner, switch to the grow spinner. While it doesn’t technically spin, it does repeatedly grow! Once again you can apply all the colors as above.'
+    }
+  }
+}

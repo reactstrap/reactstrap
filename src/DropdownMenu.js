@@ -21,6 +21,8 @@ const propTypes = {
   persist: PropTypes.bool,
   strategy: PropTypes.string,
   container: targetPropType,
+  /** Update popper layout when a click event comes up. This leverages event bubbling. */
+  updateOnSelect: PropTypes.bool,
   right: deprecated(PropTypes.bool, 'Please use "end" instead.'),
 };
 
@@ -60,6 +62,7 @@ class DropdownMenu extends React.Component {
       persist,
       strategy,
       container,
+      updateOnSelect,
       ...attrs
     } = this.props;
 
@@ -93,7 +96,7 @@ class DropdownMenu extends React.Component {
           modifiers={poperModifiers}
           strategy={strategy}
         >
-          {({ ref, style, placement }) => {
+          {({ ref, style, placement, update }) => {
             let combinedStyle = { ...this.props.style, ...style };
 
             const handleRef = (tagRef) => {
@@ -115,6 +118,7 @@ class DropdownMenu extends React.Component {
                 aria-hidden={!this.context.isOpen}
                 className={classes}
                 data-popper-placement={placement}
+                onClick={() => updateOnSelect && update()}
               />
             );
           }}
