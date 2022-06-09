@@ -17,6 +17,7 @@ const propTypes = {
   modifiers: PropTypes.array,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  style: PropTypes.object,
   persist: PropTypes.bool,
   strategy: PropTypes.string,
   container: targetPropType,

@@ -25,10 +25,6 @@ class Carousel extends React.Component {
     };
   }
 
-  getContextValue() {
-    return { direction: this.state.direction };
-  }
-
   componentDidMount() {
     // Set up the cycle
     if (this.props.ride === 'carousel') {
@@ -75,38 +71,6 @@ class Carousel extends React.Component {
     document.removeEventListener('keyup', this.handleKeyPress);
   }
 
-  setInterval(props = this.props) {
-    // make sure not to have multiple intervals going...
-    this.clearInterval();
-    if (props.interval) {
-      this.cycleInterval = setInterval(() => {
-        props.next();
-      }, parseInt(props.interval, 10));
-    }
-  }
-
-  clearInterval() {
-    clearInterval(this.cycleInterval);
-  }
-
-  hoverStart(...args) {
-    if (this.props.pause === 'hover') {
-      this.clearInterval();
-    }
-    if (this.props.mouseEnter) {
-      this.props.mouseEnter(...args);
-    }
-  }
-
-  hoverEnd(...args) {
-    if (this.props.pause === 'hover') {
-      this.setInterval();
-    }
-    if (this.props.mouseLeave) {
-      this.props.mouseLeave(...args);
-    }
-  }
-
   handleKeyPress(evt) {
     if (this.props.keyboard) {
       if (evt.keyCode === 37) {
@@ -148,6 +112,42 @@ class Carousel extends React.Component {
       this.props.next();
     } else {
       this.props.previous();
+    }
+  }
+
+  getContextValue() {
+    return { direction: this.state.direction };
+  }
+
+  setInterval(props = this.props) {
+    // make sure not to have multiple intervals going...
+    this.clearInterval();
+    if (props.interval) {
+      this.cycleInterval = setInterval(() => {
+        props.next();
+      }, parseInt(props.interval, 10));
+    }
+  }
+
+  clearInterval() {
+    clearInterval(this.cycleInterval);
+  }
+
+  hoverStart(...args) {
+    if (this.props.pause === 'hover') {
+      this.clearInterval();
+    }
+    if (this.props.mouseEnter) {
+      this.props.mouseEnter(...args);
+    }
+  }
+
+  hoverEnd(...args) {
+    if (this.props.pause === 'hover') {
+      this.setInterval();
+    }
+    if (this.props.mouseLeave) {
+      this.props.mouseLeave(...args);
     }
   }
 
@@ -278,6 +278,7 @@ Carousel.propTypes = {
   slide: PropTypes.bool,
   // make the controls, indicators and captions dark on the Carousel
   dark: PropTypes.bool,
+  fade: PropTypes.bool,
   cssModule: PropTypes.object,
   className: PropTypes.string,
   enableTouch: PropTypes.bool,

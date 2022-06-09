@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { shallow, mount } from 'enzyme';
 import {
   InputGroup, DropdownMenu, DropdownToggle, DropdownItem, Input
@@ -54,7 +54,7 @@ describe('InputGroup', () => {
       jest.spyOn(Dropdown.prototype, 'toggle');
 
       const wrapper = mount(
-        <InputGroup type="dropdown" isOpen toggle={() => {}}>
+        <InputGroup type="dropdown" isOpen toggle={() => { }}>
           <Input />
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>

@@ -190,12 +190,15 @@ describe('Dropdown', () => {
       jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown id="test" isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown id="test" isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
@@ -213,13 +216,16 @@ describe('Dropdown', () => {
       jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
@@ -236,13 +242,16 @@ describe('Dropdown', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -256,13 +265,16 @@ describe('Dropdown', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -278,13 +290,16 @@ describe('Dropdown', () => {
       isOpen = true;
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="test">Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="test">Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -299,13 +314,16 @@ describe('Dropdown', () => {
       isOpen = false;
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -320,13 +338,16 @@ describe('Dropdown', () => {
       isOpen = false;
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -341,16 +362,19 @@ describe('Dropdown', () => {
       jest.useFakeTimers();
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus = jest.fn();
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem header>Header</DropdownItem>
-          <DropdownItem disabled>Disabled</DropdownItem>
-          <DropdownItem onFocus={focus}>Test</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>Another Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
+            <DropdownItem onFocus={focus}>Test</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
@@ -368,16 +392,19 @@ describe('Dropdown', () => {
       jest.useFakeTimers();
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus = jest.fn();
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem header>Header</DropdownItem>
-          <DropdownItem disabled>Disabled</DropdownItem>
-          <DropdownItem onFocus={focus}>Test</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>Another Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
+            <DropdownItem onFocus={focus}>Test</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
@@ -395,16 +422,19 @@ describe('Dropdown', () => {
       jest.useFakeTimers();
       jest.spyOn(Dropdown.prototype, 'toggle');
       const focus = jest.fn();
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem header>Header</DropdownItem>
-          <DropdownItem disabled>Disabled</DropdownItem>
-          <DropdownItem onFocus={focus}>Test</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>Another Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
+            <DropdownItem onFocus={focus}>Test</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
@@ -425,15 +455,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -454,15 +487,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -483,15 +519,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Reactstrap</DropdownItem>
-          <DropdownItem onFocus={focus2}>4</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem onFocus={focus3}> Lyfe</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Reactstrap</DropdownItem>
+            <DropdownItem onFocus={focus2}>4</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}> Lyfe</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -512,15 +551,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -541,15 +583,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -570,15 +615,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -599,15 +647,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -628,15 +679,18 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -657,16 +711,19 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem id="zero" disabled>Test</DropdownItem>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem id="zero" disabled>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -687,16 +744,19 @@ describe('Dropdown', () => {
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem id="zero" disabled>Test</DropdownItem>
-          <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-          <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem id="zero" disabled>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -715,15 +775,18 @@ describe('Dropdown', () => {
       jest.spyOn(Dropdown.prototype, 'toggle');
       const click = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem href="#" id="first" onClick={click}>Test</DropdownItem>
-          <DropdownItem id="second">Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third">Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem href="#" id="first" onClick={click}>Test</DropdownItem>
+            <DropdownItem id="second">Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third">Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -740,15 +803,18 @@ describe('Dropdown', () => {
       jest.spyOn(Dropdown.prototype, 'toggle');
       const click = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem id="first" onClick={click}>Test</DropdownItem>
-          <DropdownItem id="second">Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third">Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem id="first" onClick={click}>Test</DropdownItem>
+            <DropdownItem id="second">Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third">Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -766,15 +832,18 @@ describe('Dropdown', () => {
       const click = jest.fn();
       const focus = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><input id="input" /></DropdownItem>
-          <DropdownItem id="second">Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third">Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><input id="input" /></DropdownItem>
+            <DropdownItem id="second">Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third">Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -795,15 +864,18 @@ describe('Dropdown', () => {
       const click = jest.fn();
       const focus = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><textarea id="input" /></DropdownItem>
-          <DropdownItem id="second">Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third">Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><textarea id="input" /></DropdownItem>
+            <DropdownItem id="second">Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third">Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -850,15 +922,18 @@ describe('Dropdown', () => {
       const click = jest.fn();
       const focus = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle} disabled>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
-          <DropdownItem id="second">Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem id="third">Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle} disabled>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
+            <DropdownItem id="second">Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem id="third">Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -879,15 +954,18 @@ describe('Dropdown', () => {
       const click = jest.fn();
       const focus = jest.fn();
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem disabled tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
-          <DropdownItem disabled id="second">Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-          <DropdownItem disabled id="third">Test</DropdownItem>
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem disabled tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
+            <DropdownItem disabled id="second">Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+            <DropdownItem disabled id="third">Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -906,16 +984,19 @@ describe('Dropdown', () => {
       isOpen = false;
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      const event = { preventDefault: () => {} };
+      const event = { preventDefault: () => { } };
       const spy = jest.spyOn(event, 'preventDefault');
 
       wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { ...event, which: 116/* f5 key */ });
@@ -931,16 +1012,19 @@ describe('Dropdown', () => {
       isOpen = false;
       jest.spyOn(Dropdown.prototype, 'toggle');
 
-      const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>
-        <DropdownToggle>Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-                            </Dropdown>, { attachTo: element });
+      const wrapper = mount(
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </Dropdown>,
+        { attachTo: element }
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      const event = { preventDefault: () => {} };
+      const event = { preventDefault: () => { } };
       const spy = jest.spyOn(event, 'preventDefault');
 
       wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { ...event, which: keyCodes.down });

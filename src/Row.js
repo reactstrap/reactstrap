@@ -16,7 +16,8 @@ const propTypes = {
   md: rowColsPropType,
   lg: rowColsPropType,
   xl: rowColsPropType,
-  xxl: rowColsPropType
+  xxl: rowColsPropType,
+  widths: PropTypes.array
 };
 
 const defaultProps = {

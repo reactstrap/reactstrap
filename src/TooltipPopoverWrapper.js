@@ -54,7 +54,7 @@ const defaultProps = {
   hideArrow: false,
   autohide: false,
   delay: DEFAULT_DELAYS,
-  toggle: function () {},
+  toggle: function () { },
   trigger: 'click',
   fade: true,
 };
@@ -109,6 +109,31 @@ class TooltipPopoverWrapper extends React.Component {
       return { isOpen: props.isOpen };
     }
     return null;
+  }
+
+  handleDocumentClick(e) {
+    const triggers = this.props.trigger.split(' ');
+
+    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtrees(e.target, this._targets))) {
+      if (this._hideTimeout) {
+        this.clearHideTimeout();
+      }
+      if (this.props.isOpen && !isInDOMSubtree(e.target, this._popover)) {
+        this.hideWithDelay(e);
+      } else if (!this.props.isOpen) {
+        this.showWithDelay(e);
+      }
+    } else if (triggers.indexOf('click') > -1 && isInDOMSubtrees(e.target, this._targets)) {
+      if (this._hideTimeout) {
+        this.clearHideTimeout();
+      }
+
+      if (!this.props.isOpen) {
+        this.showWithDelay(e);
+      } else {
+        this.hideWithDelay(e);
+      }
+    }
   }
 
   onMouseOverTooltipContent() {
@@ -216,31 +241,6 @@ class TooltipPopoverWrapper extends React.Component {
   clearHideTimeout() {
     clearTimeout(this._hideTimeout);
     this._hideTimeout = undefined;
-  }
-
-  handleDocumentClick(e) {
-    const triggers = this.props.trigger.split(' ');
-
-    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtrees(e.target, this._targets))) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
-      if (this.props.isOpen && !isInDOMSubtree(e.target, this._popover)) {
-        this.hideWithDelay(e);
-      } else if (!this.props.isOpen) {
-        this.showWithDelay(e);
-      }
-    } else if (triggers.indexOf('click') > -1 && isInDOMSubtrees(e.target, this._targets)) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
-
-      if (!this.props.isOpen) {
-        this.showWithDelay(e);
-      } else {
-        this.hideWithDelay(e);
-      }
-    }
   }
 
   addEventOnTargets(type, handler, isBubble) {

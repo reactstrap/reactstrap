@@ -14,7 +14,7 @@ describe('Alert', () => {
   });
 
   it('should pass close className down', () => {
-    function noop() { }
+    const noop = () => { };
     const alert = mount(<Alert toggle={noop} closeClassName="test-class-name">Yo!</Alert>);
     expect(alert.find('.btn-close').hostNodes().prop('className')).toContain('test-class-name');
   });

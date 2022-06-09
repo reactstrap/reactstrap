@@ -14,6 +14,7 @@ const propTypes = {
   closeAriaLabel: PropTypes.string,
   charCode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   close: PropTypes.object,
+  tagClassName: PropTypes.string
 };
 
 const defaultProps = {

@@ -113,16 +113,16 @@ export function deprecated(propType, explanation) {
 }
 
 // Shim Element if needed (e.g. in Node environment)
-const Element = (typeof window === 'object' && window.Element) || function () {};
+const Element = (typeof window === 'object' && window.Element) || function () { };
 
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
       'Invalid prop `'
-        + propName
-        + '` supplied to `'
-        + componentName
-        + '`. Expected prop to be an instance of Element. Validation failed.'
+      + propName
+      + '` supplied to `'
+      + componentName
+      + '`. Expected prop to be an instance of Element. Validation failed.'
     );
   }
 }
@@ -233,6 +233,11 @@ function getTag(value) {
   return Object.prototype.toString.call(value);
 }
 
+export function isObject(value) {
+  const type = typeof value;
+  return value != null && (type === 'object' || type === 'function');
+}
+
 export function toNumber(value) {
   const type = typeof value;
   const NAN = 0 / 0;
@@ -254,11 +259,6 @@ export function toNumber(value) {
   return (isBinary || /^0o[0-7]+$/i.test(value))
     ? parseInt(value.slice(2), isBinary ? 2 : 8)
     : (/^[-+]0x[0-9a-f]+$/i.test(value) ? NAN : +value);
-}
-
-export function isObject(value) {
-  const type = typeof value;
-  return value != null && (type === 'object' || type === 'function');
 }
 
 export function isFunction(value) {

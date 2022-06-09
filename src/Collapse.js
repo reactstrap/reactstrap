@@ -60,10 +60,6 @@ class Collapse extends Component {
     });
   }
 
-  getDimension(node) {
-    return this.props.horizontal ? node.scrollWidth : node.scrollHeight;
-  }
-
   onEntering(node, isAppearing) {
     this.setState({ dimension: this.getDimension(node) });
     this.props.onEntering(node, isAppearing);
@@ -89,6 +85,10 @@ class Collapse extends Component {
   onExited(node) {
     this.setState({ dimension: null });
     this.props.onExited(node);
+  }
+
+  getDimension(node) {
+    return this.props.horizontal ? node.scrollWidth : node.scrollHeight;
   }
 
   render() {

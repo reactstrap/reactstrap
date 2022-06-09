@@ -6,7 +6,8 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
   tag: tagPropType,
   className: PropTypes.string,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
+  active: PropTypes.bool
 };
 
 const defaultProps = {

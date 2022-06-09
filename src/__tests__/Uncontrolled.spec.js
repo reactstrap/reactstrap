@@ -103,13 +103,15 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on document click', () => {
-      mount(<UncontrolledDropdown onToggle={handleToggle} defaultOpen>
-        <DropdownToggle id="toggle">Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-      </UncontrolledDropdown>);
+      mount(
+        <UncontrolledDropdown onToggle={handleToggle} defaultOpen>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      );
 
       expect(handleToggle.mock.calls.length).toBe(0);
 
@@ -121,13 +123,16 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on container click', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
-        <DropdownToggle id="toggle">Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-      </UncontrolledDropdown>, { attachTo: element });
+      const wrapper = mount(
+        <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+        { attachTo: element }
+      );
 
       expect(handleToggle.mock.calls.length).toBe(0);
 
@@ -141,13 +146,16 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on toggler click when closed', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={false}>
-        <DropdownToggle id="toggle">Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-      </UncontrolledDropdown>, { attachTo: element });
+      const wrapper = mount(
+        <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={false}>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+        { attachTo: element }
+      );
 
       expect(handleToggle.mock.calls.length).toBe(0);
 
@@ -161,13 +169,16 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on toggler click when opened', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
-        <DropdownToggle id="toggle">Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-      </UncontrolledDropdown>, { attachTo: element });
+      const wrapper = mount(
+        <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+        { attachTo: element }
+      );
 
       expect(handleToggle.mock.calls.length).toBe(0);
 
@@ -181,13 +192,16 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on key closing', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
-        <DropdownToggle id="toggle">Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-      </UncontrolledDropdown>, { attachTo: element });
+      const wrapper = mount(
+        <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+        { attachTo: element }
+      );
 
       expect(handleToggle.mock.calls.length).toBe(0);
 
@@ -201,13 +215,16 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on key opening', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={false}>
-        <DropdownToggle id="toggle">Toggle</DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Test</DropdownItem>
-          <DropdownItem id="divider" divider />
-        </DropdownMenu>
-      </UncontrolledDropdown>, { attachTo: element });
+      const wrapper = mount(
+        <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={false}>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+        { attachTo: element }
+      );
 
       expect(handleToggle.mock.calls.length).toBe(0);
 

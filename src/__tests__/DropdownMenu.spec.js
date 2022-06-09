@@ -240,7 +240,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu dark>
-          <p>Let's go dark</p>
+          <p>Let&apos;s go dark</p>
         </DropdownMenu>
       </DropdownContext.Provider>
     );

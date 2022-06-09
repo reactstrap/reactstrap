@@ -18,6 +18,11 @@ const propTypes = {
   split: PropTypes.bool,
   tag: tagPropType,
   nav: PropTypes.bool,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
 };
 
 const defaultProps = {
@@ -104,7 +109,6 @@ class DropdownToggle extends React.Component {
           <Tag
             {...props}
             {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: ref }}
-
             className={classes}
             onClick={this.onClick}
             aria-expanded={this.context.isOpen}

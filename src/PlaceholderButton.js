@@ -10,7 +10,8 @@ const propTypes = {
   color: PropTypes.string,
   outline: PropTypes.bool,
   className: PropTypes.string,
-  tag: tagPropType
+  tag: tagPropType,
+  cssModule: PropTypes.object
 };
 
 const defaultProps = {

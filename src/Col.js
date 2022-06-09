@@ -46,12 +46,13 @@ const getColumnSizeClass = (isXs, colWidth, colSize) => {
 };
 
 export const getColumnClasses = (attributes, cssModule, widths = colWidths) => {
+  const modifiedAttributes = attributes;
   const colClasses = [];
 
   widths.forEach((colWidth, i) => {
-    let columnProp = attributes[colWidth];
+    let columnProp = modifiedAttributes[colWidth];
 
-    delete attributes[colWidth];
+    delete modifiedAttributes[colWidth];
 
     if (!columnProp && columnProp !== '') {
       return;
@@ -76,7 +77,7 @@ export const getColumnClasses = (attributes, cssModule, widths = colWidths) => {
 
   return {
     colClasses,
-    attributes
+    modifiedAttributes
   };
 };
 
@@ -89,7 +90,7 @@ function Col(props) {
     ...attributes
   } = props;
 
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths);
+  let { modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths);
 
   if (!colClasses.length) {
     colClasses.push('col');

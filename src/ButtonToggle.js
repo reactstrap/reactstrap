@@ -9,6 +9,8 @@ const propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   defaultValue: PropTypes.bool,
+  className: PropTypes.string,
+  cssModule: PropTypes.object
 };
 
 const defaultProps = {

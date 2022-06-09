@@ -25,9 +25,15 @@ function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
   const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : undefined));
   const toggle = (id) => {
     if (stayOpen) {
-      open.includes(id) ? setOpen(open.filter((accordionId) => accordionId !== id)) : setOpen([...open, id]);
+      if (open.includes(id)) {
+        setOpen(open.filter((accordionId) => accordionId !== id));
+      } else {
+        setOpen([...open, id]);
+      }
+    } else if (open === id) {
+      setOpen(undefined);
     } else {
-      open === id ? setOpen(undefined) : setOpen(id);
+      setOpen(id);
     }
   };
 

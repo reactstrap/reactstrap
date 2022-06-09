@@ -17,6 +17,7 @@ function CarouselIndicators(props) {
       <button
         aria-label={item.caption}
         data-bs-target
+        type="button"
         key={`${item.key || Object.values(item).join('')}`}
         onClick={(e) => {
           e.preventDefault();

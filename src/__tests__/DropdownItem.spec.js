@@ -35,7 +35,7 @@ describe('DropdownItem', () => {
   });
 
   it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
-    const wrapper = mount(<DropdownItem onClick={() => {}}>Home</DropdownItem>);
+    const wrapper = mount(<DropdownItem onClick={() => { }}>Home</DropdownItem>);
 
     expect(wrapper.find('button').hostNodes().prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');

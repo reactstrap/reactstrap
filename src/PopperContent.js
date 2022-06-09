@@ -18,7 +18,7 @@ const propTypes = {
   arrowClassName: PropTypes.string,
   hideArrow: PropTypes.bool,
   tag: tagPropType,
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   cssModule: PropTypes.object,
   offset: PropTypes.arrayOf(PropTypes.number),
   fallbackPlacements: PropTypes.array,
@@ -73,8 +73,9 @@ class PopperContent extends React.Component {
     }
   }
 
-  setTargetNode(node) {
-    this.targetNode = typeof node === 'string' ? getTarget(node) : node;
+  onClosed() {
+    this.props.onClosed();
+    this.setState({ isOpen: false });
   }
 
   getTargetNode() {
@@ -89,9 +90,8 @@ class PopperContent extends React.Component {
     this._element = ref;
   }
 
-  onClosed() {
-    this.props.onClosed();
-    this.setState({ isOpen: false });
+  setTargetNode(node) {
+    this.targetNode = typeof node === 'string' ? getTarget(node) : node;
   }
 
   renderChildren() {

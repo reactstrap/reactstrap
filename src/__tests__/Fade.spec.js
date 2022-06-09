@@ -13,9 +13,9 @@ class Helper extends React.Component {
   }
 
   toggle() {
-    this.setState({
-      showItem: !this.state.showItem
-    });
+    this.setState((prevState) => ({
+      showItem: !prevState.showItem
+    }));
   }
 
   render() {

@@ -40,14 +40,18 @@ class UncontrolledCarousel extends Component {
 
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === this.props.items.length - 1 ? 0 : this.state.activeIndex + 1;
-    this.setState({ activeIndex: nextIndex });
+    this.setState((prevState) => {
+      const nextIndex = prevState.activeIndex === this.props.items.length - 1 ? 0 : prevState.activeIndex + 1;
+      return { activeIndex: nextIndex };
+    });
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? this.props.items.length - 1 : this.state.activeIndex - 1;
-    this.setState({ activeIndex: nextIndex });
+    this.setState((prevState) => {
+      const nextIndex = prevState.activeIndex === 0 ? this.props.items.length - 1 : prevState.activeIndex - 1;
+      return { activeIndex: nextIndex };
+    });
   }
 
   goToIndex(newIndex) {
@@ -84,26 +88,26 @@ class UncontrolledCarousel extends Component {
         {...props}
       >
         {indicators && (
-        <CarouselIndicators
-          items={items}
-          activeIndex={props.activeIndex || activeIndex}
-          onClickHandler={goToIndex || this.goToIndex}
-        />
+          <CarouselIndicators
+            items={items}
+            activeIndex={props.activeIndex || activeIndex}
+            onClickHandler={goToIndex || this.goToIndex}
+          />
         )}
         {slides}
         {controls && (
-        <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={props.previous || this.previous}
-        />
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={props.previous || this.previous}
+          />
         )}
         {controls && (
-        <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={props.next || this.next}
-        />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={props.next || this.next}
+          />
         )}
       </Carousel>
     );
