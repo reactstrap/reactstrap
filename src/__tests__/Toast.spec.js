@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Toast } from '../';
+import { Toast } from '..';
 
 describe('Toast', () => {
   it('should render children', () => {
@@ -30,7 +30,10 @@ describe('Toast', () => {
 
   it('should have support configurable transitionTimeouts', () => {
     const toast = mount(
-      <Toast transition={{ timeout: 0, appear: false, enter: false, exit: false }}>
+      <Toast transition={{
+        timeout: 0, appear: false, enter: false, exit: false
+      }}
+      >
         Yo!
       </Toast>
     );

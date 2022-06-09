@@ -12,7 +12,7 @@ import {
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
   UncontrolledTooltip,
-} from '../';
+} from '..';
 import { keyCodes } from '../utils';
 
 describe('UncontrolledAlert', () => {
@@ -66,7 +66,6 @@ describe('UncontrolledButtonDropdown', () => {
 });
 
 describe('UncontrolledDropdown', () => {
-
   it('should be an Dropdown', () => {
     const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
     expect(dropdown.type()).toBe(Dropdown);
@@ -104,7 +103,7 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on document click', () => {
-      mount(<UncontrolledDropdown onToggle={handleToggle} defaultOpen={true}>
+      mount(<UncontrolledDropdown onToggle={handleToggle} defaultOpen>
         <DropdownToggle id="toggle">Toggle</DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>Test</DropdownItem>
@@ -122,7 +121,7 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on container click', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={true}>
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
         <DropdownToggle id="toggle">Toggle</DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>Test</DropdownItem>
@@ -162,7 +161,7 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on toggler click when opened', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={true}>
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
         <DropdownToggle id="toggle">Toggle</DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>Test</DropdownItem>
@@ -182,7 +181,7 @@ describe('UncontrolledDropdown', () => {
     });
 
     it('onToggle should be called on key closing', () => {
-      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen={true}>
+      const wrapper = mount(<UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
         <DropdownToggle id="toggle">Toggle</DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>Test</DropdownItem>
@@ -220,7 +219,7 @@ describe('UncontrolledDropdown', () => {
 
       wrapper.detach();
     });
-  })
+  });
 });
 
 describe('UncontrolledTooltip', () => {

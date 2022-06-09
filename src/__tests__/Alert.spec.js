@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Alert } from '../';
+import { Alert } from '..';
 
 describe('Alert', () => {
   it('should render children', () => {
@@ -36,7 +36,10 @@ describe('Alert', () => {
 
   it('should have support configurable transitionTimeouts', () => {
     const alert = mount(
-      <Alert transition={{ timeout: 0, appear: false, enter: false, exit: false }}>
+      <Alert transition={{
+        timeout: 0, appear: false, enter: false, exit: false
+      }}
+      >
         Yo!
       </Alert>
     );

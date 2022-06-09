@@ -25,14 +25,14 @@ const defaultProps = {
 const getVerticalClass = (vertical) => {
   if (vertical === false) {
     return false;
-  } else if (vertical === true || vertical === 'xs') {
+  } if (vertical === true || vertical === 'xs') {
     return 'flex-column';
   }
 
   return `flex-${vertical}-column`;
 };
 
-const Nav = (props) => {
+function Nav(props) {
   const {
     className,
     cssModule,
@@ -66,7 +66,7 @@ const Nav = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 Nav.propTypes = propTypes;
 Nav.defaultProps = defaultProps;

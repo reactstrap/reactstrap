@@ -124,7 +124,7 @@ class Modal extends React.Component {
 
     if (isOpen) {
       this.init();
-      this.setState({ isOpen: true })
+      this.setState({ isOpen: true });
       if (autoFocus) {
         this.setFocus();
       }
@@ -143,7 +143,7 @@ class Modal extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpen && !prevProps.isOpen) {
       this.init();
-      this.setState({ isOpen: true});
+      this.setState({ isOpen: true });
       // let render() renders Modal Dialog first
       return;
     }
@@ -176,25 +176,24 @@ class Modal extends React.Component {
     this._isMounted = false;
   }
 
-  trapFocus (ev) {
+  trapFocus(ev) {
     if (!this.props.trapFocus) {
       return;
     }
 
-    if (!this._element) //element is not attached
-      return;
+    if (!this._element) // element is not attached
+    { return; }
 
     if (this._dialog && this._dialog.parentNode === ev.target) // initial focus when the Modal is opened
-      return;
+    { return; }
 
     if (this.modalIndex < (Modal.openCount - 1)) // last opened modal
-      return;
+    { return; }
 
     const children = this.getFocusableChildren();
 
     for (let i = 0; i < children.length; i++) { // focus is already inside the Modal
-      if (children[i] === ev.target)
-        return;
+      if (children[i] === ev.target) return;
     }
 
     if (children.length > 0) { // otherwise focus the first focusable element in the Modal
@@ -304,8 +303,7 @@ class Modal extends React.Component {
         e.stopPropagation();
 
         this.props.toggle(e);
-      }
-      else if (this.props.backdrop === 'static') {
+      } else if (this.props.backdrop === 'static') {
         e.preventDefault();
         e.stopPropagation();
 
@@ -461,13 +459,15 @@ class Modal extends React.Component {
       };
 
       const Backdrop = backdrop && (
-        hasTransition ?
-          (<Fade
-            {...backdropTransition}
-            in={isOpen && !!backdrop}
-            cssModule={cssModule}
-            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
-          />)
+        hasTransition
+          ? (
+            <Fade
+              {...backdropTransition}
+              in={isOpen && !!backdrop}
+              cssModule={cssModule}
+              className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+            />
+          )
           : <div className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)} />
       );
 

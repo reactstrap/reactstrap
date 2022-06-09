@@ -23,7 +23,7 @@ const defaultProps = {
   closeAriaLabel: 'Close',
 };
 
-const ToastHeader = (props) => {
+function ToastHeader(props) {
   let closeButton;
   let icon;
   const {
@@ -37,7 +37,8 @@ const ToastHeader = (props) => {
     close,
     tagClassName,
     icon: iconProp,
-    ...attributes } = props;
+    ...attributes
+  } = props;
 
   const classes = mapToCssModules(classNames(
     className,
@@ -50,7 +51,7 @@ const ToastHeader = (props) => {
     );
   }
 
-  if (typeof iconProp === "string") {
+  if (typeof iconProp === 'string') {
     icon = (
       <svg
         className={mapToCssModules(`rounded text-${iconProp}`)}
@@ -61,7 +62,7 @@ const ToastHeader = (props) => {
         focusable="false"
         role="img"
       >
-        <rect fill="currentColor" width="100%" height="100%"></rect>
+        <rect fill="currentColor" width="100%" height="100%" />
       </svg>
     );
   } else if (iconProp) {
@@ -71,13 +72,13 @@ const ToastHeader = (props) => {
   return (
     <WrapTag {...attributes} className={classes}>
       {icon}
-      <Tag className={mapToCssModules(classNames(tagClassName, { "ms-2": icon != null }), cssModule)}>
+      <Tag className={mapToCssModules(classNames(tagClassName, { 'ms-2': icon != null }), cssModule)}>
         {children}
       </Tag>
       {close || closeButton}
     </WrapTag>
   );
-};
+}
 
 ToastHeader.propTypes = propTypes;
 ToastHeader.defaultProps = defaultProps;

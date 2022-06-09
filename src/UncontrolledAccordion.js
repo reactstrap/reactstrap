@@ -21,18 +21,18 @@ const defaultProps = {
   tag: 'div'
 };
 
-const UncontrolledAccordion = ({ defaultOpen, stayOpen, ...props }) => {
+function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
   const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : undefined));
   const toggle = (id) => {
     if (stayOpen) {
-      open.includes(id) ? setOpen(open.filter(accordionId => accordionId !== id)) : setOpen([...open, id]);
+      open.includes(id) ? setOpen(open.filter((accordionId) => accordionId !== id)) : setOpen([...open, id]);
     } else {
       open === id ? setOpen(undefined) : setOpen(id);
     }
   };
 
   return <Accordion {...props} open={open} toggle={toggle} />;
-};
+}
 
 UncontrolledAccordion.propTypes = propTypes;
 UncontrolledAccordion.defaultProps = defaultProps;

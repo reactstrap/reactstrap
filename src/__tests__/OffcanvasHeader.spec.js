@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { OffcanvasHeader } from '../';
+import { OffcanvasHeader } from '..';
 
 describe('OffcanvasHeader', () => {
   it('should render with "offcanvas-header" class', () => {

@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardImgOverlay = (props) => {
+function CardImgOverlay(props) {
   const {
     className,
     cssModule,
@@ -28,7 +28,7 @@ const CardImgOverlay = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardImgOverlay.propTypes = propTypes;
 CardImgOverlay.defaultProps = defaultProps;

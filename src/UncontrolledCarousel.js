@@ -56,7 +56,9 @@ class UncontrolledCarousel extends Component {
   }
 
   render() {
-    const { defaultActiveIndex, autoPlay, indicators, controls, items, goToIndex, ...props } = this.props;
+    const {
+      defaultActiveIndex, autoPlay, indicators, controls, items, goToIndex, ...props
+    } = this.props;
     const { activeIndex } = this.state;
 
     const slides = items.map((item) => {
@@ -81,22 +83,28 @@ class UncontrolledCarousel extends Component {
         ride={autoPlay ? 'carousel' : undefined}
         {...props}
       >
-        {indicators && <CarouselIndicators
+        {indicators && (
+        <CarouselIndicators
           items={items}
           activeIndex={props.activeIndex || activeIndex}
           onClickHandler={goToIndex || this.goToIndex}
-        />}
+        />
+        )}
         {slides}
-        {controls && <CarouselControl
+        {controls && (
+        <CarouselControl
           direction="prev"
           directionText="Previous"
           onClickHandler={props.previous || this.previous}
-        />}
-        {controls && <CarouselControl
+        />
+        )}
+        {controls && (
+        <CarouselControl
           direction="next"
           directionText="Next"
           onClickHandler={props.next || this.next}
-        />}
+        />
+        )}
       </Carousel>
     );
   }

@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Button, ButtonToggle } from '../';
+import { Button, ButtonToggle } from '..';
 
-describe("ButtonToggle", () => {
+describe('ButtonToggle', () => {
   it('should render children', () => {
     const wrapper = shallow(<ButtonToggle>Ello world</ButtonToggle>);
 
     expect(wrapper.type()).toEqual(Button);
-    expect(wrapper.first(Button).shallow().text()).toBe("Ello world");
+    expect(wrapper.first(Button).shallow().text()).toBe('Ello world');
   });
 
   it('should have button already toggled for defaultValue true', () => {

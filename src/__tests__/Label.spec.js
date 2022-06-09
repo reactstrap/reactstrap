@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Label } from '../';
+import { Label } from '..';
 
 describe('Label', () => {
   it('should render a label tag by default', () => {
@@ -30,7 +30,7 @@ describe('Label', () => {
   it('should not render with "form-label" class when a col is provided', () => {
     const wrapper = shallow(<Label sm="6">Yo!</Label>);
 
-    expect(wrapper.hasClass("form-label")).toBe(false);
+    expect(wrapper.hasClass('form-label')).toBe(false);
   });
 
   it('should render with "form-label" class when a col is not provided', () => {
@@ -42,13 +42,13 @@ describe('Label', () => {
   it('should render with "form-check-label" class when check is specified', () => {
     const wrapper = shallow(<Label check>Yo!</Label>);
 
-    expect(wrapper.hasClass("form-check-label")).toBe(true);
+    expect(wrapper.hasClass('form-check-label')).toBe(true);
   });
 
   it('should not render with "form-label" class when check is specified', () => {
     const wrapper = shallow(<Label check>Yo!</Label>);
 
-    expect(wrapper.hasClass("form-label")).toBe(false);
+    expect(wrapper.hasClass('form-label')).toBe(false);
   });
 
   it('should pass col size specific classes as Strings', () => {

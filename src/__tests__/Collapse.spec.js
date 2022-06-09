@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Collapse } from '../';
+import { Collapse } from '..';
 
 describe('Collapse', () => {
   let isOpen;

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
 import { CarouselContext } from './CarouselContext';
 import { mapToCssModules } from './utils';
-    
+
 const SWIPE_THRESHOLD = 40;
 
 class Carousel extends React.Component {
@@ -47,7 +47,7 @@ class Carousel extends React.Component {
       // Calculate the direction to turn
       if (nextProps.activeIndex === activeIndex + 1) {
         direction = 'end';
-      } else if (nextProps.activeIndex === activeIndex -1) {
+      } else if (nextProps.activeIndex === activeIndex - 1) {
         direction = 'start';
       } else if (nextProps.activeIndex < activeIndex) {
         direction = indicatorClicked ? 'start' : 'end';
@@ -59,7 +59,7 @@ class Carousel extends React.Component {
         activeIndex: nextProps.activeIndex,
         direction,
         indicatorClicked: false,
-      }
+      };
     }
 
     return newState;
@@ -118,7 +118,7 @@ class Carousel extends React.Component {
   }
 
   handleTouchStart(e) {
-    if(!this.props.enableTouch) {
+    if (!this.props.enableTouch) {
       return;
     }
     this.touchStartX = e.changedTouches[0].screenX;
@@ -126,7 +126,7 @@ class Carousel extends React.Component {
   }
 
   handleTouchEnd(e) {
-    if(!this.props.enableTouch) {
+    if (!this.props.enableTouch) {
       return;
     }
 
@@ -136,15 +136,15 @@ class Carousel extends React.Component {
     const diffY = Math.abs(this.touchStartY - currentY);
 
     // Don't swipe if Y-movement is bigger than X-movement
-    if(diffX < diffY) {
+    if (diffX < diffY) {
       return;
     }
 
-    if(diffX < SWIPE_THRESHOLD) {
+    if (diffX < SWIPE_THRESHOLD) {
       return;
     }
 
-    if(currentX < this.touchStartX) {
+    if (currentX < this.touchStartX) {
       this.props.next();
     } else {
       this.props.previous();
@@ -167,7 +167,9 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { cssModule, slide, className, dark, fade } = this.props;
+    const {
+      cssModule, slide, className, dark, fade
+    } = this.props;
     const outerClasses = mapToCssModules(classNames(
       className,
       'carousel',
@@ -181,9 +183,9 @@ class Carousel extends React.Component {
     ), cssModule);
 
     // filter out booleans, null, or undefined
-    const children = this.props.children.filter(child => child !== null && child !== undefined && typeof child !== 'boolean');
+    const children = this.props.children.filter((child) => child !== null && child !== undefined && typeof child !== 'boolean');
 
-    const slidesOnly = children.every(child => child.type === CarouselItem);
+    const slidesOnly = children.every((child) => child.type === CarouselItem);
 
     // Rendering only slides
     if (slidesOnly) {
@@ -226,8 +228,13 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}
-        onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
+      <div
+        className={outerClasses}
+        onMouseEnter={this.hoverStart}
+        onMouseLeave={this.hoverEnd}
+        onTouchStart={this.handleTouchStart}
+        onTouchEnd={this.handleTouchEnd}
+      >
         <CarouselContext.Provider value={this.getContextValue()}>
           {wrappedIndicators}
           {this.renderItems(carouselItems, innerClasses)}

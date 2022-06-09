@@ -8,7 +8,7 @@ const rowColsPropType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]
 
 const propTypes = {
   tag: tagPropType,
-  noGutters: deprecated(PropTypes.bool, "Please use Bootstrap 5 gutter utility classes. https://getbootstrap.com/docs/5.0/layout/gutters/"),
+  noGutters: deprecated(PropTypes.bool, 'Please use Bootstrap 5 gutter utility classes. https://getbootstrap.com/docs/5.0/layout/gutters/'),
   className: PropTypes.string,
   cssModule: PropTypes.object,
   xs: rowColsPropType,
@@ -24,7 +24,7 @@ const defaultProps = {
   widths: rowColWidths
 };
 
-const Row = (props) => {
+function Row(props) {
   const {
     className,
     cssModule,
@@ -59,7 +59,7 @@ const Row = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 Row.propTypes = propTypes;
 Row.defaultProps = defaultProps;

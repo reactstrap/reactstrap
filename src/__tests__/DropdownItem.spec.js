@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { DropdownItem } from '../';
+import { DropdownItem } from '..';
 import { DropdownContext } from '../DropdownContext';
 
 describe('DropdownItem', () => {
@@ -56,7 +56,9 @@ describe('DropdownItem', () => {
   });
 
   it('should render custom element', () => {
-    const Link = props => <a href="/home" {...props}>{props.children}</a>;
+    function Link(props) {
+      return <a href="/home" {...props}>{props.children}</a>;
+    }
     const wrapper = mount(<DropdownItem tag={Link}>Home</DropdownItem>);
 
     expect(wrapper.find('a').hostNodes().length).toBe(1);

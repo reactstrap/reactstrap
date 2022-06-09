@@ -23,7 +23,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const Accordion = (props) => {
+function Accordion(props) {
   const {
     flush,
     open,
@@ -52,7 +52,7 @@ const Accordion = (props) => {
       <Tag {...attributes} className={classes} ref={innerRef} />
     </AccordionContext.Provider>
   );
-};
+}
 
 Accordion.propTypes = propTypes;
 Accordion.defaultProps = defaultProps;

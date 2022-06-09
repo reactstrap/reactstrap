@@ -103,7 +103,7 @@ class Offcanvas extends React.Component {
 
     if (isOpen) {
       this.init();
-      this.setState({ isOpen: true })
+      this.setState({ isOpen: true });
       if (autoFocus) {
         this.setFocus();
       }
@@ -155,25 +155,24 @@ class Offcanvas extends React.Component {
     this._isMounted = false;
   }
 
-  trapFocus (ev) {
+  trapFocus(ev) {
     if (!this.props.trapFocus) {
       return;
     }
 
-    if (!this._element) //element is not attached
-      return;
+    if (!this._element) // element is not attached
+    { return; }
 
     if (this._dialog === ev.target) // initial focus when the Offcanvas is opened
-      return;
+    { return; }
 
     if (this.offcanvasIndex < (Offcanvas.openCount - 1)) // last opened offcanvas
-      return;
+    { return; }
 
     const children = this.getFocusableChildren();
 
     for (let i = 0; i < children.length; i++) { // focus is already inside the Offcanvas
-      if (children[i] === ev.target)
-        return;
+      if (children[i] === ev.target) return;
     }
 
     if (children.length > 0) { // otherwise focus the first focusable element in the Offcanvas
@@ -302,7 +301,7 @@ class Offcanvas extends React.Component {
     conditionallyUpdateScrollbar();
 
     if (Offcanvas.openCount === 0 && (this.props.backdrop && !this.props.scrollable)) {
-      document.body.style.overflow = 'hidden'; 
+      document.body.style.overflow = 'hidden';
     }
 
     this.offcanvasIndex = Offcanvas.openCount;
@@ -330,7 +329,7 @@ class Offcanvas extends React.Component {
     this.manageFocusAfterClose();
     Offcanvas.openCount = Math.max(0, Offcanvas.openCount - 1);
 
-    document.body.style.overflow = null; 
+    document.body.style.overflow = null;
     setScrollbarWidth(this._originalBodyPadding);
   }
 
@@ -378,23 +377,27 @@ class Offcanvas extends React.Component {
       };
 
       const Backdrop = backdrop && (
-        hasTransition ?
-          (<Fade
-            {...backdropTransition}
-            in={isOpen && !!backdrop}
-            innerRef={(c) => {
-              this._backdrop = c;
-            }}
-            cssModule={cssModule}
-            className={mapToCssModules(classNames('offcanvas-backdrop', backdropClassName), cssModule)}
-            onClick={this.handleBackdropClick}
-            onMouseDown={this.handleBackdropMouseDown}
-          />)
-          : <div
+        hasTransition
+          ? (
+            <Fade
+              {...backdropTransition}
+              in={isOpen && !!backdrop}
+              innerRef={(c) => {
+                this._backdrop = c;
+              }}
+              cssModule={cssModule}
+              className={mapToCssModules(classNames('offcanvas-backdrop', backdropClassName), cssModule)}
+              onClick={this.handleBackdropClick}
+              onMouseDown={this.handleBackdropMouseDown}
+            />
+          )
+          : (
+            <div
               className={mapToCssModules(classNames('offcanvas-backdrop', 'show', backdropClassName), cssModule)}
               onClick={this.handleBackdropClick}
               onMouseDown={this.handleBackdropMouseDown}
             />
+          )
       );
 
       const attributes = omit(this.props, propsToOmit);
@@ -409,7 +412,9 @@ class Offcanvas extends React.Component {
             onEntered={this.onOpened}
             onExited={this.onClosed}
             cssModule={cssModule}
-            className={mapToCssModules(classNames('offcanvas', className,
+            className={mapToCssModules(classNames(
+              'offcanvas',
+              className,
               `offcanvas-${direction}`
             ), cssModule)}
             innerRef={(c) => {

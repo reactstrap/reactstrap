@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { OffcanvasBody } from '../';
+import { OffcanvasBody } from '..';
 
 describe('OffcanvasBody', () => {
   it('should render with "offcanvas-body" class', () => {

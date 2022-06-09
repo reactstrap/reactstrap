@@ -19,7 +19,7 @@ const defaultProps = {
   children: 'Loading...'
 };
 
-const Spinner = props => {
+function Spinner(props) {
   const {
     className,
     cssModule,
@@ -43,14 +43,15 @@ const Spinner = props => {
 
   return (
     <Tag role="status" {...attributes} className={classes}>
-      {children &&
+      {children
+        && (
         <span className={mapToCssModules('visually-hidden', cssModule)}>
           {children}
         </span>
-      }
+        )}
     </Tag>
   );
-};
+}
 
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;

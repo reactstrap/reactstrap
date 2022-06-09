@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { List } from '../';
+import { List } from '..';
 
 describe('List', () => {
   it('should render with "ul" tag', () => {
     const wrapper = shallow(<List>Yo!</List>);
 
     expect(wrapper.type()).toBe('ul');
-  })
+  });
 
   it('should render with "list-inline" class when type is "inline"', () => {
     const wrapper = shallow(<List type="inline">Yo!</List>);

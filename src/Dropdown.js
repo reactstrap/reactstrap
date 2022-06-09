@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
+import {
+  mapToCssModules, omit, keyCodes, tagPropType
+} from './utils';
 
 const propTypes = {
   a11y: PropTypes.bool,
@@ -44,7 +46,7 @@ const preventDefaultKeys = [
   keyCodes.down,
   keyCodes.end,
   keyCodes.home
-]
+];
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -108,10 +110,10 @@ class Dropdown extends React.Component {
   }
 
   getItemType() {
-    if(this.context.menuRole === 'listbox') {
-      return 'option'
+    if (this.context.menuRole === 'listbox') {
+      return 'option';
     }
-    return 'menuitem'
+    return 'menuitem';
   }
 
   getMenuItems() {
@@ -123,15 +125,11 @@ class Dropdown extends React.Component {
   }
 
   addEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.addEventListener(event, this.handleDocumentClick, true)
-    );
+    ['click', 'touchstart', 'keyup'].forEach((event) => document.addEventListener(event, this.handleDocumentClick, true));
   }
 
   removeEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
-    );
+    ['click', 'touchstart', 'keyup'].forEach((event) => document.removeEventListener(event, this.handleDocumentClick, true));
   }
 
   handleDocumentClick(e) {
@@ -260,7 +258,8 @@ class Dropdown extends React.Component {
 
     let subItemIsActive = false;
     if (setActiveFromChild) {
-      React.Children.map(this.props.children[1].props.children,
+      React.Children.map(
+        this.props.children[1].props.children,
         (dropdownItem) => {
           if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
         }

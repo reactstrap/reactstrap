@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import Button from "./Button";
 import classNames from 'classnames';
+import Button from './Button';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
@@ -22,7 +22,7 @@ class ButtonToggle extends React.Component {
     this.state = {
       toggled: props.defaultValue,
       focus: false,
-    }
+    };
 
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
@@ -30,7 +30,7 @@ class ButtonToggle extends React.Component {
   }
 
   onBlur(e) {
-    if(this.props.onBlur) {
+    if (this.props.onBlur) {
       this.props.onBlur(e);
     }
 
@@ -40,7 +40,7 @@ class ButtonToggle extends React.Component {
   }
 
   onFocus(e) {
-    if(this.props.onFocus) {
+    if (this.props.onFocus) {
       this.props.onFocus(e);
     }
 
@@ -50,7 +50,7 @@ class ButtonToggle extends React.Component {
   }
 
   onClick(e) {
-    if(this.props.onClick) {
+    if (this.props.onClick) {
       this.props.onClick(e);
     }
 
@@ -66,20 +66,22 @@ class ButtonToggle extends React.Component {
     } = this.props;
 
     const classes = mapToCssModules(classNames(
-      className, 
-      { 
-        focus: this.state.focus, 
+      className,
+      {
+        focus: this.state.focus,
       }
-      ), this.props.cssModule);
+    ), this.props.cssModule);
 
-    return <Button
-      active={this.state.toggled}
-      onBlur={this.onBlur} 
-      onFocus={this.onFocus} 
-      onClick={this.onClick}
-      className={classes}
-      {...attributes}
-    />;
+    return (
+      <Button
+        active={this.state.toggled}
+        onBlur={this.onBlur}
+        onFocus={this.onFocus}
+        onClick={this.onClick}
+        className={classes}
+        {...attributes}
+      />
+    );
   }
 }
 

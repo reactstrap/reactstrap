@@ -38,7 +38,8 @@
     "jsx-a11y/no-noninteractive-element-interactions": 1,
     "import/no-webpack-loader-syntax": 0,
     "import/no-unresolved": 0,
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    "react/destructuring-assignment": 0
   },
   "parserOptions": {
     "sourceType": "module",

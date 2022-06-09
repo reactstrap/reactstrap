@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselControl = (props) => {
-  const { direction, onClickHandler, cssModule, directionText, className } = props;
+function CarouselControl(props) {
+  const {
+    direction, onClickHandler, cssModule, directionText, className
+  } = props;
 
   const anchorClasses = mapToCssModules(classNames(
     className,
@@ -19,7 +21,6 @@ const CarouselControl = (props) => {
     'visually-hidden'
   ), cssModule);
 
-
   return (
     // We need to disable this linting rule to use an `<a>` instead of
     // `<button>` because that's what the Bootstrap examples require:
@@ -27,7 +28,7 @@ const CarouselControl = (props) => {
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
       className={anchorClasses}
-      style={{cursor: "pointer"}}
+      style={{ cursor: 'pointer' }}
       role="button"
       tabIndex="0"
       onClick={(e) => {
@@ -39,7 +40,7 @@ const CarouselControl = (props) => {
       <span className={screenReaderClasses}>{directionText || direction}</span>
     </a>
   );
-};
+}
 
 CarouselControl.propTypes = {
   direction: PropTypes.oneOf(['prev', 'next']).isRequired,

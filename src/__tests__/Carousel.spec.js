@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Carousel } from '../';
+import { Carousel } from '..';
 import CarouselItem from '../CarouselItem';
 import CarouselIndicators from '../CarouselIndicators';
 import CarouselControl from '../CarouselControl';

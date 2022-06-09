@@ -64,7 +64,7 @@ function isInDOMSubtree(element, subtreeRoot) {
 }
 
 function isInDOMSubtrees(element, subtreeRoots = []) {
-  return subtreeRoots && subtreeRoots.length && subtreeRoots.filter(subTreeRoot=> isInDOMSubtree(element, subTreeRoot))[0];
+  return subtreeRoots && subtreeRoots.length && subtreeRoots.filter((subTreeRoot) => isInDOMSubtree(element, subTreeRoot))[0];
 }
 
 class TooltipPopoverWrapper extends React.Component {
@@ -108,7 +108,7 @@ class TooltipPopoverWrapper extends React.Component {
     if (props.isOpen && !state.isOpen) {
       return { isOpen: props.isOpen };
     }
-    else return null;
+    return null;
   }
 
   onMouseOverTooltipContent() {
@@ -162,11 +162,9 @@ class TooltipPopoverWrapper extends React.Component {
   }
 
   getCurrentTarget(target) {
-    if (!target)
-      return null;
+    if (!target) return null;
     const index = this._targets.indexOf(target);
-    if (index >= 0)
-      return this._targets[index];
+    if (index >= 0) return this._targets[index];
     return this.getCurrentTarget(target.parentElement);
   }
 
@@ -191,6 +189,7 @@ class TooltipPopoverWrapper extends React.Component {
       this.getDelay('show')
     );
   }
+
   hide(e) {
     if (this.props.isOpen) {
       this.clearHideTimeout();
@@ -208,7 +207,6 @@ class TooltipPopoverWrapper extends React.Component {
       this.getDelay('hide')
     );
   }
-
 
   clearShowTimeout() {
     clearTimeout(this._showTimeout);
@@ -246,13 +244,13 @@ class TooltipPopoverWrapper extends React.Component {
   }
 
   addEventOnTargets(type, handler, isBubble) {
-    this._targets.forEach(target=> {
+    this._targets.forEach((target) => {
       target.addEventListener(type, handler, isBubble);
     });
   }
 
   removeEventOnTargets(type, handler, isBubble) {
-    this._targets.forEach(target=> {
+    this._targets.forEach((target) => {
       target.removeEventListener(type, handler, isBubble);
     });
   }
@@ -305,7 +303,7 @@ class TooltipPopoverWrapper extends React.Component {
       this.removeEventOnTargets('focusout', this.hide, true);
     }
 
-    document.removeEventListener('click', this.handleDocumentClick, true)
+    document.removeEventListener('click', this.handleDocumentClick, true);
   }
 
   updateTarget() {

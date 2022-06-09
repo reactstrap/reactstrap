@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AccordionBody, AccordionContext } from '../';
+import { AccordionBody, AccordionContext } from '..';
 
 describe('AccordionBody', () => {
   it('should render with "accordion-body" class within "accordion-collapse', () => {

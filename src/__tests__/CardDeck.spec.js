@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardDeck } from '../';
+import { CardDeck } from '..';
 
 describe('CardDeck', () => {
   it('should render with "card-deck" class', () => {

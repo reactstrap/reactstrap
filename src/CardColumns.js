@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardColumns = (props) => {
+function CardColumns(props) {
   const {
     className,
     cssModule,
@@ -28,7 +28,7 @@ const CardColumns = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardColumns.propTypes = propTypes;
 CardColumns.defaultProps = defaultProps;

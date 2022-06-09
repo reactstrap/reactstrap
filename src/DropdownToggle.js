@@ -54,7 +54,9 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, color, cssModule, caret, split, nav, tag, innerRef, ...props } = this.props;
+    const {
+      className, color, cssModule, caret, split, nav, tag, innerRef, ...props
+    } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
     const classes = mapToCssModules(classNames(
       className,
@@ -64,12 +66,11 @@ class DropdownToggle extends React.Component {
         'nav-link': nav
       }
     ), cssModule);
-    const children =
-      typeof props.children !== 'undefined' ? (
-        props.children
-      ) : (
-        <span className="visually-hidden">{ariaLabel}</span>
-      );
+    const children = typeof props.children !== 'undefined' ? (
+      props.children
+    ) : (
+      <span className="visually-hidden">{ariaLabel}</span>
+    );
 
     let Tag;
 

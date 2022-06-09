@@ -21,7 +21,7 @@ const defaultProps = {
   tag: 'h2'
 };
 
-const AccordionHeader = (props) => {
+function AccordionHeader(props) {
   const {
     className,
     cssModule,
@@ -52,7 +52,7 @@ const AccordionHeader = (props) => {
       </button>
     </Tag>
   );
-};
+}
 
 AccordionHeader.propTypes = propTypes;
 AccordionHeader.defaultProps = defaultProps;
