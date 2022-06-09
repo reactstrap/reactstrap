@@ -1179,8 +1179,8 @@ describe('Modal', () => {
                   <Button className={'focus'}>focusable element</Button>
               </ModalBody>
             </Modal>
-          </>),
-          wrapper = didMount(<MockComponent />),
+          </>)
+          const wrapper = didMount(<MockComponent />),
           modal_instance = wrapper.find(Modal).instance();
 
     expect(document.addEventListener.mock.calls.length).toBe(1);
@@ -1206,8 +1206,8 @@ describe('Modal', () => {
                   <Button className={'focus'}>focusable element</Button>
               </ModalBody>
             </Modal>
-          </>),
-          wrapper = didMount(<MockComponent />);
+          </>)
+          const wrapper = didMount(<MockComponent />);
     const button = wrapper.find('.first').hostNodes().getDOMNode(),
           button2 = wrapper.find('.focus').hostNodes().getDOMNode(),
           modal_instance = wrapper.find(Modal).instance(),

@@ -815,8 +815,8 @@ describe('Offcanvas', () => {
                   <Button className={'focus'}>focusable element</Button>
               </OffcanvasBody>
             </Offcanvas>
-          </>),
-          wrapper = mount(<MockComponent />),
+          </>)
+          const wrapper = mount(<MockComponent />),
           offcanvas_instance = wrapper.find(Offcanvas).instance();
 
     expect(document.addEventListener.mock.calls.length).toBe(1);
