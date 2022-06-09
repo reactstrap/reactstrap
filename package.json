@@ -280,6 +280,7 @@
     "@types/react": "^16.9.51",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.2.2",
+    "babel-preset-react-app": "^10.0.1",
     "bootstrap": "^5.1.0",
     "conventional-changelog-cli": "^2.0.21",
     "conventional-recommended-bump": "^4.1.1",
