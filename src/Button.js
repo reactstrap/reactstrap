@@ -58,7 +58,7 @@ function Button(props) {
       <CloseButton
         {...attributes}
       />
-    )
+    );
   }
 
   const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;

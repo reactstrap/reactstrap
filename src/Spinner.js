@@ -16,7 +16,7 @@ const propTypes = {
   className: PropTypes.string,
   /** Change existing className with a new className */
   cssModule: PropTypes.object,
-  /** Pass children so this component can wrap the child elements*/
+  /** Pass children so this component can wrap the child elements */
   children: PropTypes.string
 };
 
