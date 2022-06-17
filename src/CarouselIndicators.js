@@ -21,9 +21,7 @@ const CarouselIndicators = (props) => {
           onClickHandler(idx);
         }}
         className={indicatorClasses}
-      >
-        {item.caption}
-      </button>);
+      />);
   });
 
   return (

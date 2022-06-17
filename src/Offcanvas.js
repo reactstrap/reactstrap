@@ -29,7 +29,7 @@ const propTypes = {
   className: PropTypes.string,
   container: targetPropType,
   cssModule: PropTypes.object,
-  direction: PropTypes.oneOf(['start', 'end', 'bottom', 'top', 'left', 'right']),
+  direction: PropTypes.oneOf(['start', 'end', 'bottom', 'top']),
   fade: PropTypes.bool,
   innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func,]),
   isOpen: PropTypes.bool,
