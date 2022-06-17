@@ -27,10 +27,28 @@ describe('Label', () => {
     expect(wrapper.hasClass('col-form-label')).toBe(true);
   });
 
+  it('should not render with "form-label" class when a col is provided', () => {
+    const wrapper = shallow(<Label sm="6">Yo!</Label>);
+
+    expect(wrapper.hasClass("form-label")).toBe(false);
+  });
+
   it('should render with "form-label" class when a col is not provided', () => {
     const wrapper = shallow(<Label>Yo!</Label>);
 
     expect(wrapper.hasClass('form-label')).toBe(true);
+  });
+
+  it('should render with "form-check-label" class when check is specified', () => {
+    const wrapper = shallow(<Label check>Yo!</Label>);
+
+    expect(wrapper.hasClass("form-check-label")).toBe(true);
+  });
+
+  it('should not render with "form-label" class when check is specified', () => {
+    const wrapper = shallow(<Label check>Yo!</Label>);
+
+    expect(wrapper.hasClass("form-label")).toBe(false);
   });
 
   it('should pass col size specific classes as Strings', () => {
