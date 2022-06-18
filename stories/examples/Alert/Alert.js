@@ -1,19 +1,19 @@
 import React from 'react';
 import { Alert } from 'reactstrap';
-import { colors } from './options';
+import { colors } from '../options';
+import { ArgsTable } from '@storybook/addon-docs';
 
 const Example = (args) => {
   return (
-    <div>
-      <Alert {...args} />
-    </div>
+    <>
+      <Alert {...args} dismiss={() => { }} isOpen={true} />
+    </>
   );
 };
 
 Example.args = {
   children: 'Hey! Pay attention.',
-  color: 'primary',
-  dismissible: false
+  color: 'primary'
 };
 
 Example.argTypes = {
