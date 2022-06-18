@@ -10,10 +10,18 @@ const Example = (props) => {
       <Badge color="danger" pill>Danger</Badge>
       <Badge color="warning" pill>Warning</Badge>
       <Badge color="info" pill>Info</Badge>
-      <Badge color="light" pill>Light</Badge>
+      <Badge color="light" pill className="text-dark">Light</Badge>
       <Badge color="dark" pill>Dark</Badge>
     </div>
   );
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Use the `pill` prop to make badges more rounded with a larger border-radius.'
+    }
+  }
+}

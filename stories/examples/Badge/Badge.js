@@ -1,12 +1,10 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
-import { colors } from './options';
+import { colors } from '../options';
 
 const Example = (args) => {
   return (
-    <div>
-      <Badge {...args} />
-    </div>
+    <Badge {...args} />
   );
 }
 

@@ -12,3 +12,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Badges can be used as part of links or buttons to provide a counter.'
+    }
+  }
+}

@@ -15,9 +15,10 @@ A small count and labeling component.
   }
 };
 
-export { default as Badge } from './examples/Badge';
-export { default as Links } from './examples/BadgeLinks';
-export { default as Pills } from './examples/BadgePills';
-export { default as Sizing } from './examples/Badge';
-export { default as Variations } from './examples/BadgeVariations';
-export { default as Props } from './examples/BadgeProps';
+export { default as Badge } from './examples/Badge/Badge';
+export { default as Headings } from './examples/Badge/BadgeHeadings';
+export { default as Buttons } from './examples/Badge/BadgeButton'
+export { default as BackgroundColors } from './examples/Badge/BadgeVariations';
+export { default as Links } from './examples/Badge/BadgeLinks';
+export { default as PillBadges } from './examples/Badge/BadgePills';
+export { default as Props } from './examples/Badge/BadgeProps';
