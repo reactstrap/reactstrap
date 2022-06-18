@@ -3,7 +3,7 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 const Example = (props) => {
   return (
-    <div>
+    <>
       <Breadcrumb>
         <BreadcrumbItem active>Home</BreadcrumbItem>
       </Breadcrumb>
@@ -16,7 +16,7 @@ const Example = (props) => {
         <BreadcrumbItem><a href="#">Library</a></BreadcrumbItem>
         <BreadcrumbItem active>Data</BreadcrumbItem>
       </Breadcrumb>
-    </div>
+    </>
   );
 };
 

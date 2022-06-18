@@ -4,13 +4,20 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
-  listTag: tagPropType,
-  className: PropTypes.string,
-  listClassName: PropTypes.string,
-  cssModule: PropTypes.object,
+  /** Aria label */
+  'aria-label': PropTypes.string,
+  /** Pass children so this component can wrap them */
   children: PropTypes.node,
-  'aria-label': PropTypes.string
+  /** Add custom class */
+  className: PropTypes.string,
+  /** Change existing className with a new className */
+  cssModule: PropTypes.object,
+  /** Add custom class to list tag */
+  listClassName: PropTypes.string,
+  /** Set a custom element for list tag */
+  listTag: tagPropType,
+  /** Set a custom element for this component */
+  tag: tagPropType,
 };
 
 const defaultProps = {
