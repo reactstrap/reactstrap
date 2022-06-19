@@ -22,3 +22,4 @@ export { default as ButtonToolbar } from './examples/ButtonGroup/ButtonToolbar';
 export { default as Sizing } from './examples/ButtonGroup/ButtonGroupSizing';
 export { default as Nesting } from './examples/ButtonGroup/ButtonGroupNesting';
 export { default as Vertical } from './examples/ButtonGroup/ButtonGroupVertical';
+export { default as Props } from './examples/ButtonGroup/ButtonGroupProps';
