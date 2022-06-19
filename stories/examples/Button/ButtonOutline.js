@@ -16,3 +16,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'In need of a button, but not the hefty background colors they bring? Add `outline` prop to remove all background images and colors on any button.'
+    }
+  }
+}
