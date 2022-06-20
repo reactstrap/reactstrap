@@ -15,7 +15,7 @@ export default {
   }
 };
 
-export { default as CloseButton } from './examples/CloseButton';
-export { default as CloseButtonWhite } from './examples/CloseButtonWhite';
-export { default as CloseButtonDisabled } from './examples/CloseButtonDisabled';
-export { default as Props } from './examples/CloseButtonProps';
+export { default as CloseButton } from './examples/CloseButton/CloseButton';
+export { default as CloseButtonDisabled } from './examples/CloseButton/CloseButtonDisabled';
+export { default as CloseButtonWhite } from './examples/CloseButton/CloseButtonWhite';
+export { default as Props } from './examples/CloseButton/CloseButtonProps';

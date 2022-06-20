@@ -5,14 +5,17 @@ import { CloseButton } from 'reactstrap';
 const Example = (args) => {
   return (
     <div className='bg-dark p-3'>
-      <CloseButton {...args}/>
+      <CloseButton variant="white" />
     </div>
   )
 }
 
-Example.args= {
-  disabled: false,
-  variant: 'white'
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Change the default `ButtonClose` to be white with the `variant` prop. '
+    }
+  }
 }
 
 export default Example;
