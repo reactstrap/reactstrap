@@ -27,7 +27,7 @@ const CarouselControl = (props) => {
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
       className={anchorClasses}
-      style={{cursor: "pointer"}}
+      style={{ cursor: "pointer" }}
       role="button"
       tabIndex="0"
       onClick={(e) => {
@@ -42,10 +42,15 @@ const CarouselControl = (props) => {
 };
 
 CarouselControl.propTypes = {
+  /** Set the direction of control button */
   direction: PropTypes.oneOf(['prev', 'next']).isRequired,
+  /** Function to be triggered on click */
   onClickHandler: PropTypes.func.isRequired,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Screen reader text */
   directionText: PropTypes.string,
+  /** Add custom class */
   className: PropTypes.string,
 };
 
