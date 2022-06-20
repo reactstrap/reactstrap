@@ -23,8 +23,4 @@ const Example = (args) => {
   );
 }
 
-Example.args = {
-  horizontal: false
-};
-
 export default Example;

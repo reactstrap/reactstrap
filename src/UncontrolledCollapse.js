@@ -6,8 +6,11 @@ import { omit, findDOMElements, defaultToggleEvents, addMultipleEventListeners }
 const omitKeys = ['toggleEvents', 'defaultOpen'];
 
 const propTypes = {
+  /** set if Collapse is open by default */
   defaultOpen: PropTypes.bool,
+  /** id of the element that should trigger toggle */
   toggler: PropTypes.string.isRequired,
+  /** Events that should trigger the toggle */
   toggleEvents: PropTypes.arrayOf(PropTypes.string)
 };
 

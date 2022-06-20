@@ -19,3 +19,11 @@ const Example = (props) => (
 );
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Not a fan of state, we got you covered.'
+    }
+  },
+}
