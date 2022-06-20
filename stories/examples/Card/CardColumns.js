@@ -6,7 +6,7 @@ import {
 
 const Example = (props) => {
   return (
-    <CardColumns>
+    <CardColumns style={{ width: '18rem' }}>
       <Card>
         <CardImg top width="100%" src="https://picsum.photos/256/186" alt="Card image cap" />
         <CardBody>

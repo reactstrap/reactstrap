@@ -38,3 +38,11 @@ const Example = (props) => {
 };
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Use card groups to render cards as a single, attached element with equal width and height columns. '
+    }
+  }
+}

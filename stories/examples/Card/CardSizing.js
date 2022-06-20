@@ -23,3 +23,13 @@ const Example = (props) => {
 };
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Cards assume no specific width to start, so they’ll be 100% wide unless otherwise stated.\
+You can change this as needed with custom CSS, grid classes, grid Sass mixins, or utilities.\n\n\
+Using the grid, wrap cards in columns and rows as needed.'
+    }
+  }
+}
