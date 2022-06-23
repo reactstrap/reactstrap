@@ -7,7 +7,7 @@ const Example = ({ direction, ...args }) => {
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
-    <div className="d-flex justify-content-center p-5">
+    <div className="d-flex p-5">
       <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
         <DropdownToggle caret>
           Dropdown
@@ -25,19 +25,6 @@ const Example = ({ direction, ...args }) => {
       </Dropdown>
     </div>
   );
-}
-
-Example.args = {
-  dark: false,
-  end: false,
-  flip: true
-}
-
-Example.argTypes = {
-  direction: {
-    control: { type: 'select' },
-    options: ['up', 'down', 'start', 'end']
-  }
 }
 
 export default Example;

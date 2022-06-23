@@ -15,10 +15,14 @@ export default {
   }
 };
 
-export { default as Dropdown } from './examples/Dropdown';
-export { default as Container } from './examples/DropdownContainer';
-export { default as SetActiveFromChild } from './examples/DropdownSetActiveFromChild';
-export { default as Sizing } from './examples/DropdownSizing';
-export { default as Uncontrolled } from './examples/DropdownUncontrolled';
-export { default as CustomDropdown } from './examples/CustomDropdown';
-export { default as Props } from './examples/DropdownProps';
+export { default as Dropdown } from './examples/Dropdown/Dropdown';
+export { default as SplitButton } from './examples/Dropdown/DropdownSplit';
+export { default as Sizing } from './examples/Dropdown/DropdownSizing';
+export { default as DarkDropdown } from './examples/Dropdown/DropdownDark';
+export { default as Directions } from './examples/Dropdown/DropdownDirectionKitchen';
+export { default as SetActiveFromChild } from './examples/Dropdown/DropdownSetActiveFromChild';
+
+export { default as Container } from './examples/Dropdown/DropdownContainer';
+export { default as Uncontrolled } from './examples/Dropdown/DropdownUncontrolled';
+export { default as CustomDropdown } from './examples/Dropdown/CustomDropdown';
+export { default as Props } from './examples/Dropdown/DropdownProps';

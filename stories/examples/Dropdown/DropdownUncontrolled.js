@@ -1,7 +1,7 @@
 import React from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-export default function Example () {
+export default function Example() {
   return (
     <UncontrolledDropdown>
       <DropdownToggle caret>
@@ -16,4 +16,12 @@ export default function Example () {
       </DropdownMenu>
     </UncontrolledDropdown>
   );
+}
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'And if you are not a fan of using `state`, feel free to use the `UncontrolledDropdown`.'
+    }
+  },
 }
