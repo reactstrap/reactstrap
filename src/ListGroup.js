@@ -4,12 +4,18 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
-  flush: PropTypes.bool,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Remove borders to make the list appear flush */
+  flush: PropTypes.bool,
+  /** Make the list horizontal instead of vertical */
   horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  numbered: PropTypes.bool
+  /** Add number to the ListItems */
+  numbered: PropTypes.bool,
+  /** Set a custom element for this component */
+  tag: tagPropType,
 };
 
 const defaultProps = {

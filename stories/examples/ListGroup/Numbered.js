@@ -13,8 +13,15 @@ const Example = (props) => {
         <ListGroupItem>Vestibulum at eros</ListGroupItem>
       </ListGroup>
     </div>
-
   );
+}
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Add `number` prop to `ListGroup` to opt into numbered list group items. Numbers are generated via CSS (as opposed to a `<ol>`s default browser styling) for better placement inside list group items and to allow for better customization.'
+    }
+  }
 }
 
 export default Example;

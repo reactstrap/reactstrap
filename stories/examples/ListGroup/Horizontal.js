@@ -22,8 +22,15 @@ const Example = (props) => {
       </ListGroup>
       <p className="mt-3">Note that horizontal list groups cannot be combined with flush list groups. If <code>flush</code> is <code>true</code> then <code>horizontal</code> has no effect.</p>
     </div>
-
   );
+}
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Add `horizontal` prop to change the layout of list group items from vertical to horizontal across all breakpoints. Alternatively choose a variant `sm|md|lg|xl|xxl` to make a list group horizontal starting at that breakpoint’s min-width.'
+    }
+  }
 }
 
 export default Example;

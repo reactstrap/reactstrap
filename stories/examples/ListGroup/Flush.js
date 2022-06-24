@@ -11,7 +11,14 @@ const Example = (props) => {
       <ListGroupItem tag="a" href="#">Vestibulum at eros</ListGroupItem>
     </ListGroup>
   );
+}
 
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Add `flush` prop to `ListGroup` to remove some borders and rounded corners to render list group items edge-to-edge in a parent container.'
+    }
+  }
 }
 
 export default Example;

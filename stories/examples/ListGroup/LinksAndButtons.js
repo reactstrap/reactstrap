@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 const Example = (props) => {
   return (
     <div>
-      <h3>Anchors </h3>
+      <h3>Links </h3>
       <p>Be sure to <strong>not use the standard <code>.btn</code> classes here</strong>.</p>
       <ListGroup>
         <ListGroupItem active tag="a" href="#" action>Cras justo odio</ListGroupItem>

@@ -11,4 +11,12 @@ const Example = (props) => {
   );
 }
 
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Add badges to any list group item to show unread counts, activity, and more.'
+    }
+  }
+}
+
 export default Example;

@@ -13,5 +13,14 @@ const Example = (props) => {
   );
 }
 
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Add `disabled` prop to a `ListGroupItem` to  make it *appear* disabled.'
+    }
+  }
+}
+
+
 export default Example;
 
