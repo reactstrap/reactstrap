@@ -79,7 +79,8 @@ const Example = (args) => {
 
 Example.args = {
   dark: false,
-  slide: true
+  slide: true,
+  fade: false
 };
 
 export default Example;
