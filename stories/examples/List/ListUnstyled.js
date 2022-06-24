@@ -23,4 +23,12 @@ const Example = (props) => {
   );
 }
 
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Remove the default `list-style` and `left margin` on list items (immediate children only).'
+    }
+  }
+}
+
 export default Example;
