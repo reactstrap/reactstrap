@@ -1,9 +1,7 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ModalExample = (props) => {
+const Example = (props) => {
   const {
     buttonLabel,
     className
@@ -31,4 +29,4 @@ const ModalExample = (props) => {
   );
 }
 
-export default ModalExample;
+export default Example;
