@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Collapse,
-  Container,
   Navbar,
   NavbarToggler,
   NavbarBrand,
@@ -14,7 +13,6 @@ import {
   DropdownItem,
   NavbarText
 } from 'reactstrap';
-import { colors } from './options';
 
 const Example = (args) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,34 +56,5 @@ const Example = (args) => {
     </div>
   );
 }
-
-Example.args = {
-  color: 'light',
-  light: true,
-  dark: false,
-  full: false,
-  expand: 'md',
-  container: 'fluid',
-}
-
-Example.argTypes = {
-  color: {
-    control: { type: 'select' },
-    options: colors
-  },
-  container: {
-    control: { type: 'select' },
-    options: [false, true, 'sm', 'md', 'lg', 'xl', 'fluid']
-  },
-  expand: {
-    control: { type: 'select' },
-    options: [false, true, 'sm', 'md', 'lg', 'xl']
-  },
-  fixed: {
-    control: { type: 'select' },
-    options: ['', 'top', 'bottom']
-  },
-  // sticky
-};
 
 export default Example;
