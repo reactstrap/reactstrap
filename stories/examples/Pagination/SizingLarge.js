@@ -3,14 +3,18 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 const Example = (props) => {
   return (
-    <Pagination aria-label="Page navigation example">
-      <PaginationItem disabled>
-        <PaginationLink first href="#" />
+    <Pagination size="lg" aria-label="Page navigation example">
+      <PaginationItem>
+        <PaginationLink first href="#">
+          First
+        </PaginationLink>
       </PaginationItem>
-      <PaginationItem disabled>
-        <PaginationLink previous href="#" />
+      <PaginationItem>
+        <PaginationLink previous href="#">
+          Previous
+        </PaginationLink>
       </PaginationItem>
-      <PaginationItem active>
+      <PaginationItem>
         <PaginationLink href="#">
           1
         </PaginationLink>
@@ -26,23 +30,25 @@ const Example = (props) => {
         </PaginationLink>
       </PaginationItem>
       <PaginationItem>
-        <PaginationLink href="#">
-          4
+        <PaginationLink next href="#">
+          Next
         </PaginationLink>
       </PaginationItem>
       <PaginationItem>
-        <PaginationLink href="#">
-          5
+        <PaginationLink last href="#">
+          Last
         </PaginationLink>
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink next href="#" />
-      </PaginationItem>
-      <PaginationItem>
-        <PaginationLink last href="#" />
       </PaginationItem>
     </Pagination>
   );
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Fancy a larger pagination? Add `size="lg"` prop.'
+    }
+  }
+}

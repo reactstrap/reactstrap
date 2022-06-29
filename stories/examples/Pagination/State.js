@@ -3,14 +3,14 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 const Example = (props) => {
   return (
-    <Pagination size="lg" aria-label="Page navigation example">
-      <PaginationItem>
+    <Pagination aria-label="Page navigation example">
+      <PaginationItem disabled>
         <PaginationLink first href="#" />
       </PaginationItem>
-      <PaginationItem>
+      <PaginationItem disabled>
         <PaginationLink previous href="#" />
       </PaginationItem>
-      <PaginationItem>
+      <PaginationItem active>
         <PaginationLink href="#">
           1
         </PaginationLink>
@@ -20,9 +20,19 @@ const Example = (props) => {
           2
         </PaginationLink>
       </PaginationItem>
-      <PaginationItem>
+      <PaginationItem disabled>
         <PaginationLink href="#">
           3
+        </PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">
+          4
+        </PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">
+          5
         </PaginationLink>
       </PaginationItem>
       <PaginationItem>
@@ -36,3 +46,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Pagination links are customizable for different circumstances. Use `disabled` prop for links that appear un-clickable and `active` prop to indicate the current page.'
+    }
+  }
+}

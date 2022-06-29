@@ -36,3 +36,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'If you fancy a smaller pagination you can add `size="sm"` prop.'
+    }
+  }
+}
