@@ -13,3 +13,11 @@ const Example = (args) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Want your placeholder bigger or smaller Add `size` prop with `lg`, `sm` or `xs`.'
+    }
+  }
+}

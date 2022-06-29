@@ -16,3 +16,11 @@ const Example = (args) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Use `wave` or `glow` animation using the `animation` prop.'
+    }
+  }
+}
