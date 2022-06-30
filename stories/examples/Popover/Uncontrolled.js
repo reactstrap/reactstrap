@@ -17,3 +17,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'If handling state is too much, you can always use `UncontrolledPopover`.'
+    }
+  }
+}

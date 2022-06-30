@@ -34,3 +34,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Change the trigger for the popover to either `click`, `focus` or `legacy`.'
+    }
+  }
+}

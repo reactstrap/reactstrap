@@ -10,8 +10,8 @@ const PopoverContent = ({ scheduleUpdate }) => {
       <PopoverBody>
         <Button onClick={() => setIsOpen(!isOpen)}>Click me</Button>
         <Collapse isOpen={isOpen} onEntered={scheduleUpdate} onExited={scheduleUpdate}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
           laboris nisi ut aliquip ex ea commodo consequat.
         </Collapse>
       </PopoverBody>

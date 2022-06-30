@@ -41,19 +41,19 @@ const PopoverExampleMulti = props => {
       {[
         {
           placement: "top",
-          text: "Top"
+          text: "Popover on Top"
         },
         {
           placement: "bottom",
-          text: "Bottom"
+          text: "Popover on Bottom"
         },
         {
           placement: "left",
-          text: "Left"
+          text: "Popover on Left"
         },
         {
           placement: "right",
-          text: "Right"
+          text: "Popover on Right"
         }
       ].map((popover, i) => {
         return <PopoverItem key={i} item={popover} id={i} />;
@@ -63,3 +63,11 @@ const PopoverExampleMulti = props => {
 };
 
 export default PopoverExampleMulti;
+
+PopoverExampleMulti.parameters = {
+  docs: {
+    description: {
+      story: 'Four options are available: top, right, bottom, and left.'
+    }
+  }
+}
