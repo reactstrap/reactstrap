@@ -1,6 +1,6 @@
 import React from 'react';
 import { Progress } from 'reactstrap';
-import { colors } from './options';
+import { colors } from '../options';
 
 const Example = (args) => {
   return (

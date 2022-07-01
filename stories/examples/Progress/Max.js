@@ -25,3 +25,11 @@ const Example = (props) => {
 };
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Change the `max` prop to divide the bar into `max` equal lengths.'
+    }
+  }
+}

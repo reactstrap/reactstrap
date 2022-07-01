@@ -30,3 +30,11 @@ const Example = (props) => {
 };
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Include multiple progress bars in a progress component if you need.'
+    }
+  }
+}
