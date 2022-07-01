@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Spinner } from 'reactstrap';
-import { colors } from './options';
+import { colors } from '../options';
 
 const Example = (args) => {
   return (
