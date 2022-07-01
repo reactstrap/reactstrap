@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 const Example = (props) => {
   return (
-    <Table striped>
+    <Table size="sm">
       <thead>
         <tr>
           <th>#</th>
@@ -37,3 +37,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Use `size="sm"` to make tables compact by cutting cell padding in half.'
+    }
+  }
+}

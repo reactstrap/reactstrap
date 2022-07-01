@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 
 const Example = (props) => {
   return (
-    <Table hover>
+    <Table borderless>
       <thead>
         <tr>
           <th>#</th>
@@ -37,3 +37,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Add `borderless` for a table without borders.'
+    }
+  }
+}

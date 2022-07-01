@@ -37,3 +37,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Use `variant="dark"` to invert the colors of the table and get light text on a dark background.'
+    }
+  }
+}

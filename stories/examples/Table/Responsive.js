@@ -49,3 +49,11 @@ const Example = (props) => {
 }
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Responsive tables allow tables to be scrolled horizontally with ease.'
+    }
+  }
+}
