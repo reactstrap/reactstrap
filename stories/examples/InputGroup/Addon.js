@@ -24,3 +24,11 @@ const Example = (props) => {
 };
 
 export default Example;
+
+Example.parameters = {
+  docs: {
+    description: {
+      story: 'Multiple add-ons are supported and can be mixed with checkbox and radio input versions.'
+    }
+  }
+}
