@@ -1,5 +1,3 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-
 import React, { useState } from "react";
 import { Button, Tooltip } from "reactstrap";
 
@@ -32,19 +30,19 @@ const TooltipExampleMulti = props => {
       {[
         {
           placement: "top",
-          text: "Top"
+          text: "Tooltip on Top"
         },
         {
           placement: "bottom",
-          text: "Bottom"
+          text: "Tooltip on Bottom"
         },
         {
           placement: "left",
-          text: "Left"
+          text: "Tooltip on Left"
         },
         {
           placement: "right",
-          text: "Right"
+          text: "Tooltip on Right"
         }
       ].map((tooltip, i) => {
         return <TooltipItem key={i} item={tooltip} id={i} />;

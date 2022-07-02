@@ -1,10 +1,8 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React, { useState } from 'react';
 import { Tooltip } from 'reactstrap';
 
 const Example = (args) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
-
   const toggle = () => setTooltipOpen(!tooltipOpen);
 
   return (
