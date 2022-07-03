@@ -3,7 +3,8 @@ import CarouselExample from '!!raw-loader!./CarouselExample';
 
 Example.args = {
   dark: false,
-  slide: true
+  slide: true,
+  fade: false
 };
 
 Example.parameters = {

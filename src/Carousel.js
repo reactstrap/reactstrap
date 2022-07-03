@@ -171,7 +171,7 @@ class Carousel extends React.Component {
     const outerClasses = mapToCssModules(classNames(
       className,
       'carousel',
-      'carousel-fade' && fade,
+      fade && 'carousel-fade',
       slide && 'slide',
       dark && 'carousel-dark'
     ), cssModule);
