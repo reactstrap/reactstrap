@@ -15,12 +15,6 @@ describe('Form', () => {
     expect(wrapper.text()).toBe('Yo!');
   });
 
-  it('should render with "form-inline" class', () => {
-    const wrapper = shallow(<Form inline>Yo!</Form>);
-
-    expect(wrapper.hasClass('form-inline')).toBe(true);
-  });
-
   it('should render additional classes', () => {
     const wrapper = shallow(<Form className="other">Yo!</Form>);
 

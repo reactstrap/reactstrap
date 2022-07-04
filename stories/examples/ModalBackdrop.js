@@ -28,7 +28,7 @@ const ModalExample = (props) => {
 
   return (
     <div>
-      <Form inline onSubmit={(e) => e.preventDefault()}>
+      <Form onSubmit={(e) => e.preventDefault()}>
         <FormGroup>
           <Label for="backdrop">Backdrop value</Label>{' '}
           <Input type="select" name="backdrop" id="backdrop" onChange={changeBackdrop}>

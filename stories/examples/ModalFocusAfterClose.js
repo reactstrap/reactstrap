@@ -14,7 +14,7 @@ const ModalFocusAfterClose = (props) => {
 
     return (
         <div>
-            <Form inline onSubmit={(e) => e.preventDefault()}>
+            <Form onSubmit={(e) => e.preventDefault()}>
                 <FormGroup>
                     <Label for="focusAfterClose">Focus After Close</Label>
                     <Input className="mx-2" type="select" id="focusAfterClose" onChange={handleSelectChange}>

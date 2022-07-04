@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Example = (props) => {
   return (
-    <Form inline>
+    <Form>
       <FormGroup>
         <Label for="exampleEmail" hidden>Email</Label>
         <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
