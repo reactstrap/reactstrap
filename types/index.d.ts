@@ -60,6 +60,8 @@ export { default as CarouselIndicators } from './lib/CarouselIndicators';
 export { CarouselIndicatorsProps } from './lib/CarouselIndicators';
 export { default as CarouselCaption } from './lib/CarouselCaption';
 export { CarouselCaptionProps } from './lib/CarouselCaption';
+export { default as CloseButton } from './lib/CloseButton'
+export { CloseButtonProps } from './lib/CloseButton'
 export { default as Col } from './lib/Col';
 export { ColProps } from './lib/Col';
 export { default as Collapse } from './lib/Collapse';
