@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardHeader = (props) => {
+function CardHeader(props) {
   const {
     className,
     cssModule,
@@ -31,7 +31,7 @@ const CardHeader = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardHeader.propTypes = propTypes;
 CardHeader.defaultProps = defaultProps;

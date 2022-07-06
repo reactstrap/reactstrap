@@ -21,7 +21,7 @@ const defaultProps = {
   role: 'toolbar',
 };
 
-const ButtonToolbar = (props) => {
+function ButtonToolbar(props) {
   const {
     className,
     cssModule,
@@ -37,7 +37,7 @@ const ButtonToolbar = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 ButtonToolbar.propTypes = propTypes;
 ButtonToolbar.defaultProps = defaultProps;

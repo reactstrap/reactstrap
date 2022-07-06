@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { Collapse, UncontrolledCollapse } from '../';
+import { Collapse, UncontrolledCollapse } from '..';
 
 describe('UncontrolledCollapse', () => {
   let toggler;

@@ -26,10 +26,9 @@ export default function TabPane(props) {
   const getClasses = (activeTabId) => mapToCssModules(classNames('tab-pane', className, { active: tabId === activeTabId }), cssModule);
   return (
     <TabContext.Consumer>
-      {({activeTabId}) => <Tag {...attributes} className={getClasses(activeTabId)} />}
+      {({ activeTabId }) => <Tag {...attributes} className={getClasses(activeTabId)} />}
     </TabContext.Consumer>
   );
 }
 TabPane.propTypes = propTypes;
 TabPane.defaultProps = defaultProps;
-

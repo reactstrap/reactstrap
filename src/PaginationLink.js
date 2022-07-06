@@ -26,7 +26,7 @@ const defaultProps = {
   tag: 'a',
 };
 
-const PaginationLink = (props) => {
+function PaginationLink(props) {
   let {
     className,
     cssModule,
@@ -67,7 +67,7 @@ const PaginationLink = (props) => {
     defaultCaret = '\u00bb';
   }
 
-  let children = props.children;
+  let { children } = props;
   if (children && Array.isArray(children) && children.length === 0) {
     children = null;
   }
@@ -102,7 +102,7 @@ const PaginationLink = (props) => {
       {children}
     </Tag>
   );
-};
+}
 
 PaginationLink.propTypes = propTypes;
 PaginationLink.defaultProps = defaultProps;

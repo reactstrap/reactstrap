@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from './Collapse';
-import { omit, findDOMElements, defaultToggleEvents, addMultipleEventListeners } from './utils';
+import {
+  omit, findDOMElements, defaultToggleEvents, addMultipleEventListeners
+} from './utils';
 
 const omitKeys = ['toggleEvents', 'defaultOpen'];
 

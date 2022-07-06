@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'a'
 };
 
-const NavbarBrand = (props) => {
+function NavbarBrand(props) {
   const {
     className,
     cssModule,
@@ -32,7 +32,7 @@ const NavbarBrand = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 NavbarBrand.propTypes = propTypes;
 NavbarBrand.defaultProps = defaultProps;

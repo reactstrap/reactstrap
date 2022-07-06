@@ -31,7 +31,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   direction: PropTypes.oneOf(['start', 'end', 'bottom', 'top']),
   fade: PropTypes.bool,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func,]),
+  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func]),
   isOpen: PropTypes.bool,
   keyboard: PropTypes.bool,
   labelledBy: PropTypes.string,
@@ -39,6 +39,7 @@ const propTypes = {
   onClosed: PropTypes.func,
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
+  style: PropTypes.object,
   onOpened: PropTypes.func,
   returnFocusAfterClose: PropTypes.bool,
   role: PropTypes.string,
@@ -46,7 +47,7 @@ const propTypes = {
   toggle: PropTypes.func,
   trapFocus: PropTypes.bool,
   unmountOnClose: PropTypes.bool,
-  zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string,])
+  zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -103,7 +104,7 @@ class Offcanvas extends React.Component {
 
     if (isOpen) {
       this.init();
-      this.setState({ isOpen: true })
+      this.setState({ isOpen: true });
       if (autoFocus) {
         this.setFocus();
       }
@@ -153,77 +154,6 @@ class Offcanvas extends React.Component {
 
     document.removeEventListener('focus', this.trapFocus, true);
     this._isMounted = false;
-  }
-
-  trapFocus (ev) {
-    if (!this.props.trapFocus) {
-      return;
-    }
-
-    if (!this._element) //element is not attached
-      return;
-
-    if (this._dialog === ev.target) // initial focus when the Offcanvas is opened
-      return;
-
-    if (this.offcanvasIndex < (Offcanvas.openCount - 1)) // last opened offcanvas
-      return;
-
-    const children = this.getFocusableChildren();
-
-    for (let i = 0; i < children.length; i++) { // focus is already inside the Offcanvas
-      if (children[i] === ev.target)
-        return;
-    }
-
-    if (children.length > 0) { // otherwise focus the first focusable element in the Offcanvas
-      ev.preventDefault();
-      ev.stopPropagation();
-      children[0].focus();
-    }
-  }
-
-  onOpened(node, isAppearing) {
-    this.props.onOpened();
-    (this.props.offcanvasTransition.onEntered || noop)(node, isAppearing);
-  }
-
-  onClosed(node) {
-    const { unmountOnClose } = this.props;
-    // so all methods get called before it is unmounted
-    this.props.onClosed();
-    (this.props.offcanvasTransition.onExited || noop)(node);
-
-    if (unmountOnClose) {
-      this.destroy();
-    }
-    this.close();
-
-    if (this._isMounted) {
-      this.setState({ isOpen: false });
-    }
-  }
-
-  setFocus() {
-    if (this._dialog && typeof this._dialog.focus === 'function') {
-      this._dialog.focus();
-    }
-  }
-
-  getFocusableChildren() {
-    return this._element.querySelectorAll(focusableElements.join(', '));
-  }
-
-  getFocusedChild() {
-    let currentFocus;
-    const focusableChildren = this.getFocusableChildren();
-
-    try {
-      currentFocus = document.activeElement;
-    } catch (err) {
-      currentFocus = focusableChildren[0];
-    }
-    return currentFocus;
   }
 
   // not mouseUp because scrollbar fires it, shouldn't close when user scrolls
@@ -282,6 +212,79 @@ class Offcanvas extends React.Component {
     }
   }
 
+  onOpened(node, isAppearing) {
+    this.props.onOpened();
+    (this.props.offcanvasTransition.onEntered || noop)(node, isAppearing);
+  }
+
+  onClosed(node) {
+    const { unmountOnClose } = this.props;
+    // so all methods get called before it is unmounted
+    this.props.onClosed();
+    (this.props.offcanvasTransition.onExited || noop)(node);
+
+    if (unmountOnClose) {
+      this.destroy();
+    }
+    this.close();
+
+    if (this._isMounted) {
+      this.setState({ isOpen: false });
+    }
+  }
+
+  setFocus() {
+    if (this._dialog && typeof this._dialog.focus === 'function') {
+      this._dialog.focus();
+    }
+  }
+
+  getFocusableChildren() {
+    return this._element.querySelectorAll(focusableElements.join(', '));
+  }
+
+  getFocusedChild() {
+    let currentFocus;
+    const focusableChildren = this.getFocusableChildren();
+
+    try {
+      currentFocus = document.activeElement;
+    } catch (err) {
+      currentFocus = focusableChildren[0];
+    }
+    return currentFocus;
+  }
+
+  trapFocus(ev) {
+    if (!this.props.trapFocus) {
+      return;
+    }
+
+    if (!this._element) { // element is not attached
+      return;
+    }
+
+    if (this._dialog === ev.target) { // initial focus when the Offcanvas is opened
+      return;
+    }
+
+    if (this.offcanvasIndex < (Offcanvas.openCount - 1)) { // last opened offcanvas
+      return;
+    }
+
+    const children = this.getFocusableChildren();
+
+    for (let i = 0; i < children.length; i += 1) { // focus is already inside the Offcanvas
+      if (children[i] === ev.target) return;
+    }
+
+    if (children.length > 0) { // otherwise focus the first focusable element in the Offcanvas
+      ev.preventDefault();
+      ev.stopPropagation();
+      children[0].focus();
+    }
+  }
+
   init() {
     try {
       this._triggeringElement = document.activeElement;
@@ -302,7 +305,7 @@ class Offcanvas extends React.Component {
     conditionallyUpdateScrollbar();
 
     if (Offcanvas.openCount === 0 && (this.props.backdrop && !this.props.scrollable)) {
-      document.body.style.overflow = 'hidden'; 
+      document.body.style.overflow = 'hidden';
     }
 
     this.offcanvasIndex = Offcanvas.openCount;
@@ -330,8 +333,15 @@ class Offcanvas extends React.Component {
     this.manageFocusAfterClose();
     Offcanvas.openCount = Math.max(0, Offcanvas.openCount - 1);
 
-    document.body.style.overflow = null; 
+    document.body.style.overflow = null;
     setScrollbarWidth(this._originalBodyPadding);
+  }
+
+  clearBackdropAnimationTimeout() {
+    if (this._backdropAnimationTimeout) {
+      clearTimeout(this._backdropAnimationTimeout);
+      this._backdropAnimationTimeout = undefined;
+    }
   }
 
   render() {
@@ -378,23 +388,27 @@ class Offcanvas extends React.Component {
       };
 
       const Backdrop = backdrop && (
-        hasTransition ?
-          (<Fade
-            {...backdropTransition}
-            in={isOpen && !!backdrop}
-            innerRef={(c) => {
-              this._backdrop = c;
-            }}
-            cssModule={cssModule}
-            className={mapToCssModules(classNames('offcanvas-backdrop', backdropClassName), cssModule)}
-            onClick={this.handleBackdropClick}
-            onMouseDown={this.handleBackdropMouseDown}
-          />)
-          : <div
+        hasTransition
+          ? (
+            <Fade
+              {...backdropTransition}
+              in={isOpen && !!backdrop}
+              innerRef={(c) => {
+                this._backdrop = c;
+              }}
+              cssModule={cssModule}
+              className={mapToCssModules(classNames('offcanvas-backdrop', backdropClassName), cssModule)}
+              onClick={this.handleBackdropClick}
+              onMouseDown={this.handleBackdropMouseDown}
+            />
+          )
+          : (
+            <div
               className={mapToCssModules(classNames('offcanvas-backdrop', 'show', backdropClassName), cssModule)}
               onClick={this.handleBackdropClick}
               onMouseDown={this.handleBackdropMouseDown}
             />
+          )
       );
 
       const attributes = omit(this.props, propsToOmit);
@@ -409,7 +423,9 @@ class Offcanvas extends React.Component {
             onEntered={this.onOpened}
             onExited={this.onClosed}
             cssModule={cssModule}
-            className={mapToCssModules(classNames('offcanvas', className,
+            className={mapToCssModules(classNames(
+              'offcanvas',
+              className,
               `offcanvas-${direction}`
             ), cssModule)}
             innerRef={(c) => {
@@ -427,13 +443,6 @@ class Offcanvas extends React.Component {
       );
     }
     return null;
-  }
-
-  clearBackdropAnimationTimeout() {
-    if (this._backdropAnimationTimeout) {
-      clearTimeout(this._backdropAnimationTimeout);
-      this._backdropAnimationTimeout = undefined;
-    }
   }
 }
 

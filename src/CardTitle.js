@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardTitle = (props) => {
+function CardTitle(props) {
   const {
     className,
     cssModule,
@@ -31,7 +31,7 @@ const CardTitle = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardTitle.propTypes = propTypes;
 CardTitle.defaultProps = defaultProps;

@@ -50,7 +50,7 @@ const defaultProps = {
   barStyle: {}
 };
 
-const Progress = (props) => {
+function Progress(props) {
   const {
     children,
     className,
@@ -117,7 +117,7 @@ const Progress = (props) => {
       {multi ? children : <div {...progressBarProps} />}
     </Tag>
   );
-};
+}
 
 Progress.propTypes = propTypes;
 Progress.defaultProps = defaultProps;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ListGroupItemText } from '../';
+import { ListGroupItemText } from '..';
 
 describe('ListGroupItem', () => {
   it('should render children', () => {

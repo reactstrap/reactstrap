@@ -24,16 +24,16 @@ const defaultProps = {
   numbered: false
 };
 
-const getHorizontalClass = horizontal => {
+const getHorizontalClass = (horizontal) => {
   if (horizontal === false) {
     return false;
-  } else if (horizontal === true || horizontal === "xs") {
-    return "list-group-horizontal";
+  } if (horizontal === true || horizontal === 'xs') {
+    return 'list-group-horizontal';
   }
   return `list-group-horizontal-${horizontal}`;
 };
 
-const ListGroup = (props) => {
+function ListGroup(props) {
   const {
     className,
     cssModule,
@@ -57,7 +57,7 @@ const ListGroup = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 ListGroup.propTypes = propTypes;
 ListGroup.defaultProps = defaultProps;

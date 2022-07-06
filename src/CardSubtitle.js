@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardSubtitle = (props) => {
+function CardSubtitle(props) {
   const {
     className,
     cssModule,
@@ -31,7 +31,7 @@ const CardSubtitle = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardSubtitle.propTypes = propTypes;
 CardSubtitle.defaultProps = defaultProps;

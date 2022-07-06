@@ -18,7 +18,7 @@ const defaultProps = {
   tag: 'li'
 };
 
-const BreadcrumbItem = (props) => {
+function BreadcrumbItem(props) {
   const {
     className,
     cssModule,
@@ -35,7 +35,7 @@ const BreadcrumbItem = (props) => {
   return (
     <Tag {...attributes} className={classes} aria-current={active ? 'page' : undefined} />
   );
-};
+}
 
 BreadcrumbItem.propTypes = propTypes;
 BreadcrumbItem.defaultProps = defaultProps;

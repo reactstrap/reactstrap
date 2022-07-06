@@ -17,7 +17,7 @@ const defaultProps = {
   valid: undefined
 };
 
-const FormFeedback = (props) => {
+function FormFeedback(props) {
   const {
     className,
     cssModule,
@@ -38,7 +38,7 @@ const FormFeedback = (props) => {
   );
 
   return <Tag {...attributes} className={classes} />;
-};
+}
 
 FormFeedback.propTypes = propTypes;
 FormFeedback.defaultProps = defaultProps;

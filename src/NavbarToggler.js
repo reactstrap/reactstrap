@@ -20,7 +20,7 @@ const defaultProps = {
   type: 'button'
 };
 
-const NavbarToggler = (props) => {
+function NavbarToggler(props) {
   const {
     className,
     cssModule,
@@ -39,7 +39,7 @@ const NavbarToggler = (props) => {
       {children || <span className={mapToCssModules('navbar-toggler-icon', cssModule)} />}
     </Tag>
   );
-};
+}
 
 NavbarToggler.propTypes = propTypes;
 NavbarToggler.defaultProps = defaultProps;

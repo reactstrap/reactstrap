@@ -29,7 +29,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const Card = (props) => {
+function Card(props) {
   const {
     className,
     cssModule,
@@ -52,7 +52,7 @@ const Card = (props) => {
   return (
     <Tag {...attributes} className={classes} ref={innerRef} />
   );
-};
+}
 
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;

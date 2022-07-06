@@ -9,7 +9,7 @@ const defaultProps = {
   trigger: 'hover focus',
 };
 
-const Tooltip = (props) => {
+function Tooltip(props) {
   const popperClasses = classNames(
     'tooltip',
     'show',
@@ -21,7 +21,6 @@ const Tooltip = (props) => {
     props.innerClassName
   );
 
-
   return (
     <TooltipPopoverWrapper
       {...props}
@@ -30,10 +29,9 @@ const Tooltip = (props) => {
       innerClassName={classes}
     />
   );
-};
+}
 
 Tooltip.propTypes = propTypes;
 Tooltip.defaultProps = defaultProps;
-
 
 export default Tooltip;

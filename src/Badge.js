@@ -25,7 +25,7 @@ const defaultProps = {
   tag: 'span'
 };
 
-const Badge = (props) => {
+function Badge(props) {
   let {
     className,
     cssModule,
@@ -50,7 +50,7 @@ const Badge = (props) => {
   return (
     <Tag {...attributes} className={classes} ref={innerRef} />
   );
-};
+}
 
 Badge.propTypes = propTypes;
 Badge.defaultProps = defaultProps;

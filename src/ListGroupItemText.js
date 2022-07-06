@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'p'
 };
 
-const ListGroupItemText = (props) => {
+function ListGroupItemText(props) {
   const {
     className,
     cssModule,
@@ -31,7 +31,7 @@ const ListGroupItemText = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 ListGroupItemText.propTypes = propTypes;
 ListGroupItemText.defaultProps = defaultProps;

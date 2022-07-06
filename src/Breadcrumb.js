@@ -26,7 +26,7 @@ const defaultProps = {
   'aria-label': 'breadcrumb'
 };
 
-const Breadcrumb = (props) => {
+function Breadcrumb(props) {
   const {
     className,
     listClassName,
@@ -54,7 +54,7 @@ const Breadcrumb = (props) => {
       </ListTag>
     </Tag>
   );
-};
+}
 
 Breadcrumb.propTypes = propTypes;
 Breadcrumb.defaultProps = defaultProps;

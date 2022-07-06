@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'h5'
 };
 
-const ListGroupItemHeading = (props) => {
+function ListGroupItemHeading(props) {
   const {
     className,
     cssModule,
@@ -31,7 +31,7 @@ const ListGroupItemHeading = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 ListGroupItemHeading.propTypes = propTypes;
 ListGroupItemHeading.defaultProps = defaultProps;

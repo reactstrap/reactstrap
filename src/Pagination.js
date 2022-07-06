@@ -26,7 +26,7 @@ const defaultProps = {
   'aria-label': 'pagination'
 };
 
-const Pagination = (props) => {
+function Pagination(props) {
   const {
     className,
     listClassName,
@@ -55,7 +55,7 @@ const Pagination = (props) => {
       <ListTag {...attributes} className={listClasses} />
     </Tag>
   );
-};
+}
 
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;

@@ -19,7 +19,7 @@ const propTypes = {
   top: PropTypes.bool,
 };
 
-const Media = (props) => {
+function Media(props) {
   const {
     body,
     bottom,
@@ -69,7 +69,7 @@ const Media = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 Media.propTypes = propTypes;
 

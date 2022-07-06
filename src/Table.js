@@ -33,7 +33,7 @@ const defaultProps = {
   responsiveTag: 'div',
 };
 
-const Table = (props) => {
+function Table(props) {
   const {
     className,
     cssModule,
@@ -72,7 +72,7 @@ const Table = (props) => {
   }
 
   return table;
-};
+}
 
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;

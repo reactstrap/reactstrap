@@ -96,6 +96,6 @@ export UncontrolledDropdown from './UncontrolledDropdown';
 export UncontrolledTooltip from './UncontrolledTooltip';
 export Spinner from './Spinner';
 export Placeholder from './Placeholder';
-export PlaceholderButton from "./PlaceholderButton"
+export PlaceholderButton from './PlaceholderButton';
 export * as Util from './utils';
-export * as Polyfill from './polyfill'
+export * as Polyfill from './polyfill';

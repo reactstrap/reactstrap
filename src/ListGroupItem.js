@@ -28,7 +28,7 @@ const handleDisabledOnClick = (e) => {
   e.preventDefault();
 };
 
-const ListGroupItem = (props) => {
+function ListGroupItem(props) {
   const {
     className,
     cssModule,
@@ -55,7 +55,7 @@ const ListGroupItem = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 ListGroupItem.propTypes = propTypes;
 ListGroupItem.defaultProps = defaultProps;

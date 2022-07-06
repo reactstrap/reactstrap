@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, TransitionTimeouts, TransitionStatuses, tagPropType } from './utils';
+import {
+  mapToCssModules, TransitionTimeouts, TransitionStatuses, tagPropType
+} from './utils';
 
 class CarouselItem extends React.Component {
   constructor(props) {
@@ -26,7 +28,7 @@ class CarouselItem extends React.Component {
 
   onEntering(node, isAppearing) {
     // getting this variable triggers a reflow
-    const offsetHeight = node.offsetHeight;
+    const { offsetHeight } = node;
     this.setState({ startAnimation: true });
     this.props.onEntering(node, isAppearing);
     return offsetHeight;
@@ -49,7 +51,9 @@ class CarouselItem extends React.Component {
   }
 
   render() {
-    const { in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps } = this.props;
+    const {
+      in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps
+    } = this.props;
 
     return (
       <Transition
@@ -66,11 +70,11 @@ class CarouselItem extends React.Component {
         {(status) => {
           const { direction } = this.context;
           const isActive = (status === TransitionStatuses.ENTERED) || (status === TransitionStatuses.EXITING);
-          const directionClassName = (status === TransitionStatuses.ENTERING || status === TransitionStatuses.EXITING) &&
-            this.state.startAnimation &&
-            (direction === 'end' ? 'carousel-item-start' : 'carousel-item-end');
-          const orderClassName = (status === TransitionStatuses.ENTERING) &&
-            (direction === 'end' ? 'carousel-item-next' : 'carousel-item-prev');
+          const directionClassName = (status === TransitionStatuses.ENTERING || status === TransitionStatuses.EXITING)
+            && this.state.startAnimation
+            && (direction === 'end' ? 'carousel-item-start' : 'carousel-item-end');
+          const orderClassName = (status === TransitionStatuses.ENTERING)
+            && (direction === 'end' ? 'carousel-item-next' : 'carousel-item-prev');
           const itemClasses = mapToCssModules(classNames(
             className,
             'carousel-item',

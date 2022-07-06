@@ -21,7 +21,7 @@ const defaultProps = {
   tag: 'span'
 };
 
-const Placeholder = (props) => {
+function Placeholder(props) {
   let {
     className,
     cssModule,
@@ -34,7 +34,7 @@ const Placeholder = (props) => {
     ...attributes
   } = props;
 
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths)
+  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths);
 
   const classes = mapToCssModules(classNames(
     className,
@@ -44,12 +44,10 @@ const Placeholder = (props) => {
     color ? 'bg-' + color : false
   ), cssModule);
 
-
-
   return (
     <Tag {...modifiedAttributes} className={classes} ref={innerRef} />
   );
-};
+}
 
 Placeholder.propTypes = propTypes;
 Placeholder.defaultProps = defaultProps;

@@ -11,14 +11,21 @@ const propTypes = {
   /** Function to be triggered on click */
   onClick: PropTypes.func,
   /** Change the variant to white */
-  variant: PropTypes.oneOf(['white'])
-}
+  variant: PropTypes.oneOf(['white']),
+  className: PropTypes.string,
+  cssModule: PropTypes.object,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+};
 
 const defaultProps = {
   'aria-label': 'close'
-}
+};
 
-const CloseButton = (props) => {
+function CloseButton(props) {
   const {
     className,
     cssModule,
@@ -31,15 +38,16 @@ const CloseButton = (props) => {
     className,
     'btn-close',
     variant && `btn-close-${variant}`
-  ))
+  ));
 
   return (
     <button
       ref={innerRef}
       type="button"
       className={classes}
-      {...attributes} />
-  )
+      {...attributes}
+    />
+  );
 }
 
 CloseButton.propTypes = propTypes;

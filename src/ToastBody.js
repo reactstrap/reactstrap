@@ -18,7 +18,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const ToastBody = (props) => {
+function ToastBody(props) {
   const {
     className,
     cssModule,
@@ -34,7 +34,7 @@ const ToastBody = (props) => {
   return (
     <Tag {...attributes} className={classes} ref={innerRef} />
   );
-};
+}
 
 ToastBody.propTypes = propTypes;
 ToastBody.defaultProps = defaultProps;

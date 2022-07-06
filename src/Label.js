@@ -44,14 +44,14 @@ const defaultProps = {
 const getColumnSizeClass = (isXs, colWidth, colSize) => {
   if (colSize === true || colSize === '') {
     return isXs ? 'col' : `col-${colWidth}`;
-  } else if (colSize === 'auto') {
+  } if (colSize === 'auto') {
     return isXs ? 'col-auto' : `col-${colWidth}-auto`;
   }
 
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 };
 
-const Label = (props) => {
+function Label(props) {
   const {
     className,
     cssModule,
@@ -109,7 +109,7 @@ const Label = (props) => {
   return (
     <Tag htmlFor={htmlFor} {...attributes} className={classes} />
   );
-};
+}
 
 Label.propTypes = propTypes;
 Label.defaultProps = defaultProps;

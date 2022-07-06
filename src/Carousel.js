@@ -25,10 +25,6 @@ class Carousel extends React.Component {
     };
   }
 
-  getContextValue() {
-    return { direction: this.state.direction };
-  }
-
   componentDidMount() {
     // Set up the cycle
     if (this.props.ride === 'carousel') {
@@ -59,7 +55,7 @@ class Carousel extends React.Component {
         activeIndex: nextProps.activeIndex,
         direction,
         indicatorClicked: false,
-      }
+      };
     }
 
     return newState;
@@ -67,44 +63,12 @@ class Carousel extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activeIndex === this.state.activeIndex) return;
-    this.setInterval(this.props);
+    this.setInterval();
   }
 
   componentWillUnmount() {
     this.clearInterval();
     document.removeEventListener('keyup', this.handleKeyPress);
-  }
-
-  setInterval(props = this.props) {
-    // make sure not to have multiple intervals going...
-    this.clearInterval();
-    if (props.interval) {
-      this.cycleInterval = setInterval(() => {
-        props.next();
-      }, parseInt(props.interval, 10));
-    }
-  }
-
-  clearInterval() {
-    clearInterval(this.cycleInterval);
-  }
-
-  hoverStart(...args) {
-    if (this.props.pause === 'hover') {
-      this.clearInterval();
-    }
-    if (this.props.mouseEnter) {
-      this.props.mouseEnter(...args);
-    }
-  }
-
-  hoverEnd(...args) {
-    if (this.props.pause === 'hover') {
-      this.setInterval();
-    }
-    if (this.props.mouseLeave) {
-      this.props.mouseLeave(...args);
-    }
   }
 
   handleKeyPress(evt) {
@@ -151,6 +115,42 @@ class Carousel extends React.Component {
     }
   }
 
+  getContextValue() {
+    return { direction: this.state.direction };
+  }
+
+  setInterval() {
+    // make sure not to have multiple intervals going...
+    this.clearInterval();
+    if (this.props.interval) {
+      this.cycleInterval = setInterval(() => {
+        this.props.next();
+      }, parseInt(this.props.interval, 10));
+    }
+  }
+
+  clearInterval() {
+    clearInterval(this.cycleInterval);
+  }
+
+  hoverStart(...args) {
+    if (this.props.pause === 'hover') {
+      this.clearInterval();
+    }
+    if (this.props.mouseEnter) {
+      this.props.mouseEnter(...args);
+    }
+  }
+
+  hoverEnd(...args) {
+    if (this.props.pause === 'hover') {
+      this.setInterval();
+    }
+    if (this.props.mouseLeave) {
+      this.props.mouseLeave(...args);
+    }
+  }
+
   renderItems(carouselItems, className) {
     const { slide } = this.props;
     return (
@@ -167,7 +167,9 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { cssModule, slide, className, dark, fade } = this.props;
+    const {
+      cssModule, slide, className, dark, fade
+    } = this.props;
     const outerClasses = mapToCssModules(classNames(
       className,
       'carousel',
@@ -181,9 +183,9 @@ class Carousel extends React.Component {
     ), cssModule);
 
     // filter out booleans, null, or undefined
-    const children = this.props.children.filter(child => child !== null && child !== undefined && typeof child !== 'boolean');
+    const children = this.props.children.filter((child) => child !== null && child !== undefined && typeof child !== 'boolean');
 
-    const slidesOnly = children.every(child => child.type === CarouselItem);
+    const slidesOnly = children.every((child) => child.type === CarouselItem);
 
     // Rendering only slides
     if (slidesOnly) {
@@ -226,8 +228,13 @@ class Carousel extends React.Component {
     const controlRight = children[3];
 
     return (
-      <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}
-        onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd}>
+      <div
+        className={outerClasses}
+        onMouseEnter={this.hoverStart}
+        onMouseLeave={this.hoverEnd}
+        onTouchStart={this.handleTouchStart}
+        onTouchEnd={this.handleTouchEnd}
+      >
         <CarouselContext.Provider value={this.getContextValue()}>
           {wrappedIndicators}
           {this.renderItems(carouselItems, innerClasses)}
@@ -252,7 +259,7 @@ Carousel.propTypes = {
    * mouseleave. If set to false, hovering over the carousel won't pause it.
    */
   pause: PropTypes.oneOf(['hover', false]),
-  /** Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load.*/
+  /** Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load. */
   ride: PropTypes.oneOf(['carousel']),
   /** the interval at which the carousel automatically cycles */
   interval: PropTypes.oneOfType([
@@ -269,6 +276,7 @@ Carousel.propTypes = {
   slide: PropTypes.bool,
   /** make the controls, indicators and captions dark on the Carousel */
   dark: PropTypes.bool,
+  fade: PropTypes.bool,
   /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
   /** Add custom class */

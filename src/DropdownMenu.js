@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType, targetPropType, getTarget, deprecated } from './utils';
+import {
+  mapToCssModules, tagPropType, targetPropType, getTarget, deprecated
+} from './utils';
 
 const propTypes = {
   tag: tagPropType,
@@ -16,6 +18,7 @@ const propTypes = {
   modifiers: PropTypes.array,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  style: PropTypes.object,
   persist: PropTypes.bool,
   strategy: PropTypes.string,
   container: targetPropType,
@@ -40,12 +43,11 @@ const directionPositionMap = {
 };
 
 class DropdownMenu extends React.Component {
-
   getRole() {
     if (this.context.menuRole === 'listbox') {
-      return 'listbox'
+      return 'listbox';
     }
-    return 'menu'
+    return 'menu';
   }
 
   render() {
@@ -78,7 +80,6 @@ class DropdownMenu extends React.Component {
     const Tag = tag;
 
     if (persist || (this.context.isOpen && !this.context.inNavbar)) {
-
       const position1 = directionPositionMap[this.context.direction] || 'bottom';
       const position2 = (end || right) ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
@@ -96,7 +97,9 @@ class DropdownMenu extends React.Component {
           modifiers={poperModifiers}
           strategy={strategy}
         >
-          {({ ref, style, placement, update }) => {
+          {({
+            ref, style, placement, update
+          }) => {
             let combinedStyle = { ...this.props.style, ...style };
 
             const handleRef = (tagRef) => {
@@ -127,9 +130,8 @@ class DropdownMenu extends React.Component {
 
       if (container) {
         return ReactDOM.createPortal(popper, getTarget(container));
-      } else {
-        return popper;
       }
+      return popper;
     }
 
     return (
@@ -143,7 +145,7 @@ class DropdownMenu extends React.Component {
       />
     );
   }
-};
+}
 
 DropdownMenu.propTypes = propTypes;
 DropdownMenu.defaultProps = defaultProps;

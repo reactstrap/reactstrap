@@ -14,10 +14,9 @@ export default class UncontrolledDropdown extends Component {
   }
 
   toggle(e) {
-    const isOpen = !this.state.isOpen;
-    this.setState({ isOpen }, () => {
+    this.setState((prevState) => ({ isOpen: !prevState.isOpen }), () => {
       if (this.props.onToggle) {
-        this.props.onToggle(e, isOpen);
+        this.props.onToggle(e, this.state.isOpen);
       }
     });
   }

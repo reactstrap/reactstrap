@@ -20,7 +20,7 @@ const defaultProps = {
   tag: 'img'
 };
 
-const CardImg = (props) => {
+function CardImg(props) {
   const {
     className,
     cssModule,
@@ -46,7 +46,7 @@ const CardImg = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardImg.propTypes = propTypes;
 CardImg.defaultProps = defaultProps;
