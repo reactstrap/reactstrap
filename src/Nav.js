@@ -13,7 +13,7 @@ const propTypes = {
   /** fills the nav to extend to full available width */
   fill: PropTypes.bool,
   /** Change the horizontal alignment of your nav */
-  horizontal: PropTypes.oneOf('center', 'end'),
+  horizontal: PropTypes.oneOf(['center', 'end']),
   /**  All horizontal space will be occupied by nav links, but unlike the `fill` above, every nav item will be the same width. */
   justified: PropTypes.bool,
   /** Add navbar for a full-height and lightweight navigation */
