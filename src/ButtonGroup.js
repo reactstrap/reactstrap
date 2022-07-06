@@ -18,7 +18,7 @@ const defaultProps = {
   role: 'group',
 };
 
-const ButtonGroup = (props) => {
+function ButtonGroup(props) {
   const {
     className,
     cssModule,
@@ -37,7 +37,7 @@ const ButtonGroup = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 ButtonGroup.propTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;

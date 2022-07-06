@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Table } from '../';
+import { Table } from '..';
 
 describe('Table', () => {
   it('should render with "table" class', () => {
@@ -63,8 +63,8 @@ describe('Table', () => {
 
   it('should render responsive wrapper cssModule', () => {
     const cssModule = {
-        table: 'scopedTable',
-        'table-responsive': 'scopedResponsive',
+      table: 'scopedTable',
+      'table-responsive': 'scopedResponsive',
     };
     const wrapper = shallow(<Table responsive cssModule={cssModule}>Yo!</Table>);
 

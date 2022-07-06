@@ -26,7 +26,6 @@ const defaultProps = {
   tag: 'button',
 };
 
-
 function Button(props) {
   const onClick = useCallback((e) => {
     if (props.disabled) {
@@ -37,8 +36,7 @@ function Button(props) {
     if (props.onClick) {
       return props.onClick(e);
     }
-  }, [props.onClick, props.disabled])
-
+  }, [props.onClick, props.disabled]);
 
   let {
     active,
@@ -60,7 +58,7 @@ function Button(props) {
       <CloseButton
         {...attributes}
       />
-    )
+    );
   }
 
   const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;

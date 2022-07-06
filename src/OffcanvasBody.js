@@ -13,12 +13,13 @@ const defaultProps = {
   tag: 'div',
 };
 
-const OffcanvasBody = (props) => {
+function OffcanvasBody(props) {
   const {
     className,
     cssModule,
     tag: Tag,
-    ...attributes } = props;
+    ...attributes
+  } = props;
   const classes = mapToCssModules(classNames(
     className,
     'offcanvas-body'
@@ -27,7 +28,7 @@ const OffcanvasBody = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 OffcanvasBody.propTypes = propTypes;
 OffcanvasBody.defaultProps = defaultProps;

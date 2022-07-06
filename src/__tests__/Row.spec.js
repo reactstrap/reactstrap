@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Row } from '../';
+import { Row } from '..';
 
 describe('Row', () => {
   it('should render .row markup', () => {
@@ -28,7 +28,7 @@ describe('Row', () => {
     expect(wrapper.hasClass('gx-0')).toBe(true);
     expect(wrapper.hasClass('row')).toBe(true);
   });
-  
+
   it('should pass row col size specific classes as strings', () => {
     const wrapper = shallow(<Row sm="6" />);
 

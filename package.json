@@ -268,6 +268,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/eslint-parser": "^7.18.2",
     "@babel/plugin-proposal-export-default-from": "^7.12.1",
     "@babel/plugin-proposal-export-namespace-from": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
@@ -280,6 +281,7 @@
     "@types/react": "^16.9.51",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.2.2",
+    "babel-preset-react-app": "^10.0.1",
     "bootstrap": "^5.1.0",
     "conventional-changelog-cli": "^2.0.21",
     "conventional-recommended-bump": "^4.1.1",
@@ -289,12 +291,12 @@
     "ejs": "^2.5.9",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "eslint": "^5.0.0",
-    "eslint-config-react-app": "^3.0.6",
-    "eslint-plugin-flowtype": "^6.0.1",
-    "eslint-plugin-import": "^2.0.0",
-    "eslint-plugin-jsx-a11y": "^6.0.0",
-    "eslint-plugin-react": "^7.0.0",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.30.0",
     "holderjs": "^2.9.3",
     "json-loader": "^0.5.7",
     "microbundle": "^0.13.3",
@@ -306,7 +308,7 @@
     "react-router": "^3.2.1",
     "react-scripts": "2.1.1",
     "react-test-renderer": "^16.3.2",
-    "webpack": "^4.43.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "webpack": "^4.43.0"
   }
 }

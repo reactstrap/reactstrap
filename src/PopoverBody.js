@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const PopoverBody = (props) => {
+function PopoverBody(props) {
   const {
     className,
     cssModule,
@@ -29,7 +29,7 @@ const PopoverBody = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 PopoverBody.propTypes = propTypes;
 PopoverBody.defaultProps = defaultProps;

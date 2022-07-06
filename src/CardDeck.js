@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const CardDeck = (props) => {
+function CardDeck(props) {
   const {
     className,
     cssModule,
@@ -28,7 +28,7 @@ const CardDeck = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardDeck.propTypes = propTypes;
 CardDeck.defaultProps = defaultProps;

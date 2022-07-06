@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { TabContent, TabPane } from '../';
+import { TabContent, TabPane } from '..';
 
 let activeTab = '1';
 describe('Tabs', () => {

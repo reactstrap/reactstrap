@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'li',
 };
 
-const PaginationItem = (props) => {
+function PaginationItem(props) {
   const {
     active,
     className,
@@ -38,7 +38,7 @@ const PaginationItem = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 PaginationItem.propTypes = propTypes;
 PaginationItem.defaultProps = defaultProps;

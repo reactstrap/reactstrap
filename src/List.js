@@ -10,7 +10,7 @@ const propTypes = {
   type: PropTypes.string
 };
 
-const defaultProps ={
+const defaultProps = {
   tag: 'ul'
 };
 

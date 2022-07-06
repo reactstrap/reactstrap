@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, omit, pick, TransitionTimeouts, TransitionPropTypeKeys, TransitionStatuses, tagPropType } from './utils';
+import {
+  mapToCssModules, omit, pick, TransitionTimeouts, TransitionPropTypeKeys, TransitionStatuses, tagPropType
+} from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
@@ -58,10 +60,6 @@ class Collapse extends Component {
     });
   }
 
-  getDimension(node) {
-    return this.props.horizontal ? node.scrollWidth : node.scrollHeight;
-  }
-
   onEntering(node, isAppearing) {
     this.setState({ dimension: this.getDimension(node) });
     this.props.onEntering(node, isAppearing);
@@ -87,6 +85,10 @@ class Collapse extends Component {
   onExited(node) {
     this.setState({ dimension: null });
     this.props.onExited(node);
+  }
+
+  getDimension(node) {
+    return this.props.horizontal ? node.scrollWidth : node.scrollHeight;
   }
 
   render() {

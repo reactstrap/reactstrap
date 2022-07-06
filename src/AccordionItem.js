@@ -19,7 +19,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const AccordionItem = (props) => {
+function AccordionItem(props) {
   const {
     className,
     cssModule,
@@ -35,7 +35,7 @@ const AccordionItem = (props) => {
   return (
     <Tag {...attributes} className={classes} ref={innerRef} />
   );
-};
+}
 
 AccordionItem.propTypes = propTypes;
 AccordionItem.defaultProps = defaultProps;

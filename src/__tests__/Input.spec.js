@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Input } from '../';
+import { Input } from '..';
 
 describe('Input', () => {
   it('should render with "input" tag when no type is provided', () => {
@@ -82,7 +82,7 @@ describe('Input', () => {
   });
 
   it('should pass children when tag is a custom component', () => {
-    const wrapper = mount(<Input tag={props => props.children}>Yo!</Input>);
+    const wrapper = mount(<Input tag={(props) => props.children}>Yo!</Input>);
 
     expect(wrapper.text()).toBe('Yo!');
   });

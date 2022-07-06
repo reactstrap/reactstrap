@@ -9,7 +9,7 @@ const propTypes = {
   cssModule: PropTypes.object
 };
 
-const defaultProps ={
+const defaultProps = {
   tag: 'li'
 };
 

@@ -13,6 +13,14 @@
     "react/no-find-dom-node": 0,
     "react/no-array-index-key": 0,
     "no-template-curly-in-string": 0,
-    "jsx-a11y/no-static-element-interactions": 0
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react/button-has-type": 0,
+    "no-shadow": 0,
+    "react/jsx-no-bind": 0,
+    "no-unused-vars": 0,
+    "no-empty-function": 0,
+    "jsx-a11y/control-has-associated-label": 0,
+    "prefer-spread": 0,
+    "prefer-rest-params": 0
   }
 }

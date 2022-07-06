@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'span'
 };
 
-const InputGroupText = (props) => {
+function InputGroupText(props) {
   const {
     className,
     cssModule,
@@ -29,7 +29,7 @@ const InputGroupText = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 InputGroupText.propTypes = propTypes;
 InputGroupText.defaultProps = defaultProps;

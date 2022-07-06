@@ -14,7 +14,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const Container = (props) => {
+function Container(props) {
   const {
     className,
     cssModule,
@@ -26,8 +26,7 @@ const Container = (props) => {
   let containerClass = 'container';
   if (fluid === true) {
     containerClass = 'container-fluid';
-  }
-  else if (fluid) {
+  } else if (fluid) {
     containerClass = `container-${fluid}`;
   }
 
@@ -39,7 +38,7 @@ const Container = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 Container.propTypes = propTypes;
 Container.defaultProps = defaultProps;

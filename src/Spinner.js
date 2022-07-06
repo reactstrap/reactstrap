@@ -16,7 +16,7 @@ const propTypes = {
   className: PropTypes.string,
   /** Change existing className with a new className */
   cssModule: PropTypes.object,
-  /** Pass children so this component can wrap the child elements*/
+  /** Pass children so this component can wrap the child elements */
   children: PropTypes.string
 };
 
@@ -26,7 +26,7 @@ const defaultProps = {
   children: 'Loading...'
 };
 
-const Spinner = props => {
+function Spinner(props) {
   const {
     className,
     cssModule,
@@ -50,14 +50,15 @@ const Spinner = props => {
 
   return (
     <Tag role="status" {...attributes} className={classes}>
-      {children &&
+      {children
+        && (
         <span className={mapToCssModules('visually-hidden', cssModule)}>
           {children}
         </span>
-      }
+        )}
     </Tag>
   );
-};
+}
 
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;

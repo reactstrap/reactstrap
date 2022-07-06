@@ -14,7 +14,7 @@ const defaultProps = {
   tag: 'a'
 };
 
-const CardLink = (props) => {
+function CardLink(props) {
   const {
     className,
     cssModule,
@@ -30,7 +30,7 @@ const CardLink = (props) => {
   return (
     <Tag {...attributes} ref={innerRef} className={classes} />
   );
-};
+}
 
 CardLink.propTypes = propTypes;
 CardLink.defaultProps = defaultProps;

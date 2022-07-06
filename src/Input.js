@@ -64,7 +64,7 @@ class Input extends React.Component {
     } = this.props;
 
     const checkInput = ['switch', 'radio', 'checkbox'].indexOf(type) > -1;
-    const isNotaNumber = new RegExp('\\D', 'g');
+    const isNotaNumber = /\D/g;
 
     const textareaInput = type === 'textarea';
     const selectInput = type === 'select';
@@ -79,7 +79,7 @@ class Input extends React.Component {
     } else if (rangeInput) {
       formControlClass = 'form-range';
     } else if (selectInput) {
-      formControlClass = "form-select";
+      formControlClass = 'form-select';
     } else if (checkInput) {
       if (addon) {
         formControlClass = null;
@@ -116,12 +116,12 @@ class Input extends React.Component {
     }
 
     if (
-      attributes.children &&
-      !(
-        plaintext ||
-        type === 'select' ||
-        typeof Tag !== 'string' ||
-        Tag === 'select'
+      attributes.children
+      && !(
+        plaintext
+        || type === 'select'
+        || typeof Tag !== 'string'
+        || Tag === 'select'
       )
     ) {
       warnOnce(

@@ -6,14 +6,15 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
   tag: tagPropType,
   className: PropTypes.string,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
+  active: PropTypes.bool
 };
 
 const defaultProps = {
   tag: 'span'
 };
 
-const NavbarText = (props) => {
+function NavbarText(props) {
   const {
     className,
     cssModule,
@@ -30,7 +31,7 @@ const NavbarText = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 NavbarText.propTypes = propTypes;
 NavbarText.defaultProps = defaultProps;

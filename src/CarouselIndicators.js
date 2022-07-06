@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselIndicators = (props) => {
-  const { items, activeIndex, cssModule, onClickHandler, className } = props;
+function CarouselIndicators(props) {
+  const {
+    items, activeIndex, cssModule, onClickHandler, className
+  } = props;
 
   const listClasses = mapToCssModules(classNames(className, 'carousel-indicators'), cssModule);
   const indicators = items.map((item, idx) => {
@@ -15,13 +17,15 @@ const CarouselIndicators = (props) => {
       <button
         aria-label={item.caption}
         data-bs-target
+        type="button"
         key={`${item.key || Object.values(item).join('')}`}
         onClick={(e) => {
           e.preventDefault();
           onClickHandler(idx);
         }}
         className={indicatorClasses}
-      />);
+      />
+    );
   });
 
   return (
@@ -29,7 +33,7 @@ const CarouselIndicators = (props) => {
       {indicators}
     </div>
   );
-};
+}
 
 CarouselIndicators.propTypes = {
   items: PropTypes.array.isRequired,

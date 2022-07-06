@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { UncontrolledAccordion } from '../';
+import { UncontrolledAccordion } from '..';
 
 describe('Accordion', () => {
   it('should render with "accordion" class', () => {

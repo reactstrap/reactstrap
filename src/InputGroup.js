@@ -16,7 +16,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const InputGroup = (props) => {
+function InputGroup(props) {
   const {
     className,
     cssModule,
@@ -32,13 +32,13 @@ const InputGroup = (props) => {
   ), cssModule);
 
   if (props.type === 'dropdown') {
-    return <Dropdown {...attributes} className={classes} />
+    return <Dropdown {...attributes} className={classes} />;
   }
 
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 InputGroup.propTypes = propTypes;
 InputGroup.defaultProps = defaultProps;

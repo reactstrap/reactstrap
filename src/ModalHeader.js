@@ -20,7 +20,7 @@ const defaultProps = {
   closeAriaLabel: 'Close',
 };
 
-const ModalHeader = (props) => {
+function ModalHeader(props) {
   let closeButton;
   const {
     className,
@@ -31,7 +31,8 @@ const ModalHeader = (props) => {
     wrapTag: WrapTag,
     closeAriaLabel,
     close,
-    ...attributes } = props;
+    ...attributes
+  } = props;
 
   const classes = mapToCssModules(classNames(
     className,
@@ -52,7 +53,7 @@ const ModalHeader = (props) => {
       {close || closeButton}
     </WrapTag>
   );
-};
+}
 
 ModalHeader.propTypes = propTypes;
 ModalHeader.defaultProps = defaultProps;
