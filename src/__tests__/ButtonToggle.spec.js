@@ -12,8 +12,8 @@ describe('ButtonToggle', () => {
 
   it('should have button already toggled for defaultValue true', () => {
     const wrapper = shallow(<ButtonToggle defaultValue>Ello world</ButtonToggle>);
-  
-    expect(wrapper.find(Button).props().active).toBe(true)
+
+    expect(wrapper.find(Button).props().active).toBe(true);
   });
 
   describe('onClick', () => {
