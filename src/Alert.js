@@ -5,7 +5,7 @@ import { mapToCssModules, tagPropType } from './utils';
 import Fade from './Fade';
 
 const propTypes = {
-  /** Pass children so this component can wrap the child elements*/
+  /** Pass children so this component can wrap the child elements */
   children: PropTypes.node,
   /** Add custom class */
   className: PropTypes.string,

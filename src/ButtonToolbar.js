@@ -10,7 +10,7 @@ const propTypes = {
   className: PropTypes.string,
   /** Change existing className with a new className */
   cssModule: PropTypes.object,
-  /** In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate role attribute needs to be provided. For button groups, this would be role="group", while toolbars should have a role="toolbar".*/
+  /** In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate role attribute needs to be provided. For button groups, this would be role="group", while toolbars should have a role="toolbar". */
   role: PropTypes.string,
   /** Set a custom element for this component */
   tag: tagPropType,
