@@ -1,11 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Carousel, UncontrolledCarousel } from '../';
+import { Carousel, UncontrolledCarousel } from '..';
 
 const items = [
-  { src: '', altText: 'a', caption: 'caption 1', key: '1' },
-  { src: '', altText: 'b', caption: 'caption 2', key: '2' },
-  { src: '', altText: 'c', caption: 'caption 3', key: '3' }
+  {
+    src: '', altText: 'a', caption: 'caption 1', key: '1'
+  },
+  {
+    src: '', altText: 'b', caption: 'caption 2', key: '2'
+  },
+  {
+    src: '', altText: 'c', caption: 'caption 3', key: '3'
+  }
 ];
 
 describe('UncontrolledCarousel', () => {

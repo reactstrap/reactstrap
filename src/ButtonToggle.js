@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from "./Button";
 import classNames from 'classnames';
+import Button from './Button';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
@@ -9,6 +9,8 @@ const propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   defaultValue: PropTypes.bool,
+  className: PropTypes.string,
+  cssModule: PropTypes.object
 };
 
 const defaultProps = {
@@ -16,29 +18,29 @@ const defaultProps = {
 };
 
 function ButtonToggle(props) {
-  const [toggled, setToggled] = useState(props.defaultValue)
+  const [toggled, setToggled] = useState(props.defaultValue);
   const [focus, setFocus] = useState(false);
 
-  const onBlur = useCallback(e => {
+  const onBlur = useCallback((e) => {
     if (props.onBlur) {
-      props.onBlur(e)
+      props.onBlur(e);
     }
     setFocus(false);
-  }, [props.onBlur])
+  }, [props.onBlur]);
 
-  const onFocus = useCallback(e => {
+  const onFocus = useCallback((e) => {
     if (props.onFocus) {
-      props.onFocus(e)
+      props.onFocus(e);
     }
-    setFocus(true)
-  }, [props.onFocus])
+    setFocus(true);
+  }, [props.onFocus]);
 
-  const onClick = useCallback(e => {
+  const onClick = useCallback((e) => {
     if (props.onClick) {
-      props.onClick(e)
+      props.onClick(e);
     }
-    setToggled(!toggled)
-  }, [props.onClick])
+    setToggled(!toggled);
+  }, [props.onClick]);
 
   const {
     className,
@@ -52,15 +54,16 @@ function ButtonToggle(props) {
     }
   ), props.cssModule);
 
-  return <Button
-    active={toggled}
-    onBlur={onBlur}
-    onFocus={onFocus}
-    onClick={onClick}
-    className={classes}
-    {...attributes}
-  />;
-
+  return (
+    <Button
+      active={toggled}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onClick={onClick}
+      className={classes}
+      {...attributes}
+    />
+  );
 }
 
 ButtonToggle.propTypes = propTypes;

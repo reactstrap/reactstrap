@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NavLink } from '../';
+import { NavLink } from '..';
 
 describe('NavLink', () => {
   it('should render .nav-link markup', () => {

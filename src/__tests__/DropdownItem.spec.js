@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { DropdownItem } from '../';
+import { DropdownItem } from '..';
 import { DropdownContext } from '../DropdownContext';
 
 describe('DropdownItem', () => {
@@ -35,7 +35,7 @@ describe('DropdownItem', () => {
   });
 
   it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
-    const wrapper = mount(<DropdownItem onClick={() => {}}>Home</DropdownItem>);
+    const wrapper = mount(<DropdownItem onClick={() => { }}>Home</DropdownItem>);
 
     expect(wrapper.find('button').hostNodes().prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');
@@ -56,7 +56,9 @@ describe('DropdownItem', () => {
   });
 
   it('should render custom element', () => {
-    const Link = props => <a href="/home" {...props}>{props.children}</a>;
+    function Link(props) {
+      return <a href="/home" {...props}>{props.children}</a>;
+    }
     const wrapper = mount(<DropdownItem tag={Link}>Home</DropdownItem>);
 
     expect(wrapper.find('a').hostNodes().length).toBe(1);

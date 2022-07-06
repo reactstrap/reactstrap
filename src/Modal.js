@@ -101,6 +101,7 @@ class Modal extends React.Component {
 
     this._element = null;
     this._originalBodyPadding = null;
+    this._originalBodyOverflow = null;
     this.getFocusableChildren = this.getFocusableChildren.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
@@ -124,7 +125,7 @@ class Modal extends React.Component {
 
     if (isOpen) {
       this.init();
-      this.setState({ isOpen: true })
+      this.setState({ isOpen: true });
       if (autoFocus) {
         this.setFocus();
       }
@@ -143,7 +144,7 @@ class Modal extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpen && !prevProps.isOpen) {
       this.init();
-      this.setState({ isOpen: true});
+      this.setState({ isOpen: true });
       // let render() renders Modal Dialog first
       return;
     }
@@ -174,77 +175,6 @@ class Modal extends React.Component {
 
     document.removeEventListener('focus', this.trapFocus, true);
     this._isMounted = false;
-  }
-
-  trapFocus (ev) {
-    if (!this.props.trapFocus) {
-      return;
-    }
-
-    if (!this._element) //element is not attached
-      return;
-
-    if (this._dialog && this._dialog.parentNode === ev.target) // initial focus when the Modal is opened
-      return;
-
-    if (this.modalIndex < (Modal.openCount - 1)) // last opened modal
-      return;
-
-    const children = this.getFocusableChildren();
-
-    for (let i = 0; i < children.length; i++) { // focus is already inside the Modal
-      if (children[i] === ev.target)
-        return;
-    }
-
-    if (children.length > 0) { // otherwise focus the first focusable element in the Modal
-      ev.preventDefault();
-      ev.stopPropagation();
-      children[0].focus();
-    }
-  }
-
-  onOpened(node, isAppearing) {
-    this.props.onOpened();
-    (this.props.modalTransition.onEntered || noop)(node, isAppearing);
-  }
-
-  onClosed(node) {
-    const { unmountOnClose } = this.props;
-    // so all methods get called before it is unmounted
-    this.props.onClosed();
-    (this.props.modalTransition.onExited || noop)(node);
-
-    if (unmountOnClose) {
-      this.destroy();
-    }
-    this.close();
-
-    if (this._isMounted) {
-      this.setState({ isOpen: false });
-    }
-  }
-
-  setFocus() {
-    if (this._dialog && this._dialog.parentNode && typeof this._dialog.parentNode.focus === 'function') {
-      this._dialog.parentNode.focus();
-    }
-  }
-
-  getFocusableChildren() {
-    return this._element.querySelectorAll(focusableElements.join(', '));
-  }
-
-  getFocusedChild() {
-    let currentFocus;
-    const focusableChildren = this.getFocusableChildren();
-
-    try {
-      currentFocus = document.activeElement;
-    } catch (err) {
-      currentFocus = focusableChildren[0];
-    }
-    return currentFocus;
   }
 
   // not mouseUp because scrollbar fires it, shouldn't close when user scrolls
@@ -304,8 +234,7 @@ class Modal extends React.Component {
         e.stopPropagation();
 
         this.props.toggle(e);
-      }
-      else if (this.props.backdrop === 'static') {
+      } else if (this.props.backdrop === 'static') {
         e.preventDefault();
         e.stopPropagation();
 
@@ -320,6 +249,79 @@ class Modal extends React.Component {
     this._backdropAnimationTimeout = setTimeout(() => {
       this.setState({ showStaticBackdropAnimation: false });
     }, 100);
+  }
+
+  onOpened(node, isAppearing) {
+    this.props.onOpened();
+    (this.props.modalTransition.onEntered || noop)(node, isAppearing);
+  }
+
+  onClosed(node) {
+    const { unmountOnClose } = this.props;
+    // so all methods get called before it is unmounted
+    this.props.onClosed();
+    (this.props.modalTransition.onExited || noop)(node);
+
+    if (unmountOnClose) {
+      this.destroy();
+    }
+    this.close();
+
+    if (this._isMounted) {
+      this.setState({ isOpen: false });
+    }
+  }
+
+  setFocus() {
+    if (this._dialog && this._dialog.parentNode && typeof this._dialog.parentNode.focus === 'function') {
+      this._dialog.parentNode.focus();
+    }
+  }
+
+  getFocusableChildren() {
+    return this._element.querySelectorAll(focusableElements.join(', '));
+  }
+
+  getFocusedChild() {
+    let currentFocus;
+    const focusableChildren = this.getFocusableChildren();
+
+    try {
+      currentFocus = document.activeElement;
+    } catch (err) {
+      currentFocus = focusableChildren[0];
+    }
+    return currentFocus;
+  }
+
+  trapFocus(ev) {
+    if (!this.props.trapFocus) {
+      return;
+    }
+
+    if (!this._element) { // element is not attached
+      return;
+    }
+
+    if (this._dialog && this._dialog.parentNode === ev.target) { // initial focus when the Modal is opened
+      return;
+    }
+
+    if (this.modalIndex < (Modal.openCount - 1)) { // last opened modal
+      return;
+    }
+
+    const children = this.getFocusableChildren();
+
+    for (let i = 0; i < children.length; i += 1) { // focus is already inside the Modal
+      if (children[i] === ev.target) return;
+    }
+
+    if (children.length > 0) { // otherwise focus the first focusable element in the Modal
+      ev.preventDefault();
+      ev.stopPropagation();
+      children[0].focus();
+    }
   }
 
   init() {
@@ -339,6 +341,7 @@ class Modal extends React.Component {
     }
 
     this._originalBodyPadding = getOriginalBodyPadding();
+    this._originalBodyOverflow = window.getComputedStyle(document.body).overflow;
     conditionallyUpdateScrollbar();
 
     if (Modal.openCount === 0) {
@@ -346,6 +349,7 @@ class Modal extends React.Component {
         document.body.className,
         mapToCssModules('modal-open', this.props.cssModule)
       );
+      document.body.style.overflow = 'hidden';
     }
 
     this.modalIndex = Modal.openCount;
@@ -375,11 +379,19 @@ class Modal extends React.Component {
       // Use regex to prevent matching `modal-open` as part of a different class, e.g. `my-modal-opened`
       const modalOpenClassNameRegex = new RegExp(`(^| )${modalOpenClassName}( |$)`);
       document.body.className = document.body.className.replace(modalOpenClassNameRegex, ' ').trim();
+      document.body.style.overflow = this._originalBodyOverflow;
     }
     this.manageFocusAfterClose();
     Modal.openCount = Math.max(0, Modal.openCount - 1);
 
     setScrollbarWidth(this._originalBodyPadding);
+  }
+
+  clearBackdropAnimationTimeout() {
+    if (this._backdropAnimationTimeout) {
+      clearTimeout(this._backdropAnimationTimeout);
+      this._backdropAnimationTimeout = undefined;
+    }
   }
 
   renderModalDialog() {
@@ -461,13 +473,15 @@ class Modal extends React.Component {
       };
 
       const Backdrop = backdrop && (
-        hasTransition ?
-          (<Fade
-            {...backdropTransition}
-            in={isOpen && !!backdrop}
-            cssModule={cssModule}
-            className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
-          />)
+        hasTransition
+          ? (
+            <Fade
+              {...backdropTransition}
+              in={isOpen && !!backdrop}
+              cssModule={cssModule}
+              className={mapToCssModules(classNames('modal-backdrop', backdropClassName), cssModule)}
+            />
+          )
           : <div className={mapToCssModules(classNames('modal-backdrop', 'show', backdropClassName), cssModule)} />
       );
 
@@ -493,13 +507,6 @@ class Modal extends React.Component {
       );
     }
     return null;
-  }
-
-  clearBackdropAnimationTimeout() {
-    if (this._backdropAnimationTimeout) {
-      clearTimeout(this._backdropAnimationTimeout);
-      this._backdropAnimationTimeout = undefined;
-    }
   }
 }
 

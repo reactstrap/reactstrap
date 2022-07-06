@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { InputGroupText } from '../';
+import { InputGroupText } from '..';
 
 describe('InputGroupText', () => {
   it('should render with "input-group-text" class', () => {

@@ -20,7 +20,7 @@ const defaultProps = {
   wrapTag: 'div'
 };
 
-const OffcanvasHeader = (props) => {
+function OffcanvasHeader(props) {
   let closeButton;
   const {
     children,
@@ -31,7 +31,8 @@ const OffcanvasHeader = (props) => {
     tag: Tag,
     toggle,
     wrapTag: WrapTag,
-    ...attributes } = props;
+    ...attributes
+  } = props;
 
   const classes = mapToCssModules(classNames(
     className,
@@ -52,7 +53,7 @@ const OffcanvasHeader = (props) => {
       {close || closeButton}
     </WrapTag>
   );
-};
+}
 
 OffcanvasHeader.propTypes = propTypes;
 OffcanvasHeader.defaultProps = defaultProps;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { TransitionGroup } from 'react-transition-group';
-import { Fade } from '../';
+import { Fade } from '..';
 
 class Helper extends React.Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class Helper extends React.Component {
   }
 
   toggle() {
-    this.setState({
-      showItem: !this.state.showItem
-    });
+    this.setState((prevState) => ({
+      showItem: !prevState.showItem
+    }));
   }
 
   render() {
@@ -42,7 +42,7 @@ describe('Fade', () => {
   it('should transition classes from "fade" to "fade show" on appear', () => {
     let isOpen = true;
     const wrapper = mount(
-      <Helper showItem={isOpen} >
+      <Helper showItem={isOpen}>
         <Fade key={Math.random()}>Yo!</Fade>
         <Fade appear={false} key={Math.random()}>Yo 2!</Fade>
       </Helper>
@@ -64,7 +64,7 @@ describe('Fade', () => {
     const onExit = jest.fn();
     let isOpen = false;
     const wrapper = mount(
-      <Helper showItem={isOpen} >
+      <Helper showItem={isOpen}>
         <Fade onEnter={onEnter} onExit={onExit} key={Math.random()}>Yo 3!</Fade>
         <Fade appear={false} enter={false} exit={false} key={Math.random()}>Yo 4!</Fade>
       </Helper>

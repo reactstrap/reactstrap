@@ -70,8 +70,8 @@ function Alert(props) {
 
   return (
     <Fade {...attributes} {...alertTransition} tag={Tag} className={classes} in={isOpen} role="alert" innerRef={innerRef}>
-      {toggle ?
-        <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle} />
+      {toggle
+        ? <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle} />
         : null}
       {children}
     </Fade>

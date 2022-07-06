@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
+import CloseButton from './CloseButton';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -25,7 +26,6 @@ const defaultProps = {
   tag: 'button',
 };
 
-
 function Button(props) {
   const onClick = useCallback((e) => {
     if (props.disabled) {
@@ -36,8 +36,7 @@ function Button(props) {
     if (props.onClick) {
       return props.onClick(e);
     }
-  }, [props.onClick, props.disabled])
-
+  }, [props.onClick, props.disabled]);
 
   let {
     active,
@@ -54,13 +53,20 @@ function Button(props) {
     ...attributes
   } = props;
 
+  if (close) {
+    return (
+      <CloseButton
+        {...attributes}
+      />
+    );
+  }
+
   const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
 
   const classes = mapToCssModules(classNames(
     className,
-    close && 'btn-close',
-    close || 'btn',
-    close || btnOutlineColor,
+    'btn',
+    btnOutlineColor,
     size ? `btn-${size}` : false,
     block ? 'd-block w-100' : false,
     { active, disabled: props.disabled }
@@ -70,8 +76,6 @@ function Button(props) {
     Tag = 'a';
   }
 
-  const defaultAriaLabel = close ? 'Close' : null;
-
   return (
     <Tag
       type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
@@ -79,7 +83,7 @@ function Button(props) {
       className={classes}
       ref={innerRef}
       onClick={onClick}
-      aria-label={ariaLabel || defaultAriaLabel}
+      aria-label={ariaLabel}
     />
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Button } from '../';
+import { Button } from '..';
 
 describe('Button', () => {
   it('should render children', () => {
@@ -10,7 +10,9 @@ describe('Button', () => {
   });
 
   it('should render custom element', () => {
-    const Link = props => <a href="/home" {...props}>{props.children}</a>;
+    function Link(props) {
+      return <a href="/home" {...props}>{props.children}</a>;
+    }
     const wrapper = mount(<Button tag={Link}>Home</Button>);
 
     expect(wrapper.find('a').hostNodes().length).toBe(1);
@@ -32,7 +34,7 @@ describe('Button', () => {
   });
 
   it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
-    const wrapper = mount(<Button onClick={() => {}}>Home</Button>);
+    const wrapper = mount(<Button onClick={() => { }}>Home</Button>);
 
     expect(wrapper.find('button').hostNodes().prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');

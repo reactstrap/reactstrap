@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'p'
 };
 
-const CardText = (props) => {
+function CardText(props) {
   const {
     className,
     cssModule,
@@ -28,7 +28,7 @@ const CardText = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardText.propTypes = propTypes;
 CardText.defaultProps = defaultProps;

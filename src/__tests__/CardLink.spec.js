@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardLink } from '../';
+import { CardLink } from '..';
 
 describe('CardLink', () => {
   it('should render with "card-link" class', () => {

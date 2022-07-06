@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasFooter, Button } from '../';
+import {
+  Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasFooter, Button
+} from '..';
 import { keyCodes } from '../utils';
 
 describe('Offcanvas', () => {
@@ -16,7 +18,7 @@ describe('Offcanvas', () => {
   });
 
   afterEach(() => {
-    document.getElementsByTagName('html')[0].innerHTML = ''; 
+    document.getElementsByTagName('html')[0].innerHTML = '';
 
     // fast forward time for offcanvas to fade out
     jest.runTimersToTime(300);
@@ -174,7 +176,6 @@ describe('Offcanvas', () => {
     expect(document.getElementsByClassName('offcanvas-top').length).toBe(1);
     wrapper.unmount();
   });
-
 
   it('should render offcanvas when isOpen is true', () => {
     isOpen = true;
@@ -513,7 +514,7 @@ describe('Offcanvas', () => {
   it('should destroy this._element when unmountOnClose prop set to true', () => {
     isOpen = true;
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} toggle={toggle} unmountOnClose={true}>
+      <Offcanvas isOpen={isOpen} toggle={toggle} unmountOnClose>
         <button id="clicker">Does Nothing</button>
       </Offcanvas>
     );
@@ -711,19 +712,21 @@ describe('Offcanvas', () => {
   });
 
   it('should return the focus to the last focused element before the offcanvas has opened', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
+          <button className="focus">Focused</button>
           <Offcanvas isOpen={isOpen}>
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -731,22 +734,24 @@ describe('Offcanvas', () => {
 
     expect(document.activeElement === button).toEqual(true);
     wrapper.unmount();
-  })
+  });
 
   it('should not return the focus to the last focused element before the offcanvas has opened when "returnFocusAfterClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
-          <Offcanvas isOpen={isOpen} returnFocusAfterClose={false} >
+          <button className="focus">Focused</button>
+          <Offcanvas isOpen={isOpen} returnFocusAfterClose={false}>
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -754,22 +759,24 @@ describe('Offcanvas', () => {
 
     expect(document.activeElement === button).toEqual(false);
     wrapper.unmount();
-  })
+  });
 
   it('should return the focus to the last focused element before the offcanvas has opened when "unmountOnClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
+          <button className="focus">Focused</button>
           <Offcanvas isOpen={isOpen} unmountOnClose={false}>
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -777,22 +784,24 @@ describe('Offcanvas', () => {
 
     expect(document.activeElement === button).toEqual(true);
     wrapper.unmount();
-  })
+  });
 
   it('should not return the focus to the last focused element before the offcanvas has opened when "returnFocusAfterClose" is false and "unmountOnClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}/>
+          <button className="focus" />
           <Offcanvas isOpen={isOpen} returnFocusAfterClose={false} unmountOnClose={false}>
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -803,21 +812,22 @@ describe('Offcanvas', () => {
   });
 
   it('should attach/detach trapFocus for dialogs', () => {
-    const addEventListenerFn = document.addEventListener,
-          removeEventListenerFn = document.removeEventListener;
+    const addEventListenerFn = document.addEventListener;
+    const removeEventListenerFn = document.removeEventListener;
     document.addEventListener = jest.fn();
     document.removeEventListener = jest.fn();
 
-    const MockComponent = () => (
-          <>
-            <Offcanvas isOpen={true}>
-              <OffcanvasBody>
-                  <Button className={'focus'}>focusable element</Button>
-              </OffcanvasBody>
-            </Offcanvas>
-          </>),
-          wrapper = mount(<MockComponent />),
-          offcanvas_instance = wrapper.find(Offcanvas).instance();
+    function MockComponent() {
+      return (
+        <Offcanvas isOpen>
+          <OffcanvasBody>
+            <Button className="focus">focusable element</Button>
+          </OffcanvasBody>
+        </Offcanvas>
+      );
+    }
+    const wrapper = mount(<MockComponent />);
+    const offcanvas_instance = wrapper.find(Offcanvas).instance();
 
     expect(document.addEventListener.mock.calls.length).toBe(1);
     expect(document.addEventListener.mock.calls[0]).toEqual(['focus', offcanvas_instance.trapFocus, true]);
@@ -833,17 +843,19 @@ describe('Offcanvas', () => {
   });
 
   it('should trap focus inside the open dialog', () => {
-    const MockComponent = () => (
-          <>
-            <Button className="first">Focused</Button>
-            <Offcanvas isOpen trapFocus>
-              <OffcanvasBody>
-                Something else to see
-                <Button className="focus">focusable element</Button>
-              </OffcanvasBody>
-            </Offcanvas>
-          </>
-        );
+    function MockComponent() {
+      return (
+        <>
+          <Button className="first">Focused</Button>
+          <Offcanvas isOpen trapFocus>
+            <OffcanvasBody>
+              Something else to see
+              <Button className="focus">focusable element</Button>
+            </OffcanvasBody>
+          </Offcanvas>
+        </>
+      );
+    }
     const wrapper = mount(<MockComponent />);
     const button = wrapper.find('.first').hostNodes().getDOMNode();
     const offcanvas_instance = wrapper.find(Offcanvas).instance();

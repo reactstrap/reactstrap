@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ListInlineItem } from '../';
+import { ListInlineItem } from '..';
 
 describe('ListInlineItem', () => {
   it('should render children', () => {

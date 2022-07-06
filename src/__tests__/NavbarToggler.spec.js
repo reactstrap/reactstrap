@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NavbarToggler } from '../';
+import { NavbarToggler } from '..';
 
 describe('NavbarToggler', () => {
   it('should render .navbar-toggler markup', () => {

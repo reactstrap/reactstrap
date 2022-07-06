@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
+import {
+  mapToCssModules, omit, keyCodes, tagPropType
+} from './utils';
 
 const propTypes = {
   a11y: PropTypes.bool,
@@ -22,6 +24,7 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  dropup: PropTypes.bool,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
   menuRole: PropTypes.oneOf(['listbox', 'menu'])
@@ -44,7 +47,7 @@ const preventDefaultKeys = [
   keyCodes.down,
   keyCodes.end,
   keyCodes.home
-]
+];
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -61,24 +64,6 @@ class Dropdown extends React.Component {
     this.menuRef = React.createRef();
   }
 
-  handleMenuRef(menuRef) {
-    this.menuRef.current = menuRef;
-  }
-
-  getContextValue() {
-    return {
-      toggle: this.toggle,
-      isOpen: this.props.isOpen,
-      direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
-      inNavbar: this.props.inNavbar,
-      disabled: this.props.disabled,
-      // Callback that should be called by DropdownMenu to provide a ref to
-      // a HTML tag that's used for the DropdownMenu
-      onMenuRef: this.handleMenuRef,
-      menuRole: this.props.menuRole
-    };
-  }
-
   componentDidMount() {
     this.handleProps();
   }
@@ -93,45 +78,8 @@ class Dropdown extends React.Component {
     this.removeEvents();
   }
 
-  getContainer() {
-    return this.containerRef.current;
-  }
-
-  getMenu() {
-    return this.menuRef.current;
-  }
-
-  getMenuCtrl() {
-    if (this._$menuCtrl) return this._$menuCtrl;
-    this._$menuCtrl = this.getContainer().querySelector('[aria-expanded]');
-    return this._$menuCtrl;
-  }
-
-  getItemType() {
-    if(this.context.menuRole === 'listbox') {
-      return 'option'
-    }
-    return 'menuitem'
-  }
-
-  getMenuItems() {
-    // In a real menu with a child DropdownMenu, `this.getMenu()` should never
-    // be null, but it is sometimes null in tests. To mitigate that, we just
-    // use `this.getContainer()` as the fallback `menuContainer`.
-    const menuContainer = this.getMenu() || this.getContainer();
-    return [].slice.call(menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`));
-  }
-
-  addEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.addEventListener(event, this.handleDocumentClick, true)
-    );
-  }
-
-  removeEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
-    );
+  handleMenuRef(menuRef) {
+    this.menuRef.current = menuRef;
   }
 
   handleDocumentClick(e) {
@@ -232,6 +180,57 @@ class Dropdown extends React.Component {
     }
   }
 
+  getContainer() {
+    return this.containerRef.current;
+  }
+
+  getMenu() {
+    return this.menuRef.current;
+  }
+
+  getMenuCtrl() {
+    if (this._$menuCtrl) return this._$menuCtrl;
+    this._$menuCtrl = this.getContainer().querySelector('[aria-expanded]');
+    return this._$menuCtrl;
+  }
+
+  getItemType() {
+    if (this.context.menuRole === 'listbox') {
+      return 'option';
+    }
+    return 'menuitem';
+  }
+
+  getContextValue() {
+    return {
+      toggle: this.toggle,
+      isOpen: this.props.isOpen,
+      direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
+      inNavbar: this.props.inNavbar,
+      disabled: this.props.disabled,
+      // Callback that should be called by DropdownMenu to provide a ref to
+      // a HTML tag that's used for the DropdownMenu
+      onMenuRef: this.handleMenuRef,
+      menuRole: this.props.menuRole
+    };
+  }
+
+  getMenuItems() {
+    // In a real menu with a child DropdownMenu, `this.getMenu()` should never
+    // be null, but it is sometimes null in tests. To mitigate that, we just
+    // use `this.getContainer()` as the fallback `menuContainer`.
+    const menuContainer = this.getMenu() || this.getContainer();
+    return [].slice.call(menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`));
+  }
+
+  addEvents() {
+    ['click', 'touchstart', 'keyup'].forEach((event) => document.addEventListener(event, this.handleDocumentClick, true));
+  }
+
+  removeEvents() {
+    ['click', 'touchstart', 'keyup'].forEach((event) => document.removeEventListener(event, this.handleDocumentClick, true));
+  }
+
   toggle(e) {
     if (this.props.disabled) {
       return e && e.preventDefault();
@@ -260,7 +259,8 @@ class Dropdown extends React.Component {
 
     let subItemIsActive = false;
     if (setActiveFromChild) {
-      React.Children.map(this.props.children[1].props.children,
+      React.Children.map(
+        this.props.children[1].props.children,
         (dropdownItem) => {
           if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
         }

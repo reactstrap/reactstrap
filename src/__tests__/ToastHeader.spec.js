@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ToastHeader } from '../';
+import { ToastHeader } from '..';
 
 describe('ToastHeader', () => {
   it('should render with "toast-header" class', () => {

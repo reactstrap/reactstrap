@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Pagination } from '../';
+import { Pagination } from '..';
 
 describe('Pagination', () => {
   it('should render "nav" tag by default', () => {
