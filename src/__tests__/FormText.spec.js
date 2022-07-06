@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FormText } from '../';
+import { FormText } from '..';
 
 describe('FormText', () => {
   it('should render with "form" tag', () => {

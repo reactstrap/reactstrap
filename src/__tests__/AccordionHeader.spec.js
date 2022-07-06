@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { AccordionHeader, AccordionContext } from '../';
+import { AccordionHeader, AccordionContext } from '..';
 
 describe('AccordionHeader', () => {
   it('should render with "accordion-header" class', () => {

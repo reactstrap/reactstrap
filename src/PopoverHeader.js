@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'h3'
 };
 
-const PopoverHeader = (props) => {
+function PopoverHeader(props) {
   const {
     className,
     cssModule,
@@ -29,7 +29,7 @@ const PopoverHeader = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 PopoverHeader.propTypes = propTypes;
 PopoverHeader.defaultProps = defaultProps;

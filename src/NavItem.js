@@ -14,7 +14,7 @@ const defaultProps = {
   tag: 'li'
 };
 
-const NavItem = (props) => {
+function NavItem(props) {
   const {
     className,
     cssModule,
@@ -32,7 +32,7 @@ const NavItem = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 NavItem.propTypes = propTypes;
 NavItem.defaultProps = defaultProps;

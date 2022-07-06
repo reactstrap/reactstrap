@@ -1,14 +1,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '../';
+import {
+  Modal, ModalBody, ModalHeader, ModalFooter, Button
+} from '..';
 import { keyCodes } from '../utils';
 
 const didMount = (component) => {
   const wrapper = mount(component);
   wrapper.setProps({ fakefield: 'fakeToUpdate' });
   return wrapper;
-}
+};
 
 describe('Modal', () => {
   let isOpen;
@@ -116,7 +118,7 @@ describe('Modal', () => {
   it('should render with the class "modal-dialog-scrollable" when scrollable is "true"', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} scrollable={true}>
+      <Modal isOpen={isOpen} toggle={toggle} scrollable>
         Yo!
       </Modal>
     );
@@ -321,7 +323,6 @@ describe('Modal', () => {
     expect(document.getElementsByClassName('modal-crazy').length).toBe(1);
     wrapper.unmount();
   });
-
 
   it('should render modal when isOpen is true', () => {
     isOpen = true;
@@ -690,7 +691,7 @@ describe('Modal', () => {
   it('should close modal when escape key pressed and backdrop is "static" and keyboard=true', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={true}>
+      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard>
         <button id="clicker">Does Nothing</button>
       </Modal>
     );
@@ -830,7 +831,7 @@ describe('Modal', () => {
   it('should destroy this._element when unmountOnClose prop set to true', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={true}>
+      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose>
         <button id="clicker">Does Nothing</button>
       </Modal>
     );
@@ -1041,7 +1042,8 @@ describe('Modal', () => {
           <span tabIndex="0">test tab index</span>
         </ModalBody>
         <ModalFooter>
-          <Button disabled color="primary" onClick={toggle}>Do Something</Button>{' '}
+          <Button disabled color="primary" onClick={toggle}>Do Something</Button>
+          {' '}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
@@ -1075,19 +1077,21 @@ describe('Modal', () => {
   });
 
   it('should return the focus to the last focused element before the modal has opened', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
+          <button className="focus">Focused</button>
           <Modal isOpen={isOpen}>
             <ModalBody>Whatever</ModalBody>
           </Modal>
         </>
-    );
+      );
+    }
     const wrapper = didMount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1095,22 +1099,24 @@ describe('Modal', () => {
 
     expect(document.activeElement === button).toEqual(true);
     wrapper.unmount();
-  })
+  });
 
   it('should not return the focus to the last focused element before the modal has opened when "returnFocusAfterClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
-          <Modal isOpen={isOpen} returnFocusAfterClose={false} >
+          <button className="focus">Focused</button>
+          <Modal isOpen={isOpen} returnFocusAfterClose={false}>
             <ModalBody>Whatever</ModalBody>
           </Modal>
         </>
-    );
+      );
+    }
     const wrapper = didMount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1118,22 +1124,24 @@ describe('Modal', () => {
 
     expect(document.activeElement === button).toEqual(false);
     wrapper.unmount();
-  })
+  });
 
   it('should return the focus to the last focused element before the modal has opened when "unmountOnClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
+          <button className="focus">Focused</button>
           <Modal isOpen={isOpen} unmountOnClose={false}>
             <ModalBody>Whatever</ModalBody>
           </Modal>
         </>
-    );
+      );
+    }
     const wrapper = didMount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1141,22 +1149,24 @@ describe('Modal', () => {
 
     expect(document.activeElement === button).toEqual(true);
     wrapper.unmount();
-  })
+  });
 
   it('should not return the focus to the last focused element before the modal has opened when "returnFocusAfterClose" is false and "unmountOnClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}/>
+          <button className="focus" />
           <Modal isOpen={isOpen} returnFocusAfterClose={false} unmountOnClose={false}>
             <ModalBody>Whatever</ModalBody>
           </Modal>
         </>
-    );
+      );
+    }
     const wrapper = didMount(<MockComponent />);
     const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+      .find('.focus')
+      .hostNodes()
+      .getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1167,21 +1177,22 @@ describe('Modal', () => {
   });
 
   it('should attach/detach trapFocus for dialogs', () => {
-    const addEventListenerFn = document.addEventListener,
-          removeEventListenerFn = document.removeEventListener;
+    const addEventListenerFn = document.addEventListener;
+    const removeEventListenerFn = document.removeEventListener;
     document.addEventListener = jest.fn();
     document.removeEventListener = jest.fn();
 
-    const MockComponent = () => (
-          <>
-            <Modal isOpen={true}>
-              <ModalBody>
-                  <Button className={'focus'}>focusable element</Button>
-              </ModalBody>
-            </Modal>
-          </>),
-          wrapper = didMount(<MockComponent />),
-          modal_instance = wrapper.find(Modal).instance();
+    function MockComponent() {
+      return (
+        <Modal isOpen>
+          <ModalBody>
+            <Button className="focus">focusable element</Button>
+          </ModalBody>
+        </Modal>
+      );
+    }
+    const wrapper = didMount(<MockComponent />);
+    const modal_instance = wrapper.find(Modal).instance();
 
     expect(document.addEventListener.mock.calls.length).toBe(1);
     expect(document.addEventListener.mock.calls[0]).toEqual(['focus', modal_instance.trapFocus, true]);
@@ -1197,25 +1208,28 @@ describe('Modal', () => {
   });
 
   it('should trap focus inside the open dialog', () => {
-    const MockComponent = () => (
-          <>
-            <Button className={'first'}>Focused</Button>
-            <Modal isOpen={true} trapFocus>
-              <ModalBody>
-                  Something else to see
-                  <Button className={'focus'}>focusable element</Button>
-              </ModalBody>
-            </Modal>
-          </>),
-          wrapper = didMount(<MockComponent />);
-    const button = wrapper.find('.first').hostNodes().getDOMNode(),
-          button2 = wrapper.find('.focus').hostNodes().getDOMNode(),
-          modal_instance = wrapper.find(Modal).instance(),
-          ev_mock = {
-            target: button,
-            preventDefault: jest.fn(),
-            stopPropagation: jest.fn()
-          };
+    function MockComponent() {
+      return (
+        <>
+          <Button className="first">Focused</Button>
+          <Modal isOpen trapFocus>
+            <ModalBody>
+              Something else to see
+              <Button className="focus">focusable element</Button>
+            </ModalBody>
+          </Modal>
+        </>
+      );
+    }
+    const wrapper = didMount(<MockComponent />);
+    const button = wrapper.find('.first').hostNodes().getDOMNode();
+    const button2 = wrapper.find('.focus').hostNodes().getDOMNode();
+    const modal_instance = wrapper.find(Modal).instance();
+    const ev_mock = {
+      target: button,
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn()
+    };
     button.focus();
     modal_instance.trapFocus(ev_mock);
     jest.runAllTimers();
@@ -1233,27 +1247,27 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalBody>
-          <Button className={'b0'} onClick={toggle}>Cancel</Button>
-          <Modal isOpen={true}>
+          <Button className="b0" onClick={toggle}>Cancel</Button>
+          <Modal isOpen>
             <ModalBody>
-                <Button className={'b1'}>Click 1</Button>
-                <Button className={'b2'}>Click 2</Button>
+              <Button className="b1">Click 1</Button>
+              <Button className="b2">Click 2</Button>
             </ModalBody>
           </Modal>
         </ModalBody>
       </Modal>
     );
 
-    const instance = wrapper.instance(),
-          nested = wrapper.find(Modal).at(1).instance(),
-          button = wrapper.find('.b0').hostNodes().getDOMNode(),
-          button1 = wrapper.find('.b1').hostNodes().getDOMNode(),
-          button2 = wrapper.find('.b2').hostNodes().getDOMNode(),
-          ev_mock = {
-            target: button,
-            preventDefault: jest.fn(),
-            stopPropagation: jest.fn()
-          };
+    const instance = wrapper.instance();
+    const nested = wrapper.find(Modal).at(1).instance();
+    const button = wrapper.find('.b0').hostNodes().getDOMNode();
+    const button1 = wrapper.find('.b1').hostNodes().getDOMNode();
+    const button2 = wrapper.find('.b2').hostNodes().getDOMNode();
+    const ev_mock = {
+      target: button,
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn()
+    };
     button2.focus();
     instance.trapFocus(ev_mock);
     jest.runAllTimers();
@@ -1266,29 +1280,29 @@ describe('Modal', () => {
 
   it('should not handle tab if there is a nested Modal', () => {
     const wrapper = didMount(
-      <Modal isOpen={true} toggle={toggle}>
+      <Modal isOpen toggle={toggle}>
         <ModalBody>
-          <Button className={'b0'} onClick={toggle}>Cancel</Button>
-          <Modal isOpen={true}>
+          <Button className="b0" onClick={toggle}>Cancel</Button>
+          <Modal isOpen>
             <ModalBody>
-                <Button className={'b1'}>Click 1</Button>
+              <Button className="b1">Click 1</Button>
             </ModalBody>
           </Modal>
         </ModalBody>
       </Modal>
     );
 
-    const instance = wrapper.instance(),
-          nested = wrapper.find(Modal).at(1).instance(),
-          button = wrapper.find('.b0').hostNodes().getDOMNode(),
-          button1 = wrapper.find('.b1').hostNodes().getDOMNode(),
-          ev_mock = {
-            target: button1,
-            which: 9,
-            shiftKey: true,
-            preventDefault: jest.fn(),
-            stopPropagation: jest.fn()
-          };
+    const instance = wrapper.instance();
+    const nested = wrapper.find(Modal).at(1).instance();
+    const button = wrapper.find('.b0').hostNodes().getDOMNode();
+    const button1 = wrapper.find('.b1').hostNodes().getDOMNode();
+    const ev_mock = {
+      target: button1,
+      which: 9,
+      shiftKey: true,
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn()
+    };
     button1.focus();
     instance.getFocusableChildren = jest.fn();
     instance.getFocusableChildren.mockReturnValue([]);

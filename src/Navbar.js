@@ -28,14 +28,14 @@ const defaultProps = {
 const getExpandClass = (expand) => {
   if (expand === false) {
     return false;
-  } else if (expand === true || expand === 'xs') {
+  } if (expand === true || expand === 'xs') {
     return 'navbar-expand';
   }
 
   return `navbar-expand-${expand}`;
 };
 
-const Navbar = (props) => {
+function Navbar(props) {
   const {
     expand,
     className,
@@ -68,15 +68,16 @@ const Navbar = (props) => {
 
   return (
     <Tag {...attributes} className={classes}>
-      { container ?
-        <div className={containerClass}>
-          {children}
-        </div> :
-        children
-      }
+      { container
+        ? (
+          <div className={containerClass}>
+            {children}
+          </div>
+        )
+        : children}
     </Tag>
   );
-};
+}
 
 Navbar.propTypes = propTypes;
 Navbar.defaultProps = defaultProps;

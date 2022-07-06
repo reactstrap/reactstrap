@@ -54,7 +54,7 @@ export function mapToCssModules(className = '', cssModule = globalCssModule) {
   if (!cssModule) return className;
   return className
     .split(' ')
-    .map(c => cssModule[c] || c)
+    .map((c) => cssModule[c] || c)
     .join(' ');
 }
 
@@ -63,7 +63,7 @@ export function mapToCssModules(className = '', cssModule = globalCssModule) {
  */
 export function omit(obj, omitKeys) {
   const result = {};
-  Object.keys(obj).forEach(key => {
+  Object.keys(obj).forEach((key) => {
     if (omitKeys.indexOf(key) === -1) {
       result[key] = obj[key];
     }
@@ -76,7 +76,7 @@ export function omit(obj, omitKeys) {
  */
 export function pick(obj, keys) {
   const pickKeys = Array.isArray(keys) ? keys : [keys];
-  let length = pickKeys.length;
+  let { length } = pickKeys;
   let key;
   const result = {};
 
@@ -113,16 +113,16 @@ export function deprecated(propType, explanation) {
 }
 
 // Shim Element if needed (e.g. in Node environment)
-const Element = (typeof window === 'object' && window.Element) || function() {};
+const Element = (typeof window === 'object' && window.Element) || function () { };
 
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
-      'Invalid prop `' +
-        propName +
-        '` supplied to `' +
-        componentName +
-        '`. Expected prop to be an instance of Element. Validation failed.'
+      'Invalid prop `'
+      + propName
+      + '` supplied to `'
+      + componentName
+      + '`. Expected prop to be an instance of Element. Validation failed.'
     );
   }
 }
@@ -214,9 +214,9 @@ export const PopperPlacements = [
 ];
 
 export const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
+  typeof window !== 'undefined'
+  && window.document
+  && window.document.createElement
 );
 
 export function isReactRefObj(target) {
@@ -228,47 +228,47 @@ export function isReactRefObj(target) {
 
 function getTag(value) {
   if (value == null) {
-        return value === undefined ? '[object Undefined]' : '[object Null]'
-    }
-    return Object.prototype.toString.call(value)
+    return value === undefined ? '[object Undefined]' : '[object Null]';
+  }
+  return Object.prototype.toString.call(value);
+}
+
+export function isObject(value) {
+  const type = typeof value;
+  return value != null && (type === 'object' || type === 'function');
 }
 
 export function toNumber(value) {
   const type = typeof value;
   const NAN = 0 / 0;
   if (type === 'number') {
-    return value
+    return value;
   }
   if (type === 'symbol' || (type === 'object' && getTag(value) === '[object Symbol]')) {
-    return NAN
+    return NAN;
   }
   if (isObject(value)) {
     const other = typeof value.valueOf === 'function' ? value.valueOf() : value;
-    value = isObject(other) ? `${other}` : other
+    value = isObject(other) ? `${other}` : other;
   }
   if (type !== 'string') {
-    return value === 0 ? value : +value
+    return value === 0 ? value : +value;
   }
   value = value.replace(/^\s+|\s+$/g, '');
   const isBinary = /^0b[01]+$/i.test(value);
   return (isBinary || /^0o[0-7]+$/i.test(value))
     ? parseInt(value.slice(2), isBinary ? 2 : 8)
-    : (/^[-+]0x[0-9a-f]+$/i.test(value) ? NAN : +value)
-}
-
-export function isObject(value) {
-  const type = typeof value;
-  return value != null && (type === 'object' || type === 'function')
+    : (/^[-+]0x[0-9a-f]+$/i.test(value) ? NAN : +value);
 }
 
 export function isFunction(value) {
   if (!isObject(value)) {
-    return false
+    return false;
   }
 
   const tag = getTag(value);
-  return tag === '[object Function]' || tag === '[object AsyncFunction]' ||
-    tag === '[object GeneratorFunction]' || tag === '[object Proxy]'
+  return tag === '[object Function]' || tag === '[object AsyncFunction]'
+    || tag === '[object GeneratorFunction]' || tag === '[object Proxy]';
 }
 
 export function findDOMElements(target) {
@@ -310,12 +310,11 @@ export function getTarget(target, allElements) {
       return [];
     }
     return [els];
-  } else {
-    if (isArrayOrNodeList(els)) {
-      return els[0];
-    }
-    return els;
   }
+  if (isArrayOrNodeList(els)) {
+    return els[0];
+  }
+  return els;
 }
 
 export const defaultToggleEvents = ['touchstart', 'click'];
@@ -332,9 +331,9 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
   }
 
   if (
-    !isArrayOrNodeList(els) ||
-    typeof handler !== 'function' ||
-    !Array.isArray(events)
+    !isArrayOrNodeList(els)
+    || typeof handler !== 'function'
+    || !Array.isArray(events)
   ) {
     throw new Error(`
       The first argument of this function must be DOM node or an array on DOM nodes or NodeList.
@@ -343,14 +342,14 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
     `);
   }
 
-  Array.prototype.forEach.call(events, event => {
-    Array.prototype.forEach.call(els, el => {
+  Array.prototype.forEach.call(events, (event) => {
+    Array.prototype.forEach.call(els, (el) => {
       el.addEventListener(event, handler, useCapture);
     });
   });
   return function removeEvents() {
-    Array.prototype.forEach.call(events, event => {
-      Array.prototype.forEach.call(els, el => {
+    Array.prototype.forEach.call(events, (event) => {
+      Array.prototype.forEach.call(els, (el) => {
         el.removeEventListener(event, handler, useCapture);
       });
     });

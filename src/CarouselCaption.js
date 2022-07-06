@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselCaption = (props) => {
-  const { captionHeader, captionText, cssModule, className } = props;
+function CarouselCaption(props) {
+  const {
+    captionHeader, captionText, cssModule, className
+  } = props;
   const classes = mapToCssModules(classNames(
     className,
     'carousel-caption',
@@ -18,7 +20,7 @@ const CarouselCaption = (props) => {
       <p>{captionText}</p>
     </div>
   );
-};
+}
 
 CarouselCaption.propTypes = {
   captionHeader: PropTypes.node,

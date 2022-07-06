@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardGroup } from '../';
+import { CardGroup } from '..';
 
 describe('CardGroup', () => {
   it('should render with "card-group" class', () => {

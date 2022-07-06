@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, omit, pick, TransitionPropTypeKeys, TransitionTimeouts, tagPropType } from './utils';
+import {
+  mapToCssModules, omit, pick, TransitionPropTypeKeys, TransitionTimeouts, tagPropType
+} from './utils';
 
 const propTypes = {
   ...Transition.propTypes,

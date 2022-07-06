@@ -54,7 +54,7 @@ const defaultProps = {
   hideArrow: false,
   autohide: false,
   delay: DEFAULT_DELAYS,
-  toggle: function () {},
+  toggle: function () { },
   trigger: 'click',
   fade: true,
 };
@@ -64,7 +64,7 @@ function isInDOMSubtree(element, subtreeRoot) {
 }
 
 function isInDOMSubtrees(element, subtreeRoots = []) {
-  return subtreeRoots && subtreeRoots.length && subtreeRoots.filter(subTreeRoot=> isInDOMSubtree(element, subTreeRoot))[0];
+  return subtreeRoots && subtreeRoots.length && subtreeRoots.filter((subTreeRoot) => isInDOMSubtree(element, subTreeRoot))[0];
 }
 
 class TooltipPopoverWrapper extends React.Component {
@@ -108,7 +108,32 @@ class TooltipPopoverWrapper extends React.Component {
     if (props.isOpen && !state.isOpen) {
       return { isOpen: props.isOpen };
     }
-    else return null;
+    return null;
+  }
+
+  handleDocumentClick(e) {
+    const triggers = this.props.trigger.split(' ');
+
+    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtrees(e.target, this._targets))) {
+      if (this._hideTimeout) {
+        this.clearHideTimeout();
+      }
+      if (this.props.isOpen && !isInDOMSubtree(e.target, this._popover)) {
+        this.hideWithDelay(e);
+      } else if (!this.props.isOpen) {
+        this.showWithDelay(e);
+      }
+    } else if (triggers.indexOf('click') > -1 && isInDOMSubtrees(e.target, this._targets)) {
+      if (this._hideTimeout) {
+        this.clearHideTimeout();
+      }
+
+      if (!this.props.isOpen) {
+        this.showWithDelay(e);
+      } else {
+        this.hideWithDelay(e);
+      }
+    }
   }
 
   onMouseOverTooltipContent() {
@@ -162,11 +187,9 @@ class TooltipPopoverWrapper extends React.Component {
   }
 
   getCurrentTarget(target) {
-    if (!target)
-      return null;
+    if (!target) return null;
     const index = this._targets.indexOf(target);
-    if (index >= 0)
-      return this._targets[index];
+    if (index >= 0) return this._targets[index];
     return this.getCurrentTarget(target.parentElement);
   }
 
@@ -191,6 +214,7 @@ class TooltipPopoverWrapper extends React.Component {
       this.getDelay('show')
     );
   }
+
   hide(e) {
     if (this.props.isOpen) {
       this.clearHideTimeout();
@@ -209,7 +233,6 @@ class TooltipPopoverWrapper extends React.Component {
     );
   }
 
-
   clearShowTimeout() {
     clearTimeout(this._showTimeout);
     this._showTimeout = undefined;
@@ -220,39 +243,14 @@ class TooltipPopoverWrapper extends React.Component {
     this._hideTimeout = undefined;
   }
 
-  handleDocumentClick(e) {
-    const triggers = this.props.trigger.split(' ');
-
-    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtrees(e.target, this._targets))) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
-      if (this.props.isOpen && !isInDOMSubtree(e.target, this._popover)) {
-        this.hideWithDelay(e);
-      } else if (!this.props.isOpen) {
-        this.showWithDelay(e);
-      }
-    } else if (triggers.indexOf('click') > -1 && isInDOMSubtrees(e.target, this._targets)) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
-
-      if (!this.props.isOpen) {
-        this.showWithDelay(e);
-      } else {
-        this.hideWithDelay(e);
-      }
-    }
-  }
-
   addEventOnTargets(type, handler, isBubble) {
-    this._targets.forEach(target=> {
+    this._targets.forEach((target) => {
       target.addEventListener(type, handler, isBubble);
     });
   }
 
   removeEventOnTargets(type, handler, isBubble) {
-    this._targets.forEach(target=> {
+    this._targets.forEach((target) => {
       target.removeEventListener(type, handler, isBubble);
     });
   }
@@ -305,7 +303,7 @@ class TooltipPopoverWrapper extends React.Component {
       this.removeEventOnTargets('focusout', this.hide, true);
     }
 
-    document.removeEventListener('click', this.handleDocumentClick, true)
+    document.removeEventListener('click', this.handleDocumentClick, true);
   }
 
   updateTarget() {

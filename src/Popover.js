@@ -9,7 +9,7 @@ const defaultProps = {
   offset: [0, 8]
 };
 
-const Popover = (props) => {
+function Popover(props) {
   const popperClasses = classNames(
     'popover',
     'show',
@@ -21,7 +21,6 @@ const Popover = (props) => {
     props.innerClassName
   );
 
-
   return (
     <TooltipPopoverWrapper
       {...props}
@@ -30,10 +29,9 @@ const Popover = (props) => {
       innerClassName={classes}
     />
   );
-};
+}
 
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
-
 
 export default Popover;

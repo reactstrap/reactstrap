@@ -13,7 +13,7 @@ const defaultProps = {
   tag: 'div'
 };
 
-const CardGroup = (props) => {
+function CardGroup(props) {
   const {
     className,
     cssModule,
@@ -28,7 +28,7 @@ const CardGroup = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 CardGroup.propTypes = propTypes;
 CardGroup.defaultProps = defaultProps;

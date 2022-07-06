@@ -13,12 +13,13 @@ const defaultProps = {
   tag: 'div',
 };
 
-const ModalBody = (props) => {
+function ModalBody(props) {
   const {
     className,
     cssModule,
     tag: Tag,
-    ...attributes } = props;
+    ...attributes
+  } = props;
   const classes = mapToCssModules(classNames(
     className,
     'modal-body'
@@ -27,7 +28,7 @@ const ModalBody = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 ModalBody.propTypes = propTypes;
 ModalBody.defaultProps = defaultProps;

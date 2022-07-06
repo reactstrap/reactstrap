@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Popper } from 'react-popper';
-import { DropdownMenu } from '../';
+import { DropdownMenu } from '..';
 import { DropdownContext } from '../DropdownContext';
 
 describe('DropdownMenu', () => {
@@ -148,7 +148,7 @@ describe('DropdownMenu', () => {
 
     const modifiers = wrapper.find(Popper).prop('modifiers');
     expect(modifiers.length).toBe(1);
-    expect(modifiers).toContainEqual({"enabled": true, "name": "flip"});
+    expect(modifiers).toContainEqual({ enabled: true, name: 'flip' });
   });
 
   it('should disable flip modifier when flip is false', () => {
@@ -159,7 +159,7 @@ describe('DropdownMenu', () => {
       </DropdownContext.Provider>
     );
 
-    expect(wrapper.find(Popper).prop('modifiers')).toEqual([{"enabled": false, "name": "flip"}]);
+    expect(wrapper.find(Popper).prop('modifiers')).toEqual([{ enabled: false, name: 'flip' }]);
   });
 
   it('should position using fixed mode', () => {
@@ -220,7 +220,7 @@ describe('DropdownMenu', () => {
       expect(document.getElementById('anotherContainer').innerHTML).toContain('My body');
       expect(wrapper.text()).toBe('My body');
     });
-  })
+  });
 
   it('should not have the class "dropdown-menu-dark" by default', () => {
     isOpen = true;
@@ -240,7 +240,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu dark>
-          <p>Let's go dark</p>
+          <p>Let&apos;s go dark</p>
         </DropdownMenu>
       </DropdownContext.Provider>
     );

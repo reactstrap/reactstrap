@@ -20,7 +20,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const FormGroup = (props) => {
+function FormGroup(props) {
   const {
     className,
     cssModule,
@@ -53,7 +53,7 @@ const FormGroup = (props) => {
   return (
     <Tag {...attributes} className={classes} />
   );
-};
+}
 
 FormGroup.propTypes = propTypes;
 FormGroup.defaultProps = defaultProps;

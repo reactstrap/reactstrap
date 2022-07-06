@@ -38,21 +38,21 @@ const defaultProps = {
 const getColumnSizeClass = (isXs, colWidth, colSize) => {
   if (colSize === true || colSize === '') {
     return isXs ? 'col' : `col-${colWidth}`;
-  } else if (colSize === 'auto') {
+  } if (colSize === 'auto') {
     return isXs ? 'col-auto' : `col-${colWidth}-auto`;
   }
 
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 };
 
-
-export const getColumnClasses = (attributes, cssModule, widths=colWidths) => {
+export const getColumnClasses = (attributes, cssModule, widths = colWidths) => {
+  const modifiedAttributes = attributes;
   const colClasses = [];
-  
-  widths.forEach((colWidth, i) => {
-    let columnProp = attributes[colWidth];
 
-    delete attributes[colWidth];
+  widths.forEach((colWidth, i) => {
+    let columnProp = modifiedAttributes[colWidth];
+
+    delete modifiedAttributes[colWidth];
 
     if (!columnProp && columnProp !== '') {
       return;
@@ -77,12 +77,11 @@ export const getColumnClasses = (attributes, cssModule, widths=colWidths) => {
 
   return {
     colClasses,
-    attributes
-  }
-}
+    modifiedAttributes
+  };
+};
 
-
-const Col = (props) => {
+function Col(props) {
   const {
     className,
     cssModule,
@@ -90,8 +89,8 @@ const Col = (props) => {
     tag: Tag,
     ...attributes
   } = props;
-  
-  let { attributes : modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths)
+
+  let { modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths);
 
   if (!colClasses.length) {
     colClasses.push('col');
@@ -105,7 +104,7 @@ const Col = (props) => {
   return (
     <Tag {...modifiedAttributes} className={classes} />
   );
-};
+}
 
 Col.propTypes = propTypes;
 Col.defaultProps = defaultProps;

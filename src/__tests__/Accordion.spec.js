@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Accordion } from '../';
+import { Accordion } from '..';
 
 describe('Accordion', () => {
   it('should render with "accordion" class', () => {

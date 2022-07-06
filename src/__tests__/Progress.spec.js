@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Progress } from '../';
+import { Progress } from '..';
 
 describe('Progress', () => {
   it('should render with "div" tag by default', () => {
@@ -41,7 +41,7 @@ describe('Progress', () => {
 
   it('should render "barStyle" on the progress bar element', () => {
     const wrapper = mount(<Progress style={{ height: '20px' }} barStyle={{ height: '10px' }} />);
-    
+
     expect(getComputedStyle(wrapper.find('.progress-bar').getDOMNode()).getPropertyValue('height')).toBe('10px');
   });
 

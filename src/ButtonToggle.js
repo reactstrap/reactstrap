@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from "./Button";
 import classNames from 'classnames';
+import Button from './Button';
 import { mapToCssModules } from './utils';
 
 const propTypes = {
@@ -9,78 +9,61 @@ const propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   defaultValue: PropTypes.bool,
+  className: PropTypes.string,
+  cssModule: PropTypes.object
 };
 
 const defaultProps = {
   defaultValue: false,
 };
 
-class ButtonToggle extends React.Component {
-  constructor(props) {
-    super(props);
+function ButtonToggle(props) {
+  const [toggled, setToggled] = useState(props.defaultValue);
+  const [focus, setFocus] = useState(false);
 
-    this.state = {
-      toggled: props.defaultValue,
-      focus: false,
+  const onBlur = useCallback((e) => {
+    if (props.onBlur) {
+      props.onBlur(e);
     }
+    setFocus(false);
+  }, [props.onBlur]);
 
-    this.onBlur = this.onBlur.bind(this);
-    this.onFocus = this.onFocus.bind(this);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onBlur(e) {
-    if(this.props.onBlur) {
-      this.props.onBlur(e);
+  const onFocus = useCallback((e) => {
+    if (props.onFocus) {
+      props.onFocus(e);
     }
+    setFocus(true);
+  }, [props.onFocus]);
 
-    this.setState({
-      focus: false,
-    });
-  }
-
-  onFocus(e) {
-    if(this.props.onFocus) {
-      this.props.onFocus(e);
+  const onClick = useCallback((e) => {
+    if (props.onClick) {
+      props.onClick(e);
     }
+    setToggled(!toggled);
+  }, [props.onClick]);
 
-    this.setState({
-      focus: true,
-    });
-  }
+  const {
+    className,
+    ...attributes
+  } = props;
 
-  onClick(e) {
-    if(this.props.onClick) {
-      this.props.onClick(e);
+  const classes = mapToCssModules(classNames(
+    className,
+    {
+      focus: focus,
     }
+  ), props.cssModule);
 
-    this.setState(({ toggled }) => ({
-      toggled: !toggled,
-    }));
-  }
-
-  render() {
-    const {
-      className,
-      ...attributes
-    } = this.props;
-
-    const classes = mapToCssModules(classNames(
-      className, 
-      { 
-        focus: this.state.focus, 
-      }
-      ), this.props.cssModule);
-
-    return <Button
-      active={this.state.toggled}
-      onBlur={this.onBlur} 
-      onFocus={this.onFocus} 
-      onClick={this.onClick}
+  return (
+    <Button
+      active={toggled}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onClick={onClick}
       className={classes}
       {...attributes}
-    />;
-  }
+    />
+  );
 }
 
 ButtonToggle.propTypes = propTypes;
