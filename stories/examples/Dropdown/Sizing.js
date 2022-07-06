@@ -1,5 +1,5 @@
-import Example from './DropdownSizingExample';
-import DropdownSizing from '!!raw-loader!./DropdownSizingExample';
+import Example from './SizingExample';
+import DropdownSizing from '!!raw-loader!./SizingExample';
 
 Example.parameters = {
   docs: {

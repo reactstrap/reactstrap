@@ -14,13 +14,13 @@ export default {
 };
 
 export { default as Dropdown } from './examples/Dropdown/Dropdown';
-export { default as SplitButton } from './examples/Dropdown/DropdownSplit';
-export { default as Sizing } from './examples/Dropdown/DropdownSizing';
-export { default as DarkDropdown } from './examples/Dropdown/DropdownDark';
-export { default as Directions } from './examples/Dropdown/DropdownDirectionKitchen';
-export { default as SetActiveFromChild } from './examples/Dropdown/DropdownSetActiveFromChild';
+export { default as SplitButton } from './examples/Dropdown/Split';
+export { default as Sizing } from './examples/Dropdown/Sizing';
+export { default as DarkDropdown } from './examples/Dropdown/Dark';
+export { default as Directions } from './examples/Dropdown/DirectionKitchen';
+export { default as SetActiveFromChild } from './examples/Dropdown/SetActiveFromChild';
 
-export { default as Container } from './examples/Dropdown/DropdownContainer';
-export { default as Uncontrolled } from './examples/Dropdown/DropdownUncontrolled';
-export { default as CustomDropdown } from './examples/Dropdown/CustomDropdown';
-export { default as Props } from './examples/Dropdown/DropdownProps';
+export { default as Container } from './examples/Dropdown/Container';
+export { default as Uncontrolled } from './examples/Dropdown/Uncontrolled';
+export { default as CustomDropdown } from './examples/Dropdown/Custom';
+export { default as Props } from './examples/Dropdown/Props';

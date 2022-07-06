@@ -1,5 +1,5 @@
-import Example from './ButtonStatefulExample';
-import ButtonStateful from '!!raw-loader!./ButtonStatefulExample';
+import Example from './StatefulExample';
+import ButtonStateful from '!!raw-loader!./StatefulExample';
 
 export default Example;
 

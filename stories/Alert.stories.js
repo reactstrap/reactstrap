@@ -14,9 +14,9 @@ Provide contextual feedback messages for typical user actions with the handful o
 };
 
 export { default as Alert } from './examples/Alert/Alert';
-export { default as Colors } from './examples/Alert/AlertColors';
-export { default as Content } from './examples/Alert/AlertContent';
-export { default as AlertLink } from './examples/Alert/AlertLink';
-export { default as Dismiss } from './examples/Alert/AlertDismiss';
-export { default as UncontrolledDismiss } from './examples/Alert/AlertUncontrolledDismiss';
-export { default as Props } from './examples/Alert/AlertProps';
+export { default as Colors } from './examples/Alert/Colors';
+export { default as Content } from './examples/Alert/Content';
+export { default as AlertLink } from './examples/Alert/Link';
+export { default as Dismiss } from './examples/Alert/Dismiss';
+export { default as UncontrolledDismiss } from './examples/Alert/UncontrolledDismiss';
+export { default as Props } from './examples/Alert/Props';

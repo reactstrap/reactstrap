@@ -14,7 +14,7 @@ export default {
 };
 
 export { default as Collapse } from './examples/Collapse/Collapse';
-export { default as CollapseEvents } from './examples/Collapse/CollapseEvents';
-export { default as CollapseHorizontal } from './examples/Collapse/CollapseHorizontal';
-export { default as CollapseUncontrolled } from './examples/Collapse/CollapseUncontrolled';
-export { default as Props } from './examples/Collapse/CollapseProps';
+export { default as CollapseEvents } from './examples/Collapse/Events';
+export { default as CollapseHorizontal } from './examples/Collapse/Horizontal';
+export { default as CollapseUncontrolled } from './examples/Collapse/Uncontrolled';
+export { default as Props } from './examples/Collapse/Props';

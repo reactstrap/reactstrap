@@ -14,6 +14,6 @@ export default {
 };
 
 export { default as Carousel } from './examples/Carousel/Carousel';
-export { default as CustomTag } from './examples/Carousel/CarouselCustomTag';
-export { default as Uncontrolled } from './examples/Carousel/CarouselUncontrolled';
-export { default as Props } from './examples/Carousel/CarouselProps';
+export { default as CustomTag } from './examples/Carousel/CustomTag';
+export { default as Uncontrolled } from './examples/Carousel/Uncontrolled';
+export { default as Props } from './examples/Carousel/Props';

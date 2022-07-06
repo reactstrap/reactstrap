@@ -14,9 +14,9 @@ Custom Buttons for actions in forms, dialogs, and more with support for multiple
 };
 
 export { default as Button } from './examples/Button/Button';
-export { default as Variants } from './examples/Button/ButtonColors';
-export { default as CustomTags } from './examples/Button/ButtonTags';
-export { default as Outline } from './examples/Button/ButtonOutline';
-export { default as Sizes } from './examples/Button/ButtonSize';
-export { default as Disabled } from './examples/Button/ButtonDisabled';
-export { default as Props } from './examples/Button/ButtonProps';
+export { default as Variants } from './examples/Button/Colors';
+export { default as CustomTags } from './examples/Button/Tags';
+export { default as Outline } from './examples/Button/Outline';
+export { default as Sizes } from './examples/Button/Size';
+export { default as Disabled } from './examples/Button/Disabled';
+export { default as Props } from './examples/Button/Props';

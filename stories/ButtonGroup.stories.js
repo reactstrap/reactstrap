@@ -16,10 +16,10 @@ Group a series of buttons together on a single line or stack them in a vertical 
 };
 
 export { default as ButtonGroup } from './examples/ButtonGroup/ButtonGroup';
-export { default as MixedStyles } from './examples/ButtonGroup/ButtonMixedStyles';
-export { default as CheckboxAndRadio } from './examples/ButtonGroup/ButtonStateful';
-export { default as ButtonToolbar } from './examples/ButtonGroup/ButtonToolbar';
-export { default as Sizing } from './examples/ButtonGroup/ButtonGroupSizing';
-export { default as Nesting } from './examples/ButtonGroup/ButtonGroupNesting';
-export { default as Vertical } from './examples/ButtonGroup/ButtonGroupVertical';
-export { default as Props } from './examples/ButtonGroup/ButtonGroupProps';
+export { default as MixedStyles } from './examples/ButtonGroup/MixedStyles';
+export { default as CheckboxAndRadio } from './examples/ButtonGroup/Stateful';
+export { default as ButtonToolbar } from './examples/ButtonGroup/Toolbar';
+export { default as Sizing } from './examples/ButtonGroup/Sizing';
+export { default as Nesting } from './examples/ButtonGroup/Nesting';
+export { default as Vertical } from './examples/ButtonGroup/Vertical';
+export { default as Props } from './examples/ButtonGroup/Props';

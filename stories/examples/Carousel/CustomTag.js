@@ -1,5 +1,5 @@
-import Example from './CarouselCustomTagExample';
-import CarouselCustomTagExample from '!!raw-loader!./CarouselCustomTagExample';
+import Example from './CustomTagExample';
+import CarouselCustomTagExample from '!!raw-loader!./CustomTagExample';
 
 Example.parameters = {
   docs: {

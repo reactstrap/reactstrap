@@ -1,5 +1,5 @@
-import Example from './CollapseEventsExample';
-import CollapseEvents from '!!raw-loader!./CollapseEventsExample';
+import Example from './EventsExample';
+import CollapseEvents from '!!raw-loader!./EventsExample';
 
 Example.parameters = {
   docs: {

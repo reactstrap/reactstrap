@@ -14,5 +14,5 @@ Indicate the current page’s location within a navigational hierarchy that auto
 };
 
 export { default as Breadcrumb } from './examples/Breadcrump/Breadcrumb';
-export { default as NoList } from './examples/Breadcrump/BreadcrumbNoList';
-export { default as Props } from './examples/Breadcrump/BreadcrumbProps';
+export { default as NoList } from './examples/Breadcrump/NoList';
+export { default as Props } from './examples/Breadcrump/Props';

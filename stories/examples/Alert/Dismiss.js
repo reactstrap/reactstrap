@@ -1,5 +1,5 @@
-import Example from "./AlertDismissExample"
-import AlertDismiss from '!!raw-loader!./AlertDismissExample.js'
+import Example from "./DismissExample"
+import AlertDismiss from '!!raw-loader!./DismissExample.js'
 
 export default Example;
 
