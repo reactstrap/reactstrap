@@ -11,8 +11,7 @@
     "es6": true
   },
   "plugins": [
-    "react",
-    "prettier"
+    "react"
   ],
   "rules": {
     "react/forbid-foreign-prop-types": 0,
@@ -28,7 +27,6 @@
     "camelcase": 0,
     "react/jsx-pascal-case": 0,
     "prefer-const": 0,
-    "prettier/prettier": "error",
     "operator-linebreak": 0,
     "react/jsx-filename-extension": 0,
     "linebreak-style": 0,

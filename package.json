@@ -25,7 +25,8 @@
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
     "lint": "eslint src",
-    "dtslint": "dtslint types --expectOnly"
+    "dtslint": "dtslint types --expectOnly",
+    "prettier": "prettier --write src"
   },
   "prettier": {
     "singleQuote": true,
@@ -301,11 +302,11 @@
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.0",
     "holderjs": "^2.9.3",
     "json-loader": "^0.5.7",
     "microbundle": "^0.13.3",
+    "prettier": "2.7.1",
     "react": "^16.8.0",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.3.2",
