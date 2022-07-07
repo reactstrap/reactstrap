@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules, tagPropType } from './utils';
+import { mapToCssModules, tagPropType,  } from './utils';
 
 const propTypes = {
   color: PropTypes.string,
@@ -34,6 +34,7 @@ function Badge(props) {
     className,
     'badge',
     'bg-' + color,
+    color === "light" && "text-secondary", 
     pill ? 'rounded-pill' : false
   ), cssModule);
 
