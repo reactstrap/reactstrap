@@ -4,23 +4,41 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType, toNumber } from './utils';
 
 const propTypes = {
-  children: PropTypes.node,
-  bar: PropTypes.bool,
-  multi: PropTypes.bool,
-  tag: tagPropType,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Enable animation to bar */
   animated: PropTypes.bool,
-  striped: PropTypes.bool,
-  color: PropTypes.string,
-  className: PropTypes.string,
-  barClassName: PropTypes.string,
-  cssModule: PropTypes.object,
-  style: PropTypes.object,
-  barStyle: PropTypes.object,
-  barAriaValueText: PropTypes.string,
+  bar: PropTypes.bool,
   barAriaLabelledBy: PropTypes.string,
+  barAriaValueText: PropTypes.string,
+  barClassName: PropTypes.string,
+  barStyle: PropTypes.object,
+  children: PropTypes.node,
+  /** Add custom class */
+  className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
+  /** Add custom color to the placeholder */
+  color: PropTypes.string,
+  /** Maximum value of progress */
+  max: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  /** Minimum value of progress, defaults to zero */
+  min: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  multi: PropTypes.bool,
+  /** Add stripes to progress bar */
+  striped: PropTypes.bool,
+  style: PropTypes.object,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  /** Current value of progress */
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 const defaultProps = {

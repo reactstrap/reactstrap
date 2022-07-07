@@ -5,11 +5,15 @@ import { mapToCssModules, tagPropType } from './utils';
 import Dropdown from './Dropdown';
 
 const propTypes = {
-  tag: tagPropType,
-  type: PropTypes.bool,
-  size: PropTypes.string,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Sets size of InputGroup */
+  size: PropTypes.string,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  type: PropTypes.string,
 };
 
 const defaultProps = {

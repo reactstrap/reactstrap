@@ -4,10 +4,13 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
-  active: PropTypes.bool,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  active: PropTypes.bool
 };
 
 const defaultProps = {

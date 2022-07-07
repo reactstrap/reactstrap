@@ -13,11 +13,11 @@ export default {
   }
 };
 
-export { default as Spinner } from './examples/Spinner';
-export { default as Colors } from './examples/SpinnerColors'
-export { default as GrowingSpinner } from './examples/SpinnerGrower';
-export { default as Alignment } from './examples/SpinnerAlignment';
-export { default as Size } from './examples/SpinnerSize';
-export { default as CustomSize } from './examples/SpinnerCustomSize';
-export { default as Buttons } from './examples/SpinnerButton';
-export { default as Props } from './examples/SpinnerProps';
+export { default as Spinner } from './examples/Spinner/Spinner';
+export { default as Colors } from './examples/Spinner/Colors'
+export { default as GrowingSpinner } from './examples/Spinner/Grower';
+export { default as Alignment } from './examples/Spinner/Alignment';
+export { default as Size } from './examples/Spinner/Size';
+export { default as CustomSize } from './examples/Spinner/CustomSize';
+export { default as Buttons } from './examples/Spinner/Button';
+export { default as Props } from './examples/Spinner/Props';
