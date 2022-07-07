@@ -27,6 +27,10 @@
     "lint": "eslint src",
     "dtslint": "dtslint types --expectOnly"
   },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/reactstrap/reactstrap.git"
@@ -293,9 +297,11 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^8.17.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.0",
     "holderjs": "^2.9.3",
     "json-loader": "^0.5.7",
