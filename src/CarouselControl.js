@@ -43,10 +43,15 @@ function CarouselControl(props) {
 }
 
 CarouselControl.propTypes = {
+  /** Set the direction of control button */
   direction: PropTypes.oneOf(['prev', 'next']).isRequired,
+  /** Function to be triggered on click */
   onClickHandler: PropTypes.func.isRequired,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Screen reader text */
   directionText: PropTypes.string,
+  /** Add custom class */
   className: PropTypes.string,
 };
 

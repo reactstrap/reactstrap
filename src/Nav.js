@@ -4,17 +4,28 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tabs: PropTypes.bool,
-  pills: PropTypes.bool,
-  vertical: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  horizontal: PropTypes.string,
-  justified: PropTypes.bool,
-  fill: PropTypes.bool,
-  navbar: PropTypes.bool,
+  /** Adding card prop adds `.card-header-tabs` or `.card-header-pills` class */
   card: PropTypes.bool,
-  tag: tagPropType,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** fills the nav to extend to full available width */
+  fill: PropTypes.bool,
+  /** Change the horizontal alignment of your nav */
+  horizontal: PropTypes.oneOf(['center', 'end']),
+  /**  All horizontal space will be occupied by nav links, but unlike the `fill` above, every nav item will be the same width. */
+  justified: PropTypes.bool,
+  /** Add navbar for a full-height and lightweight navigation */
+  navbar: PropTypes.bool,
+  /** Make NavItems look like pills */
+  pills: PropTypes.bool,
+  /** Make NavItems look like tabs */
+  tabs: PropTypes.bool,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  /** Stack your navigation by changing the flex item direction */
+  vertical: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 const defaultProps = {

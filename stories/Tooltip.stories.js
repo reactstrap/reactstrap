@@ -9,9 +9,9 @@ export default {
   }
 };
 
-export { default as Tooltip } from './examples/Tooltip';
-export { default as AutoHide } from './examples/TooltipAutoHide';
-export { default as Multi } from './examples/TooltipMulti';
-export { default as Uncontrolled } from './examples/TooltipUncontrolled';
-export { default as Update } from './examples/TooltipUpdate';
-export { default as Props } from './examples/TooltipProps';
+export { default as Tooltip } from './examples/Tooltip/Tooltip';
+export { default as Directions } from './examples/Tooltip/Directions';
+export { default as AutoHide } from './examples/Tooltip/AutoHide';
+export { default as Uncontrolled } from './examples/Tooltip/Uncontrolled';
+export { default as Update } from './examples/Tooltip/Update';
+export { default as Props } from './examples/Tooltip/Props';

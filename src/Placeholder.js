@@ -6,10 +6,14 @@ import Col, { getColumnClasses } from './Col';
 
 const propTypes = {
   ...Col.propTypes,
+  /** Add custom color to the placeholder */
   color: PropTypes.string,
+  /** Add custom tag. */
   tag: tagPropType,
+  /** Apply either `glow` or `wave` animation. */
   animation: PropTypes.oneOf(['glow', 'wave']),
   innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  /** Make the size larger */
   size: PropTypes.oneOf(['lg', 'sm', 'xs']),
 };
 

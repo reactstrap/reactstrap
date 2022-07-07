@@ -4,14 +4,19 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
-  wrapTag: tagPropType,
-  toggle: PropTypes.func,
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
   children: PropTypes.node,
-  closeAriaLabel: PropTypes.string,
+  /** Add custom class */
+  className: PropTypes.string,
+  /** Custom close button */
   close: PropTypes.object,
+  closeAriaLabel: PropTypes.string,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  /** Function to be triggered when close button is clicked */
+  toggle: PropTypes.func,
+  wrapTag: tagPropType,
 };
 
 const defaultProps = {
