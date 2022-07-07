@@ -140,9 +140,8 @@ describe('Offcanvas', () => {
     // Offcanvas should appear instantaneously
     jest.runTimersToTime(1);
 
-    const matchedOffcanvass = document.getElementsByClassName(
-      'fadeless-offcanvas',
-    );
+    const matchedOffcanvass =
+      document.getElementsByClassName('fadeless-offcanvas');
     const matchedOffcanvas = matchedOffcanvass[0];
 
     expect(matchedOffcanvass.length).toBe(1);

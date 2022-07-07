@@ -88,9 +88,8 @@ class TooltipPopoverWrapper extends React.Component {
     this.showWithDelay = this.showWithDelay.bind(this);
     this.hideWithDelay = this.hideWithDelay.bind(this);
     this.onMouseOverTooltipContent = this.onMouseOverTooltipContent.bind(this);
-    this.onMouseLeaveTooltipContent = this.onMouseLeaveTooltipContent.bind(
-      this,
-    );
+    this.onMouseLeaveTooltipContent =
+      this.onMouseLeaveTooltipContent.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
     this.onEscKeyDown = this.onEscKeyDown.bind(this);

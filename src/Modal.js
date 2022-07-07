@@ -100,16 +100,14 @@ class Modal extends React.Component {
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
     this.handleEscape = this.handleEscape.bind(this);
-    this.handleStaticBackdropAnimation = this.handleStaticBackdropAnimation.bind(
-      this,
-    );
+    this.handleStaticBackdropAnimation =
+      this.handleStaticBackdropAnimation.bind(this);
     this.handleTab = this.handleTab.bind(this);
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
     this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
-    this.clearBackdropAnimationTimeout = this.clearBackdropAnimationTimeout.bind(
-      this,
-    );
+    this.clearBackdropAnimationTimeout =
+      this.clearBackdropAnimationTimeout.bind(this);
     this.trapFocus = this.trapFocus.bind(this);
 
     this.state = {
