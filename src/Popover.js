@@ -6,20 +6,13 @@ const defaultProps = {
   placement: 'right',
   placementPrefix: 'bs-popover',
   trigger: 'click',
-  offset: [0, 8]
+  offset: [0, 8],
 };
 
 function Popover(props) {
-  const popperClasses = classNames(
-    'popover',
-    'show',
-    props.popperClassName
-  );
+  const popperClasses = classNames('popover', 'show', props.popperClassName);
 
-  const classes = classNames(
-    'popover-inner',
-    props.innerClassName
-  );
+  const classes = classNames('popover-inner', props.innerClassName);
 
   return (
     <TooltipPopoverWrapper

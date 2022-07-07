@@ -7,9 +7,7 @@ const propTypes = {
 };
 
 function ButtonDropdown(props) {
-  return (
-    <Dropdown group {...props} />
-  );
+  return <Dropdown group {...props} />;
 }
 
 ButtonDropdown.propTypes = propTypes;

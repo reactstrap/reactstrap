@@ -14,7 +14,9 @@ class UncontrolledAlert extends Component {
   }
 
   render() {
-    return <Alert isOpen={this.state.isOpen} toggle={this.toggle} {...this.props} />;
+    return (
+      <Alert isOpen={this.state.isOpen} toggle={this.toggle} {...this.props} />
+    );
   }
 }
 

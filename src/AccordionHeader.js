@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'h2'
+  tag: 'h2',
 };
 
 function AccordionHeader(props) {
@@ -33,21 +33,27 @@ function AccordionHeader(props) {
   } = props;
   const { open, toggle } = useContext(AccordionContext);
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'accordion-header',
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'accordion-header'),
+    cssModule,
+  );
 
-  const buttonClasses = mapToCssModules(classNames(
-    'accordion-button',
-    {
-      collapsed: !(Array.isArray(open) ? open.includes(targetId) : open === targetId)
-    },
-  ), cssModule);
+  const buttonClasses = mapToCssModules(
+    classNames('accordion-button', {
+      collapsed: !(Array.isArray(open)
+        ? open.includes(targetId)
+        : open === targetId),
+    }),
+    cssModule,
+  );
 
   return (
     <Tag {...attributes} className={classes} ref={innerRef}>
-      <button type="button" className={buttonClasses} onClick={() => toggle(targetId)}>
+      <button
+        type="button"
+        className={buttonClasses}
+        onClick={() => toggle(targetId)}
+      >
         {children}
       </button>
     </Tag>

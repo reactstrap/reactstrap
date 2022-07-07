@@ -11,19 +11,28 @@ const propTypes = {
   /** Change size of spinner */
   size: PropTypes.oneOf(['sm']),
   /** Change color of spinner */
-  color: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark']),
+  color: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark',
+  ]),
   /** Add custom class */
   className: PropTypes.string,
   /** Change existing className with a new className */
   cssModule: PropTypes.object,
   /** Pass children so this component can wrap the child elements */
-  children: PropTypes.string
+  children: PropTypes.string,
 };
 
 const defaultProps = {
   tag: 'div',
   type: 'border',
-  children: 'Loading...'
+  children: 'Loading...',
 };
 
 function Spinner(props) {
@@ -43,19 +52,18 @@ function Spinner(props) {
       className,
       size ? `spinner-${type}-${size}` : false,
       `spinner-${type}`,
-      color ? `text-${color}` : false
+      color ? `text-${color}` : false,
     ),
-    cssModule
+    cssModule,
   );
 
   return (
     <Tag role="status" {...attributes} className={classes}>
-      {children
-        && (
+      {children && (
         <span className={mapToCssModules('visually-hidden', cssModule)}>
           {children}
         </span>
-        )}
+      )}
     </Tag>
   );
 }

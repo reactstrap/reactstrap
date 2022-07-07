@@ -15,12 +15,12 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.bool,
-  text: PropTypes.bool
+  text: PropTypes.bool,
 };
 
 const defaultProps = {
   tag: 'button',
-  toggle: true
+  toggle: true,
 };
 
 class DropdownItem extends React.Component {
@@ -32,9 +32,7 @@ class DropdownItem extends React.Component {
   }
 
   onClick(e) {
-    const {
-      disabled, header, divider, text
-    } = this.props;
+    const { disabled, header, divider, text } = this.props;
     if (disabled || header || divider || text) {
       e.preventDefault();
       return;
@@ -57,9 +55,7 @@ class DropdownItem extends React.Component {
   }
 
   getTabIndex() {
-    const {
-      disabled, header, divider, text
-    } = this.props;
+    const { disabled, header, divider, text } = this.props;
     if (disabled || header || divider || text) {
       return '-1';
     }
@@ -81,17 +77,17 @@ class DropdownItem extends React.Component {
       ...props
     } = omit(this.props, ['toggle']);
 
-    const classes = mapToCssModules(classNames(
-      className,
-      {
+    const classes = mapToCssModules(
+      classNames(className, {
         disabled: props.disabled,
         'dropdown-item': !divider && !header && !text,
         active: active,
         'dropdown-header': header,
         'dropdown-divider': divider,
-        'dropdown-item-text': text
-      }
-    ), cssModule);
+        'dropdown-item-text': text,
+      }),
+      cssModule,
+    );
 
     if (Tag === 'button') {
       if (header) {
@@ -107,7 +103,11 @@ class DropdownItem extends React.Component {
 
     return (
       <Tag
-        type={(Tag === 'button' && (props.onClick || this.props.toggle)) ? 'button' : undefined}
+        type={
+          Tag === 'button' && (props.onClick || this.props.toggle)
+            ? 'button'
+            : undefined
+        }
         {...props}
         tabIndex={tabIndex}
         role={role}

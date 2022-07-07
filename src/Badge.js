@@ -7,7 +7,11 @@ const propTypes = {
   color: PropTypes.string,
   pill: PropTypes.bool,
   tag: tagPropType,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
@@ -16,7 +20,7 @@ const propTypes = {
 const defaultProps = {
   color: 'secondary',
   pill: false,
-  tag: 'span'
+  tag: 'span',
 };
 
 function Badge(props) {
@@ -30,20 +34,21 @@ function Badge(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'badge',
-    'bg-' + color,
-    pill ? 'rounded-pill' : false
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'badge',
+      'bg-' + color,
+      pill ? 'rounded-pill' : false,
+    ),
+    cssModule,
+  );
 
   if (attributes.href && Tag === 'span') {
     Tag = 'a';
   }
 
-  return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
-  );
+  return <Tag {...attributes} className={classes} ref={innerRef} />;
 }
 
 Badge.propTypes = propTypes;

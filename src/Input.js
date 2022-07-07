@@ -16,16 +16,16 @@ const propTypes = {
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.func,
-    PropTypes.string
+    PropTypes.string,
   ]),
   plaintext: PropTypes.bool,
   addon: PropTypes.bool,
   className: PropTypes.string,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
-  type: 'text'
+  type: 'text',
 };
 
 class Input extends React.Component {
@@ -90,7 +90,7 @@ class Input extends React.Component {
 
     if (attributes.size && isNotaNumber.test(attributes.size)) {
       warnOnce(
-        'Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.'
+        'Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.',
       );
       bsSize = attributes.size;
       delete attributes.size;
@@ -106,9 +106,9 @@ class Input extends React.Component {
             ? `form-select-${bsSize}`
             : `form-control-${bsSize}`
           : false,
-        formControlClass
+        formControlClass,
       ),
-      cssModule
+      cssModule,
     );
 
     if (Tag === 'input' || (tag && typeof tag === 'function')) {
@@ -116,21 +116,28 @@ class Input extends React.Component {
     }
 
     if (
-      attributes.children
-      && !(
-        plaintext
-        || type === 'select'
-        || typeof Tag !== 'string'
-        || Tag === 'select'
+      attributes.children &&
+      !(
+        plaintext ||
+        type === 'select' ||
+        typeof Tag !== 'string' ||
+        Tag === 'select'
       )
     ) {
       warnOnce(
-        `Input with a type of "${type}" cannot have children. Please use "value"/"defaultValue" instead.`
+        `Input with a type of "${type}" cannot have children. Please use "value"/"defaultValue" instead.`,
       );
       delete attributes.children;
     }
 
-    return <Tag {...attributes} ref={innerRef} className={classes} aria-invalid={invalid} />;
+    return (
+      <Tag
+        {...attributes}
+        ref={innerRef}
+        className={classes}
+        aria-invalid={invalid}
+      />
+    );
   }
 }
 

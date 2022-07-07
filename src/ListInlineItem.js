@@ -6,28 +6,21 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
   tag: tagPropType,
   className: PropTypes.string,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
-  tag: 'li'
+  tag: 'li',
 };
 
 const ListInlineItem = forwardRef((props, ref) => {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'list-inline-item'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'list-inline-item'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} ref={ref} />
   );
+
+  return <Tag {...attributes} className={classes} ref={ref} />;
 });
 
 ListInlineItem.name = 'ListInlineItem';

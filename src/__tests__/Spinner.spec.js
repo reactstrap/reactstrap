@@ -30,7 +30,9 @@ describe('Spinner', () => {
   it('should render visually-hidden children', () => {
     const wrapper = shallow(<Spinner>Yo!</Spinner>);
 
-    expect(wrapper.find({ children: 'Yo!' }).hasClass('visually-hidden')).toBe(true);
+    expect(wrapper.find({ children: 'Yo!' }).hasClass('visually-hidden')).toBe(
+      true,
+    );
   });
 
   it('should render default type of border', () => {

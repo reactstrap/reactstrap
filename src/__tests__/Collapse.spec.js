@@ -24,7 +24,11 @@ describe('Collapse', () => {
   });
 
   it('should render children', () => {
-    wrapper = mount(<Collapse><p>hello</p></Collapse>);
+    wrapper = mount(
+      <Collapse>
+        <p>hello</p>
+      </Collapse>,
+    );
     expect(wrapper.find('p').text()).toBe('hello');
   });
 
@@ -102,7 +106,9 @@ describe('Collapse', () => {
     toggle();
     expect(wrapper.update().find('div').prop('className')).toBe('collapsing');
     jest.runTimersToTime(350);
-    expect(wrapper.update().find('div').prop('className')).toBe('collapse show');
+    expect(wrapper.update().find('div').prop('className')).toBe(
+      'collapse show',
+    );
 
     toggle();
     expect(wrapper.update().find('div').prop('className')).toBe('collapsing');

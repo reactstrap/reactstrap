@@ -35,13 +35,20 @@ describe('Placeholder', () => {
   });
 
   it('should allow custom columns to be defined', () => {
-    const wrapper = shallow(<Placeholder widths={['base', 'jumbo']} base="4" jumbo="6" />);
+    const wrapper = shallow(
+      <Placeholder widths={['base', 'jumbo']} base="4" jumbo="6" />,
+    );
     expect(wrapper.hasClass('col-4')).toBe(true);
     expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
   });
 
   it('should allow custom columns to be defined with objects', () => {
-    const wrapper = shallow(<Placeholder widths={['base', 'jumbo', 'custom']} custom={{ size: 1, order: 2, offset: 4 }} />);
+    const wrapper = shallow(
+      <Placeholder
+        widths={['base', 'jumbo', 'custom']}
+        custom={{ size: 1, order: 2, offset: 4 }}
+      />,
+    );
 
     expect(wrapper.hasClass('col-custom-1')).toBe(true);
     expect(wrapper.hasClass('order-custom-2')).toBe(true);

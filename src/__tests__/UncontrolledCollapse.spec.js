@@ -27,19 +27,25 @@ describe('UncontrolledCollapse', () => {
   });
 
   it('should be a Collapse', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+    const collapse = shallow(
+      <UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>,
+    );
 
     expect(collapse.type()).toBe(Collapse);
   });
 
   it('should have isOpen default to false', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+    const collapse = shallow(
+      <UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>,
+    );
 
     expect(collapse.prop('isOpen')).toBe(false);
   });
 
   it('should toggle isOpen when toggle is called', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+    const collapse = shallow(
+      <UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>,
+    );
 
     toggler.click();
     collapse.update();
@@ -59,7 +65,9 @@ describe('UncontrolledCollapse', () => {
   });
 
   it('should toggle for multiple togglers', () => {
-    const collapse = shallow(<UncontrolledCollapse toggler=".toggler">Yo!</UncontrolledCollapse>);
+    const collapse = shallow(
+      <UncontrolledCollapse toggler=".toggler">Yo!</UncontrolledCollapse>,
+    );
 
     expect(collapse.prop('isOpen')).toBe(false);
 
@@ -78,10 +86,14 @@ describe('UncontrolledCollapse', () => {
     jest.spyOn(UncontrolledCollapse.prototype, 'componentWillUnmount');
     jest.spyOn(UncontrolledCollapse.prototype, 'toggle');
 
-    const wrapper = mount(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+    const wrapper = mount(
+      <UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>,
+    );
 
     expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(0);
-    expect(UncontrolledCollapse.prototype.componentWillUnmount.mock.calls.length).toBe(0);
+    expect(
+      UncontrolledCollapse.prototype.componentWillUnmount.mock.calls.length,
+    ).toBe(0);
 
     toggler.click();
 
@@ -89,7 +101,9 @@ describe('UncontrolledCollapse', () => {
 
     wrapper.unmount();
 
-    expect(UncontrolledCollapse.prototype.componentWillUnmount.mock.calls.length).toBe(1);
+    expect(
+      UncontrolledCollapse.prototype.componentWillUnmount.mock.calls.length,
+    ).toBe(1);
 
     toggler.click();
 

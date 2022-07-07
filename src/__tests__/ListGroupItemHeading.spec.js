@@ -4,7 +4,9 @@ import { ListGroupItemHeading } from '..';
 
 describe('ListGroupItem', () => {
   it('should render children', () => {
-    const listGroupItem = shallow(<ListGroupItemHeading>Yo!</ListGroupItemHeading>).find('h5');
+    const listGroupItem = shallow(
+      <ListGroupItemHeading>Yo!</ListGroupItemHeading>,
+    ).find('h5');
     expect(listGroupItem.text()).toBe('Yo!');
   });
 

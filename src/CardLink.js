@@ -5,31 +5,27 @@ import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
   tag: tagPropType,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
 
 const defaultProps = {
-  tag: 'a'
+  tag: 'a',
 };
 
 function CardLink(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, innerRef, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'card-link'),
     cssModule,
-    tag: Tag,
-    innerRef,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'card-link'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} ref={innerRef} className={classes} />
   );
+
+  return <Tag {...attributes} ref={innerRef} className={classes} />;
 }
 
 CardLink.propTypes = propTypes;

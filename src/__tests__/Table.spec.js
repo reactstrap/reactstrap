@@ -26,7 +26,11 @@ describe('Table', () => {
   });
 
   it('should render modifier classes', () => {
-    const wrapper = shallow(<Table size="sm" bordered striped dark hover>Yo!</Table>);
+    const wrapper = shallow(
+      <Table size="sm" bordered striped dark hover>
+        Yo!
+      </Table>,
+    );
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('table')).toBe(true);
@@ -66,7 +70,11 @@ describe('Table', () => {
       table: 'scopedTable',
       'table-responsive': 'scopedResponsive',
     };
-    const wrapper = shallow(<Table responsive cssModule={cssModule}>Yo!</Table>);
+    const wrapper = shallow(
+      <Table responsive cssModule={cssModule}>
+        Yo!
+      </Table>,
+    );
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('scopedResponsive')).toBe(true);

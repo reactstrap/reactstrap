@@ -14,20 +14,13 @@ const defaultProps = {
 };
 
 function CardDeck(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'card-deck'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'card-deck'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 CardDeck.propTypes = propTypes;

@@ -7,29 +7,21 @@ const propTypes = {
   tag: tagPropType,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-  type: PropTypes.string
+  type: PropTypes.string,
 };
 
 const defaultProps = {
-  tag: 'ul'
+  tag: 'ul',
 };
 
 const List = forwardRef((props, ref) => {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, type, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, type ? `list-${type}` : false),
     cssModule,
-    tag: Tag,
-    type,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    type ? `list-${type}` : false
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} ref={ref} />
   );
+
+  return <Tag {...attributes} className={classes} ref={ref} />;
 });
 
 List.name = 'List';

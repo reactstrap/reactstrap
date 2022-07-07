@@ -20,7 +20,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function Accordion(props) {
@@ -34,13 +34,12 @@ function Accordion(props) {
     innerRef,
     ...attributes
   } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'accordion',
-    {
-      'accordion-flush': flush
-    }
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'accordion', {
+      'accordion-flush': flush,
+    }),
+    cssModule,
+  );
 
   const accordionContext = useMemo(() => ({
     open,

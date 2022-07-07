@@ -11,10 +11,14 @@ describe('Tooltip', () => {
     const wrapper = mount(
       <Popover target="tooltip-target" popperClassName="boba-was-here">
         Tooltip Content
-      </Popover>
+      </Popover>,
     );
 
     const tooltipPopoverWrapper = wrapper.find('TooltipPopoverWrapper');
-    expect(tooltipPopoverWrapper.find({ popperClassName: 'popover show boba-was-here' }).exists()).toBe(true);
+    expect(
+      tooltipPopoverWrapper
+        .find({ popperClassName: 'popover show boba-was-here' })
+        .exists(),
+    ).toBe(true);
   });
 });

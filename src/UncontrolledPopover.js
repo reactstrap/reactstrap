@@ -18,11 +18,17 @@ export default class UncontrolledPopover extends Component {
   }
 
   render() {
-    return <Popover isOpen={this.state.isOpen} toggle={this.toggle} {...omit(this.props, omitKeys)} />;
+    return (
+      <Popover
+        isOpen={this.state.isOpen}
+        toggle={this.toggle}
+        {...omit(this.props, omitKeys)}
+      />
+    );
   }
 }
 
 UncontrolledPopover.propTypes = {
   defaultOpen: PropTypes.bool,
-  ...Popover.propTypes
+  ...Popover.propTypes,
 };

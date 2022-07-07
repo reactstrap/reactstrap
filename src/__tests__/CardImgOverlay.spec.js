@@ -11,7 +11,9 @@ describe('CardImgOverlay', () => {
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<CardImgOverlay className="other">Yo!</CardImgOverlay>);
+    const wrapper = shallow(
+      <CardImgOverlay className="other">Yo!</CardImgOverlay>,
+    );
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('card-img-overlay')).toBe(true);

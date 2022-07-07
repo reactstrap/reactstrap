@@ -1,8 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import {
-  ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem
-} from '..';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from '..';
 
 describe('ButtonDropdown', () => {
   let isOpen;
@@ -10,11 +8,17 @@ describe('ButtonDropdown', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => { isOpen = !isOpen; };
+    toggle = () => {
+      isOpen = !isOpen;
+    };
   });
 
   it('should render a single child', () => {
-    const wrapper = mount(<ButtonDropdown isOpen={isOpen} toggle={toggle}>Ello world</ButtonDropdown>);
+    const wrapper = mount(
+      <ButtonDropdown isOpen={isOpen} toggle={toggle}>
+        Ello world
+      </ButtonDropdown>,
+    );
 
     expect(wrapper.find('.btn-group').hostNodes().text()).toBe('Ello world');
     expect(wrapper.find('.btn-group').hostNodes().length).toBe(1);
@@ -28,7 +32,7 @@ describe('ButtonDropdown', () => {
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
         </DropdownMenu>
-      </ButtonDropdown>
+      </ButtonDropdown>,
     );
 
     expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');

@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import {
-  Modal, ModalBody, ModalHeader, ModalFooter, Button
-} from '..';
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '..';
 import { keyCodes } from '../utils';
 
 const didMount = (component) => {
@@ -21,10 +19,14 @@ describe('Modal', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => { isOpen = !isOpen; };
+    toggle = () => {
+      isOpen = !isOpen;
+    };
 
     isOpenNested = false;
-    toggleNested = () => { isOpenNested = !isOpenNested; };
+    toggleNested = () => {
+      isOpenNested = !isOpenNested;
+    };
 
     jest.useFakeTimers();
   });
@@ -40,7 +42,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -53,7 +55,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -64,14 +66,23 @@ describe('Modal', () => {
   it('should render external content when present', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} external={<button className="cool-close-button">&times;</button>}>
+      <Modal
+        isOpen={isOpen}
+        toggle={toggle}
+        external={<button className="cool-close-button">&times;</button>}
+      >
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('cool-close-button').length).toBe(1);
-    expect(document.getElementsByClassName('cool-close-button')[0].nextElementSibling.className.split(' ').indexOf('modal-dialog') > -1).toBe(true);
+    expect(
+      document
+        .getElementsByClassName('cool-close-button')[0]
+        .nextElementSibling.className.split(' ')
+        .indexOf('modal-dialog') > -1,
+    ).toBe(true);
     wrapper.unmount();
   });
 
@@ -80,7 +91,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -93,7 +104,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -106,7 +117,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop={false}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -120,11 +131,13 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} scrollable>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('modal-dialog-scrollable').length).toBe(1);
+    expect(
+      document.getElementsByClassName('modal-dialog-scrollable').length,
+    ).toBe(1);
     wrapper.unmount();
   });
 
@@ -133,7 +146,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} className="my-custom-modal">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -147,12 +160,14 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
-    expect(document.getElementsByClassName('modal-dialog-centered').length).toBe(0);
+    expect(
+      document.getElementsByClassName('modal-dialog-centered').length,
+    ).toBe(0);
     wrapper.unmount();
   });
 
@@ -161,41 +176,63 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} centered>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
-    expect(document.getElementsByClassName('modal-dialog-centered').length).toBe(1);
+    expect(
+      document.getElementsByClassName('modal-dialog-centered').length,
+    ).toBe(1);
     wrapper.unmount();
   });
 
   describe('fullscreen', () => {
     it('should render non fullscreen by default', () => {
-      const wrapper = didMount(<Modal isOpen toggle={toggle}>Yo!</Modal>);
+      const wrapper = didMount(
+        <Modal isOpen toggle={toggle}>
+          Yo!
+        </Modal>,
+      );
       jest.runTimersToTime(300);
 
       expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
-      expect(document.getElementsByClassName('modal-fullscreen').length).toBe(0);
+      expect(document.getElementsByClassName('modal-fullscreen').length).toBe(
+        0,
+      );
       wrapper.unmount();
     });
 
     it('should always render fullscreen if true', () => {
-      const wrapper = didMount(<Modal isOpen toggle={toggle} fullscreen>Yo!</Modal>);
+      const wrapper = didMount(
+        <Modal isOpen toggle={toggle} fullscreen>
+          Yo!
+        </Modal>,
+      );
       jest.runTimersToTime(300);
 
       expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
-      expect(document.getElementsByClassName('modal-fullscreen').length).toBe(1);
+      expect(document.getElementsByClassName('modal-fullscreen').length).toBe(
+        1,
+      );
       wrapper.unmount();
     });
 
     it('should render fullscreen below breakpoint if breakpoint is provided', () => {
-      const wrapper = didMount(<Modal isOpen toggle={toggle} fullscreen="lg">Yo!</Modal>);
+      const wrapper = didMount(
+        <Modal isOpen toggle={toggle} fullscreen="lg">
+          Yo!
+        </Modal>,
+      );
       jest.runTimersToTime(300);
 
       expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
-      expect(document.getElementsByClassName('modal-fullscreen').length).toBe(0);
-      expect(document.getElementsByClassName('modal-fullscreen-lg-down').length).toBe(1);
+      expect(document.getElementsByClassName('modal-fullscreen').length).toBe(
+        0,
+      );
+      expect(
+        document.getElementsByClassName('modal-fullscreen-lg-down').length,
+      ).toBe(1);
       wrapper.unmount();
     });
   });
@@ -205,21 +242,28 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} style={{ maxWidth: '95%' }}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
-    expect(document.getElementsByClassName('modal-dialog')[0].style.maxWidth).toBe('95%');
+    expect(
+      document.getElementsByClassName('modal-dialog')[0].style.maxWidth,
+    ).toBe('95%');
     wrapper.unmount();
   });
 
   it('should render without fade transition if provided with fade={false}', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} fade={false} modalClassName="fadeless-modal">
+      <Modal
+        isOpen={isOpen}
+        toggle={toggle}
+        fade={false}
+        modalClassName="fadeless-modal"
+      >
         Howdy!
-      </Modal>
+      </Modal>,
     );
 
     // Modal should appear instantaneously
@@ -246,12 +290,14 @@ describe('Modal', () => {
         modalClassName="custom-timeout-modal"
       >
         Hello, world!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(20);
 
-    const matchedModals = document.getElementsByClassName('custom-timeout-modal');
+    const matchedModals = document.getElementsByClassName(
+      'custom-timeout-modal',
+    );
 
     expect(matchedModals.length).toBe(1);
 
@@ -263,7 +309,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} modalClassName="my-custom-modal">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -276,7 +322,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} wrapClassName="my-custom-modal">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -289,24 +335,32 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} contentClassName="my-custom-modal">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.querySelectorAll('.modal-content.my-custom-modal').length).toBe(1);
+    expect(
+      document.querySelectorAll('.modal-content.my-custom-modal').length,
+    ).toBe(1);
     wrapper.unmount();
   });
 
   it('should render with class "modal-backdrop" and have custom class name if provided with backdropClassName', () => {
     isOpen = true;
     const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdropClassName="my-custom-modal">
+      <Modal
+        isOpen={isOpen}
+        toggle={toggle}
+        backdropClassName="my-custom-modal"
+      >
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.querySelectorAll('.modal-backdrop.my-custom-modal').length).toBe(1);
+    expect(
+      document.querySelectorAll('.modal-backdrop.my-custom-modal').length,
+    ).toBe(1);
     wrapper.unmount();
   });
 
@@ -315,7 +369,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} size="crazy">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -329,7 +383,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -343,11 +397,13 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('dialog');
+    expect(
+      document.getElementsByClassName('modal')[0].getAttribute('role'),
+    ).toBe('dialog');
     wrapper.unmount();
   });
 
@@ -356,11 +412,13 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} role="alert">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('modal')[0].getAttribute('role')).toBe('alert');
+    expect(
+      document.getElementsByClassName('modal')[0].getAttribute('role'),
+    ).toBe('alert');
     wrapper.unmount();
   });
 
@@ -369,11 +427,15 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} labelledBy="myModalTitle">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('modal')[0].getAttribute('aria-labelledby')).toBe('myModalTitle');
+    expect(
+      document
+        .getElementsByClassName('modal')[0]
+        .getAttribute('aria-labelledby'),
+    ).toBe('myModalTitle');
     wrapper.unmount();
   });
 
@@ -381,7 +443,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -395,7 +457,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -406,7 +468,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
 
     jest.runTimersToTime(300);
@@ -422,9 +484,14 @@ describe('Modal', () => {
     const onOpened = jest.fn();
     const onClosed = jest.fn();
     const wrapper = didMount(
-      <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
+      <Modal
+        isOpen={isOpen}
+        onOpened={onOpened}
+        onClosed={onClosed}
+        toggle={toggle}
+      >
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -436,7 +503,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -448,7 +515,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -463,9 +530,15 @@ describe('Modal', () => {
     const onOpened = jest.fn();
     const onClosed = jest.fn();
     const wrapper = didMount(
-      <Modal isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle} fade={false}>
+      <Modal
+        isOpen={isOpen}
+        onOpened={onOpened}
+        onClosed={onClosed}
+        toggle={toggle}
+        fade={false}
+      >
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(1);
@@ -475,7 +548,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(1);
 
@@ -485,7 +558,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(1);
 
@@ -501,7 +574,7 @@ describe('Modal', () => {
     const wrapper = mount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -510,7 +583,7 @@ describe('Modal', () => {
     expect(Modal.prototype.componentDidUpdate).not.toHaveBeenCalled();
 
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -526,7 +599,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -555,7 +628,7 @@ describe('Modal', () => {
     expect(escapeKeyUpEvent.stopPropagation.mock.calls.length).toBe(1);
 
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -569,7 +642,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} keyboard={false}>
         Yo!
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -590,7 +663,7 @@ describe('Modal', () => {
     expect(isOpen).toBe(true);
 
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -604,7 +677,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -639,7 +712,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -665,7 +738,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -693,7 +766,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -721,7 +794,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
     const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
 
@@ -747,7 +820,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
 
     const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
@@ -778,7 +851,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
 
     const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
@@ -809,7 +882,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -818,7 +891,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -833,7 +906,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} unmountOnClose>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -842,7 +915,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -857,7 +930,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={false}>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -866,7 +939,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -881,7 +954,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
     const instance = wrapper.instance();
 
@@ -904,7 +977,7 @@ describe('Modal', () => {
             Yo!
           </Modal>
         </ModalBody>
-      </Modal>
+      </Modal>,
     );
 
     jest.runTimersToTime(300);
@@ -929,7 +1002,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     // assert that the modal is closed and the body class is what was set initially
@@ -939,7 +1012,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
 
     // assert that the modal is open and the body class is what was set initially + modal-open
@@ -950,11 +1023,13 @@ describe('Modal', () => {
     // append another body class which includes modal-open
     // using this to test if replace will leave a space when removing modal-open
     document.body.className += ' modal-opened';
-    expect(document.body.className).toBe('my-modal-opened modal-open modal-opened');
+    expect(document.body.className).toBe(
+      'my-modal-opened modal-open modal-opened',
+    );
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
 
     // assert that the modal is closed and the body class is what was set initially
@@ -971,7 +1046,7 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     expect(isOpen).toBe(false);
@@ -983,7 +1058,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -996,7 +1071,7 @@ describe('Modal', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -1009,7 +1084,7 @@ describe('Modal', () => {
     const wrapper = shallow(
       <Modal isOpen zIndex={0}>
         Yo!
-      </Modal>
+      </Modal>,
     );
     expect(wrapper.instance()._element.style.zIndex).toBe('0');
     wrapper.setProps({ zIndex: 1 });
@@ -1023,7 +1098,9 @@ describe('Modal', () => {
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
-          <a alt="test" href="/">Test</a>
+          <a alt="test" href="/">
+            Test
+          </a>
           <map name="test">
             <area alt="test" href="/" coords="200,5,200,30" />
           </map>
@@ -1036,17 +1113,31 @@ describe('Modal', () => {
           <select name="test" id="select_test_disabled" disabled>
             <option>Test item</option>
           </select>
-          <textarea name="textarea_test" id="textarea_test" cols="30" rows="10" />
-          <textarea name="textarea_test_disabled" id="textarea_test_disabled" cols="30" rows="10" disabled />
+          <textarea
+            name="textarea_test"
+            id="textarea_test"
+            cols="30"
+            rows="10"
+          />
+          <textarea
+            name="textarea_test_disabled"
+            id="textarea_test_disabled"
+            cols="30"
+            rows="10"
+            disabled
+          />
           <object>Test</object>
           <span tabIndex="0">test tab index</span>
         </ModalBody>
         <ModalFooter>
-          <Button disabled color="primary" onClick={toggle}>Do Something</Button>
-          {' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button disabled color="primary" onClick={toggle}>
+            Do Something
+          </Button>{' '}
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
         </ModalFooter>
-      </Modal>
+      </Modal>,
     );
 
     const instance = wrapper.instance();
@@ -1062,14 +1153,21 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalBody>
-          <Button onFocus={mock} color="secondary" onClick={toggle}>Cancel</Button>
+          <Button onFocus={mock} color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
         </ModalBody>
-      </Modal>
+      </Modal>,
     );
 
     const instance = wrapper.instance();
-    expect(instance.getFocusedChild()).not.toBe(instance.getFocusableChildren()[0]);
-    wrapper.find('.modal').hostNodes().simulate('keyDown', { which: 9, key: 'Tab', keyCode: 9 });
+    expect(instance.getFocusedChild()).not.toBe(
+      instance.getFocusableChildren()[0],
+    );
+    wrapper
+      .find('.modal')
+      .hostNodes()
+      .simulate('keyDown', { which: 9, key: 'Tab', keyCode: 9 });
     expect(instance.getFocusedChild()).toBe(instance.getFocusableChildren()[0]);
     expect(mock).toHaveBeenCalled();
 
@@ -1088,10 +1186,7 @@ describe('Modal', () => {
       );
     }
     const wrapper = didMount(<MockComponent />);
-    const button = wrapper
-      .find('.focus')
-      .hostNodes()
-      .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1113,10 +1208,7 @@ describe('Modal', () => {
       );
     }
     const wrapper = didMount(<MockComponent />);
-    const button = wrapper
-      .find('.focus')
-      .hostNodes()
-      .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1138,10 +1230,7 @@ describe('Modal', () => {
       );
     }
     const wrapper = didMount(<MockComponent />);
-    const button = wrapper
-      .find('.focus')
-      .hostNodes()
-      .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1156,17 +1245,18 @@ describe('Modal', () => {
       return (
         <>
           <button className="focus" />
-          <Modal isOpen={isOpen} returnFocusAfterClose={false} unmountOnClose={false}>
+          <Modal
+            isOpen={isOpen}
+            returnFocusAfterClose={false}
+            unmountOnClose={false}
+          >
             <ModalBody>Whatever</ModalBody>
           </Modal>
         </>
       );
     }
     const wrapper = didMount(<MockComponent />);
-    const button = wrapper
-      .find('.focus')
-      .hostNodes()
-      .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -1195,12 +1285,20 @@ describe('Modal', () => {
     const modal_instance = wrapper.find(Modal).instance();
 
     expect(document.addEventListener.mock.calls.length).toBe(1);
-    expect(document.addEventListener.mock.calls[0]).toEqual(['focus', modal_instance.trapFocus, true]);
+    expect(document.addEventListener.mock.calls[0]).toEqual([
+      'focus',
+      modal_instance.trapFocus,
+      true,
+    ]);
 
     wrapper.unmount();
 
     expect(document.removeEventListener.mock.calls.length).toBe(1);
-    expect(document.removeEventListener.mock.calls[0]).toEqual(['focus', modal_instance.trapFocus, true]);
+    expect(document.removeEventListener.mock.calls[0]).toEqual([
+      'focus',
+      modal_instance.trapFocus,
+      true,
+    ]);
 
     // restore global document mock
     document.addEventListener = addEventListenerFn;
@@ -1228,7 +1326,7 @@ describe('Modal', () => {
     const ev_mock = {
       target: button,
       preventDefault: jest.fn(),
-      stopPropagation: jest.fn()
+      stopPropagation: jest.fn(),
     };
     button.focus();
     modal_instance.trapFocus(ev_mock);
@@ -1247,7 +1345,9 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalBody>
-          <Button className="b0" onClick={toggle}>Cancel</Button>
+          <Button className="b0" onClick={toggle}>
+            Cancel
+          </Button>
           <Modal isOpen>
             <ModalBody>
               <Button className="b1">Click 1</Button>
@@ -1255,7 +1355,7 @@ describe('Modal', () => {
             </ModalBody>
           </Modal>
         </ModalBody>
-      </Modal>
+      </Modal>,
     );
 
     const instance = wrapper.instance();
@@ -1266,7 +1366,7 @@ describe('Modal', () => {
     const ev_mock = {
       target: button,
       preventDefault: jest.fn(),
-      stopPropagation: jest.fn()
+      stopPropagation: jest.fn(),
     };
     button2.focus();
     instance.trapFocus(ev_mock);
@@ -1282,14 +1382,16 @@ describe('Modal', () => {
     const wrapper = didMount(
       <Modal isOpen toggle={toggle}>
         <ModalBody>
-          <Button className="b0" onClick={toggle}>Cancel</Button>
+          <Button className="b0" onClick={toggle}>
+            Cancel
+          </Button>
           <Modal isOpen>
             <ModalBody>
               <Button className="b1">Click 1</Button>
             </ModalBody>
           </Modal>
         </ModalBody>
-      </Modal>
+      </Modal>,
     );
 
     const instance = wrapper.instance();
@@ -1301,7 +1403,7 @@ describe('Modal', () => {
       which: 9,
       shiftKey: true,
       preventDefault: jest.fn(),
-      stopPropagation: jest.fn()
+      stopPropagation: jest.fn(),
     };
     button1.focus();
     instance.getFocusableChildren = jest.fn();

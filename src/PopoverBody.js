@@ -10,25 +10,18 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function PopoverBody(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+
+  const classes = mapToCssModules(
+    classNames(className, 'popover-body'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  const classes = mapToCssModules(classNames(
-    className,
-    'popover-body'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 PopoverBody.propTypes = propTypes;

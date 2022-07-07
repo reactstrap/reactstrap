@@ -15,7 +15,11 @@ const propTypes = {
   responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   tag: tagPropType,
   responsiveTag: tagPropType,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.object]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+    PropTypes.object,
+  ]),
 };
 
 const defaultProps = {
@@ -40,21 +44,29 @@ function Table(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'table',
-    size ? 'table-' + size : false,
-    bordered ? 'table-bordered' : false,
-    borderless ? 'table-borderless' : false,
-    striped ? 'table-striped' : false,
-    dark ? 'table-dark' : false,
-    hover ? 'table-hover' : false,
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'table',
+      size ? 'table-' + size : false,
+      bordered ? 'table-bordered' : false,
+      borderless ? 'table-borderless' : false,
+      striped ? 'table-striped' : false,
+      dark ? 'table-dark' : false,
+      hover ? 'table-hover' : false,
+    ),
+    cssModule,
+  );
 
   const table = <Tag {...attributes} ref={innerRef} className={classes} />;
 
   if (responsive) {
-    const responsiveClassName = mapToCssModules(responsive === true ? 'table-responsive' : `table-responsive-${responsive}`, cssModule);
+    const responsiveClassName = mapToCssModules(
+      responsive === true
+        ? 'table-responsive'
+        : `table-responsive-${responsive}`,
+      cssModule,
+    );
 
     return (
       <ResponsiveTag className={responsiveClassName}>{table}</ResponsiveTag>

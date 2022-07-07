@@ -11,7 +11,9 @@ describe('InputGroupText', () => {
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<InputGroupText className="other">Yo!</InputGroupText>);
+    const wrapper = shallow(
+      <InputGroupText className="other">Yo!</InputGroupText>,
+    );
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('input-group-text')).toBe(true);

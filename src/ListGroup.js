@@ -9,19 +9,20 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  numbered: PropTypes.bool
+  numbered: PropTypes.bool,
 };
 
 const defaultProps = {
   tag: 'ul',
   horizontal: false,
-  numbered: false
+  numbered: false,
 };
 
 const getHorizontalClass = (horizontal) => {
   if (horizontal === false) {
     return false;
-  } if (horizontal === true || horizontal === 'xs') {
+  }
+  if (horizontal === true || horizontal === 'xs') {
     return 'list-group-horizontal';
   }
   return `list-group-horizontal-${horizontal}`;
@@ -37,20 +38,21 @@ function ListGroup(props) {
     numbered,
     ...attributes
   } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'list-group',
-    // list-group-horizontal cannot currently be mixed with list-group-flush
-    // we only try to apply horizontal classes if flush is false
-    flush ? 'list-group-flush' : getHorizontalClass(horizontal),
-    {
-      'list-group-numbered': numbered
-    }
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'list-group',
+      // list-group-horizontal cannot currently be mixed with list-group-flush
+      // we only try to apply horizontal classes if flush is false
+      flush ? 'list-group-flush' : getHorizontalClass(horizontal),
+      {
+        'list-group-numbered': numbered,
+      },
+    ),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 ListGroup.propTypes = propTypes;

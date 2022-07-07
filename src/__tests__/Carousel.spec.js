@@ -18,12 +18,14 @@ describe('Carousel', () => {
   const items = [
     { src: '', altText: 'a', caption: 'caption 1' },
     { src: '', altText: 'b', caption: 'caption 2' },
-    { src: '', altText: 'c', caption: 'caption 3' }
+    { src: '', altText: 'c', caption: 'caption 3' },
   ];
 
   describe('captions', () => {
     it('should render a header and a caption', () => {
-      const wrapper = mount(<CarouselCaption captionHeader="abc" captionText="def" />);
+      const wrapper = mount(
+        <CarouselCaption captionHeader="abc" captionText="def" />,
+      );
       expect(wrapper.find('h3').length).toEqual(1);
       expect(wrapper.find('p').length).toEqual(1);
     });
@@ -39,7 +41,7 @@ describe('Carousel', () => {
       const wrapper = mount(
         <CarouselItem>
           <img src={items[0].src} alt={items[0].src} />
-        </CarouselItem>
+        </CarouselItem>,
       );
       expect(wrapper.find('img').length).toEqual(1);
     });
@@ -48,36 +50,56 @@ describe('Carousel', () => {
       const wrapper = mount(
         <CarouselItem>
           <CarouselCaption captionHeader="text" captionText="text" />
-        </CarouselItem>
+        </CarouselItem>,
       );
       expect(wrapper.find(CarouselCaption).length).toEqual(1);
     });
 
     describe('transitions', () => {
       it('should add the appropriate classes when entering right', () => {
-        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'end' } });
+        const wrapper = mount(<CarouselItem in={false} />, {
+          context: { direction: 'end' },
+        });
 
         wrapper.setProps({ in: true });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-start carousel-item-next');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item carousel-item-start carousel-item-next',
+        );
         jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item active',
+        );
         wrapper.setProps({ in: false });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-start');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item active carousel-item-start',
+        );
         jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item',
+        );
       });
 
       it('should add the appropriate classes when entering left', () => {
-        const wrapper = mount(<CarouselItem in={false} />, { context: { direction: 'start' } });
+        const wrapper = mount(<CarouselItem in={false} />, {
+          context: { direction: 'start' },
+        });
 
         wrapper.setProps({ in: true });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item carousel-item-end carousel-item-prev');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item carousel-item-end carousel-item-prev',
+        );
         jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item active',
+        );
         wrapper.setProps({ in: false });
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item active carousel-item-end');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item active carousel-item-end',
+        );
         jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual('carousel-item');
+        expect(wrapper.update().find('div').prop('className')).toEqual(
+          'carousel-item',
+        );
       });
 
       it('should call all callbacks when transitioning in and out', () => {
@@ -113,19 +135,37 @@ describe('Carousel', () => {
 
   describe('indicators', () => {
     it('should render a list with the right number of items', () => {
-      const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />);
+      const wrapper = mount(
+        <CarouselIndicators
+          items={items}
+          activeIndex={0}
+          onClickHandler={() => {}}
+        />,
+      );
       expect(wrapper.find('div').length).toEqual(1);
       expect(wrapper.find('button').length).toEqual(3);
     });
 
     it('should append the correct active class', () => {
-      const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />);
+      const wrapper = mount(
+        <CarouselIndicators
+          items={items}
+          activeIndex={0}
+          onClickHandler={() => {}}
+        />,
+      );
       expect(wrapper.find('.active').hostNodes().length).toEqual(1);
     });
 
     it('should call the click hanlder', () => {
       const onClick = jest.fn();
-      const wrapper = mount(<CarouselIndicators items={items} activeIndex={0} onClickHandler={onClick} />);
+      const wrapper = mount(
+        <CarouselIndicators
+          items={items}
+          activeIndex={0}
+          onClickHandler={onClick}
+        />,
+      );
       wrapper.find('button').first().simulate('click');
       expect(onClick).toHaveBeenCalled();
     });
@@ -133,13 +173,17 @@ describe('Carousel', () => {
 
   describe('controls', () => {
     it('should render an anchor tag', () => {
-      const wrapper = mount(<CarouselControl direction="next" onClickHandler={() => { }} />);
+      const wrapper = mount(
+        <CarouselControl direction="next" onClickHandler={() => {}} />,
+      );
       expect(wrapper.find('a').length).toEqual(1);
     });
 
     it('should call the onClickHandler', () => {
       const onClick = jest.fn();
-      const wrapper = mount(<CarouselControl direction="next" onClickHandler={onClick} />);
+      const wrapper = mount(
+        <CarouselControl direction="next" onClickHandler={onClick} />,
+      );
       wrapper.find('a').first().simulate('click');
       expect(onClick).toHaveBeenCalled();
     });
@@ -149,19 +193,24 @@ describe('Carousel', () => {
     it('should show the carousel indicators', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
-          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+          <CarouselIndicators
+            items={items}
+            activeIndex={0}
+            onClickHandler={() => {}}
+          />
           {slides}
-        </Carousel>
+        </Carousel>,
       );
 
       expect(wrapper.find(CarouselIndicators).length).toEqual(1);
@@ -170,20 +219,29 @@ describe('Carousel', () => {
     it('should show controls', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           {slides}
-          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
-          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
-        </Carousel>
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
       );
 
       expect(wrapper.find(CarouselControl).length).toEqual(2);
@@ -192,40 +250,56 @@ describe('Carousel', () => {
     it('should show a single slide', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           {slides}
-        </Carousel>
+        </Carousel>,
       );
-      expect(wrapper.find('.carousel-item.active').hostNodes().length).toEqual(1);
+      expect(wrapper.find('.carousel-item.active').hostNodes().length).toEqual(
+        1,
+      );
     });
 
     it('should show indicators and controls', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
-          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+          <CarouselIndicators
+            items={items}
+            activeIndex={0}
+            onClickHandler={() => {}}
+          />
           {slides}
-          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
-          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
-        </Carousel>
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
       );
 
       expect(wrapper.find(CarouselControl).length).toEqual(2);
@@ -235,26 +309,39 @@ describe('Carousel', () => {
     it('should tolerate booleans, null and undefined values rendered as children of Carousel', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           {null}
           {true}
           {false}
           {undefined}
           {(() => {})()}
-          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
+          <CarouselIndicators
+            items={items}
+            activeIndex={0}
+            onClickHandler={() => {}}
+          />
           {slides}
-          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
-          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
-        </Carousel>
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
       );
       expect(wrapper.find(CarouselControl).length).toEqual(2);
       expect(wrapper.find(CarouselIndicators).length).toEqual(1);
@@ -262,15 +349,13 @@ describe('Carousel', () => {
 
     it('should not have the class "carousel-dark" by default', () => {
       const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx} />
-        );
+        return <CarouselItem key={idx} />;
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           {slides}
-        </Carousel>
+        </Carousel>,
       );
 
       expect(wrapper.find('.carousel-dark').length).toBe(0);
@@ -278,15 +363,13 @@ describe('Carousel', () => {
 
     it('should have the class "carousel-dark" when dark prop is true', () => {
       const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx} />
-        );
+        return <CarouselItem key={idx} />;
       });
 
       const wrapper = mount(
-        <Carousel dark activeIndex={0} next={() => { }} previous={() => { }}>
+        <Carousel dark activeIndex={0} next={() => {}} previous={() => {}}>
           {slides}
-        </Carousel>
+        </Carousel>,
       );
 
       expect(wrapper.find('.carousel-dark').length).toBe(1);
@@ -297,21 +380,34 @@ describe('Carousel', () => {
     it('should set indicatorClicked to true if indicator clicked', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
-          <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => function () {}} />
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+          <CarouselIndicators
+            items={items}
+            activeIndex={0}
+            onClickHandler={() => function () {}}
+          />
           {slides}
-          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
-          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
-        </Carousel>
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
       );
 
       wrapper.find(CarouselIndicators).find('button').first().simulate('click');
@@ -321,18 +417,24 @@ describe('Carousel', () => {
     it('should go right when the index increases', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={0} next={() => { }} previous={() => { }}>
+        <Carousel
+          interval={1000}
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
 
       wrapper.setProps({ activeIndex: 1 });
@@ -342,18 +444,24 @@ describe('Carousel', () => {
     it('should go left when the index decreases', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={1} next={() => { }} previous={() => { }}>
+        <Carousel
+          interval={1000}
+          activeIndex={1}
+          next={() => {}}
+          previous={() => {}}
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
 
       wrapper.setProps({ activeIndex: 0 });
@@ -363,18 +471,24 @@ describe('Carousel', () => {
     it('should go right if transitioning from the last to first slide by non-indicator', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={2} next={() => { }} previous={() => { }}>
+        <Carousel
+          interval={1000}
+          activeIndex={2}
+          next={() => {}}
+          previous={() => {}}
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
 
       wrapper.setProps({ activeIndex: 0 });
@@ -384,21 +498,39 @@ describe('Carousel', () => {
     it('should go left if transitioning from the last to first slide by indicator', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={2} next={() => { }} previous={() => { }}>
-          <CarouselIndicators items={items} activeIndex={2} onClickHandler={() => { }} />
+        <Carousel
+          interval={1000}
+          activeIndex={2}
+          next={() => {}}
+          previous={() => {}}
+        >
+          <CarouselIndicators
+            items={items}
+            activeIndex={2}
+            onClickHandler={() => {}}
+          />
           {slides}
-          <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
-          <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
-        </Carousel>
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
       );
 
       wrapper.setState({ indicatorClicked: true });
@@ -409,18 +541,24 @@ describe('Carousel', () => {
     it('should go left if transitioning from the first to last slide by non-indicator', () => {
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel interval={1000} activeIndex={0} next={() => { }} previous={() => { }}>
+        <Carousel
+          interval={1000}
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
 
       wrapper.setProps({ activeIndex: 2 });
@@ -431,21 +569,39 @@ describe('Carousel', () => {
   it('should go right if transitioning from the first to last slide by indicator', () => {
     const slides = items.map((item, idx) => {
       return (
-        <CarouselItem
-          key={idx}
-        >
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+        <CarouselItem key={idx}>
+          <CarouselCaption
+            captionText={item.caption}
+            captionHeader={item.caption}
+          />
         </CarouselItem>
       );
     });
 
     const wrapper = mount(
-      <Carousel interval={1000} activeIndex={0} next={() => { }} previous={() => { }}>
-        <CarouselIndicators items={items} activeIndex={0} onClickHandler={() => { }} />
+      <Carousel
+        interval={1000}
+        activeIndex={0}
+        next={() => {}}
+        previous={() => {}}
+      >
+        <CarouselIndicators
+          items={items}
+          activeIndex={0}
+          onClickHandler={() => {}}
+        />
         {slides}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={() => { }} />
-        <CarouselControl direction="next" directionText="Next" onClickHandler={() => { }} />
-      </Carousel>
+        <CarouselControl
+          direction="prev"
+          directionText="Previous"
+          onClickHandler={() => {}}
+        />
+        <CarouselControl
+          direction="next"
+          directionText="Next"
+          onClickHandler={() => {}}
+        />
+      </Carousel>,
     );
 
     wrapper.setState({ indicatorClicked: true });
@@ -458,18 +614,24 @@ describe('Carousel', () => {
       const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0}>
+        <Carousel
+          next={next}
+          previous={() => {}}
+          interval={1000}
+          activeIndex={0}
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
       jest.runTimersToTime(1000);
       expect(next).not.toHaveBeenCalled();
@@ -480,18 +642,25 @@ describe('Carousel', () => {
       const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0} ride="carousel">
+        <Carousel
+          next={next}
+          previous={() => {}}
+          interval={1000}
+          activeIndex={0}
+          ride="carousel"
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
       jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();
@@ -502,18 +671,25 @@ describe('Carousel', () => {
       const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} interval={1000} activeIndex={0} ride="carousel">
+        <Carousel
+          next={next}
+          previous={() => {}}
+          interval={1000}
+          activeIndex={0}
+          ride="carousel"
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
       jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();
@@ -524,18 +700,24 @@ describe('Carousel', () => {
       const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} activeIndex={0} interval={false}>
+        <Carousel
+          next={next}
+          previous={() => {}}
+          activeIndex={0}
+          interval={false}
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
       jest.runTimersToTime(5000);
       expect(next).not.toHaveBeenCalled();
@@ -546,18 +728,24 @@ describe('Carousel', () => {
       const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
 
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} activeIndex={0} ride="carousel">
+        <Carousel
+          next={next}
+          previous={() => {}}
+          activeIndex={0}
+          ride="carousel"
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
       jest.runTimersToTime(5000);
       expect(next).toHaveBeenCalled();
@@ -568,17 +756,24 @@ describe('Carousel', () => {
       const next = jest.fn();
       const slides = items.map((item, idx) => {
         return (
-          <CarouselItem
-            key={idx}
-          >
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          <CarouselItem key={idx}>
+            <CarouselCaption
+              captionText={item.caption}
+              captionHeader={item.caption}
+            />
           </CarouselItem>
         );
       });
       const wrapper = mount(
-        <Carousel next={next} previous={() => { }} interval="1000" activeIndex={0} ride="carousel">
+        <Carousel
+          next={next}
+          previous={() => {}}
+          interval="1000"
+          activeIndex={0}
+          ride="carousel"
+        >
           {slides}
-        </Carousel>
+        </Carousel>,
       );
       jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();

@@ -15,25 +15,17 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function ToastBody(props) {
-  const {
-    className,
+  const { className, cssModule, innerRef, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'toast-body'),
     cssModule,
-    innerRef,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'toast-body'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
   );
+
+  return <Tag {...attributes} className={classes} ref={innerRef} />;
 }
 
 ToastBody.propTypes = propTypes;

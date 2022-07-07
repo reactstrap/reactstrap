@@ -4,7 +4,9 @@ import { ListGroupItemText } from '..';
 
 describe('ListGroupItem', () => {
   it('should render children', () => {
-    const listGroupItem = shallow(<ListGroupItemText>Yo!</ListGroupItemText>).find('p');
+    const listGroupItem = shallow(
+      <ListGroupItemText>Yo!</ListGroupItemText>,
+    ).find('p');
     expect(listGroupItem.text()).toBe('Yo!');
   });
 

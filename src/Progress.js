@@ -8,18 +8,9 @@ const propTypes = {
   bar: PropTypes.bool,
   multi: PropTypes.bool,
   tag: tagPropType,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  min: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  max: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   animated: PropTypes.bool,
   striped: PropTypes.bool,
   color: PropTypes.string,
@@ -38,7 +29,7 @@ const defaultProps = {
   min: 0,
   max: 100,
   style: {},
-  barStyle: {}
+  barStyle: {},
 };
 
 function Progress(props) {
@@ -63,20 +54,23 @@ function Progress(props) {
     ...attributes
   } = props;
 
-  const percent = ((toNumber(value) / toNumber(max)) * 100);
+  const percent = (toNumber(value) / toNumber(max)) * 100;
 
-  const progressClasses = mapToCssModules(classNames(
-    className,
-    'progress'
-  ), cssModule);
+  const progressClasses = mapToCssModules(
+    classNames(className, 'progress'),
+    cssModule,
+  );
 
-  const progressBarClasses = mapToCssModules(classNames(
-    'progress-bar',
-    bar ? className || barClassName : barClassName,
-    animated ? 'progress-bar-animated' : null,
-    color ? `bg-${color}` : null,
-    striped || animated ? 'progress-bar-striped' : null
-  ), cssModule);
+  const progressBarClasses = mapToCssModules(
+    classNames(
+      'progress-bar',
+      bar ? className || barClassName : barClassName,
+      animated ? 'progress-bar-animated' : null,
+      color ? `bg-${color}` : null,
+      striped || animated ? 'progress-bar-striped' : null,
+    ),
+    cssModule,
+  );
 
   const progressBarProps = {
     className: progressBarClasses,
@@ -91,16 +85,11 @@ function Progress(props) {
     'aria-valuemax': max,
     'aria-valuetext': barAriaValueText,
     'aria-labelledby': barAriaLabelledBy,
-    children: children
+    children: children,
   };
 
   if (bar) {
-    return (
-      <Tag
-        {...attributes}
-        {...progressBarProps}
-      />
-    );
+    return <Tag {...attributes} {...progressBarProps} />;
   }
 
   return (

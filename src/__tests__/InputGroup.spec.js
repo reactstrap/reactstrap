@@ -1,7 +1,11 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import {
-  InputGroup, DropdownMenu, DropdownToggle, DropdownItem, Input
+  InputGroup,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+  Input,
 } from '..';
 import Dropdown from '../Dropdown';
 
@@ -54,7 +58,7 @@ describe('InputGroup', () => {
       jest.spyOn(Dropdown.prototype, 'toggle');
 
       const wrapper = mount(
-        <InputGroup type="dropdown" isOpen toggle={() => { }}>
+        <InputGroup type="dropdown" isOpen toggle={() => {}}>
           <Input />
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
@@ -62,7 +66,7 @@ describe('InputGroup', () => {
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </InputGroup>,
-        { attachTo: document.body }
+        { attachTo: document.body },
       );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);

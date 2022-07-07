@@ -33,7 +33,7 @@ export function conditionallyUpdateScrollbar() {
   const scrollbarWidth = getScrollbarWidth();
   // https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/js/src/modal.js#L433
   const fixedContent = document.querySelectorAll(
-    '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
+    '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
   )[0];
   const bodyPadding = fixedContent
     ? parseInt(fixedContent.style.paddingRight || 0, 10)
@@ -104,7 +104,7 @@ export function deprecated(propType, explanation) {
   return function validate(props, propName, componentName, ...rest) {
     if (props[propName] !== null && typeof props[propName] !== 'undefined') {
       warnOnce(
-        `"${propName}" property of "${componentName}" has been deprecated.\n${explanation}`
+        `"${propName}" property of "${componentName}" has been deprecated.\n${explanation}`,
       );
     }
 
@@ -113,16 +113,17 @@ export function deprecated(propType, explanation) {
 }
 
 // Shim Element if needed (e.g. in Node environment)
-const Element = (typeof window === 'object' && window.Element) || function () { };
+const Element =
+  (typeof window === 'object' && window.Element) || function () {};
 
 export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
-      'Invalid prop `'
-      + propName
-      + '` supplied to `'
-      + componentName
-      + '`. Expected prop to be an instance of Element. Validation failed.'
+      'Invalid prop `' +
+        propName +
+        '` supplied to `' +
+        componentName +
+        '`. Expected prop to be an instance of Element. Validation failed.',
     );
   }
 }
@@ -138,21 +139,22 @@ export const tagPropType = PropTypes.oneOfType([
   PropTypes.func,
   PropTypes.string,
   PropTypes.shape({ $$typeof: PropTypes.symbol, render: PropTypes.func }),
-  PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.string,
-    PropTypes.shape({ $$typeof: PropTypes.symbol, render: PropTypes.func }),
-  ]))
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+      PropTypes.shape({ $$typeof: PropTypes.symbol, render: PropTypes.func }),
+    ]),
+  ),
 ]);
 
-/* eslint key-spacing: ["error", { afterColon: true, align: "value" }] */
 // These are all setup to match what is in the bootstrap _variables.scss
 // https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
 export const TransitionTimeouts = {
-  Fade:      150, // $transition-fade
-  Collapse:  350, // $transition-collapse
-  Modal:     300, // $modal-transition
-  Carousel:  600, // $carousel-transition
+  Fade: 150, // $transition-fade
+  Collapse: 350, // $transition-collapse
+  Modal: 300, // $modal-transition
+  Carousel: 600, // $carousel-transition
   Offcanvas: 300, // $offcanvas-transition
 };
 
@@ -177,22 +179,22 @@ export const TransitionPropTypeKeys = [
 
 export const TransitionStatuses = {
   ENTERING: 'entering',
-  ENTERED:  'entered',
-  EXITING:  'exiting',
-  EXITED:   'exited',
+  ENTERED: 'entered',
+  EXITING: 'exiting',
+  EXITED: 'exited',
 };
 
 export const keyCodes = {
-  esc:   27,
+  esc: 27,
   space: 32,
   enter: 13,
-  tab:   9,
-  up:    38,
-  down:  40,
-  home:  36,
-  end:   35,
-  n:     78,
-  p:     80,
+  tab: 9,
+  up: 38,
+  down: 40,
+  home: 36,
+  end: 35,
+  n: 78,
+  p: 80,
 };
 
 export const PopperPlacements = [
@@ -214,9 +216,9 @@ export const PopperPlacements = [
 ];
 
 export const canUseDOM = !!(
-  typeof window !== 'undefined'
-  && window.document
-  && window.document.createElement
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
 );
 
 export function isReactRefObj(target) {
@@ -244,7 +246,10 @@ export function toNumber(value) {
   if (type === 'number') {
     return value;
   }
-  if (type === 'symbol' || (type === 'object' && getTag(value) === '[object Symbol]')) {
+  if (
+    type === 'symbol' ||
+    (type === 'object' && getTag(value) === '[object Symbol]')
+  ) {
     return NAN;
   }
   if (isObject(value)) {
@@ -256,9 +261,11 @@ export function toNumber(value) {
   }
   value = value.replace(/^\s+|\s+$/g, '');
   const isBinary = /^0b[01]+$/i.test(value);
-  return (isBinary || /^0o[0-7]+$/i.test(value))
+  return isBinary || /^0o[0-7]+$/i.test(value)
     ? parseInt(value.slice(2), isBinary ? 2 : 8)
-    : (/^[-+]0x[0-9a-f]+$/i.test(value) ? NAN : +value);
+    : /^[-+]0x[0-9a-f]+$/i.test(value)
+    ? NAN
+    : +value;
 }
 
 export function isFunction(value) {
@@ -267,8 +274,12 @@ export function isFunction(value) {
   }
 
   const tag = getTag(value);
-  return tag === '[object Function]' || tag === '[object AsyncFunction]'
-    || tag === '[object GeneratorFunction]' || tag === '[object Proxy]';
+  return (
+    tag === '[object Function]' ||
+    tag === '[object AsyncFunction]' ||
+    tag === '[object GeneratorFunction]' ||
+    tag === '[object Proxy]'
+  );
 }
 
 export function findDOMElements(target) {
@@ -285,7 +296,7 @@ export function findDOMElements(target) {
     }
     if (!selection.length) {
       throw new Error(
-        `The target '${target}' could not be identified in the dom, tip: check spelling`
+        `The target '${target}' could not be identified in the dom, tip: check spelling`,
       );
     }
     return selection;
@@ -331,9 +342,9 @@ export function addMultipleEventListeners(_els, handler, _events, useCapture) {
   }
 
   if (
-    !isArrayOrNodeList(els)
-    || typeof handler !== 'function'
-    || !Array.isArray(events)
+    !isArrayOrNodeList(els) ||
+    typeof handler !== 'function' ||
+    !Array.isArray(events)
   ) {
     throw new Error(`
       The first argument of this function must be DOM node or an array on DOM nodes or NodeList.
