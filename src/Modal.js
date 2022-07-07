@@ -16,7 +16,7 @@ import {
   getTarget,
 } from './utils';
 
-function noop() { }
+function noop() {}
 
 const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
@@ -24,10 +24,7 @@ const propTypes = {
   /** */
   autoFocus: PropTypes.bool,
   /** Add backdrop to modal */
-  backdrop: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['static'])
-  ]),
+  backdrop: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['static'])]),
   /** add custom classname to backdrop */
   backdropClassName: PropTypes.string,
   backdropTransition: FadePropTypes,
@@ -83,10 +80,7 @@ const propTypes = {
   /** Unmounts the modal when modal is closed */
   unmountOnClose: PropTypes.bool,
   wrapClassName: PropTypes.string,
-  zIndex: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const propsToOmit = Object.keys(propTypes);

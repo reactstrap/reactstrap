@@ -12,7 +12,11 @@ const propTypes = {
   tag: tagPropType,
   /** Apply either `glow` or `wave` animation. */
   animation: PropTypes.oneOf(['glow', 'wave']),
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Make the size larger */
   size: PropTypes.oneOf(['lg', 'sm', 'xs']),
 };

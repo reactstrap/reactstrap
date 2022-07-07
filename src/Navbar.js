@@ -78,13 +78,7 @@ function Navbar(props) {
 
   return (
     <Tag {...attributes} className={classes}>
-      {container
-        ? (
-          <div className={containerClass}>
-            {children}
-          </div>
-        )
-        : children}
+      {container ? <div className={containerClass}>{children}</div> : children}
     </Tag>
   );
 }

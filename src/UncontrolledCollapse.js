@@ -16,7 +16,7 @@ const propTypes = {
   /** id of the element that should trigger toggle */
   toggler: PropTypes.string.isRequired,
   /** Events that should trigger the toggle */
-  toggleEvents: PropTypes.arrayOf(PropTypes.string)
+  toggleEvents: PropTypes.arrayOf(PropTypes.string),
 };
 
 const defaultProps = {

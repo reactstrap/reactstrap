@@ -22,7 +22,11 @@ const propTypes = {
   color: PropTypes.string,
   /** Disables the button */
   disabled: PropTypes.bool,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Function to be triggered on click */
   onClick: PropTypes.func,
   /** Adds outline to the button */

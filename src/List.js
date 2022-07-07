@@ -11,7 +11,7 @@ const propTypes = {
   /** Set a custom element for this component */
   tag: tagPropType,
   /** Type of list `unstyled` or `inline` */
-  type: PropTypes.string
+  type: PropTypes.string,
 };
 
 const defaultProps = {

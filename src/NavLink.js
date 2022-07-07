@@ -13,7 +13,11 @@ const propTypes = {
   /** Disable the link */
   disabled: PropTypes.bool,
   href: PropTypes.any,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Function to be triggered on click */
   onClick: PropTypes.func,
   /** Set a custom element for this component */

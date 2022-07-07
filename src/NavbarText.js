@@ -10,7 +10,7 @@ const propTypes = {
   cssModule: PropTypes.object,
   /** Set a custom element for this component */
   tag: tagPropType,
-  active: PropTypes.bool
+  active: PropTypes.bool,
 };
 
 const defaultProps = {

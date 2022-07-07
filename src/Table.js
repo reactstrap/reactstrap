@@ -16,7 +16,11 @@ const propTypes = {
   dark: PropTypes.bool,
   /** Enables a hover state on the rows within `<tbody>` */
   hover: PropTypes.bool,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.object]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   /** Responsive tables allow tables to be scrolled horizontally with ease */
   responsive: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   responsiveTag: tagPropType,

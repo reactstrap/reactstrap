@@ -12,7 +12,11 @@ const propTypes = {
   color: PropTypes.string,
   /** Change existing className with a new className */
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Add rounded corners to the Badge */
   pill: PropTypes.bool,
   /** Set a custom element for this component */

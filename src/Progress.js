@@ -19,15 +19,9 @@ const propTypes = {
   /** Add custom color to the placeholder */
   color: PropTypes.string,
   /** Maximum value of progress */
-  max: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Minimum value of progress, defaults to zero */
-  min: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   multi: PropTypes.bool,
   /** Add stripes to progress bar */
   striped: PropTypes.bool,
@@ -35,10 +29,7 @@ const propTypes = {
   /** Set a custom element for this component */
   tag: tagPropType,
   /** Current value of progress */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 const defaultProps = {
