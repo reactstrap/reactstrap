@@ -13,15 +13,14 @@ export default {
   }
 };
 
-export { default as Modal } from './examples/Modal';
-export { default as Backdrop } from './examples/ModalBackdrop';
-export { default as CustomCloseButton } from './examples/ModalCustomCloseButton';
-export { default as CustomCloseIcon } from './examples/ModalCustomCloseIcon';
-export { default as CustomTimeout } from './examples/ModalCustomTimeout';
-export { default as Destructuring } from './examples/ModalDestructuring';
-export { default as External } from './examples/ModalExternal';
-export { default as Fadeless } from './examples/ModalFadeless';
-export { default as FocusAfterClose } from './examples/ModalFocusAfterClose';
-export { default as Fullscreen } from './examples/ModalFullscreen';
-export { default as Nested } from './examples/ModalNested';
-export { default as Props } from './examples/ModalProps';
+export { default as Modal } from './examples/Modal/Modal.js';
+export { default as Backdrop } from './examples/Modal/Backdrop';
+export { default as CustomCloseButton } from './examples/Modal/CustomCloseButton';
+export { default as CustomTimeout } from './examples/Modal/CustomTimeout';
+export { default as Destructuring } from './examples/Modal/Destructuring';
+export { default as External } from './examples/Modal/External';
+export { default as Fadeless } from './examples/Modal/Fadeless';
+export { default as FocusAfterClose } from './examples/Modal/FocusAfterClose';
+export { default as Fullscreen } from './examples/Modal/Fullscreen';
+export { default as Nested } from './examples/Modal/Nested';
+export { default as Props } from './examples/Modal/Props';

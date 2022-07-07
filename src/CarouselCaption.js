@@ -23,10 +23,14 @@ function CarouselCaption(props) {
 }
 
 CarouselCaption.propTypes = {
+  /** Heading for the caption */
   captionHeader: PropTypes.node,
+  /** Text for caption */
   captionText: PropTypes.node.isRequired,
-  cssModule: PropTypes.object,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
 };
 
 export default CarouselCaption;

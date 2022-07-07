@@ -4,11 +4,16 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
-  top: PropTypes.bool,
+  /** Add `bottom` prop if image is at bottom of card */
   bottom: PropTypes.bool,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change existing className with a new className */
   cssModule: PropTypes.object,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  /** Add `top` prop if image is at top of card */
+  top: PropTypes.bool,
 };
 
 const defaultProps = {

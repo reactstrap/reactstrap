@@ -21,51 +21,72 @@ function noop() { }
 const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
 const propTypes = {
-  isOpen: PropTypes.bool,
+  /** */
   autoFocus: PropTypes.bool,
-  centered: PropTypes.bool,
-  fullscreen: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
-  ]),
-  scrollable: PropTypes.bool,
-  size: PropTypes.string,
-  toggle: PropTypes.func,
-  keyboard: PropTypes.bool,
-  role: PropTypes.string,
-  labelledBy: PropTypes.string,
+  /** Add backdrop to modal */
   backdrop: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(['static'])
   ]),
-  onEnter: PropTypes.func,
-  onExit: PropTypes.func,
-  onOpened: PropTypes.func,
-  onClosed: PropTypes.func,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  wrapClassName: PropTypes.string,
-  modalClassName: PropTypes.string,
+  /** add custom classname to backdrop */
   backdropClassName: PropTypes.string,
-  contentClassName: PropTypes.string,
-  external: PropTypes.node,
-  fade: PropTypes.bool,
-  cssModule: PropTypes.object,
-  zIndex: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
   backdropTransition: FadePropTypes,
-  modalTransition: FadePropTypes,
+  /** Vertically center the modal */
+  centered: PropTypes.bool,
+  /** Add children for the modal to wrap */
+  children: PropTypes.node,
+  /** Add custom className for modal content */
+  contentClassName: PropTypes.string,
+  className: PropTypes.string,
+  container: targetPropType,
+  cssModule: PropTypes.object,
+  external: PropTypes.node,
+  /** Enable/Disable animation */
+  fade: PropTypes.bool,
+  /** Make the modal fullscreen */
+  fullscreen: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+  ]),
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,
     PropTypes.func,
   ]),
-  unmountOnClose: PropTypes.bool,
+  /** The status of the modal, either open or close */
+  isOpen: PropTypes.bool,
+  /** Allow modal to be closed with escape key. */
+  keyboard: PropTypes.bool,
+  /** Identifies the element (or elements) that labels the current element. */
+  labelledBy: PropTypes.string,
+  modalClassName: PropTypes.string,
+  modalTransition: FadePropTypes,
+  /** Function to be triggered on close */
+  onClosed: PropTypes.func,
+  /** Function to be triggered on enter */
+  onEnter: PropTypes.func,
+  /** Function to be triggered on exit */
+  onExit: PropTypes.func,
+  /** Function to be triggered on open */
+  onOpened: PropTypes.func,
+  /** Returns focus to the element that triggered opening of the modal */
   returnFocusAfterClose: PropTypes.bool,
-  container: targetPropType,
-  trapFocus: PropTypes.bool
+  /** Accessibility role */
+  role: PropTypes.string,
+  /** Make the modal scrollable */
+  scrollable: PropTypes.bool,
+  /** Two optional sizes `lg` and `sm` */
+  size: PropTypes.string,
+  /** Function to toggle modal visibility */
+  toggle: PropTypes.func,
+  trapFocus: PropTypes.bool,
+  /** Unmounts the modal when modal is closed */
+  unmountOnClose: PropTypes.bool,
+  wrapClassName: PropTypes.string,
+  zIndex: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 const propsToOmit = Object.keys(propTypes);

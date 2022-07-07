@@ -63,7 +63,7 @@ class Carousel extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activeIndex === this.state.activeIndex) return;
-    this.setInterval(this.props);
+    this.setInterval();
   }
 
   componentWillUnmount() {
@@ -119,13 +119,13 @@ class Carousel extends React.Component {
     return { direction: this.state.direction };
   }
 
-  setInterval(props = this.props) {
+  setInterval() {
     // make sure not to have multiple intervals going...
     this.clearInterval();
-    if (props.interval) {
+    if (this.props.interval) {
       this.cycleInterval = setInterval(() => {
-        props.next();
-      }, parseInt(props.interval, 10));
+        this.props.next();
+      }, parseInt(this.props.interval, 10));
     }
   }
 
@@ -247,40 +247,41 @@ class Carousel extends React.Component {
 }
 
 Carousel.propTypes = {
-  // the current active slide of the carousel
+  /** the current active slide of the carousel */
   activeIndex: PropTypes.number,
-  // a function which should advance the carousel to the next slide (via activeIndex)
+  /** a function which should advance the carousel to the next slide (via activeIndex) */
   next: PropTypes.func.isRequired,
-  // a function which should advance the carousel to the previous slide (via activeIndex)
+  /** a function which should advance the carousel to the previous slide (via activeIndex) */
   previous: PropTypes.func.isRequired,
-  // controls if the left and right arrow keys should control the carousel
+  /** controls if the left and right arrow keys should control the carousel */
   keyboard: PropTypes.bool,
-  /* If set to "hover", pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on
-   * mouseleave. If set to false, hovering over the carousel won't pause it. (default: "hover")
+  /** If set to "hover", pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on
+   * mouseleave. If set to false, hovering over the carousel won't pause it.
    */
   pause: PropTypes.oneOf(['hover', false]),
-  // Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load.
-  // This is how bootstrap defines it... I would prefer a bool named autoplay or something...
+  /** Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load. */
   ride: PropTypes.oneOf(['carousel']),
-  // the interval at which the carousel automatically cycles (default: 5000)
-  // eslint-disable-next-line react/no-unused-prop-types
+  /** the interval at which the carousel automatically cycles */
   interval: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
     PropTypes.bool,
   ]),
   children: PropTypes.array,
-  // called when the mouse enters the Carousel
+  /** called when the mouse enters the Carousel */
   mouseEnter: PropTypes.func,
-  // called when the mouse exits the Carousel
+  /** called when the mouse exits the Carousel */
   mouseLeave: PropTypes.func,
-  // controls whether the slide animation on the Carousel works or not
+  /** controls whether the slide animation on the Carousel works or not */
   slide: PropTypes.bool,
-  // make the controls, indicators and captions dark on the Carousel
+  /** make the controls, indicators and captions dark on the Carousel */
   dark: PropTypes.bool,
   fade: PropTypes.bool,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Enable touch support */
   enableTouch: PropTypes.bool,
 };
 

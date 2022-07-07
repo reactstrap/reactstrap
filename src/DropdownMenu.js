@@ -13,6 +13,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   dark: PropTypes.bool,
   end: PropTypes.bool,
+  /** Flips the menu to the opposite side if there is not enough space to fit */
   flip: PropTypes.bool,
   modifiers: PropTypes.array,
   className: PropTypes.string,

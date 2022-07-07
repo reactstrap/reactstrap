@@ -36,11 +36,16 @@ function CarouselIndicators(props) {
 }
 
 CarouselIndicators.propTypes = {
-  items: PropTypes.array.isRequired,
+  /** The current active index */
   activeIndex: PropTypes.number.isRequired,
-  cssModule: PropTypes.object,
-  onClickHandler: PropTypes.func.isRequired,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
+  /** Array of items to show */
+  items: PropTypes.array.isRequired,
+  /** Function to be triggered on click */
+  onClickHandler: PropTypes.func.isRequired,
 };
 
 export default CarouselIndicators;

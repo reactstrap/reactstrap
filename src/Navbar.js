@@ -4,19 +4,29 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  light: PropTypes.bool,
-  dark: PropTypes.bool,
-  full: PropTypes.bool,
-  fixed: PropTypes.string,
-  sticky: PropTypes.string,
-  color: PropTypes.string,
-  role: PropTypes.string,
-  tag: tagPropType,
-  container: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
-  expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   children: PropTypes.node,
+  /** Add custom class */
+  className: PropTypes.string,
+  /** Theme the navbar by adding a background color  */
+  color: PropTypes.string,
+  /** Use any of the responsive containers to change how wide the content in your navbar is presented. */
+  container: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
+  /** This prop is passed if the background is dark, to make the text lighter */
+  dark: PropTypes.bool,
+  /** Determine if to show toggler button */
+  expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  /** Make the navbar fixed at the top */
+  fixed: PropTypes.string,
+  full: PropTypes.bool,
+  /** Add `.navbar-light` class */
+  light: PropTypes.bool,
+  role: PropTypes.string,
+  /** Use `position: sticky` which isn't fully supported in every browser */
+  sticky: PropTypes.string,
+  /** Set a custom element for this component */
+  tag: tagPropType,
 };
 
 const defaultProps = {
@@ -68,7 +78,7 @@ function Navbar(props) {
 
   return (
     <Tag {...attributes} className={classes}>
-      { container
+      {container
         ? (
           <div className={containerClass}>
             {children}

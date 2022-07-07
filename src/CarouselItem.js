@@ -96,11 +96,15 @@ class CarouselItem extends React.Component {
 
 CarouselItem.propTypes = {
   ...Transition.propTypes,
+  /** Set a custom element for this component */
   tag: tagPropType,
   in: PropTypes.bool,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
   children: PropTypes.node,
+  /** Enable/disable animation */
   slide: PropTypes.bool,
+  /** Add custom class */
   className: PropTypes.string,
 };
 

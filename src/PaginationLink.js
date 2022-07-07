@@ -6,12 +6,19 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
   'aria-label': PropTypes.string,
   children: PropTypes.node,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Add to next button to add default aria label and icon */
   next: PropTypes.bool,
+  /** Add to previous button to add default aria label and icon */
   previous: PropTypes.bool,
+  /** Add to first button to add default aria label and icon */
   first: PropTypes.bool,
+  /** Add to last button to add default aria label and icon */
   last: PropTypes.bool,
+  /** Set a custom element for this component */
   tag: tagPropType,
 };
 

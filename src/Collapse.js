@@ -8,15 +8,20 @@ import {
 
 const propTypes = {
   ...Transition.propTypes,
+  /** Make content animation appear horizontally */
   horizontal: PropTypes.bool,
+  /** Set if Collapse is open or closed */
   isOpen: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
+  /** Set a custom element for this component */
   tag: tagPropType,
+  /** Add custom class */
   className: PropTypes.node,
   navbar: PropTypes.bool,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
   innerRef: PropTypes.oneOfType([
     PropTypes.func,

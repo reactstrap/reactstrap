@@ -9,9 +9,9 @@ export default {
   }
 };
 
-export { default as Popover } from './examples/Popover';
-export { default as Focus } from './examples/PopoverFocus';
-export { default as Multi } from './examples/PopoverMulti';
-export { default as Uncontrolled } from './examples/PopoverUncontrolled';
-export { default as Update } from './examples/PopoverUpdate';
-export { default as Props } from './examples/PopoverProps';
+export { default as Popover } from './examples/Popover/Popover';
+export { default as Focus } from './examples/Popover/Focus';
+export { default as FourDirections } from './examples/Popover/Multi';
+export { default as Uncontrolled } from './examples/Popover/Uncontrolled';
+export { default as Update } from './examples/Popover/Update';
+export { default as Props } from './examples/Popover/Props';
