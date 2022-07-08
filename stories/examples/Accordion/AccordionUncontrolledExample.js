@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from 'reactstrap';
+import React from 'react';
+import { UncontrolledAccordion, AccordionBody, AccordionHeader, AccordionItem } from 'reactstrap';
 
 const Example = (props) => {
-  const [open, setOpen] = useState('1');
-  const toggle = (id) => {
-    open === id ? setOpen() : setOpen(id);
-  };
-
   return (
     <div>
-      <Accordion open={open} toggle={toggle}>
+      <UncontrolledAccordion defaultOpen='1'>
         <AccordionItem>
           <AccordionHeader targetId="1">
             Accordion Item 1
@@ -37,7 +32,7 @@ const Example = (props) => {
             You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
           </AccordionBody>
         </AccordionItem>
-      </Accordion>
+      </UncontrolledAccordion>
     </div>
   );
 };

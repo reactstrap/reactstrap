@@ -13,8 +13,8 @@ Used to build vertically collapsing accordions.
   }
 };
 
-export { default as Accordion } from './examples/Accordion';
-export { default as Flush } from './examples/AccordionFlush';
-export { default as Uncontrolled } from './examples/UncontrolledAccordion';
-export { default as StayOpen } from './examples/UncontrolledAccordionStayOpen';
-export { default as Props } from './examples/AccordionProps';
+export { default as Accordion } from './examples/Accordion/Accordion';
+export { default as Flush } from './examples/Accordion/AccordionFlush';
+export { default as Uncontrolled } from './examples/Accordion/AccordionUncontrolled';
+export { default as StayOpen } from './examples/Accordion/AccordionStayOpen';
+export { default as Props } from './examples/Accordion/AccordionProps';

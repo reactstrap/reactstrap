@@ -5,15 +5,19 @@ import { mapToCssModules, tagPropType } from './utils';
 import { AccordionContext } from './AccordionContext';
 
 const propTypes = {
-  tag: tagPropType,
+  children: PropTypes.node,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change existing base class name with a new class name */
   cssModule: PropTypes.object,
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,
     PropTypes.func,
   ]),
-  children: PropTypes.node,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  /** Unique key used to control item's collapse/expand */
   targetId: PropTypes.string.isRequired,
 };
 
