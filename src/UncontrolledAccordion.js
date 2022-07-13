@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {

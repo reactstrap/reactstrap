@@ -4,11 +4,17 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType, deprecated } from './utils';
 
 const rowColWidths = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
-const rowColsPropType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
+const rowColsPropType = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+]);
 
 const propTypes = {
   tag: tagPropType,
-  noGutters: deprecated(PropTypes.bool, 'Please use Bootstrap 5 gutter utility classes. https://getbootstrap.com/docs/5.0/layout/gutters/'),
+  noGutters: deprecated(
+    PropTypes.bool,
+    'Please use Bootstrap 5 gutter utility classes. https://getbootstrap.com/docs/5.0/layout/gutters/',
+  ),
   className: PropTypes.string,
   cssModule: PropTypes.object,
   xs: rowColsPropType,
@@ -17,12 +23,12 @@ const propTypes = {
   lg: rowColsPropType,
   xl: rowColsPropType,
   xxl: rowColsPropType,
-  widths: PropTypes.array
+  widths: PropTypes.array,
 };
 
 const defaultProps = {
   tag: 'div',
-  widths: rowColWidths
+  widths: rowColWidths,
 };
 
 function Row(props) {
@@ -47,19 +53,17 @@ function Row(props) {
     }
 
     const isXs = !i;
-    colClasses.push(isXs ? `row-cols-${colSize}` : `row-cols-${colWidth}-${colSize}`);
+    colClasses.push(
+      isXs ? `row-cols-${colSize}` : `row-cols-${colWidth}-${colSize}`,
+    );
   });
 
-  const classes = mapToCssModules(classNames(
-    className,
-    noGutters ? 'gx-0' : null,
-    'row',
-    colClasses
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(className, noGutters ? 'gx-0' : null, 'row', colClasses),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 Row.propTypes = propTypes;

@@ -4,15 +4,11 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 function CarouselCaption(props) {
-  const {
-    captionHeader, captionText, cssModule, className
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'carousel-caption',
-    'd-none',
-    'd-md-block'
-  ), cssModule);
+  const { captionHeader, captionText, cssModule, className } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'carousel-caption', 'd-none', 'd-md-block'),
+    cssModule,
+  );
 
   return (
     <div className={classes}>

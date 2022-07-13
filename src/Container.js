@@ -15,13 +15,7 @@ const defaultProps = {
 };
 
 function Container(props) {
-  const {
-    className,
-    cssModule,
-    fluid,
-    tag: Tag,
-    ...attributes
-  } = props;
+  const { className, cssModule, fluid, tag: Tag, ...attributes } = props;
 
   let containerClass = 'container';
   if (fluid === true) {
@@ -30,14 +24,12 @@ function Container(props) {
     containerClass = `container-${fluid}`;
   }
 
-  const classes = mapToCssModules(classNames(
-    className,
-    containerClass
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(className, containerClass),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 Container.propTypes = propTypes;

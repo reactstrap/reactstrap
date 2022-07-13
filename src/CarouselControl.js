@@ -4,22 +4,23 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 function CarouselControl(props) {
-  const {
-    direction, onClickHandler, cssModule, directionText, className
-  } = props;
+  const { direction, onClickHandler, cssModule, directionText, className } =
+    props;
 
-  const anchorClasses = mapToCssModules(classNames(
-    className,
-    `carousel-control-${direction}`
-  ), cssModule);
+  const anchorClasses = mapToCssModules(
+    classNames(className, `carousel-control-${direction}`),
+    cssModule,
+  );
 
-  const iconClasses = mapToCssModules(classNames(
-    `carousel-control-${direction}-icon`
-  ), cssModule);
+  const iconClasses = mapToCssModules(
+    classNames(`carousel-control-${direction}-icon`),
+    cssModule,
+  );
 
-  const screenReaderClasses = mapToCssModules(classNames(
-    'visually-hidden'
-  ), cssModule);
+  const screenReaderClasses = mapToCssModules(
+    classNames('visually-hidden'),
+    cssModule,
+  );
 
   return (
     // We need to disable this linting rule to use an `<a>` instead of

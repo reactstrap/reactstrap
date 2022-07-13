@@ -17,18 +17,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'img'
+  tag: 'img',
 };
 
 function CardImg(props) {
-  const {
-    className,
-    cssModule,
-    top,
-    bottom,
-    tag: Tag,
-    ...attributes
-  } = props;
+  const { className, cssModule, top, bottom, tag: Tag, ...attributes } = props;
 
   let cardImgClassName = 'card-img';
   if (top) {
@@ -38,14 +31,12 @@ function CardImg(props) {
     cardImgClassName = 'card-img-bottom';
   }
 
-  const classes = mapToCssModules(classNames(
-    className,
-    cardImgClassName
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(className, cardImgClassName),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 CardImg.propTypes = propTypes;

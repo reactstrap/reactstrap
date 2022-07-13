@@ -35,15 +35,16 @@ function ButtonGroup(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    size ? 'btn-group-' + size : false,
-    vertical ? 'btn-group-vertical' : 'btn-group'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      size ? 'btn-group-' + size : false,
+      vertical ? 'btn-group-vertical' : 'btn-group',
+    ),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 ButtonGroup.propTypes = propTypes;

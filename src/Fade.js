@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 import {
-  mapToCssModules, omit, pick, TransitionPropTypeKeys, TransitionTimeouts, tagPropType
+  mapToCssModules,
+  omit,
+  pick,
+  TransitionPropTypeKeys,
+  TransitionTimeouts,
+  tagPropType,
 } from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
   tag: tagPropType,
   baseClass: PropTypes.string,
@@ -55,11 +60,10 @@ function Fade(props) {
     <Transition {...transitionProps}>
       {(status) => {
         const isActive = status === 'entered';
-        const classes = mapToCssModules(classNames(
-          className,
-          baseClass,
-          isActive && baseClassActive
-        ), cssModule);
+        const classes = mapToCssModules(
+          classNames(className, baseClass, isActive && baseClassActive),
+          cssModule,
+        );
         return (
           <Tag className={classes} {...childProps} ref={innerRef}>
             {children}

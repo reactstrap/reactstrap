@@ -31,18 +31,15 @@ function PaginationItem(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'page-item',
-    {
+  const classes = mapToCssModules(
+    classNames(className, 'page-item', {
       active,
       disabled,
-    }
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+    }),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 PaginationItem.propTypes = propTypes;

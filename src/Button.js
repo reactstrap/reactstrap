@@ -22,7 +22,11 @@ const propTypes = {
   color: PropTypes.string,
   /** Disables the button */
   disabled: PropTypes.bool,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Function to be triggered on click */
   onClick: PropTypes.func,
   /** Adds outline to the button */
@@ -39,16 +43,19 @@ const defaultProps = {
 };
 
 function Button(props) {
-  const onClick = useCallback((e) => {
-    if (props.disabled) {
-      e.preventDefault();
-      return;
-    }
+  const onClick = useCallback(
+    (e) => {
+      if (props.disabled) {
+        e.preventDefault();
+        return;
+      }
 
-    if (props.onClick) {
-      return props.onClick(e);
-    }
-  }, [props.onClick, props.disabled]);
+      if (props.onClick) {
+        return props.onClick(e);
+      }
+    },
+    [props.onClick, props.disabled],
+  );
 
   let {
     active,
@@ -66,23 +73,22 @@ function Button(props) {
   } = props;
 
   if (close) {
-    return (
-      <CloseButton
-        {...attributes}
-      />
-    );
+    return <CloseButton {...attributes} />;
   }
 
   const btnOutlineColor = `btn${outline ? '-outline' : ''}-${color}`;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'btn',
-    btnOutlineColor,
-    size ? `btn-${size}` : false,
-    block ? 'd-block w-100' : false,
-    { active, disabled: props.disabled }
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'btn',
+      btnOutlineColor,
+      size ? `btn-${size}` : false,
+      block ? 'd-block w-100' : false,
+      { active, disabled: props.disabled },
+    ),
+    cssModule,
+  );
 
   if (attributes.href && Tag === 'button') {
     Tag = 'a';
@@ -90,7 +96,7 @@ function Button(props) {
 
   return (
     <Tag
-      type={(Tag === 'button' && attributes.onClick) ? 'button' : undefined}
+      type={Tag === 'button' && attributes.onClick ? 'button' : undefined}
       {...attributes}
       className={classes}
       ref={innerRef}

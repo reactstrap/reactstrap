@@ -54,14 +54,22 @@ describe('FormGroup', () => {
   });
 
   it('should render with "form-check" and "form-check-inline" classes when check prop and inline prop are both truthy', () => {
-    const wrapper = shallow(<FormGroup check inline>Yo!</FormGroup>);
+    const wrapper = shallow(
+      <FormGroup check inline>
+        Yo!
+      </FormGroup>,
+    );
 
     expect(wrapper.hasClass('form-check')).toBe(true);
     expect(wrapper.hasClass('form-check-inline')).toBe(true);
   });
 
   it('should render with "form-check" and "form-switch" and "form-check-inline" classes when check prop and inline prop are both truthy', () => {
-    const wrapper = shallow(<FormGroup switch inline>Yo!</FormGroup>);
+    const wrapper = shallow(
+      <FormGroup switch inline>
+        Yo!
+      </FormGroup>,
+    );
 
     expect(wrapper.hasClass('form-check')).toBe(true);
     expect(wrapper.hasClass('form-switch')).toBe(true);
@@ -93,14 +101,22 @@ describe('FormGroup', () => {
   });
 
   it('should render with "disabled" class when both check disabled props are truthy', () => {
-    const wrapper = shallow(<FormGroup check disabled>Yo!</FormGroup>);
+    const wrapper = shallow(
+      <FormGroup check disabled>
+        Yo!
+      </FormGroup>,
+    );
 
     expect(wrapper.hasClass('disabled')).toBe(true);
     expect(wrapper.hasClass('form-check')).toBe(true);
   });
 
   it('should render with "disabled" class when both switch and disabled props are truthy', () => {
-    const wrapper = shallow(<FormGroup switch disabled>Yo!</FormGroup>);
+    const wrapper = shallow(
+      <FormGroup switch disabled>
+        Yo!
+      </FormGroup>,
+    );
 
     expect(wrapper.hasClass('disabled')).toBe(true);
     expect(wrapper.hasClass('form-check')).toBe(true);

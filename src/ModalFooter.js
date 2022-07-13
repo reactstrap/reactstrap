@@ -17,20 +17,13 @@ const defaultProps = {
 };
 
 function ModalFooter(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'modal-footer'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'modal-footer'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 ModalFooter.propTypes = propTypes;

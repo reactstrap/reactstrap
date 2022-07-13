@@ -14,7 +14,7 @@ const propTypes = {
   closeAriaLabel: PropTypes.string,
   charCode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   close: PropTypes.object,
-  tagClassName: PropTypes.string
+  tagClassName: PropTypes.string,
 };
 
 const defaultProps = {
@@ -41,14 +41,19 @@ function ToastHeader(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'toast-header'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'toast-header'),
+    cssModule,
+  );
 
   if (!close && toggle) {
     closeButton = (
-      <button type="button" onClick={toggle} className={mapToCssModules('btn-close', cssModule)} aria-label={closeAriaLabel} />
+      <button
+        type="button"
+        onClick={toggle}
+        className={mapToCssModules('btn-close', cssModule)}
+        aria-label={closeAriaLabel}
+      />
     );
   }
 
@@ -73,7 +78,12 @@ function ToastHeader(props) {
   return (
     <WrapTag {...attributes} className={classes}>
       {icon}
-      <Tag className={mapToCssModules(classNames(tagClassName, { 'ms-2': icon != null }), cssModule)}>
+      <Tag
+        className={mapToCssModules(
+          classNames(tagClassName, { 'ms-2': icon != null }),
+          cssModule,
+        )}
+      >
         {children}
       </Tag>
       {close || closeButton}

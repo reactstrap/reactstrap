@@ -16,17 +16,17 @@ const defaultProps = {
 };
 
 export default function TabPane(props) {
-  const {
-    className,
-    cssModule,
-    tabId,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const getClasses = (activeTabId) => mapToCssModules(classNames('tab-pane', className, { active: tabId === activeTabId }), cssModule);
+  const { className, cssModule, tabId, tag: Tag, ...attributes } = props;
+  const getClasses = (activeTabId) =>
+    mapToCssModules(
+      classNames('tab-pane', className, { active: tabId === activeTabId }),
+      cssModule,
+    );
   return (
     <TabContext.Consumer>
-      {({ activeTabId }) => <Tag {...attributes} className={getClasses(activeTabId)} />}
+      {({ activeTabId }) => (
+        <Tag {...attributes} className={getClasses(activeTabId)} />
+      )}
     </TabContext.Consumer>
   );
 }

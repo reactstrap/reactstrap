@@ -27,7 +27,11 @@ describe('ListGroup', () => {
   });
 
   it('should not render with "horizontal" if flush is true', () => {
-    const wrapper = shallow(<ListGroup flush horizontal>Yo!</ListGroup>);
+    const wrapper = shallow(
+      <ListGroup flush horizontal>
+        Yo!
+      </ListGroup>,
+    );
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('list-group')).toBe(true);

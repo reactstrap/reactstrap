@@ -39,14 +39,19 @@ function ModalHeader(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'modal-header'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'modal-header'),
+    cssModule,
+  );
 
   if (!close && toggle) {
     closeButton = (
-      <button type="button" onClick={toggle} className={mapToCssModules('btn-close', cssModule)} aria-label={closeAriaLabel} />
+      <button
+        type="button"
+        onClick={toggle}
+        className={mapToCssModules('btn-close', cssModule)}
+        aria-label={closeAriaLabel}
+      />
     );
   }
 

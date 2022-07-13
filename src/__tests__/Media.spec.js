@@ -111,7 +111,7 @@ describe('Media', () => {
         <Media tag="li" />
         <Media tag="li" />
         <Media tag="li" />
-      </Media>
+      </Media>,
     );
 
     expect(wrapper.hasClass('media-list')).toBe(true);
@@ -122,7 +122,7 @@ describe('Media', () => {
     const wrapper = shallow(
       <Media>
         <Media body />
-      </Media>
+      </Media>,
     );
 
     expect(wrapper.find({ body: true }).length).toBe(1);

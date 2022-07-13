@@ -25,7 +25,12 @@
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
     "lint": "eslint src",
-    "dtslint": "dtslint types --expectOnly"
+    "dtslint": "dtslint types --expectOnly",
+    "prettier": "prettier --write src"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "repository": {
     "type": "git",
@@ -293,6 +298,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^8.17.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
@@ -300,6 +306,7 @@
     "holderjs": "^2.9.3",
     "json-loader": "^0.5.7",
     "microbundle": "^0.13.3",
+    "prettier": "2.7.1",
     "react": "^16.8.0",
     "react-app-rewired": "^1.6.2",
     "react-dom": "^16.3.2",

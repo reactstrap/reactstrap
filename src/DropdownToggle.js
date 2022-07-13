@@ -27,7 +27,7 @@ const propTypes = {
 
 const defaultProps = {
   color: 'secondary',
-  'aria-haspopup': true
+  'aria-haspopup': true,
 };
 
 class DropdownToggle extends React.Component {
@@ -60,22 +60,31 @@ class DropdownToggle extends React.Component {
 
   render() {
     const {
-      className, color, cssModule, caret, split, nav, tag, innerRef, ...props
+      className,
+      color,
+      cssModule,
+      caret,
+      split,
+      nav,
+      tag,
+      innerRef,
+      ...props
     } = this.props;
     const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
-    const classes = mapToCssModules(classNames(
-      className,
-      {
+    const classes = mapToCssModules(
+      classNames(className, {
         'dropdown-toggle': caret || split,
         'dropdown-toggle-split': split,
-        'nav-link': nav
-      }
-    ), cssModule);
-    const children = typeof props.children !== 'undefined' ? (
-      props.children
-    ) : (
-      <span className="visually-hidden">{ariaLabel}</span>
+        'nav-link': nav,
+      }),
+      cssModule,
     );
+    const children =
+      typeof props.children !== 'undefined' ? (
+        props.children
+      ) : (
+        <span className="visually-hidden">{ariaLabel}</span>
+      );
 
     let Tag;
 

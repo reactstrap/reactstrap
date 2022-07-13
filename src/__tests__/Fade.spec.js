@@ -8,20 +8,22 @@ class Helper extends React.Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      showItem: props.showItem
+      showItem: props.showItem,
     };
   }
 
   toggle() {
     this.setState((prevState) => ({
-      showItem: !prevState.showItem
+      showItem: !prevState.showItem,
     }));
   }
 
   render() {
     return (
       <div>
-        <div className="trigger" onClick={this.toggle}>Toggle</div>
+        <div className="trigger" onClick={this.toggle}>
+          Toggle
+        </div>
         <TransitionGroup component="div">
           {this.state.showItem ? this.props.children : null}
         </TransitionGroup>
@@ -44,8 +46,10 @@ describe('Fade', () => {
     const wrapper = mount(
       <Helper showItem={isOpen}>
         <Fade key={Math.random()}>Yo!</Fade>
-        <Fade appear={false} key={Math.random()}>Yo 2!</Fade>
-      </Helper>
+        <Fade appear={false} key={Math.random()}>
+          Yo 2!
+        </Fade>
+      </Helper>,
     );
 
     expect(wrapper.update().find('div.fade').hostNodes().length).toBe(2);
@@ -65,9 +69,13 @@ describe('Fade', () => {
     let isOpen = false;
     const wrapper = mount(
       <Helper showItem={isOpen}>
-        <Fade onEnter={onEnter} onExit={onExit} key={Math.random()}>Yo 3!</Fade>
-        <Fade appear={false} enter={false} exit={false} key={Math.random()}>Yo 4!</Fade>
-      </Helper>
+        <Fade onEnter={onEnter} onExit={onExit} key={Math.random()}>
+          Yo 3!
+        </Fade>
+        <Fade appear={false} enter={false} exit={false} key={Math.random()}>
+          Yo 4!
+        </Fade>
+      </Helper>,
     );
 
     expect(wrapper.update().find('div.fade').hostNodes().length).toBe(0);
@@ -92,12 +100,16 @@ describe('Fade', () => {
 
   it('should pass className down', () => {
     const alert = mount(<Fade className="test-class-name">Yo!</Fade>);
-    expect(alert.find('.fade').hostNodes().prop('className')).toContain('test-class-name');
+    expect(alert.find('.fade').hostNodes().prop('className')).toContain(
+      'test-class-name',
+    );
   });
 
   it('should pass other props down', () => {
     const alert = mount(<Fade data-testprop="testvalue">Yo!</Fade>);
-    expect(alert.find('.fade').hostNodes().prop('data-testprop')).toContain('testvalue');
+    expect(alert.find('.fade').hostNodes().prop('data-testprop')).toContain(
+      'testvalue',
+    );
   });
 
   it('should support custom tag', () => {

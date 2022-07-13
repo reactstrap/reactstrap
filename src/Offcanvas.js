@@ -16,7 +16,7 @@ import {
   targetPropType,
 } from './utils';
 
-function noop() { }
+function noop() {}
 
 const FadePropTypes = PropTypes.shape(Fade.propTypes);
 
@@ -31,7 +31,11 @@ const propTypes = {
   cssModule: PropTypes.object,
   direction: PropTypes.oneOf(['start', 'end', 'bottom', 'top']),
   fade: PropTypes.bool,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.func]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
   isOpen: PropTypes.bool,
   keyboard: PropTypes.bool,
   labelledBy: PropTypes.string,
@@ -47,7 +51,7 @@ const propTypes = {
   toggle: PropTypes.func,
   trapFocus: PropTypes.bool,
   unmountOnClose: PropTypes.bool,
-  zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  zIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const propsToOmit = Object.keys(propTypes);
@@ -74,7 +78,7 @@ const defaultProps = {
   unmountOnClose: true,
   returnFocusAfterClose: true,
   container: 'body',
-  trapFocus: false
+  trapFocus: false,
 };
 
 class Offcanvas extends React.Component {
@@ -91,11 +95,12 @@ class Offcanvas extends React.Component {
     this.onOpened = this.onOpened.bind(this);
     this.onClosed = this.onClosed.bind(this);
     this.manageFocusAfterClose = this.manageFocusAfterClose.bind(this);
-    this.clearBackdropAnimationTimeout = this.clearBackdropAnimationTimeout.bind(this);
+    this.clearBackdropAnimationTimeout =
+      this.clearBackdropAnimationTimeout.bind(this);
     this.trapFocus = this.trapFocus.bind(this);
 
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
 
@@ -172,7 +177,7 @@ class Offcanvas extends React.Component {
 
   handleTab(e) {
     if (e.which !== 9) return;
-    if (this.offcanvasIndex < (Offcanvas.openCount - 1)) return; // last opened offcanvas
+    if (this.offcanvasIndex < Offcanvas.openCount - 1) return; // last opened offcanvas
 
     const focusableChildren = this.getFocusableChildren();
     const totalFocusable = focusableChildren.length;
@@ -260,25 +265,30 @@ class Offcanvas extends React.Component {
       return;
     }
 
-    if (!this._element) { // element is not attached
+    if (!this._element) {
+      // element is not attached
       return;
     }
 
-    if (this._dialog === ev.target) { // initial focus when the Offcanvas is opened
+    if (this._dialog === ev.target) {
+      // initial focus when the Offcanvas is opened
       return;
     }
 
-    if (this.offcanvasIndex < (Offcanvas.openCount - 1)) { // last opened offcanvas
+    if (this.offcanvasIndex < Offcanvas.openCount - 1) {
+      // last opened offcanvas
       return;
     }
 
     const children = this.getFocusableChildren();
 
-    for (let i = 0; i < children.length; i += 1) { // focus is already inside the Offcanvas
+    for (let i = 0; i < children.length; i += 1) {
+      // focus is already inside the Offcanvas
       if (children[i] === ev.target) return;
     }
 
-    if (children.length > 0) { // otherwise focus the first focusable element in the Offcanvas
+    if (children.length > 0) {
+      // otherwise focus the first focusable element in the Offcanvas
       ev.preventDefault();
       ev.stopPropagation();
       children[0].focus();
@@ -304,7 +314,11 @@ class Offcanvas extends React.Component {
     this._originalBodyPadding = getOriginalBodyPadding();
     conditionallyUpdateScrollbar();
 
-    if (Offcanvas.openCount === 0 && (this.props.backdrop && !this.props.scrollable)) {
+    if (
+      Offcanvas.openCount === 0 &&
+      this.props.backdrop &&
+      !this.props.scrollable
+    ) {
       document.body.style.overflow = 'hidden';
     }
 
@@ -324,7 +338,8 @@ class Offcanvas extends React.Component {
   manageFocusAfterClose() {
     if (this._triggeringElement) {
       const { returnFocusAfterClose } = this.props;
-      if (this._triggeringElement.focus && returnFocusAfterClose) this._triggeringElement.focus();
+      if (this._triggeringElement.focus && returnFocusAfterClose)
+        this._triggeringElement.focus();
       this._triggeringElement = null;
     }
   }
@@ -345,13 +360,11 @@ class Offcanvas extends React.Component {
   }
 
   render() {
-    const {
-      direction,
-      unmountOnClose
-    } = this.props;
+    const { direction, unmountOnClose } = this.props;
 
     if (!!this._element && (this.state.isOpen || !unmountOnClose)) {
-      const isOffcanvasHidden = !!this._element && !this.state.isOpen && !unmountOnClose;
+      const isOffcanvasHidden =
+        !!this._element && !this.state.isOpen && !unmountOnClose;
       this._element.style.display = isOffcanvasHidden ? 'none' : 'block';
 
       const {
@@ -362,7 +375,7 @@ class Offcanvas extends React.Component {
         backdrop,
         role,
         labelledBy,
-        style
+        style,
       } = this.props;
 
       const offcanvasAttributes = {
@@ -370,14 +383,16 @@ class Offcanvas extends React.Component {
         onKeyDown: this.handleTab,
         'aria-labelledby': labelledBy,
         role,
-        tabIndex: '-1'
+        tabIndex: '-1',
       };
 
       const hasTransition = this.props.fade;
       const offcanvasTransition = {
         ...Fade.defaultProps,
         ...this.props.offcanvasTransition,
-        baseClass: hasTransition ? this.props.offcanvasTransition.baseClass : '',
+        baseClass: hasTransition
+          ? this.props.offcanvasTransition.baseClass
+          : '',
         timeout: hasTransition ? this.props.offcanvasTransition.timeout : 0,
       };
       const backdropTransition = {
@@ -387,29 +402,33 @@ class Offcanvas extends React.Component {
         timeout: hasTransition ? this.props.backdropTransition.timeout : 0,
       };
 
-      const Backdrop = backdrop && (
-        hasTransition
-          ? (
-            <Fade
-              {...backdropTransition}
-              in={isOpen && !!backdrop}
-              innerRef={(c) => {
-                this._backdrop = c;
-              }}
-              cssModule={cssModule}
-              className={mapToCssModules(classNames('offcanvas-backdrop', backdropClassName), cssModule)}
-              onClick={this.handleBackdropClick}
-              onMouseDown={this.handleBackdropMouseDown}
-            />
-          )
-          : (
-            <div
-              className={mapToCssModules(classNames('offcanvas-backdrop', 'show', backdropClassName), cssModule)}
-              onClick={this.handleBackdropClick}
-              onMouseDown={this.handleBackdropMouseDown}
-            />
-          )
-      );
+      const Backdrop =
+        backdrop &&
+        (hasTransition ? (
+          <Fade
+            {...backdropTransition}
+            in={isOpen && !!backdrop}
+            innerRef={(c) => {
+              this._backdrop = c;
+            }}
+            cssModule={cssModule}
+            className={mapToCssModules(
+              classNames('offcanvas-backdrop', backdropClassName),
+              cssModule,
+            )}
+            onClick={this.handleBackdropClick}
+            onMouseDown={this.handleBackdropMouseDown}
+          />
+        ) : (
+          <div
+            className={mapToCssModules(
+              classNames('offcanvas-backdrop', 'show', backdropClassName),
+              cssModule,
+            )}
+            onClick={this.handleBackdropClick}
+            onMouseDown={this.handleBackdropMouseDown}
+          />
+        ));
 
       const attributes = omit(this.props, propsToOmit);
 
@@ -423,17 +442,16 @@ class Offcanvas extends React.Component {
             onEntered={this.onOpened}
             onExited={this.onClosed}
             cssModule={cssModule}
-            className={mapToCssModules(classNames(
-              'offcanvas',
-              className,
-              `offcanvas-${direction}`
-            ), cssModule)}
+            className={mapToCssModules(
+              classNames('offcanvas', className, `offcanvas-${direction}`),
+              cssModule,
+            )}
             innerRef={(c) => {
               this._dialog = c;
             }}
             style={{
               ...style,
-              visibility: isOpen ? 'visible' : 'hidden'
+              visibility: isOpen ? 'visible' : 'hidden',
             }}
           >
             {this.props.children}

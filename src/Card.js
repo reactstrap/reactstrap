@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function Card(props) {
@@ -41,17 +41,18 @@ function Card(props) {
     innerRef,
     ...attributes
   } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'card',
-    inverse ? 'text-white' : false,
-    body ? 'card-body' : false,
-    color ? `${outline ? 'border' : 'bg'}-${color}` : false
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'card',
+      inverse ? 'text-white' : false,
+      body ? 'card-body' : false,
+      color ? `${outline ? 'border' : 'bg'}-${color}` : false,
+    ),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} ref={innerRef} />;
 }
 
 Card.propTypes = propTypes;

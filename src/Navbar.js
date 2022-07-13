@@ -38,7 +38,8 @@ const defaultProps = {
 const getExpandClass = (expand) => {
   if (expand === false) {
     return false;
-  } if (expand === true || expand === 'xs') {
+  }
+  if (expand === true || expand === 'xs') {
     return 'navbar-expand';
   }
 
@@ -61,30 +62,23 @@ function Navbar(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'navbar',
-    getExpandClass(expand),
-    {
+  const classes = mapToCssModules(
+    classNames(className, 'navbar', getExpandClass(expand), {
       'navbar-light': light,
       'navbar-dark': dark,
       [`bg-${color}`]: color,
       [`fixed-${fixed}`]: fixed,
       [`sticky-${sticky}`]: sticky,
-    }
-  ), cssModule);
+    }),
+    cssModule,
+  );
 
-  const containerClass = container && (container === true) ? 'container' : `container-${container}`;
+  const containerClass =
+    container && container === true ? 'container' : `container-${container}`;
 
   return (
     <Tag {...attributes} className={classes}>
-      {container
-        ? (
-          <div className={containerClass}>
-            {children}
-          </div>
-        )
-        : children}
+      {container ? <div className={containerClass}>{children}</div> : children}
     </Tag>
   );
 }

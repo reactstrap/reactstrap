@@ -11,7 +11,11 @@ describe('Button', () => {
 
   it('should render custom element', () => {
     function Link(props) {
-      return <a href="/home" {...props}>{props.children}</a>;
+      return (
+        <a href="/home" {...props}>
+          {props.children}
+        </a>
+      );
     }
     const wrapper = mount(<Button tag={Link}>Home</Button>);
 
@@ -34,7 +38,7 @@ describe('Button', () => {
   });
 
   it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
-    const wrapper = mount(<Button onClick={() => { }}>Home</Button>);
+    const wrapper = mount(<Button onClick={() => {}}>Home</Button>);
 
     expect(wrapper.find('button').hostNodes().prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');
@@ -80,7 +84,11 @@ describe('Button', () => {
   });
 
   it('should render buttons with outline variant with different colors', () => {
-    const wrapper = shallow(<Button outline color="info">Default Button</Button>);
+    const wrapper = shallow(
+      <Button outline color="info">
+        Default Button
+      </Button>,
+    );
 
     expect(wrapper.hasClass('btn-outline-info')).toBe(true);
   });
@@ -126,7 +134,11 @@ describe('Button', () => {
 
     it('is not called when disabled', () => {
       const onClick = jest.fn();
-      const wrapper = mount(<Button onClick={onClick} disabled>Testing Click</Button>);
+      const wrapper = mount(
+        <Button onClick={onClick} disabled>
+          Testing Click
+        </Button>,
+      );
 
       wrapper.find('button').hostNodes().simulate('click');
       expect(onClick).not.toHaveBeenCalled();

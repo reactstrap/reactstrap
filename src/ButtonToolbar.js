@@ -22,21 +22,14 @@ const defaultProps = {
 };
 
 function ButtonToolbar(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+
+  const classes = mapToCssModules(
+    classNames(className, 'btn-toolbar'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  const classes = mapToCssModules(classNames(
-    className,
-    'btn-toolbar'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 ButtonToolbar.propTypes = propTypes;

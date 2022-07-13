@@ -19,25 +19,17 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function AccordionItem(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, innerRef, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'accordion-item'),
     cssModule,
-    tag: Tag,
-    innerRef,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'accordion-item',
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
   );
+
+  return <Tag {...attributes} className={classes} ref={innerRef} />;
 }
 
 AccordionItem.propTypes = propTypes;

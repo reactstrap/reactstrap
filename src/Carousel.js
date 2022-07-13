@@ -156,7 +156,7 @@ class Carousel extends React.Component {
     return (
       <div className={className}>
         {carouselItems.map((item, index) => {
-          const isIn = (index === this.state.activeIndex);
+          const isIn = index === this.state.activeIndex;
           return React.cloneElement(item, {
             in: isIn,
             slide: slide,
@@ -167,30 +167,39 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const {
-      cssModule, slide, className, dark, fade
-    } = this.props;
-    const outerClasses = mapToCssModules(classNames(
-      className,
-      'carousel',
-      fade && 'carousel-fade',
-      slide && 'slide',
-      dark && 'carousel-dark'
-    ), cssModule);
+    const { cssModule, slide, className, dark, fade } = this.props;
+    const outerClasses = mapToCssModules(
+      classNames(
+        className,
+        'carousel',
+        fade && 'carousel-fade',
+        slide && 'slide',
+        dark && 'carousel-dark',
+      ),
+      cssModule,
+    );
 
-    const innerClasses = mapToCssModules(classNames(
-      'carousel-inner'
-    ), cssModule);
+    const innerClasses = mapToCssModules(
+      classNames('carousel-inner'),
+      cssModule,
+    );
 
     // filter out booleans, null, or undefined
-    const children = this.props.children.filter((child) => child !== null && child !== undefined && typeof child !== 'boolean');
+    const children = this.props.children.filter(
+      (child) =>
+        child !== null && child !== undefined && typeof child !== 'boolean',
+    );
 
     const slidesOnly = children.every((child) => child.type === CarouselItem);
 
     // Rendering only slides
     if (slidesOnly) {
       return (
-        <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
+        <div
+          className={outerClasses}
+          onMouseEnter={this.hoverStart}
+          onMouseLeave={this.hoverEnd}
+        >
           <CarouselContext.Provider value={this.getContextValue()}>
             {this.renderItems(children, innerClasses)}
           </CarouselContext.Provider>
@@ -205,7 +214,11 @@ class Carousel extends React.Component {
       const controlRight = children[2];
 
       return (
-        <div className={outerClasses} onMouseEnter={this.hoverStart} onMouseLeave={this.hoverEnd}>
+        <div
+          className={outerClasses}
+          onMouseEnter={this.hoverStart}
+          onMouseLeave={this.hoverEnd}
+        >
           <CarouselContext.Provider value={this.getContextValue()}>
             {this.renderItems(carouselItems, innerClasses)}
             {controlLeft}
@@ -219,10 +232,14 @@ class Carousel extends React.Component {
     const indicators = children[0];
     const wrappedOnClick = (e) => {
       if (typeof indicators.props.onClickHandler === 'function') {
-        this.setState({ indicatorClicked: true }, () => indicators.props.onClickHandler(e));
+        this.setState({ indicatorClicked: true }, () =>
+          indicators.props.onClickHandler(e),
+        );
       }
     };
-    const wrappedIndicators = React.cloneElement(indicators, { onClickHandler: wrappedOnClick });
+    const wrappedIndicators = React.cloneElement(indicators, {
+      onClickHandler: wrappedOnClick,
+    });
     const carouselItems = children[1];
     const controlLeft = children[2];
     const controlRight = children[3];
@@ -295,7 +312,7 @@ Carousel.defaultProps = {
 };
 
 Carousel.childContextTypes = {
-  direction: PropTypes.string
+  direction: PropTypes.string,
 };
 
 export default Carousel;

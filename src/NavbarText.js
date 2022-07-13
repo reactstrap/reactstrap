@@ -10,30 +10,22 @@ const propTypes = {
   cssModule: PropTypes.object,
   /** Set a custom element for this component */
   tag: tagPropType,
-  active: PropTypes.bool
+  active: PropTypes.bool,
 };
 
 const defaultProps = {
-  tag: 'span'
+  tag: 'span',
 };
 
 function NavbarText(props) {
-  const {
-    className,
+  const { className, cssModule, active, tag: Tag, ...attributes } = props;
+
+  const classes = mapToCssModules(
+    classNames(className, 'navbar-text'),
     cssModule,
-    active,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  const classes = mapToCssModules(classNames(
-    className,
-    'navbar-text'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 NavbarText.propTypes = propTypes;

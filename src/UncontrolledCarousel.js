@@ -41,7 +41,10 @@ class UncontrolledCarousel extends Component {
   next() {
     if (this.animating) return;
     this.setState((prevState) => {
-      const nextIndex = prevState.activeIndex === this.props.items.length - 1 ? 0 : prevState.activeIndex + 1;
+      const nextIndex =
+        prevState.activeIndex === this.props.items.length - 1
+          ? 0
+          : prevState.activeIndex + 1;
       return { activeIndex: nextIndex };
     });
   }
@@ -49,7 +52,10 @@ class UncontrolledCarousel extends Component {
   previous() {
     if (this.animating) return;
     this.setState((prevState) => {
-      const nextIndex = prevState.activeIndex === 0 ? this.props.items.length - 1 : prevState.activeIndex - 1;
+      const nextIndex =
+        prevState.activeIndex === 0
+          ? this.props.items.length - 1
+          : prevState.activeIndex - 1;
       return { activeIndex: nextIndex };
     });
   }
@@ -61,7 +67,13 @@ class UncontrolledCarousel extends Component {
 
   render() {
     const {
-      defaultActiveIndex, autoPlay, indicators, controls, items, goToIndex, ...props
+      defaultActiveIndex,
+      autoPlay,
+      indicators,
+      controls,
+      items,
+      goToIndex,
+      ...props
     } = this.props;
     const { activeIndex } = this.state;
 
@@ -74,7 +86,10 @@ class UncontrolledCarousel extends Component {
           key={key}
         >
           <img className="d-block w-100" src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.header || item.caption} />
+          <CarouselCaption
+            captionText={item.caption}
+            captionHeader={item.header || item.caption}
+          />
         </CarouselItem>
       );
     });

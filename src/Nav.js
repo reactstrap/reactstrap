@@ -36,7 +36,8 @@ const defaultProps = {
 const getVerticalClass = (vertical) => {
   if (vertical === false) {
     return false;
-  } if (vertical === true || vertical === 'xs') {
+  }
+  if (vertical === true || vertical === 'xs') {
     return 'flex-column';
   }
 
@@ -59,24 +60,25 @@ function Nav(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    navbar ? 'navbar-nav' : 'nav',
-    horizontal ? `justify-content-${horizontal}` : false,
-    getVerticalClass(vertical),
-    {
-      'nav-tabs': tabs,
-      'card-header-tabs': card && tabs,
-      'nav-pills': pills,
-      'card-header-pills': card && pills,
-      'nav-justified': justified,
-      'nav-fill': fill,
-    }
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      navbar ? 'navbar-nav' : 'nav',
+      horizontal ? `justify-content-${horizontal}` : false,
+      getVerticalClass(vertical),
+      {
+        'nav-tabs': tabs,
+        'card-header-tabs': card && tabs,
+        'nav-pills': pills,
+        'card-header-pills': card && pills,
+        'nav-justified': justified,
+        'nav-fill': fill,
+      },
+    ),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 Nav.propTypes = propTypes;

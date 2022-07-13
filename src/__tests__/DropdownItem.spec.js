@@ -9,14 +9,18 @@ describe('DropdownItem', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => { isOpen = !isOpen; };
+    toggle = () => {
+      isOpen = !isOpen;
+    };
   });
 
   it('should render a single child', () => {
     const wrapper = mount(<DropdownItem>Ello world</DropdownItem>);
 
     expect(wrapper.text()).toBe('Ello world');
-    expect(wrapper.find('button').hostNodes().hasClass('dropdown-item')).toBe(true);
+    expect(wrapper.find('button').hostNodes().hasClass('dropdown-item')).toBe(
+      true,
+    );
     expect(wrapper.find('button').hostNodes().length).toBe(1);
   });
 
@@ -35,7 +39,7 @@ describe('DropdownItem', () => {
   });
 
   it('should render type as "button" by default when tag is "button" and onClick is provided', () => {
-    const wrapper = mount(<DropdownItem onClick={() => { }}>Home</DropdownItem>);
+    const wrapper = mount(<DropdownItem onClick={() => {}}>Home</DropdownItem>);
 
     expect(wrapper.find('button').hostNodes().prop('type')).toBe('button');
     expect(wrapper.text()).toBe('Home');
@@ -57,7 +61,11 @@ describe('DropdownItem', () => {
 
   it('should render custom element', () => {
     function Link(props) {
-      return <a href="/home" {...props}>{props.children}</a>;
+      return (
+        <a href="/home" {...props}>
+          {props.children}
+        </a>
+      );
     }
     const wrapper = mount(<DropdownItem tag={Link}>Home</DropdownItem>);
 
@@ -70,7 +78,9 @@ describe('DropdownItem', () => {
     const wrapper = mount(<DropdownItem text>text</DropdownItem>);
 
     expect(wrapper.find('span').hostNodes().length).toBe(1);
-    expect(wrapper.find('span').hostNodes().hasClass('dropdown-item-text')).toBe(true);
+    expect(
+      wrapper.find('span').hostNodes().hasClass('dropdown-item-text'),
+    ).toBe(true);
     expect(wrapper.text()).toBe('text');
   });
 
@@ -79,7 +89,9 @@ describe('DropdownItem', () => {
       const wrapper = mount(<DropdownItem header>Heading</DropdownItem>);
 
       expect(wrapper.find('h6').hostNodes().length).toBe(1);
-      expect(wrapper.find('h6').hostNodes().hasClass('dropdown-header')).toBe(true);
+      expect(wrapper.find('h6').hostNodes().hasClass('dropdown-header')).toBe(
+        true,
+      );
       expect(wrapper.text()).toBe('Heading');
     });
   });
@@ -105,7 +117,9 @@ describe('DropdownItem', () => {
       const wrapper = mount(<DropdownItem href="#">GO!</DropdownItem>);
 
       expect(wrapper.find('a').hostNodes().length).toBe(1);
-      expect(wrapper.find('a').hostNodes().hasClass('dropdown-item')).toBe(true);
+      expect(wrapper.find('a').hostNodes().hasClass('dropdown-item')).toBe(
+        true,
+      );
       expect(wrapper.text()).toBe('GO!');
     });
   });
@@ -144,7 +158,7 @@ describe('DropdownItem', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ toggle: toggle }}>
           <DropdownItem onClick={() => onClick()}>Click me</DropdownItem>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
       const instance = wrapper.instance();
 
@@ -158,7 +172,7 @@ describe('DropdownItem', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ toggle: toggle }}>
           <DropdownItem onClick={clickHandler}>Click me</DropdownItem>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       wrapper.simulate('click');
@@ -171,7 +185,7 @@ describe('DropdownItem', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ toggle: toggle }}>
           <DropdownItem>Click me</DropdownItem>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       wrapper.simulate('click');

@@ -4,11 +4,15 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper as ReactPopper } from 'react-popper';
 import {
-  getTarget, targetPropType, mapToCssModules, DOMElement, tagPropType
+  getTarget,
+  targetPropType,
+  mapToCssModules,
+  DOMElement,
+  tagPropType,
 } from './utils';
 import Fade from './Fade';
 
-function noop() { }
+function noop() {}
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
@@ -46,7 +50,7 @@ const defaultProps = {
   fade: true,
   transition: {
     ...Fade.defaultProps,
-  }
+  },
 };
 
 class PopperContent extends React.Component {
@@ -68,7 +72,12 @@ class PopperContent extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this._element && this._element.childNodes && this._element.childNodes[0] && this._element.childNodes[0].focus) {
+    if (
+      this._element &&
+      this._element.childNodes &&
+      this._element.childNodes[0] &&
+      this._element.childNodes[0].focus
+    ) {
       this._element.childNodes[0].focus();
     }
   }
@@ -118,14 +127,17 @@ class PopperContent extends React.Component {
       placement,
       ...attrs
     } = this.props;
-    const arrowClassName = mapToCssModules(classNames(
-      'arrow',
-      _arrowClassName
-    ), cssModule);
-    const popperClassName = mapToCssModules(classNames(
-      _popperClassName,
-      placementPrefix ? `${placementPrefix}-auto` : ''
-    ), this.props.cssModule);
+    const arrowClassName = mapToCssModules(
+      classNames('arrow', _arrowClassName),
+      cssModule,
+    );
+    const popperClassName = mapToCssModules(
+      classNames(
+        _popperClassName,
+        placementPrefix ? `${placementPrefix}-auto` : '',
+      ),
+      this.props.cssModule,
+    );
 
     const modifierNames = modifiers.map((m) => m.name);
     const baseModifiers = [
@@ -173,11 +185,30 @@ class PopperContent extends React.Component {
           strategy={strategy}
         >
           {({
-            ref, style, placement: popperPlacement, isReferenceHidden, arrowProps, update
+            ref,
+            style,
+            placement: popperPlacement,
+            isReferenceHidden,
+            arrowProps,
+            update,
           }) => (
-            <div ref={ref} style={style} className={popperClassName} data-popper-placement={popperPlacement} data-popper-reference-hidden={isReferenceHidden ? 'true' : undefined}>
+            <div
+              ref={ref}
+              style={style}
+              className={popperClassName}
+              data-popper-placement={popperPlacement}
+              data-popper-reference-hidden={
+                isReferenceHidden ? 'true' : undefined
+              }
+            >
               {typeof children === 'function' ? children({ update }) : children}
-              {!hideArrow && <span ref={arrowProps.ref} className={arrowClassName} style={arrowProps.style} />}
+              {!hideArrow && (
+                <span
+                  ref={arrowProps.ref}
+                  className={arrowClassName}
+                  style={arrowProps.style}
+                />
+              )}
             </div>
           )}
         </ReactPopper>
@@ -191,7 +222,10 @@ class PopperContent extends React.Component {
     if (this.state.isOpen) {
       return this.props.container === 'inline'
         ? this.renderChildren()
-        : ReactDOM.createPortal((<div ref={this.getRef}>{this.renderChildren()}</div>), this.getContainerNode());
+        : ReactDOM.createPortal(
+            <div ref={this.getRef}>{this.renderChildren()}</div>,
+            this.getContainerNode(),
+          );
     }
 
     return null;

@@ -10,7 +10,7 @@ const propTypes = {
   onFocus: PropTypes.func,
   defaultValue: PropTypes.bool,
   className: PropTypes.string,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
@@ -21,38 +21,44 @@ function ButtonToggle(props) {
   const [toggled, setToggled] = useState(props.defaultValue);
   const [focus, setFocus] = useState(false);
 
-  const onBlur = useCallback((e) => {
-    if (props.onBlur) {
-      props.onBlur(e);
-    }
-    setFocus(false);
-  }, [props.onBlur]);
+  const onBlur = useCallback(
+    (e) => {
+      if (props.onBlur) {
+        props.onBlur(e);
+      }
+      setFocus(false);
+    },
+    [props.onBlur],
+  );
 
-  const onFocus = useCallback((e) => {
-    if (props.onFocus) {
-      props.onFocus(e);
-    }
-    setFocus(true);
-  }, [props.onFocus]);
+  const onFocus = useCallback(
+    (e) => {
+      if (props.onFocus) {
+        props.onFocus(e);
+      }
+      setFocus(true);
+    },
+    [props.onFocus],
+  );
 
-  const onClick = useCallback((e) => {
-    if (props.onClick) {
-      props.onClick(e);
-    }
-    setToggled(!toggled);
-  }, [props.onClick]);
+  const onClick = useCallback(
+    (e) => {
+      if (props.onClick) {
+        props.onClick(e);
+      }
+      setToggled(!toggled);
+    },
+    [props.onClick],
+  );
 
-  const {
-    className,
-    ...attributes
-  } = props;
+  const { className, ...attributes } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    {
+  const classes = mapToCssModules(
+    classNames(className, {
       focus: focus,
-    }
-  ), props.cssModule);
+    }),
+    props.cssModule,
+  );
 
   return (
     <Button

@@ -13,25 +13,18 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'a'
+  tag: 'a',
 };
 
 function NavbarBrand(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+
+  const classes = mapToCssModules(
+    classNames(className, 'navbar-brand'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  const classes = mapToCssModules(classNames(
-    className,
-    'navbar-brand'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 NavbarBrand.propTypes = propTypes;

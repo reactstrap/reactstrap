@@ -23,7 +23,7 @@ const propTypes = {
 const defaultProps = {
   tag: 'nav',
   listTag: 'ol',
-  'aria-label': 'breadcrumb'
+  'aria-label': 'breadcrumb',
 };
 
 function Breadcrumb(props) {
@@ -38,20 +38,16 @@ function Breadcrumb(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className
-  ), cssModule);
+  const classes = mapToCssModules(classNames(className), cssModule);
 
-  const listClasses = mapToCssModules(classNames(
-    'breadcrumb',
-    listClassName
-  ), cssModule);
+  const listClasses = mapToCssModules(
+    classNames('breadcrumb', listClassName),
+    cssModule,
+  );
 
   return (
     <Tag {...attributes} className={classes} aria-label={label}>
-      <ListTag className={listClasses}>
-        {children}
-      </ListTag>
+      <ListTag className={listClasses}>{children}</ListTag>
     </Tag>
   );
 }

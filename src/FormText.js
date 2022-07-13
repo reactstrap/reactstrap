@@ -27,15 +27,16 @@ function FormText(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    !inline ? 'form-text' : false,
-    color ? `text-${color}` : false
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      !inline ? 'form-text' : false,
+      color ? `text-${color}` : false,
+    ),
+    cssModule,
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 FormText.propTypes = propTypes;

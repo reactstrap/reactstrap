@@ -21,7 +21,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'li'
+  tag: 'li',
 };
 
 const handleDisabledOnClick = (e) => {
@@ -39,22 +39,23 @@ function ListGroupItem(props) {
     color,
     ...attributes
   } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    active ? 'active' : false,
-    disabled ? 'disabled' : false,
-    action ? 'list-group-item-action' : false,
-    color ? `list-group-item-${color}` : false,
-    'list-group-item'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      active ? 'active' : false,
+      disabled ? 'disabled' : false,
+      action ? 'list-group-item-action' : false,
+      color ? `list-group-item-${color}` : false,
+      'list-group-item',
+    ),
+    cssModule,
+  );
 
   // Prevent click event when disabled.
   if (disabled) {
     attributes.onClick = handleDisabledOnClick;
   }
-  return (
-    <Tag {...attributes} className={classes} />
-  );
+  return <Tag {...attributes} className={classes} />;
 }
 
 ListGroupItem.propTypes = propTypes;

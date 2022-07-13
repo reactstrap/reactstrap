@@ -13,24 +13,17 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'p'
+  tag: 'p',
 };
 
 function CardText(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'card-text'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'card-text'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
+
+  return <Tag {...attributes} className={classes} />;
 }
 
 CardText.propTypes = propTypes;

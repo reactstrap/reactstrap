@@ -18,11 +18,17 @@ export default class UncontrolledTooltip extends Component {
   }
 
   render() {
-    return <Tooltip isOpen={this.state.isOpen} toggle={this.toggle} {...omit(this.props, omitKeys)} />;
+    return (
+      <Tooltip
+        isOpen={this.state.isOpen}
+        toggle={this.toggle}
+        {...omit(this.props, omitKeys)}
+      />
+    );
   }
 }
 
 UncontrolledTooltip.propTypes = {
   defaultOpen: PropTypes.bool,
-  ...Tooltip.propTypes
+  ...Tooltip.propTypes,
 };

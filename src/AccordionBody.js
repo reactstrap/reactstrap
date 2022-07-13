@@ -24,7 +24,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function AccordionBody(props) {
@@ -40,17 +40,19 @@ function AccordionBody(props) {
 
   const { open } = useContext(AccordionContext);
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'accordion-collapse',
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'accordion-collapse'),
+    cssModule,
+  );
 
   return (
     <Collapse
       {...attributes}
       className={classes}
       ref={innerRef}
-      isOpen={Array.isArray(open) ? open.includes(accordionId) : open === accordionId}
+      isOpen={
+        Array.isArray(open) ? open.includes(accordionId) : open === accordionId
+      }
     >
       <Tag className="accordion-body">{children}</Tag>
     </Collapse>

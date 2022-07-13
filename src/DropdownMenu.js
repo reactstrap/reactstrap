@@ -5,7 +5,11 @@ import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
 import {
-  mapToCssModules, tagPropType, targetPropType, getTarget, deprecated
+  mapToCssModules,
+  tagPropType,
+  targetPropType,
+  getTarget,
+  deprecated,
 } from './utils';
 
 const propTypes = {
@@ -67,21 +71,21 @@ class DropdownMenu extends React.Component {
       ...attrs
     } = this.props;
 
-    const classes = mapToCssModules(classNames(
-      className,
-      'dropdown-menu',
-      {
+    const classes = mapToCssModules(
+      classNames(className, 'dropdown-menu', {
         'dropdown-menu-dark': dark,
         'dropdown-menu-end': end || right,
         show: this.context.isOpen,
-      }
-    ), cssModule);
+      }),
+      cssModule,
+    );
 
     const Tag = tag;
 
     if (persist || (this.context.isOpen && !this.context.inNavbar)) {
-      const position1 = directionPositionMap[this.context.direction] || 'bottom';
-      const position2 = (end || right) ? 'end' : 'start';
+      const position1 =
+        directionPositionMap[this.context.direction] || 'bottom';
+      const position2 = end || right ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
       const poperModifiers = [
         ...modifiers,
@@ -97,9 +101,7 @@ class DropdownMenu extends React.Component {
           modifiers={poperModifiers}
           strategy={strategy}
         >
-          {({
-            ref, style, placement, update
-          }) => {
+          {({ ref, style, placement, update }) => {
             let combinedStyle = { ...this.props.style, ...style };
 
             const handleRef = (tagRef) => {

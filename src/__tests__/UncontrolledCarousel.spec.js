@@ -4,14 +4,23 @@ import { Carousel, UncontrolledCarousel } from '..';
 
 const items = [
   {
-    src: '', altText: 'a', caption: 'caption 1', key: '1'
+    src: '',
+    altText: 'a',
+    caption: 'caption 1',
+    key: '1',
   },
   {
-    src: '', altText: 'b', caption: 'caption 2', key: '2'
+    src: '',
+    altText: 'b',
+    caption: 'caption 2',
+    key: '2',
   },
   {
-    src: '', altText: 'c', caption: 'caption 3', key: '3'
-  }
+    src: '',
+    altText: 'c',
+    caption: 'caption 3',
+    key: '3',
+  },
 ];
 
 describe('UncontrolledCarousel', () => {
@@ -41,7 +50,9 @@ describe('UncontrolledCarousel', () => {
   });
 
   it('should have ride set to undefined when autoPlay is false', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} autoPlay={false} />);
+    const carousel = shallow(
+      <UncontrolledCarousel items={items} autoPlay={false} />,
+    );
     expect(carousel.prop('ride')).toBe(undefined);
   });
 
@@ -142,7 +153,9 @@ describe('UncontrolledCarousel', () => {
   });
 
   it('should render carousel items with provided key', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} indicators={false} />);
+    const carousel = shallow(
+      <UncontrolledCarousel items={items} indicators={false} />,
+    );
     const carouselItem1 = carousel.childAt(0);
     const carouselItem2 = carousel.childAt(1);
     const carouselItem3 = carousel.childAt(2);

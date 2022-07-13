@@ -19,7 +19,7 @@ class TabContent extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.activeTab !== nextProps.activeTab) {
       return {
-        activeTab: nextProps.activeTab
+        activeTab: nextProps.activeTab,
       };
     }
     return null;
@@ -28,20 +28,19 @@ class TabContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: this.props.activeTab
+      activeTab: this.props.activeTab,
     };
   }
 
   render() {
-    const {
-      className,
-      cssModule,
-      tag: Tag,
-    } = this.props;
+    const { className, cssModule, tag: Tag } = this.props;
 
     const attributes = omit(this.props, Object.keys(propTypes));
 
-    const classes = mapToCssModules(classNames('tab-content', className), cssModule);
+    const classes = mapToCssModules(
+      classNames('tab-content', className),
+      cssModule,
+    );
 
     return (
       <TabContext.Provider value={{ activeTabId: this.state.activeTab }}>

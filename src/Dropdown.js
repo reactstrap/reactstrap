@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { DropdownContext } from './DropdownContext';
-import {
-  mapToCssModules, omit, keyCodes, tagPropType
-} from './utils';
+import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
 
 const propTypes = {
   a11y: PropTypes.bool,
@@ -27,7 +25,7 @@ const propTypes = {
   dropup: PropTypes.bool,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
-  menuRole: PropTypes.oneOf(['listbox', 'menu'])
+  menuRole: PropTypes.oneOf(['listbox', 'menu']),
 };
 
 const defaultProps = {
@@ -37,7 +35,7 @@ const defaultProps = {
   nav: false,
   active: false,
   inNavbar: false,
-  setActiveFromChild: false
+  setActiveFromChild: false,
 };
 
 const preventDefaultKeys = [
@@ -46,7 +44,7 @@ const preventDefaultKeys = [
   keyCodes.up,
   keyCodes.down,
   keyCodes.end,
-  keyCodes.home
+  keyCodes.home,
 ];
 
 class Dropdown extends React.Component {
@@ -83,13 +81,24 @@ class Dropdown extends React.Component {
   }
 
   handleDocumentClick(e) {
-    if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
+    if (
+      e &&
+      (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))
+    )
+      return;
     const container = this.getContainer();
     const menu = this.getMenu();
-    const clickIsInContainer = container.contains(e.target) && container !== e.target;
-    const clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
+    const clickIsInContainer =
+      container.contains(e.target) && container !== e.target;
+    const clickIsInInput =
+      container.classList.contains('input-group') &&
+      container.classList.contains('dropdown') &&
+      e.target.tagName === 'INPUT';
     const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
-    if (((clickIsInContainer && !clickIsInInput) || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    if (
+      ((clickIsInContainer && !clickIsInInput) || clickIsInMenu) &&
+      (e.type !== 'keyup' || e.which === keyCodes.tab)
+    ) {
       return;
     }
 
@@ -97,26 +106,35 @@ class Dropdown extends React.Component {
   }
 
   handleKeyDown(e) {
-    const isTargetMenuItem = e.target.getAttribute('role') === 'menuitem' || e.target.getAttribute('role') === 'option';
+    const isTargetMenuItem =
+      e.target.getAttribute('role') === 'menuitem' ||
+      e.target.getAttribute('role') === 'option';
     const isTargetMenuCtrl = this.getMenuCtrl() === e.target;
     const isTab = keyCodes.tab === e.which;
 
     if (
-      /input|textarea/i.test(e.target.tagName)
-      || (isTab && !this.props.a11y)
-      || (isTab && !(isTargetMenuItem || isTargetMenuCtrl))
+      /input|textarea/i.test(e.target.tagName) ||
+      (isTab && !this.props.a11y) ||
+      (isTab && !(isTargetMenuItem || isTargetMenuCtrl))
     ) {
       return;
     }
 
-    if (preventDefaultKeys.indexOf(e.which) !== -1 || ((e.which >= 48) && (e.which <= 90))) {
+    if (
+      preventDefaultKeys.indexOf(e.which) !== -1 ||
+      (e.which >= 48 && e.which <= 90)
+    ) {
       e.preventDefault();
     }
 
     if (this.props.disabled) return;
 
     if (isTargetMenuCtrl) {
-      if ([keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(e.which) > -1) {
+      if (
+        [keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(
+          e.which,
+        ) > -1
+      ) {
         // Open the menu (if not open) and focus the first menu item
         if (!this.props.isOpen) {
           this.toggle(e);
@@ -141,14 +159,17 @@ class Dropdown extends React.Component {
         e.target.click();
         this.getMenuCtrl().focus();
       } else if (
-        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1
-        || ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
+        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1 ||
+        ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
       ) {
         const $menuitems = this.getMenuItems();
         let index = $menuitems.indexOf(e.target);
         if (keyCodes.up === e.which || (keyCodes.p === e.which && e.ctrlKey)) {
           index = index !== 0 ? index - 1 : $menuitems.length - 1;
-        } else if (keyCodes.down === e.which || (keyCodes.n === e.which && e.ctrlKey)) {
+        } else if (
+          keyCodes.down === e.which ||
+          (keyCodes.n === e.which && e.ctrlKey)
+        ) {
           index = index === $menuitems.length - 1 ? 0 : index + 1;
         }
         $menuitems[index].focus();
@@ -158,11 +179,13 @@ class Dropdown extends React.Component {
       } else if (keyCodes.home === e.which) {
         const $menuitems = this.getMenuItems();
         $menuitems[0].focus();
-      } else if ((e.which >= 48) && (e.which <= 90)) {
+      } else if (e.which >= 48 && e.which <= 90) {
         const $menuitems = this.getMenuItems();
         const charPressed = String.fromCharCode(e.which).toLowerCase();
         for (let i = 0; i < $menuitems.length; i += 1) {
-          const firstLetter = $menuitems[i].textContent && $menuitems[i].textContent[0].toLowerCase();
+          const firstLetter =
+            $menuitems[i].textContent &&
+            $menuitems[i].textContent[0].toLowerCase();
           if (firstLetter === charPressed) {
             $menuitems[i].focus();
             break;
@@ -205,13 +228,16 @@ class Dropdown extends React.Component {
     return {
       toggle: this.toggle,
       isOpen: this.props.isOpen,
-      direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
+      direction:
+        this.props.direction === 'down' && this.props.dropup
+          ? 'up'
+          : this.props.direction,
       inNavbar: this.props.inNavbar,
       disabled: this.props.disabled,
       // Callback that should be called by DropdownMenu to provide a ref to
       // a HTML tag that's used for the DropdownMenu
       onMenuRef: this.handleMenuRef,
-      menuRole: this.props.menuRole
+      menuRole: this.props.menuRole,
     };
   }
 
@@ -220,15 +246,21 @@ class Dropdown extends React.Component {
     // be null, but it is sometimes null in tests. To mitigate that, we just
     // use `this.getContainer()` as the fallback `menuContainer`.
     const menuContainer = this.getMenu() || this.getContainer();
-    return [].slice.call(menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`));
+    return [].slice.call(
+      menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`),
+    );
   }
 
   addEvents() {
-    ['click', 'touchstart', 'keyup'].forEach((event) => document.addEventListener(event, this.handleDocumentClick, true));
+    ['click', 'touchstart', 'keyup'].forEach((event) =>
+      document.addEventListener(event, this.handleDocumentClick, true),
+    );
   }
 
   removeEvents() {
-    ['click', 'touchstart', 'keyup'].forEach((event) => document.removeEventListener(event, this.handleDocumentClick, true));
+    ['click', 'touchstart', 'keyup'].forEach((event) =>
+      document.removeEventListener(event, this.handleDocumentClick, true),
+    );
   }
 
   toggle(e) {
@@ -263,32 +295,37 @@ class Dropdown extends React.Component {
         this.props.children[1].props.children,
         (dropdownItem) => {
           if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
-        }
+        },
       );
     }
 
-    const classes = mapToCssModules(classNames(
-      className,
-      nav && active ? 'active' : false,
-      setActiveFromChild && subItemIsActive ? 'active' : false,
-      {
-        'btn-group': group,
-        [`btn-group-${size}`]: !!size,
-        dropdown: !group,
-        dropup: direction === 'up',
-        dropstart: direction === 'start' || direction === 'left',
-        dropend: direction === 'end' || direction === 'right',
-        show: isOpen,
-        'nav-item': nav
-      }
-    ), cssModule);
+    const classes = mapToCssModules(
+      classNames(
+        className,
+        nav && active ? 'active' : false,
+        setActiveFromChild && subItemIsActive ? 'active' : false,
+        {
+          'btn-group': group,
+          [`btn-group-${size}`]: !!size,
+          dropdown: !group,
+          dropup: direction === 'up',
+          dropstart: direction === 'start' || direction === 'left',
+          dropend: direction === 'end' || direction === 'right',
+          show: isOpen,
+          'nav-item': nav,
+        },
+      ),
+      cssModule,
+    );
 
     return (
       <DropdownContext.Provider value={this.getContextValue()}>
         <Manager>
           <Tag
             {...attrs}
-            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef }}
+            {...{
+              [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef,
+            }}
             onKeyDown={this.handleKeyDown}
             className={classes}
           />

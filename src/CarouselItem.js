@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 import {
-  mapToCssModules, TransitionTimeouts, TransitionStatuses, tagPropType
+  mapToCssModules,
+  TransitionTimeouts,
+  TransitionStatuses,
+  tagPropType,
 } from './utils';
 
 class CarouselItem extends React.Component {
@@ -52,7 +55,13 @@ class CarouselItem extends React.Component {
 
   render() {
     const {
-      in: isIn, children, cssModule, slide, tag: Tag, className, ...transitionProps
+      in: isIn,
+      children,
+      cssModule,
+      slide,
+      tag: Tag,
+      className,
+      ...transitionProps
     } = this.props;
 
     return (
@@ -69,25 +78,29 @@ class CarouselItem extends React.Component {
       >
         {(status) => {
           const { direction } = this.context;
-          const isActive = (status === TransitionStatuses.ENTERED) || (status === TransitionStatuses.EXITING);
-          const directionClassName = (status === TransitionStatuses.ENTERING || status === TransitionStatuses.EXITING)
-            && this.state.startAnimation
-            && (direction === 'end' ? 'carousel-item-start' : 'carousel-item-end');
-          const orderClassName = (status === TransitionStatuses.ENTERING)
-            && (direction === 'end' ? 'carousel-item-next' : 'carousel-item-prev');
-          const itemClasses = mapToCssModules(classNames(
-            className,
-            'carousel-item',
-            isActive && 'active',
-            directionClassName,
-            orderClassName,
-          ), cssModule);
-
-          return (
-            <Tag className={itemClasses}>
-              {children}
-            </Tag>
+          const isActive =
+            status === TransitionStatuses.ENTERED ||
+            status === TransitionStatuses.EXITING;
+          const directionClassName =
+            (status === TransitionStatuses.ENTERING ||
+              status === TransitionStatuses.EXITING) &&
+            this.state.startAnimation &&
+            (direction === 'end' ? 'carousel-item-start' : 'carousel-item-end');
+          const orderClassName =
+            status === TransitionStatuses.ENTERING &&
+            (direction === 'end' ? 'carousel-item-next' : 'carousel-item-prev');
+          const itemClasses = mapToCssModules(
+            classNames(
+              className,
+              'carousel-item',
+              isActive && 'active',
+              directionClassName,
+              orderClassName,
+            ),
+            cssModule,
           );
+
+          return <Tag className={itemClasses}>{children}</Tag>;
         }}
       </Transition>
     );
@@ -116,7 +129,7 @@ CarouselItem.defaultProps = {
 };
 
 CarouselItem.contextTypes = {
-  direction: PropTypes.string
+  direction: PropTypes.string,
 };
 
 export default CarouselItem;

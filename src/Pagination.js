@@ -17,13 +17,13 @@ const propTypes = {
   tag: tagPropType,
   /** Set a custom element for list component */
   listTag: tagPropType,
-  'aria-label': PropTypes.string
+  'aria-label': PropTypes.string,
 };
 
 const defaultProps = {
   tag: 'nav',
   listTag: 'ul',
-  'aria-label': 'pagination'
+  'aria-label': 'pagination',
 };
 
 function Pagination(props) {
@@ -38,17 +38,14 @@ function Pagination(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className
-  ), cssModule);
+  const classes = mapToCssModules(classNames(className), cssModule);
 
-  const listClasses = mapToCssModules(classNames(
-    listClassName,
-    'pagination',
-    {
+  const listClasses = mapToCssModules(
+    classNames(listClassName, 'pagination', {
       [`pagination-${size}`]: !!size,
-    }
-  ), cssModule);
+    }),
+    cssModule,
+  );
 
   return (
     <Tag className={classes} aria-label={label}>

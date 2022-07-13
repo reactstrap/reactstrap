@@ -4,15 +4,17 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 function CarouselIndicators(props) {
-  const {
-    items, activeIndex, cssModule, onClickHandler, className
-  } = props;
+  const { items, activeIndex, cssModule, onClickHandler, className } = props;
 
-  const listClasses = mapToCssModules(classNames(className, 'carousel-indicators'), cssModule);
+  const listClasses = mapToCssModules(
+    classNames(className, 'carousel-indicators'),
+    cssModule,
+  );
   const indicators = items.map((item, idx) => {
-    const indicatorClasses = mapToCssModules(classNames(
-      { active: activeIndex === idx }
-    ), cssModule);
+    const indicatorClasses = mapToCssModules(
+      classNames({ active: activeIndex === idx }),
+      cssModule,
+    );
     return (
       <button
         aria-label={item.caption}
@@ -28,11 +30,7 @@ function CarouselIndicators(props) {
     );
   });
 
-  return (
-    <div className={listClasses}>
-      {indicators}
-    </div>
-  );
+  return <div className={listClasses}>{indicators}</div>;
 }
 
 CarouselIndicators.propTypes = {

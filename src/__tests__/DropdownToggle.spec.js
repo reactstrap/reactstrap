@@ -22,7 +22,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
         <DropdownToggle>Ello world</DropdownToggle>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.text()).toBe('Ello world');
@@ -32,7 +32,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
         <DropdownToggle />
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.text()).toBe('Toggle Dropdown');
@@ -43,7 +43,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
         <DropdownToggle aria-label="Dropup Toggle" />
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.text()).toBe('Dropup Toggle');
@@ -54,7 +54,7 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
         <DropdownToggle>Click Me</DropdownToggle>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.text()).toBe('Click Me');
@@ -65,10 +65,12 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
         <DropdownToggle caret>Ello world</DropdownToggle>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle')).toBe(true);
+    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle')).toBe(
+      true,
+    );
   });
 
   describe('color', () => {
@@ -76,29 +78,33 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle />
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       expect(wrapper.find('button').hostNodes().length).toBe(1);
-      expect(wrapper.find('button').hostNodes().hasClass('btn-secondary')).toBe(true);
+      expect(wrapper.find('button').hostNodes().hasClass('btn-secondary')).toBe(
+        true,
+      );
     });
 
     it('should render the dropdown as a BUTTON element with explicit color success', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle color="success" />
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       expect(wrapper.find('button').hostNodes().length).toBe(1);
-      expect(wrapper.find('button').hostNodes().hasClass('btn-success')).toBe(true);
+      expect(wrapper.find('button').hostNodes().hasClass('btn-success')).toBe(
+        true,
+      );
     });
 
     it('should render the dropdown as an A element with no color attribute', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle tag="a" />
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       expect(wrapper.find('a').hostNodes().length).toBe(1);
@@ -109,7 +115,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle tag="div" color="success" />
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       expect(wrapper.find('div').hostNodes().length).toBe(1);
@@ -121,10 +127,12 @@ describe('DropdownToggle', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
         <DropdownToggle split>Ello world</DropdownToggle>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle-split')).toBe(true);
+    expect(
+      wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle-split'),
+    ).toBe(true);
   });
 
   describe('onClick', () => {
@@ -133,7 +141,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle onClick={() => onClick()}>Ello world</DropdownToggle>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       const instance = wrapper.instance();
@@ -147,14 +155,13 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle>Ello world</DropdownToggle>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       const instance = wrapper.instance();
 
       instance.onClick({
-        preventDefault: () => {
-        }
+        preventDefault: () => {},
       });
       expect(toggle).toHaveBeenCalled();
     });
@@ -166,7 +173,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle disabled>Ello world</DropdownToggle>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
       const instance = wrapper.instance();
 
@@ -180,7 +187,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle nav>Ello world</DropdownToggle>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       expect(wrapper.find('a').hostNodes().length).toBe(1);
@@ -191,7 +198,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle nav>Ello world</DropdownToggle>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
       expect(wrapper.prop('tag')).toBe(undefined);
@@ -202,7 +209,7 @@ describe('DropdownToggle', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
           <DropdownToggle nav>Ello world</DropdownToggle>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
       const instance = wrapper.instance();
 

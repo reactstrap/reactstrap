@@ -11,13 +11,13 @@ const propTypes = {
   cssModule: PropTypes.object,
   tag: tagPropType,
   toggle: PropTypes.func,
-  wrapTag: tagPropType
+  wrapTag: tagPropType,
 };
 
 const defaultProps = {
   closeAriaLabel: 'Close',
   tag: 'h5',
-  wrapTag: 'div'
+  wrapTag: 'div',
 };
 
 function OffcanvasHeader(props) {
@@ -34,14 +34,19 @@ function OffcanvasHeader(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'offcanvas-header'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'offcanvas-header'),
+    cssModule,
+  );
 
   if (!close && toggle) {
     closeButton = (
-      <button type="button" onClick={toggle} className={mapToCssModules('btn-close', cssModule)} aria-label={closeAriaLabel} />
+      <button
+        type="button"
+        onClick={toggle}
+        className={mapToCssModules('btn-close', cssModule)}
+        aria-label={closeAriaLabel}
+      />
     );
   }
 

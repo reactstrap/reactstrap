@@ -4,7 +4,9 @@ import { ListInlineItem } from '..';
 
 describe('ListInlineItem', () => {
   it('should render children', () => {
-    const listInlineItem = shallow(<ListInlineItem>Yo!</ListInlineItem>).find('li');
+    const listInlineItem = shallow(<ListInlineItem>Yo!</ListInlineItem>).find(
+      'li',
+    );
     expect(listInlineItem.text()).toBe('Yo!');
   });
 
@@ -16,7 +18,9 @@ describe('ListInlineItem', () => {
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<ListInlineItem className="other">Yo!</ListInlineItem>);
+    const wrapper = shallow(
+      <ListInlineItem className="other">Yo!</ListInlineItem>,
+    );
 
     expect(wrapper.text()).toBe('Yo!');
     expect(wrapper.hasClass('other')).toBe(true);

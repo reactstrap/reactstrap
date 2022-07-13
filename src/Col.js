@@ -4,17 +4,24 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType, isObject } from './utils';
 
 const colWidths = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
-const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
+const stringOrNumberProp = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+]);
 
 const columnProps = PropTypes.oneOfType([
   PropTypes.bool,
   PropTypes.number,
   PropTypes.string,
   PropTypes.shape({
-    size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
+    size: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.number,
+      PropTypes.string,
+    ]),
     order: stringOrNumberProp,
-    offset: stringOrNumberProp
-  })
+    offset: stringOrNumberProp,
+  }),
 ]);
 
 const propTypes = {
@@ -38,7 +45,8 @@ const defaultProps = {
 const getColumnSizeClass = (isXs, colWidth, colSize) => {
   if (colSize === true || colSize === '') {
     return isXs ? 'col' : `col-${colWidth}`;
-  } if (colSize === 'auto') {
+  }
+  if (colSize === 'auto') {
     return isXs ? 'col-auto' : `col-${colWidth}-auto`;
   }
 
@@ -64,11 +72,18 @@ export const getColumnClasses = (attributes, cssModule, widths = colWidths) => {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
       const colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 
-      colClasses.push(mapToCssModules(classNames({
-        [colClass]: columnProp.size || columnProp.size === '',
-        [`order${colSizeInterfix}${columnProp.order}`]: columnProp.order || columnProp.order === 0,
-        [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset || columnProp.offset === 0
-      }), cssModule));
+      colClasses.push(
+        mapToCssModules(
+          classNames({
+            [colClass]: columnProp.size || columnProp.size === '',
+            [`order${colSizeInterfix}${columnProp.order}`]:
+              columnProp.order || columnProp.order === 0,
+            [`offset${colSizeInterfix}${columnProp.offset}`]:
+              columnProp.offset || columnProp.offset === 0,
+          }),
+          cssModule,
+        ),
+      );
     } else {
       const colClass = getColumnSizeClass(isXs, colWidth, columnProp);
       colClasses.push(colClass);
@@ -77,33 +92,26 @@ export const getColumnClasses = (attributes, cssModule, widths = colWidths) => {
 
   return {
     colClasses,
-    modifiedAttributes
+    modifiedAttributes,
   };
 };
 
 function Col(props) {
-  const {
-    className,
+  const { className, cssModule, widths, tag: Tag, ...attributes } = props;
+
+  let { modifiedAttributes, colClasses } = getColumnClasses(
+    attributes,
     cssModule,
     widths,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  let { modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths);
+  );
 
   if (!colClasses.length) {
     colClasses.push('col');
   }
 
-  const classes = mapToCssModules(classNames(
-    className,
-    colClasses
-  ), cssModule);
+  const classes = mapToCssModules(classNames(className, colClasses), cssModule);
 
-  return (
-    <Tag {...modifiedAttributes} className={classes} />
-  );
+  return <Tag {...modifiedAttributes} className={classes} />;
 }
 
 Col.propTypes = propTypes;

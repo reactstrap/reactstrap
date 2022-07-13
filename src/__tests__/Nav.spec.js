@@ -42,7 +42,9 @@ describe('Nav', () => {
   it('should handle pills prop with card prop', () => {
     const wrapper = shallow(<Nav pills card />);
 
-    expect(wrapper.html()).toBe('<ul class="nav nav-pills card-header-pills"></ul>');
+    expect(wrapper.html()).toBe(
+      '<ul class="nav nav-pills card-header-pills"></ul>',
+    );
   });
 
   it('should handle tabs prop', () => {
@@ -54,7 +56,9 @@ describe('Nav', () => {
   it('should handle tabs prop with card prop', () => {
     const wrapper = shallow(<Nav tabs card />);
 
-    expect(wrapper.html()).toBe('<ul class="nav nav-tabs card-header-tabs"></ul>');
+    expect(wrapper.html()).toBe(
+      '<ul class="nav nav-tabs card-header-tabs"></ul>',
+    );
   });
 
   it('should handle vertical prop', () => {

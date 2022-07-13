@@ -13,7 +13,11 @@ const propTypes = {
   /** Disable the link */
   disabled: PropTypes.bool,
   href: PropTypes.any,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Function to be triggered on click */
   onClick: PropTypes.func,
   /** Set a custom element for this component */
@@ -56,17 +60,21 @@ class NavLink extends React.Component {
       ...attributes
     } = this.props;
 
-    const classes = mapToCssModules(classNames(
-      className,
-      'nav-link',
-      {
+    const classes = mapToCssModules(
+      classNames(className, 'nav-link', {
         disabled: attributes.disabled,
-        active: active
-      }
-    ), cssModule);
+        active: active,
+      }),
+      cssModule,
+    );
 
     return (
-      <Tag {...attributes} ref={innerRef} onClick={this.onClick} className={classes} />
+      <Tag
+        {...attributes}
+        ref={innerRef}
+        onClick={this.onClick}
+        className={classes}
+      />
     );
   }
 }

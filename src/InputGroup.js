@@ -17,31 +17,21 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function InputGroup(props) {
-  const {
-    className,
+  const { className, cssModule, tag: Tag, type, size, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'input-group', size ? `input-group-${size}` : null),
     cssModule,
-    tag: Tag,
-    type,
-    size,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'input-group',
-    size ? `input-group-${size}` : null
-  ), cssModule);
+  );
 
   if (props.type === 'dropdown') {
     return <Dropdown {...attributes} className={classes} />;
   }
 
-  return (
-    <Tag {...attributes} className={classes} />
-  );
+  return <Tag {...attributes} className={classes} />;
 }
 
 InputGroup.propTypes = propTypes;

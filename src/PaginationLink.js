@@ -38,10 +38,10 @@ function PaginationLink(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'page-link'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'page-link'),
+    cssModule,
+  );
 
   let defaultAriaLabel;
   if (previous) {
@@ -78,27 +78,17 @@ function PaginationLink(props) {
 
   if (previous || next || first || last) {
     children = [
-      <span
-        aria-hidden="true"
-        key="caret"
-      >
+      <span aria-hidden="true" key="caret">
         {children || defaultCaret}
       </span>,
-      <span
-        className="visually-hidden"
-        key="ariaLabel"
-      >
+      <span className="visually-hidden" key="ariaLabel">
         {ariaLabel}
       </span>,
     ];
   }
 
   return (
-    <Tag
-      {...attributes}
-      className={classes}
-      aria-label={ariaLabel}
-    >
+    <Tag {...attributes} className={classes} aria-label={ariaLabel}>
       {children}
     </Tag>
   );

@@ -11,33 +11,28 @@ const propTypes = {
   outline: PropTypes.bool,
   className: PropTypes.string,
   tag: tagPropType,
-  cssModule: PropTypes.object
+  cssModule: PropTypes.object,
 };
 
 const defaultProps = {
   color: 'primary',
-  tag: Button
+  tag: Button,
 };
 
 function PlaceholderButton(props) {
-  let {
+  let { cssModule, className, tag: Tag, ...attributes } = props;
+
+  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(
+    attributes,
     cssModule,
-    className,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule);
-
-  const classes = mapToCssModules(classNames(
-    'placeholder',
-    className,
-    colClasses
-  ), cssModule);
-
-  return (
-    <Button {...modifiedAttributes} className={classes} disabled />
   );
+
+  const classes = mapToCssModules(
+    classNames('placeholder', className, colClasses),
+    cssModule,
+  );
+
+  return <Button {...modifiedAttributes} className={classes} disabled />;
 }
 
 PlaceholderButton.propTypes = propTypes;

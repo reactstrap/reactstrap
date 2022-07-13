@@ -22,7 +22,7 @@ describe('DropdownMenu', () => {
         <DropdownMenu>
           <p>Content</p>
         </DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find('.dropdown-menu').hostNodes().text()).toBe('Content');
@@ -36,10 +36,12 @@ describe('DropdownMenu', () => {
         <DropdownMenu>
           <p>Content</p>
         </DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('show')).toBe(false);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('show')).toBe(
+      false,
+    );
     expect(wrapper.find('.show').hostNodes().length).toBe(0);
   });
 
@@ -50,10 +52,12 @@ describe('DropdownMenu', () => {
         <DropdownMenu>
           <p>Content</p>
         </DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('show')).toBe(true);
+    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('show')).toBe(
+      true,
+    );
     expect(wrapper.find('.show').hostNodes().length).toBe(1);
   });
 
@@ -62,10 +66,12 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-end')).toBe(false);
+    expect(
+      wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-end'),
+    ).toBe(false);
   });
 
   it('should render right aligned menus', () => {
@@ -73,10 +79,12 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu end>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-end')).toBe(true);
+    expect(
+      wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-end'),
+    ).toBe(true);
   });
 
   it('should render down when direction is unknown on the context', () => {
@@ -85,7 +93,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find(Popper).prop('placement')).toBe('bottom-start');
@@ -96,7 +104,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find(Popper).prop('placement')).toBe('bottom-start');
@@ -108,7 +116,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find(Popper).prop('placement')).toBe('top-start');
@@ -120,7 +128,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find(Popper).prop('placement')).toBe('left-start');
@@ -132,7 +140,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find(Popper).prop('placement')).toBe('right-start');
@@ -143,7 +151,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     const modifiers = wrapper.find(Popper).prop('modifiers');
@@ -156,10 +164,12 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu flip={false}>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.find(Popper).prop('modifiers')).toEqual([{ enabled: false, name: 'flip' }]);
+    expect(wrapper.find(Popper).prop('modifiers')).toEqual([
+      { enabled: false, name: 'flip' },
+    ]);
   });
 
   it('should position using fixed mode', () => {
@@ -167,7 +177,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu strategy="fixed">Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find(Popper).prop('strategy')).toBe('fixed');
@@ -177,7 +187,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu end>Ello world</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.find(Popper).length).toBe(0);
@@ -187,7 +197,7 @@ describe('DropdownMenu', () => {
     const wrapper = mount(
       <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
         <DropdownMenu tag="main">Yo!</DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
     expect(wrapper.text()).toBe('Yo!');
@@ -214,10 +224,12 @@ describe('DropdownMenu', () => {
       const wrapper = mount(
         <DropdownContext.Provider value={{ isOpen, direction, inNavbar }}>
           <DropdownMenu container="#anotherContainer">My body</DropdownMenu>
-        </DropdownContext.Provider>
+        </DropdownContext.Provider>,
       );
 
-      expect(document.getElementById('anotherContainer').innerHTML).toContain('My body');
+      expect(document.getElementById('anotherContainer').innerHTML).toContain(
+        'My body',
+      );
       expect(wrapper.text()).toBe('My body');
     });
   });
@@ -229,10 +241,12 @@ describe('DropdownMenu', () => {
         <DropdownMenu>
           <p>Keep it light</p>
         </DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-dark')).toBe(false);
+    expect(
+      wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-dark'),
+    ).toBe(false);
   });
 
   it('should have the class "dropdown-menu-dark" when dark is true', () => {
@@ -242,9 +256,11 @@ describe('DropdownMenu', () => {
         <DropdownMenu dark>
           <p>Let&apos;s go dark</p>
         </DropdownMenu>
-      </DropdownContext.Provider>
+      </DropdownContext.Provider>,
     );
 
-    expect(wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-dark')).toBe(true);
+    expect(
+      wrapper.find('.dropdown-menu').hostNodes().hasClass('dropdown-menu-dark'),
+    ).toBe(true);
   });
 });

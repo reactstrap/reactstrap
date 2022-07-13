@@ -18,25 +18,17 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
 function CardBody(props) {
-  const {
-    className,
+  const { className, cssModule, innerRef, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'card-body'),
     cssModule,
-    innerRef,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'card-body'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
   );
+
+  return <Tag {...attributes} className={classes} ref={innerRef} />;
 }
 
 CardBody.propTypes = propTypes;

@@ -12,13 +12,17 @@ const propTypes = {
   tag: tagPropType,
   /** Apply either `glow` or `wave` animation. */
   animation: PropTypes.oneOf(['glow', 'wave']),
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Make the size larger */
   size: PropTypes.oneOf(['lg', 'sm', 'xs']),
 };
 
 const defaultProps = {
-  tag: 'span'
+  tag: 'span',
 };
 
 function Placeholder(props) {
@@ -34,19 +38,24 @@ function Placeholder(props) {
     ...attributes
   } = props;
 
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(attributes, cssModule, widths);
-
-  const classes = mapToCssModules(classNames(
-    className,
-    colClasses,
-    'placeholder' + (animation ? '-' + animation : ''),
-    size ? 'placeholder-' + size : false,
-    color ? 'bg-' + color : false
-  ), cssModule);
-
-  return (
-    <Tag {...modifiedAttributes} className={classes} ref={innerRef} />
+  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(
+    attributes,
+    cssModule,
+    widths,
   );
+
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      colClasses,
+      'placeholder' + (animation ? '-' + animation : ''),
+      size ? 'placeholder-' + size : false,
+      color ? 'bg-' + color : false,
+    ),
+    cssModule,
+  );
+
+  return <Tag {...modifiedAttributes} className={classes} ref={innerRef} />;
 }
 
 Placeholder.propTypes = propTypes;

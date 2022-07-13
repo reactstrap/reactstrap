@@ -63,14 +63,17 @@ function Alert(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'alert',
-    `alert-${color}`,
-    { 'alert-dismissible': toggle }
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'alert', `alert-${color}`, {
+      'alert-dismissible': toggle,
+    }),
+    cssModule,
+  );
 
-  const closeClasses = mapToCssModules(classNames('btn-close', closeClassName), cssModule);
+  const closeClasses = mapToCssModules(
+    classNames('btn-close', closeClassName),
+    cssModule,
+  );
 
   const alertTransition = {
     ...Fade.defaultProps,
@@ -80,10 +83,23 @@ function Alert(props) {
   };
 
   return (
-    <Fade {...attributes} {...alertTransition} tag={Tag} className={classes} in={isOpen} role="alert" innerRef={innerRef}>
-      {toggle
-        ? <button type="button" className={closeClasses} aria-label={closeAriaLabel} onClick={toggle} />
-        : null}
+    <Fade
+      {...attributes}
+      {...alertTransition}
+      tag={Tag}
+      className={classes}
+      in={isOpen}
+      role="alert"
+      innerRef={innerRef}
+    >
+      {toggle ? (
+        <button
+          type="button"
+          className={closeClasses}
+          aria-label={closeAriaLabel}
+          onClick={toggle}
+        />
+      ) : null}
       {children}
     </Fade>
   );

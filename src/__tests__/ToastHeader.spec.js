@@ -18,7 +18,11 @@ describe('ToastHeader', () => {
   });
 
   it('should render close button', () => {
-    const wrapper = shallow(<ToastHeader toggle={() => { }} className="other">Yo!</ToastHeader>);
+    const wrapper = shallow(
+      <ToastHeader toggle={() => {}} className="other">
+        Yo!
+      </ToastHeader>,
+    );
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('toast-header')).toBe(true);

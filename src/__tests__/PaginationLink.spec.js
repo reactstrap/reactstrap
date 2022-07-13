@@ -73,7 +73,11 @@ describe('PaginationLink', () => {
   });
 
   it('should render custom caret specified as a component', () => {
-    const wrapper = shallow(<PaginationLink next><span>Yo</span></PaginationLink>);
+    const wrapper = shallow(
+      <PaginationLink next>
+        <span>Yo</span>
+      </PaginationLink>,
+    );
 
     expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('Yo');
   });

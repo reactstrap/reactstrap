@@ -12,7 +12,11 @@ const propTypes = {
   color: PropTypes.string,
   /** Change existing className with a new className */
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   /** Add rounded corners to the Badge */
   pill: PropTypes.bool,
   /** Set a custom element for this component */
@@ -22,7 +26,7 @@ const propTypes = {
 const defaultProps = {
   color: 'secondary',
   pill: false,
-  tag: 'span'
+  tag: 'span',
 };
 
 function Badge(props) {
@@ -36,20 +40,21 @@ function Badge(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'badge',
-    'bg-' + color,
-    pill ? 'rounded-pill' : false
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'badge',
+      'bg-' + color,
+      pill ? 'rounded-pill' : false,
+    ),
+    cssModule,
+  );
 
   if (attributes.href && Tag === 'span') {
     Tag = 'a';
   }
 
-  return (
-    <Tag {...attributes} className={classes} ref={innerRef} />
-  );
+  return <Tag {...attributes} className={classes} ref={innerRef} />;
 }
 
 Badge.propTypes = propTypes;

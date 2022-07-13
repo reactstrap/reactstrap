@@ -15,25 +15,22 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'li'
+  tag: 'li',
 };
 
 function BreadcrumbItem(props) {
-  const {
-    className,
+  const { className, cssModule, active, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, active ? 'active' : false, 'breadcrumb-item'),
     cssModule,
-    active,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    active ? 'active' : false,
-    'breadcrumb-item'
-  ), cssModule);
+  );
 
   return (
-    <Tag {...attributes} className={classes} aria-current={active ? 'page' : undefined} />
+    <Tag
+      {...attributes}
+      className={classes}
+      aria-current={active ? 'page' : undefined}
+    />
   );
 }
 
