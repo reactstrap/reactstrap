@@ -46,14 +46,15 @@ const Example = (props) => {
       </tbody>
     </Table>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Responsive tables allow tables to be scrolled horizontally with ease.'
-    }
-  }
-}
+      story:
+        'Responsive tables allow tables to be scrolled horizontally with ease.',
+    },
+  },
+};

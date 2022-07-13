@@ -7,20 +7,20 @@ Example.parameters = {
     source: {
       code: TooltipExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 Example.args = {
   autohide: true,
-  flip: true
+  flip: true,
 };
 
 Example.argTypes = {
   placement: {
     control: { type: 'select' },
-    options: ['top', 'left', 'right', 'bottom']
+    options: ['top', 'left', 'right', 'bottom'],
   },
 };
 

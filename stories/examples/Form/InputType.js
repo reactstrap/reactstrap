@@ -140,6 +140,6 @@ const Example = (props) => {
       </FormGroup>
     </Form>
   );
-}
+};
 
 export default Example;

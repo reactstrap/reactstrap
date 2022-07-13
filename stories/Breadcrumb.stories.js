@@ -8,9 +8,9 @@ export default {
 
 Indicate the current page’s location within a navigational hierarchy that automatically adds separators.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 export { default as Breadcrumb } from './examples/Breadcrump/Breadcrumb';

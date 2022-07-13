@@ -9,6 +9,6 @@ const Example = (props) => {
       <Button>Right</Button>
     </ButtonGroup>
   );
-}
+};
 
 export default Example;

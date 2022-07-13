@@ -12,7 +12,9 @@ const Props = ({ component, components = [] }) => {
   return (
     <div>
       {component ? <Info component={component} /> : undefined}
-      {components.map(component => <Info component={component} />)}
+      {components.map((component) => (
+        <Info component={component} />
+      ))}
     </div>
   );
 };

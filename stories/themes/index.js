@@ -10,10 +10,8 @@ export default [
       {
         title: 'Bamburgh React Admin Dashboard with Reactstrap PRO',
         tagLine: 'Premium React Admin Template',
-        imgUrl:
-          '/themes/bamburgh-react-admin-dashboard-reactstrap-pro.jpg',
-        link:
-          'https://uifort.com/template/bamburgh-react-admin-dashboard-reactstrap-pro/?ref=reactstrap.github.io',
+        imgUrl: '/themes/bamburgh-react-admin-dashboard-reactstrap-pro.jpg',
+        link: 'https://uifort.com/template/bamburgh-react-admin-dashboard-reactstrap-pro/?ref=reactstrap.github.io',
       },
     ],
   },
@@ -72,8 +70,7 @@ export default [
         tagLine: 'Premium Design System for Bootstrap 4 and Reactstrap',
         imgUrl:
           'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/blk-design-system-pro-react/blk-design-system-pro-react.jpg',
-        link:
-          'https://www.creative-tim.com/product/blk-design-system-pro-react',
+        link: 'https://www.creative-tim.com/product/blk-design-system-pro-react',
       },
       {
         title: 'Black Dashboard PRO with Reactstrap',
@@ -84,7 +81,7 @@ export default [
       },
     ],
   },
-   {
+  {
     creator: {
       name: 'WrapPixel',
       tagLine:
@@ -113,19 +110,22 @@ export default [
           'https://www.wrappixel.com/wp-content/uploads/edd/2020/04/adminpro-react-dashboard-y.jpg',
         link: 'https://www.wrappixel.com/templates/adminpro-react-redux-admin/',
       },
-      ],
-   }, 
+    ],
+  },
   {
     creator: {
       name: 'PIXINVENT',
-      tagLine: 'PIXINVENT provides high quality, creative design and easy to use Premium & Free Bootstrap Admin Template',
+      tagLine:
+        'PIXINVENT provides high quality, creative design and easy to use Premium & Free Bootstrap Admin Template',
       link: 'https://1.envato.market/pixinvent_portfolio',
     },
     products: [
       {
         title: 'Vuexy - Vuejs, React, HTML & Laravel Admin Dashboard Template',
-        tagLine: 'Best selling, Production Ready, Carefully Crafted Admin Template',
-        imgUrl: 'https://www.pixinvent.com/demo/vuexy-html-bootstrap-admin-template/item-page/reactstrap.jpg',
+        tagLine:
+          'Best selling, Production Ready, Carefully Crafted Admin Template',
+        imgUrl:
+          'https://www.pixinvent.com/demo/vuexy-html-bootstrap-admin-template/item-page/reactstrap.jpg',
         link: 'https://1.envato.market/vuexy_admin',
       },
     ],
@@ -140,11 +140,12 @@ export default [
     products: [
       {
         title: 'Material Design for Bootstrap 5 & React 17',
-        tagLine: '700+ components, stunning templates, 1-min installation, extensive tutorials & huge community.',
+        tagLine:
+          '700+ components, stunning templates, 1-min installation, extensive tutorials & huge community.',
         imgUrl:
           'https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/react/about/assets/mdb5-react.jpg',
         link: 'https://mdbootstrap.com/docs/b5/react/',
       },
-      ],
-   }, 
+    ],
+  },
 ];

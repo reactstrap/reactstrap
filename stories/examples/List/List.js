@@ -9,6 +9,6 @@ const Example = (props) => {
       <li>Nulla volutpat</li>
     </List>
   );
-}
+};
 
 export default Example;

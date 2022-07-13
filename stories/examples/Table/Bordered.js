@@ -34,14 +34,14 @@ const Example = (props) => {
       </tbody>
     </Table>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add `bordered` for borders on all sides of the table and cells.'
-    }
-  }
-}
+      story: 'Add `bordered` for borders on all sides of the table and cells.',
+    },
+  },
+};

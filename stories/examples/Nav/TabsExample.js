@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import {
+  Nav,
+  NavItem,
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+  NavLink,
+} from 'reactstrap';
 
 const Example = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -9,7 +17,9 @@ const Example = (props) => {
   return (
     <Nav tabs>
       <NavItem>
-        <NavLink href="#" active>Link</NavLink>
+        <NavLink href="#" active>
+          Link
+        </NavLink>
       </NavItem>
       <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle nav caret>
@@ -30,11 +40,12 @@ const Example = (props) => {
         <NavLink href="#">Another Link</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink disabled href="#">Disabled Link</NavLink>
+        <NavLink disabled href="#">
+          Disabled Link
+        </NavLink>
       </NavItem>
     </Nav>
   );
-}
+};
 
 export default Example;
-

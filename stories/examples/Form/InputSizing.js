@@ -18,6 +18,6 @@ const Example = (props) => {
       </Input>
     </Form>
   );
-}
+};
 
 export default Example;

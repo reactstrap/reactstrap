@@ -11,6 +11,6 @@ const AlertExample = (props) => {
       I am an alert and I can be dismissed!
     </Alert>
   );
-}
+};
 
 export default AlertExample;

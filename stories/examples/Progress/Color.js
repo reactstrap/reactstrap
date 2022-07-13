@@ -18,7 +18,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Pass color prop to change the appearance of individual progress bars.'
-    }
-  }
-}
+      story:
+        'Pass color prop to change the appearance of individual progress bars.',
+    },
+  },
+};

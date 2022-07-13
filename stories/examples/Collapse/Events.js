@@ -6,12 +6,12 @@ Example.parameters = {
     source: {
       code: CollapseEvents,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Track events as they happen.'
-    }
+      story: 'Track events as they happen.',
+    },
   },
-}
+};
 
 export default Example;

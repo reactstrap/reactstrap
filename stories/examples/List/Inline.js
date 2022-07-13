@@ -9,14 +9,14 @@ const Example = (props) => {
       <ListInlineItem>Nulla volutpat</ListInlineItem>
     </List>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Remove a list’s bullets and apply some light margin'
-    }
-  }
-}
+      story: 'Remove a list’s bullets and apply some light margin',
+    },
+  },
+};

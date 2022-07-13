@@ -24,7 +24,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'The striped gradient can also be animated. Add `animated` to the progress bar to animate the stripes right to left via CSS3 animations.'
-    }
-  }
-}
+      story:
+        'The striped gradient can also be animated. Add `animated` to the progress bar to animate the stripes right to left via CSS3 animations.',
+    },
+  },
+};

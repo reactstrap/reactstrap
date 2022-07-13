@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Spinner } from 'reactstrap';
 import { colors } from '../options';
@@ -11,15 +10,15 @@ const Example = (args) => {
       ))}
     </>
   );
-}
+};
 
 export default Example;
-
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'All standard visual variant colors can be applied for the spinner.'
-    }
-  }
-}
+      story:
+        'All standard visual variant colors can be applied for the spinner.',
+    },
+  },
+};

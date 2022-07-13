@@ -6,9 +6,9 @@ Example.parameters = {
     source: {
       code: CarouselCustomTagExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 export default Example;

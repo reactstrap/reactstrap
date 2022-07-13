@@ -34,7 +34,7 @@ const Example = (args) => {
       </tbody>
     </Table>
   );
-}
+};
 
 Example.args = {
   bordered: false,
@@ -42,13 +42,13 @@ Example.args = {
   dark: false,
   hover: false,
   responsive: false,
-  striped: false
-}
+  striped: false,
+};
 
 Example.argTypes = {
   size: {
     control: { type: 'select' },
-    options: ['', 'sm']
+    options: ['', 'sm'],
   },
 };
 

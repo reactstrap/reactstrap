@@ -10,12 +10,13 @@ const Example = (args) => {
   );
 };
 
-export default Example
+export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Change style `height` and `Progress` will automatically resize accordingly.'
-    }
-  }
-}
+      story:
+        'Change style `height` and `Progress` will automatically resize accordingly.',
+    },
+  },
+};

@@ -23,14 +23,15 @@ const Example = (args) => {
       </tbody>
     </Table>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Use contextual classes to color tables, table rows or individual cells.'
-    }
-  }
-}
+      story:
+        'Use contextual classes to color tables, table rows or individual cells.',
+    },
+  },
+};

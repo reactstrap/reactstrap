@@ -34,14 +34,15 @@ const Example = (props) => {
       </tbody>
     </Table>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Use `size="sm"` to make tables compact by cutting cell padding in half.'
-    }
-  }
-}
+      story:
+        'Use `size="sm"` to make tables compact by cutting cell padding in half.',
+    },
+  },
+};

@@ -11,15 +11,15 @@ const Example = (args) => {
       <ListGroupItem>Vestibulum at eros</ListGroupItem>
     </ListGroup>
   );
-}
+};
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add `active` prop to a `ListGroupItem` to indicate the current active selection.'
-    }
-  }
-}
-
+      story:
+        'Add `active` prop to a `ListGroupItem` to indicate the current active selection.',
+    },
+  },
+};
 
 export default Example;

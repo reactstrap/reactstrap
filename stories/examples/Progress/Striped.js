@@ -24,7 +24,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add `striped` to any progress bar to apply a stripe via CSS gradient over the progress bar’s background color.'
-    }
-  }
-}
+      story:
+        'Add `striped` to any progress bar to apply a stripe via CSS gradient over the progress bar’s background color.',
+    },
+  },
+};

@@ -12,9 +12,9 @@ export const AlertFadelessExample = (props) => {
       <Alert color="primary" isOpen={visible} toggle={onDismiss} fade={false}>
         I am a primary alert and I can be dismissed without animating!
       </Alert>
-      </div>
+    </div>
   );
-}
+};
 
 export function UncontrolledAlertFadelessExample() {
   return (

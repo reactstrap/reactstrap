@@ -1,10 +1,19 @@
 import React from 'react';
-import { DropdownToggle, DropdownMenu, DropdownItem, ButtonGroup, Button, UncontrolledDropdown } from 'reactstrap';
+import {
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  ButtonGroup,
+  Button,
+  UncontrolledDropdown,
+} from 'reactstrap';
 
 const Example = (args) => {
   return (
     <UncontrolledDropdown>
-      <DropdownToggle caret color="dark">Primary</DropdownToggle>
+      <DropdownToggle caret color="dark">
+        Primary
+      </DropdownToggle>
       <DropdownMenu {...args} dark>
         <DropdownItem header>Header</DropdownItem>
         <DropdownItem>Some Action</DropdownItem>
@@ -17,14 +26,15 @@ const Example = (args) => {
       </DropdownMenu>
     </UncontrolledDropdown>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Opt into darker dropdowns to match a dark navbar or custom style by adding `dark` prop onto an existing `DropdownMenu`.'
-    }
-  }
-}
+      story:
+        'Opt into darker dropdowns to match a dark navbar or custom style by adding `dark` prop onto an existing `DropdownMenu`.',
+    },
+  },
+};

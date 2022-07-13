@@ -29,7 +29,9 @@ const Example = (props) => {
       <Row xs="4">
         <Col className="bg-light border">Column</Col>
         <Col className="bg-light border">Column</Col>
-        <Col className="bg-light border" xs="6">xs="6"</Col>
+        <Col className="bg-light border" xs="6">
+          xs="6"
+        </Col>
         <Col className="bg-light border">Column</Col>
       </Row>
       <h6>xs="1" sm="2" md="4"</h6>
@@ -41,6 +43,6 @@ const Example = (props) => {
       </Row>
     </Container>
   );
-}
+};
 
 export default Example;

@@ -11,12 +11,12 @@ const Example = (args) => {
       <ListGroupItem>Vestibulum at eros</ListGroupItem>
     </ListGroup>
   );
-}
+};
 
 Example.args = {
   flush: false,
   horizontal: false,
-  numbered: false
+  numbered: false,
 };
 
 export default Example;

@@ -5,7 +5,9 @@ const Example = (props) => {
   return (
     <Nav pills>
       <NavItem>
-        <NavLink href="#" active>Link</NavLink>
+        <NavLink href="#" active>
+          Link
+        </NavLink>
       </NavItem>
       <NavItem>
         <NavLink href="#">Link</NavLink>
@@ -14,18 +16,20 @@ const Example = (props) => {
         <NavLink href="#">Another Link</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink disabled href="#">Disabled Link</NavLink>
+        <NavLink disabled href="#">
+          Disabled Link
+        </NavLink>
       </NavItem>
     </Nav>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Take the same component and add `pills` prop.'
-    }
-  }
-}
+      story: 'Take the same component and add `pills` prop.',
+    },
+  },
+};

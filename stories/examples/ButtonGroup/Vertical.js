@@ -9,14 +9,15 @@ const Example = (props) => {
       <Button color="success">Button</Button>
     </ButtonGroup>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Make a set of buttons appear vertically stacked rather than horizontally. **Split button dropdowns are not supported here.**'
-    }
+      story:
+        'Make a set of buttons appear vertically stacked rather than horizontally. **Split button dropdowns are not supported here.**',
+    },
   },
-}
+};

@@ -27,7 +27,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add the relative form sizing classes to the `InputGroup` itself and contents within will automatically resize—no need for repeating the form control size classes on each element.'
-    }
-  }
-}
+      story:
+        'Add the relative form sizing classes to the `InputGroup` itself and contents within will automatically resize—no need for repeating the form control size classes on each element.',
+    },
+  },
+};

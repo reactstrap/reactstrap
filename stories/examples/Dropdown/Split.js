@@ -1,5 +1,11 @@
 import React from 'react';
-import { DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown } from 'reactstrap';
+import {
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+  UncontrolledDropdown,
+} from 'reactstrap';
 
 const Example = (args) => {
   return (
@@ -18,14 +24,15 @@ const Example = (args) => {
       </DropdownMenu>
     </UncontrolledDropdown>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Create split button dropdowns with virtually the same markup as single button dropdowns.'
-    }
-  }
-}
+      story:
+        'Create split button dropdowns with virtually the same markup as single button dropdowns.',
+    },
+  },
+};

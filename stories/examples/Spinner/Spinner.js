@@ -3,27 +3,25 @@ import { Spinner } from 'reactstrap';
 import { colors } from '../options';
 
 const Example = (args) => {
-  return (
-    <Spinner {...args} />
-  );
-}
+  return <Spinner {...args} />;
+};
 
 Example.args = {
-  type: 'border'
+  type: 'border',
 };
 
 Example.argTypes = {
   type: {
     control: { type: 'select' },
-    options: ['border', 'grow']
+    options: ['border', 'grow'],
   },
   color: {
     control: { type: 'select' },
-    options: colors
+    options: colors,
   },
   size: {
     control: { type: 'select' },
-    options: ['', 'sm']
+    options: ['', 'sm'],
   },
 };
 export default Example;

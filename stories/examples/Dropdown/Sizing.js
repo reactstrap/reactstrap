@@ -6,12 +6,13 @@ Example.parameters = {
     source: {
       code: DropdownSizing,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Button dropdowns work with buttons of all sizes, including default and split dropdown buttons.'
-    }
+      story:
+        'Button dropdowns work with buttons of all sizes, including default and split dropdown buttons.',
+    },
   },
-}
+};
 
 export default Example;

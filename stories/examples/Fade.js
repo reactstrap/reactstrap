@@ -8,12 +8,14 @@ const Example = (props) => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>Toggle Fade</Button>
+      <Button color="primary" onClick={toggle}>
+        Toggle Fade
+      </Button>
       <Fade in={fadeIn} tag="h5" className="mt-3">
         This content will fade in and out as the button is pressed
       </Fade>
     </div>
   );
-}
+};
 
 export default Example;

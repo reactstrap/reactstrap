@@ -6,12 +6,12 @@ Example.parameters = {
     source: {
       code: Destructuring,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Unmount modal on closing using the `unmountOnClose` prop.'
-    }
+      story: 'Unmount modal on closing using the `unmountOnClose` prop.',
+    },
   },
-}
+};
 
 export default Example;

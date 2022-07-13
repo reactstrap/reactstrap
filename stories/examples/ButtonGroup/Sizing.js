@@ -23,14 +23,15 @@ const Example = (props) => {
       </ButtonGroup>
     </>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Instead of applying button sizing classes to every button in a group, just add `size` prop to each `ButtonGroup`, including each one when nesting multiple groups.'
-    }
+      story:
+        'Instead of applying button sizing classes to every button in a group, just add `size` prop to each `ButtonGroup`, including each one when nesting multiple groups.',
+    },
   },
-}
+};

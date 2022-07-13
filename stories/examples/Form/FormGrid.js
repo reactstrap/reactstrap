@@ -1,23 +1,47 @@
 import React from 'react';
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {
+  Col,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+} from 'reactstrap';
 
 const Example = (props) => {
   return (
     <Form>
       <FormGroup row>
-        <Label for="exampleEmail" sm={2}>Email</Label>
+        <Label for="exampleEmail" sm={2}>
+          Email
+        </Label>
         <Col sm={10}>
-          <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+          <Input
+            type="email"
+            name="email"
+            id="exampleEmail"
+            placeholder="with a placeholder"
+          />
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="examplePassword" sm={2}>Password</Label>
+        <Label for="examplePassword" sm={2}>
+          Password
+        </Label>
         <Col sm={10}>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+          <Input
+            type="password"
+            name="password"
+            id="examplePassword"
+            placeholder="password placeholder"
+          />
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="exampleSelect" sm={2}>Select</Label>
+        <Label for="exampleSelect" sm={2}>
+          Select
+        </Label>
         <Col sm={10}>
           <Input type="select" name="select" id="exampleSelect">
             <option>1</option>
@@ -29,9 +53,16 @@ const Example = (props) => {
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="exampleSelectMulti" sm={2}>Select Multiple</Label>
+        <Label for="exampleSelectMulti" sm={2}>
+          Select Multiple
+        </Label>
         <Col sm={10}>
-          <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+          <Input
+            type="select"
+            name="selectMulti"
+            id="exampleSelectMulti"
+            multiple
+          >
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -41,13 +72,17 @@ const Example = (props) => {
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="exampleText" sm={2}>Text Area</Label>
+        <Label for="exampleText" sm={2}>
+          Text Area
+        </Label>
         <Col sm={10}>
           <Input type="textarea" name="text" id="exampleText" />
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="exampleFile" sm={2}>File</Label>
+        <Label for="exampleFile" sm={2}>
+          File
+        </Label>
         <Col sm={10}>
           <Input type="file" name="file" id="exampleFile" />
           <FormText color="muted">
@@ -68,25 +103,24 @@ const Example = (props) => {
           <FormGroup check>
             <Input type="radio" name="radio2" />{' '}
             <Label check>
-              Option two can be something else and selecting it will deselect option one
+              Option two can be something else and selecting it will deselect
+              option one
             </Label>
           </FormGroup>
           <FormGroup check disabled>
             <Input type="radio" name="radio2" disabled />{' '}
-            <Label check>
-              Option three is disabled
-            </Label>
+            <Label check>Option three is disabled</Label>
           </FormGroup>
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="checkbox2" sm={2}>Checkbox</Label>
+        <Label for="checkbox2" sm={2}>
+          Checkbox
+        </Label>
         <Col sm={{ size: 10 }}>
           <FormGroup check>
             <Input type="checkbox" id="checkbox2" />{' '}
-            <Label check>
-              Check me out
-            </Label>
+            <Label check>Check me out</Label>
           </FormGroup>
         </Col>
       </FormGroup>
@@ -97,6 +131,6 @@ const Example = (props) => {
       </FormGroup>
     </Form>
   );
-}
+};
 
 export default Example;

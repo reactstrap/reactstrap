@@ -6,12 +6,12 @@ Example.parameters = {
     source: {
       code: CustomCloseButton,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Add a custom close button to the Modal.'
-    }
+      story: 'Add a custom close button to the Modal.',
+    },
   },
-}
+};
 
 export default Example;

@@ -10,14 +10,15 @@ const Example = (props) => {
       <ListGroupItem color="danger">Porta ac consectetur ac</ListGroupItem>
     </ListGroup>
   );
-}
+};
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Use contextual classes to style list items with a stateful background and color.'
-    }
-  }
-}
+      story:
+        'Use contextual classes to style list items with a stateful background and color.',
+    },
+  },
+};
 
 export default Example;

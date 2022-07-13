@@ -16,9 +16,7 @@ const Example = (args) => {
         Open
       </Button>
       <Offcanvas {...args} isOpen={open} toggle={toggle}>
-        <OffcanvasHeader toggle={toggle}>
-          Offcanvas
-        </OffcanvasHeader>
+        <OffcanvasHeader toggle={toggle}>Offcanvas</OffcanvasHeader>
         <OffcanvasBody>
           <strong>This is the Offcanvas body.</strong>
         </OffcanvasBody>
@@ -30,13 +28,13 @@ const Example = (args) => {
 Example.args = {
   backdrop: true,
   fade: true,
-  scrollable: false
+  scrollable: false,
 };
 
 Example.argTypes = {
   direction: {
     control: { type: 'select' },
-    options: ['top', 'start', 'end', 'bottom']
+    options: ['top', 'start', 'end', 'bottom'],
   },
 };
 

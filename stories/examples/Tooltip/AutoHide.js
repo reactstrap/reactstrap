@@ -6,12 +6,12 @@ Example.parameters = {
     source: {
       code: AutoHide,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Disable `autohide` to allow users to select text inside tooltip'
-    }
+      story: 'Disable `autohide` to allow users to select text inside tooltip',
+    },
   },
-}
+};
 
 export default Example;

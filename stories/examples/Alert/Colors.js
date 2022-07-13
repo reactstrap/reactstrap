@@ -9,7 +9,6 @@ const Example = (props) => {
         <Alert color={color} key={color}>
           This is a primary alert — check it out!
         </Alert>
-
       ))}
     </>
   );

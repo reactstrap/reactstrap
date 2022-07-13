@@ -6,21 +6,21 @@ import { ArgsTable } from '@storybook/addon-docs';
 const Example = (args) => {
   return (
     <>
-      <Alert {...args} dismiss={() => { }} isOpen={true} />
+      <Alert {...args} dismiss={() => {}} isOpen={true} />
     </>
   );
 };
 
 Example.args = {
   children: 'Hey! Pay attention.',
-  color: 'primary'
+  color: 'primary',
 };
 
 Example.argTypes = {
   color: {
     control: { type: 'select' },
-    options: colors
-  }
+    options: colors,
+  },
 };
 
 export default Example;

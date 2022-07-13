@@ -15,19 +15,13 @@ const Example = (props) => {
         </PaginationLink>
       </PaginationItem>
       <PaginationItem>
-        <PaginationLink href="#">
-          1
-        </PaginationLink>
+        <PaginationLink href="#">1</PaginationLink>
       </PaginationItem>
       <PaginationItem>
-        <PaginationLink href="#">
-          2
-        </PaginationLink>
+        <PaginationLink href="#">2</PaginationLink>
       </PaginationItem>
       <PaginationItem>
-        <PaginationLink href="#">
-          3
-        </PaginationLink>
+        <PaginationLink href="#">3</PaginationLink>
       </PaginationItem>
       <PaginationItem>
         <PaginationLink next href="#">
@@ -41,14 +35,14 @@ const Example = (props) => {
       </PaginationItem>
     </Pagination>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Fancy a larger pagination? Add `size="lg"` prop.'
-    }
-  }
-}
+      story: 'Fancy a larger pagination? Add `size="lg"` prop.',
+    },
+  },
+};

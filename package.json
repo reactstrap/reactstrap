@@ -26,7 +26,7 @@
     "create-release": "npm run cover && sh ./scripts/release",
     "lint": "eslint src",
     "dtslint": "dtslint types --expectOnly",
-    "prettier": "prettier --write src"
+    "prettier": "prettier --write src stories"
   },
   "prettier": {
     "singleQuote": true,

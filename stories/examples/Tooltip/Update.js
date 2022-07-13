@@ -16,22 +16,24 @@ const TooltipContent = ({ scheduleUpdate }) => {
     return () => clearInterval(intervalId);
   });
 
-  return (
-    <>{text}</>
-  );
-}
+  return <>{text}</>;
+};
 
 const Example = (props) => {
   return (
     <div className="text-center">
       <Button id="ScheduleUpdateTooltip">Click me</Button>
-      <UncontrolledTooltip placement="top" target="ScheduleUpdateTooltip" trigger="click">
+      <UncontrolledTooltip
+        placement="top"
+        target="ScheduleUpdateTooltip"
+        trigger="click"
+      >
         {({ scheduleUpdate }) => (
           <TooltipContent scheduleUpdate={scheduleUpdate} />
         )}
       </UncontrolledTooltip>
     </div>
   );
-}
+};
 
 export default Example;

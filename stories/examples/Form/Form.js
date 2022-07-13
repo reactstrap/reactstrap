@@ -6,11 +6,21 @@ const Example = (props) => {
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+        <Input
+          type="email"
+          name="email"
+          id="exampleEmail"
+          placeholder="with a placeholder"
+        />
       </FormGroup>
       <FormGroup>
         <Label for="examplePassword">Password</Label>
-        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+        <Input
+          type="password"
+          name="password"
+          id="examplePassword"
+          placeholder="password placeholder"
+        />
       </FormGroup>
       <FormGroup>
         <Label for="exampleSelect">Select</Label>
@@ -24,7 +34,12 @@ const Example = (props) => {
       </FormGroup>
       <FormGroup>
         <Label for="exampleSelectMulti">Select Multiple</Label>
-        <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+        <Input
+          type="select"
+          name="selectMulti"
+          id="exampleSelectMulti"
+          multiple
+        >
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -55,25 +70,21 @@ const Example = (props) => {
         <FormGroup check>
           <Input type="radio" name="radio1" />{' '}
           <Label check>
-            Option two can be something else and selecting it will deselect option one
+            Option two can be something else and selecting it will deselect
+            option one
           </Label>
         </FormGroup>
         <FormGroup check disabled>
           <Input type="radio" name="radio1" disabled />{' '}
-          <Label check>
-            Option three is disabled
-          </Label>
+          <Label check>Option three is disabled</Label>
         </FormGroup>
       </FormGroup>
       <FormGroup check>
-        <Input type="checkbox" />{' '}
-        <Label check>
-          Check me out
-        </Label>
+        <Input type="checkbox" /> <Label check>Check me out</Label>
       </FormGroup>
       <Button>Submit</Button>
     </Form>
   );
-}
+};
 
 export default Example;

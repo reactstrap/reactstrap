@@ -34,14 +34,14 @@ const Example = (props) => {
       </tbody>
     </Table>
   );
-}
+};
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add `borderless` for a table without borders.'
-    }
-  }
-}
+      story: 'Add `borderless` for a table without borders.',
+    },
+  },
+};

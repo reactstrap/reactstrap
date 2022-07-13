@@ -8,9 +8,9 @@ export default {
   
   A generic close button for dismissing content like modals and alerts.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 export { default as CloseButton } from './examples/CloseButton/CloseButton';

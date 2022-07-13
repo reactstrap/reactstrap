@@ -1,10 +1,17 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormFeedback,
+  FormText,
+} from 'reactstrap';
 
 const Example = (props) => {
   return (
     <Form>
-     <FormGroup>
+      <FormGroup>
         <Label for="exampleEmail">Input without validation</Label>
         <Input />
         <FormFeedback>You will not be able to see this</FormFeedback>
@@ -31,7 +38,9 @@ const Example = (props) => {
       <FormGroup className="position-relative">
         <Label for="exampleEmail">Valid input</Label>
         <Input valid />
-        <FormFeedback valid tooltip>Sweet! that name is available</FormFeedback>
+        <FormFeedback valid tooltip>
+          Sweet! that name is available
+        </FormFeedback>
         <FormText>Example help text that remains unchanged.</FormText>
       </FormGroup>
       <FormGroup className="position-relative">
@@ -42,6 +51,6 @@ const Example = (props) => {
       </FormGroup>
     </Form>
   );
-}
+};
 
 export default Example;

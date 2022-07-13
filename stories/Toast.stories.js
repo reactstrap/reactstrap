@@ -7,10 +7,10 @@ export default {
   [Bootstrap Toasts](https://getbootstrap.com/docs/5.1/components/toasts/)
   
   Push notifications to your visitors with a Toast, a lightweight and easily customizable alert message.
-  `
-      }
-    }
-  }
+  `,
+      },
+    },
+  },
 };
 
 export { default as Toast } from './examples/Toast';

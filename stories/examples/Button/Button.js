@@ -8,7 +8,7 @@ const Example = (args) => {
       <Button {...args} />
     </div>
   );
-}
+};
 
 Example.args = {
   children: 'Click Me',
@@ -23,12 +23,12 @@ Example.args = {
 Example.argTypes = {
   color: {
     control: { type: 'select' },
-    options: colors
+    options: colors,
   },
   size: {
     control: { type: 'select' },
-    options: ['', 'sm', 'lg']
-  }
+    options: ['', 'sm', 'lg'],
+  },
 };
 
 export default Example;

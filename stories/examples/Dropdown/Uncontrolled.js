@@ -1,12 +1,15 @@
 import React from 'react';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 export default function Example() {
   return (
     <UncontrolledDropdown>
-      <DropdownToggle caret>
-        Dropdown
-      </DropdownToggle>
+      <DropdownToggle caret>Dropdown</DropdownToggle>
       <DropdownMenu>
         <DropdownItem header>Header</DropdownItem>
         <DropdownItem disabled>Action</DropdownItem>
@@ -21,7 +24,8 @@ export default function Example() {
 Example.parameters = {
   docs: {
     description: {
-      story: 'And if you are not a fan of using `state`, feel free to use the `UncontrolledDropdown`.'
-    }
+      story:
+        'And if you are not a fan of using `state`, feel free to use the `UncontrolledDropdown`.',
+    },
   },
-}
+};

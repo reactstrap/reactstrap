@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {
+  Button,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 const Example = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
@@ -8,7 +14,9 @@ const Example = (props) => {
 
   return (
     <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-      <Button id="caret" color={props.color}>Click Me</Button>
+      <Button id="caret" color={props.color}>
+        Click Me
+      </Button>
       <DropdownToggle split color={props.color} />
       <DropdownMenu>
         <DropdownItem header>Header</DropdownItem>
@@ -19,6 +27,6 @@ const Example = (props) => {
       </DropdownMenu>
     </ButtonDropdown>
   );
-}
+};
 
 export default Example;

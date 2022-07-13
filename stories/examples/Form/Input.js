@@ -7,20 +7,20 @@ const Example = ({ direction, ...args }) => {
       <Input {...args} />
     </div>
   );
-}
+};
 
 Example.args = {
   type: 'text',
   valid: false,
-  invalid: false
-}
+  invalid: false,
+};
 
 Example.argTypes = {
   valid: {
-    control: { type: 'boolean' }
+    control: { type: 'boolean' },
   },
   invalid: {
-    control: { type: 'boolean' }
+    control: { type: 'boolean' },
   },
   type: {
     control: { type: 'select' },
@@ -47,13 +47,13 @@ Example.argTypes = {
       'textarea',
       'time',
       'url',
-      'week'
-    ]
+      'week',
+    ],
   },
   bsSize: {
     control: { type: 'select' },
-    options: ['', 'sm', 'lg']
-  }
-}
+    options: ['', 'sm', 'lg'],
+  },
+};
 
 export default Example;

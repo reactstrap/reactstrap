@@ -1,6 +1,5 @@
-
-import Example from "./AccordionExample"
-import AccordionCode from '!!raw-loader!./AccordionExample.js'
+import Example from './AccordionExample';
+import AccordionCode from '!!raw-loader!./AccordionExample.js';
 
 export default Example;
 
@@ -9,7 +8,7 @@ Example.parameters = {
     source: {
       code: AccordionCode,
       language: 'jsx',
-      type: 'auto'
-    }
+      type: 'auto',
+    },
   },
-}
+};
