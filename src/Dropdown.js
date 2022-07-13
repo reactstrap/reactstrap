@@ -116,7 +116,7 @@ class Dropdown extends React.Component {
 
   getMenuCtrl() {
     if (this._$menuCtrl) return this._$menuCtrl;
-    this._$menuCtrl = this.toggleRef.current;
+    this._$menuCtrl = this.getToggle();
     return this._$menuCtrl;
   }
 
