@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <>
       <Container className="bg-light border">.container</Container>
@@ -17,11 +17,11 @@ const Example = (props) => {
       <Container className="bg-light border" fluid="xl">
         .container-xl
       </Container>
-      <Container className="bg-light border" fluid={true}>
+      <Container className="bg-light border" fluid>
         .container-fluid
       </Container>
     </>
   );
-};
+}
 
 export default Example;

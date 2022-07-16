@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Card body style={{ width: '18rem' }} className="my-2">
@@ -27,7 +27,7 @@ const Example = (props) => {
       </Card>
     </div>
   );
-};
+}
 
 export default Example;
 

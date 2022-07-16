@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-const Example = (props) => {
+function Example(props) {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   const closeBtn = (
-    <button className="close" onClick={toggle}>
+    <button className="close" onClick={toggle} type="button">
       &times;
     </button>
   );
@@ -42,6 +43,10 @@ const Example = (props) => {
       </Modal>
     </div>
   );
+}
+
+Example.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Example;

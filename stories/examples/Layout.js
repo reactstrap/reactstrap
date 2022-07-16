@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Container>
       <Row>
@@ -63,6 +63,6 @@ const Example = (props) => {
       </Row>
     </Container>
   );
-};
+}
 
 export default Example;

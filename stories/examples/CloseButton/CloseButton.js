@@ -1,9 +1,9 @@
 import React from 'react';
 import { CloseButton } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return <CloseButton {...args} />;
-};
+}
 
 Example.args = {
   disabled: false,

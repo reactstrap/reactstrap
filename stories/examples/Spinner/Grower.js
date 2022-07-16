@@ -2,7 +2,7 @@ import React from 'react';
 import { Spinner } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <>
       {colors.map((color) => (
@@ -10,7 +10,7 @@ const Example = (props) => {
       ))}
     </>
   );
-};
+}
 
 export default Example;
 

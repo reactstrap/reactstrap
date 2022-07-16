@@ -1,7 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Breadcrumb tag="nav" listTag="div">
       <BreadcrumbItem tag="a" href="#">
@@ -18,6 +18,6 @@ const Example = (props) => {
       </BreadcrumbItem>
     </Breadcrumb>
   );
-};
+}
 
 export default Example;

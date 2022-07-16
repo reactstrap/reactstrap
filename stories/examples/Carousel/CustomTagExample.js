@@ -25,7 +25,7 @@ const items = [
   },
 ];
 
-const Example = (props) => {
+function Example(props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -93,6 +93,6 @@ const Example = (props) => {
       </Carousel>
     </div>
   );
-};
+}
 
 export default Example;

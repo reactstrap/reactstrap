@@ -1,4 +1,5 @@
 import Example from './CustomCloseButtonExample';
+// eslint-disable-next-line import/extensions
 import CustomCloseButton from '!!raw-loader!./CustomCloseButtonExample';
 
 Example.parameters = {

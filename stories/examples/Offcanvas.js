@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   const [open, setOpen] = useState();
   const toggle = () => setOpen(!open);
 
@@ -23,7 +23,7 @@ const Example = (args) => {
       </Offcanvas>
     </div>
   );
-};
+}
 
 Example.args = {
   backdrop: true,

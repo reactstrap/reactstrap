@@ -2,9 +2,9 @@ import React from 'react';
 import { Spinner } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (args) => {
+function Example(args) {
   return <Spinner {...args} />;
-};
+}
 
 Example.args = {
   type: 'border',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <FormGroup>
@@ -56,7 +56,7 @@ const Example = (props) => {
         <Input type="file" name="file" id="exampleFile" />
         <FormText color="muted">
           This is some placeholder block-level help text for the above input.
-          It's a bit lighter and easily wraps to a new line.
+          It&lsquo;s a bit lighter and easily wraps to a new line.
         </FormText>
       </FormGroup>
       <FormGroup tag="fieldset">
@@ -64,7 +64,7 @@ const Example = (props) => {
         <FormGroup check>
           <Input type="radio" name="radio1" />{' '}
           <Label check>
-            Option one is this and that—be sure to include why it's great
+            Option one is this and that—be sure to include why it&lsquo;s great
           </Label>
         </FormGroup>
         <FormGroup check>
@@ -85,6 +85,6 @@ const Example = (props) => {
       <Button>Submit</Button>
     </Form>
   );
-};
+}
 
 export default Example;

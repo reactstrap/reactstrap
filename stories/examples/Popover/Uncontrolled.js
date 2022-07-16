@@ -7,7 +7,7 @@ import {
   PopoverBody,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Button id="UncontrolledPopover" type="button">
@@ -22,7 +22,7 @@ const Example = (props) => {
       </UncontrolledPopover>
     </div>
   );
-};
+}
 
 export default Example;
 

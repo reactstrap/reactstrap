@@ -6,7 +6,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
@@ -23,6 +23,6 @@ const Example = (props) => {
       </DropdownMenu>
     </ButtonDropdown>
   );
-};
+}
 
 export default Example;

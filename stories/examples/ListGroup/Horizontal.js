@@ -1,12 +1,12 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <p>
         The <code>horizontal</code> prop can be a Boolean or a string specifying
-        one of Bootstrap's breakpoints
+        one of Bootstrap&lsquo;s breakpoints
       </p>
       <ListGroup horizontal>
         <ListGroupItem tag="a" href="#">
@@ -52,7 +52,7 @@ const Example = (props) => {
       </p>
     </div>
   );
-};
+}
 
 Example.parameters = {
   docs: {

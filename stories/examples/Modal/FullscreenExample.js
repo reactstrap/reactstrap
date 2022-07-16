@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ModalFullscreenExample = (props) => {
+function ModalFullscreenExample(props) {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -11,7 +11,7 @@ const ModalFullscreenExample = (props) => {
       <Button color="danger" onClick={toggle}>
         Click Me
       </Button>
-      <Modal isOpen={modal} toggle={toggle} fullscreen={true}>
+      <Modal isOpen={modal} toggle={toggle} fullscreen>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -33,6 +33,6 @@ const ModalFullscreenExample = (props) => {
       </Modal>
     </div>
   );
-};
+}
 
 export default ModalFullscreenExample;

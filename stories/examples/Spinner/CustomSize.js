@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spinner } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <>
       <Spinner color="primary" style={{ width: '3rem', height: '3rem' }} />
@@ -12,7 +12,7 @@ const Example = (props) => {
       />
     </>
   );
-};
+}
 
 export default Example;
 

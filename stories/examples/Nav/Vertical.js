@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Nav vertical>
       <NavItem>
@@ -20,7 +20,7 @@ const Example = (props) => {
       </NavItem>
     </Nav>
   );
-};
+}
 
 export default Example;
 

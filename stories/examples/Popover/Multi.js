@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
-const PopoverItem = (props) => {
+function PopoverItem(props) {
   const { id, item } = props;
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -33,9 +33,9 @@ const PopoverItem = (props) => {
       </Popover>
     </>
   );
-};
+}
 
-const PopoverExampleMulti = (props) => {
+function PopoverExampleMulti(props) {
   return (
     <>
       {[
@@ -56,11 +56,12 @@ const PopoverExampleMulti = (props) => {
           text: 'Popover on Right',
         },
       ].map((popover, i) => {
+        // eslint-disable-next-line react/no-array-index-key
         return <PopoverItem key={i} item={popover} id={i} />;
       })}
     </>
   );
-};
+}
 
 export default PopoverExampleMulti;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputGroup, InputGroupText, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <InputGroup>
@@ -34,6 +34,6 @@ const Example = (props) => {
       </InputGroup>
     </div>
   );
-};
+}
 
 export default Example;

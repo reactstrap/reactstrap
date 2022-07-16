@@ -1,4 +1,5 @@
 import Example from './CarouselExample';
+// eslint-disable-next-line import/extensions
 import CarouselExample from '!!raw-loader!./CarouselExample';
 
 Example.args = {

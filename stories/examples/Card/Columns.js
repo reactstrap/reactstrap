@@ -10,7 +10,7 @@ import {
   CardBody,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <CardColumns style={{ width: '18rem' }}>
       <Card>
@@ -93,6 +93,6 @@ const Example = (props) => {
       </Card>
     </CardColumns>
   );
-};
+}
 
 export default Example;

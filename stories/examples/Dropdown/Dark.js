@@ -3,12 +3,10 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  ButtonGroup,
-  Button,
   UncontrolledDropdown,
 } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <UncontrolledDropdown>
       <DropdownToggle caret color="dark">
@@ -26,7 +24,7 @@ const Example = (args) => {
       </DropdownMenu>
     </UncontrolledDropdown>
   );
-};
+}
 
 export default Example;
 

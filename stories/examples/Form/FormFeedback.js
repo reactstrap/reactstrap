@@ -8,7 +8,7 @@ import {
   FormText,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <FormGroup>
@@ -51,6 +51,6 @@ const Example = (props) => {
       </FormGroup>
     </Form>
   );
-};
+}
 
 export default Example;

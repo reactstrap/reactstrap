@@ -1,4 +1,5 @@
 import Example from './FullscreenExample';
+// eslint-disable-next-line import/extensions
 import Fullscreen from '!!raw-loader!./FullscreenExample';
 
 Example.parameters = {

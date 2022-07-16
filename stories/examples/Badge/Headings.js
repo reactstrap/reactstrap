@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <>
       <h1>
@@ -24,7 +24,7 @@ const Example = (args) => {
       </h6>
     </>
   );
-};
+}
 
 export default Example;
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
-import { colors } from '../options';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Card>
       <CardBody>
@@ -14,7 +13,7 @@ const Example = (args) => {
       </CardBody>
     </Card>
   );
-};
+}
 
 export default Example;
 

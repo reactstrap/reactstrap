@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { Button, Toast, ToastBody, ToastHeader } from 'reactstrap';
 
-const ToastDismissExample = (props) => {
-  const { buttonLabel } = props;
+function ToastDismissExample(props) {
   const [show, setShow] = useState(false);
 
   const toggle = () => setShow(!show);
@@ -30,6 +29,6 @@ const ToastDismissExample = (props) => {
       </Toast>
     </div>
   );
-};
+}
 
 export default ToastDismissExample;

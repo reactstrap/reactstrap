@@ -6,7 +6,7 @@ import {
   ListGroupItemText,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ListGroup>
       <ListGroupItem active>
@@ -32,7 +32,7 @@ const Example = (props) => {
       </ListGroupItem>
     </ListGroup>
   );
-};
+}
 
 Example.parameters = {
   docs: {

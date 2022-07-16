@@ -1,7 +1,7 @@
 import React from 'react';
 import { Placeholder } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <>
       <Placeholder tag="p" animation="glow">
@@ -12,7 +12,7 @@ const Example = (args) => {
       </Placeholder>
     </>
   );
-};
+}
 
 export default Example;
 

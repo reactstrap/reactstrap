@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tooltip } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggle = () => setTooltipOpen(!tooltipOpen);
 
@@ -9,7 +9,12 @@ const Example = (args) => {
     <div>
       <p>
         Somewhere in here is a{' '}
-        <a href="#" id="TooltipExample">
+        <a
+          href="https://example.com"
+          target="_blank"
+          rel="noreferrer"
+          id="TooltipExample"
+        >
           tooltip
         </a>
         .
@@ -24,7 +29,7 @@ const Example = (args) => {
       </Tooltip>
     </div>
   );
-};
+}
 
 Example.args = {
   autohide: true,

@@ -1,4 +1,5 @@
 import Example from './NestedExample';
+// eslint-disable-next-line import/extensions
 import Nested from '!!raw-loader!./NestedExample';
 
 Example.parameters = {

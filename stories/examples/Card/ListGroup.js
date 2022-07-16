@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Card style={{ width: '18rem' }}>
       <CardHeader>Featured</CardHeader>
@@ -12,7 +12,7 @@ const Example = (args) => {
       </ListGroup>
     </Card>
   );
-};
+}
 
 export default Example;
 

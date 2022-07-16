@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <h3>Links </h3>
@@ -50,6 +50,6 @@ const Example = (props) => {
       </ListGroup>
     </div>
   );
-};
+}
 
 export default Example;

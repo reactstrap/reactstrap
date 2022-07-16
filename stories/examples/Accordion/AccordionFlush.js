@@ -1,5 +1,6 @@
 import Example from './AccordionFlushExample';
-import AccordionCode from '!!raw-loader!./AccordionFlushExample.js';
+// eslint-disable-next-line import/extensions
+import AccordionCode from '!!raw-loader!./AccordionFlushExample';
 
 export default Example;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Button color="primary">primary</Button>{' '}
@@ -12,7 +12,7 @@ const Example = (props) => {
       <Button color="danger">danger</Button> <Button color="link">link</Button>
     </div>
   );
-};
+}
 
 export default Example;
 

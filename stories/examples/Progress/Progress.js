@@ -2,9 +2,9 @@ import React from 'react';
 import { Progress } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (args) => {
+function Example(args) {
   return <Progress {...args} />;
-};
+}
 
 Example.args = {
   value: 50,

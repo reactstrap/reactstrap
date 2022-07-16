@@ -9,7 +9,7 @@ import {
   NavLink,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -36,6 +36,6 @@ const Example = (props) => {
       </Navbar>
     </div>
   );
-};
+}
 
 export default Example;

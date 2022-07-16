@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ListGroup>
       <ListGroupItem disabled tag="a" href="#">
@@ -21,7 +21,7 @@ const Example = (props) => {
       </ListGroupItem>
     </ListGroup>
   );
-};
+}
 
 Example.parameters = {
   docs: {

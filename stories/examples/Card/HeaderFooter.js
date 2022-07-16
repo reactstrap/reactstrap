@@ -9,7 +9,7 @@ import {
   CardText,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Card className="my-2" style={{ width: '18rem' }}>
       <CardHeader>Header</CardHeader>
@@ -23,7 +23,7 @@ const Example = (props) => {
       <CardFooter>Footer</CardFooter>
     </Card>
   );
-};
+}
 
 export default Example;
 

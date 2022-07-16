@@ -1,4 +1,5 @@
 import Example from './NavbarExample';
+// eslint-disable-next-line import/extensions
 import NavbarExample from '!!raw-loader!./NavbarExample';
 import { colors } from '../options';
 

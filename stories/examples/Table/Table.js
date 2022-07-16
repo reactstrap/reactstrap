@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Table {...args}>
       <thead>
@@ -34,7 +34,7 @@ const Example = (args) => {
       </tbody>
     </Table>
   );
-};
+}
 
 Example.args = {
   bordered: false,

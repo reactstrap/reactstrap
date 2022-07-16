@@ -1,7 +1,7 @@
 import React from 'react';
 import { List } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <List type="unstyled">
       <li>Lorem ipsum dolor sit amet</li>
@@ -22,7 +22,7 @@ const Example = (props) => {
       <li>Eget porttitor lorem</li>
     </List>
   );
-};
+}
 
 Example.parameters = {
   docs: {

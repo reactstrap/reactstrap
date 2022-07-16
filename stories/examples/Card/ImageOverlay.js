@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Card inverse>
@@ -24,7 +24,7 @@ const Example = (props) => {
       </Card>
     </div>
   );
-};
+}
 
 export default Example;
 

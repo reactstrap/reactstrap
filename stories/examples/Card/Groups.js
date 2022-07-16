@@ -9,7 +9,8 @@ import {
   CardSubtitle,
   CardBody,
 } from 'reactstrap';
-const Example = (props) => {
+
+function Example(props) {
   return (
     <CardGroup>
       <Card>
@@ -72,7 +73,7 @@ const Example = (props) => {
       </Card>
     </CardGroup>
   );
-};
+}
 
 export default Example;
 

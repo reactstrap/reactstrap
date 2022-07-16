@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Pagination {...args}>
       <PaginationItem>
@@ -33,7 +33,7 @@ const Example = (args) => {
       </PaginationItem>
     </Pagination>
   );
-};
+}
 
 Example.argTypes = {
   size: {

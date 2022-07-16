@@ -1,16 +1,14 @@
 import React from 'react';
 import { Spinner, Button } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
-    <>
-      <Button disabled color="primary">
-        <Spinner size="sm" />
-        <span> Loading</span>
-      </Button>
-    </>
+    <Button disabled color="primary">
+      <Spinner size="sm" />
+      <span> Loading</span>
+    </Button>
   );
-};
+}
 
 export default Example;
 

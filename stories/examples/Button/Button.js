@@ -2,13 +2,13 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <div>
       <Button {...args} />
     </div>
   );
-};
+}
 
 Example.args = {
   children: 'Click Me',

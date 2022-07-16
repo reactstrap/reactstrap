@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <p className="text-muted">
@@ -26,6 +26,6 @@ const Example = (props) => {
       </p>
     </div>
   );
-};
+}
 
 export default Example;

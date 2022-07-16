@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ModalExample = (props) => {
-  const { className } = props;
-
+function ModalExample(props) {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
 
   const externalCloseBtn = (
     <button
+      type="button"
       className="close"
       style={{ position: 'absolute', top: '15px', right: '15px' }}
       onClick={toggle}
@@ -22,12 +21,7 @@ const ModalExample = (props) => {
       <Button color="danger" onClick={toggle}>
         Click Me
       </Button>
-      <Modal
-        isOpen={modal}
-        toggle={toggle}
-        className={className}
-        external={externalCloseBtn}
-      >
+      <Modal isOpen={modal} toggle={toggle} external={externalCloseBtn}>
         <ModalHeader>Modal title</ModalHeader>
         <ModalBody>
           <b>Look at the top right of the page/viewport!</b>
@@ -51,6 +45,6 @@ const ModalExample = (props) => {
       </Modal>
     </div>
   );
-};
+}
 
 export default ModalExample;

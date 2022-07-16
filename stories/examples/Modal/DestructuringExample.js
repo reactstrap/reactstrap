@@ -11,15 +11,13 @@ import {
   FormGroup,
 } from 'reactstrap';
 
-const ModalExample = (props) => {
-  const { className } = props;
-
+function ModalExample(props) {
   const [modal, setModal] = useState(false);
   const [unmountOnClose, setUnmountOnClose] = useState(true);
 
   const toggle = () => setModal(!modal);
   const changeUnmountOnClose = (e) => {
-    let value = e.target.value;
+    let { value } = e.target;
     setUnmountOnClose(JSON.parse(value));
   };
 
@@ -42,12 +40,7 @@ const ModalExample = (props) => {
           Click Me
         </Button>
       </Form>
-      <Modal
-        isOpen={modal}
-        toggle={toggle}
-        className={className}
-        unmountOnClose={unmountOnClose}
-      >
+      <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           <Input
@@ -67,6 +60,6 @@ const ModalExample = (props) => {
       </Modal>
     </div>
   );
-};
+}
 
 export default ModalExample;

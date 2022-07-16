@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form inline>
       <FormGroup className="mb-2 me-sm-2 mb-sm-0">
@@ -29,6 +29,6 @@ const Example = (props) => {
       <Button>Submit</Button>
     </Form>
   );
-};
+}
 
 export default Example;

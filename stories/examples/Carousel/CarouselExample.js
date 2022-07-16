@@ -28,7 +28,7 @@ const items = [
   },
 ];
 
-const Example = (args) => {
+function Example(args) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -90,6 +90,6 @@ const Example = (args) => {
       />
     </Carousel>
   );
-};
+}
 
 export default Example;

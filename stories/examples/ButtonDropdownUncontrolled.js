@@ -7,7 +7,7 @@ import {
   DropdownToggle,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <UncontrolledButtonDropdown>
       <DropdownToggle caret>Dropdown</DropdownToggle>
@@ -20,6 +20,6 @@ const Example = (props) => {
       </DropdownMenu>
     </UncontrolledButtonDropdown>
   );
-};
+}
 
 export default Example;

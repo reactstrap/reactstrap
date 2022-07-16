@@ -13,7 +13,7 @@ export default {
   },
 };
 
-export { default as Modal } from './examples/Modal/Modal.js';
+export { default as Modal } from './examples/Modal/Modal';
 export { default as Backdrop } from './examples/Modal/Backdrop';
 export { default as CustomCloseButton } from './examples/Modal/CustomCloseButton';
 export { default as CustomTimeout } from './examples/Modal/CustomTimeout';

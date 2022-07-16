@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Collapse, Button } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -20,6 +20,6 @@ const Example = (props) => {
       </Collapse>
     </div>
   );
-};
+}
 
 export default Example;

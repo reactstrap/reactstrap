@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Pagination aria-label="Page navigation example">
       <PaginationItem disabled>
@@ -33,7 +33,7 @@ const Example = (props) => {
       </PaginationItem>
     </Pagination>
   );
-};
+}
 
 export default Example;
 

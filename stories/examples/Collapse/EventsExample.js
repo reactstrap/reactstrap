@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [collapse, setCollapse] = useState(false);
   const [status, setStatus] = useState('Closed');
 
@@ -34,6 +34,6 @@ const Example = (props) => {
       </Collapse>
     </div>
   );
-};
+}
 
 export default Example;

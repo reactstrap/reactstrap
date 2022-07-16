@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tooltip } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const toggle = () => setTooltipOpen(!tooltipOpen);
@@ -30,6 +30,6 @@ const Example = (props) => {
       </Tooltip>
     </div>
   );
-};
+}
 
 export default Example;

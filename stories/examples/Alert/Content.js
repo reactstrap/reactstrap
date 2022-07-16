@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Alert color="success">
       <h4 className="alert-heading">Well done!</h4>
@@ -17,7 +17,7 @@ const Example = (props) => {
       </p>
     </Alert>
   );
-};
+}
 
 export default Example;
 

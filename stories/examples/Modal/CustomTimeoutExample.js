@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-const Example = (props) => {
-  const { buttonLabel, className } = props;
+function Example(props) {
+  const { className } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -41,6 +42,10 @@ const Example = (props) => {
       </Modal>
     </div>
   );
+}
+
+Example.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Example;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, ListInlineItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <List type="inline">
       <ListInlineItem>Lorem ipsum</ListInlineItem>
@@ -9,7 +9,7 @@ const Example = (props) => {
       <ListInlineItem>Nulla volutpat</ListInlineItem>
     </List>
   );
-};
+}
 
 export default Example;
 

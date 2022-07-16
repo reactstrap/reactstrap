@@ -9,7 +9,7 @@ import {
   NavLink,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
@@ -46,6 +46,6 @@ const Example = (props) => {
       </NavItem>
     </Nav>
   );
-};
+}
 
 export default Example;

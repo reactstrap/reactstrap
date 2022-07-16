@@ -1,4 +1,5 @@
 import Example from './BackdropExample';
+// eslint-disable-next-line import/extensions
 import BackdropExample from '!!raw-loader!./BackdropExample';
 
 Example.parameters = {

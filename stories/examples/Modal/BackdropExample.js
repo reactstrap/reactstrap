@@ -10,8 +10,9 @@ import {
   Form,
   FormGroup,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-const Example = (props) => {
+function Example(props) {
   const { className } = props;
   const [modal, setModal] = useState(false);
   const [backdrop, setBackdrop] = useState(true);
@@ -20,7 +21,7 @@ const Example = (props) => {
   const toggle = () => setModal(!modal);
 
   const changeBackdrop = (e) => {
-    let value = e.target.value;
+    let { value } = e.target;
     if (value !== 'static') {
       value = JSON.parse(value);
     }
@@ -44,7 +45,7 @@ const Example = (props) => {
           >
             <option value="true">true</option>
             <option value="false">false</option>
-            <option value="static">"static"</option>
+            <option value="static">&ldquo;static&ldquo;</option>
           </Input>
         </FormGroup>
         <FormGroup className="mx-2" check>
@@ -89,6 +90,10 @@ const Example = (props) => {
       </Modal>
     </div>
   );
+}
+
+Example.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Example;

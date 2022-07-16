@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <>
       <Navbar color="dark" className="my-2" dark>
@@ -28,7 +28,7 @@ const Example = (args) => {
       </Navbar>
     </>
   );
-};
+}
 
 export default Example;
 

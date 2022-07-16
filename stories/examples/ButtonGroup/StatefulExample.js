@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [cSelected, setCSelected] = useState([]);
   const [rSelected, setRSelected] = useState(null);
 
@@ -75,6 +75,6 @@ const Example = (props) => {
       <p>Selected: {JSON.stringify(cSelected)}</p>
     </div>
   );
-};
+}
 
 export default Example;

@@ -10,7 +10,7 @@ import {
   CardBody,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <CardDeck>
       <Card>
@@ -73,6 +73,6 @@ const Example = (props) => {
       </Card>
     </CardDeck>
   );
-};
+}
 
 export default Example;

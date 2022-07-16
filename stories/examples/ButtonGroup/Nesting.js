@@ -8,7 +8,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ButtonGroup className="my-2">
       <Button color="secondary">Left</Button>
@@ -27,7 +27,7 @@ const Example = (props) => {
       </ButtonGroup>
     </ButtonGroup>
   );
-};
+}
 
 export default Example;
 

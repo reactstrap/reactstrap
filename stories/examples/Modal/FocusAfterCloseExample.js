@@ -10,7 +10,7 @@ import {
   Form,
 } from 'reactstrap';
 
-const ModalFocusAfterClose = (props) => {
+function ModalFocusAfterClose(props) {
   const [open, setOpen] = useState(false);
   const [focusAfterClose, setFocusAfterClose] = useState(true);
 
@@ -40,9 +40,9 @@ const ModalFocusAfterClose = (props) => {
       </Form>
       <Modal returnFocusAfterClose={focusAfterClose} isOpen={open}>
         <ModalBody>
-          Observe the "Open" button. It will be focused after close when
-          "returnFocusAfterClose" is true and will not be focused if
-          "returnFocusAfterClose" is false.
+          Observe the &ldquo;Open&ldquo; button. It will be focused after close
+          when &ldquo;returnFocusAfterClose&ldquo; is true and will not be
+          focused if &ldquo;returnFocusAfterClose&ldquo; is false.
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>
@@ -52,6 +52,6 @@ const ModalFocusAfterClose = (props) => {
       </Modal>
     </div>
   );
-};
+}
 
 export default ModalFocusAfterClose;

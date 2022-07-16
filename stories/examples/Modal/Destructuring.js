@@ -1,4 +1,5 @@
 import Example from './DestructuringExample';
+// eslint-disable-next-line import/extensions
 import Destructuring from '!!raw-loader!./DestructuringExample';
 
 Example.parameters = {

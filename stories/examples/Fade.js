@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Fade } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [fadeIn, setFadeIn] = useState(true);
 
   const toggle = () => setFadeIn(!fadeIn);
@@ -16,6 +16,6 @@ const Example = (props) => {
       </Fade>
     </div>
   );
-};
+}
 
 export default Example;

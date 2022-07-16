@@ -9,7 +9,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [splitButtonOpen, setSplitButtonOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const Example = (props) => {
   return (
     <div>
       <InputGroup>
-        <Button>I'm a button</Button>
+        <Button>I&lsquo;m a button</Button>
         <Input />
       </InputGroup>
       <br />
@@ -51,10 +51,10 @@ const Example = (props) => {
           </DropdownMenu>
         </ButtonDropdown>
         <Input placeholder="and..." />
-        <Button color="secondary">I'm a button</Button>
+        <Button color="secondary">I&lsquo;m a button</Button>
       </InputGroup>
     </div>
   );
-};
+}
 
 export default Example;

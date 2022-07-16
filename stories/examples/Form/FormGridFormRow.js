@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <Row>
@@ -75,6 +75,6 @@ const Example = (props) => {
       <Button>Sign in</Button>
     </Form>
   );
-};
+}
 
 export default Example;

@@ -9,10 +9,10 @@ import {
   CardLink,
 } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Card style={{ width: '18rem' }}>
-      <img src="https://picsum.photos/300/200" alt="Card image" />
+      <img src="https://picsum.photos/300/200" alt="Card" />
       <CardBody>
         <CardTitle tag="h5">Card Title</CardTitle>
         <CardText>This is some text within a card body.</CardText>
@@ -28,7 +28,7 @@ const Example = (args) => {
       </CardBody>
     </Card>
   );
-};
+}
 
 export default Example;
 

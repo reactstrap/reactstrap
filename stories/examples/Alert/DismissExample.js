@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert } from 'reactstrap';
 
-const AlertExample = (props) => {
+function AlertExample(props) {
   const [visible, setVisible] = useState(true);
 
   const onDismiss = () => setVisible(false);
@@ -11,6 +11,6 @@ const AlertExample = (props) => {
       I am an alert and I can be dismissed!
     </Alert>
   );
-};
+}
 
 export default AlertExample;

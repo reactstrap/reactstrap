@@ -7,15 +7,17 @@ import {
 } from 'reactstrap';
 import Props from '../Props';
 
-const Example = () => (
-  <Props
-    components={[
-      ListGroup,
-      ListGroupItem,
-      ListGroupItemHeading,
-      ListGroupItemText,
-    ]}
-  />
-);
+function Example() {
+  return (
+    <Props
+      components={[
+        ListGroup,
+        ListGroupItem,
+        ListGroupItemHeading,
+        ListGroupItemText,
+      ]}
+    />
+  );
+}
 
 export default Example;

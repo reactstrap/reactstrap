@@ -1,7 +1,7 @@
 import React from 'react';
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <div className="p-3 my-2 rounded">
@@ -86,6 +86,6 @@ const Example = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default Example;

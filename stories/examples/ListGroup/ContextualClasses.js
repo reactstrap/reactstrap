@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ListGroup>
       <ListGroupItem color="success">Cras justo odio</ListGroupItem>
@@ -10,7 +10,7 @@ const Example = (props) => {
       <ListGroupItem color="danger">Porta ac consectetur ac</ListGroupItem>
     </ListGroup>
   );
-};
+}
 
 Example.parameters = {
   docs: {

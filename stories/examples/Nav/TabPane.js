@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 
-const Example = (props) => {
+function Example(props) {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = (tab) => {
@@ -80,6 +80,6 @@ const Example = (props) => {
       </TabContent>
     </div>
   );
-};
+}
 
 export default Example;

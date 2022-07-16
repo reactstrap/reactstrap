@@ -7,7 +7,7 @@ import {
   UncontrolledDropdown,
 } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <UncontrolledDropdown group>
       <Button color="primary">Primary</Button>
@@ -24,7 +24,7 @@ const Example = (args) => {
       </DropdownMenu>
     </UncontrolledDropdown>
   );
-};
+}
 
 export default Example;
 

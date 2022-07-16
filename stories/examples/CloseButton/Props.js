@@ -2,6 +2,8 @@ import React from 'react';
 import { CloseButton } from 'reactstrap';
 import Props from '../Props';
 
-const Example = () => <Props components={[CloseButton]} />;
+function Example() {
+  return <Props components={[CloseButton]} />;
+}
 
 export default Example;

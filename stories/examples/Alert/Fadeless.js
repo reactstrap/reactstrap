@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { UncontrolledAlert } from 'reactstrap';
 import Alert from '../../../src/Alert';
 
-export const AlertFadelessExample = (props) => {
+export function AlertFadelessExample(props) {
   const [visible, setVisible] = useState(true);
 
   const onDismiss = () => setVisible(false);
@@ -14,7 +14,7 @@ export const AlertFadelessExample = (props) => {
       </Alert>
     </div>
   );
-};
+}
 
 export function UncontrolledAlertFadelessExample() {
   return (

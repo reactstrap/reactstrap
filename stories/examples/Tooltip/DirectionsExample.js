@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Tooltip } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-const TooltipItem = (props) => {
+function TooltipItem(props) {
   const { item, id } = props;
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -22,9 +23,14 @@ const TooltipItem = (props) => {
       </Tooltip>
     </span>
   );
+}
+
+TooltipItem.propTypes = {
+  item: PropTypes.object,
+  id: PropTypes.string,
 };
 
-const TooltipExampleMulti = (props) => {
+function TooltipExampleMulti(props) {
   return (
     <>
       {[
@@ -45,10 +51,11 @@ const TooltipExampleMulti = (props) => {
           text: 'Tooltip on Right',
         },
       ].map((tooltip, i) => {
+        // eslint-disable-next-line react/no-array-index-key
         return <TooltipItem key={i} item={tooltip} id={i} />;
       })}
     </>
   );
-};
+}
 
 export default TooltipExampleMulti;

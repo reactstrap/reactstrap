@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ButtonGroup vertical>
       <Button color="danger">Button</Button>
@@ -9,7 +9,7 @@ const Example = (props) => {
       <Button color="success">Button</Button>
     </ButtonGroup>
   );
-};
+}
 
 export default Example;
 

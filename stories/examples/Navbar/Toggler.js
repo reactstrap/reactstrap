@@ -1,4 +1,5 @@
 import Example from './TogglerExample';
+// eslint-disable-next-line import/extensions
 import TogglerExample from '!!raw-loader!./TogglerExample';
 
 Example.parameters = {

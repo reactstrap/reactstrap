@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ButtonToolbar>
       <ButtonGroup className="me-2">
@@ -20,7 +20,7 @@ const Example = (props) => {
       </ButtonGroup>
     </ButtonToolbar>
   );
-};
+}
 
 export default Example;
 

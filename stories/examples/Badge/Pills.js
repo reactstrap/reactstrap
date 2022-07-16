@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Badge color="primary" pill>
@@ -30,7 +30,7 @@ const Example = (props) => {
       </Badge>
     </div>
   );
-};
+}
 
 export default Example;
 

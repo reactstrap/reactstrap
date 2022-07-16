@@ -1,4 +1,5 @@
 import Example from './DirectionsExample';
+// eslint-disable-next-line import/extensions
 import Directions from '!!raw-loader!./DirectionsExample';
 
 Example.parameters = {

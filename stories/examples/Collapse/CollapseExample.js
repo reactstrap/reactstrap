@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <React.StrictMode>
       <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>
         Toggle
       </Button>
@@ -20,8 +20,8 @@ const Example = (args) => {
           </CardBody>
         </Card>
       </Collapse>
-    </div>
+    </React.StrictMode>
   );
-};
+}
 
 export default Example;

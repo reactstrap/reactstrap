@@ -6,16 +6,14 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
   return (
     <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle color={props.color} caret>
-        Click Me
-      </DropdownToggle>
+      <DropdownToggle caret>Click Me</DropdownToggle>
       <DropdownMenu>
         <DropdownItem header>Header</DropdownItem>
         <DropdownItem disabled>Action</DropdownItem>
@@ -25,6 +23,6 @@ const Example = (props) => {
       </DropdownMenu>
     </ButtonDropdown>
   );
-};
+}
 
 export default Example;

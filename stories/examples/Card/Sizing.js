@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Row>
       <Col sm="6">
@@ -26,7 +26,7 @@ const Example = (props) => {
       </Col>
     </Row>
   );
-};
+}
 
 export default Example;
 
@@ -34,9 +34,7 @@ Example.parameters = {
   docs: {
     description: {
       story:
-        'Cards assume no specific width to start, so they’ll be 100% wide unless otherwise stated.\
-You can change this as needed with custom CSS, grid classes, grid Sass mixins, or utilities.\n\n\
-Using the grid, wrap cards in columns and rows as needed.',
+        'Cards assume no specific width to start, so they’ll be 100% wide unless otherwise stated.You can change this as needed with custom CSS, grid classes, grid Sass mixins, or utilities.\n\nUsing the grid, wrap cards in columns and rows as needed.',
     },
   },
 };

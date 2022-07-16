@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Table hover>
       <thead>
@@ -34,7 +34,7 @@ const Example = (props) => {
       </tbody>
     </Table>
   );
-};
+}
 
 export default Example;
 

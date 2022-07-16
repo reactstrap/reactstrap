@@ -1,7 +1,7 @@
 import React from 'react';
 import { Progress } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Progress animated value={2 * 5} className="my-3" />
@@ -17,7 +17,7 @@ const Example = (props) => {
       </Progress>
     </div>
   );
-};
+}
 
 export default Example;
 

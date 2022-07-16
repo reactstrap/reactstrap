@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <FormGroup row>
@@ -33,6 +33,6 @@ const Example = (props) => {
       </FormGroup>
     </Form>
   );
-};
+}
 
 export default Example;

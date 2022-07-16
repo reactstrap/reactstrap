@@ -1,4 +1,5 @@
 import Example from './StatefulExample';
+// eslint-disable-next-line import/extensions
 import ButtonStateful from '!!raw-loader!./StatefulExample';
 
 export default Example;

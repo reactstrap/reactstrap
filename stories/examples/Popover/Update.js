@@ -6,8 +6,9 @@ import {
   PopoverBody,
   Collapse,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-const PopoverContent = ({ scheduleUpdate }) => {
+function PopoverContent({ scheduleUpdate }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -28,9 +29,9 @@ const PopoverContent = ({ scheduleUpdate }) => {
       </PopoverBody>
     </>
   );
-};
+}
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div className="text-center">
       <Button id="ScheduleUpdateButton" type="button">
@@ -47,6 +48,10 @@ const Example = (props) => {
       </UncontrolledPopover>
     </div>
   );
+}
+
+PopoverContent.propTypes = {
+  scheduleUpdate: PropTypes.func,
 };
 
 export default Example;

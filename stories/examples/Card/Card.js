@@ -9,10 +9,10 @@ import {
 } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Card {...args} style={{ width: '18rem' }}>
-      <img src="https://picsum.photos/300/200" alt="Card image" />
+      <img src="https://picsum.photos/300/200" alt="Sample" />
       <CardBody>
         <CardTitle tag="h5">Card title</CardTitle>
         <CardSubtitle tag="h6" className="mb-2 text-muted">
@@ -20,13 +20,13 @@ const Example = (args) => {
         </CardSubtitle>
         <CardText>
           Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          bulk of the card&lsquo;s content.
         </CardText>
         <Button>Button</Button>
       </CardBody>
     </Card>
   );
-};
+}
 
 Example.args = {
   color: undefined,

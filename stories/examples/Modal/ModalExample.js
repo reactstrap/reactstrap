@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -33,6 +33,6 @@ const Example = (args) => {
       </Modal>
     </div>
   );
-};
+}
 
 export default Example;

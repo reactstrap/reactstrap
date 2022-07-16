@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <>
       <ButtonGroup size="lg" className="my-2">
@@ -23,7 +23,7 @@ const Example = (props) => {
       </ButtonGroup>
     </>
   );
-};
+}
 
 export default Example;
 

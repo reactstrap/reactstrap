@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <FormGroup>
@@ -123,7 +123,7 @@ const Example = (props) => {
         <Input type="file" name="file" id="exampleFile" />
         <FormText color="muted">
           This is some placeholder block-level help text for the above input.
-          It's a bit lighter and easily wraps to a new line.
+          It&lsquo;s a bit lighter and easily wraps to a new line.
         </FormText>
       </FormGroup>
       <FormGroup>
@@ -132,7 +132,7 @@ const Example = (props) => {
       </FormGroup>
       <FormGroup check>
         <Input type="radio" /> Option one is this and that—be sure to
-        <Label check>include why it's great</Label>
+        <Label check>include why it&lsquo;s great</Label>
       </FormGroup>
       <FormGroup check>
         <Input type="checkbox" />
@@ -140,6 +140,6 @@ const Example = (props) => {
       </FormGroup>
     </Form>
   );
-};
+}
 
 export default Example;

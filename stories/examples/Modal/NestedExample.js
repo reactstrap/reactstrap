@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ModalExample = (props) => {
-  const { className } = props;
-
+function ModalExample(props) {
   const [modal, setModal] = useState(false);
   const [nestedModal, setNestedModal] = useState(false);
   const [closeAll, setCloseAll] = useState(false);
@@ -23,7 +21,7 @@ const ModalExample = (props) => {
       <Button color="danger" onClick={toggle}>
         Click Me
       </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -65,6 +63,6 @@ const ModalExample = (props) => {
       </Modal>
     </div>
   );
-};
+}
 
 export default ModalExample;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { CloseButton } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <div className="bg-dark p-3">
       <CloseButton variant="white" />
     </div>
   );
-};
+}
 
 Example.parameters = {
   docs: {

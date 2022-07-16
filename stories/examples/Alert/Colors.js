@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <>
       {colors.map((color) => (
@@ -12,6 +12,6 @@ const Example = (props) => {
       ))}
     </>
   );
-};
+}
 
 export default Example;

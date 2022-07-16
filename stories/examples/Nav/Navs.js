@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Nav {...args}>
       <NavItem>
@@ -19,7 +19,7 @@ const Example = (args) => {
       </NavItem>
     </Nav>
   );
-};
+}
 
 Example.args = {
   tabs: false,

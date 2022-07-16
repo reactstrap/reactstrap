@@ -1,4 +1,5 @@
 import Example from './AutoHideExample';
+// eslint-disable-next-line import/extensions
 import AutoHide from '!!raw-loader!./AutoHideExample';
 
 Example.parameters = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <>
       <Card className="my-2">
@@ -44,7 +44,7 @@ const Example = (props) => {
       </Card>
     </>
   );
-};
+}
 
 export default Example;
 

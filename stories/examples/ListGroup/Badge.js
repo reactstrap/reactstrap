@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem, Badge } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ListGroup>
       <ListGroupItem className="justify-content-between">
@@ -15,7 +15,7 @@ const Example = (props) => {
       </ListGroupItem>
     </ListGroup>
   );
-};
+}
 
 Example.parameters = {
   docs: {

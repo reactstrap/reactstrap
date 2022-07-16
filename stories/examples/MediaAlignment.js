@@ -1,7 +1,7 @@
 import React from 'react';
 import { Media } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Media>
@@ -54,6 +54,6 @@ const Example = (props) => {
       </Media>
     </div>
   );
-};
+}
 
 export default Example;

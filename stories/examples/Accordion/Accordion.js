@@ -1,5 +1,6 @@
 import Example from './AccordionExample';
-import AccordionCode from '!!raw-loader!./AccordionExample.js';
+// eslint-disable-next-line import/extensions
+import AccordionCode from '!!raw-loader!./AccordionExample';
 
 export default Example;
 

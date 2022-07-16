@@ -1,13 +1,13 @@
 import React from 'react';
 import { Input } from 'reactstrap';
 
-const Example = ({ direction, ...args }) => {
+function Example({ ...args }) {
   return (
     <div>
       <Input {...args} />
     </div>
   );
-};
+}
 
 Example.args = {
   type: 'text',

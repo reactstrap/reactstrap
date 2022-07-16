@@ -1,7 +1,7 @@
 import React from 'react';
 import { Toast, ToastBody, ToastHeader, Spinner } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Toast>
@@ -54,6 +54,6 @@ const Example = (props) => {
       </Toast>
     </div>
   );
-};
+}
 
 export default Example;

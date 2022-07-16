@@ -9,7 +9,7 @@ import {
   CardImg,
 } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Card style={{ width: '18rem' }}>
       <CardImg
@@ -30,7 +30,7 @@ const Example = (args) => {
       </CardBody>
     </Card>
   );
-};
+}
 
 Example.args = {
   animation: 'wave',

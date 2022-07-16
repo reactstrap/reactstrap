@@ -1,4 +1,5 @@
 import Example from './SizingExample';
+// eslint-disable-next-line import/extensions
 import DropdownSizing from '!!raw-loader!./SizingExample';
 
 Example.parameters = {

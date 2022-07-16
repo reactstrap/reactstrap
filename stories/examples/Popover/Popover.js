@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const toggle = () => setPopoverOpen(!popoverOpen);
@@ -21,7 +21,7 @@ const Example = (args) => {
       </Popover>
     </div>
   );
-};
+}
 
 Example.args = {
   flip: true,

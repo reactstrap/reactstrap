@@ -1,4 +1,5 @@
 import Example from './FadelessExample';
+// eslint-disable-next-line import/extensions
 import Fadeless from '!!raw-loader!./FadelessExample';
 
 Example.parameters = {

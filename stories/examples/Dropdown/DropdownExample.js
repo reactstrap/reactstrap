@@ -5,8 +5,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-const Example = ({ direction, ...args }) => {
+function Example({ direction, ...args }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
@@ -28,6 +29,10 @@ const Example = ({ direction, ...args }) => {
       </Dropdown>
     </div>
   );
+}
+
+Example.propTypes = {
+  direction: PropTypes.string,
 };
 
 export default Example;
