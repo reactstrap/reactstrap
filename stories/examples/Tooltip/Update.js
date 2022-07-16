@@ -41,5 +41,4 @@ TooltipContent.propTypes = {
   scheduleUpdate: PropTypes.func,
 };
 
-
 export default Example;

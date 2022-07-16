@@ -15,9 +15,9 @@ function Example(props) {
           <AccordionBody accordionId="1">
             <strong>This is the first item&lsquo;s accordion body.</strong>
             You can modify any of this with custom CSS or overriding our default
-            variables. It&lsquo;s also worth noting that just about any HTML can go
-            within the <code>.accordion-body</code>, though the transition does
-            limit overflow.
+            variables. It&lsquo;s also worth noting that just about any HTML can
+            go within the <code>.accordion-body</code>, though the transition
+            does limit overflow.
           </AccordionBody>
         </AccordionItem>
         <AccordionItem>
@@ -25,9 +25,9 @@ function Example(props) {
           <AccordionBody accordionId="2">
             <strong>This is the second item&lsquo;s accordion body.</strong>
             You can modify any of this with custom CSS or overriding our default
-            variables. It&lsquo;s also worth noting that just about any HTML can go
-            within the <code>.accordion-body</code>, though the transition does
-            limit overflow.
+            variables. It&lsquo;s also worth noting that just about any HTML can
+            go within the <code>.accordion-body</code>, though the transition
+            does limit overflow.
           </AccordionBody>
         </AccordionItem>
         <AccordionItem>
@@ -35,9 +35,9 @@ function Example(props) {
           <AccordionBody accordionId="3">
             <strong>This is the third item&lsquo;s accordion body.</strong>
             You can modify any of this with custom CSS or overriding our default
-            variables. It&lsquo;s also worth noting that just about any HTML can go
-            within the <code>.accordion-body</code>, though the transition does
-            limit overflow.
+            variables. It&lsquo;s also worth noting that just about any HTML can
+            go within the <code>.accordion-body</code>, though the transition
+            does limit overflow.
           </AccordionBody>
         </AccordionItem>
       </UncontrolledAccordion>
