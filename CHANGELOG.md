@@ -137,6 +137,15 @@
 
 
 
+### [9.1.2](https://www.github.com/reactstrap/reactstrap/compare/v9.1.1...v9.1.2) (2022-07-13)
+
+
+### Bug Fixes
+
+* **#2545:** change proptype of Spinner size ([2175cbb](https://www.github.com/reactstrap/reactstrap/commit/2175cbb8f1df23b851a693a968021dfa8be15a7b))
+* **#2559:** Removed unused react import from stories ([a3ccab5](https://www.github.com/reactstrap/reactstrap/commit/a3ccab5fb737b6f3c3607ddee57f2fb0524448f5))
+* **exports:** Exports CloseButtom from index.d.ts ([ba815ee](https://www.github.com/reactstrap/reactstrap/commit/ba815eeb3999134ae5ae3e12a1dfdcbfaab00deb))
+
 ### [9.1.1](https://www.github.com/reactstrap/reactstrap/compare/v9.1.0...v9.1.1) (2022-06-08)
 
 
