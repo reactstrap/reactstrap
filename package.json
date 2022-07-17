@@ -305,7 +305,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.30.0",
     "holderjs": "^2.9.3",
-    "husky": ">=6",
+    "husky": "^7.0.4",
     "json-loader": "^0.5.7",
     "lint-staged": ">=10",
     "microbundle": "^0.13.3",
