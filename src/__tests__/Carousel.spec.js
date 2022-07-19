@@ -58,12 +58,12 @@ describe('Carousel', () => {
     describe('transitions', () => {
       it('should add the appropriate classes when entering right', () => {
         const wrapper = mount(<CarouselItem in={false} />, {
-          context: { direction: 'end' },
+          context: { direction: 'start' },
         });
 
         wrapper.setProps({ in: true });
         expect(wrapper.update().find('div').prop('className')).toEqual(
-          'carousel-item carousel-item-start carousel-item-next',
+          'carousel-item carousel-item-end carousel-item-prev',
         );
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual(
@@ -71,7 +71,7 @@ describe('Carousel', () => {
         );
         wrapper.setProps({ in: false });
         expect(wrapper.update().find('div').prop('className')).toEqual(
-          'carousel-item active carousel-item-start',
+          'carousel-item active carousel-item-end',
         );
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual(
@@ -139,7 +139,7 @@ describe('Carousel', () => {
         <CarouselIndicators
           items={items}
           activeIndex={0}
-          onClickHandler={() => {}}
+          onClickHandler={() => { }}
         />,
       );
       expect(wrapper.find('div').length).toEqual(1);
@@ -151,7 +151,7 @@ describe('Carousel', () => {
         <CarouselIndicators
           items={items}
           activeIndex={0}
-          onClickHandler={() => {}}
+          onClickHandler={() => { }}
         />,
       );
       expect(wrapper.find('.active').hostNodes().length).toEqual(1);
@@ -174,7 +174,7 @@ describe('Carousel', () => {
   describe('controls', () => {
     it('should render an anchor tag', () => {
       const wrapper = mount(
-        <CarouselControl direction="next" onClickHandler={() => {}} />,
+        <CarouselControl direction="next" onClickHandler={() => { }} />,
       );
       expect(wrapper.find('a').length).toEqual(1);
     });
@@ -203,11 +203,11 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           <CarouselIndicators
             items={items}
             activeIndex={0}
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           {slides}
         </Carousel>,
@@ -229,17 +229,17 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
           <CarouselControl
             direction="prev"
             directionText="Previous"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           <CarouselControl
             direction="next"
             directionText="Next"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
         </Carousel>,
       );
@@ -260,7 +260,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>,
       );
@@ -282,22 +282,22 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           <CarouselIndicators
             items={items}
             activeIndex={0}
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           {slides}
           <CarouselControl
             direction="prev"
             directionText="Previous"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           <CarouselControl
             direction="next"
             directionText="Next"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
         </Carousel>,
       );
@@ -319,27 +319,27 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           {null}
           {true}
           {false}
           {undefined}
-          {(() => {})()}
+          {(() => { })()}
           <CarouselIndicators
             items={items}
             activeIndex={0}
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           {slides}
           <CarouselControl
             direction="prev"
             directionText="Previous"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           <CarouselControl
             direction="next"
             directionText="Next"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
         </Carousel>,
       );
@@ -353,7 +353,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>,
       );
@@ -367,7 +367,7 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel dark activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel dark activeIndex={0} next={() => { }} previous={() => { }}>
           {slides}
         </Carousel>,
       );
@@ -390,22 +390,22 @@ describe('Carousel', () => {
       });
 
       const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+        <Carousel activeIndex={0} next={() => { }} previous={() => { }}>
           <CarouselIndicators
             items={items}
             activeIndex={0}
-            onClickHandler={() => function () {}}
+            onClickHandler={() => function () { }}
           />
           {slides}
           <CarouselControl
             direction="prev"
             directionText="Previous"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           <CarouselControl
             direction="next"
             directionText="Next"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
         </Carousel>,
       );
@@ -430,8 +430,8 @@ describe('Carousel', () => {
         <Carousel
           interval={1000}
           activeIndex={0}
-          next={() => {}}
-          previous={() => {}}
+          next={() => { }}
+          previous={() => { }}
         >
           {slides}
         </Carousel>,
@@ -457,8 +457,8 @@ describe('Carousel', () => {
         <Carousel
           interval={1000}
           activeIndex={1}
-          next={() => {}}
-          previous={() => {}}
+          next={() => { }}
+          previous={() => { }}
         >
           {slides}
         </Carousel>,
@@ -484,8 +484,8 @@ describe('Carousel', () => {
         <Carousel
           interval={1000}
           activeIndex={2}
-          next={() => {}}
-          previous={() => {}}
+          next={() => { }}
+          previous={() => { }}
         >
           {slides}
         </Carousel>,
@@ -511,24 +511,24 @@ describe('Carousel', () => {
         <Carousel
           interval={1000}
           activeIndex={2}
-          next={() => {}}
-          previous={() => {}}
+          next={() => { }}
+          previous={() => { }}
         >
           <CarouselIndicators
             items={items}
             activeIndex={2}
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           {slides}
           <CarouselControl
             direction="prev"
             directionText="Previous"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
           <CarouselControl
             direction="next"
             directionText="Next"
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
         </Carousel>,
       );
@@ -554,8 +554,8 @@ describe('Carousel', () => {
         <Carousel
           interval={1000}
           activeIndex={0}
-          next={() => {}}
-          previous={() => {}}
+          next={() => { }}
+          previous={() => { }}
         >
           {slides}
         </Carousel>,
@@ -582,24 +582,24 @@ describe('Carousel', () => {
       <Carousel
         interval={1000}
         activeIndex={0}
-        next={() => {}}
-        previous={() => {}}
+        next={() => { }}
+        previous={() => { }}
       >
         <CarouselIndicators
           items={items}
           activeIndex={0}
-          onClickHandler={() => {}}
+          onClickHandler={() => { }}
         />
         {slides}
         <CarouselControl
           direction="prev"
           directionText="Previous"
-          onClickHandler={() => {}}
+          onClickHandler={() => { }}
         />
         <CarouselControl
           direction="next"
           directionText="Next"
-          onClickHandler={() => {}}
+          onClickHandler={() => { }}
         />
       </Carousel>,
     );
@@ -626,7 +626,7 @@ describe('Carousel', () => {
       const wrapper = mount(
         <Carousel
           next={next}
-          previous={() => {}}
+          previous={() => { }}
           interval={1000}
           activeIndex={0}
         >
@@ -654,7 +654,7 @@ describe('Carousel', () => {
       const wrapper = mount(
         <Carousel
           next={next}
-          previous={() => {}}
+          previous={() => { }}
           interval={1000}
           activeIndex={0}
           ride="carousel"
@@ -683,7 +683,7 @@ describe('Carousel', () => {
       const wrapper = mount(
         <Carousel
           next={next}
-          previous={() => {}}
+          previous={() => { }}
           interval={1000}
           activeIndex={0}
           ride="carousel"
@@ -712,7 +712,7 @@ describe('Carousel', () => {
       const wrapper = mount(
         <Carousel
           next={next}
-          previous={() => {}}
+          previous={() => { }}
           activeIndex={0}
           interval={false}
         >
@@ -740,7 +740,7 @@ describe('Carousel', () => {
       const wrapper = mount(
         <Carousel
           next={next}
-          previous={() => {}}
+          previous={() => { }}
           activeIndex={0}
           ride="carousel"
         >
@@ -767,7 +767,7 @@ describe('Carousel', () => {
       const wrapper = mount(
         <Carousel
           next={next}
-          previous={() => {}}
+          previous={() => { }}
           interval="1000"
           activeIndex={0}
           ride="carousel"
