@@ -2,13 +2,7 @@ import * as React from 'react';
 import type { Modifier, Boundary, Placement } from '@popperjs/core';
 import { CSSModule } from './utils';
 
-interface PopoverChildrenRenderProps {
-  update: () => void;
-}
-
-export type PopoverChildren =
-  | ((props: PopoverChildrenRenderProps) => React.ReactNode)
-  | React.ReactNode;
+export type PopoverChildren = React.ReactNode;
 
 export interface PopoverProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: any;

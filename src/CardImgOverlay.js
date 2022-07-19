@@ -10,25 +10,18 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
-const CardImgOverlay = (props) => {
-  const {
-    className,
+function CardImgOverlay(props) {
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'card-img-overlay'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'card-img-overlay'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
-};
+
+  return <Tag {...attributes} className={classes} />;
+}
 
 CardImgOverlay.propTypes = propTypes;
 CardImgOverlay.defaultProps = defaultProps;

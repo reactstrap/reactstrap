@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from './Collapse';
-import { omit, findDOMElements, defaultToggleEvents, addMultipleEventListeners } from './utils';
+import {
+  omit,
+  findDOMElements,
+  defaultToggleEvents,
+  addMultipleEventListeners,
+} from './utils';
 
 const omitKeys = ['toggleEvents', 'defaultOpen'];
 
 const propTypes = {
+  /** set if Collapse is open by default */
   defaultOpen: PropTypes.bool,
+  /** id of the element that should trigger toggle */
   toggler: PropTypes.string.isRequired,
-  toggleEvents: PropTypes.arrayOf(PropTypes.string)
+  /** Events that should trigger the toggle */
+  toggleEvents: PropTypes.arrayOf(PropTypes.string),
 };
 
 const defaultProps = {
-  toggleEvents: defaultToggleEvents
+  toggleEvents: defaultToggleEvents,
 };
 
 class UncontrolledCollapse extends Component {
@@ -32,7 +40,7 @@ class UncontrolledCollapse extends Component {
       this.removeEventListeners = addMultipleEventListeners(
         this.togglers,
         this.toggle,
-        this.props.toggleEvents
+        this.props.toggleEvents,
       );
     }
   }
@@ -49,7 +57,9 @@ class UncontrolledCollapse extends Component {
   }
 
   render() {
-    return <Collapse isOpen={this.state.isOpen} {...omit(this.props, omitKeys)} />;
+    return (
+      <Collapse isOpen={this.state.isOpen} {...omit(this.props, omitKeys)} />
+    );
   }
 }
 

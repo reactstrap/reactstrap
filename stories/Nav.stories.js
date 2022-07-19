@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/Nav',
   parameters: {
@@ -15,9 +13,11 @@ export default {
   }
 };
 
-export { default as Navs } from './examples/Navs';
-export { default as Pills } from './examples/NavPills';
-export { default as Tabs } from './examples/NavTabs';
-export { default as TabPane } from './examples/Tabs';
-export { default as Vertical } from './examples/NavVertical';
-export { default as Props } from './examples/NavProps';
+export { default as Navs } from './examples/Nav/Navs';
+export { default as Vertical } from './examples/Nav/Vertical';
+export { default as Tabs } from './examples/Nav/Tabs';
+export { default as Pills } from './examples/Nav/Pills';
+export { default as Fill } from './examples/Nav/Fill';
+export { default as Justify } from './examples/Nav/Justify';
+export { default as TabPane } from './examples/Nav/TabPane';
+export { default as Props } from './examples/Nav/Props';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ToastHeader } from '../';
+import { ToastHeader } from '..';
 
 describe('ToastHeader', () => {
   it('should render with "toast-header" class', () => {
@@ -18,7 +18,11 @@ describe('ToastHeader', () => {
   });
 
   it('should render close button', () => {
-    const wrapper = shallow(<ToastHeader toggle={() => { }} className="other">Yo!</ToastHeader>);
+    const wrapper = shallow(
+      <ToastHeader toggle={() => {}} className="other">
+        Yo!
+      </ToastHeader>,
+    );
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('toast-header')).toBe(true);

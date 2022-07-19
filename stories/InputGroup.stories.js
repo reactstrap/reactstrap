@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/InputGroup',
   parameters: {
@@ -15,9 +13,9 @@ export default {
   }
 };
 
-export { default as InputGroup } from './examples/InputGroupOverview';
-export { default as InputGroupAddon } from './examples/InputGroupAddon';
-export { default as InputGroupButton } from './examples/InputGroupButton';
-export { default as InputGroupButtonShorthand } from './examples/InputGroupButtonShorthand';
-export { default as Sizing } from './examples/InputGroupSizing';
-export { default as Props } from './examples/InputGroupProps';
+export { default as InputGroup } from './examples/InputGroup/Overview';
+export { default as Sizing } from './examples/InputGroup/Sizing';
+export { default as MultipleAddons } from './examples/InputGroup/Addon';
+export { default as ButtonAddons } from './examples/InputGroup/Button';
+export { default as ButtonShorthand } from './examples/InputGroup/ButtonShorthand';
+export { default as Props } from './examples/InputGroup/Props';

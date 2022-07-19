@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/Pagination',
   parameters: {
@@ -15,8 +13,8 @@ export default {
   }
 };
 
-export { default as Pagination } from './examples/Pagination';
-export { default as Large } from './examples/PaginationSizingLarge';
-export { default as Small } from './examples/PaginationSizingSmall';
-export { default as State } from './examples/PaginationState';
-export { default as Props } from './examples/PaginationProps';
+export { default as Pagination } from './examples/Pagination/Pagination';
+export { default as Large } from './examples/Pagination/SizingLarge';
+export { default as Small } from './examples/Pagination/SizingSmall';
+export { default as State } from './examples/Pagination/State';
+export { default as Props } from './examples/Pagination/Props';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Popper, Reference } from 'react-popper';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '../';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '..';
 import { keyCodes } from '../utils';
 
 describe('Dropdown', () => {
@@ -11,23 +11,33 @@ describe('Dropdown', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => { isOpen = !isOpen; };
+    toggle = () => {
+      isOpen = !isOpen;
+    };
     element = document.createElement('div');
     document.body.appendChild(element);
   });
 
   afterEach(() => {
-    if (jest.isMockFunction(Dropdown.prototype.componentDidUpdate)) Dropdown.prototype.componentDidUpdate.mockRestore();
-    if (jest.isMockFunction(Dropdown.prototype.handleProps)) Dropdown.prototype.handleProps.mockRestore();
-    if (jest.isMockFunction(Dropdown.prototype.toggle)) Dropdown.prototype.toggle.mockRestore();
-    if (jest.isMockFunction(Dropdown.prototype.handleDocumentClick)) Dropdown.prototype.handleDocumentClick.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.componentDidUpdate))
+      Dropdown.prototype.componentDidUpdate.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.handleProps))
+      Dropdown.prototype.handleProps.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.toggle))
+      Dropdown.prototype.toggle.mockRestore();
+    if (jest.isMockFunction(Dropdown.prototype.handleDocumentClick))
+      Dropdown.prototype.handleDocumentClick.mockRestore();
     document.body.removeChild(element);
     document.body.innerHTML = '';
     element = null;
   });
 
   it('should render a single child', () => {
-    const wrapper = mount(<Dropdown isOpen={isOpen} toggle={toggle}>Ello world</Dropdown>);
+    const wrapper = mount(
+      <Dropdown isOpen={isOpen} toggle={toggle}>
+        Ello world
+      </Dropdown>,
+    );
 
     expect(wrapper.text()).toBe('Ello world');
     expect(wrapper.find('.dropdown').hostNodes().length).toBe(1);
@@ -41,7 +51,7 @@ describe('Dropdown', () => {
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
         </DropdownMenu>
-      </Dropdown>
+      </Dropdown>,
     );
 
     expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');
@@ -59,11 +69,11 @@ describe('Dropdown', () => {
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
         </DropdownMenu>
-      </Dropdown>
+      </Dropdown>,
     );
     const instance = wrapper.instance();
 
-    instance.toggle({ preventDefault: () => { } });
+    instance.toggle({ preventDefault: () => {} });
     expect(props.toggle).not.toHaveBeenCalled();
   });
 
@@ -75,7 +85,7 @@ describe('Dropdown', () => {
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
       expect(wrapper.find('.dropdown').prop('inNavbar')).toBe(undefined);
@@ -93,7 +103,7 @@ describe('Dropdown', () => {
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
       const instance = wrapper.instance();
@@ -119,7 +129,7 @@ describe('Dropdown', () => {
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
       const instance = wrapper.instance();
 
@@ -146,7 +156,7 @@ describe('Dropdown', () => {
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
       expect(Dropdown.prototype.componentWillUnmount.mock.calls.length).toBe(0);
@@ -171,7 +181,7 @@ describe('Dropdown', () => {
           <DropdownMenu right>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
       expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
@@ -194,7 +204,9 @@ describe('Dropdown', () => {
           <DropdownMenu right>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
@@ -219,7 +231,9 @@ describe('Dropdown', () => {
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
@@ -243,7 +257,9 @@ describe('Dropdown', () => {
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -264,11 +280,15 @@ describe('Dropdown', () => {
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.instance().handleDocumentClick({ type: 'keyup', which: keyCodes.tab });
+      wrapper
+        .instance()
+        .handleDocumentClick({ type: 'keyup', which: keyCodes.tab });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
       wrapper.detach();
@@ -287,11 +307,16 @@ describe('Dropdown', () => {
             <DropdownItem id="test">Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#test').hostNodes().simulate('keydown', { which: keyCodes.esc });
+      wrapper
+        .find('#test')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.esc });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
@@ -309,11 +334,16 @@ describe('Dropdown', () => {
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
@@ -331,11 +361,16 @@ describe('Dropdown', () => {
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
 
@@ -356,13 +391,17 @@ describe('Dropdown', () => {
             <DropdownItem divider />
             <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element }
+        </Dropdown>,
+        { attachTo: element },
       );
 
       expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.enter });
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.enter });
       jest.runAllTimers();
 
       expect(focus.mock.calls.length).toBe(1);
@@ -385,13 +424,17 @@ describe('Dropdown', () => {
             <DropdownItem divider />
             <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element }
+        </Dropdown>,
+        { attachTo: element },
       );
 
       expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
       jest.runAllTimers();
 
       expect(focus.mock.calls.length).toBe(1);
@@ -414,13 +457,17 @@ describe('Dropdown', () => {
             <DropdownItem divider />
             <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element }
+        </Dropdown>,
+        { attachTo: element },
       );
 
       expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
       jest.runAllTimers();
 
       expect(focus.mock.calls.length).toBe(1);
@@ -440,16 +487,23 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
             <DropdownItem onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem onFocus={focus3}>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -470,16 +524,23 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
             <DropdownItem onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem onFocus={focus3}>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.n, ctrlKey: true });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.n, ctrlKey: true });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -500,12 +561,16 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Reactstrap</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Reactstrap
+            </DropdownItem>
             <DropdownItem onFocus={focus2}>4</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem onFocus={focus3}> Lyfe</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
@@ -530,16 +595,25 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem onFocus={focus3}>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#second').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('#second')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -560,16 +634,25 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem onFocus={focus3}>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#second').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('#second')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(1);
@@ -590,16 +673,25 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem onFocus={focus3}>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#second').hostNodes().simulate('keydown', { which: keyCodes.p, ctrlKey: true });
+      wrapper
+        .find('#second')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.p, ctrlKey: true });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(1);
@@ -620,16 +712,27 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem id="third" onFocus={focus3}>
+              Test
+            </DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#third').hostNodes().simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('#third')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(1);
@@ -650,16 +753,27 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem id="third" onFocus={focus3}>
+              Test
+            </DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -680,17 +794,30 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem id="zero" disabled>Test</DropdownItem>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="zero" disabled>
+              Test
+            </DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem id="third" onFocus={focus3}>
+              Test
+            </DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.home });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.home });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(1);
@@ -711,17 +838,30 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem id="zero" disabled>Test</DropdownItem>
-            <DropdownItem id="first" onFocus={focus1}>Test</DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>Test</DropdownItem>
+            <DropdownItem id="zero" disabled>
+              Test
+            </DropdownItem>
+            <DropdownItem id="first" onFocus={focus1}>
+              Test
+            </DropdownItem>
+            <DropdownItem id="second" onFocus={focus2}>
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem id="third" onFocus={focus3}>
+              Test
+            </DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.end });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.end });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(focus1.mock.calls.length).toBe(0);
@@ -740,16 +880,23 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem href="#" id="first" onClick={click}>Test</DropdownItem>
+            <DropdownItem href="#" id="first" onClick={click}>
+              Test
+            </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
       expect(click.mock.calls.length).toBe(1);
@@ -766,16 +913,23 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem id="first" onClick={click}>Test</DropdownItem>
+            <DropdownItem id="first" onClick={click}>
+              Test
+            </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
       expect(click.mock.calls.length).toBe(1);
@@ -793,18 +947,31 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><input id="input" /></DropdownItem>
+            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>
+              <input id="input" />
+            </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.space });
+      wrapper
+        .find('#input')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('#input')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('#input')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -823,18 +990,31 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}><textarea id="input" /></DropdownItem>
+            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>
+              <textarea id="input" />
+            </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#input').hostNodes().simulate('keydown', { which: keyCodes.space });
+      wrapper
+        .find('#input')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('#input')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('#input')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -853,15 +1033,20 @@ describe('Dropdown', () => {
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem id="first">First</DropdownItem>
-            <DropdownItem id="second" onFocus={focus}>Second</DropdownItem>
+            <DropdownItem id="second" onFocus={focus}>
+              Second
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element }
+        { attachTo: element },
       );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.tab });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.tab });
 
       expect(focus.mock.calls.length).toBe(0);
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
@@ -879,18 +1064,31 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle} disabled>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
+            <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>
+              Test
+            </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -909,18 +1107,41 @@ describe('Dropdown', () => {
         <Dropdown isOpen={isOpen} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem disabled tag="div" id="first" onClick={click} onFocus={focus}>Test</DropdownItem>
-            <DropdownItem disabled id="second">Test</DropdownItem>
+            <DropdownItem
+              disabled
+              tag="div"
+              id="first"
+              onClick={click}
+              onFocus={focus}
+            >
+              Test
+            </DropdownItem>
+            <DropdownItem disabled id="second">
+              Test
+            </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem disabled id="third">Test</DropdownItem>
+            <DropdownItem disabled id="third">
+              Test
+            </DropdownItem>
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.up });
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.down });
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: keyCodes.space });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.up });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.down });
+      wrapper
+        .find('#first')
+        .hostNodes()
+        .simulate('keydown', { which: keyCodes.space });
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
       expect(click.mock.calls.length).toBe(0);
@@ -940,17 +1161,25 @@ describe('Dropdown', () => {
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      const event = { preventDefault: ()=>{} };
+      const event = { preventDefault: () => {} };
       const spy = jest.spyOn(event, 'preventDefault');
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 116/*f5 key*/});
-      expect(spy).not.toHaveBeenCalled(); 
-      
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 16/*shift key*/});
-      expect(spy).not.toHaveBeenCalled();  
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: 116 /* f5 key */ });
+      expect(spy).not.toHaveBeenCalled();
+
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: 16 /* shift key */ });
+      expect(spy).not.toHaveBeenCalled();
 
       wrapper.detach();
     });
@@ -966,34 +1195,60 @@ describe('Dropdown', () => {
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </Dropdown>, { attachTo: element });
+        </Dropdown>,
+        { attachTo: element },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      const event = { preventDefault: ()=>{} };
+      const event = { preventDefault: () => {} };
       const spy = jest.spyOn(event, 'preventDefault');
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.down});
-      expect(spy).toHaveBeenCalled();      
-
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.up});
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: keyCodes.down });
       expect(spy).toHaveBeenCalled();
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.esc});
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: keyCodes.up });
       expect(spy).toHaveBeenCalled();
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.end});
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: keyCodes.esc });
       expect(spy).toHaveBeenCalled();
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.home});
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: keyCodes.end });
       expect(spy).toHaveBeenCalled();
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: keyCodes.enter});
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: keyCodes.home });
       expect(spy).toHaveBeenCalled();
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 65 /*A key*/});
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: keyCodes.enter });
       expect(spy).toHaveBeenCalled();
 
-      wrapper.find('[aria-haspopup]').hostNodes().simulate('keydown', {...event, which: 90 /*A key*/});
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: 65 /* A key */ });
+      expect(spy).toHaveBeenCalled();
+
+      wrapper
+        .find('[aria-haspopup]')
+        .hostNodes()
+        .simulate('keydown', { ...event, which: 90 /* A key */ });
       expect(spy).toHaveBeenCalled();
 
       wrapper.detach();
@@ -1007,7 +1262,7 @@ describe('Dropdown', () => {
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
         </DropdownMenu>
-      </Dropdown>
+      </Dropdown>,
     );
 
     const large = mount(
@@ -1016,7 +1271,7 @@ describe('Dropdown', () => {
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
         </DropdownMenu>
-      </Dropdown>
+      </Dropdown>,
     );
 
     expect(small.find('.btn-group-sm').hostNodes().length).toBe(1);
@@ -1025,7 +1280,11 @@ describe('Dropdown', () => {
 
   describe('Dropdown with nav', () => {
     it('should render a single child', () => {
-      const wrapper = mount(<Dropdown nav isOpen={isOpen} toggle={toggle}>Ello world</Dropdown>);
+      const wrapper = mount(
+        <Dropdown nav isOpen={isOpen} toggle={toggle}>
+          Ello world
+        </Dropdown>,
+      );
 
       expect(wrapper.find('.nav-item').hostNodes().text()).toBe('Ello world');
       expect(wrapper.find('.nav-item').hostNodes().length).toBe(1);
@@ -1039,7 +1298,7 @@ describe('Dropdown', () => {
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
       expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');
@@ -1054,11 +1313,13 @@ describe('Dropdown', () => {
       isOpen = true;
       const wrapper = mount(
         <Dropdown nav inNavbar isOpen={isOpen} toggle={toggle}>
-          <DropdownToggle caret nav>Toggle</DropdownToggle>
+          <DropdownToggle caret nav>
+            Toggle
+          </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
       expect(wrapper.find('.dropdown-toggle').first().type()).toEqual('a');
@@ -1069,14 +1330,18 @@ describe('Dropdown', () => {
       isOpen = true;
       const wrapper = mount(
         <Dropdown nav isOpen={isOpen} toggle={toggle}>
-          <DropdownToggle caret nav>Toggle</DropdownToggle>
+          <DropdownToggle caret nav>
+            Toggle
+          </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
-      expect(wrapper.find('.dropdown-toggle').parent().type()).toEqual(Reference);
+      expect(wrapper.find('.dropdown-toggle').parent().type()).toEqual(
+        Reference,
+      );
       expect(wrapper.find('.dropdown-menu').parent().type()).toEqual(Popper);
     });
   });
@@ -1095,11 +1360,9 @@ describe('Dropdown', () => {
             Options
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem active>
-              Test
-            </DropdownItem>
+            <DropdownItem active>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
       expect(wrapper.childAt(0).childAt(0).hasClass('active')).toBe(true);
@@ -1117,45 +1380,40 @@ describe('Dropdown', () => {
   });
 
   describe('menuRole prop', () => {
-
     it('should set correct roles for children when menuRole is menu', () => {
       const wrapper = mount(
-        <Dropdown menuRole={'menu'} toggle={toggle}>
+        <Dropdown menuRole="menu" toggle={toggle}>
           <DropdownToggle nav caret>
             Options
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem active>
-              Test
-            </DropdownItem>
+            <DropdownItem active>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
-      expect(wrapper.props().menuRole).toEqual('menu')
-      expect(wrapper.find('[aria-haspopup="menu"]').length).toEqual(1)
-      expect(wrapper.find('[role="menuitem"]').length).toEqual(1)
-      expect(wrapper.find('[role="menu"]').length).toEqual(1)
-    })
+      expect(wrapper.props().menuRole).toEqual('menu');
+      expect(wrapper.find('[aria-haspopup="menu"]').length).toEqual(1);
+      expect(wrapper.find('[role="menuitem"]').length).toEqual(1);
+      expect(wrapper.find('[role="menu"]').length).toEqual(1);
+    });
 
     it('should set correct roles for children when menuRole is menu', () => {
       const wrapper = mount(
-        <Dropdown menuRole={'listbox'} toggle={toggle}>
+        <Dropdown menuRole="listbox" toggle={toggle}>
           <DropdownToggle nav caret>
             Options
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem active>
-              Test
-            </DropdownItem>
+            <DropdownItem active>Test</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown>,
       );
 
-      expect(wrapper.props().menuRole).toEqual('listbox')
-      expect(wrapper.find('[aria-haspopup="listbox"]').length).toEqual(1)
-      expect(wrapper.find('[role="option"]').length).toEqual(1)
-      expect(wrapper.find('[role="listbox"]').length).toEqual(1)
-    })
-  })
+      expect(wrapper.props().menuRole).toEqual('listbox');
+      expect(wrapper.find('[aria-haspopup="listbox"]').length).toEqual(1);
+      expect(wrapper.find('[role="option"]').length).toEqual(1);
+      expect(wrapper.find('[role="listbox"]').length).toEqual(1);
+    });
+  });
 });

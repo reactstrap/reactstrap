@@ -60,6 +60,8 @@ export { default as CarouselIndicators } from './lib/CarouselIndicators';
 export { CarouselIndicatorsProps } from './lib/CarouselIndicators';
 export { default as CarouselCaption } from './lib/CarouselCaption';
 export { CarouselCaptionProps } from './lib/CarouselCaption';
+export { default as CloseButton } from './lib/CloseButton'
+export { CloseButtonProps } from './lib/CloseButton'
 export { default as Col } from './lib/Col';
 export { ColProps } from './lib/Col';
 export { default as Collapse } from './lib/Collapse';
@@ -140,6 +142,10 @@ export { default as PaginationItem } from './lib/PaginationItem';
 export { PaginationItemProps } from './lib/PaginationItem';
 export { default as PaginationLink } from './lib/PaginationLink';
 export { PaginationLinkProps } from './lib/PaginationLink';
+export { default as Placeholder } from './lib/Placeholder';
+export { PlaceholderProps } from './lib/Placeholder';
+export { default as PlaceholderButton } from './lib/PlaceholderButton';
+export { PlaceholderButtonProps } from './lib/PlaceholderButton';
 export { default as Popover } from './lib/Popover';
 export { PopoverProps } from './lib/Popover';
 export { default as PopoverBody } from './lib/PopoverBody';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardColumns } from '../';
+import { CardColumns } from '..';
 
 describe('CardColumns', () => {
   it('should render with "card-columns" class', () => {

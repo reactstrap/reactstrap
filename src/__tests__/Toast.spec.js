@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Toast } from '../';
+import { Toast } from '..';
 
 describe('Toast', () => {
   it('should render children', () => {
@@ -10,12 +10,16 @@ describe('Toast', () => {
 
   it('should pass className down', () => {
     const toast = mount(<Toast className="test-class-name">Yo!</Toast>);
-    expect(toast.find('.toast').hostNodes().prop('className')).toContain('test-class-name');
+    expect(toast.find('.toast').hostNodes().prop('className')).toContain(
+      'test-class-name',
+    );
   });
 
   it('should pass other props down', () => {
     const toast = mount(<Toast data-testprop="testvalue">Yo!</Toast>);
-    expect(toast.find('.toast').hostNodes().prop('data-testprop')).toContain('testvalue');
+    expect(toast.find('.toast').hostNodes().prop('data-testprop')).toContain(
+      'testvalue',
+    );
   });
 
   it('should have default transitionTimeouts', () => {
@@ -30,9 +34,16 @@ describe('Toast', () => {
 
   it('should have support configurable transitionTimeouts', () => {
     const toast = mount(
-      <Toast transition={{ timeout: 0, appear: false, enter: false, exit: false }}>
+      <Toast
+        transition={{
+          timeout: 0,
+          appear: false,
+          enter: false,
+          exit: false,
+        }}
+      >
         Yo!
-      </Toast>
+      </Toast>,
     );
 
     const transition = toast.find('Transition');

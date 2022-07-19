@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Label } from '../';
+import { Label } from '..';
 
 describe('Label', () => {
   it('should render a label tag by default', () => {
@@ -27,10 +27,28 @@ describe('Label', () => {
     expect(wrapper.hasClass('col-form-label')).toBe(true);
   });
 
+  it('should not render with "form-label" class when a col is provided', () => {
+    const wrapper = shallow(<Label sm="6">Yo!</Label>);
+
+    expect(wrapper.hasClass('form-label')).toBe(false);
+  });
+
   it('should render with "form-label" class when a col is not provided', () => {
     const wrapper = shallow(<Label>Yo!</Label>);
 
     expect(wrapper.hasClass('form-label')).toBe(true);
+  });
+
+  it('should render with "form-check-label" class when check is specified', () => {
+    const wrapper = shallow(<Label check>Yo!</Label>);
+
+    expect(wrapper.hasClass('form-check-label')).toBe(true);
+  });
+
+  it('should not render with "form-label" class when check is specified', () => {
+    const wrapper = shallow(<Label check>Yo!</Label>);
+
+    expect(wrapper.hasClass('form-label')).toBe(false);
   });
 
   it('should pass col size specific classes as Strings', () => {
@@ -106,7 +124,9 @@ describe('Label', () => {
   });
 
   it('should pass col size specific classes via Objects', () => {
-    const wrapper = shallow(<Label sm={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>);
+    const wrapper = shallow(
+      <Label sm={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>,
+    );
 
     expect(wrapper.hasClass('col-sm-6')).toBe(true);
     expect(wrapper.hasClass('order-sm-2')).toBe(true);
@@ -114,7 +134,9 @@ describe('Label', () => {
   });
 
   it('should pass col size specific classes via Objects (xs)', () => {
-    const wrapper = shallow(<Label xs={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>);
+    const wrapper = shallow(
+      <Label xs={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>,
+    );
 
     expect(wrapper.hasClass('col-6')).toBe(true);
     expect(wrapper.hasClass('order-2')).toBe(true);
@@ -122,7 +144,15 @@ describe('Label', () => {
   });
 
   it('should pass multiple col size specific classes via Objects', () => {
-    const wrapper = shallow(<Label xs={{ size: 4, order: 3, offset: 3 }} sm={{ size: 6, order: 2, offset: 2 }} md={{ size: 7, order: 1, offset: 1 }}>Yo!</Label>);
+    const wrapper = shallow(
+      <Label
+        xs={{ size: 4, order: 3, offset: 3 }}
+        sm={{ size: 6, order: 2, offset: 2 }}
+        md={{ size: 7, order: 1, offset: 1 }}
+      >
+        Yo!
+      </Label>,
+    );
 
     expect(wrapper.hasClass('col-4')).toBe(true);
     expect(wrapper.hasClass('order-3')).toBe(true);

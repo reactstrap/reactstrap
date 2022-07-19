@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselControl = (props) => {
-  const { direction, onClickHandler, cssModule, directionText, className } = props;
+function CarouselControl(props) {
+  const { direction, onClickHandler, cssModule, directionText, className } =
+    props;
 
-  const anchorClasses = mapToCssModules(classNames(
-    className,
-    `carousel-control-${direction}`
-  ), cssModule);
+  const anchorClasses = mapToCssModules(
+    classNames(className, `carousel-control-${direction}`),
+    cssModule,
+  );
 
-  const iconClasses = mapToCssModules(classNames(
-    `carousel-control-${direction}-icon`
-  ), cssModule);
+  const iconClasses = mapToCssModules(
+    classNames(`carousel-control-${direction}-icon`),
+    cssModule,
+  );
 
-  const screenReaderClasses = mapToCssModules(classNames(
-    'visually-hidden'
-  ), cssModule);
-
+  const screenReaderClasses = mapToCssModules(
+    classNames('visually-hidden'),
+    cssModule,
+  );
 
   return (
     // We need to disable this linting rule to use an `<a>` instead of
@@ -27,7 +29,7 @@ const CarouselControl = (props) => {
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
       className={anchorClasses}
-      style={{cursor: "pointer"}}
+      style={{ cursor: 'pointer' }}
       role="button"
       tabIndex="0"
       onClick={(e) => {
@@ -39,13 +41,18 @@ const CarouselControl = (props) => {
       <span className={screenReaderClasses}>{directionText || direction}</span>
     </a>
   );
-};
+}
 
 CarouselControl.propTypes = {
+  /** Set the direction of control button */
   direction: PropTypes.oneOf(['prev', 'next']).isRequired,
+  /** Function to be triggered on click */
   onClickHandler: PropTypes.func.isRequired,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Screen reader text */
   directionText: PropTypes.string,
+  /** Add custom class */
   className: PropTypes.string,
 };
 

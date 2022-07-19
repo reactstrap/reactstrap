@@ -15,6 +15,7 @@ export ButtonToggle from './ButtonToggle';
 export ButtonDropdown from './ButtonDropdown';
 export ButtonGroup from './ButtonGroup';
 export ButtonToolbar from './ButtonToolbar';
+export CloseButton from './CloseButton';
 export Dropdown from './Dropdown';
 export DropdownItem from './DropdownItem';
 export DropdownMenu from './DropdownMenu';
@@ -95,6 +96,6 @@ export UncontrolledDropdown from './UncontrolledDropdown';
 export UncontrolledTooltip from './UncontrolledTooltip';
 export Spinner from './Spinner';
 export Placeholder from './Placeholder';
-export PlaceholderButton from "./PlaceholderButton"
+export PlaceholderButton from './PlaceholderButton';
 export * as Util from './utils';
-export * as Polyfill from './polyfill'
+export * as Polyfill from './polyfill';

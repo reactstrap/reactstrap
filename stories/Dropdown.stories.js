@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/Dropdown',
   parameters: {
@@ -15,10 +13,14 @@ export default {
   }
 };
 
-export { default as Dropdown } from './examples/Dropdown';
-export { default as Container } from './examples/DropdownContainer';
-export { default as SetActiveFromChild } from './examples/DropdownSetActiveFromChild';
-export { default as Sizing } from './examples/DropdownSizing';
-export { default as Uncontrolled } from './examples/DropdownUncontrolled';
-export { default as CustomDropdown } from './examples/CustomDropdown';
-export { default as Props } from './examples/DropdownProps';
+export { default as Dropdown } from './examples/Dropdown/Dropdown';
+export { default as SplitButton } from './examples/Dropdown/Split';
+export { default as Sizing } from './examples/Dropdown/Sizing';
+export { default as DarkDropdown } from './examples/Dropdown/Dark';
+export { default as Directions } from './examples/Dropdown/DirectionKitchen';
+export { default as SetActiveFromChild } from './examples/Dropdown/SetActiveFromChild';
+
+export { default as Container } from './examples/Dropdown/Container';
+export { default as Uncontrolled } from './examples/Dropdown/Uncontrolled';
+export { default as CustomDropdown } from './examples/Dropdown/Custom';
+export { default as Props } from './examples/Dropdown/Props';

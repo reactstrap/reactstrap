@@ -7,7 +7,11 @@ const propTypes = {
   children: PropTypes.node,
   inline: PropTypes.bool,
   tag: tagPropType,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -45,14 +49,12 @@ class Form extends Component {
       ...attributes
     } = this.props;
 
-    const classes = mapToCssModules(classNames(
-      className,
-      inline ? 'form-inline' : false
-    ), cssModule);
-
-    return (
-      <Tag {...attributes} ref={innerRef} className={classes} />
+    const classes = mapToCssModules(
+      classNames(className, inline ? 'form-inline' : false),
+      cssModule,
     );
+
+    return <Tag {...attributes} ref={innerRef} className={classes} />;
   }
 }
 

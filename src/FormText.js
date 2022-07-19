@@ -17,7 +17,7 @@ const defaultProps = {
   color: 'muted',
 };
 
-const FormText = (props) => {
+function FormText(props) {
   const {
     className,
     cssModule,
@@ -27,16 +27,17 @@ const FormText = (props) => {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    !inline ? 'form-text' : false,
-    color ? `text-${color}` : false
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      !inline ? 'form-text' : false,
+      color ? `text-${color}` : false,
+    ),
+    cssModule,
   );
-};
+
+  return <Tag {...attributes} className={classes} />;
+}
 
 FormText.propTypes = propTypes;
 FormText.defaultProps = defaultProps;

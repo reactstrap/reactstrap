@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NavLink } from '../';
+import { NavLink } from '..';
 
 describe('NavLink', () => {
   it('should render .nav-link markup', () => {
@@ -43,9 +43,7 @@ describe('NavLink', () => {
   it('handles onClick prop', () => {
     const onClick = jest.fn();
     const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(
-      <NavLink onClick={onClick} />
-    );
+    const wrapper = shallow(<NavLink onClick={onClick} />);
 
     wrapper.find('a').simulate('click', e);
     expect(onClick).toHaveBeenCalled();
@@ -54,9 +52,7 @@ describe('NavLink', () => {
 
   it('handles onClick events', () => {
     const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(
-      <NavLink />
-    );
+    const wrapper = shallow(<NavLink />);
 
     wrapper.find('a').simulate('click', e);
     expect(e.preventDefault).not.toHaveBeenCalled();
@@ -64,9 +60,7 @@ describe('NavLink', () => {
 
   it('prevents link clicks via onClick for dropdown nav-items', () => {
     const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(
-      <NavLink href="#" />
-    );
+    const wrapper = shallow(<NavLink href="#" />);
 
     wrapper.find('a').simulate('click', e);
     expect(e.preventDefault).toHaveBeenCalled();
@@ -75,9 +69,7 @@ describe('NavLink', () => {
   it('is not called when disabled', () => {
     const onClick = jest.fn();
     const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(
-      <NavLink disabled onClick={onClick} />
-    );
+    const wrapper = shallow(<NavLink disabled onClick={onClick} />);
 
     wrapper.find('a').simulate('click', e);
     expect(e.preventDefault).toHaveBeenCalled();
