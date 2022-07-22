@@ -19,7 +19,7 @@ const propTypes = {
   top: PropTypes.bool,
 };
 
-const Media = (props) => {
+function Media(props) {
   const {
     body,
     bottom,
@@ -50,9 +50,8 @@ const Media = (props) => {
   }
   const Tag = tag || defaultTag;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    {
+  const classes = mapToCssModules(
+    classNames(className, {
       'media-body': body,
       'media-heading': heading,
       'media-left': left,
@@ -62,14 +61,22 @@ const Media = (props) => {
       'media-middle': middle,
       'media-object': object,
       'media-list': list,
-      media: !body && !heading && !left && !right && !top && !bottom && !middle && !object && !list,
-    }
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+      media:
+        !body &&
+        !heading &&
+        !left &&
+        !right &&
+        !top &&
+        !bottom &&
+        !middle &&
+        !object &&
+        !list,
+    }),
+    cssModule,
   );
-};
+
+  return <Tag {...attributes} className={classes} />;
+}
 
 Media.propTypes = propTypes;
 

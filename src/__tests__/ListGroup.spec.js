@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ListGroup } from '../';
+import { ListGroup } from '..';
 
 describe('ListGroup', () => {
   it('should render with "list-group" class', () => {
@@ -21,34 +21,38 @@ describe('ListGroup', () => {
   it('should render with "horizontal"', () => {
     const wrapper = shallow(<ListGroup horizontal>Yo!</ListGroup>);
 
-    expect(wrapper.text()).toBe("Yo!");
-    expect(wrapper.hasClass("list-group")).toBe(true);
-    expect(wrapper.hasClass("list-group-horizontal")).toBe(true);
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('list-group')).toBe(true);
+    expect(wrapper.hasClass('list-group-horizontal')).toBe(true);
   });
 
   it('should not render with "horizontal" if flush is true', () => {
-    const wrapper = shallow(<ListGroup flush horizontal>Yo!</ListGroup>);
+    const wrapper = shallow(
+      <ListGroup flush horizontal>
+        Yo!
+      </ListGroup>,
+    );
 
-    expect(wrapper.text()).toBe("Yo!");
-    expect(wrapper.hasClass("list-group")).toBe(true);
-    expect(wrapper.hasClass("list-group-flush")).toBe(true);
-    expect(wrapper.hasClass("list-group-horizontal")).toBe(false);
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('list-group')).toBe(true);
+    expect(wrapper.hasClass('list-group-flush')).toBe(true);
+    expect(wrapper.hasClass('list-group-horizontal')).toBe(false);
   });
 
   it('should render with "horizontal-{breakpoint}"', () => {
     const wrapper = shallow(<ListGroup horizontal="lg">Yo!</ListGroup>);
 
-    expect(wrapper.text()).toBe("Yo!");
-    expect(wrapper.hasClass("list-group")).toBe(true);
-    expect(wrapper.hasClass("list-group-horizontal-lg")).toBe(true);
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('list-group')).toBe(true);
+    expect(wrapper.hasClass('list-group-horizontal-lg')).toBe(true);
   });
 
   it('should render with "numbered"', () => {
     const wrapper = shallow(<ListGroup numbered>Yo!</ListGroup>);
 
-    expect(wrapper.text()).toBe("Yo!");
-    expect(wrapper.hasClass("list-group")).toBe(true);
-    expect(wrapper.hasClass("list-group-numbered")).toBe(true);
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('list-group')).toBe(true);
+    expect(wrapper.hasClass('list-group-numbered')).toBe(true);
   });
 
   it('should render additional classes', () => {

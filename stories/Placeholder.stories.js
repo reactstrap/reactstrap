@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/Placeholder',
   parameters: {
@@ -15,8 +13,8 @@ export default {
   }
 }
 
-export { default as Placeholder } from './examples/Placeholder';
-export { default as Color } from './examples/PlaceholderColor';
-export { default as Sizing } from './examples/PlaceholderSize';
-export { default as Animation } from './examples/PlaceholderAnimation';
-export { default as Props } from './examples/PlaceholderProps';
+export { default as Placeholder } from './examples/Placeholder/Placeholder';
+export { default as Color } from './examples/Placeholder/Color';
+export { default as Sizing } from './examples/Placeholder/Size';
+export { default as Animation } from './examples/Placeholder/Animation';
+export { default as Props } from './examples/Placeholder/Props';

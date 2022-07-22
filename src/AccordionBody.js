@@ -6,23 +6,28 @@ import Collapse from './Collapse';
 import { AccordionContext } from './AccordionContext';
 
 const propTypes = {
-  tag: tagPropType,
+  /** Unique key used to control item's collapse/expand */
+  accordionId: PropTypes.string.isRequired,
+  /** To add custom class */
   className: PropTypes.string,
+  children: PropTypes.node,
+  /** Change existing base class name with a new class name */
   cssModule: PropTypes.object,
+  /** Pass ref to the component */
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,
     PropTypes.func,
   ]),
-  children: PropTypes.node,
-  accordionId: PropTypes.string.isRequired,
+  /** Set a custom element for this component */
+  tag: tagPropType,
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
-const AccordionBody = (props) => {
+function AccordionBody(props) {
   const {
     className,
     cssModule,
@@ -35,20 +40,24 @@ const AccordionBody = (props) => {
 
   const { open } = useContext(AccordionContext);
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'accordion-collapse',
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'accordion-collapse'),
+    cssModule,
+  );
 
   return (
     <Collapse
       {...attributes}
       className={classes}
-      ref={innerRef} isOpen={Array.isArray(open) ? open.includes(accordionId) : open === accordionId }>
+      ref={innerRef}
+      isOpen={
+        Array.isArray(open) ? open.includes(accordionId) : open === accordionId
+      }
+    >
       <Tag className="accordion-body">{children}</Tag>
     </Collapse>
   );
-};
+}
 
 AccordionBody.propTypes = propTypes;
 AccordionBody.defaultProps = defaultProps;

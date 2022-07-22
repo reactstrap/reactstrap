@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ButtonGroup } from '../';
+import { ButtonGroup } from '..';
 
 describe('ButtonGroup', () => {
   it('should render children', () => {

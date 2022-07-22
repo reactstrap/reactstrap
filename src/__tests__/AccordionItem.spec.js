@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AccordionItem } from '../';
+import { AccordionItem } from '..';
 
 describe('AccordionItem', () => {
   it('should render with "accordion-item" class', () => {

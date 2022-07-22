@@ -5,7 +5,7 @@ import { canUseDOM } from './utils';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  node: PropTypes.any
+  node: PropTypes.any,
 };
 
 class Portal extends React.Component {
@@ -28,7 +28,7 @@ class Portal extends React.Component {
 
     return ReactDOM.createPortal(
       this.props.children,
-      this.props.node || this.defaultNode
+      this.props.node || this.defaultNode,
     );
   }
 }

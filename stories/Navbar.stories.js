@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/Navbar',
   parameters: {
@@ -15,6 +13,7 @@ export default {
   }
 };
 
-export { default as Navbar } from './examples/Navbar';
-export { default as NavbarToggler } from './examples/NavbarToggler';
-export { default as Props } from './examples/NavbarProps';
+export { default as Navbar } from './examples/Navbar/Navbar';
+export { default as Brand } from './examples/Navbar/Brand';
+export { default as NavbarToggler } from './examples/Navbar/Toggler';
+export { default as Props } from './examples/Navbar/Props';

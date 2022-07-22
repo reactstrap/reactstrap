@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardBody } from '../';
+import { CardBody } from '..';
 
 describe('CardBody', () => {
   it('should render with "card-body" class', () => {

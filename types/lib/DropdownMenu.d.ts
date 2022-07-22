@@ -13,6 +13,7 @@ export interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
   persist?: boolean;
   strategy?: string;
   container?: string | HTMLElement | React.RefObject<HTMLElement>;
+  updateOnSelect?: boolean;
 }
 
 declare class DropdownMenu extends React.Component<DropdownMenuProps> {}

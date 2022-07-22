@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardTitle } from '../';
+import { CardTitle } from '..';
 
 describe('CardTitle', () => {
   it('should render with "card-title" class', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Progress } from '../';
+import { Progress } from '..';
 
 describe('Progress', () => {
   it('should render with "div" tag by default', () => {
@@ -30,19 +30,31 @@ describe('Progress', () => {
   it('should render with "style" on the parent element', () => {
     const wrapper = mount(<Progress style={{ height: '20px' }} />);
 
-    expect(getComputedStyle(wrapper.getDOMNode()).getPropertyValue('height')).toBe('20px');
+    expect(
+      getComputedStyle(wrapper.getDOMNode()).getPropertyValue('height'),
+    ).toBe('20px');
   });
 
   it('should render with "style" on the progress bar element if bar=true', () => {
     const wrapper = mount(<Progress bar style={{ height: '20px' }} />);
 
-    expect(getComputedStyle(wrapper.find('.progress-bar').getDOMNode()).getPropertyValue('height')).toBe('20px');
+    expect(
+      getComputedStyle(
+        wrapper.find('.progress-bar').getDOMNode(),
+      ).getPropertyValue('height'),
+    ).toBe('20px');
   });
 
   it('should render "barStyle" on the progress bar element', () => {
-    const wrapper = mount(<Progress style={{ height: '20px' }} barStyle={{ height: '10px' }} />);
-    
-    expect(getComputedStyle(wrapper.find('.progress-bar').getDOMNode()).getPropertyValue('height')).toBe('10px');
+    const wrapper = mount(
+      <Progress style={{ height: '20px' }} barStyle={{ height: '10px' }} />,
+    );
+
+    expect(
+      getComputedStyle(
+        wrapper.find('.progress-bar').getDOMNode(),
+      ).getPropertyValue('height'),
+    ).toBe('10px');
   });
 
   it('should render with the given "value" when passed as string prop', () => {
@@ -72,14 +84,20 @@ describe('Progress', () => {
   it('should render with "progress-bar-striped" class when striped prop is truthy', () => {
     const wrapper = shallow(<Progress striped />);
 
-    expect(wrapper.find('.progress-bar').hasClass('progress-bar-striped')).toBe(true);
+    expect(wrapper.find('.progress-bar').hasClass('progress-bar-striped')).toBe(
+      true,
+    );
   });
 
   it('should render with "progress-bar-striped" and "progress-bar-animated" classes when animated prop is truthy', () => {
     const wrapper = shallow(<Progress animated />);
 
-    expect(wrapper.find('.progress-bar').hasClass('progress-bar-striped')).toBe(true);
-    expect(wrapper.find('.progress-bar').hasClass('progress-bar-animated')).toBe(true);
+    expect(wrapper.find('.progress-bar').hasClass('progress-bar-striped')).toBe(
+      true,
+    );
+    expect(
+      wrapper.find('.progress-bar').hasClass('progress-bar-animated'),
+    ).toBe(true);
   });
 
   it('should render with "bg-${color}" class when color prop is defined', () => {
@@ -148,12 +166,22 @@ describe('Progress', () => {
   it('should render the children (label) (multi)', () => {
     const wrapper = mount(
       <Progress multi>
-        <Progress bar value="15">15%</Progress>
-        <Progress bar color="success" value="30">30%</Progress>
-        <Progress bar color="info" value="25">25%</Progress>
-        <Progress bar color="warning" value="20">20%</Progress>
-        <Progress bar color="danger" value="5">5%</Progress>
-      </Progress>
+        <Progress bar value="15">
+          15%
+        </Progress>
+        <Progress bar color="success" value="30">
+          30%
+        </Progress>
+        <Progress bar color="info" value="25">
+          25%
+        </Progress>
+        <Progress bar color="warning" value="20">
+          20%
+        </Progress>
+        <Progress bar color="danger" value="5">
+          5%
+        </Progress>
+      </Progress>,
     );
 
     expect(wrapper.text()).toBe('15%30%25%20%5%');
@@ -167,7 +195,7 @@ describe('Progress', () => {
         <Progress bar color="info" value="25" />
         <Progress bar color="warning" value="20" />
         <Progress bar color="danger" value="5" />
-      </Progress>
+      </Progress>,
     );
 
     expect(wrapper.find('.progress').hostNodes().length).toBe(1);
@@ -178,7 +206,7 @@ describe('Progress', () => {
     const wrapper = mount(
       <Progress multi>
         <Progress bar id="ruh-roh" />
-      </Progress>
+      </Progress>,
     );
 
     expect(wrapper.find('.progress').hostNodes().length).toBe(1);

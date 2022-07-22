@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
-const CarouselCaption = (props) => {
+function CarouselCaption(props) {
   const { captionHeader, captionText, cssModule, className } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'carousel-caption',
-    'd-none',
-    'd-md-block'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'carousel-caption', 'd-none', 'd-md-block'),
+    cssModule,
+  );
 
   return (
     <div className={classes}>
@@ -18,13 +16,17 @@ const CarouselCaption = (props) => {
       <p>{captionText}</p>
     </div>
   );
-};
+}
 
 CarouselCaption.propTypes = {
+  /** Heading for the caption */
   captionHeader: PropTypes.node,
+  /** Text for caption */
   captionText: PropTypes.node.isRequired,
-  cssModule: PropTypes.object,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
 };
 
 export default CarouselCaption;

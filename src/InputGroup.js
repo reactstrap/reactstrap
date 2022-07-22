@@ -6,31 +6,27 @@ import Dropdown from './Dropdown';
 import { InputGroupContext } from './InputGroupContext';
 
 const propTypes = {
-  tag: tagPropType,
-  type: PropTypes.bool,
-  size: PropTypes.string,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Sets size of InputGroup */
+  size: PropTypes.string,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  type: PropTypes.string,
 };
 
 const defaultProps = {
-  tag: 'div'
+  tag: 'div',
 };
 
-const InputGroup = (props) => {
-  const {
-    className,
+function InputGroup(props) {
+  const { className, cssModule, tag: Tag, type, size, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'input-group', size ? `input-group-${size}` : null),
     cssModule,
-    tag: Tag,
-    type,
-    size,
-    ...attributes
-  } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'input-group',
-    size ? `input-group-${size}` : null
-  ), cssModule);
+  );
 
   if (props.type === 'dropdown') {
     return (

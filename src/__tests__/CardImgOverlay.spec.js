@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardImgOverlay } from '../';
+import { CardImgOverlay } from '..';
 
 describe('CardImgOverlay', () => {
   it('should render with "card-img-overlay" class', () => {
@@ -11,7 +11,9 @@ describe('CardImgOverlay', () => {
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<CardImgOverlay className="other">Yo!</CardImgOverlay>);
+    const wrapper = shallow(
+      <CardImgOverlay className="other">Yo!</CardImgOverlay>,
+    );
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('card-img-overlay')).toBe(true);

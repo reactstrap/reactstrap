@@ -23,9 +23,10 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  dropup: PropTypes.bool,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
-  menuRole: PropTypes.oneOf(['listbox', 'menu'])
+  menuRole: PropTypes.oneOf(['listbox', 'menu']),
 };
 
 const defaultProps = {
@@ -35,7 +36,7 @@ const defaultProps = {
   nav: false,
   active: false,
   inNavbar: false,
-  setActiveFromChild: false
+  setActiveFromChild: false,
 };
 
 const preventDefaultKeys = [
@@ -44,8 +45,8 @@ const preventDefaultKeys = [
   keyCodes.up,
   keyCodes.down,
   keyCodes.end,
-  keyCodes.home
-]
+  keyCodes.home,
+];
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -65,12 +66,150 @@ class Dropdown extends React.Component {
     // ref for DropdownToggle
   }
 
+  componentDidMount() {
+    this.handleProps();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpen !== prevProps.isOpen) {
+      this.handleProps();
+    }
+  }
+
+  componentWillUnmount() {
+    this.removeEvents();
+  }
+
   handleMenuRef(menuRef) {
     this.menuRef.current = menuRef;
   }
 
   handleToggleRef(toggleRef) {
     this.toggleRef.current = toggleRef;
+  }
+
+  handleDocumentClick(e) {
+    if (
+      e &&
+      (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))
+    )
+      return;
+    const container = this.getContainer();
+    const menu = this.getMenu();
+    const toggle = this.getToggle();
+
+    const targetIsToggle = e.target === toggle;
+    const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
+
+    let clickIsInInput = false;
+    if (container) {
+      // this is only for InputGroup with type dropdown
+      clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
+    }
+
+    if (((targetIsToggle && !clickIsInInput) || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+      return;
+    }
+
+    this.toggle(e);
+  }
+
+  handleKeyDown(e) {
+    const isTargetMenuItem =
+      e.target.getAttribute('role') === 'menuitem' ||
+      e.target.getAttribute('role') === 'option';
+    const isTargetMenuCtrl = this.getMenuCtrl() === e.target;
+    const isTab = keyCodes.tab === e.which;
+
+    if (
+      /input|textarea/i.test(e.target.tagName) ||
+      (isTab && !this.props.a11y) ||
+      (isTab && !(isTargetMenuItem || isTargetMenuCtrl))
+    ) {
+      return;
+    }
+
+    if (
+      preventDefaultKeys.indexOf(e.which) !== -1 ||
+      (e.which >= 48 && e.which <= 90)
+    ) {
+      e.preventDefault();
+    }
+
+    if (this.props.disabled) return;
+
+    if (isTargetMenuCtrl) {
+      if (
+        [keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(
+          e.which,
+        ) > -1
+      ) {
+        // Open the menu (if not open) and focus the first menu item
+        if (!this.props.isOpen) {
+          this.toggle(e);
+        }
+        setTimeout(() => this.getMenuItems()[0].focus());
+      } else if (this.props.isOpen && isTab) {
+        // Focus the first menu item if tabbing from an open menu. We need this
+        // for cases where the DropdownMenu sets a custom container, which may
+        // not be the natural next item to tab to from the DropdownToggle.
+        e.preventDefault();
+        this.getMenuItems()[0].focus();
+      } else if (this.props.isOpen && e.which === keyCodes.esc) {
+        this.toggle(e);
+      }
+    }
+
+    if (this.props.isOpen && isTargetMenuItem) {
+      if ([keyCodes.tab, keyCodes.esc].indexOf(e.which) > -1) {
+        this.toggle(e);
+        this.getMenuCtrl().focus();
+      } else if ([keyCodes.space, keyCodes.enter].indexOf(e.which) > -1) {
+        e.target.click();
+        this.getMenuCtrl().focus();
+      } else if (
+        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1 ||
+        ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
+      ) {
+        const $menuitems = this.getMenuItems();
+        let index = $menuitems.indexOf(e.target);
+        if (keyCodes.up === e.which || (keyCodes.p === e.which && e.ctrlKey)) {
+          index = index !== 0 ? index - 1 : $menuitems.length - 1;
+        } else if (
+          keyCodes.down === e.which ||
+          (keyCodes.n === e.which && e.ctrlKey)
+        ) {
+          index = index === $menuitems.length - 1 ? 0 : index + 1;
+        }
+        $menuitems[index].focus();
+      } else if (keyCodes.end === e.which) {
+        const $menuitems = this.getMenuItems();
+        $menuitems[$menuitems.length - 1].focus();
+      } else if (keyCodes.home === e.which) {
+        const $menuitems = this.getMenuItems();
+        $menuitems[0].focus();
+      } else if (e.which >= 48 && e.which <= 90) {
+        const $menuitems = this.getMenuItems();
+        const charPressed = String.fromCharCode(e.which).toLowerCase();
+        for (let i = 0; i < $menuitems.length; i += 1) {
+          const firstLetter =
+            $menuitems[i].textContent &&
+            $menuitems[i].textContent[0].toLowerCase();
+          if (firstLetter === charPressed) {
+            $menuitems[i].focus();
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  handleProps() {
+    if (this.props.isOpen) {
+      this.addEvents();
+    } else {
+      this.removeEvents();
+    }
   }
 
   getContextValue() {
@@ -86,20 +225,6 @@ class Dropdown extends React.Component {
       onToggleRef: this.handleToggleRef,
       menuRole: this.props.menuRole
     };
-  }
-
-  componentDidMount() {
-    this.handleProps();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.isOpen !== prevProps.isOpen) {
-      this.handleProps();
-    }
-  }
-
-  componentWillUnmount() {
-    this.removeEvents();
   }
 
   getContainer() {
@@ -147,112 +272,6 @@ class Dropdown extends React.Component {
     );
   }
 
-  handleDocumentClick(e) {
-    if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
-    const container = this.getContainer();
-    const menu = this.getMenu();
-    const toggle = this.getToggle();
-
-    const targetIsToggle = e.target === toggle;
-    const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
-
-    let clickIsInInput = false;
-    if (container) {
-      // this is only for InputGroup with type dropdown
-      clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
-    }
-
-    if (((targetIsToggle && !clickIsInInput) || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
-      return;
-    }
-
-    this.toggle(e);
-  }
-
-  handleKeyDown(e) {
-    const isTargetMenuItem = e.target.getAttribute('role') === 'menuitem' || e.target.getAttribute('role') === 'option';
-    const isTargetMenuCtrl = this.getMenuCtrl() === e.target;
-    const isTab = keyCodes.tab === e.which;
-
-    if (
-      /input|textarea/i.test(e.target.tagName)
-      || (isTab && !this.props.a11y)
-      || (isTab && !(isTargetMenuItem || isTargetMenuCtrl))
-    ) {
-      return;
-    }
-
-    if (preventDefaultKeys.indexOf(e.which) !== -1 || ((e.which >= 48) && (e.which <= 90))) {
-      e.preventDefault();
-    }
-
-    if (this.props.disabled) return;
-
-    if (isTargetMenuCtrl) {
-      if ([keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(e.which) > -1) {
-        // Open the menu (if not open) and focus the first menu item
-        if (!this.props.isOpen) {
-          this.toggle(e);
-        }
-        setTimeout(() => this.getMenuItems()[0].focus());
-      } else if (this.props.isOpen && isTab) {
-        // Focus the first menu item if tabbing from an open menu. We need this
-        // for cases where the DropdownMenu sets a custom container, which may
-        // not be the natural next item to tab to from the DropdownToggle.
-        e.preventDefault();
-        this.getMenuItems()[0].focus();
-      } else if (this.props.isOpen && e.which === keyCodes.esc) {
-        this.toggle(e);
-      }
-    }
-
-    if (this.props.isOpen && isTargetMenuItem) {
-      if ([keyCodes.tab, keyCodes.esc].indexOf(e.which) > -1) {
-        this.toggle(e);
-        this.getMenuCtrl().focus();
-      } else if ([keyCodes.space, keyCodes.enter].indexOf(e.which) > -1) {
-        e.target.click();
-        this.getMenuCtrl().focus();
-      } else if (
-        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1
-        || ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
-      ) {
-        const $menuitems = this.getMenuItems();
-        let index = $menuitems.indexOf(e.target);
-        if (keyCodes.up === e.which || (keyCodes.p === e.which && e.ctrlKey)) {
-          index = index !== 0 ? index - 1 : $menuitems.length - 1;
-        } else if (keyCodes.down === e.which || (keyCodes.n === e.which && e.ctrlKey)) {
-          index = index === $menuitems.length - 1 ? 0 : index + 1;
-        }
-        $menuitems[index].focus();
-      } else if (keyCodes.end === e.which) {
-        const $menuitems = this.getMenuItems();
-        $menuitems[$menuitems.length - 1].focus();
-      } else if (keyCodes.home === e.which) {
-        const $menuitems = this.getMenuItems();
-        $menuitems[0].focus();
-      } else if ((e.which >= 48) && (e.which <= 90)) {
-        const $menuitems = this.getMenuItems();
-        const charPressed = String.fromCharCode(e.which).toLowerCase();
-        for (let i = 0; i < $menuitems.length; i += 1) {
-          const firstLetter = $menuitems[i].textContent && $menuitems[i].textContent[0].toLowerCase();
-          if (firstLetter === charPressed) {
-            $menuitems[i].focus();
-            break;
-          }
-        }
-      }
-    }
-  }
-
-  handleProps() {
-    if (this.props.isOpen) {
-      this.addEvents();
-    } else {
-      this.removeEvents();
-    }
-  }
-
   toggle(e) {
     if (this.props.disabled) {
       return e && e.preventDefault();
@@ -281,28 +300,32 @@ class Dropdown extends React.Component {
 
     let subItemIsActive = false;
     if (setActiveFromChild) {
-      React.Children.map(this.props.children[1].props.children,
+      React.Children.map(
+        this.props.children[1].props.children,
         (dropdownItem) => {
           if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
-        }
+        },
       );
     }
 
-    const classes = mapToCssModules(classNames(
-      className,
-      nav && active ? 'active' : false,
-      setActiveFromChild && subItemIsActive ? 'active' : false,
-      {
-        'btn-group': group,
-        [`btn-group-${size}`]: !!size,
-        dropdown: !group,
-        dropup: direction === 'up',
-        dropstart: direction === 'start' || direction === 'left',
-        dropend: direction === 'end' || direction === 'right',
-        show: isOpen,
-        'nav-item': nav
-      }
-    ), cssModule);
+    const classes = mapToCssModules(
+      classNames(
+        className,
+        nav && active ? 'active' : false,
+        setActiveFromChild && subItemIsActive ? 'active' : false,
+        {
+          'btn-group': group,
+          [`btn-group-${size}`]: !!size,
+          dropdown: !group,
+          dropup: direction === 'up',
+          dropstart: direction === 'start' || direction === 'left',
+          dropend: direction === 'end' || direction === 'right',
+          show: isOpen,
+          'nav-item': nav,
+        },
+      ),
+      cssModule,
+    );
 
     if (this.context.insideInputGroup) {
       return (
@@ -319,7 +342,9 @@ class Dropdown extends React.Component {
         <Manager>
           <Tag
             {...attrs}
-            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef }}
+            {...{
+              [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef,
+            }}
             onKeyDown={this.handleKeyDown}
             className={classes}
           />

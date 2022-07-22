@@ -40,14 +40,24 @@ class UncontrolledCarousel extends Component {
 
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === this.props.items.length - 1 ? 0 : this.state.activeIndex + 1;
-    this.setState({ activeIndex: nextIndex });
+    this.setState((prevState) => {
+      const nextIndex =
+        prevState.activeIndex === this.props.items.length - 1
+          ? 0
+          : prevState.activeIndex + 1;
+      return { activeIndex: nextIndex };
+    });
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? this.props.items.length - 1 : this.state.activeIndex - 1;
-    this.setState({ activeIndex: nextIndex });
+    this.setState((prevState) => {
+      const nextIndex =
+        prevState.activeIndex === 0
+          ? this.props.items.length - 1
+          : prevState.activeIndex - 1;
+      return { activeIndex: nextIndex };
+    });
   }
 
   goToIndex(newIndex) {
@@ -56,7 +66,15 @@ class UncontrolledCarousel extends Component {
   }
 
   render() {
-    const { defaultActiveIndex, autoPlay, indicators, controls, items, goToIndex, ...props } = this.props;
+    const {
+      defaultActiveIndex,
+      autoPlay,
+      indicators,
+      controls,
+      items,
+      goToIndex,
+      ...props
+    } = this.props;
     const { activeIndex } = this.state;
 
     const slides = items.map((item) => {
@@ -68,7 +86,10 @@ class UncontrolledCarousel extends Component {
           key={key}
         >
           <img className="d-block w-100" src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.header || item.caption} />
+          <CarouselCaption
+            captionText={item.caption}
+            captionHeader={item.header || item.caption}
+          />
         </CarouselItem>
       );
     });
@@ -81,22 +102,28 @@ class UncontrolledCarousel extends Component {
         ride={autoPlay ? 'carousel' : undefined}
         {...props}
       >
-        {indicators && <CarouselIndicators
-          items={items}
-          activeIndex={props.activeIndex || activeIndex}
-          onClickHandler={goToIndex || this.goToIndex}
-        />}
+        {indicators && (
+          <CarouselIndicators
+            items={items}
+            activeIndex={props.activeIndex || activeIndex}
+            onClickHandler={goToIndex || this.goToIndex}
+          />
+        )}
         {slides}
-        {controls && <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={props.previous || this.previous}
-        />}
-        {controls && <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={props.next || this.next}
-        />}
+        {controls && (
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={props.previous || this.previous}
+          />
+        )}
+        {controls && (
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={props.next || this.next}
+          />
+        )}
       </Carousel>
     );
   }

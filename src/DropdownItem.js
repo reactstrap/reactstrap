@@ -15,12 +15,12 @@ const propTypes = {
   className: PropTypes.string,
   cssModule: PropTypes.object,
   toggle: PropTypes.bool,
-  text: PropTypes.bool
+  text: PropTypes.bool,
 };
 
 const defaultProps = {
   tag: 'button',
-  toggle: true
+  toggle: true,
 };
 
 class DropdownItem extends React.Component {
@@ -29,13 +29,6 @@ class DropdownItem extends React.Component {
 
     this.onClick = this.onClick.bind(this);
     this.getTabIndex = this.getTabIndex.bind(this);
-  }
-
-  getRole() {
-    if(this.context.menuRole === 'listbox') {
-      return 'option'
-    }
-    return 'menuitem'
   }
 
   onClick(e) {
@@ -52,6 +45,13 @@ class DropdownItem extends React.Component {
     if (this.props.toggle) {
       this.context.toggle(e);
     }
+  }
+
+  getRole() {
+    if (this.context.menuRole === 'listbox') {
+      return 'option';
+    }
+    return 'menuitem';
   }
 
   getTabIndex() {
@@ -74,19 +74,20 @@ class DropdownItem extends React.Component {
       header,
       active,
       text,
-      ...props } = omit(this.props, ['toggle']);
+      ...props
+    } = omit(this.props, ['toggle']);
 
-    const classes = mapToCssModules(classNames(
-      className,
-      {
+    const classes = mapToCssModules(
+      classNames(className, {
         disabled: props.disabled,
         'dropdown-item': !divider && !header && !text,
         active: active,
         'dropdown-header': header,
         'dropdown-divider': divider,
-        'dropdown-item-text': text
-      }
-    ), cssModule);
+        'dropdown-item-text': text,
+      }),
+      cssModule,
+    );
 
     if (Tag === 'button') {
       if (header) {
@@ -102,7 +103,11 @@ class DropdownItem extends React.Component {
 
     return (
       <Tag
-        type={(Tag === 'button' && (props.onClick || this.props.toggle)) ? 'button' : undefined}
+        type={
+          Tag === 'button' && (props.onClick || this.props.toggle)
+            ? 'button'
+            : undefined
+        }
         {...props}
         tabIndex={tabIndex}
         role={role}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Alert } from '../';
+import { Alert } from '..';
 
 describe('Alert', () => {
   it('should render children', () => {
@@ -10,18 +10,28 @@ describe('Alert', () => {
 
   it('should pass className down', () => {
     const alert = mount(<Alert className="test-class-name">Yo!</Alert>);
-    expect(alert.find('.alert').hostNodes().prop('className')).toContain('test-class-name');
+    expect(alert.find('.alert').hostNodes().prop('className')).toContain(
+      'test-class-name',
+    );
   });
 
   it('should pass close className down', () => {
-    function noop() { }
-    const alert = mount(<Alert toggle={noop} closeClassName="test-class-name">Yo!</Alert>);
-    expect(alert.find('.btn-close').hostNodes().prop('className')).toContain('test-class-name');
+    const noop = () => {};
+    const alert = mount(
+      <Alert toggle={noop} closeClassName="test-class-name">
+        Yo!
+      </Alert>,
+    );
+    expect(alert.find('.btn-close').hostNodes().prop('className')).toContain(
+      'test-class-name',
+    );
   });
 
   it('should pass other props down', () => {
     const alert = mount(<Alert data-testprop="testvalue">Yo!</Alert>);
-    expect(alert.find('.alert').hostNodes().prop('data-testprop')).toContain('testvalue');
+    expect(alert.find('.alert').hostNodes().prop('data-testprop')).toContain(
+      'testvalue',
+    );
   });
 
   it('should have default transitionTimeouts', () => {
@@ -36,9 +46,16 @@ describe('Alert', () => {
 
   it('should have support configurable transitionTimeouts', () => {
     const alert = mount(
-      <Alert transition={{ timeout: 0, appear: false, enter: false, exit: false }}>
+      <Alert
+        transition={{
+          timeout: 0,
+          appear: false,
+          enter: false,
+          exit: false,
+        }}
+      >
         Yo!
-      </Alert>
+      </Alert>,
     );
 
     const transition = alert.find('Transition');
@@ -70,7 +87,11 @@ describe('Alert', () => {
   });
 
   it('should show dismiss button if passed toggle', () => {
-    const alert = mount(<Alert color="danger" toggle={() => { }}>Yo!</Alert>).find('div');
+    const alert = mount(
+      <Alert color="danger" toggle={() => {}}>
+        Yo!
+      </Alert>,
+    ).find('div');
     expect(alert.find('button').hostNodes().length).toEqual(1);
     expect(alert.hasClass('alert-dismissible')).toBe(true);
   });
@@ -87,14 +108,22 @@ describe('Alert', () => {
 
   it('should be dismissible', () => {
     const onClick = jest.fn();
-    const alert = mount(<Alert color="danger" toggle={onClick}>Yo!</Alert>);
+    const alert = mount(
+      <Alert color="danger" toggle={onClick}>
+        Yo!
+      </Alert>,
+    );
 
     alert.find('button').hostNodes().simulate('click');
     expect(onClick).toHaveBeenCalled();
   });
 
   it('should render close button with custom aria-label', () => {
-    const alert = mount(<Alert toggle={() => { }} closeAriaLabel="oseclay">Yo!</Alert>).find('div');
+    const alert = mount(
+      <Alert toggle={() => {}} closeAriaLabel="oseclay">
+        Yo!
+      </Alert>,
+    ).find('div');
     const closeButton = alert.find('button').hostNodes().first();
     expect(closeButton.prop('aria-label')).toBe('oseclay');
   });

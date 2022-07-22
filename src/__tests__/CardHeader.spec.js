@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardHeader } from '../';
+import { CardHeader } from '..';
 
 describe('CardHeader', () => {
   it('should render with "card-header" class', () => {

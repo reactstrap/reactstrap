@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardFooter } from '../';
+import { CardFooter } from '..';
 
 describe('CardFooter', () => {
   it('should render with "card-footer" class', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { PaginationLink } from '../';
+import { PaginationLink } from '..';
 
 describe('PaginationLink', () => {
   it('should render default `a` tag when `href` is present', () => {
@@ -73,7 +73,11 @@ describe('PaginationLink', () => {
   });
 
   it('should render custom caret specified as a component', () => {
-    const wrapper = shallow(<PaginationLink next><span>Yo</span></PaginationLink>);
+    const wrapper = shallow(
+      <PaginationLink next>
+        <span>Yo</span>
+      </PaginationLink>,
+    );
 
     expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('Yo');
   });
@@ -109,5 +113,4 @@ describe('PaginationLink', () => {
     expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
     expect(wrapper.find('.visually-hidden').text()).toBe('Last');
   });
-
 });

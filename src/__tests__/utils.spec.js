@@ -4,11 +4,15 @@ describe('Utils', () => {
   describe('mapToCssModules', () => {
     describe('without css module', () => {
       it('should return a string', () => {
-        expect(Utils.mapToCssModules('btn btn-primary')).toEqual(expect.any(String));
+        expect(Utils.mapToCssModules('btn btn-primary')).toEqual(
+          expect.any(String),
+        );
       });
 
       it('should return the classnames it was given, unchanged', () => {
-        expect(Utils.mapToCssModules('btn btn-primary')).toBe('btn btn-primary');
+        expect(Utils.mapToCssModules('btn btn-primary')).toBe(
+          'btn btn-primary',
+        );
       });
     });
 
@@ -19,7 +23,9 @@ describe('Utils', () => {
           'btn-success': 'b1',
           'btn-primary': 'c2',
         };
-        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toEqual(expect.any(String));
+        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toEqual(
+          expect.any(String),
+        );
       });
 
       it('should return the mapped classnames', () => {
@@ -28,7 +34,9 @@ describe('Utils', () => {
           'btn-success': 'b1',
           'btn-primary': 'c2',
         };
-        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toBe('a1 c2');
+        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toBe(
+          'a1 c2',
+        );
       });
 
       it('should return the original classname when it is not in the map', () => {
@@ -36,7 +44,9 @@ describe('Utils', () => {
           btn: 'a1',
           'btn-success': 'b1',
         };
-        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toBe('a1 btn-primary');
+        expect(Utils.mapToCssModules('btn btn-primary', cssModule)).toBe(
+          'a1 btn-primary',
+        );
       });
     });
   });
@@ -46,22 +56,28 @@ describe('Utils', () => {
       const input = {
         hello: 'world',
         speed: 'fast',
-        size: 'small'
+        size: 'small',
       };
-      expect(Utils.omit(input, ['hello'])).toEqual({ speed: 'fast', size: 'small' });
+      expect(Utils.omit(input, ['hello'])).toEqual({
+        speed: 'fast',
+        size: 'small',
+      });
     });
 
     it('should not alter source object', () => {
       const input = {
         hello: 'world',
         speed: 'fast',
-        size: 'small'
+        size: 'small',
       };
-      expect(Utils.omit(input, ['hello'])).toEqual({ speed: 'fast', size: 'small' });
+      expect(Utils.omit(input, ['hello'])).toEqual({
+        speed: 'fast',
+        size: 'small',
+      });
       expect(input).toEqual({
         hello: 'world',
         speed: 'fast',
-        size: 'small'
+        size: 'small',
       });
     });
 
@@ -69,14 +85,17 @@ describe('Utils', () => {
       const input = {
         hello: 'world',
         speed: 'fast',
-        size: 'small'
+        size: 'small',
       };
-      expect(Utils.omit(input, ['non-existing', 'hello'])).toEqual({ speed: 'fast', size: 'small' });
+      expect(Utils.omit(input, ['non-existing', 'hello'])).toEqual({
+        speed: 'fast',
+        size: 'small',
+      });
     });
 
     it('should return a new object', () => {
       const input = {
-        hello: 'world'
+        hello: 'world',
       };
       // toBe tests equality using `===` and so will test if it's not the same object.
       expect(Utils.omit(input, [])).not.toBe(input);
@@ -101,10 +120,15 @@ describe('Utils', () => {
       const propName = 'dom';
       const componentName = 'ComponentName';
 
-      expect(Utils.DOMElement(props, propName, componentName)).toEqual(new Error(
-        'Invalid prop `' + propName + '` supplied to `' + componentName +
-        '`. Expected prop to be an instance of Element. Validation failed.'
-      ));
+      expect(Utils.DOMElement(props, propName, componentName)).toEqual(
+        new Error(
+          'Invalid prop `' +
+            propName +
+            '` supplied to `' +
+            componentName +
+            '`. Expected prop to be an instance of Element. Validation failed.',
+        ),
+      );
     });
   });
 
@@ -118,7 +142,7 @@ describe('Utils', () => {
 
     it('should return all matching elements if allElement param is true', () => {
       const element = document.createElement('div');
-       element.innerHTML = `<span class='example'>span 1</span>
+      element.innerHTML = `<span class='example'>span 1</span>
        <span class='example'>span 2</span>`;
       document.body.appendChild(element);
 
@@ -178,7 +202,9 @@ describe('Utils', () => {
       const target = 'not a target';
       expect(() => {
         Utils.getTarget(target);
-      }).toThrow(`The target '${target}' could not be identified in the dom, tip: check spelling`);
+      }).toThrow(
+        `The target '${target}' could not be identified in the dom, tip: check spelling`,
+      );
     });
 
     it('should return the value of the `current` object if it is a react Ref object', () => {
@@ -205,80 +231,81 @@ describe('Utils', () => {
     });
   });
 
-  describe('isFunction', function() {
-    it('should return `true` for functions', function() {
-      function test(){}
+  describe('isFunction', () => {
+    it('should return `true` for functions', () => {
+      function test() {}
       expect(Utils.isFunction(test)).toBe(true);
       expect(Utils.isFunction(Array.prototype.slice)).toBe(true);
     });
 
-    it('should return `true` for async functions', function() {
+    it('should return `true` for async functions', () => {
       async function asyncFunc() {}
-      expect(Utils.isFunction(asyncFunc)).toEqual(typeof asyncFunc === 'function');
+      expect(Utils.isFunction(asyncFunc)).toEqual(
+        typeof asyncFunc === 'function',
+      );
     });
 
-    it('should return `true` for generator functions', function() {
+    it('should return `true` for generator functions', () => {
       function* genFunc() {}
       expect(Utils.isFunction(genFunc)).toEqual(typeof genFunc === 'function');
     });
 
-
-    it('should return `false` for non-functions', function() {
+    it('should return `false` for non-functions', () => {
       function toArgs(array) {
-        return (function() { return arguments; }.apply(undefined, array));
+        return function () {
+          return arguments;
+        }.apply(undefined, array);
       }
       expect(Utils.isFunction(toArgs([1, 2, 3]))).toBe(false);
       expect(Utils.isFunction([1, 2, 3])).toBe(false);
       expect(Utils.isFunction(true)).toBe(false);
       expect(Utils.isFunction(new Date())).toBe(false);
       expect(Utils.isFunction(new Error())).toBe(false);
-      expect(Utils.isFunction({ 'a': 1 })).toBe(false);
+      expect(Utils.isFunction({ a: 1 })).toBe(false);
       expect(Utils.isFunction(1)).toBe(false);
       expect(Utils.isFunction(/x/)).toBe(false);
       expect(Utils.isFunction('a')).toBe(false);
-      expect(Utils.isFunction(Symbol("a"))).toBe(false);
+      expect(Utils.isFunction(Symbol('a'))).toBe(false);
       //
       if (document) {
-        expect(Utils.isFunction(document.getElementsByTagName('body'))).toBe(false);
+        expect(Utils.isFunction(document.getElementsByTagName('body'))).toBe(
+          false,
+        );
       }
     });
-
   });
 
-  describe('isObject', function() {
-    it('should return `true` for objects', function() {
+  describe('isObject', () => {
+    it('should return `true` for objects', () => {
       expect(Utils.isObject([1, 2, 3])).toBe(true);
       expect(Utils.isObject(Object(false))).toBe(true);
       expect(Utils.isObject(new Date())).toBe(true);
       expect(Utils.isObject(new Error())).toBe(true);
-      expect(Utils.isObject({ 'a': 1 })).toBe(true);
-      expect(Utils.isObject({ 'a': 1 })).toBe(true);
+      expect(Utils.isObject({ a: 1 })).toBe(true);
+      expect(Utils.isObject({ a: 1 })).toBe(true);
       expect(Utils.isObject(Object(0))).toBe(true);
       expect(Utils.isObject(/x/)).toBe(true);
-      expect(Utils.isObject(Object("a"))).toBe(true);
+      expect(Utils.isObject(Object('a'))).toBe(true);
       if (document) {
         expect(Utils.isObject(document.body)).toBe(true);
       }
     });
 
-    it('should return `false` for non-objects', function() {
-
+    it('should return `false` for non-objects', () => {
       expect(Utils.isObject(0)).toBe(false);
       expect(Utils.isObject(false)).toBe(false);
       expect(Utils.isObject(1)).toBe(false);
     });
-
   });
 
-  describe('toNumber', function() {
-    it('should return number', function() {
-      expect(Utils.toNumber("5")).toEqual(5);
-      expect(Utils.toNumber("5.0")).toEqual(5);
-      expect(Utils.toNumber("1.1")).toEqual(1.1);
-      expect(Utils.toNumber("-1.1")).toEqual(-1.1);
-      expect(Utils.toNumber(0/0)).toEqual(NaN);
+  describe('toNumber', () => {
+    it('should return number', () => {
+      expect(Utils.toNumber('5')).toEqual(5);
+      expect(Utils.toNumber('5.0')).toEqual(5);
+      expect(Utils.toNumber('1.1')).toEqual(1.1);
+      expect(Utils.toNumber('-1.1')).toEqual(-1.1);
+      expect(Utils.toNumber(0 / 0)).toEqual(NaN);
       expect(Utils.toNumber(0)).toEqual(0);
-
     });
   });
 

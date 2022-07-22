@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FormFeedback } from '../';
+import { FormFeedback } from '..';
 
 describe('FormFeedback', () => {
   it('should render with "form" tag by default', () => {
@@ -27,7 +27,11 @@ describe('FormFeedback', () => {
   });
 
   it('should render with "valid-tooltip" class', () => {
-    const wrapper = shallow(<FormFeedback valid tooltip>Yo!</FormFeedback>);
+    const wrapper = shallow(
+      <FormFeedback valid tooltip>
+        Yo!
+      </FormFeedback>,
+    );
 
     expect(wrapper.hasClass('valid-tooltip')).toBe(true);
   });

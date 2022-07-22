@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { OffcanvasBody } from '../';
+import { OffcanvasBody } from '..';
 
 describe('OffcanvasBody', () => {
   it('should render with "offcanvas-body" class', () => {
@@ -11,7 +11,9 @@ describe('OffcanvasBody', () => {
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<OffcanvasBody className="other">Yo!</OffcanvasBody>);
+    const wrapper = shallow(
+      <OffcanvasBody className="other">Yo!</OffcanvasBody>,
+    );
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('offcanvas-body')).toBe(true);
