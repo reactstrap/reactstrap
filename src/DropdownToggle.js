@@ -99,7 +99,6 @@ class DropdownToggle extends React.Component {
       Tag = tag;
     }
 
-
     if (this.context.inNavbar) {
       return (
         <Tag
@@ -120,8 +119,8 @@ class DropdownToggle extends React.Component {
           const handleRef = (tagRef) => {
             ref(tagRef);
             const { onToggleRef } = this.context;
-            if (onToggleRef) onToggleRef(tagRef)
-          }
+            if (onToggleRef) onToggleRef(tagRef);
+          };
 
           return (
             <Tag
@@ -133,7 +132,7 @@ class DropdownToggle extends React.Component {
               aria-haspopup={this.getRole()}
               children={children}
             />
-          )
+          );
         }}
       </Reference>
     );

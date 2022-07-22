@@ -58,15 +58,16 @@ describe('InputGroup', () => {
       jest.spyOn(Dropdown.prototype, 'toggle');
 
       const wrapper = mount(
-        <InputGroup type="dropdown" isOpen toggle={() => { }}>
+        <InputGroup type="dropdown" isOpen toggle={() => {}}>
           <Input />
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu right>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
-        </InputGroup>
-        , { attachTo: document.body });
+        </InputGroup>,
+        { attachTo: document.body },
+      );
 
       expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
 

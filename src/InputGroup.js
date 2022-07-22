@@ -29,9 +29,7 @@ function InputGroup(props) {
   );
 
   if (props.type === 'dropdown') {
-    return (
-      <Dropdown {...attributes} className={classes} />
-    )
+    return <Dropdown {...attributes} className={classes} />;
   }
 
   return (
@@ -39,7 +37,7 @@ function InputGroup(props) {
       <Tag {...attributes} className={classes} />
     </InputGroupContext.Provider>
   );
-};
+}
 
 InputGroup.propTypes = propTypes;
 InputGroup.defaultProps = defaultProps;

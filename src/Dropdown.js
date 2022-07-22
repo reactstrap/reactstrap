@@ -104,10 +104,16 @@ class Dropdown extends React.Component {
     let clickIsInInput = false;
     if (container) {
       // this is only for InputGroup with type dropdown
-      clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
+      clickIsInInput =
+        container.classList.contains('input-group') &&
+        container.classList.contains('dropdown') &&
+        e.target.tagName === 'INPUT';
     }
 
-    if (((targetIsToggle && !clickIsInInput) || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+    if (
+      ((targetIsToggle && !clickIsInInput) || clickIsInMenu) &&
+      (e.type !== 'keyup' || e.which === keyCodes.tab)
+    ) {
       return;
     }
 
@@ -216,14 +222,17 @@ class Dropdown extends React.Component {
     return {
       toggle: this.toggle,
       isOpen: this.props.isOpen,
-      direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
+      direction:
+        this.props.direction === 'down' && this.props.dropup
+          ? 'up'
+          : this.props.direction,
       inNavbar: this.props.inNavbar,
       disabled: this.props.disabled,
       // Callback that should be called by DropdownMenu to provide a ref to
       // a HTML tag that's used for the DropdownMenu
       onMenuRef: this.handleMenuRef,
       onToggleRef: this.handleToggleRef,
-      menuRole: this.props.menuRole
+      menuRole: this.props.menuRole,
     };
   }
 
@@ -247,9 +256,9 @@ class Dropdown extends React.Component {
 
   getItemType() {
     if (this.context.menuRole === 'listbox') {
-      return 'option'
+      return 'option';
     }
-    return 'menuitem'
+    return 'menuitem';
   }
 
   getMenuItems() {
@@ -257,18 +266,20 @@ class Dropdown extends React.Component {
     // be null, but it is sometimes null in tests. To mitigate that, we just
     // use `this.getContainer()` as the fallback `menuContainer`.
     const menuContainer = this.getMenu() || this.getContainer();
-    return [].slice.call(menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`));
+    return [].slice.call(
+      menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`),
+    );
   }
 
   addEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.addEventListener(event, this.handleDocumentClick, true)
+    ['click', 'touchstart', 'keyup'].forEach((event) =>
+      document.addEventListener(event, this.handleDocumentClick, true),
     );
   }
 
   removeEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
+    ['click', 'touchstart', 'keyup'].forEach((event) =>
+      document.removeEventListener(event, this.handleDocumentClick, true),
     );
   }
 
@@ -331,7 +342,9 @@ class Dropdown extends React.Component {
       return (
         <DropdownContext.Provider value={this.getContextValue()}>
           <Manager>
-            {this.props.children.map(child => React.cloneElement(child, { onKeyDown: this.handleKeyDown }))}
+            {this.props.children.map((child) =>
+              React.cloneElement(child, { onKeyDown: this.handleKeyDown }),
+            )}
           </Manager>
         </DropdownContext.Provider>
       );
@@ -356,6 +369,6 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
-Dropdown.contextType = InputGroupContext
+Dropdown.contextType = InputGroupContext;
 
 export default Dropdown;

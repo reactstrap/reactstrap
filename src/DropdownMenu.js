@@ -49,7 +49,7 @@ const directionPositionMap = {
 class DropdownMenu extends React.Component {
   getRole() {
     if (this.context.menuRole === 'listbox') {
-      return 'listbox'
+      return 'listbox';
     }
     return 'menu';
   }
