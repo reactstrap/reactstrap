@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen(prevState => !prevState);
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>

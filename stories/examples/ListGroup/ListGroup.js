@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <ListGroup {...args}>
       <ListGroupItem>Cras justo odio</ListGroupItem>
@@ -16,7 +16,7 @@ const Example = (args) => {
 Example.args = {
   flush: false,
   horizontal: false,
-  numbered: false
+  numbered: false,
 };
 
 export default Example;

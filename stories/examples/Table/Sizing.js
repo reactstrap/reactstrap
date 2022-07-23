@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Table size="sm">
       <thead>
@@ -41,7 +41,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Use `size="sm"` to make tables compact by cutting cell padding in half.'
-    }
-  }
-}
+      story:
+        'Use `size="sm"` to make tables compact by cutting cell padding in half.',
+    },
+  },
+};

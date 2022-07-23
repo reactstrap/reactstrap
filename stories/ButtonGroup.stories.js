@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/ButtonGroup',
   parameters: {
@@ -10,9 +8,9 @@ export default {
 
 Group a series of buttons together on a single line or stack them in a vertical column.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 export { default as ButtonGroup } from './examples/ButtonGroup/ButtonGroup';

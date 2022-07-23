@@ -1,4 +1,5 @@
 import Example from './FullscreenExample';
+// eslint-disable-next-line import/extensions
 import Fullscreen from '!!raw-loader!./FullscreenExample';
 
 Example.parameters = {
@@ -6,12 +7,12 @@ Example.parameters = {
     source: {
       code: Fullscreen,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Make the modal fullscreen.'
-    }
+      story: 'Make the modal fullscreen.',
+    },
   },
-}
+};
 
 export default Example;

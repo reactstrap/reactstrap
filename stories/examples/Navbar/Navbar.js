@@ -1,4 +1,5 @@
 import Example from './NavbarExample';
+// eslint-disable-next-line import/extensions
 import NavbarExample from '!!raw-loader!./NavbarExample';
 import { colors } from '../options';
 
@@ -7,10 +8,10 @@ Example.parameters = {
     source: {
       code: NavbarExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 Example.args = {
   color: 'light',
@@ -19,25 +20,25 @@ Example.args = {
   full: false,
   expand: 'md',
   container: 'fluid',
-}
+};
 
 Example.argTypes = {
   color: {
     control: { type: 'select' },
-    options: colors
+    options: colors,
   },
   container: {
     control: { type: 'select' },
-    options: [false, true, 'sm', 'md', 'lg', 'xl', 'fluid']
+    options: [false, true, 'sm', 'md', 'lg', 'xl', 'fluid'],
   },
   expand: {
     control: { type: 'select' },
-    options: [false, true, 'sm', 'md', 'lg', 'xl']
+    options: [false, true, 'sm', 'md', 'lg', 'xl'],
   },
   fixed: {
     control: { type: 'select' },
-    options: ['', 'top', 'bottom']
-  }
+    options: ['', 'top', 'bottom'],
+  },
 };
 
 export default Example;

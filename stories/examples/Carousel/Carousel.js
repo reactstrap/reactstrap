@@ -1,10 +1,11 @@
 import Example from './CarouselExample';
+// eslint-disable-next-line import/extensions
 import CarouselExample from '!!raw-loader!./CarouselExample';
 
 Example.args = {
   dark: false,
   slide: true,
-  fade: false
+  fade: false,
 };
 
 Example.parameters = {
@@ -12,9 +13,9 @@ Example.parameters = {
     source: {
       code: CarouselExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 export default Example;

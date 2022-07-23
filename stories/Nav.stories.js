@@ -7,10 +7,10 @@ export default {
   [Bootstrap Navs](https://getbootstrap.com/docs/5.1/components/navs-tabs/)
   
   Bootstrap’s navigation components.
-  `
-      }
-    }
-  }
+  `,
+      },
+    },
+  },
 };
 
 export { default as Navs } from './examples/Nav/Navs';

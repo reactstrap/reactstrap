@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <ListGroup {...args}>
       <ListGroupItem>Cras justo odio</ListGroupItem>
@@ -16,10 +16,10 @@ const Example = (args) => {
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add `active` prop to a `ListGroupItem` to indicate the current active selection.'
-    }
-  }
-}
-
+      story:
+        'Add `active` prop to a `ListGroupItem` to indicate the current active selection.',
+    },
+  },
+};
 
 export default Example;

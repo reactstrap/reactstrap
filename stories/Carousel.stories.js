@@ -8,9 +8,9 @@ export default {
   
   A slideshow component for cycling through elements, images, or slides of text — like a carousel.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 export { default as Carousel } from './examples/Carousel/Carousel';

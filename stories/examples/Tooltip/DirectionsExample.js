@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Button, Tooltip } from "reactstrap";
+import React, { useState } from 'react';
+import { Button, Tooltip } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-const TooltipItem = props => {
+function TooltipItem(props) {
   const { item, id } = props;
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -9,46 +10,52 @@ const TooltipItem = props => {
 
   return (
     <span>
-      <Button className="me-1" color="secondary" id={"Tooltip-" + id}>
+      <Button className="me-1" color="secondary" id={'Tooltip-' + id}>
         {item.text}
       </Button>
       <Tooltip
         placement={item.placement}
         isOpen={tooltipOpen}
-        target={"Tooltip-" + id}
+        target={'Tooltip-' + id}
         toggle={toggle}
       >
         Tooltip Content!
       </Tooltip>
     </span>
   );
+}
+
+TooltipItem.propTypes = {
+  item: PropTypes.object,
+  id: PropTypes.string,
 };
 
-const TooltipExampleMulti = props => {
+function TooltipExampleMulti(props) {
   return (
     <>
       {[
         {
-          placement: "top",
-          text: "Tooltip on Top"
+          placement: 'top',
+          text: 'Tooltip on Top',
         },
         {
-          placement: "bottom",
-          text: "Tooltip on Bottom"
+          placement: 'bottom',
+          text: 'Tooltip on Bottom',
         },
         {
-          placement: "left",
-          text: "Tooltip on Left"
+          placement: 'left',
+          text: 'Tooltip on Left',
         },
         {
-          placement: "right",
-          text: "Tooltip on Right"
-        }
+          placement: 'right',
+          text: 'Tooltip on Right',
+        },
       ].map((tooltip, i) => {
+        // eslint-disable-next-line react/no-array-index-key
         return <TooltipItem key={i} item={tooltip} id={i} />;
       })}
     </>
   );
-};
+}
 
 export default TooltipExampleMulti;

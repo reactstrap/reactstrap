@@ -8,9 +8,9 @@ export default {
 
 Used to build vertically collapsing accordions.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 export { default as Accordion } from './examples/Accordion/Accordion';

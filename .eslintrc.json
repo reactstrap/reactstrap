@@ -2,7 +2,8 @@
   "root": true,
   "extends": [
     "airbnb",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "parser": "@babel/eslint-parser",
   "env": {

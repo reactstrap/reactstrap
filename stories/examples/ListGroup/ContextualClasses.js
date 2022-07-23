@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ListGroup>
       <ListGroupItem color="success">Cras justo odio</ListGroupItem>
@@ -15,9 +15,10 @@ const Example = (props) => {
 Example.parameters = {
   docs: {
     description: {
-      story: 'Use contextual classes to style list items with a stateful background and color.'
-    }
-  }
-}
+      story:
+        'Use contextual classes to style list items with a stateful background and color.',
+    },
+  },
+};
 
 export default Example;

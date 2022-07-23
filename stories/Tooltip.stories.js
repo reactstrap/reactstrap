@@ -3,10 +3,11 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: '[Bootstrap Tooltips](https://getbootstrap.com/docs/5.1/components/tooltips/)'
-      }
-    }
-  }
+        component:
+          '[Bootstrap Tooltips](https://getbootstrap.com/docs/5.1/components/tooltips/)',
+      },
+    },
+  },
 };
 
 export { default as Tooltip } from './examples/Tooltip/Tooltip';

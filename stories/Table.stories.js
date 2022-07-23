@@ -3,10 +3,11 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: '[Bootstrap Tables](https://getbootstrap.com/docs/5.1/content/tables/)'
-      }
-    }
-  }
+        component:
+          '[Bootstrap Tables](https://getbootstrap.com/docs/5.1/content/tables/)',
+      },
+    },
+  },
 };
 
 export { default as Table } from './examples/Table/Table';

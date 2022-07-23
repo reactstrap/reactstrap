@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ButtonGroup>
       <Button color="danger">Left</Button>

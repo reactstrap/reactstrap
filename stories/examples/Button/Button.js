@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <div>
       <Button {...args} />
@@ -23,12 +23,12 @@ Example.args = {
 Example.argTypes = {
   color: {
     control: { type: 'select' },
-    options: colors
+    options: colors,
   },
   size: {
     control: { type: 'select' },
-    options: ['', 'sm', 'lg']
-  }
+    options: ['', 'sm', 'lg'],
+  },
 };
 
 export default Example;

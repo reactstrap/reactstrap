@@ -1,5 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import Example from './ModalExample';
+// eslint-disable-next-line import/extensions
 import ModalExample from '!!raw-loader!./ModalExample';
 
 Example.parameters = {
@@ -7,10 +8,10 @@ Example.parameters = {
     source: {
       code: ModalExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 Example.args = {
   fullscreen: false,
@@ -18,17 +19,17 @@ Example.args = {
   backdrop: true,
   fade: true,
   centered: false,
-  scrollable: false
+  scrollable: false,
 };
 
 Example.argTypes = {
   fullscreen: {
     control: { type: 'select' },
-    options: ['', true, 'sm', 'md', 'lg', 'xl']
+    options: ['', true, 'sm', 'md', 'lg', 'xl'],
   },
   size: {
     control: { type: 'select' },
-    options: ['', 'sm', 'lg', 'xl']
+    options: ['', 'sm', 'lg', 'xl'],
   },
 };
 

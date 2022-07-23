@@ -7,10 +7,10 @@ export default {
   [Bootstrap ListGroup](https://getbootstrap.com/docs/5.1/components/list-group/)
   
   A flexible and powerful component for displaying a series of content.
-  `
-      }
-    }
-  }
+  `,
+      },
+    },
+  },
 };
 
 export { default as ListGroup } from './examples/ListGroup/ListGroup';

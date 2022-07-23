@@ -7,10 +7,10 @@ export default {
   [Bootstrap Forms](https://getbootstrap.com/docs/5.1/forms/overview/)
 
   Form controls, layout options, and custom components for creating a wide variety of forms.
-  `
-      }
-    }
-  }
+  `,
+      },
+    },
+  },
 };
 
 export { default as Input } from './examples/Form/Input';

@@ -6,10 +6,10 @@ import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
- } from 'reactstrap';
+  DropdownItem,
+} from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [splitButtonOpen, setSplitButtonOpen] = useState(false);
 
@@ -20,16 +20,14 @@ const Example = (props) => {
   return (
     <div>
       <InputGroup>
-        <Button>I'm a button</Button>
+        <Button>I&lsquo;m a button</Button>
         <Input />
       </InputGroup>
       <br />
       <InputGroup>
         <Input />
         <ButtonDropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
-          <DropdownToggle caret>
-            Button Dropdown
-          </DropdownToggle>
+          <DropdownToggle caret>Button Dropdown</DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Header</DropdownItem>
             <DropdownItem disabled>Action</DropdownItem>
@@ -53,11 +51,10 @@ const Example = (props) => {
           </DropdownMenu>
         </ButtonDropdown>
         <Input placeholder="and..." />
-        <Button color="secondary">I'm a button</Button>
+        <Button color="secondary">I&lsquo;m a button</Button>
       </InputGroup>
     </div>
   );
 }
-
 
 export default Example;

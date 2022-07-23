@@ -1,7 +1,7 @@
 import React from 'react';
-import { List, ListInlineItem } from 'reactstrap';
+import { List } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <List>
       <li>Lorem ipsum</li>

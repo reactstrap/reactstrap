@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <FormGroup check inline>
@@ -17,4 +17,3 @@ const Example = (props) => {
 }
 
 export default Example;
- 
