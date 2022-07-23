@@ -18,11 +18,16 @@ const propTypes = {
   split: PropTypes.bool,
   tag: tagPropType,
   nav: PropTypes.bool,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+  ]),
 };
 
 const defaultProps = {
   color: 'secondary',
-  'aria-haspopup': true
+  'aria-haspopup': true,
 };
 
 class DropdownToggle extends React.Component {
@@ -54,16 +59,26 @@ class DropdownToggle extends React.Component {
   }
 
   render() {
-    const { className, color, cssModule, caret, split, nav, tag, innerRef, ...props } = this.props;
-    const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
-    const classes = mapToCssModules(classNames(
+    const {
       className,
-      {
+      color,
+      cssModule,
+      caret,
+      split,
+      nav,
+      tag,
+      innerRef,
+      ...props
+    } = this.props;
+    const ariaLabel = props['aria-label'] || 'Toggle Dropdown';
+    const classes = mapToCssModules(
+      classNames(className, {
         'dropdown-toggle': caret || split,
         'dropdown-toggle-split': split,
-        'nav-link': nav
-      }
-    ), cssModule);
+        'nav-link': nav,
+      }),
+      cssModule,
+    );
     const children =
       typeof props.children !== 'undefined' ? (
         props.children
@@ -90,6 +105,7 @@ class DropdownToggle extends React.Component {
           {...props}
           className={classes}
           onClick={this.onClick}
+          ref={this.context.onToggleRef}
           aria-expanded={this.context.isOpen}
           aria-haspopup={this.getRole()}
           children={children}
@@ -99,18 +115,25 @@ class DropdownToggle extends React.Component {
 
     return (
       <Reference innerRef={innerRef}>
-        {({ ref }) => (
-          <Tag
-            {...props}
-            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: ref }}
+        {({ ref }) => {
+          const handleRef = (tagRef) => {
+            ref(tagRef);
+            const { onToggleRef } = this.context;
+            if (onToggleRef) onToggleRef(tagRef);
+          };
 
-            className={classes}
-            onClick={this.onClick}
-            aria-expanded={this.context.isOpen}
-            aria-haspopup={this.getRole()}
-            children={children}
-          />
-        )}
+          return (
+            <Tag
+              {...props}
+              {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: handleRef }}
+              className={classes}
+              onClick={this.onClick}
+              aria-expanded={this.context.isOpen}
+              aria-haspopup={this.getRole()}
+              children={children}
+            />
+          );
+        }}
       </Reference>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CardText } from '../';
+import { CardText } from '..';
 
 describe('CardText', () => {
   it('should render with "card-text" class', () => {

@@ -2,24 +2,37 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
-import { mapToCssModules, omit, pick, TransitionTimeouts, TransitionPropTypeKeys, TransitionStatuses, tagPropType } from './utils';
+import {
+  mapToCssModules,
+  omit,
+  pick,
+  TransitionTimeouts,
+  TransitionPropTypeKeys,
+  TransitionStatuses,
+  tagPropType,
+} from './utils';
 
 const propTypes = {
   ...Transition.propTypes,
+  /** Make content animation appear horizontally */
   horizontal: PropTypes.bool,
+  /** Set if Collapse is open or closed */
   isOpen: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
+  /** Set a custom element for this component */
   tag: tagPropType,
+  /** Add custom class */
   className: PropTypes.node,
   navbar: PropTypes.bool,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
-    PropTypes.object
+    PropTypes.object,
   ]),
 };
 
@@ -50,16 +63,14 @@ class Collapse extends Component {
     super(props);
 
     this.state = {
-      dimension: null
+      dimension: null,
     };
 
-    ['onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'].forEach((name) => {
-      this[name] = this[name].bind(this);
-    });
-  }
-
-  getDimension(node) {
-    return this.props.horizontal ? node.scrollWidth : node.scrollHeight;
+    ['onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'].forEach(
+      (name) => {
+        this[name] = this[name].bind(this);
+      },
+    );
   }
 
   onEntering(node, isAppearing) {
@@ -87,6 +98,10 @@ class Collapse extends Component {
   onExited(node) {
     this.setState({ dimension: null });
     this.props.onExited(node);
+  }
+
+  getDimension(node) {
+    return this.props.horizontal ? node.scrollWidth : node.scrollHeight;
   }
 
   render() {
@@ -118,13 +133,19 @@ class Collapse extends Component {
       >
         {(status) => {
           let collapseClass = getTransitionClass(status);
-          const classes = mapToCssModules(classNames(
-            className,
-            horizontal && 'collapse-horizontal',
-            collapseClass,
-            navbar && 'navbar-collapse'
-          ), cssModule);
-          const style = dimension === null ? null : { [horizontal ? 'width' : 'height']: dimension };
+          const classes = mapToCssModules(
+            classNames(
+              className,
+              horizontal && 'collapse-horizontal',
+              collapseClass,
+              navbar && 'navbar-collapse',
+            ),
+            cssModule,
+          );
+          const style =
+            dimension === null
+              ? null
+              : { [horizontal ? 'width' : 'height']: dimension };
           return (
             <Tag
               {...childProps}

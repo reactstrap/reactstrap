@@ -7,6 +7,7 @@ import { Manager } from 'react-popper';
 import classNames from 'classnames';
 import { DropdownContext } from './DropdownContext';
 import { mapToCssModules, omit, keyCodes, tagPropType } from './utils';
+import { InputGroupContext } from './InputGroupContext';
 
 const propTypes = {
   a11y: PropTypes.bool,
@@ -22,9 +23,10 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  dropup: PropTypes.bool,
   inNavbar: PropTypes.bool,
   setActiveFromChild: PropTypes.bool,
-  menuRole: PropTypes.oneOf(['listbox', 'menu'])
+  menuRole: PropTypes.oneOf(['listbox', 'menu']),
 };
 
 const defaultProps = {
@@ -34,7 +36,7 @@ const defaultProps = {
   nav: false,
   active: false,
   inNavbar: false,
-  setActiveFromChild: false
+  setActiveFromChild: false,
 };
 
 const preventDefaultKeys = [
@@ -43,8 +45,8 @@ const preventDefaultKeys = [
   keyCodes.up,
   keyCodes.down,
   keyCodes.end,
-  keyCodes.home
-]
+  keyCodes.home,
+];
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -56,27 +58,12 @@ class Dropdown extends React.Component {
     this.removeEvents = this.removeEvents.bind(this);
     this.toggle = this.toggle.bind(this);
     this.handleMenuRef = this.handleMenuRef.bind(this);
+    this.handleToggleRef = this.handleToggleRef.bind(this);
 
     this.containerRef = React.createRef();
     this.menuRef = React.createRef();
-  }
-
-  handleMenuRef(menuRef) {
-    this.menuRef.current = menuRef;
-  }
-
-  getContextValue() {
-    return {
-      toggle: this.toggle,
-      isOpen: this.props.isOpen,
-      direction: (this.props.direction === 'down' && this.props.dropup) ? 'up' : this.props.direction,
-      inNavbar: this.props.inNavbar,
-      disabled: this.props.disabled,
-      // Callback that should be called by DropdownMenu to provide a ref to
-      // a HTML tag that's used for the DropdownMenu
-      onMenuRef: this.handleMenuRef,
-      menuRole: this.props.menuRole
-    };
+    this.toggleRef = React.createRef();
+    // ref for DropdownToggle
   }
 
   componentDidMount() {
@@ -93,55 +80,40 @@ class Dropdown extends React.Component {
     this.removeEvents();
   }
 
-  getContainer() {
-    return this.containerRef.current;
+  handleMenuRef(menuRef) {
+    this.menuRef.current = menuRef;
   }
 
-  getMenu() {
-    return this.menuRef.current;
-  }
-
-  getMenuCtrl() {
-    if (this._$menuCtrl) return this._$menuCtrl;
-    this._$menuCtrl = this.getContainer().querySelector('[aria-expanded]');
-    return this._$menuCtrl;
-  }
-
-  getItemType() {
-    if(this.context.menuRole === 'listbox') {
-      return 'option'
-    }
-    return 'menuitem'
-  }
-
-  getMenuItems() {
-    // In a real menu with a child DropdownMenu, `this.getMenu()` should never
-    // be null, but it is sometimes null in tests. To mitigate that, we just
-    // use `this.getContainer()` as the fallback `menuContainer`.
-    const menuContainer = this.getMenu() || this.getContainer();
-    return [].slice.call(menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`));
-  }
-
-  addEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.addEventListener(event, this.handleDocumentClick, true)
-    );
-  }
-
-  removeEvents() {
-    ['click', 'touchstart', 'keyup'].forEach(event =>
-      document.removeEventListener(event, this.handleDocumentClick, true)
-    );
+  handleToggleRef(toggleRef) {
+    this.toggleRef.current = toggleRef;
   }
 
   handleDocumentClick(e) {
-    if (e && (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))) return;
+    if (
+      e &&
+      (e.which === 3 || (e.type === 'keyup' && e.which !== keyCodes.tab))
+    )
+      return;
     const container = this.getContainer();
     const menu = this.getMenu();
-    const clickIsInContainer = container.contains(e.target) && container !== e.target;
-    const clickIsInInput = container.classList.contains('input-group') && container.classList.contains('dropdown') && e.target.tagName === 'INPUT';
+    const toggle = this.getToggle();
+
+    const targetIsToggle = e.target === toggle;
     const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
-    if (((clickIsInContainer && !clickIsInInput) || clickIsInMenu) && (e.type !== 'keyup' || e.which === keyCodes.tab)) {
+
+    let clickIsInInput = false;
+    if (container) {
+      // this is only for InputGroup with type dropdown
+      clickIsInInput =
+        container.classList.contains('input-group') &&
+        container.classList.contains('dropdown') &&
+        e.target.tagName === 'INPUT';
+    }
+
+    if (
+      ((targetIsToggle && !clickIsInInput) || clickIsInMenu) &&
+      (e.type !== 'keyup' || e.which === keyCodes.tab)
+    ) {
       return;
     }
 
@@ -149,26 +121,35 @@ class Dropdown extends React.Component {
   }
 
   handleKeyDown(e) {
-    const isTargetMenuItem = e.target.getAttribute('role') === 'menuitem' || e.target.getAttribute('role') === 'option';
+    const isTargetMenuItem =
+      e.target.getAttribute('role') === 'menuitem' ||
+      e.target.getAttribute('role') === 'option';
     const isTargetMenuCtrl = this.getMenuCtrl() === e.target;
     const isTab = keyCodes.tab === e.which;
 
     if (
-      /input|textarea/i.test(e.target.tagName)
-      || (isTab && !this.props.a11y)
-      || (isTab && !(isTargetMenuItem || isTargetMenuCtrl))
+      /input|textarea/i.test(e.target.tagName) ||
+      (isTab && !this.props.a11y) ||
+      (isTab && !(isTargetMenuItem || isTargetMenuCtrl))
     ) {
       return;
     }
 
-    if (preventDefaultKeys.indexOf(e.which) !== -1 || ((e.which >= 48) && (e.which <= 90))) {
+    if (
+      preventDefaultKeys.indexOf(e.which) !== -1 ||
+      (e.which >= 48 && e.which <= 90)
+    ) {
       e.preventDefault();
     }
 
     if (this.props.disabled) return;
 
     if (isTargetMenuCtrl) {
-      if ([keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(e.which) > -1) {
+      if (
+        [keyCodes.space, keyCodes.enter, keyCodes.up, keyCodes.down].indexOf(
+          e.which,
+        ) > -1
+      ) {
         // Open the menu (if not open) and focus the first menu item
         if (!this.props.isOpen) {
           this.toggle(e);
@@ -193,14 +174,17 @@ class Dropdown extends React.Component {
         e.target.click();
         this.getMenuCtrl().focus();
       } else if (
-        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1
-        || ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
+        [keyCodes.down, keyCodes.up].indexOf(e.which) > -1 ||
+        ([keyCodes.n, keyCodes.p].indexOf(e.which) > -1 && e.ctrlKey)
       ) {
         const $menuitems = this.getMenuItems();
         let index = $menuitems.indexOf(e.target);
         if (keyCodes.up === e.which || (keyCodes.p === e.which && e.ctrlKey)) {
           index = index !== 0 ? index - 1 : $menuitems.length - 1;
-        } else if (keyCodes.down === e.which || (keyCodes.n === e.which && e.ctrlKey)) {
+        } else if (
+          keyCodes.down === e.which ||
+          (keyCodes.n === e.which && e.ctrlKey)
+        ) {
           index = index === $menuitems.length - 1 ? 0 : index + 1;
         }
         $menuitems[index].focus();
@@ -210,11 +194,13 @@ class Dropdown extends React.Component {
       } else if (keyCodes.home === e.which) {
         const $menuitems = this.getMenuItems();
         $menuitems[0].focus();
-      } else if ((e.which >= 48) && (e.which <= 90)) {
+      } else if (e.which >= 48 && e.which <= 90) {
         const $menuitems = this.getMenuItems();
         const charPressed = String.fromCharCode(e.which).toLowerCase();
         for (let i = 0; i < $menuitems.length; i += 1) {
-          const firstLetter = $menuitems[i].textContent && $menuitems[i].textContent[0].toLowerCase();
+          const firstLetter =
+            $menuitems[i].textContent &&
+            $menuitems[i].textContent[0].toLowerCase();
           if (firstLetter === charPressed) {
             $menuitems[i].focus();
             break;
@@ -230,6 +216,71 @@ class Dropdown extends React.Component {
     } else {
       this.removeEvents();
     }
+  }
+
+  getContextValue() {
+    return {
+      toggle: this.toggle,
+      isOpen: this.props.isOpen,
+      direction:
+        this.props.direction === 'down' && this.props.dropup
+          ? 'up'
+          : this.props.direction,
+      inNavbar: this.props.inNavbar,
+      disabled: this.props.disabled,
+      // Callback that should be called by DropdownMenu to provide a ref to
+      // a HTML tag that's used for the DropdownMenu
+      onMenuRef: this.handleMenuRef,
+      onToggleRef: this.handleToggleRef,
+      menuRole: this.props.menuRole,
+    };
+  }
+
+  getContainer() {
+    return this.containerRef.current;
+  }
+
+  getMenu() {
+    return this.menuRef.current;
+  }
+
+  getToggle() {
+    return this.toggleRef.current;
+  }
+
+  getMenuCtrl() {
+    if (this._$menuCtrl) return this._$menuCtrl;
+    this._$menuCtrl = this.getToggle();
+    return this._$menuCtrl;
+  }
+
+  getItemType() {
+    if (this.context.menuRole === 'listbox') {
+      return 'option';
+    }
+    return 'menuitem';
+  }
+
+  getMenuItems() {
+    // In a real menu with a child DropdownMenu, `this.getMenu()` should never
+    // be null, but it is sometimes null in tests. To mitigate that, we just
+    // use `this.getContainer()` as the fallback `menuContainer`.
+    const menuContainer = this.getMenu() || this.getContainer();
+    return [].slice.call(
+      menuContainer.querySelectorAll(`[role="${this.getItemType()}"]`),
+    );
+  }
+
+  addEvents() {
+    ['click', 'touchstart', 'keyup'].forEach((event) =>
+      document.addEventListener(event, this.handleDocumentClick, true),
+    );
+  }
+
+  removeEvents() {
+    ['click', 'touchstart', 'keyup'].forEach((event) =>
+      document.removeEventListener(event, this.handleDocumentClick, true),
+    );
   }
 
   toggle(e) {
@@ -260,35 +311,53 @@ class Dropdown extends React.Component {
 
     let subItemIsActive = false;
     if (setActiveFromChild) {
-      React.Children.map(this.props.children[1].props.children,
+      React.Children.map(
+        this.props.children[1].props.children,
         (dropdownItem) => {
           if (dropdownItem && dropdownItem.props.active) subItemIsActive = true;
-        }
+        },
       );
     }
 
-    const classes = mapToCssModules(classNames(
-      className,
-      nav && active ? 'active' : false,
-      setActiveFromChild && subItemIsActive ? 'active' : false,
-      {
-        'btn-group': group,
-        [`btn-group-${size}`]: !!size,
-        dropdown: !group,
-        dropup: direction === 'up',
-        dropstart: direction === 'start' || direction === 'left',
-        dropend: direction === 'end' || direction === 'right',
-        show: isOpen,
-        'nav-item': nav
-      }
-    ), cssModule);
+    const classes = mapToCssModules(
+      classNames(
+        className,
+        nav && active ? 'active' : false,
+        setActiveFromChild && subItemIsActive ? 'active' : false,
+        {
+          'btn-group': group,
+          [`btn-group-${size}`]: !!size,
+          dropdown: !group,
+          dropup: direction === 'up',
+          dropstart: direction === 'start' || direction === 'left',
+          dropend: direction === 'end' || direction === 'right',
+          show: isOpen,
+          'nav-item': nav,
+        },
+      ),
+      cssModule,
+    );
+
+    if (this.context.insideInputGroup) {
+      return (
+        <DropdownContext.Provider value={this.getContextValue()}>
+          <Manager>
+            {this.props.children.map((child) =>
+              React.cloneElement(child, { onKeyDown: this.handleKeyDown }),
+            )}
+          </Manager>
+        </DropdownContext.Provider>
+      );
+    }
 
     return (
       <DropdownContext.Provider value={this.getContextValue()}>
         <Manager>
           <Tag
             {...attrs}
-            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef }}
+            {...{
+              [typeof Tag === 'string' ? 'ref' : 'innerRef']: this.containerRef,
+            }}
             onKeyDown={this.handleKeyDown}
             className={classes}
           />
@@ -300,5 +369,6 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
+Dropdown.contextType = InputGroupContext;
 
 export default Dropdown;

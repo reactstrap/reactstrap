@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   title: 'Components/List',
   parameters: {
@@ -11,7 +9,7 @@ export default {
   }
 };
 
-export { default as List } from './examples/ListInline';
-export { default as Unstyled } from './examples/ListUnstyled';
-export { default as Props } from './examples/ListProps';
- 
+export { default as List } from './examples/List/List';
+export { default as Inline } from './examples/List/Inline';
+export { default as Unstyled } from './examples/List/Unstyled';
+export { default as Props } from './examples/List/Props';

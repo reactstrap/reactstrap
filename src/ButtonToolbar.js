@@ -4,11 +4,16 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
+  /** Aria label */
   'aria-label': PropTypes.string,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change existing className with a new className */
   cssModule: PropTypes.object,
+  /** In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate role attribute needs to be provided. For button groups, this would be role="group", while toolbars should have a role="toolbar". */
   role: PropTypes.string,
+  /** Set a custom element for this component */
+  tag: tagPropType,
 };
 
 const defaultProps = {
@@ -16,23 +21,16 @@ const defaultProps = {
   role: 'toolbar',
 };
 
-const ButtonToolbar = (props) => {
-  const {
-    className,
+function ButtonToolbar(props) {
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+
+  const classes = mapToCssModules(
+    classNames(className, 'btn-toolbar'),
     cssModule,
-    tag: Tag,
-    ...attributes
-  } = props;
-
-  const classes = mapToCssModules(classNames(
-    className,
-    'btn-toolbar'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
-};
+
+  return <Tag {...attributes} className={classes} />;
+}
 
 ButtonToolbar.propTypes = propTypes;
 ButtonToolbar.defaultProps = defaultProps;

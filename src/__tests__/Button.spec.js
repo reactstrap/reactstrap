@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Button } from '../';
+import { Button } from '..';
 
 describe('Button', () => {
   it('should render children', () => {
@@ -10,7 +10,13 @@ describe('Button', () => {
   });
 
   it('should render custom element', () => {
-    const Link = props => <a href="/home" {...props}>{props.children}</a>;
+    function Link(props) {
+      return (
+        <a href="/home" {...props}>
+          {props.children}
+        </a>
+      );
+    }
     const wrapper = mount(<Button tag={Link}>Home</Button>);
 
     expect(wrapper.find('a').hostNodes().length).toBe(1);
@@ -78,7 +84,11 @@ describe('Button', () => {
   });
 
   it('should render buttons with outline variant with different colors', () => {
-    const wrapper = shallow(<Button outline color="info">Default Button</Button>);
+    const wrapper = shallow(
+      <Button outline color="info">
+        Default Button
+      </Button>,
+    );
 
     expect(wrapper.hasClass('btn-outline-info')).toBe(true);
   });
@@ -124,7 +134,11 @@ describe('Button', () => {
 
     it('is not called when disabled', () => {
       const onClick = jest.fn();
-      const wrapper = mount(<Button onClick={onClick} disabled>Testing Click</Button>);
+      const wrapper = mount(
+        <Button onClick={onClick} disabled>
+          Testing Click
+        </Button>,
+      );
 
       wrapper.find('button').hostNodes().simulate('click');
       expect(onClick).not.toHaveBeenCalled();

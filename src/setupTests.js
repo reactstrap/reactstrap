@@ -4,8 +4,10 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-global.requestAnimationFrame = function (cb) { cb(0); };
-global.window.cancelAnimationFrame = function () { };
+global.requestAnimationFrame = function (cb) {
+  cb(0);
+};
+global.window.cancelAnimationFrame = function () {};
 global.createSpyObj = (baseName, methodNames) => {
   const obj = {};
 
@@ -18,5 +20,5 @@ global.createSpyObj = (baseName, methodNames) => {
 global.document.createRange = () => ({
   setStart: () => {},
   setEnd: () => {},
-  commonAncestorContainer: {}
+  commonAncestorContainer: {},
 });

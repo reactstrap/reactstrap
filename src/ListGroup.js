@@ -4,30 +4,37 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
-  flush: PropTypes.bool,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Remove borders to make the list appear flush */
+  flush: PropTypes.bool,
+  /** Make the list horizontal instead of vertical */
   horizontal: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  numbered: PropTypes.bool
+  /** Add number to the ListItems */
+  numbered: PropTypes.bool,
+  /** Set a custom element for this component */
+  tag: tagPropType,
 };
 
 const defaultProps = {
   tag: 'ul',
   horizontal: false,
-  numbered: false
+  numbered: false,
 };
 
-const getHorizontalClass = horizontal => {
+const getHorizontalClass = (horizontal) => {
   if (horizontal === false) {
     return false;
-  } else if (horizontal === true || horizontal === "xs") {
-    return "list-group-horizontal";
+  }
+  if (horizontal === true || horizontal === 'xs') {
+    return 'list-group-horizontal';
   }
   return `list-group-horizontal-${horizontal}`;
 };
 
-const ListGroup = (props) => {
+function ListGroup(props) {
   const {
     className,
     cssModule,
@@ -37,21 +44,22 @@ const ListGroup = (props) => {
     numbered,
     ...attributes
   } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'list-group',
-    // list-group-horizontal cannot currently be mixed with list-group-flush
-    // we only try to apply horizontal classes if flush is false
-    flush ? 'list-group-flush' : getHorizontalClass(horizontal),
-    {
-      'list-group-numbered': numbered
-    }
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      'list-group',
+      // list-group-horizontal cannot currently be mixed with list-group-flush
+      // we only try to apply horizontal classes if flush is false
+      flush ? 'list-group-flush' : getHorizontalClass(horizontal),
+      {
+        'list-group-numbered': numbered,
+      },
+    ),
+    cssModule,
   );
-};
+
+  return <Tag {...attributes} className={classes} />;
+}
 
 ListGroup.propTypes = propTypes;
 ListGroup.defaultProps = defaultProps;

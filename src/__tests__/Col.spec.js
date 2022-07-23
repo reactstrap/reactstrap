@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Col } from '../';
+import { Col } from '..';
 
 describe('Col', () => {
   it('should render default .col markup', () => {
@@ -23,7 +23,9 @@ describe('Col', () => {
   });
 
   it('should allow custom columns to be defined', () => {
-    const wrapper = shallow(<Col widths={['base', 'jumbo']} base="4" jumbo="6" />);
+    const wrapper = shallow(
+      <Col widths={['base', 'jumbo']} base="4" jumbo="6" />,
+    );
 
     expect(wrapper.hasClass('col-4')).toBe(true);
     expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
@@ -31,7 +33,12 @@ describe('Col', () => {
   });
 
   it('should allow custom columns to be defined with objects', () => {
-    const wrapper = shallow(<Col widths={['base', 'jumbo', 'wtf']} wtf={{ size: 1, order: 2, offset: 4 }} />);
+    const wrapper = shallow(
+      <Col
+        widths={['base', 'jumbo', 'wtf']}
+        wtf={{ size: 1, order: 2, offset: 4 }}
+      />,
+    );
 
     expect(wrapper.hasClass('col-wtf-1')).toBe(true);
     expect(wrapper.hasClass('order-wtf-2')).toBe(true);
@@ -80,9 +87,7 @@ describe('Col', () => {
   });
 
   it('should pass col size when passing via object with size "auto"', () => {
-    const wrapper = shallow(<Col
-      sm={{ size: 'auto', offset: 2 }}
-    />);
+    const wrapper = shallow(<Col sm={{ size: 'auto', offset: 2 }} />);
 
     expect(wrapper.hasClass('col')).toBe(false);
     expect(wrapper.hasClass('col-sm-auto')).toBe(true);

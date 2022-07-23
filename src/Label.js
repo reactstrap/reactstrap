@@ -5,7 +5,10 @@ import { mapToCssModules, tagPropType, isObject } from './utils';
 
 const colWidths = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
-const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
+const stringOrNumberProp = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+]);
 
 const columnProps = PropTypes.oneOfType([
   PropTypes.bool,
@@ -44,14 +47,15 @@ const defaultProps = {
 const getColumnSizeClass = (isXs, colWidth, colSize) => {
   if (colSize === true || colSize === '') {
     return isXs ? 'col' : `col-${colWidth}`;
-  } else if (colSize === 'auto') {
+  }
+  if (colSize === 'auto') {
     return isXs ? 'col-auto' : `col-${colWidth}-auto`;
   }
 
   return isXs ? `col-${colSize}` : `col-${colWidth}-${colSize}`;
 };
 
-const Label = (props) => {
+function Label(props) {
   const {
     className,
     cssModule,
@@ -82,11 +86,18 @@ const Label = (props) => {
       const colSizeInterfix = isXs ? '-' : `-${colWidth}-`;
       colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
 
-      colClasses.push(mapToCssModules(classNames({
-        [colClass]: columnProp.size || columnProp.size === '',
-        [`order${colSizeInterfix}${columnProp.order}`]: columnProp.order || columnProp.order === 0,
-        [`offset${colSizeInterfix}${columnProp.offset}`]: columnProp.offset || columnProp.offset === 0
-      })), cssModule);
+      colClasses.push(
+        mapToCssModules(
+          classNames({
+            [colClass]: columnProp.size || columnProp.size === '',
+            [`order${colSizeInterfix}${columnProp.order}`]:
+              columnProp.order || columnProp.order === 0,
+            [`offset${colSizeInterfix}${columnProp.offset}`]:
+              columnProp.offset || columnProp.offset === 0,
+          }),
+        ),
+        cssModule,
+      );
     } else {
       colClass = getColumnSizeClass(isXs, colWidth, columnProp);
       colClasses.push(colClass);
@@ -96,20 +107,21 @@ const Label = (props) => {
   const colFormLabel = size || colClasses.length;
   const formLabel = !(check || colFormLabel);
 
-  const classes = mapToCssModules(classNames(
-    className,
-    hidden ? 'visually-hidden' : false,
-    check ? 'form-check-label' : false,
-    size ? `col-form-label-${size}` : false,
-    colClasses,
-    colFormLabel ? 'col-form-label' : false,
-    formLabel ? 'form-label' : false
-  ), cssModule);
-
-  return (
-    <Tag htmlFor={htmlFor} {...attributes} className={classes} />
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      hidden ? 'visually-hidden' : false,
+      check ? 'form-check-label' : false,
+      size ? `col-form-label-${size}` : false,
+      colClasses,
+      colFormLabel ? 'col-form-label' : false,
+      formLabel ? 'form-label' : false,
+    ),
+    cssModule,
   );
-};
+
+  return <Tag htmlFor={htmlFor} {...attributes} className={classes} />;
+}
 
 Label.propTypes = propTypes;
 Label.defaultProps = defaultProps;

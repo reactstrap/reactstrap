@@ -4,30 +4,27 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Set a custom element for this component */
+  tag: tagPropType,
 };
 
 const defaultProps = {
   tag: 'div',
 };
 
-const ModalFooter = (props) => {
-  const {
-    className,
+function ModalFooter(props) {
+  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const classes = mapToCssModules(
+    classNames(className, 'modal-footer'),
     cssModule,
-    tag: Tag,
-    ...attributes } = props;
-  const classes = mapToCssModules(classNames(
-    className,
-    'modal-footer'
-  ), cssModule);
-
-  return (
-    <Tag {...attributes} className={classes} />
   );
-};
+
+  return <Tag {...attributes} className={classes} />;
+}
 
 ModalFooter.propTypes = propTypes;
 ModalFooter.defaultProps = defaultProps;

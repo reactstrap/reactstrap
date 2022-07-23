@@ -14,15 +14,21 @@ export default class UncontrolledButtonDropdown extends Component {
   }
 
   toggle() {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
   }
 
   render() {
-    return <ButtonDropdown isOpen={this.state.isOpen} toggle={this.toggle} {...omit(this.props, omitKeys)} />;
+    return (
+      <ButtonDropdown
+        isOpen={this.state.isOpen}
+        toggle={this.toggle}
+        {...omit(this.props, omitKeys)}
+      />
+    );
   }
 }
 
 UncontrolledButtonDropdown.propTypes = {
   defaultOpen: PropTypes.bool,
-  ...ButtonDropdown.propTypes
+  ...ButtonDropdown.propTypes,
 };

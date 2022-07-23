@@ -1,10 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ListGroupItemText } from '../';
+import { ListGroupItemText } from '..';
 
 describe('ListGroupItem', () => {
   it('should render children', () => {
-    const listGroupItem = shallow(<ListGroupItemText>Yo!</ListGroupItemText>).find('p');
+    const listGroupItem = shallow(
+      <ListGroupItemText>Yo!</ListGroupItemText>,
+    ).find('p');
     expect(listGroupItem.text()).toBe('Yo!');
   });
 

@@ -52,7 +52,15 @@ function Toast(props) {
   };
 
   return (
-    <Fade {...attributes} {...toastTransition} tag={Tag} className={classes} in={isOpen} role="alert" innerRef={innerRef}>
+    <Fade
+      {...attributes}
+      {...toastTransition}
+      tag={Tag}
+      className={classes}
+      in={isOpen}
+      role="alert"
+      innerRef={innerRef}
+    >
       {children}
     </Fade>
   );
