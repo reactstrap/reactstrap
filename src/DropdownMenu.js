@@ -135,12 +135,14 @@ class DropdownMenu extends React.Component {
       }
       return popper;
     }
+    const { onMenuRef } = this.context;
 
     return (
       <Tag
         tabIndex="-1"
         role={this.getRole()}
         {...attrs}
+        ref={onMenuRef}
         aria-hidden={!this.context.isOpen}
         className={classes}
         data-popper-placement={attrs.placement}

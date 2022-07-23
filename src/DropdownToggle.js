@@ -105,6 +105,7 @@ class DropdownToggle extends React.Component {
           {...props}
           className={classes}
           onClick={this.onClick}
+          ref={this.context.onToggleRef}
           aria-expanded={this.context.isOpen}
           aria-haspopup={this.getRole()}
           children={children}
@@ -114,17 +115,25 @@ class DropdownToggle extends React.Component {
 
     return (
       <Reference innerRef={innerRef}>
-        {({ ref }) => (
-          <Tag
-            {...props}
-            {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: ref }}
-            className={classes}
-            onClick={this.onClick}
-            aria-expanded={this.context.isOpen}
-            aria-haspopup={this.getRole()}
-            children={children}
-          />
-        )}
+        {({ ref }) => {
+          const handleRef = (tagRef) => {
+            ref(tagRef);
+            const { onToggleRef } = this.context;
+            if (onToggleRef) onToggleRef(tagRef);
+          };
+
+          return (
+            <Tag
+              {...props}
+              {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: handleRef }}
+              className={classes}
+              onClick={this.onClick}
+              aria-expanded={this.context.isOpen}
+              aria-haspopup={this.getRole()}
+              children={children}
+            />
+          );
+        }}
       </Reference>
     );
   }

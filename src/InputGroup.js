@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 import Dropdown from './Dropdown';
+import { InputGroupContext } from './InputGroupContext';
 
 const propTypes = {
   /** Add custom class */
@@ -31,7 +32,11 @@ function InputGroup(props) {
     return <Dropdown {...attributes} className={classes} />;
   }
 
-  return <Tag {...attributes} className={classes} />;
+  return (
+    <InputGroupContext.Provider value={{ insideInputGroup: true }}>
+      <Tag {...attributes} className={classes} />
+    </InputGroupContext.Provider>
+  );
 }
 
 InputGroup.propTypes = propTypes;
