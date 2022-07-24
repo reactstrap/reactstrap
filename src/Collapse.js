@@ -62,7 +62,7 @@ class Collapse extends Component {
       dimension: null,
     };
 
-    this.nodeRef = React.createRef();
+    this.nodeRef = props.innerRef || React.createRef();
 
     ['onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'].forEach(
       (name) => {
@@ -72,8 +72,7 @@ class Collapse extends Component {
   }
 
   getNode() {
-    const nodeRef = this.props.innerRef || this.nodeRef;
-    return nodeRef.current;
+    return this.nodeRef.current;
   }
 
   onEntering(_, isAppearing) {
@@ -125,8 +124,6 @@ class Collapse extends Component {
       ...otherProps
     } = this.props;
 
-    const nodeRef = innerRef || this.nodeRef;
-
     const { dimension } = this.state;
 
     const transitionProps = pick(otherProps, TransitionPropTypeKeys);
@@ -135,7 +132,7 @@ class Collapse extends Component {
       <Transition
         {...transitionProps}
         in={isOpen}
-        nodeRef={nodeRef}
+        nodeRef={this.nodeRef}
         onEntering={this.onEntering}
         onEntered={this.onEntered}
         onExit={this.onExit}
@@ -162,7 +159,7 @@ class Collapse extends Component {
               {...childProps}
               style={{ ...childProps.style, ...style }}
               className={classes}
-              ref={nodeRef}
+              ref={this.nodeRef}
             >
               {children}
             </Tag>
