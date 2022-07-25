@@ -71,10 +71,6 @@ class Collapse extends Component {
     );
   }
 
-  getNode() {
-    return this.nodeRef.current;
-  }
-
   onEntering(_, isAppearing) {
     const node = this.getNode();
     this.setState({ dimension: this.getDimension(node) });
@@ -105,6 +101,10 @@ class Collapse extends Component {
     const node = this.getNode();
     this.setState({ dimension: null });
     this.props.onExited(node);
+  }
+
+  getNode() {
+    return this.nodeRef.current;
   }
 
   getDimension(node) {
