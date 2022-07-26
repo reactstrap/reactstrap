@@ -29,11 +29,7 @@ const propTypes = {
   navbar: PropTypes.bool,
   /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  innerRef: PropTypes.shape({ current: PropTypes.object }),
 };
 
 const defaultProps = {
@@ -66,6 +62,8 @@ class Collapse extends Component {
       dimension: null,
     };
 
+    this.nodeRef = props.innerRef || React.createRef();
+
     ['onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'].forEach(
       (name) => {
         this[name] = this[name].bind(this);
@@ -73,31 +71,40 @@ class Collapse extends Component {
     );
   }
 
-  onEntering(node, isAppearing) {
+  onEntering(_, isAppearing) {
+    const node = this.getNode();
     this.setState({ dimension: this.getDimension(node) });
     this.props.onEntering(node, isAppearing);
   }
 
-  onEntered(node, isAppearing) {
+  onEntered(_, isAppearing) {
+    const node = this.getNode();
     this.setState({ dimension: null });
     this.props.onEntered(node, isAppearing);
   }
 
-  onExit(node) {
+  onExit() {
+    const node = this.getNode();
     this.setState({ dimension: this.getDimension(node) });
     this.props.onExit(node);
   }
 
-  onExiting(node) {
+  onExiting() {
+    const node = this.getNode();
     // getting this variable triggers a reflow
     const _unused = this.getDimension(node); // eslint-disable-line no-unused-vars
     this.setState({ dimension: 0 });
     this.props.onExiting(node);
   }
 
-  onExited(node) {
+  onExited() {
+    const node = this.getNode();
     this.setState({ dimension: null });
     this.props.onExited(node);
+  }
+
+  getNode() {
+    return this.nodeRef.current;
   }
 
   getDimension(node) {
@@ -125,6 +132,7 @@ class Collapse extends Component {
       <Transition
         {...transitionProps}
         in={isOpen}
+        nodeRef={this.nodeRef}
         onEntering={this.onEntering}
         onEntered={this.onEntered}
         onExit={this.onExit}
@@ -151,7 +159,7 @@ class Collapse extends Component {
               {...childProps}
               style={{ ...childProps.style, ...style }}
               className={classes}
-              ref={this.props.innerRef}
+              ref={this.nodeRef}
             >
               {children}
             </Tag>
