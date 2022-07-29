@@ -7,13 +7,13 @@ export default {
   [Bootstrap Modal](https://getbootstrap.com/docs/5.1/components/modal/)
   
   Add dialogs to your site for lightboxes, user notifications, or completely custom content.
-  `
-      }
-    }
-  }
+  `,
+      },
+    },
+  },
 };
 
-export { default as Modal } from './examples/Modal/Modal.js';
+export { default as Modal } from './examples/Modal/Modal';
 export { default as Backdrop } from './examples/Modal/Backdrop';
 export { default as CustomCloseButton } from './examples/Modal/CustomCloseButton';
 export { default as CustomTimeout } from './examples/Modal/CustomTimeout';

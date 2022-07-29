@@ -1,4 +1,5 @@
 import Example from './FadelessExample';
+// eslint-disable-next-line import/extensions
 import Fadeless from '!!raw-loader!./FadelessExample';
 
 Example.parameters = {
@@ -6,12 +7,12 @@ Example.parameters = {
     source: {
       code: Fadeless,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Disable fade animation with `fade={false}` prop.'
-    }
+      story: 'Disable fade animation with `fade={false}` prop.',
+    },
   },
-}
+};
 
 export default Example;

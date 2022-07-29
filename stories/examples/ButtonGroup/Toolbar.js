@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ButtonToolbar>
       <ButtonGroup className="me-2">
@@ -27,7 +27,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Combine sets of button groups into button toolbars for more complex components. Use utility classes as needed to space out groups, buttons, and more.'
-    }
+      story:
+        'Combine sets of button groups into button toolbars for more complex components. Use utility classes as needed to space out groups, buttons, and more.',
+    },
   },
-}
+};

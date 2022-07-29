@@ -1,7 +1,7 @@
 import React from 'react';
 import { Progress } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <Progress striped value={2 * 5} className="my-3" />
@@ -17,14 +17,15 @@ const Example = (props) => {
       </Progress>
     </div>
   );
-};
+}
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add `striped` to any progress bar to apply a stripe via CSS gradient over the progress bar’s background color.'
-    }
-  }
-}
+      story:
+        'Add `striped` to any progress bar to apply a stripe via CSS gradient over the progress bar’s background color.',
+    },
+  },
+};

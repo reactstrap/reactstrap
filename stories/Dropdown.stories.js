@@ -7,10 +7,10 @@ export default {
   [Bootstrap Dropdowns](https://getbootstrap.com/docs/5.1/components/dropdowns/)
   
   Toggle contextual overlays for displaying lists of links and more with Dropdowns.
-  `
-      }
-    }
-  }
+  `,
+      },
+    },
+  },
 };
 
 export { default as Dropdown } from './examples/Dropdown/Dropdown';

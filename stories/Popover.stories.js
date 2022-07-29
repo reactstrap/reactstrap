@@ -3,10 +3,11 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: '[Bootstrap Popovers](https://getbootstrap.com/docs/5.1/components/popovers/)'
-      }
-    }
-  }
+        component:
+          '[Bootstrap Popovers](https://getbootstrap.com/docs/5.1/components/popovers/)',
+      },
+    },
+  },
 };
 
 export { default as Popover } from './examples/Popover/Popover';

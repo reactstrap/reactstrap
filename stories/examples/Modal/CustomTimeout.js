@@ -1,4 +1,5 @@
 import Example from './CustomTimeoutExample';
+// eslint-disable-next-line import/extensions
 import CustomTimeout from '!!raw-loader!./CustomTimeoutExample';
 
 Example.parameters = {
@@ -6,12 +7,12 @@ Example.parameters = {
     source: {
       code: CustomTimeout,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Add a custom timeout to the Modal.'
-    }
+      story: 'Add a custom timeout to the Modal.',
+    },
   },
-}
+};
 
 export default Example;

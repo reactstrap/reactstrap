@@ -3,10 +3,11 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: '[Bootstrap Lists](https://getbootstrap.com/docs/5.1/content/typography/#lists)'
-      }
-    }
-  }
+        component:
+          '[Bootstrap Lists](https://getbootstrap.com/docs/5.1/content/typography/#lists)',
+      },
+    },
+  },
 };
 
 export { default as List } from './examples/List/List';

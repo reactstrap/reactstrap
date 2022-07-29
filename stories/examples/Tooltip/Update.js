@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, UncontrolledTooltip } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 const shortText = 'Hi';
 const longText = 'Long tooltip content to test scheduleUpdate';
 
-const TooltipContent = ({ scheduleUpdate }) => {
+function TooltipContent({ scheduleUpdate }) {
   const [text, setText] = useState(shortText);
 
   useEffect(() => {
@@ -16,16 +17,18 @@ const TooltipContent = ({ scheduleUpdate }) => {
     return () => clearInterval(intervalId);
   });
 
-  return (
-    <>{text}</>
-  );
+  return <div>{text}</div>;
 }
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div className="text-center">
       <Button id="ScheduleUpdateTooltip">Click me</Button>
-      <UncontrolledTooltip placement="top" target="ScheduleUpdateTooltip" trigger="click">
+      <UncontrolledTooltip
+        placement="top"
+        target="ScheduleUpdateTooltip"
+        trigger="click"
+      >
         {({ scheduleUpdate }) => (
           <TooltipContent scheduleUpdate={scheduleUpdate} />
         )}
@@ -33,5 +36,9 @@ const Example = (props) => {
     </div>
   );
 }
+
+TooltipContent.propTypes = {
+  scheduleUpdate: PropTypes.func,
+};
 
 export default Example;

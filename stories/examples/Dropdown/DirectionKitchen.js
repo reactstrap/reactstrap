@@ -1,7 +1,12 @@
 import React from 'react';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
-const directions = ['up', 'down', 'end', 'start']
+const directions = ['up', 'down', 'end', 'start'];
 
 export default function Example(args) {
   return (
@@ -27,7 +32,8 @@ export default function Example(args) {
 Example.parameters = {
   docs: {
     description: {
-      story: 'Trigger dropdown menus at the direction you want using the `direction` prop.'
-    }
+      story:
+        'Trigger dropdown menus at the direction you want using the `direction` prop.',
+    },
   },
-}
+};

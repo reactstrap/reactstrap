@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Table striped>
       <thead>
@@ -41,7 +41,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Use `striped` prop to add zebra-striping to any table row within the <tbody>.'
-    }
-  }
-}
+      story:
+        'Use `striped` prop to add zebra-striping to any table row within the <tbody>.',
+    },
+  },
+};

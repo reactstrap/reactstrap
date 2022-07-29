@@ -23,12 +23,12 @@ import premiumThemes from './index';
       Reactstrap
     </h4>
   </div>
-  {premiumThemes.map(company => (
+  {premiumThemes.map((company) => (
     <Container key={company.creator.name} className="premium-section">
       <h2 className="font-weight-bold">{company.creator.name}</h2>
       <p className="mb-4">{company.creator.tagLine}</p>
       <Row>
-        {company.products.map(product => {
+        {company.products.map((product) => {
           return (
             <Col md="6" key={product.title}>
               <Card className="my-3">

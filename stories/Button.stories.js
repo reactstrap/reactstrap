@@ -8,9 +8,9 @@ export default {
 
 Custom Buttons for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 export { default as Button } from './examples/Button/Button';

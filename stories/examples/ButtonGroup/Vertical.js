@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <ButtonGroup vertical>
       <Button color="danger">Button</Button>
@@ -16,7 +16,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Make a set of buttons appear vertically stacked rather than horizontally. **Split button dropdowns are not supported here.**'
-    }
+      story:
+        'Make a set of buttons appear vertically stacked rather than horizontally. **Split button dropdowns are not supported here.**',
+    },
   },
-}
+};

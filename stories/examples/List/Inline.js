@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, ListInlineItem } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <List type="inline">
       <ListInlineItem>Lorem ipsum</ListInlineItem>
@@ -16,7 +16,7 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Remove a list’s bullets and apply some light margin'
-    }
-  }
-}
+      story: 'Remove a list’s bullets and apply some light margin',
+    },
+  },
+};

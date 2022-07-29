@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Table borderless>
       <thead>
@@ -41,7 +41,7 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Add `borderless` for a table without borders.'
-    }
-  }
-}
+      story: 'Add `borderless` for a table without borders.',
+    },
+  },
+};

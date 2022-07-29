@@ -1,4 +1,5 @@
 import Example from './CustomTagExample';
+// eslint-disable-next-line import/extensions
 import CarouselCustomTagExample from '!!raw-loader!./CustomTagExample';
 
 Example.parameters = {
@@ -6,9 +7,9 @@ Example.parameters = {
     source: {
       code: CarouselCustomTagExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 export default Example;

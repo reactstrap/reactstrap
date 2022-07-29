@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Table>
       <thead>
@@ -14,7 +14,7 @@ const Example = (args) => {
       </thead>
       <tbody>
         {colors.map((color) => (
-          <tr class={`table-${color}`}>
+          <tr className={`table-${color}`}>
             <td>{color}</td>
             <td>Cell</td>
             <td>Cell</td>
@@ -30,7 +30,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Use contextual classes to color tables, table rows or individual cells.'
-    }
-  }
-}
+      story:
+        'Use contextual classes to color tables, table rows or individual cells.',
+    },
+  },
+};

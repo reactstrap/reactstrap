@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputGroup, InputGroupText, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <InputGroup>
@@ -11,7 +11,11 @@ const Example = (props) => {
       <br />
       <InputGroup>
         <InputGroupText>
-          <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+          <Input
+            addon
+            type="checkbox"
+            aria-label="Checkbox for following text input"
+          />
         </InputGroupText>
         <Input placeholder="Check it out" />
       </InputGroup>
@@ -30,6 +34,6 @@ const Example = (props) => {
       </InputGroup>
     </div>
   );
-};
+}
 
 export default Example;

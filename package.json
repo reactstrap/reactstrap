@@ -24,9 +24,9 @@
     "version": "node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular && git add -A CHANGELOG.md",
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
-    "lint": "eslint src",
+    "lint": "eslint src stories",
     "dtslint": "dtslint types --expectOnly",
-    "prettier": "prettier --write src"
+    "prettier": "prettier --write src stories"
   },
   "prettier": {
     "singleQuote": true,
@@ -303,6 +303,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-storybook": "^0.6.1",
     "holderjs": "^2.9.3",
     "json-loader": "^0.5.7",
     "microbundle": "^0.13.3",

@@ -2,11 +2,9 @@ import React from 'react';
 import { Progress } from 'reactstrap';
 import { colors } from '../options';
 
-const Example = (args) => {
-  return (
-    <Progress {...args} />
-  );
-};
+function Example(args) {
+  return <Progress {...args} />;
+}
 
 Example.args = {
   value: 50,
@@ -17,7 +15,7 @@ Example.args = {
 Example.argTypes = {
   color: {
     control: { type: 'select' },
-    options: colors
+    options: colors,
   },
   value: {
     control: {
@@ -25,7 +23,7 @@ Example.argTypes = {
       min: 0,
       max: 100,
     },
-  }
+  },
 };
 
 export default Example;

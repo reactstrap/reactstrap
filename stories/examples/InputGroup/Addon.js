@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputGroup, InputGroupText, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <div>
       <InputGroup>
@@ -21,14 +21,15 @@ const Example = (props) => {
       </InputGroup>
     </div>
   );
-};
+}
 
 export default Example;
 
 Example.parameters = {
   docs: {
     description: {
-      story: 'Multiple add-ons are supported and can be mixed with checkbox and radio input versions.'
-    }
-  }
-}
+      story:
+        'Multiple add-ons are supported and can be mixed with checkbox and radio input versions.',
+    },
+  },
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-const Example = (args) => {
+function Example(args) {
   return (
     <Table {...args}>
       <thead>
@@ -42,13 +42,13 @@ Example.args = {
   dark: false,
   hover: false,
   responsive: false,
-  striped: false
-}
+  striped: false,
+};
 
 Example.argTypes = {
   size: {
     control: { type: 'select' },
-    options: ['', 'sm']
+    options: ['', 'sm'],
   },
 };
 

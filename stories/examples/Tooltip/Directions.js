@@ -1,4 +1,5 @@
 import Example from './DirectionsExample';
+// eslint-disable-next-line import/extensions
 import Directions from '!!raw-loader!./DirectionsExample';
 
 Example.parameters = {
@@ -6,12 +7,13 @@ Example.parameters = {
     source: {
       code: Directions,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
     description: {
-      story: 'Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left.'
-    }
+      story:
+        'Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left.',
+    },
   },
-}
+};
 
 export default Example;

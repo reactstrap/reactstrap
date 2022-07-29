@@ -1,17 +1,21 @@
 import React from 'react';
-import { Button, ButtonGroup, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {
+  Button,
+  ButtonGroup,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
-
     <ButtonGroup className="my-2">
       <Button color="secondary">Left</Button>
       <Button color="secondary">Middle</Button>
       <ButtonGroup>
         <UncontrolledDropdown>
-          <DropdownToggle caret>
-            Dropdown
-          </DropdownToggle>
+          <DropdownToggle caret>Dropdown</DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Header</DropdownItem>
             <DropdownItem disabled>Action</DropdownItem>
@@ -22,7 +26,6 @@ const Example = (props) => {
         </UncontrolledDropdown>
       </ButtonGroup>
     </ButtonGroup>
-
   );
 }
 
@@ -31,7 +34,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Place a `ButtonGroup` within another `ButtonGroup` when you want dropdown menus mixed with a series of buttons.'
-    }
+      story:
+        'Place a `ButtonGroup` within another `ButtonGroup` when you want dropdown menus mixed with a series of buttons.',
+    },
   },
-}
+};

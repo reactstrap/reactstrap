@@ -1,6 +1,6 @@
-
-import Example from "./AccordionExample"
-import AccordionCode from '!!raw-loader!./AccordionExample.js'
+import Example from './AccordionExample';
+// eslint-disable-next-line import/extensions
+import AccordionCode from '!!raw-loader!./AccordionExample';
 
 export default Example;
 
@@ -9,7 +9,7 @@ Example.parameters = {
     source: {
       code: AccordionCode,
       language: 'jsx',
-      type: 'auto'
-    }
+      type: 'auto',
+    },
   },
-}
+};

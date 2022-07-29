@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { UncontrolledAlert } from 'reactstrap';
 import Alert from '../../../src/Alert';
 
-export const AlertFadelessExample = (props) => {
+export function AlertFadelessExample(props) {
   const [visible, setVisible] = useState(true);
 
   const onDismiss = () => setVisible(false);
@@ -12,7 +12,7 @@ export const AlertFadelessExample = (props) => {
       <Alert color="primary" isOpen={visible} toggle={onDismiss} fade={false}>
         I am a primary alert and I can be dismissed without animating!
       </Alert>
-      </div>
+    </div>
   );
 }
 

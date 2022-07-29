@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <>
       <ButtonGroup size="lg" className="my-2">
@@ -30,7 +30,8 @@ export default Example;
 Example.parameters = {
   docs: {
     description: {
-      story: 'Instead of applying button sizing classes to every button in a group, just add `size` prop to each `ButtonGroup`, including each one when nesting multiple groups.'
-    }
+      story:
+        'Instead of applying button sizing classes to every button in a group, just add `size` prop to each `ButtonGroup`, including each one when nesting multiple groups.',
+    },
   },
-}
+};

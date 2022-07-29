@@ -1,4 +1,5 @@
 import Example from './CollapseExample';
+// eslint-disable-next-line import/extensions
 import CollapseExample from '!!raw-loader!./CollapseExample';
 
 Example.parameters = {
@@ -6,13 +7,13 @@ Example.parameters = {
     source: {
       code: CollapseExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 Example.args = {
-  horizontal: false
+  horizontal: false,
 };
 
 export default Example;

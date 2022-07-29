@@ -16,14 +16,15 @@ Please see the Bootstrap [Migration Guide](https://getbootstrap.com/docs/5.1/mig
 - InputGroupButtonDropdown -
   This can now be replaced with a regular Dropdown component.
 - CustomInput -
-  These are no longer needed in Bootstrap 5, since all form inputs will be styled by Bootstrap instead of browser default. 
+  These are no longer needed in Bootstrap 5, since all form inputs will be styled by Bootstrap instead of browser default.
   The existing Input component now supports file, select, switch, and range types.
 - Jumbotron -
-  Jumbotrons have been removed from Bootstrap 5, can be replaced with `<div class="rounded px-3 px-sm-4 py-3 py-sm-5">`. 
+  Jumbotrons have been removed from Bootstrap 5, can be replaced with `<div class="rounded px-3 px-sm-4 py-3 py-sm-5">`.
   Jumbotron fluid can be replaced with `<div class="bg-light mb-4 py-3 py-sm-5">`
 
 ### Components with breaking changes:
-- Tooltip/Popover/DropdownMenu - 
+
+- Tooltip/Popover/DropdownMenu -
   The `modifiers` prop will now conform to the new popper2 modifiers, which take an array instead of an object.
   `offset` prop is now an array of 2 numbers that represent skidding and distance. See [popper docs](https://popper.js.org/docs/v2/modifiers/) for more details.
 - ModalHeader/ToastHeader -

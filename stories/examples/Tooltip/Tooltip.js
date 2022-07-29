@@ -1,5 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import Example from './TooltipExample';
+// eslint-disable-next-line import/extensions
 import TooltipExample from '!!raw-loader!./TooltipExample';
 
 Example.parameters = {
@@ -7,20 +8,20 @@ Example.parameters = {
     source: {
       code: TooltipExample,
       language: 'jsx',
-      type: 'auto'
+      type: 'auto',
     },
   },
-}
+};
 
 Example.args = {
   autohide: true,
-  flip: true
+  flip: true,
 };
 
 Example.argTypes = {
   placement: {
     control: { type: 'select' },
-    options: ['top', 'left', 'right', 'bottom']
+    options: ['top', 'left', 'right', 'bottom'],
   },
 };
 

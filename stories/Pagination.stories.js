@@ -7,10 +7,10 @@ export default {
   [Bootstrap Pagination](https://getbootstrap.com/docs/5.1/components/pagination/)
   
   Use Pagination to indicate that a series of related content exists across multiple pages.
-  `
-      }
-    }
-  }
+  `,
+      },
+    },
+  },
 };
 
 export { default as Pagination } from './examples/Pagination/Pagination';
