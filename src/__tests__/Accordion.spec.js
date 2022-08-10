@@ -43,7 +43,7 @@ describe('Accordion', () => {
 
   it('should render a div with "accordion" class', () => {
     render(
-      <Accordion open="this accordion" toggle={() => { }} data-testid="test" />,
+      <Accordion open="this accordion" toggle={() => {}} data-testid="test" />,
     );
     const node = screen.getByTestId('test');
     expect(node.tagName).toMatch(/div/i);
@@ -55,7 +55,7 @@ describe('Accordion', () => {
       <Accordion
         open="this accordion"
         flush
-        toggle={() => { }}
+        toggle={() => {}}
         data-testid="test"
       />,
     );
@@ -68,20 +68,20 @@ describe('Accordion', () => {
     testForCustomTag(Accordion, {
       open: 'this accordion',
       flush: true,
-      toggle: () => { },
+      toggle: () => {},
     });
   });
 
   it('should render custom classes', () => {
     testForCustomClass(Accordion, {
       open: 'this accordion',
-      toggle: () => { },
+      toggle: () => {},
     });
   });
 
   it('should have second item showing and others collapsed', () => {
     render(
-      <Accordion open="2" toggle={() => { }} data-testid="accordion">
+      <Accordion open="2" toggle={() => {}} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
@@ -92,7 +92,7 @@ describe('Accordion', () => {
   });
 
   it('should call toggle with clicked item id', () => {
-    const mockFn = jest.fn(() => { });
+    const mockFn = jest.fn(() => {});
     render(
       <Accordion open="1" toggle={mockFn} data-testid="accordion">
         {accordionItems}
@@ -106,7 +106,7 @@ describe('Accordion', () => {
 
   it('should collapse current item and open new item on prop change', async () => {
     const { rerender } = render(
-      <Accordion open="1" toggle={() => { }} data-testid="accordion">
+      <Accordion open="1" toggle={() => {}} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
@@ -114,7 +114,7 @@ describe('Accordion', () => {
     expect(screen.getByTestId('body-1')).toHaveClass('show');
 
     rerender(
-      <Accordion open="2" toggle={() => { }} data-testid="accordion">
+      <Accordion open="2" toggle={() => {}} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
@@ -135,7 +135,7 @@ describe('Accordion', () => {
 
   it('should allow multiple items to open', async () => {
     render(
-      <Accordion open={['1', '2']} toggle={() => { }} data-testid="accordion">
+      <Accordion open={['1', '2']} toggle={() => {}} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );

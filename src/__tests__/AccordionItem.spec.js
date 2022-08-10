@@ -6,9 +6,7 @@ import { testForCustomClass, testForCustomTag } from '../testUtils';
 
 describe('AccordionItem', () => {
   it('should render with "accordion-item" class', () => {
-    render(
-      <AccordionItem data-testid="accordion-item" />,
-    );
+    render(<AccordionItem data-testid="accordion-item" />);
 
     expect(screen.getByTestId('accordion-item')).toHaveClass('accordion-item');
   });

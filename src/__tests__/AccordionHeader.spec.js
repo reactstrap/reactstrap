@@ -13,8 +13,12 @@ describe('AccordionHeader', () => {
       </AccordionHeader>,
     );
 
-    expect(screen.getByTestId('accordion-header')).toHaveClass('accordion-header');
-    expect(screen.getByText(/heading/i)).toHaveClass('accordion-button collapsed');
+    expect(screen.getByTestId('accordion-header')).toHaveClass(
+      'accordion-header',
+    );
+    expect(screen.getByText(/heading/i)).toHaveClass(
+      'accordion-button collapsed',
+    );
   });
 
   it('should render additional classes', () => {
@@ -44,11 +48,13 @@ describe('AccordionHeader', () => {
 
     render(
       <AccordionContext.Provider value={{ toggle }}>
-        <AccordionHeader data-testid="accordion-body" targetId="cool-accordion">Heading</AccordionHeader>
+        <AccordionHeader data-testid="accordion-body" targetId="cool-accordion">
+          Heading
+        </AccordionHeader>
       </AccordionContext.Provider>,
     );
 
-    await user.click(screen.getByText(/heading/i))
+    await user.click(screen.getByText(/heading/i));
     expect(toggle.mock.calls[0][0]).toBe('cool-accordion');
   });
 });
