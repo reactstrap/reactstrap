@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { AccordionBody, AccordionContext } from '..';
 import { testForCustomClass } from '../testUtils';
 
 describe('AccordionBody', () => {
   it('should render with "accordion-body" class within "accordion-collapse', () => {
-    const screen = render(
+    render(
       <AccordionBody accordionId="cool-accordion" data-testid="accordion-body">
         accordion body
       </AccordionBody>,
@@ -23,17 +23,17 @@ describe('AccordionBody', () => {
   });
 
   it('should render custom tag', () => {
-    const { getByText } = render(
+    render(
       <AccordionBody accordionId="cool-accordion" tag="h1">
         accordion body
       </AccordionBody>,
     );
 
-    expect(getByText(/accordion body/i).tagName).toMatch(/h1/i);
+    expect(screen.getByText(/accordion body/i).tagName).toMatch(/h1/i);
   });
 
   it('should be open if open == id', () => {
-    const { getByTestId } = render(
+    render(
       <AccordionContext.Provider value={{ open: 'cool-accordion' }}>
         <AccordionBody
           accordionId="cool-accordion"
@@ -46,7 +46,7 @@ describe('AccordionBody', () => {
       </AccordionContext.Provider>,
     );
 
-    expect(getByTestId('accordion-body-1')).toHaveClass('show');
-    expect(getByTestId('accordion-body-2')).not.toHaveClass('show');
+    expect(screen.getByTestId('accordion-body-1')).toHaveClass('show');
+    expect(screen.getByTestId('accordion-body-2')).not.toHaveClass('show');
   });
 });

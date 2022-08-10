@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from '..';
 import { testForCustomClass, testForCustomTag } from '../testUtils';
@@ -42,24 +42,24 @@ describe('Accordion', () => {
   ];
 
   it('should render a div with "accordion" class', () => {
-    const { getByTestId } = render(
-      <Accordion open="this accordion" toggle={() => {}} data-testid="test" />,
+    render(
+      <Accordion open="this accordion" toggle={() => { }} data-testid="test" />,
     );
-    const node = getByTestId('test');
+    const node = screen.getByTestId('test');
     expect(node.tagName).toMatch(/div/i);
     expect(node).toHaveClass('accordion');
   });
 
   it('should render flush prop', () => {
-    const { getByTestId } = render(
+    render(
       <Accordion
         open="this accordion"
         flush
-        toggle={() => {}}
+        toggle={() => { }}
         data-testid="test"
       />,
     );
-    const node = getByTestId('test');
+    const node = screen.getByTestId('test');
     expect(node).toHaveClass('accordion');
     expect(node).toHaveClass('accordion-flush');
   });
@@ -68,81 +68,81 @@ describe('Accordion', () => {
     testForCustomTag(Accordion, {
       open: 'this accordion',
       flush: true,
-      toggle: () => {},
+      toggle: () => { },
     });
   });
 
   it('should render custom classes', () => {
     testForCustomClass(Accordion, {
       open: 'this accordion',
-      toggle: () => {},
+      toggle: () => { },
     });
   });
 
   it('should have second item showing and others collapsed', () => {
-    const { getByTestId } = render(
-      <Accordion open="2" toggle={() => {}} data-testid="accordion">
+    render(
+      <Accordion open="2" toggle={() => { }} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
 
-    expect(getByTestId('body-1')).not.toHaveClass('show');
-    expect(getByTestId('body-2')).toHaveClass('show');
-    expect(getByTestId('body-3')).not.toHaveClass('show');
+    expect(screen.getByTestId('body-1')).not.toHaveClass('show');
+    expect(screen.getByTestId('body-2')).toHaveClass('show');
+    expect(screen.getByTestId('body-3')).not.toHaveClass('show');
   });
 
   it('should call toggle with clicked item id', () => {
-    const mockFn = jest.fn(() => {});
-    const { getByText } = render(
+    const mockFn = jest.fn(() => { });
+    render(
       <Accordion open="1" toggle={mockFn} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
 
-    fireEvent.click(getByText(/accordion item 2/i));
+    fireEvent.click(screen.getByText(/accordion item 2/i));
 
     expect(mockFn.mock.calls[0][0]).toBe('2');
   });
 
   it('should collapse current item and open new item on prop change', async () => {
-    const { getByTestId, rerender } = render(
-      <Accordion open="1" toggle={() => {}} data-testid="accordion">
+    const { rerender } = render(
+      <Accordion open="1" toggle={() => { }} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
 
-    expect(getByTestId('body-1')).toHaveClass('show');
+    expect(screen.getByTestId('body-1')).toHaveClass('show');
 
     rerender(
-      <Accordion open="2" toggle={() => {}} data-testid="accordion">
+      <Accordion open="2" toggle={() => { }} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
 
     expect(
-      getByTestId('item-1').querySelector('.accordion-collapse'),
+      screen.getByTestId('item-1').querySelector('.accordion-collapse'),
     ).toHaveClass('collapsing');
 
     await waitFor(() => {
       expect(
-        getByTestId('item-1').querySelector('.accordion-collapse'),
+        screen.getByTestId('item-1').querySelector('.accordion-collapse'),
       ).not.toHaveClass('show');
       expect(
-        getByTestId('item-2').querySelector('.accordion-collapse'),
+        screen.getByTestId('item-2').querySelector('.accordion-collapse'),
       ).toHaveClass('show');
     });
   });
 
   it('should allow multiple items to open', async () => {
-    const { getByTestId } = render(
-      <Accordion open={['1', '2']} toggle={() => {}} data-testid="accordion">
+    render(
+      <Accordion open={['1', '2']} toggle={() => { }} data-testid="accordion">
         {accordionItems}
       </Accordion>,
     );
 
     await waitFor(() => {
-      expect(getByTestId('body-1')).toHaveClass('show');
-      expect(getByTestId('body-2')).toHaveClass('show');
+      expect(screen.getByTestId('body-1')).toHaveClass('show');
+      expect(screen.getByTestId('body-2')).toHaveClass('show');
     });
   });
 });

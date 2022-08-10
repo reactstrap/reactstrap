@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import {
   UncontrolledAccordion,
@@ -38,7 +39,7 @@ describe('UncontrolledAccordion', () => {
   ];
 
   it('should open and close on click', async () => {
-    const screen = render(
+    render(
       <UncontrolledAccordion
         data-testid="accordion"
         defaultOpen="1"
@@ -59,7 +60,7 @@ describe('UncontrolledAccordion', () => {
       'show',
     );
 
-    fireEvent.click(screen.getByText(/accordion item 2/i));
+    user.click(screen.getByText(/accordion item 2/i));
 
     expect(accordion2.querySelector('.accordion-collapse')).toHaveClass(
       'collapsing',
@@ -76,7 +77,7 @@ describe('UncontrolledAccordion', () => {
   });
 
   it('should allow multiple items to open', async () => {
-    const screen = render(
+    render(
       <UncontrolledAccordion
         data-testid="accordion"
         defaultOpen="1"
@@ -98,7 +99,7 @@ describe('UncontrolledAccordion', () => {
       'show',
     );
 
-    fireEvent.click(screen.getByText(/accordion item 2/i));
+    user.click(screen.getByText(/accordion item 2/i));
 
     expect(accordion2.querySelector('.accordion-collapse')).toHaveClass(
       'collapsing',
