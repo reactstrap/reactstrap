@@ -20,7 +20,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const FormGroup = (props) => {
+function FormGroup(props) {
   const {
     className,
     cssModule,
@@ -36,24 +36,25 @@ const FormGroup = (props) => {
 
   const formCheck = check || switchProp;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    row ? 'row' : false,
-    formCheck ? 'form-check' : 'mb-3',
-    switchProp ? 'form-switch' : false,
-    formCheck && inline ? 'form-check-inline' : false,
-    formCheck && disabled ? 'disabled' : false,
-    floating && 'form-floating'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(
+      className,
+      row ? 'row' : false,
+      formCheck ? 'form-check' : 'mb-3',
+      switchProp ? 'form-switch' : false,
+      formCheck && inline ? 'form-check-inline' : false,
+      formCheck && disabled ? 'disabled' : false,
+      floating && 'form-floating',
+    ),
+    cssModule,
+  );
 
   if (Tag === 'fieldset') {
     attributes.disabled = disabled;
   }
 
-  return (
-    <Tag {...attributes} className={classes} />
-  );
-};
+  return <Tag {...attributes} className={classes} />;
+}
 
 FormGroup.propTypes = propTypes;
 FormGroup.defaultProps = defaultProps;

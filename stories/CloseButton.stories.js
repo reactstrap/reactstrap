@@ -8,12 +8,12 @@ export default {
   
   A generic close button for dismissing content like modals and alerts.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
-export { default as CloseButton } from './examples/CloseButton';
-export { default as CloseButtonWhite } from './examples/CloseButtonWhite';
-export { default as CloseButtonDisabled } from './examples/CloseButtonDisabled';
-export { default as Props } from './examples/CloseButtonProps';
+export { default as CloseButton } from './examples/CloseButton/CloseButton';
+export { default as CloseButtonDisabled } from './examples/CloseButton/Disabled';
+export { default as CloseButtonWhite } from './examples/CloseButton/White';
+export { default as Props } from './examples/CloseButton/Props';

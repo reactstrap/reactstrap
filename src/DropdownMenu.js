@@ -4,17 +4,25 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { Popper } from 'react-popper';
 import { DropdownContext } from './DropdownContext';
-import { mapToCssModules, tagPropType, targetPropType, getTarget, deprecated } from './utils';
+import {
+  mapToCssModules,
+  tagPropType,
+  targetPropType,
+  getTarget,
+  deprecated,
+} from './utils';
 
 const propTypes = {
   tag: tagPropType,
   children: PropTypes.node.isRequired,
   dark: PropTypes.bool,
   end: PropTypes.bool,
+  /** Flips the menu to the opposite side if there is not enough space to fit */
   flip: PropTypes.bool,
   modifiers: PropTypes.array,
   className: PropTypes.string,
   cssModule: PropTypes.object,
+  style: PropTypes.object,
   persist: PropTypes.bool,
   strategy: PropTypes.string,
   container: targetPropType,
@@ -39,12 +47,11 @@ const directionPositionMap = {
 };
 
 class DropdownMenu extends React.Component {
-
   getRole() {
-    if(this.context.menuRole === 'listbox') {
-      return 'listbox'
+    if (this.context.menuRole === 'listbox') {
+      return 'listbox';
     }
-    return 'menu'
+    return 'menu';
   }
 
   render() {
@@ -64,22 +71,21 @@ class DropdownMenu extends React.Component {
       ...attrs
     } = this.props;
 
-    const classes = mapToCssModules(classNames(
-      className,
-      'dropdown-menu',
-      {
+    const classes = mapToCssModules(
+      classNames(className, 'dropdown-menu', {
         'dropdown-menu-dark': dark,
         'dropdown-menu-end': end || right,
         show: this.context.isOpen,
-      }
-    ), cssModule);
+      }),
+      cssModule,
+    );
 
     const Tag = tag;
 
     if (persist || (this.context.isOpen && !this.context.inNavbar)) {
-
-      const position1 = directionPositionMap[this.context.direction] || 'bottom';
-      const position2 = (end || right) ? 'end' : 'start';
+      const position1 =
+        directionPositionMap[this.context.direction] || 'bottom';
+      const position2 = end || right ? 'end' : 'start';
       const poperPlacement = `${position1}-${position2}`;
       const poperModifiers = [
         ...modifiers,
@@ -87,7 +93,7 @@ class DropdownMenu extends React.Component {
           name: 'flip',
           enabled: !!flip,
         },
-       ];
+      ];
 
       const popper = (
         <Popper
@@ -126,23 +132,24 @@ class DropdownMenu extends React.Component {
 
       if (container) {
         return ReactDOM.createPortal(popper, getTarget(container));
-      } else {
-        return popper;
       }
+      return popper;
     }
+    const { onMenuRef } = this.context;
 
     return (
       <Tag
         tabIndex="-1"
         role={this.getRole()}
         {...attrs}
+        ref={onMenuRef}
         aria-hidden={!this.context.isOpen}
         className={classes}
         data-popper-placement={attrs.placement}
       />
     );
   }
-};
+}
 
 DropdownMenu.propTypes = propTypes;
 DropdownMenu.defaultProps = defaultProps;

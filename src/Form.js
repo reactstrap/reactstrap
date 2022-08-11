@@ -5,7 +5,11 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
   children: PropTypes.node,
   tag: tagPropType,
-  innerRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   className: PropTypes.string,
   cssModule: PropTypes.object,
 };
@@ -47,6 +51,8 @@ class Form extends Component {
     return (
       <Tag {...attributes} ref={innerRef} className={classes} />
     );
+
+    return <Tag {...attributes} ref={innerRef} className={classes} />;
   }
 }
 

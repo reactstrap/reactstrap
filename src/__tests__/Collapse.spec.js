@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Collapse } from '../';
+import { Collapse } from '..';
 
 describe('Collapse', () => {
   let isOpen;
@@ -24,8 +24,23 @@ describe('Collapse', () => {
   });
 
   it('should render children', () => {
-    wrapper = mount(<Collapse><p>hello</p></Collapse>);
+    wrapper = mount(
+      <Collapse>
+        <p>hello</p>
+      </Collapse>,
+    );
     expect(wrapper.find('p').text()).toBe('hello');
+  });
+
+  it('works with strict mode', () => {
+    const spy = jest.spyOn(console, 'error');
+    wrapper = mount(
+      <React.StrictMode>
+        <Collapse />
+      </React.StrictMode>,
+    );
+    expect(wrapper.instance()).toBeTruthy();
+    expect(spy).not.toHaveBeenCalled();
   });
 
   it('should have default isOpen value', () => {
@@ -102,7 +117,9 @@ describe('Collapse', () => {
     toggle();
     expect(wrapper.update().find('div').prop('className')).toBe('collapsing');
     jest.runTimersToTime(350);
-    expect(wrapper.update().find('div').prop('className')).toBe('collapse show');
+    expect(wrapper.update().find('div').prop('className')).toBe(
+      'collapse show',
+    );
 
     toggle();
     expect(wrapper.update().find('div').prop('className')).toBe('collapsing');

@@ -8,11 +8,11 @@ export default {
 
 Indicate the current page’s location within a navigational hierarchy that automatically adds separators.
         `,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
-export { default as Breadcrumb } from './examples/Breadcrumb';
-export { default as NoList } from './examples/BreadcrumbNoList';
-export { default as Props } from './examples/BreadcrumbProps';
+export { default as Breadcrumb } from './examples/Breadcrump/Breadcrumb';
+export { default as NoList } from './examples/Breadcrump/NoList';
+export { default as Props } from './examples/Breadcrump/Props';

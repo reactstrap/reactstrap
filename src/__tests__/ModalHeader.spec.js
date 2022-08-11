@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ModalHeader } from '../';
+import { ModalHeader } from '..';
 
 describe('ModalHeader', () => {
   it('should render with "modal-header" class', () => {
@@ -18,7 +18,11 @@ describe('ModalHeader', () => {
   });
 
   it('should render close button', () => {
-    const wrapper = shallow(<ModalHeader toggle={() => {}} className="other">Yo!</ModalHeader>);
+    const wrapper = shallow(
+      <ModalHeader toggle={() => {}} className="other">
+        Yo!
+      </ModalHeader>,
+    );
 
     expect(wrapper.hasClass('other')).toBe(true);
     expect(wrapper.hasClass('modal-header')).toBe(true);

@@ -4,14 +4,19 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
-  tag: tagPropType,
-  wrapTag: tagPropType,
-  toggle: PropTypes.func,
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
   children: PropTypes.node,
-  closeAriaLabel: PropTypes.string,
+  /** Add custom class */
+  className: PropTypes.string,
+  /** Custom close button */
   close: PropTypes.object,
+  closeAriaLabel: PropTypes.string,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
+  /** Set a custom element for this component */
+  tag: tagPropType,
+  /** Function to be triggered when close button is clicked */
+  toggle: PropTypes.func,
+  wrapTag: tagPropType,
 };
 
 const defaultProps = {
@@ -20,7 +25,7 @@ const defaultProps = {
   closeAriaLabel: 'Close',
 };
 
-const ModalHeader = (props) => {
+function ModalHeader(props) {
   let closeButton;
   const {
     className,
@@ -31,16 +36,22 @@ const ModalHeader = (props) => {
     wrapTag: WrapTag,
     closeAriaLabel,
     close,
-    ...attributes } = props;
+    ...attributes
+  } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'modal-header'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'modal-header'),
+    cssModule,
+  );
 
   if (!close && toggle) {
     closeButton = (
-      <button type="button" onClick={toggle} className={mapToCssModules('btn-close', cssModule)} aria-label={closeAriaLabel} />
+      <button
+        type="button"
+        onClick={toggle}
+        className={mapToCssModules('btn-close', cssModule)}
+        aria-label={closeAriaLabel}
+      />
     );
   }
 
@@ -52,7 +63,7 @@ const ModalHeader = (props) => {
       {close || closeButton}
     </WrapTag>
   );
-};
+}
 
 ModalHeader.propTypes = propTypes;
 ModalHeader.defaultProps = defaultProps;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { BreadcrumbItem } from '../';
+import { BreadcrumbItem } from '..';
 
 describe('BreadcrumbItem', () => {
   it('should render children', () => {
@@ -16,19 +16,25 @@ describe('BreadcrumbItem', () => {
   });
 
   it('should render with the "breadcrumb-item" class', () => {
-    const wrapper = shallow(<BreadcrumbItem>Default BreadcrumbItem</BreadcrumbItem>);
+    const wrapper = shallow(
+      <BreadcrumbItem>Default BreadcrumbItem</BreadcrumbItem>,
+    );
 
     expect(wrapper.hasClass('breadcrumb-item')).toBe(true);
   });
 
   it('should not render with the "active" class by default', () => {
-    const wrapper = shallow(<BreadcrumbItem>Default BreadcrumbItem</BreadcrumbItem>);
+    const wrapper = shallow(
+      <BreadcrumbItem>Default BreadcrumbItem</BreadcrumbItem>,
+    );
 
     expect(wrapper.hasClass('active')).toBe(false);
   });
 
   it('should render with the "active" class when the avtive prop is truthy', () => {
-    const wrapper = shallow(<BreadcrumbItem active>Default BreadcrumbItem</BreadcrumbItem>);
+    const wrapper = shallow(
+      <BreadcrumbItem active>Default BreadcrumbItem</BreadcrumbItem>,
+    );
 
     expect(wrapper.hasClass('active')).toBe(true);
   });

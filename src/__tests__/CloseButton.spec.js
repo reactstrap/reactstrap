@@ -6,13 +6,12 @@ describe('CloseButton', () => {
   it('should render a close button', () => {
     const wrapper = shallow(<CloseButton />);
     expect(wrapper.hasClass('btn-close')).toBe(true);
-  })
+  });
 
   it('should render white variant', () => {
-    const wrapper = shallow(<CloseButton variant='white'/>);
+    const wrapper = shallow(<CloseButton variant="white" />);
     expect(wrapper.hasClass('btn-close-white')).toBe(true);
-  })
-
+  });
 
   describe('onClick', () => {
     it('calls props.onClick if it exists', () => {
@@ -40,4 +39,4 @@ describe('CloseButton', () => {
       expect(onClick).not.toHaveBeenCalled();
     });
   });
-})
+});

@@ -6,12 +6,19 @@ import { mapToCssModules, tagPropType } from './utils';
 const propTypes = {
   'aria-label': PropTypes.string,
   children: PropTypes.node,
+  /** Add custom class */
   className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
   cssModule: PropTypes.object,
+  /** Add to next button to add default aria label and icon */
   next: PropTypes.bool,
+  /** Add to previous button to add default aria label and icon */
   previous: PropTypes.bool,
+  /** Add to first button to add default aria label and icon */
   first: PropTypes.bool,
+  /** Add to last button to add default aria label and icon */
   last: PropTypes.bool,
+  /** Set a custom element for this component */
   tag: tagPropType,
 };
 
@@ -19,7 +26,7 @@ const defaultProps = {
   tag: 'a',
 };
 
-const PaginationLink = (props) => {
+function PaginationLink(props) {
   let {
     className,
     cssModule,
@@ -31,10 +38,10 @@ const PaginationLink = (props) => {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'page-link'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'page-link'),
+    cssModule,
+  );
 
   let defaultAriaLabel;
   if (previous) {
@@ -60,7 +67,7 @@ const PaginationLink = (props) => {
     defaultCaret = '\u00bb';
   }
 
-  let children = props.children;
+  let { children } = props;
   if (children && Array.isArray(children) && children.length === 0) {
     children = null;
   }
@@ -71,31 +78,21 @@ const PaginationLink = (props) => {
 
   if (previous || next || first || last) {
     children = [
-      <span
-        aria-hidden="true"
-        key="caret"
-      >
+      <span aria-hidden="true" key="caret">
         {children || defaultCaret}
       </span>,
-      <span
-        className="visually-hidden"
-        key="ariaLabel"
-      >
+      <span className="visually-hidden" key="ariaLabel">
         {ariaLabel}
       </span>,
     ];
   }
 
   return (
-    <Tag
-      {...attributes}
-      className={classes}
-      aria-label={ariaLabel}
-    >
+    <Tag {...attributes} className={classes} aria-label={ariaLabel}>
       {children}
     </Tag>
   );
-};
+}
 
 PaginationLink.propTypes = propTypes;
 PaginationLink.defaultProps = defaultProps;

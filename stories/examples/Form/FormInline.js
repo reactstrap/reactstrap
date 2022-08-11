@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Col, Form, FormGroup, Label, Input, Row } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <Row className="row-cols-lg-auto g-3 align-items-center">

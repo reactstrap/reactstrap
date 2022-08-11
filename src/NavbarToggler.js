@@ -4,38 +4,38 @@ import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
 
 const propTypes = {
+  /** Add custom class */
+  className: PropTypes.string,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
+  /** Set a custom element for this component */
   tag: tagPropType,
   type: PropTypes.string,
-  className: PropTypes.string,
-  cssModule: PropTypes.object,
+  /** Pass children so this component can wrap the child elements */
   children: PropTypes.node,
 };
 
 const defaultProps = {
   tag: 'button',
-  type: 'button'
+  type: 'button',
 };
 
-const NavbarToggler = (props) => {
-  const {
-    className,
-    cssModule,
-    children,
-    tag: Tag,
-    ...attributes
-  } = props;
+function NavbarToggler(props) {
+  const { className, cssModule, children, tag: Tag, ...attributes } = props;
 
-  const classes = mapToCssModules(classNames(
-    className,
-    'navbar-toggler'
-  ), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'navbar-toggler'),
+    cssModule,
+  );
 
   return (
     <Tag aria-label="Toggle navigation" {...attributes} className={classes}>
-      {children || <span className={mapToCssModules('navbar-toggler-icon', cssModule)} />}
+      {children || (
+        <span className={mapToCssModules('navbar-toggler-icon', cssModule)} />
+      )}
     </Tag>
   );
-};
+}
 
 NavbarToggler.propTypes = propTypes;
 NavbarToggler.defaultProps = defaultProps;

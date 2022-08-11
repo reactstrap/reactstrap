@@ -1,7 +1,13 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { Offcanvas, OffcanvasBody, OffcanvasHeader, OffcanvasFooter, Button } from '../';
+import {
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader,
+  OffcanvasFooter,
+  Button,
+} from '..';
 import { keyCodes } from '../utils';
 
 describe('Offcanvas', () => {
@@ -10,13 +16,15 @@ describe('Offcanvas', () => {
 
   beforeEach(() => {
     isOpen = false;
-    toggle = () => { isOpen = !isOpen; };
+    toggle = () => {
+      isOpen = !isOpen;
+    };
 
     jest.useFakeTimers();
   });
 
   afterEach(() => {
-    document.getElementsByTagName('html')[0].innerHTML = ''; 
+    document.getElementsByTagName('html')[0].innerHTML = '';
 
     // fast forward time for offcanvas to fade out
     jest.runTimersToTime(300);
@@ -28,7 +36,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
@@ -41,7 +49,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
@@ -54,11 +62,13 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(1);
+    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(
+      1,
+    );
     wrapper.unmount();
   });
 
@@ -67,26 +77,34 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle} backdrop={false}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('offcanvas').length).toBe(1);
-    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(0);
+    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(
+      0,
+    );
     wrapper.unmount();
   });
 
   it('should render with class "offcanvas" and have custom class name if provided', () => {
     isOpen = true;
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} toggle={toggle} className="my-custom-offcanvas">
+      <Offcanvas
+        isOpen={isOpen}
+        toggle={toggle}
+        className="my-custom-offcanvas"
+      >
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('offcanvas').length).toBe(1);
-    expect(document.getElementsByClassName('my-custom-offcanvas').length).toBe(1);
+    expect(document.getElementsByClassName('my-custom-offcanvas').length).toBe(
+      1,
+    );
     wrapper.unmount();
   });
 
@@ -95,32 +113,42 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle} style={{ maxWidth: '95%' }}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('offcanvas').length).toBe(1);
-    expect(document.getElementsByClassName('offcanvas')[0].style.maxWidth).toBe('95%');
+    expect(document.getElementsByClassName('offcanvas')[0].style.maxWidth).toBe(
+      '95%',
+    );
     wrapper.unmount();
   });
 
   it('should render without fade transition if provided with fade={false}', () => {
     isOpen = true;
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} toggle={toggle} fade={false} className="fadeless-offcanvas">
+      <Offcanvas
+        isOpen={isOpen}
+        toggle={toggle}
+        fade={false}
+        className="fadeless-offcanvas"
+      >
         Howdy!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     // Offcanvas should appear instantaneously
     jest.runTimersToTime(1);
 
-    const matchedOffcanvass = document.getElementsByClassName('fadeless-offcanvas');
+    const matchedOffcanvass =
+      document.getElementsByClassName('fadeless-offcanvas');
     const matchedOffcanvas = matchedOffcanvass[0];
 
     expect(matchedOffcanvass.length).toBe(1);
     // Offcanvas should not have the 'fade' class
-    expect(matchedOffcanvas.className.split(' ').indexOf('fade') < 0).toBe(true);
+    expect(matchedOffcanvas.className.split(' ').indexOf('fade') < 0).toBe(
+      true,
+    );
 
     wrapper.unmount();
   });
@@ -136,12 +164,14 @@ describe('Offcanvas', () => {
         className="custom-timeout-offcanvas"
       >
         Hello, world!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(20);
 
-    const matchedOffcanvass = document.getElementsByClassName('custom-timeout-offcanvas');
+    const matchedOffcanvass = document.getElementsByClassName(
+      'custom-timeout-offcanvas',
+    );
 
     expect(matchedOffcanvass.length).toBe(1);
 
@@ -151,13 +181,20 @@ describe('Offcanvas', () => {
   it('should render with class "offcanvas-backdrop" and have custom class name if provided with backdropClassName', () => {
     isOpen = true;
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} toggle={toggle} backdropClassName="my-custom-offcanvas">
+      <Offcanvas
+        isOpen={isOpen}
+        toggle={toggle}
+        backdropClassName="my-custom-offcanvas"
+      >
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.querySelectorAll('.offcanvas-backdrop.my-custom-offcanvas').length).toBe(1);
+    expect(
+      document.querySelectorAll('.offcanvas-backdrop.my-custom-offcanvas')
+        .length,
+    ).toBe(1);
     wrapper.unmount();
   });
 
@@ -166,7 +203,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle} direction="top">
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
@@ -175,18 +212,19 @@ describe('Offcanvas', () => {
     wrapper.unmount();
   });
 
-
   it('should render offcanvas when isOpen is true', () => {
     isOpen = true;
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
     expect(document.getElementsByClassName('offcanvas').length).toBe(1);
-    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(1);
+    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(
+      1,
+    );
     wrapper.unmount();
   });
 
@@ -195,11 +233,13 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('offcanvas')[0].getAttribute('role')).toBe('dialog');
+    expect(
+      document.getElementsByClassName('offcanvas')[0].getAttribute('role'),
+    ).toBe('dialog');
     wrapper.unmount();
   });
 
@@ -208,11 +248,13 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle} role="alert">
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('offcanvas')[0].getAttribute('role')).toBe('alert');
+    expect(
+      document.getElementsByClassName('offcanvas')[0].getAttribute('role'),
+    ).toBe('alert');
     wrapper.unmount();
   });
 
@@ -221,11 +263,15 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle} labelledBy="myOffcanvasTitle">
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('offcanvas')[0].getAttribute('aria-labelledby')).toBe('myOffcanvasTitle');
+    expect(
+      document
+        .getElementsByClassName('offcanvas')[0]
+        .getAttribute('aria-labelledby'),
+    ).toBe('myOffcanvasTitle');
     wrapper.unmount();
   });
 
@@ -233,13 +279,15 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
     expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('offcanvas').length).toBe(0);
-    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(0);
+    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(
+      0,
+    );
     wrapper.unmount();
   });
 
@@ -247,24 +295,28 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
     expect(isOpen).toBe(false);
     expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('offcanvas').length).toBe(0);
-    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(0);
+    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(
+      0,
+    );
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
 
     jest.runTimersToTime(300);
     expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('offcanvas').length).toBe(1);
-    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(1);
+    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(
+      1,
+    );
     wrapper.unmount();
   });
 
@@ -274,9 +326,14 @@ describe('Offcanvas', () => {
     const onOpened = jest.fn();
     const onClosed = jest.fn();
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
+      <Offcanvas
+        isOpen={isOpen}
+        onOpened={onOpened}
+        onClosed={onClosed}
+        toggle={toggle}
+      >
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
@@ -288,7 +345,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -300,7 +357,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -315,9 +372,15 @@ describe('Offcanvas', () => {
     const onOpened = jest.fn();
     const onClosed = jest.fn();
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} onOpened={onOpened} onClosed={onClosed} toggle={toggle} fade={false}>
+      <Offcanvas
+        isOpen={isOpen}
+        onOpened={onOpened}
+        onClosed={onClosed}
+        toggle={toggle}
+        fade={false}
+      >
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(1);
@@ -327,7 +390,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(1);
 
@@ -337,7 +400,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(1);
 
@@ -353,7 +416,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
@@ -362,7 +425,7 @@ describe('Offcanvas', () => {
     expect(Offcanvas.prototype.componentDidUpdate).not.toHaveBeenCalled();
 
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -378,7 +441,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
     const instance = wrapper.instance();
 
@@ -407,7 +470,7 @@ describe('Offcanvas', () => {
     expect(escapeKeyUpEvent.stopPropagation.mock.calls.length).toBe(1);
 
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -421,7 +484,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle} keyboard={false}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
     const instance = wrapper.instance();
 
@@ -442,7 +505,7 @@ describe('Offcanvas', () => {
     expect(isOpen).toBe(true);
 
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -456,13 +519,15 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     jest.runTimersToTime(300);
 
     expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(1);
+    expect(document.getElementsByClassName('offcanvas-backdrop').length).toBe(
+      1,
+    );
 
     document.getElementById('clicker').click();
     jest.runTimersToTime(300);
@@ -491,7 +556,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
-      </Offcanvas>
+      </Offcanvas>,
     );
     const instance = wrapper.instance();
 
@@ -500,7 +565,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -513,9 +578,9 @@ describe('Offcanvas', () => {
   it('should destroy this._element when unmountOnClose prop set to true', () => {
     isOpen = true;
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} toggle={toggle} unmountOnClose={true}>
+      <Offcanvas isOpen={isOpen} toggle={toggle} unmountOnClose>
         <button id="clicker">Does Nothing</button>
-      </Offcanvas>
+      </Offcanvas>,
     );
     const instance = wrapper.instance();
 
@@ -524,7 +589,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -539,7 +604,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle} unmountOnClose={false}>
         <button id="clicker">Does Nothing</button>
-      </Offcanvas>
+      </Offcanvas>,
     );
     const instance = wrapper.instance();
 
@@ -548,7 +613,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -563,7 +628,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         <button id="clicker">Does Nothing</button>
-      </Offcanvas>
+      </Offcanvas>,
     );
     const instance = wrapper.instance();
 
@@ -583,7 +648,7 @@ describe('Offcanvas', () => {
     const wrapper = mount(
       <Offcanvas isOpen={false} toggle={toggle}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     // assert that the offcanvas is closed and the body class is what was set initially
@@ -594,7 +659,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: true
+      isOpen: true,
     });
 
     // assert that the offcanvas is open and the body class is what was set initially + offcanvas-open
@@ -613,7 +678,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
 
     // assert that the offcanvas is closed and the body class is what was set initially
@@ -630,9 +695,14 @@ describe('Offcanvas', () => {
     const onEnter = jest.fn();
     const onExit = jest.fn();
     const wrapper = mount(
-      <Offcanvas isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle}>
+      <Offcanvas
+        isOpen={isOpen}
+        onEnter={onEnter}
+        onExit={onExit}
+        toggle={toggle}
+      >
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     expect(isOpen).toBe(false);
@@ -644,7 +714,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -657,7 +727,7 @@ describe('Offcanvas', () => {
 
     toggle();
     wrapper.setProps({
-      isOpen: isOpen
+      isOpen: isOpen,
     });
     jest.runTimersToTime(300);
 
@@ -670,7 +740,7 @@ describe('Offcanvas', () => {
     const wrapper = shallow(
       <Offcanvas isOpen zIndex={0}>
         Yo!
-      </Offcanvas>
+      </Offcanvas>,
     );
     expect(wrapper.instance()._element.style.zIndex).toBe('0');
     wrapper.setProps({ zIndex: 1 });
@@ -684,7 +754,9 @@ describe('Offcanvas', () => {
       <Offcanvas isOpen={isOpen} toggle={toggle}>
         <OffcanvasHeader toggle={toggle}>Offcanvas title</OffcanvasHeader>
         <OffcanvasBody>
-          <a alt="test" href="/">Test</a>
+          <a alt="test" href="/">
+            Test
+          </a>
           <map name="test">
             <area alt="test" href="/" coords="200,5,200,30" />
           </map>
@@ -697,12 +769,23 @@ describe('Offcanvas', () => {
           <select name="test" id="select_test_disabled" disabled>
             <option>Test item</option>
           </select>
-          <textarea name="textarea_test" id="textarea_test" cols="30" rows="10" />
-          <textarea name="textarea_test_disabled" id="textarea_test_disabled" cols="30" rows="10" disabled />
+          <textarea
+            name="textarea_test"
+            id="textarea_test"
+            cols="30"
+            rows="10"
+          />
+          <textarea
+            name="textarea_test_disabled"
+            id="textarea_test_disabled"
+            cols="30"
+            rows="10"
+            disabled
+          />
           <object>Test</object>
           <span tabIndex="0">test tab index</span>
         </OffcanvasBody>
-      </Offcanvas>
+      </Offcanvas>,
     );
 
     const instance = wrapper.instance();
@@ -711,19 +794,18 @@ describe('Offcanvas', () => {
   });
 
   it('should return the focus to the last focused element before the offcanvas has opened', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
+          <button className="focus">Focused</button>
           <Offcanvas isOpen={isOpen}>
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
-    const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -731,22 +813,21 @@ describe('Offcanvas', () => {
 
     expect(document.activeElement === button).toEqual(true);
     wrapper.unmount();
-  })
+  });
 
   it('should not return the focus to the last focused element before the offcanvas has opened when "returnFocusAfterClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
-          <Offcanvas isOpen={isOpen} returnFocusAfterClose={false} >
+          <button className="focus">Focused</button>
+          <Offcanvas isOpen={isOpen} returnFocusAfterClose={false}>
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
-    const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -754,22 +835,21 @@ describe('Offcanvas', () => {
 
     expect(document.activeElement === button).toEqual(false);
     wrapper.unmount();
-  })
+  });
 
   it('should return the focus to the last focused element before the offcanvas has opened when "unmountOnClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}>Focused</button>
+          <button className="focus">Focused</button>
           <Offcanvas isOpen={isOpen} unmountOnClose={false}>
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
-    const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -777,22 +857,25 @@ describe('Offcanvas', () => {
 
     expect(document.activeElement === button).toEqual(true);
     wrapper.unmount();
-  })
+  });
 
   it('should not return the focus to the last focused element before the offcanvas has opened when "returnFocusAfterClose" is false and "unmountOnClose" is false', () => {
-    const MockComponent = ({ isOpen = false }) => (
+    function MockComponent({ isOpen = false }) {
+      return (
         <>
-          <button className={'focus'}/>
-          <Offcanvas isOpen={isOpen} returnFocusAfterClose={false} unmountOnClose={false}>
+          <button className="focus" />
+          <Offcanvas
+            isOpen={isOpen}
+            returnFocusAfterClose={false}
+            unmountOnClose={false}
+          >
             <OffcanvasBody>Whatever</OffcanvasBody>
           </Offcanvas>
         </>
-    );
+      );
+    }
     const wrapper = mount(<MockComponent />);
-    const button = wrapper
-        .find('.focus')
-        .hostNodes()
-        .getDOMNode();
+    const button = wrapper.find('.focus').hostNodes().getDOMNode();
     button.focus();
     wrapper.setProps({ isOpen: true });
     wrapper.setProps({ isOpen: false });
@@ -803,29 +886,38 @@ describe('Offcanvas', () => {
   });
 
   it('should attach/detach trapFocus for dialogs', () => {
-    const addEventListenerFn = document.addEventListener,
-          removeEventListenerFn = document.removeEventListener;
+    const addEventListenerFn = document.addEventListener;
+    const removeEventListenerFn = document.removeEventListener;
     document.addEventListener = jest.fn();
     document.removeEventListener = jest.fn();
 
-    const MockComponent = () => (
-          <>
-            <Offcanvas isOpen={true}>
-              <OffcanvasBody>
-                  <Button className={'focus'}>focusable element</Button>
-              </OffcanvasBody>
-            </Offcanvas>
-          </>),
-          wrapper = mount(<MockComponent />),
-          offcanvas_instance = wrapper.find(Offcanvas).instance();
+    function MockComponent() {
+      return (
+        <Offcanvas isOpen>
+          <OffcanvasBody>
+            <Button className="focus">focusable element</Button>
+          </OffcanvasBody>
+        </Offcanvas>
+      );
+    }
+    const wrapper = mount(<MockComponent />);
+    const offcanvas_instance = wrapper.find(Offcanvas).instance();
 
     expect(document.addEventListener.mock.calls.length).toBe(1);
-    expect(document.addEventListener.mock.calls[0]).toEqual(['focus', offcanvas_instance.trapFocus, true]);
+    expect(document.addEventListener.mock.calls[0]).toEqual([
+      'focus',
+      offcanvas_instance.trapFocus,
+      true,
+    ]);
 
     wrapper.unmount();
 
     expect(document.removeEventListener.mock.calls.length).toBe(1);
-    expect(document.removeEventListener.mock.calls[0]).toEqual(['focus', offcanvas_instance.trapFocus, true]);
+    expect(document.removeEventListener.mock.calls[0]).toEqual([
+      'focus',
+      offcanvas_instance.trapFocus,
+      true,
+    ]);
 
     // restore global document mock
     document.addEventListener = addEventListenerFn;
@@ -833,24 +925,26 @@ describe('Offcanvas', () => {
   });
 
   it('should trap focus inside the open dialog', () => {
-    const MockComponent = () => (
-          <>
-            <Button className="first">Focused</Button>
-            <Offcanvas isOpen trapFocus>
-              <OffcanvasBody>
-                Something else to see
-                <Button className="focus">focusable element</Button>
-              </OffcanvasBody>
-            </Offcanvas>
-          </>
-        );
+    function MockComponent() {
+      return (
+        <>
+          <Button className="first">Focused</Button>
+          <Offcanvas isOpen trapFocus>
+            <OffcanvasBody>
+              Something else to see
+              <Button className="focus">focusable element</Button>
+            </OffcanvasBody>
+          </Offcanvas>
+        </>
+      );
+    }
     const wrapper = mount(<MockComponent />);
     const button = wrapper.find('.first').hostNodes().getDOMNode();
     const offcanvas_instance = wrapper.find(Offcanvas).instance();
     const ev_mock = {
       target: button,
       preventDefault: jest.fn(),
-      stopPropagation: jest.fn()
+      stopPropagation: jest.fn(),
     };
     button.focus();
     offcanvas_instance.trapFocus(ev_mock);

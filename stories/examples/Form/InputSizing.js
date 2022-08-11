@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input } from 'reactstrap';
 
-const Example = (props) => {
+function Example(props) {
   return (
     <Form>
       <Input className="mb-3" placeholder="lg" bsSize="lg" />
