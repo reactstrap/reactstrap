@@ -47,11 +47,6 @@ class Form extends Component {
     } = this.props;
 
     const classes = mapToCssModules(className, cssModule);
-
-    return (
-      <Tag {...attributes} ref={innerRef} className={classes} />
-    );
-
     return <Tag {...attributes} ref={innerRef} className={classes} />;
   }
 }
