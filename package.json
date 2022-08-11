@@ -309,7 +309,7 @@
     "eslint-plugin-storybook": "^0.6.1",
     "holderjs": "^2.9.3",
     "json-loader": "^0.5.7",
-    "microbundle": "^0.13.3",
+    "microbundle": "^0.15.0",
     "prettier": "2.7.1",
     "react": "^16.8.0",
     "react-app-rewired": "^1.6.2",
