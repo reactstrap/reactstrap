@@ -1,60 +1,60 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import { AccordionHeader, AccordionContext } from '..';
+import { testForCustomClass, testForCustomTag } from '../testUtils';
 
 describe('AccordionHeader', () => {
   it('should render with "accordion-header" class', () => {
-    const wrapper = mount(<AccordionHeader targetId="cool-accordion" />);
+    render(
+      <AccordionHeader targetId="cool-accordion" data-testid="accordion-header">
+        Heading
+      </AccordionHeader>,
+    );
 
-    expect(
-      wrapper.find('.accordion-header').find('.accordion-button.collapsed')
-        .length,
-    ).toBe(1);
+    expect(screen.getByTestId('accordion-header')).toHaveClass(
+      'accordion-header',
+    );
+    expect(screen.getByText(/heading/i)).toHaveClass(
+      'accordion-button collapsed',
+    );
   });
 
   it('should render additional classes', () => {
-    const wrapper = mount(
-      <AccordionHeader targetId="cool-accordion" className="other" />,
-    );
-
-    expect(wrapper.find('.accordion-header').hasClass('other')).toBe(true);
+    testForCustomClass(AccordionHeader, { targetId: 'cool-accordion' });
   });
 
   it('should render custom tag', () => {
-    const wrapper = mount(
-      <AccordionHeader targetId="cool-accordion" tag="div" />,
-    );
-
-    expect(wrapper.find('div.accordion-header').length).toBe(1);
+    testForCustomTag(AccordionHeader, { targetId: 'cool-accordion' });
   });
 
   it('should be open if open == targetId', () => {
-    const wrapper = mount(
-      <AccordionContext.Provider value={{ open: 'cool-accordion' }}>
-        <AccordionHeader targetId="cool-accordion" />
+    render(
+      <AccordionContext.Provider value={{ open: 'open-accordion' }}>
+        <AccordionHeader targetId="open-accordion">Header open</AccordionHeader>
+        <AccordionHeader targetId="closed-accordion">
+          Header close
+        </AccordionHeader>
       </AccordionContext.Provider>,
     );
 
-    expect(
-      wrapper.find('.accordion-header').find('.accordion-button.collapsed')
-        .length,
-    ).toBe(0);
+    expect(screen.getByText(/header open/i)).not.toHaveClass('collapsed');
+    expect(screen.getByText(/header close/i)).toHaveClass('collapsed');
   });
 
-  it('should toggle collapse if accordion-button is clicked', () => {
+  it('should toggle collapse if accordion-button is clicked', async () => {
     const toggle = jest.fn();
 
-    const wrapper = mount(
+    render(
       <AccordionContext.Provider value={{ toggle }}>
-        <AccordionHeader targetId="cool-accordion" />
+        <AccordionHeader data-testid="accordion-body" targetId="cool-accordion">
+          Heading
+        </AccordionHeader>
       </AccordionContext.Provider>,
     );
 
-    const accordionButton = wrapper
-      .find('.accordion-header')
-      .find('.accordion-button');
-    accordionButton.simulate('click');
-
-    expect(toggle.mock.calls.length).toBe(1);
+    await user.click(screen.getByText(/heading/i));
+    expect(toggle.mock.calls[0][0]).toBe('cool-accordion');
   });
 });

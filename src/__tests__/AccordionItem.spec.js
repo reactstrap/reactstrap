@@ -1,25 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { AccordionItem } from '..';
+import { testForCustomClass, testForCustomTag } from '../testUtils';
 
 describe('AccordionItem', () => {
   it('should render with "accordion-item" class', () => {
-    const wrapper = shallow(<AccordionItem />);
+    render(<AccordionItem data-testid="accordion-item" />);
 
-    expect(wrapper.hasClass('accordion-item')).toBe(true);
+    expect(screen.getByTestId('accordion-item')).toHaveClass('accordion-item');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<AccordionItem className="other" />);
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('accordion-item')).toBe(true);
+    testForCustomClass(AccordionItem);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<AccordionItem tag="li" />);
-
-    expect(wrapper.hasClass('accordion-item')).toBe(true);
-    expect(wrapper.find('li').length).toBe(1);
+    testForCustomTag(AccordionItem);
   });
 });

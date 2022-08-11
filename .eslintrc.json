@@ -78,5 +78,15 @@
       "modules": true,
       "classes": true
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "testUtils.js"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
