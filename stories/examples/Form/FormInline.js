@@ -6,17 +6,33 @@ function Example(props) {
     <Form>
       <Row className="row-cols-lg-auto g-3 align-items-center">
         <Col>
-          <Label for="exampleEmail" className="visually-hidden">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" />
+          <Label for="exampleEmail" className="visually-hidden">
+            Email
+          </Label>
+          <Input
+            type="email"
+            name="email"
+            id="exampleEmail"
+            placeholder="something@idk.cool"
+          />
         </Col>
         <Col>
-          <Label for="examplePassword" className="visually-hidden">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" />
+          <Label for="examplePassword" className="visually-hidden">
+            Password
+          </Label>
+          <Input
+            type="password"
+            name="password"
+            id="examplePassword"
+            placeholder="don't tell!"
+          />
         </Col>
         <Col>
           <FormGroup check>
             <Input type="checkbox" name="checkbox" id="exampleCheckbox" />
-            <Label check for="exampleCheckbox">Remember Me</Label>
+            <Label check for="exampleCheckbox">
+              Remember Me
+            </Label>
           </FormGroup>
         </Col>
         <Col>
