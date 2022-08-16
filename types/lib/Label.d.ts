@@ -8,7 +8,6 @@ export interface LabelProps
   hidden?: boolean;
   check?: boolean;
   size?: string;
-  inline?: boolean;
   disabled?: boolean;
   for?: string;
   tag?: React.ElementType;
