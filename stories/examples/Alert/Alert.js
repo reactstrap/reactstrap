@@ -3,7 +3,7 @@ import { Alert } from 'reactstrap';
 import { colors } from '../options';
 
 function Example(args) {
-  return <Alert {...args} dismiss={() => {}} isOpen />;
+  return <Alert {...args} isOpen />;
 }
 
 Example.args = {

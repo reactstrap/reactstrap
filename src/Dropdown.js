@@ -342,7 +342,7 @@ class Dropdown extends React.Component {
       return (
         <DropdownContext.Provider value={this.getContextValue()}>
           <Manager>
-            {this.props.children.map((child) =>
+            {React.Children.map(this.props.children, (child) =>
               React.cloneElement(child, { onKeyDown: this.handleKeyDown }),
             )}
           </Manager>
