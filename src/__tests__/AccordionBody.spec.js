@@ -1,45 +1,52 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { AccordionBody, AccordionContext } from '..';
+import { testForCustomClass } from '../testUtils';
 
 describe('AccordionBody', () => {
   it('should render with "accordion-body" class within "accordion-collapse', () => {
-    const wrapper = mount(<AccordionBody accordionId="cool-accordion" />);
+    render(
+      <AccordionBody accordionId="cool-accordion" data-testid="accordion-body">
+        accordion body
+      </AccordionBody>,
+    );
 
-    const accordionBody = wrapper.find('.accordion-collapse.collapse');
-
-    expect(accordionBody.find('.accordion-body').length).toBe(1);
-    expect(accordionBody.hasClass('show')).toBe(false);
+    expect(screen.getByTestId('accordion-body')).toHaveClass(
+      'accordion-collapse',
+    );
+    expect(screen.getByText(/accordion body/i)).toHaveClass('accordion-body');
   });
 
   it('should render additional classes', () => {
-    const wrapper = mount(
-      <AccordionBody accordionId="cool-accordion" className="other" />,
-    );
-
-    expect(wrapper.find('.accordion-collapse.collapse').hasClass('other')).toBe(
-      true,
-    );
+    testForCustomClass(AccordionBody, { accordionId: '1' });
   });
 
   it('should render custom tag', () => {
-    const wrapper = mount(
-      <AccordionBody accordionId="cool-accordion" tag="div" />,
+    render(
+      <AccordionBody accordionId="cool-accordion" tag="h1">
+        accordion body
+      </AccordionBody>,
     );
 
-    expect(
-      wrapper.find('.accordion-collapse.collapse').find('div.accordion-body')
-        .length,
-    ).toBe(1);
+    expect(screen.getByText(/accordion body/i).tagName).toMatch(/h1/i);
   });
 
   it('should be open if open == id', () => {
-    const wrapper = mount(
+    render(
       <AccordionContext.Provider value={{ open: 'cool-accordion' }}>
-        <AccordionBody accordionId="cool-accordion" />
+        <AccordionBody
+          accordionId="cool-accordion"
+          data-testid="accordion-body-1"
+        />
+        <AccordionBody
+          accordionId="not-cool-accordion"
+          data-testid="accordion-body-2"
+        />
       </AccordionContext.Provider>,
     );
 
-    expect(wrapper.find('.accordion-collapse.collapse.show').length).toBe(1);
+    expect(screen.getByTestId('accordion-body-1')).toHaveClass('show');
+    expect(screen.getByTestId('accordion-body-2')).not.toHaveClass('show');
   });
 });

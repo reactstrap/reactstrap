@@ -137,6 +137,13 @@
 
 
 
+### [9.1.3](https://www.github.com/reactstrap/reactstrap/compare/v9.1.2...v9.1.3) (2022-08-02)
+
+
+### Bug Fixes
+
+* Use the new `nodeRef` API for `Collapse` ([9527654](https://www.github.com/reactstrap/reactstrap/commit/9527654b74e5695efbb31dff0ebd29812cdef1ee))
+
 ### [9.1.2](https://www.github.com/reactstrap/reactstrap/compare/v9.1.1...v9.1.2) (2022-07-13)
 
 
