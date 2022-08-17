@@ -1635,7 +1635,7 @@ class Example46 extends React.Component {
 class Example47 extends React.Component {
   render() {
     return (
-      <Form inline>
+      <Form>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>{' '}
           <Input
@@ -1861,7 +1861,7 @@ class Example50 extends React.Component {
 class Example51 extends React.Component {
   render() {
     return (
-      <Form inline>
+      <Form>
         <FormGroup>
           <Label for="exampleEmail" hidden>
             Email
@@ -2692,7 +2692,7 @@ class ModalExample73 extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <Form inline onSubmit={(e) => e.preventDefault()}>
+        <Form onSubmit={(e) => e.preventDefault()}>
           <FormGroup>
             <Label for="backdrop">Backdrop value</Label>{' '}
             <Input
@@ -2843,7 +2843,7 @@ class ModalExampleDestructuring extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <Form inline onSubmit={(e) => e.preventDefault()}>
+        <Form onSubmit={(e) => e.preventDefault()}>
           <FormGroup>
             <Label for="unmountOnClose">UnmountOnClose value</Label>{' '}
             <Input
@@ -2912,7 +2912,7 @@ class ModalExampleFocusAfterClose extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <Form inline onSubmit={(e) => e.preventDefault()}>
+        <Form onSubmit={(e) => e.preventDefault()}>
           <FormGroup>
             <Label for="focusAfterClose">Focus After Close</Label>
             <Input
