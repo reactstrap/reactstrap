@@ -143,7 +143,7 @@ yarn test
 Watch tests:
 
 ```sh
-yarn test-watch
+yarn test --watchAll
 ```
 
 ## Releasing
