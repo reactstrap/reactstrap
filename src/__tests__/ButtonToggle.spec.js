@@ -1,43 +1,38 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Button, ButtonToggle } from '..';
+import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
+import { ButtonToggle } from '..';
+import { testForChildrenInComponent } from '../testUtils';
 
 describe('ButtonToggle', () => {
   it('should render children', () => {
-    const wrapper = shallow(<ButtonToggle>Ello world</ButtonToggle>);
-
-    expect(wrapper.type()).toEqual(Button);
-    expect(wrapper.first(Button).shallow().text()).toBe('Ello world');
+    testForChildrenInComponent(ButtonToggle);
   });
 
   it('should have button already toggled for defaultValue true', () => {
-    const wrapper = shallow(
-      <ButtonToggle defaultValue>Ello world</ButtonToggle>,
-    );
+    render(<ButtonToggle defaultValue>Ello world</ButtonToggle>);
 
-    expect(wrapper.find(Button).props().active).toBe(true);
+    expect(screen.getByText(/world/i)).toHaveClass('active');
   });
 
   describe('onClick', () => {
     it('calls props.onClick if it exists', () => {
       const onClick = jest.fn();
-      const wrapper = mount(
-        <ButtonToggle onClick={onClick}>Testing Click</ButtonToggle>,
-      );
+      render(<ButtonToggle onClick={onClick}>Testing Click</ButtonToggle>);
 
-      wrapper.find('button').hostNodes().simulate('click');
+      user.click(screen.getByText(/testing click/i));
       expect(onClick).toHaveBeenCalled();
     });
 
     it('should not call props.onClick if it exists and button is disabled', () => {
       const onClick = jest.fn();
-      const wrapper = mount(
+      render(
         <ButtonToggle onClick={onClick} disabled>
           Testing Click
         </ButtonToggle>,
       );
 
-      wrapper.find('button').hostNodes().simulate('click');
+      user.click(screen.getByText(/testing click/i));
       expect(onClick).not.toHaveBeenCalled();
     });
   });
@@ -45,11 +40,9 @@ describe('ButtonToggle', () => {
   describe('onFocus', () => {
     it('calls props.onFocus if it exists', () => {
       const onFocus = jest.fn();
-      const wrapper = mount(
-        <ButtonToggle onFocus={onFocus}>Testing Click</ButtonToggle>,
-      );
+      render(<ButtonToggle onFocus={onFocus}>Testing Click</ButtonToggle>);
 
-      wrapper.find('button').hostNodes().simulate('focus');
+      screen.getByText(/testing click/i).focus();
       expect(onFocus).toHaveBeenCalled();
     });
   });
@@ -57,11 +50,9 @@ describe('ButtonToggle', () => {
   describe('onBlur', () => {
     it('calls props.onBlur if it exists', () => {
       const onBlur = jest.fn();
-      const wrapper = mount(
-        <ButtonToggle onBlur={onBlur}>Testing Click</ButtonToggle>,
-      );
-
-      wrapper.find('button').hostNodes().simulate('blur');
+      render(<ButtonToggle onBlur={onBlur}>Testing Click</ButtonToggle>);
+      screen.getByText(/testing click/i).focus();
+      screen.getByText(/testing click/i).blur();
       expect(onBlur).toHaveBeenCalled();
     });
   });
