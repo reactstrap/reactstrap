@@ -1,47 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react'
 import { Badge } from '..';
+import { testForCustomTag, testForDefaultTag } from '../testUtils';
 
 describe('Badge', () => {
   it('should render a span by default', () => {
-    const wrapper = shallow(<Badge>Yo!</Badge>);
-
-    expect(wrapper.type()).toBe('span');
+    testForDefaultTag(Badge, 'span');
   });
 
   it('should render an anchor when when href is provided', () => {
-    const wrapper = shallow(<Badge href="#">Yo!</Badge>);
-
-    expect(wrapper.type()).toBe('a');
+    render(<Badge href="#" data-testid="badge">Yo!</Badge>);
+    expect(screen.getByTestId('badge').tagName.toLowerCase()).toBe('a')
   });
 
   it('should render a custom tag when provided', () => {
-    const wrapper = shallow(<Badge tag="main">Yo!</Badge>);
-
-    expect(wrapper.type()).toBe('main');
+    testForCustomTag(Badge)
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<Badge>Yo!</Badge>);
-
-    expect(wrapper.text()).toBe('Yo!');
+    render(<Badge>Yo!</Badge>);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
   });
 
   it('should render badges with secondary color', () => {
-    const wrapper = shallow(<Badge>Default Badge</Badge>);
-
-    expect(wrapper.hasClass('bg-secondary')).toBe(true);
+    render(<Badge data-testid="badge">Default Badge</Badge>);
+    expect(screen.getByTestId('badge')).toHaveClass('bg-secondary');
   });
 
   it('should render Badges with other colors', () => {
-    const wrapper = shallow(<Badge color="danger">Danger Badge</Badge>);
-
-    expect(wrapper.hasClass('bg-danger')).toBe(true);
+    render(<Badge color="danger" data-testid="badge">Danger Badge</Badge>);
+    expect(screen.getByTestId('badge')).toHaveClass('bg-danger');
   });
 
   it('should render Badges as pills', () => {
-    const wrapper = shallow(<Badge pill>Pill Badge</Badge>);
-
-    expect(wrapper.hasClass('rounded-pill')).toBe(true);
+    render(<Badge pill data-testid="badge">Pill Badge</Badge>);
+    expect(screen.getByTestId('badge')).toHaveClass('rounded-pill');
   });
 });
