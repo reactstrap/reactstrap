@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { testForCustomClass, testForCustomTag } from '../testUtils';
