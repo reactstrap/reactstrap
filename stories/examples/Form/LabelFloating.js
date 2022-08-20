@@ -13,7 +13,7 @@ function Example(props) {
         Also note that the <code>&lt;Input&gt;</code> must come first so we can
         utilize a sibling selector (e.g., <code>~</code>).
       </p>
-      <Form inline>
+      <Form>
         <FormGroup floating>
           <Input
             type="email"
