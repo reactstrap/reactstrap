@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
+import { CarouselContext } from './CarouselContext';
 import {
   mapToCssModules,
   TransitionTimeouts,
@@ -128,8 +129,6 @@ CarouselItem.defaultProps = {
   slide: true,
 };
 
-CarouselItem.contextTypes = {
-  direction: PropTypes.string,
-};
+CarouselItem.contextType = CarouselContext;
 
 export default CarouselItem;
