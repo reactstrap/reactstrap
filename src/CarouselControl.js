@@ -4,8 +4,14 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 function CarouselControl(props) {
-  const { direction, onClickHandler, cssModule, directionText, className, ...attributes } =
-    props;
+  const {
+    direction,
+    onClickHandler,
+    cssModule,
+    directionText,
+    className,
+    ...attributes
+  } = props;
 
   const anchorClasses = mapToCssModules(
     classNames(className, `carousel-control-${direction}`),
