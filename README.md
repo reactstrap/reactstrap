@@ -140,12 +140,6 @@ Run tests & coverage report:
 yarn cover
 ```
 
-Watch tests:
-
-```sh
-yarn test --watchAll
-```
-
 ## Releasing
 
 Release branches/versioning/notes will be automatically created and maintained by the [release-please](https://github.com/googleapis/release-please) github action. When you're ready to publish the release, just merge the release branch. The release will be created, the new package will be published, and the updated docs will be deployed to https://reactstrap.github.io/.
