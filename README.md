@@ -134,13 +134,7 @@ Run examples at [http://localhost:8080/](http://localhost:8080/) with webpack de
 yarn start
 ```
 
-Run tests:
-
-```sh
-yarn test
-```
-
-Get test coverage report:
+Run tests & coverage report:
 
 ```sh
 yarn cover
