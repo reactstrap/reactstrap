@@ -63,7 +63,7 @@ describe('Carousel', () => {
 
         wrapper.setProps({ in: true });
         expect(wrapper.update().find('div').prop('className')).toEqual(
-          'carousel-item carousel-item-start carousel-item-next',
+          'carousel-item carousel-item-end carousel-item-prev',
         );
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual(
@@ -71,7 +71,7 @@ describe('Carousel', () => {
         );
         wrapper.setProps({ in: false });
         expect(wrapper.update().find('div').prop('className')).toEqual(
-          'carousel-item active carousel-item-start',
+          'carousel-item active carousel-item-end',
         );
         jest.runTimersToTime(600);
         expect(wrapper.update().find('div').prop('className')).toEqual(
