@@ -128,8 +128,6 @@ CarouselItem.defaultProps = {
   slide: true,
 };
 
-CarouselItem.contextTypes = {
-  direction: PropTypes.string,
-};
+CarouselItem.contextType = CarouselContext;
 
 export default CarouselItem;
