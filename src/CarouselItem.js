@@ -129,6 +129,6 @@ CarouselItem.defaultProps = {
   slide: true,
 };
 
-CarouselItem.contextTypes = CarouselContext;
+CarouselItem.contextType = CarouselContext;
 
 export default CarouselItem;
