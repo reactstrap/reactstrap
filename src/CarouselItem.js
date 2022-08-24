@@ -8,6 +8,7 @@ import {
   TransitionStatuses,
   tagPropType,
 } from './utils';
+import { CarouselContext } from './CarouselContext';
 
 class CarouselItem extends React.Component {
   constructor(props) {
@@ -128,6 +129,6 @@ CarouselItem.defaultProps = {
   slide: true,
 };
 
-CarouselItem.contextType = CarouselContext;
+CarouselItem.contextTypes = CarouselContext;
 
 export default CarouselItem;
