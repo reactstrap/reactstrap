@@ -13,3 +13,20 @@ export function testForCustomTag(Component, props = {}, tag = 'h1') {
   const node = screen.getByTestId('test');
   expect(node.tagName.toLowerCase()).toMatch(tag);
 }
+
+export function testForDefaultTag(Component, tag) {
+  render(<Component data-testid="test" />);
+  const node = screen.getByTestId('test');
+  expect(node.tagName.toLowerCase()).toMatch(tag);
+}
+
+export function testForDefaultClass(Component, className) {
+  render(<Component data-testid="test" />);
+  const node = screen.getByTestId('test');
+  expect(node).toHaveClass(className);
+}
+
+export function testForChildrenInComponent(Component) {
+  render(<Component>Yo!</Component>);
+  expect(screen.getByText('Yo!')).toBeInTheDocument();
+}

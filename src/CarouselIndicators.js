@@ -4,7 +4,14 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 function CarouselIndicators(props) {
-  const { items, activeIndex, cssModule, onClickHandler, className } = props;
+  const {
+    items,
+    activeIndex,
+    cssModule,
+    onClickHandler,
+    className,
+    ...attributes
+  } = props;
 
   const listClasses = mapToCssModules(
     classNames(className, 'carousel-indicators'),
@@ -30,7 +37,11 @@ function CarouselIndicators(props) {
     );
   });
 
-  return <div className={listClasses}>{indicators}</div>;
+  return (
+    <div className={listClasses} {...attributes}>
+      {indicators}
+    </div>
+  );
 }
 
 CarouselIndicators.propTypes = {

@@ -4,8 +4,14 @@ import classNames from 'classnames';
 import { mapToCssModules } from './utils';
 
 function CarouselControl(props) {
-  const { direction, onClickHandler, cssModule, directionText, className } =
-    props;
+  const {
+    direction,
+    onClickHandler,
+    cssModule,
+    directionText,
+    className,
+    ...attributes
+  } = props;
 
   const anchorClasses = mapToCssModules(
     classNames(className, `carousel-control-${direction}`),
@@ -28,6 +34,7 @@ function CarouselControl(props) {
     // https://getbootstrap.com/docs/4.5/components/carousel/#with-controls
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
+      {...attributes}
       className={anchorClasses}
       style={{ cursor: 'pointer' }}
       role="button"
