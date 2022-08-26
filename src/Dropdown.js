@@ -255,7 +255,7 @@ class Dropdown extends React.Component {
   }
 
   getItemType() {
-    if (this.context.menuRole === 'listbox') {
+    if (this.props.menuRole === 'listbox') {
       return 'option';
     }
     return 'menuitem';
