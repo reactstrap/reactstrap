@@ -1,10 +1,15 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import user from '@testing-library/user-event';
 import { Carousel } from '..';
 import CarouselItem from '../CarouselItem';
 import CarouselIndicators from '../CarouselIndicators';
 import CarouselControl from '../CarouselControl';
 import CarouselCaption from '../CarouselCaption';
+import { CarouselContext } from '../CarouselContext';
+
+const DEFAULT_TIMER_TIME = 600;
 
 describe('Carousel', () => {
   beforeEach(() => {
@@ -21,83 +26,105 @@ describe('Carousel', () => {
     { src: '', altText: 'c', caption: 'caption 3' },
   ];
 
+  const slides = items.map((item, idx) => {
+    return (
+      <CarouselItem key={idx}>
+        <CarouselCaption
+          captionText={item.caption}
+          captionHeader={item.caption}
+        />
+      </CarouselItem>
+    );
+  });
+
   describe('captions', () => {
     it('should render a header and a caption', () => {
-      const wrapper = mount(
-        <CarouselCaption captionHeader="abc" captionText="def" />,
-      );
-      expect(wrapper.find('h3').length).toEqual(1);
-      expect(wrapper.find('p').length).toEqual(1);
+      render(<CarouselCaption captionHeader="abc" captionText="def" />);
+      expect(screen.getByText('abc').tagName.toLowerCase()).toBe('h3');
+      expect(screen.getByText('def').tagName.toLowerCase()).toBe('p');
     });
   });
 
   describe('items', () => {
     it('should render custom tag', () => {
-      const wrapper = mount(<CarouselItem tag="img" />);
-      expect(wrapper.find('img').length).toBe(1);
+      render(<CarouselItem tag="main">Hello</CarouselItem>);
+      expect(screen.getByText(/hello/i).tagName.toLowerCase()).toBe('main');
     });
 
     it('should render an image if one is passed in', () => {
-      const wrapper = mount(
+      render(
         <CarouselItem>
-          <img src={items[0].src} alt={items[0].src} />
+          <img src={items[0].src} alt={items[0].altText} />
         </CarouselItem>,
       );
-      expect(wrapper.find('img').length).toEqual(1);
+      expect(screen.getByAltText(items[0].altText)).toBeInTheDocument();
     });
 
     it('should render a caption if one is passed in', () => {
-      const wrapper = mount(
+      render(
         <CarouselItem>
-          <CarouselCaption captionHeader="text" captionText="text" />
+          <CarouselCaption captionHeader="header" captionText="text" />
         </CarouselItem>,
       );
-      expect(wrapper.find(CarouselCaption).length).toEqual(1);
+      expect(screen.getByText('header')).toBeInTheDocument();
+      expect(screen.getByText('text')).toBeInTheDocument();
     });
 
     describe('transitions', () => {
       it('should add the appropriate classes when entering right', () => {
-        const wrapper = mount(<CarouselItem in={false} />, {
-          context: { direction: 'end' },
-        });
+        const wrapper = ({ children }) => (
+          <CarouselContext.Provider value={{ direction: 'end' }}>
+            {children}
+          </CarouselContext.Provider>
+        );
 
-        wrapper.setProps({ in: true });
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        const { rerender } = render(
+          <CarouselItem in={false}>the mandalorian</CarouselItem>,
+          { wrapper },
+        );
+        rerender(<CarouselItem in>the mandalorian</CarouselItem>);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item carousel-item-start carousel-item-next',
         );
-        jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active',
         );
-        wrapper.setProps({ in: false });
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        rerender(<CarouselItem in={false}>the mandalorian</CarouselItem>);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active carousel-item-start',
         );
-        jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item',
         );
       });
 
       it('should add the appropriate classes when entering left', () => {
-        const wrapper = mount(<CarouselItem in={false} />, {
-          context: { direction: 'start' },
-        });
+        const wrapper = ({ children }) => (
+          <CarouselContext.Provider value={{ direction: 'start' }}>
+            {children}
+          </CarouselContext.Provider>
+        );
 
-        wrapper.setProps({ in: true });
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        const { rerender } = render(
+          <CarouselItem in={false}>the mandalorian</CarouselItem>,
+          { wrapper },
+        );
+        rerender(<CarouselItem in>the mandalorian</CarouselItem>);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item carousel-item-end carousel-item-prev',
         );
-        jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active',
         );
-        wrapper.setProps({ in: false });
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        rerender(<CarouselItem in={false}>the mandalorian</CarouselItem>);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active carousel-item-end',
         );
-        jest.runTimersToTime(600);
-        expect(wrapper.update().find('div').prop('className')).toEqual(
+        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item',
         );
       });
@@ -111,124 +138,95 @@ describe('Carousel', () => {
           onExiting: jest.fn(),
           onExited: jest.fn(),
         };
-        const wrapper = mount(<CarouselItem in={false} {...callbacks} />);
-        wrapper.setProps({ in: true });
+        const { rerender } = render(<CarouselItem in={false} {...callbacks} />);
+        rerender(<CarouselItem in {...callbacks} />);
         expect(callbacks.onEnter).toHaveBeenCalled();
         expect(callbacks.onEntering).toHaveBeenCalled();
         expect(callbacks.onEntered).not.toHaveBeenCalled();
-        jest.runTimersToTime(600);
+        jest.runTimersToTime(DEFAULT_TIMER_TIME);
         expect(callbacks.onEntered).toHaveBeenCalled();
         expect(callbacks.onExit).not.toHaveBeenCalled();
 
-        wrapper.setProps({ in: false });
+        rerender(<CarouselItem in={false} {...callbacks} />);
         expect(callbacks.onExit).toHaveBeenCalled();
         expect(callbacks.onExiting).toHaveBeenCalled();
         expect(callbacks.onExited).not.toHaveBeenCalled();
-        jest.runTimersToTime(600);
+        jest.runTimersToTime(DEFAULT_TIMER_TIME);
         expect(callbacks.onExiting).toHaveBeenCalled();
         expect(callbacks.onExited).toHaveBeenCalled();
-
-        wrapper.unmount();
       });
     });
   });
 
   describe('indicators', () => {
     it('should render a list with the right number of items', () => {
-      const wrapper = mount(
+      render(
         <CarouselIndicators
           items={items}
           activeIndex={0}
           onClickHandler={() => {}}
         />,
       );
-      expect(wrapper.find('div').length).toEqual(1);
-      expect(wrapper.find('button').length).toEqual(3);
+      expect(screen.getAllByLabelText(/caption/i).length).toBe(3);
     });
 
     it('should append the correct active class', () => {
-      const wrapper = mount(
+      render(
         <CarouselIndicators
           items={items}
           activeIndex={0}
           onClickHandler={() => {}}
         />,
       );
-      expect(wrapper.find('.active').hostNodes().length).toEqual(1);
+      expect(screen.getByLabelText(/caption 1/i)).toHaveClass('active');
     });
 
     it('should call the click hanlder', () => {
       const onClick = jest.fn();
-      const wrapper = mount(
+      render(
         <CarouselIndicators
           items={items}
           activeIndex={0}
           onClickHandler={onClick}
         />,
       );
-      wrapper.find('button').first().simulate('click');
+      user.click(screen.getByLabelText(/caption 1/i));
       expect(onClick).toHaveBeenCalled();
     });
   });
 
   describe('controls', () => {
     it('should render an anchor tag', () => {
-      const wrapper = mount(
-        <CarouselControl direction="next" onClickHandler={() => {}} />,
-      );
-      expect(wrapper.find('a').length).toEqual(1);
+      render(<CarouselControl direction="next" onClickHandler={() => {}} />);
+      expect(screen.getByRole('button').tagName.toLowerCase()).toBe('a');
     });
 
     it('should call the onClickHandler', () => {
       const onClick = jest.fn();
-      const wrapper = mount(
-        <CarouselControl direction="next" onClickHandler={onClick} />,
-      );
-      wrapper.find('a').first().simulate('click');
+      render(<CarouselControl direction="next" onClickHandler={onClick} />);
+      user.click(screen.getByRole('button'));
       expect(onClick).toHaveBeenCalled();
     });
   });
 
   describe('rendering', () => {
     it('should show the carousel indicators', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           <CarouselIndicators
             items={items}
+            data-testid="c3po"
             activeIndex={0}
             onClickHandler={() => {}}
           />
           {slides}
         </Carousel>,
       );
-
-      expect(wrapper.find(CarouselIndicators).length).toEqual(1);
+      expect(screen.getByTestId('c3po')).toHaveClass('carousel-indicators');
     });
 
     it('should show controls', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           {slides}
           <CarouselControl
@@ -243,82 +241,59 @@ describe('Carousel', () => {
           />
         </Carousel>,
       );
-
-      expect(wrapper.find(CarouselControl).length).toEqual(2);
+      screen.getAllByRole('button').forEach((element) => {
+        expect(element.className).toMatch(/carousel-control/i);
+      });
     });
 
     it('should show a single slide', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+      render(
+        <Carousel
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+          data-testid="carousel"
+        >
           {slides}
         </Carousel>,
       );
-      expect(wrapper.find('.carousel-item.active').hostNodes().length).toEqual(
-        1,
-      );
+      expect(
+        screen.getByTestId('carousel').getElementsByClassName('active').length,
+      ).toBe(1);
     });
 
     it('should show indicators and controls', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           <CarouselIndicators
             items={items}
+            data-testid="carousel-indicator"
             activeIndex={0}
             onClickHandler={() => {}}
           />
           {slides}
           <CarouselControl
             direction="prev"
+            data-testid="prev"
             directionText="Previous"
             onClickHandler={() => {}}
           />
           <CarouselControl
             direction="next"
+            data-testid="next"
             directionText="Next"
             onClickHandler={() => {}}
           />
         </Carousel>,
       );
 
-      expect(wrapper.find(CarouselControl).length).toEqual(2);
-      expect(wrapper.find(CarouselIndicators).length).toEqual(1);
+      expect(screen.getByTestId('carousel-indicator')).toBeInTheDocument();
+      expect(screen.getByTestId('prev')).toBeInTheDocument();
+      expect(screen.getByTestId('next')).toBeInTheDocument();
     });
 
     it('should tolerate booleans, null and undefined values rendered as children of Carousel', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
           {null}
           {true}
@@ -327,108 +302,35 @@ describe('Carousel', () => {
           {(() => {})()}
           <CarouselIndicators
             items={items}
+            data-testid="carousel-indicator"
             activeIndex={0}
             onClickHandler={() => {}}
           />
           {slides}
           <CarouselControl
             direction="prev"
+            data-testid="prev"
             directionText="Previous"
             onClickHandler={() => {}}
           />
           <CarouselControl
             direction="next"
+            data-testid="next"
             directionText="Next"
             onClickHandler={() => {}}
           />
         </Carousel>,
       );
-      expect(wrapper.find(CarouselControl).length).toEqual(2);
-      expect(wrapper.find(CarouselIndicators).length).toEqual(1);
+
+      expect(screen.getByTestId('carousel-indicator')).toBeInTheDocument();
+      expect(screen.getByTestId('prev')).toBeInTheDocument();
+      expect(screen.getByTestId('next')).toBeInTheDocument();
     });
 
     it('should not have the class "carousel-dark" by default', () => {
-      const slides = items.map((item, idx) => {
-        return <CarouselItem key={idx} />;
-      });
-
-      const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
-          {slides}
-        </Carousel>,
-      );
-
-      expect(wrapper.find('.carousel-dark').length).toBe(0);
-    });
-
-    it('should have the class "carousel-dark" when dark prop is true', () => {
-      const slides = items.map((item, idx) => {
-        return <CarouselItem key={idx} />;
-      });
-
-      const wrapper = mount(
-        <Carousel dark activeIndex={0} next={() => {}} previous={() => {}}>
-          {slides}
-        </Carousel>,
-      );
-
-      expect(wrapper.find('.carousel-dark').length).toBe(1);
-    });
-  });
-
-  describe('carouseling', () => {
-    it('should set indicatorClicked to true if indicator clicked', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
-        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
-          <CarouselIndicators
-            items={items}
-            activeIndex={0}
-            onClickHandler={() => function () {}}
-          />
-          {slides}
-          <CarouselControl
-            direction="prev"
-            directionText="Previous"
-            onClickHandler={() => {}}
-          />
-          <CarouselControl
-            direction="next"
-            directionText="Next"
-            onClickHandler={() => {}}
-          />
-        </Carousel>,
-      );
-
-      wrapper.find(CarouselIndicators).find('button').first().simulate('click');
-      expect(wrapper.state().indicatorClicked).toEqual(true);
-    });
-
-    it('should go right when the index increases', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel
-          interval={1000}
+          data-testid="star-wars"
           activeIndex={0}
           next={() => {}}
           previous={() => {}}
@@ -437,77 +339,182 @@ describe('Carousel', () => {
         </Carousel>,
       );
 
-      wrapper.setProps({ activeIndex: 1 });
-      expect(wrapper.state().direction).toEqual('end');
+      expect(screen.getByTestId('star-wars')).not.toHaveClass('carousel-dark');
     });
 
-    it('should go left when the index decreases', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
+    it('should have the class "carousel-dark" when dark prop is true', () => {
+      render(
+        <Carousel
+          data-testid="star-wars"
+          dark
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+        >
+          {slides}
+        </Carousel>,
+      );
 
-      const wrapper = mount(
+      expect(screen.getByTestId('star-wars')).toHaveClass('carousel-dark');
+    });
+  });
+
+  describe('carouseling', () => {
+    const carouselItems = [
+      { src: '', altText: 'a', caption: 'Grogu' },
+      { src: '', altText: 'b', caption: 'Boba Fett' },
+      { src: '', altText: 'c', caption: 'The Mandalorian' },
+    ];
+
+    const carouselSlides = carouselItems.map((item, idx) => {
+      return <CarouselItem key={idx}>{item.caption}</CarouselItem>;
+    });
+
+    it('should set second slide to active if second indicator clicked', () => {
+      const { rerender } = render(
+        <Carousel activeIndex={0} next={() => {}} previous={() => {}}>
+          <CarouselIndicators
+            items={carouselItems}
+            data-testid="boba-fett"
+            activeIndex={0}
+            onClickHandler={() => function () {}}
+          />
+          {carouselSlides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
+      );
+
+      user.click(screen.getByLabelText(/boba fett/i));
+
+      rerender(
+        <Carousel activeIndex={1} next={() => {}} previous={() => {}}>
+          <CarouselIndicators
+            items={carouselItems}
+            data-testid="boba-fett"
+            activeIndex={1}
+            onClickHandler={() => function () {}}
+          />
+          {carouselSlides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
+      );
+
+      expect(screen.getByText(/boba fett/i)).toHaveClass(
+        'carousel-item carousel-item-start carousel-item-next',
+      );
+      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      expect(screen.getByText(/boba fett/i)).toHaveClass(
+        'carousel-item active',
+      );
+    });
+
+    it('should go right when the index increases', () => {
+      const { rerender } = render(
+        <Carousel
+          interval={1000}
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+        >
+          {carouselSlides}
+        </Carousel>,
+      );
+
+      rerender(
         <Carousel
           interval={1000}
           activeIndex={1}
           next={() => {}}
           previous={() => {}}
         >
-          {slides}
+          {carouselSlides}
+        </Carousel>,
+      );
+      expect(screen.getByText(/boba fett/i)).toHaveClass(
+        'carousel-item carousel-item-start carousel-item-next',
+      );
+      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      expect(screen.getByText(/boba fett/i)).toHaveClass('active');
+    });
+
+    it('should go left when the index decreases', () => {
+      const { rerender } = render(
+        <Carousel
+          interval={1000}
+          activeIndex={1}
+          next={() => {}}
+          previous={() => {}}
+        >
+          {carouselSlides}
         </Carousel>,
       );
 
-      wrapper.setProps({ activeIndex: 0 });
-      expect(wrapper.state().direction).toEqual('start');
+      rerender(
+        <Carousel
+          interval={1000}
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+        >
+          {carouselSlides}
+        </Carousel>,
+      );
+      expect(screen.getByText(/grogu/i)).toHaveClass(
+        'carousel-item carousel-item-prev carousel-item-end',
+      );
+      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      expect(screen.getByText(/grogu/i)).toHaveClass('active');
     });
 
     it('should go right if transitioning from the last to first slide by non-indicator', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      const { rerender } = render(
         <Carousel
           interval={1000}
           activeIndex={2}
           next={() => {}}
           previous={() => {}}
         >
-          {slides}
+          {carouselSlides}
         </Carousel>,
       );
 
-      wrapper.setProps({ activeIndex: 0 });
-      expect(wrapper.state().direction).toEqual('end');
+      rerender(
+        <Carousel
+          interval={1000}
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+        >
+          {carouselSlides}
+        </Carousel>,
+      );
+      expect(screen.getByText(/grogu/i)).toHaveClass(
+        'carousel-item carousel-item-start carousel-item-next',
+      );
+      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      expect(screen.getByText(/grogu/i)).toHaveClass('active');
     });
 
     it('should go left if transitioning from the last to first slide by indicator', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      const { rerender } = render(
         <Carousel
           interval={1000}
           activeIndex={2}
@@ -515,11 +522,11 @@ describe('Carousel', () => {
           previous={() => {}}
         >
           <CarouselIndicators
-            items={items}
+            items={carouselItems}
             activeIndex={2}
             onClickHandler={() => {}}
           />
-          {slides}
+          {carouselSlides}
           <CarouselControl
             direction="prev"
             directionText="Previous"
@@ -533,97 +540,136 @@ describe('Carousel', () => {
         </Carousel>,
       );
 
-      wrapper.setState({ indicatorClicked: true });
-      wrapper.setProps({ activeIndex: 0 });
-      expect(wrapper.state().direction).toEqual('start');
-    });
+      user.click(screen.getByLabelText(/grogu/i));
 
-    it('should go left if transitioning from the first to last slide by non-indicator', () => {
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      rerender(
         <Carousel
           interval={1000}
           activeIndex={0}
           next={() => {}}
           previous={() => {}}
         >
-          {slides}
+          <CarouselIndicators
+            items={carouselItems}
+            activeIndex={0}
+            onClickHandler={() => {}}
+          />
+          {carouselSlides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
         </Carousel>,
       );
 
-      wrapper.setProps({ activeIndex: 2 });
-      expect(wrapper.state().direction).toEqual('start');
-    });
-  });
-
-  it('should go right if transitioning from the first to last slide by indicator', () => {
-    const slides = items.map((item, idx) => {
-      return (
-        <CarouselItem key={idx}>
-          <CarouselCaption
-            captionText={item.caption}
-            captionHeader={item.caption}
-          />
-        </CarouselItem>
+      expect(screen.getByText(/grogu/i)).toHaveClass(
+        'carousel-item carousel-item-end carousel-item-prev',
       );
     });
 
-    const wrapper = mount(
-      <Carousel
-        interval={1000}
-        activeIndex={0}
-        next={() => {}}
-        previous={() => {}}
-      >
-        <CarouselIndicators
-          items={items}
+    it('should go left if transitioning from the first to last slide by non-indicator', () => {
+      const { rerender } = render(
+        <Carousel
+          interval={1000}
           activeIndex={0}
-          onClickHandler={() => {}}
-        />
-        {slides}
-        <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={() => {}}
-        />
-        <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={() => {}}
-        />
-      </Carousel>,
-    );
+          next={() => {}}
+          previous={() => {}}
+        >
+          {carouselSlides}
+        </Carousel>,
+      );
 
-    wrapper.setState({ indicatorClicked: true });
-    wrapper.setProps({ activeIndex: 2 });
-    expect(wrapper.state().direction).toEqual('end');
+      rerender(
+        <Carousel
+          interval={1000}
+          activeIndex={2}
+          next={() => {}}
+          previous={() => {}}
+        >
+          {carouselSlides}
+        </Carousel>,
+      );
+
+      expect(screen.getByText(/the mandalorian/i)).toHaveClass(
+        'carousel-item carousel-item-end carousel-item-prev',
+      );
+      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      expect(screen.getByText(/the mandalorian/i)).toHaveClass('active');
+    });
+
+    it('should go right if transitioning from the first to last slide by indicator', () => {
+      const { rerender } = render(
+        <Carousel
+          interval={1000}
+          activeIndex={0}
+          next={() => {}}
+          previous={() => {}}
+        >
+          <CarouselIndicators
+            items={carouselItems}
+            activeIndex={0}
+            onClickHandler={() => {}}
+          />
+          {carouselSlides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
+      );
+
+      user.click(screen.getByLabelText(/the mandalorian/i));
+
+      rerender(
+        <Carousel
+          interval={1000}
+          activeIndex={2}
+          next={() => {}}
+          previous={() => {}}
+        >
+          <CarouselIndicators
+            items={carouselItems}
+            activeIndex={2}
+            onClickHandler={() => {}}
+          />
+          {carouselSlides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={() => {}}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={() => {}}
+          />
+        </Carousel>,
+      );
+
+      expect(screen.getByText(/the mandalorian/i)).toHaveClass(
+        'carousel-item carousel-item-start carousel-item-next',
+      );
+      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      expect(screen.getByText(/the mandalorian/i)).toHaveClass('active');
+    });
   });
 
   describe('interval', () => {
     it('should not autoplay by default', () => {
       const next = jest.fn();
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel
           next={next}
           previous={() => {}}
@@ -635,23 +681,11 @@ describe('Carousel', () => {
       );
       jest.runTimersToTime(1000);
       expect(next).not.toHaveBeenCalled();
-      wrapper.unmount();
     });
 
     it('should autoplay when ride is carousel', () => {
       const next = jest.fn();
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel
           next={next}
           previous={() => {}}
@@ -664,23 +698,11 @@ describe('Carousel', () => {
       );
       jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();
-      wrapper.unmount();
     });
 
     it('should accept a number', () => {
       const next = jest.fn();
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel
           next={next}
           previous={() => {}}
@@ -693,23 +715,11 @@ describe('Carousel', () => {
       );
       jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();
-      wrapper.unmount();
     });
 
     it('should accept a boolean', () => {
       const next = jest.fn();
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel
           next={next}
           previous={() => {}}
@@ -721,23 +731,11 @@ describe('Carousel', () => {
       );
       jest.runTimersToTime(5000);
       expect(next).not.toHaveBeenCalled();
-      wrapper.unmount();
     });
 
     it('should default to 5000', () => {
       const next = jest.fn();
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-
-      const wrapper = mount(
+      render(
         <Carousel
           next={next}
           previous={() => {}}
@@ -749,22 +747,11 @@ describe('Carousel', () => {
       );
       jest.runTimersToTime(5000);
       expect(next).toHaveBeenCalled();
-      wrapper.unmount();
     });
 
     it('it should accept a string', () => {
       const next = jest.fn();
-      const slides = items.map((item, idx) => {
-        return (
-          <CarouselItem key={idx}>
-            <CarouselCaption
-              captionText={item.caption}
-              captionHeader={item.caption}
-            />
-          </CarouselItem>
-        );
-      });
-      const wrapper = mount(
+      render(
         <Carousel
           next={next}
           previous={() => {}}
@@ -777,7 +764,6 @@ describe('Carousel', () => {
       );
       jest.runTimersToTime(1000);
       expect(next).toHaveBeenCalled();
-      wrapper.unmount();
     });
   });
 });
