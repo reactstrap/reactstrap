@@ -1,29 +1,36 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { CardImg } from '..';
+import {
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('CardImg', () => {
   it('should render with "card-img" class', () => {
-    const wrapper = shallow(<CardImg src="/path/image.png" />);
-
-    expect(wrapper.hasClass('card-img')).toBe(true);
+    testForDefaultClass(CardImg, 'card-img');
   });
 
   it('should render top class name', () => {
-    const wrapper = shallow(<CardImg top src="/path/image.png" />);
+    render(<CardImg top alt="awesome poster" src="/path/image.png" />);
 
-    expect(wrapper.hasClass('card-img-top')).toBe(true);
+    expect(screen.getByAltText(/awesome poster/i)).toHaveClass('card-img-top');
   });
 
   it('should render bottom class name', () => {
-    const wrapper = shallow(<CardImg bottom src="/path/image.png" />);
+    render(<CardImg bottom alt="awesome poster" src="/path/image.png" />);
 
-    expect(wrapper.hasClass('card-img-bottom')).toBe(true);
+    expect(screen.getByAltText(/awesome poster/i)).toHaveClass(
+      'card-img-bottom',
+    );
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<CardImg tag="image" src="/path/image.png" />);
+    testForCustomTag(CardImg);
+  });
 
-    expect(wrapper.find('image').length).toBe(1);
+  it('should render additional classes', () => {
+    testForCustomClass(CardImg);
   });
 });
