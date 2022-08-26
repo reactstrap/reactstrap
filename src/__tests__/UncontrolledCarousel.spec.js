@@ -1,5 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import user from '@testing-library/user-event';
 import { Carousel, UncontrolledCarousel } from '..';
 
 const items = [
@@ -24,143 +26,108 @@ const items = [
 ];
 
 describe('UncontrolledCarousel', () => {
-  it('should be an Carousel', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    expect(carousel.type()).toBe(Carousel);
+  beforeEach(() => {
+    jest.useFakeTimers();
   });
 
-  it('should have activeIndex default to 0', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    expect(carousel.prop('activeIndex')).toBe(0);
+  afterEach(() => {
+    jest.clearAllTimers();
   });
 
-  it('should have next function', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    expect(carousel.prop('next')).toEqual(expect.any(Function));
+  it('should have active element default to 0', () => {
+    render(<UncontrolledCarousel items={items} />);
+    expect(screen.getByAltText('a').parentElement).toHaveClass('active');
   });
 
-  it('should have prev function', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    expect(carousel.prop('previous')).toEqual(expect.any(Function));
-  });
-
-  it('should have ride set to "carousel" by default', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    expect(carousel.prop('ride')).toBe('carousel');
-  });
-
-  it('should have ride set to undefined when autoPlay is false', () => {
-    const carousel = shallow(
-      <UncontrolledCarousel items={items} autoPlay={false} />,
+  it('should autoplay by default', () => {
+    render(<UncontrolledCarousel items={items} />);
+    expect(screen.getByAltText('a').parentElement).toHaveClass('active');
+    jest.advanceTimersByTime(5000);
+    expect(screen.getByAltText('b').parentElement).toHaveClass(
+      'carousel-item carousel-item-start carousel-item-next',
     );
-    expect(carousel.prop('ride')).toBe(undefined);
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('b').parentElement).toHaveClass('active');
   });
 
-  it('should have ride set to "carousel" when autoPlay is true', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} autoPlay />);
-    expect(carousel.prop('ride')).toBe('carousel');
-  });
-
-  it('should increase the activeIndex when next is called', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.next();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(1);
-  });
-
-  it('should not increase the activeIndex when next is called while animating', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.animating = true;
-    instance.next();
-    expect(carousel.prop('activeIndex')).toBe(0);
-  });
-
-  it('should wrap the activeIndex when next is called on the last item', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.next();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(1);
-    instance.next();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(2);
-    instance.next();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(0);
-    instance.next();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(1);
-  });
-
-  it('should decrease the activeIndex when previous is called', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.next();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(1);
-    instance.previous();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(0);
-  });
-
-  it('should not decrease the activeIndex when previous is called while animating', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.next();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(1);
-    instance.animating = true;
-    instance.previous();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(1);
-  });
-
-  it('should wrap the activeIndex when previous is called on the first item', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.previous();
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(2);
-  });
-
-  it('should set the activeIndex when goToIndex is called with a value', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.goToIndex(2);
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(2);
-  });
-
-  it('should not set the activeIndex when goToIndex is called with a value when animating', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    instance.animating = true;
-    instance.goToIndex(2);
-    carousel.update();
-    expect(carousel.prop('activeIndex')).toBe(0);
-  });
-
-  it('should track animating of the slides', () => {
-    const carousel = shallow(<UncontrolledCarousel items={items} />);
-    const instance = carousel.instance();
-    expect(instance.animating).toBe(false);
-    instance.onExiting();
-    expect(instance.animating).toBe(true);
-    instance.onExited();
-    expect(instance.animating).toBe(false);
-  });
-
-  it('should render carousel items with provided key', () => {
-    const carousel = shallow(
-      <UncontrolledCarousel items={items} indicators={false} />,
+  it('should not play automatically when autoPlay is false', () => {
+    render(<UncontrolledCarousel items={items} autoPlay={false} />);
+    expect(screen.getByAltText('a').parentElement).toHaveClass('active');
+    jest.advanceTimersByTime(5000);
+    expect(screen.getByAltText('b').parentElement).not.toHaveClass(
+      'carousel-item carousel-item-start carousel-item-next',
     );
-    const carouselItem1 = carousel.childAt(0);
-    const carouselItem2 = carousel.childAt(1);
-    const carouselItem3 = carousel.childAt(2);
-    expect(carouselItem1.key()).toBe('1');
-    expect(carouselItem2.key()).toBe('2');
-    expect(carouselItem3.key()).toBe('3');
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('b').parentElement).not.toHaveClass('active');
+  });
+
+  it('should move to next slide when next button is clicked', () => {
+    render(<UncontrolledCarousel items={items} autoPlay={false} />);
+    user.click(screen.getByText(/next/i));
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('b').parentElement).toHaveClass(
+      'carousel-item active',
+    );
+  });
+
+  it('should not move to next slide while animating', () => {
+    render(<UncontrolledCarousel items={items} />);
+    user.click(screen.getByText(/next/i));
+    expect(screen.getByAltText('b').parentElement).toHaveClass(
+      'carousel-item carousel-item-start carousel-item-next',
+    );
+    user.click(screen.getByText(/next/i));
+    expect(screen.getByAltText('c').parentElement).not.toHaveClass(
+      'carousel-item carousel-item-start carousel-item-next',
+    );
+  });
+
+  it('should wrap to first slide on reaching the end', () => {
+    render(<UncontrolledCarousel items={items} autoPlay={false} />);
+    user.click(screen.getByText(/next/i));
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('b').parentElement).toHaveClass('active');
+
+    user.click(screen.getByText(/next/i));
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('c').parentElement).toHaveClass('active');
+
+    user.click(screen.getByText(/next/i));
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('a').parentElement).toHaveClass('active');
+  });
+
+  it('should move to previous slide when previous button is clicked', () => {
+    render(<UncontrolledCarousel items={items} autoPlay={false} />);
+    user.click(screen.getByText(/next/i));
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('b').parentElement).toHaveClass(
+      'carousel-item active',
+    );
+
+    user.click(screen.getByText(/previous/i));
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('a').parentElement).toHaveClass(
+      'carousel-item active',
+    );
+  });
+
+  it('should not move to previous slide while animating', () => {
+    render(<UncontrolledCarousel items={items} />);
+    user.click(screen.getByText(/next/i));
+    expect(screen.getByAltText('b').parentElement).toHaveClass(
+      'carousel-item carousel-item-start carousel-item-next',
+    );
+    user.click(screen.getByText(/previous/i));
+    expect(screen.getByAltText('a').parentElement).not.toHaveClass(
+      'carousel-item carousel-item-start carousel-item-next',
+    );
+  });
+
+  it('should wrap to last slide on reaching the beginning', () => {
+    render(<UncontrolledCarousel items={items} autoPlay={false} />);
+    user.click(screen.getByText(/previous/i));
+    jest.advanceTimersByTime(600);
+    expect(screen.getByAltText('c').parentElement).toHaveClass('active');
   });
 });

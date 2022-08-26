@@ -3,9 +3,59 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CarouselItem from './CarouselItem';
 import { CarouselContext } from './CarouselContext';
-import { mapToCssModules } from './utils';
+import { mapToCssModules, omit } from './utils';
 
 const SWIPE_THRESHOLD = 40;
+
+const propTypes = {
+  /** the current active slide of the carousel */
+  activeIndex: PropTypes.number,
+  /** a function which should advance the carousel to the next slide (via activeIndex) */
+  next: PropTypes.func.isRequired,
+  /** a function which should advance the carousel to the previous slide (via activeIndex) */
+  previous: PropTypes.func.isRequired,
+  /** controls if the left and right arrow keys should control the carousel */
+  keyboard: PropTypes.bool,
+  /** If set to "hover", pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on
+   * mouseleave. If set to false, hovering over the carousel won't pause it.
+   */
+  pause: PropTypes.oneOf(['hover', false]),
+  /** Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load. */
+  ride: PropTypes.oneOf(['carousel']),
+  /** the interval at which the carousel automatically cycles */
+  interval: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+  children: PropTypes.array,
+  /** called when the mouse enters the Carousel */
+  mouseEnter: PropTypes.func,
+  /** called when the mouse exits the Carousel */
+  mouseLeave: PropTypes.func,
+  /** controls whether the slide animation on the Carousel works or not */
+  slide: PropTypes.bool,
+  /** make the controls, indicators and captions dark on the Carousel */
+  dark: PropTypes.bool,
+  fade: PropTypes.bool,
+  /** Change underlying component's CSS base class name */
+  cssModule: PropTypes.object,
+  /** Add custom class */
+  className: PropTypes.string,
+  /** Enable touch support */
+  enableTouch: PropTypes.bool,
+};
+
+const propsToOmit = Object.keys(propTypes);
+
+const defaultProps = {
+  interval: 5000,
+  pause: 'hover',
+  keyboard: true,
+  slide: true,
+  enableTouch: true,
+  fade: false,
+};
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -168,6 +218,7 @@ class Carousel extends React.Component {
 
   render() {
     const { cssModule, slide, className, dark, fade } = this.props;
+    const attributes = omit(this.props, propsToOmit);
     const outerClasses = mapToCssModules(
       classNames(
         className,
@@ -196,6 +247,7 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div
+          {...attributes}
           className={outerClasses}
           onMouseEnter={this.hoverStart}
           onMouseLeave={this.hoverEnd}
@@ -215,6 +267,7 @@ class Carousel extends React.Component {
 
       return (
         <div
+          {...attributes}
           className={outerClasses}
           onMouseEnter={this.hoverStart}
           onMouseLeave={this.hoverEnd}
@@ -246,6 +299,7 @@ class Carousel extends React.Component {
 
     return (
       <div
+        {...attributes}
         className={outerClasses}
         onMouseEnter={this.hoverStart}
         onMouseLeave={this.hoverEnd}
@@ -263,56 +317,7 @@ class Carousel extends React.Component {
   }
 }
 
-Carousel.propTypes = {
-  /** the current active slide of the carousel */
-  activeIndex: PropTypes.number,
-  /** a function which should advance the carousel to the next slide (via activeIndex) */
-  next: PropTypes.func.isRequired,
-  /** a function which should advance the carousel to the previous slide (via activeIndex) */
-  previous: PropTypes.func.isRequired,
-  /** controls if the left and right arrow keys should control the carousel */
-  keyboard: PropTypes.bool,
-  /** If set to "hover", pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on
-   * mouseleave. If set to false, hovering over the carousel won't pause it.
-   */
-  pause: PropTypes.oneOf(['hover', false]),
-  /** Autoplays the carousel after the user manually cycles the first item. If "carousel", autoplays the carousel on load. */
-  ride: PropTypes.oneOf(['carousel']),
-  /** the interval at which the carousel automatically cycles */
-  interval: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.bool,
-  ]),
-  children: PropTypes.array,
-  /** called when the mouse enters the Carousel */
-  mouseEnter: PropTypes.func,
-  /** called when the mouse exits the Carousel */
-  mouseLeave: PropTypes.func,
-  /** controls whether the slide animation on the Carousel works or not */
-  slide: PropTypes.bool,
-  /** make the controls, indicators and captions dark on the Carousel */
-  dark: PropTypes.bool,
-  fade: PropTypes.bool,
-  /** Change underlying component's CSS base class name */
-  cssModule: PropTypes.object,
-  /** Add custom class */
-  className: PropTypes.string,
-  /** Enable touch support */
-  enableTouch: PropTypes.bool,
-};
-
-Carousel.defaultProps = {
-  interval: 5000,
-  pause: 'hover',
-  keyboard: true,
-  slide: true,
-  enableTouch: true,
-  fade: false,
-};
-
-Carousel.childContextTypes = {
-  direction: PropTypes.string,
-};
+Carousel.propTypes = propTypes;
+Carousel.defaultProps = defaultProps;
 
 export default Carousel;
