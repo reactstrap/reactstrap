@@ -137,6 +137,14 @@
 
 
 
+### [9.1.4](https://www.github.com/reactstrap/reactstrap/compare/v9.1.3...v9.1.4) (2022-08-26)
+
+
+### Bug Fixes
+
+* **#2467:** keyboard support for dropdown listbox ([#2584](https://www.github.com/reactstrap/reactstrap/issues/2584)) ([f04d3a7](https://www.github.com/reactstrap/reactstrap/commit/f04d3a7976bb8623d7d7453d5195cb1d57f5a6dd))
+* **#2593:** fix key prop waring for dropdown ([#2594](https://www.github.com/reactstrap/reactstrap/issues/2594)) ([69526c1](https://www.github.com/reactstrap/reactstrap/commit/69526c1e1a24739fa5d6f13bc5aa4dfd49beeac5))
+
 ### [9.1.3](https://www.github.com/reactstrap/reactstrap/compare/v9.1.2...v9.1.3) (2022-08-02)
 
 
