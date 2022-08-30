@@ -14,12 +14,13 @@ Follow the [create-react-app instructions](https://create-react-app.dev/docs/get
 
 ### tl;dr
 
- ```
+```
 npx create-react-app my-app
 cd my-app/
 npm start
 ```
-or,  if npx (Node >= 6 and npm >= 5.2 ) not available 
+
+or, if npx (Node >= 6 and npm >= 5.2 ) not available
 
 ```
 npm install -g create-react-app
@@ -27,7 +28,7 @@ npm install -g create-react-app
 create-react-app my-app
 cd my-app/
 npm start
-``` 
+```
 
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The initial structure of your app is setup. Next, let's [add reactstrap and bootstrap](#adding-bootstrap).
 
@@ -40,13 +41,13 @@ npm i bootstrap
 npm i reactstrap react react-dom
 ```
 
-Import Bootstrap CSS in the ```src/index.js``` file:
+Import Bootstrap CSS in the `src/index.js` file:
 
 ```js
 import 'bootstrap/dist/css/bootstrap.css';
 ```
 
-Import required reactstrap components within ```src/App.js``` file or your custom component files:
+Import required reactstrap components within `src/App.js` file or your custom component files:
 
 ```js
 import { Button } from 'reactstrap';
@@ -62,8 +63,8 @@ using reactstrap.
 
 These libraries are not bundled with Reactstrap and required at runtime:
 
-  * [**react**](https://www.npmjs.com/package/react)
-  * [**react-dom**](https://www.npmjs.com/package/react-dom)
+- [**react**](https://www.npmjs.com/package/react)
+- [**react-dom**](https://www.npmjs.com/package/react-dom)
 
 ## About the Project
 
@@ -73,38 +74,44 @@ There are a few core concepts to understand in order to make the most out of thi
 
 1. Your content is expected to be composed via props.children rather than using named props to pass in Components.
 
-    ```js
-    // Content passed in via props
-    const Example = (props) => {
-      return (
-        <p>This is a tooltip <TooltipTrigger tooltip={TooltipContent}>example</TooltipTrigger>!</p>
-      );
-    }
+   ```js
+   // Content passed in via props
+   const Example = (props) => {
+     return (
+       <p>
+         This is a tooltip{' '}
+         <TooltipTrigger tooltip={TooltipContent}>example</TooltipTrigger>!
+       </p>
+     );
+   };
 
-    // Content passed in as children (Preferred)
-    const PreferredExample = (props) => {
-      return (
-        <p>
-          This is a <a href="#" id="TooltipExample">tooltip</a> example.
-          <Tooltip target="TooltipExample">
-            <TooltipContent/>
-          </Tooltip>
-        </p>
-      );
-    }
-    ```
+   // Content passed in as children (Preferred)
+   const PreferredExample = (props) => {
+     return (
+       <p>
+         This is a{' '}
+         <a href="#" id="TooltipExample">
+           tooltip
+         </a>{' '}
+         example.
+         <Tooltip target="TooltipExample">
+           <TooltipContent />
+         </Tooltip>
+       </p>
+     );
+   };
+   ```
 
 2. Attributes in this library are used to pass in state, conveniently apply modifier classes, enable advanced functionality (like tether), or automatically include non-content based elements.
 
-    Examples:
+   Examples:
 
-    - `isOpen` - current state for items like dropdown, popover, tooltip
-    - `toggle` - callback for toggling `isOpen` in the controlling component
-    - `color` - applies color classes, ex: `<Button color="danger"/>`
-    - `size` - for controlling size classes. ex: `<Button size="sm"/>`
-    - `tag` - customize component output by passing in an element name or Component
-    - boolean based props (attributes) when possible for alternative style classes or `visually-hidden` content
-
+   - `isOpen` - current state for items like dropdown, popover, tooltip
+   - `toggle` - callback for toggling `isOpen` in the controlling component
+   - `color` - applies color classes, ex: `<Button color="danger"/>`
+   - `size` - for controlling size classes. ex: `<Button size="sm"/>`
+   - `tag` - customize component output by passing in an element name or Component
+   - boolean based props (attributes) when possible for alternative style classes or `visually-hidden` content
 
 ## [Documentation](https://reactstrap.github.io)
 
@@ -140,6 +147,12 @@ Run tests & coverage report:
 yarn cover
 ```
 
+Watch tests:
+
+```sh
+yarn test
+```
+
 ## Releasing
 
 Release branches/versioning/notes will be automatically created and maintained by the [release-please](https://github.com/googleapis/release-please) github action. When you're ready to publish the release, just merge the release branch. The release will be created, the new package will be published, and the updated docs will be deployed to https://reactstrap.github.io/.
@@ -156,7 +169,7 @@ Organizations and projects using `reactstrap`
 - [DevExtreme React Grid](https://devexpress.github.io/devextreme-reactive/react/grid/) - It's a stateless data grid built on top of `reactstrap` with paging, sorting, filtering, grouping, selection, editing and virtual scrolling features.
 - [DevExtreme React Chart](https://devexpress.github.io/devextreme-reactive/react/chart/) - A chart built on top of `reactstrap` that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more.
 - [reactstrap-scrollspy](https://github.com/keidrun/reactstrap-scrollspy/) - [demo](https://keidrun.github.io/reactstrap-scrollspy/)
-- [formstrap](https://github.com/pedox/formstrap/) - [demo](https://pedox.github.io/formstrap/) - Let your `reactstrap` input component integrate seamlessly using `Formik` 
+- [formstrap](https://github.com/pedox/formstrap/) - [demo](https://pedox.github.io/formstrap/) - Let your `reactstrap` input component integrate seamlessly using `Formik`
 
 Submit a PR to add to this list!
 
