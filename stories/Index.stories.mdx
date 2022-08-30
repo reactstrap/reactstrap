@@ -102,3 +102,28 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 </Modal>
 
 ```
+
+#### CSSModule
+
+You can use `cssModule` to change the underlying component's default CSS className. This is an escape hatch
+if you do not want to use the default bootstrap class.
+
+For example Button renders with a default class `.btn`. You can use
+
+```jsx
+<Button color="primary" cssModule={{ btn: 'hyperspeed-btn' }}>
+  primary
+</Button>
+```
+
+so that Button renders with `.hyperspeed-btn` instead of `.btn`.
+
+You can use `setGlobalCssModule` function to set custom classes globally.
+
+```jsx
+import { Util } from 'reactstrap';
+
+Util.setGlobalCssModule({
+  btn: 'hyperspeed-btn',
+});
+```
