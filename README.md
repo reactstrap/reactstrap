@@ -125,25 +125,25 @@ https://github.com/reactstrap/code-sandbox-examples
 Install dependencies:
 
 ```sh
-npm install
+yarn install
 ```
 
 Run examples at [http://localhost:8080/](http://localhost:8080/) with webpack dev server:
 
 ```sh
-npm start
+yarn start
 ```
 
 Run tests & coverage report:
 
 ```sh
-npm test
+yarn cover
 ```
 
 Watch tests:
 
 ```sh
-npm run test-watch
+yarn test
 ```
 
 ## Releasing
