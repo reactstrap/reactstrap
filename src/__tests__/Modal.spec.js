@@ -360,9 +360,11 @@ describe('Modal', () => {
     expect(document.getElementsByClassName('modal').length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
 
-    rerender(<Modal isOpen toggle={toggle}>
-      Yo!
-    </Modal>)
+    rerender(
+      <Modal isOpen toggle={toggle}>
+        Yo!
+      </Modal>,
+    );
 
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
@@ -385,15 +387,10 @@ describe('Modal', () => {
     expect(onOpened).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
     rerender(
-      <Modal
-        isOpen
-        onOpened={onOpened}
-        onClosed={onClosed}
-        toggle={toggle}
-      >
+      <Modal isOpen onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
         Yo!
       </Modal>,
-    )
+    );
     jest.advanceTimersByTime(300);
     expect(onOpened).toHaveBeenCalledTimes(1);
 
@@ -406,10 +403,10 @@ describe('Modal', () => {
       >
         Yo!
       </Modal>,
-    )
+    );
 
     jest.advanceTimersByTime(300);
-    expect(onOpened).toHaveBeenCalledTimes(1)
+    expect(onOpened).toHaveBeenCalledTimes(1);
     expect(onClosed).toHaveBeenCalledTimes(1);
   });
 
@@ -425,9 +422,8 @@ describe('Modal', () => {
         fade={false}
       >
         Yo!
-      </Modal>
+      </Modal>,
     );
-
 
     expect(onOpened).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
@@ -441,8 +437,8 @@ describe('Modal', () => {
         fade={false}
       >
         Yo!
-      </Modal>
-    )
+      </Modal>,
+    );
     jest.advanceTimersByTime(1);
 
     expect(onOpened).toHaveBeenCalledTimes(1);
@@ -457,8 +453,8 @@ describe('Modal', () => {
         fade={false}
       >
         Yo!
-      </Modal>
-    )
+      </Modal>,
+    );
     jest.advanceTimersByTime(1);
 
     expect(onClosed).toHaveBeenCalledTimes(1);
@@ -503,7 +499,7 @@ describe('Modal', () => {
     user.click(screen.getByText(/does nothing/i));
     expect(toggle).not.toHaveBeenCalled();
 
-    user.click(document.body.getElementsByClassName('modal')[0])
+    user.click(document.body.getElementsByClassName('modal')[0]);
     expect(toggle).toHaveBeenCalled();
   });
 
@@ -512,7 +508,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen toggle={toggle} backdrop="static">
         <button id="clicker">Does Nothing</button>
-      </Modal>
+      </Modal>,
     );
 
     user.click(document.getElementsByClassName('modal-backdrop')[0]);
@@ -545,18 +541,28 @@ describe('Modal', () => {
 
   it('should animate when backdrop is "static" and escape key pressed and keyboard=false', () => {
     render(
-      <Modal isOpen toggle={toggle} backdrop="static" keyboard={false} data-testid="mandalorian">
+      <Modal
+        isOpen
+        toggle={toggle}
+        backdrop="static"
+        keyboard={false}
+        data-testid="mandalorian"
+      >
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
 
     user.keyboard('{esc}');
 
-    expect(screen.getByTestId('mandalorian').parentElement).toHaveClass('modal-static');
+    expect(screen.getByTestId('mandalorian').parentElement).toHaveClass(
+      'modal-static',
+    );
 
     jest.advanceTimersByTime(300);
 
-    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass('modal-static');
+    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass(
+      'modal-static',
+    );
   });
 
   it('should animate when backdrop is "static" and backdrop is clicked', () => {
@@ -568,11 +574,15 @@ describe('Modal', () => {
 
     user.click(document.getElementsByClassName('modal')[0]);
 
-    expect(screen.getByTestId('mandalorian').parentElement).toHaveClass('modal-static');
+    expect(screen.getByTestId('mandalorian').parentElement).toHaveClass(
+      'modal-static',
+    );
 
     jest.advanceTimersByTime(300);
 
-    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass('modal-static');
+    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass(
+      'modal-static',
+    );
   });
 
   it('should not animate when backdrop is "static" and modal is clicked', () => {
@@ -584,7 +594,9 @@ describe('Modal', () => {
 
     user.click(document.getElementsByClassName('modal-dialog')[0]);
 
-    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass('modal-static');
+    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass(
+      'modal-static',
+    );
   });
 
   it('should destroy this._element', () => {
@@ -594,14 +606,15 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    const element = document.getElementsByClassName('weird-class')[0].parentElement;
+    const element =
+      document.getElementsByClassName('weird-class')[0].parentElement;
     expect(element).toBeInTheDocument();
 
     rerender(
       <Modal isOpen={false} toggle={toggle} wrapClassName="weird-class">
         <button id="clicker">Does Nothing</button>
-      </Modal>
-    )
+      </Modal>,
+    );
     jest.advanceTimersByTime(300);
     expect(element).not.toBeInTheDocument();
   });
@@ -613,33 +626,50 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    const element = document.getElementsByClassName('weird-class')[0].parentElement;
+    const element =
+      document.getElementsByClassName('weird-class')[0].parentElement;
     expect(element).toBeInTheDocument();
 
     rerender(
-      <Modal isOpen={false} toggle={toggle} unmountOnClose wrapClassName="weird-class">
+      <Modal
+        isOpen={false}
+        toggle={toggle}
+        unmountOnClose
+        wrapClassName="weird-class"
+      >
         <button id="clicker">Does Nothing</button>
-      </Modal>
-    )
+      </Modal>,
+    );
     jest.advanceTimersByTime(300);
     expect(element).not.toBeInTheDocument();
   });
 
   it('should not destroy this._element when unmountOnClose prop set to false', () => {
     const { rerender } = render(
-      <Modal isOpen toggle={toggle} unmountOnClose={false} wrapClassName="weird-class">
+      <Modal
+        isOpen
+        toggle={toggle}
+        unmountOnClose={false}
+        wrapClassName="weird-class"
+      >
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
 
-    const element = document.getElementsByClassName('weird-class')[0].parentElement;
+    const element =
+      document.getElementsByClassName('weird-class')[0].parentElement;
     expect(element).toBeInTheDocument();
 
     rerender(
-      <Modal isOpen={false} toggle={toggle} unmountOnClose={false} wrapClassName="weird-class">
+      <Modal
+        isOpen={false}
+        toggle={toggle}
+        unmountOnClose={false}
+        wrapClassName="weird-class"
+      >
         <button id="clicker">Does Nothing</button>
-      </Modal>
-    )
+      </Modal>,
+    );
     expect(element).toBeInTheDocument();
   });
 
@@ -651,14 +681,14 @@ describe('Modal', () => {
     );
     unmount();
     jest.advanceTimersByTime(300);
-    expect(document.getElementsByClassName('modal').length).toBe(0)
+    expect(document.getElementsByClassName('modal').length).toBe(0);
   });
 
   it('should render nested modals', () => {
     const { unmount } = render(
       <Modal isOpen toggle={toggle}>
         <ModalBody>
-          <Modal isOpen toggle={(() => {})}>
+          <Modal isOpen toggle={() => {}}>
             Yo!
           </Modal>
         </ModalBody>
@@ -680,7 +710,7 @@ describe('Modal', () => {
     const { rerender } = render(
       <Modal isOpen={false} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     expect(document.body.className).toBe('my-modal-opened');
@@ -688,8 +718,8 @@ describe('Modal', () => {
     rerender(
       <Modal isOpen toggle={toggle}>
         Yo!
-      </Modal>
-    )
+      </Modal>,
+    );
 
     expect(document.body.className).toBe('my-modal-opened modal-open');
 
@@ -702,8 +732,8 @@ describe('Modal', () => {
     rerender(
       <Modal isOpen={false} toggle={toggle}>
         Yo!
-      </Modal>
-    )
+      </Modal>,
+    );
 
     jest.advanceTimersByTime(300);
     expect(document.body.className).toBe('my-modal-opened modal-opened');
@@ -715,7 +745,7 @@ describe('Modal', () => {
     const { rerender, unmount } = render(
       <Modal isOpen={false} onEnter={onEnter} onExit={onExit} toggle={toggle}>
         Yo!
-      </Modal>
+      </Modal>,
     );
 
     expect(onEnter).toHaveBeenCalled();
@@ -727,8 +757,8 @@ describe('Modal', () => {
     rerender(
       <Modal isOpen onEnter={onEnter} onExit={onExit} toggle={toggle}>
         Yo!
-      </Modal>
-    )
+      </Modal>,
+    );
     expect(onEnter).not.toHaveBeenCalled();
     expect(onExit).not.toHaveBeenCalled();
 
@@ -738,8 +768,8 @@ describe('Modal', () => {
     rerender(
       <Modal isOpen={false} onEnter={onEnter} onExit={onExit} toggle={toggle}>
         Yo!
-      </Modal>
-    )
+      </Modal>,
+    );
     unmount();
     expect(onEnter).not.toHaveBeenCalled();
     expect(onExit).toHaveBeenCalled();
@@ -749,18 +779,22 @@ describe('Modal', () => {
     const { debug, rerender } = render(
       <Modal isOpen zIndex={0} wrapClassName="sandman">
         Yo!
-      </Modal>
+      </Modal>,
     );
 
-    expect(document.getElementsByClassName('sandman')[0].parentElement.style.zIndex).toBe("0")
+    expect(
+      document.getElementsByClassName('sandman')[0].parentElement.style.zIndex,
+    ).toBe('0');
 
     rerender(
       <Modal isOpen zIndex={1} wrapClassName="sandman">
         Yo!
-      </Modal>
-    )
+      </Modal>,
+    );
 
-    expect(document.getElementsByClassName('sandman')[0].parentElement.style.zIndex).toBe("1")
+    expect(
+      document.getElementsByClassName('sandman')[0].parentElement.style.zIndex,
+    ).toBe('1');
   });
 
   it('should allow focus on only focusable elements and tab through them', () => {
@@ -774,7 +808,7 @@ describe('Modal', () => {
           <map name="test">
             <area alt="test" href="/" coords="200,5,200,30" />
           </map>
-          <input type="text" aria-label='test text input' />
+          <input type="text" aria-label="test text input" />
           <input type="hidden" />
           <input type="text" disabled value="Test" />
           <select name="test" id="select_test">
@@ -788,7 +822,7 @@ describe('Modal', () => {
             id="textarea_test"
             cols="30"
             rows="10"
-            aria-label='test text area'
+            aria-label="test text area"
           />
           <textarea
             name="textarea_test_disabled"
@@ -836,8 +870,8 @@ describe('Modal', () => {
         <Modal isOpen={false}>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     user.tab();
     expect(screen.getByText(/focused/i)).toHaveFocus();
@@ -848,8 +882,8 @@ describe('Modal', () => {
         <Modal isOpen>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     rerender(
       <>
@@ -857,8 +891,8 @@ describe('Modal', () => {
         <Modal isOpen={false}>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     jest.runAllTimers();
     expect(screen.getByText(/focused/i)).toHaveFocus();
@@ -871,8 +905,8 @@ describe('Modal', () => {
         <Modal returnFocusAfterClose={false} isOpen={false}>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     user.tab();
     expect(screen.getByText(/focused/i)).toHaveFocus();
@@ -883,8 +917,8 @@ describe('Modal', () => {
         <Modal returnFocusAfterClose={false} isOpen>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     rerender(
       <>
@@ -892,8 +926,8 @@ describe('Modal', () => {
         <Modal returnFocusAfterClose={false} isOpen={false}>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     jest.runAllTimers();
     expect(screen.getByText(/focused/i)).not.toHaveFocus();
@@ -906,8 +940,8 @@ describe('Modal', () => {
         <Modal unmountOnClose={false} isOpen={false}>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     user.tab();
     expect(screen.getByText(/focused/i)).toHaveFocus();
@@ -918,8 +952,8 @@ describe('Modal', () => {
         <Modal unmountOnClose={false} isOpen>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     rerender(
       <>
@@ -927,8 +961,8 @@ describe('Modal', () => {
         <Modal unmountOnClose={false} isOpen={false}>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     jest.runAllTimers();
     expect(screen.getByText(/focused/i)).toHaveFocus();
@@ -938,11 +972,15 @@ describe('Modal', () => {
     const { rerender } = render(
       <>
         <button className="focus">Focused</button>
-        <Modal unmountOnClose={false} returnFocusAfterClose={false} isOpen={false}>
+        <Modal
+          unmountOnClose={false}
+          returnFocusAfterClose={false}
+          isOpen={false}
+        >
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     user.tab();
     expect(screen.getByText(/focused/i)).toHaveFocus();
@@ -953,17 +991,21 @@ describe('Modal', () => {
         <Modal unmountOnClose={false} returnFocusAfterClose={false} isOpen>
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     rerender(
       <>
         <button className="focus">Focused</button>
-        <Modal unmountOnClose={false} returnFocusAfterClose={false} isOpen={false}>
+        <Modal
+          unmountOnClose={false}
+          returnFocusAfterClose={false}
+          isOpen={false}
+        >
           <ModalBody>Whatever</ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     jest.runAllTimers();
     expect(screen.getByText(/focused/i)).not.toHaveFocus();
@@ -978,16 +1020,24 @@ describe('Modal', () => {
         <ModalBody>
           <Button className="focus">focusable element</Button>
         </ModalBody>
-      </Modal>
-    )
+      </Modal>,
+    );
 
     expect(addEventListener).toHaveBeenCalledTimes(1);
-    expect(addEventListener).toHaveBeenCalledWith('focus', expect.any(Function), true);
+    expect(addEventListener).toHaveBeenCalledWith(
+      'focus',
+      expect.any(Function),
+      true,
+    );
 
     unmount();
 
     expect(removeEventListener).toHaveBeenCalledTimes(1);
-    expect(removeEventListener).toHaveBeenCalledWith('focus', expect.any(Function), true);
+    expect(removeEventListener).toHaveBeenCalledWith(
+      'focus',
+      expect.any(Function),
+      true,
+    );
 
     addEventListener.mockRestore();
     removeEventListener.mockRestore();
@@ -1003,8 +1053,8 @@ describe('Modal', () => {
             <Button className="focus">focusable element</Button>
           </ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     screen.getByText(/focused/i).focus();
 
@@ -1019,8 +1069,8 @@ describe('Modal', () => {
             <Button className="focus">focusable element</Button>
           </ModalBody>
         </Modal>
-      </>
-    )
+      </>,
+    );
 
     jest.runAllTimers();
     expect(screen.getByText(/focused/i)).not.toHaveFocus();
