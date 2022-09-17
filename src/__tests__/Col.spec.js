@@ -1,103 +1,102 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Col } from '..';
 
 describe('Col', () => {
   it('should render default .col markup', () => {
-    const wrapper = shallow(<Col />);
+    render(<Col data-testid="col" />);
 
-    expect(wrapper.html()).toBe('<div class="col"></div>');
+    expect(screen.getByTestId('col')).toHaveClass('col');
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<Col>Children</Col>);
+    render(<Col data-testid="col">Children</Col>);
 
-    expect(wrapper.text()).toBe('Children');
+    expect(screen.getByText(/children/i)).toBeInTheDocument();
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Col className="extra" />);
+    render(<Col className="extra" data-testid="col" />);
 
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(true);
+    expect(screen.getByTestId('col')).toHaveClass('extra');
   });
 
   it('should allow custom columns to be defined', () => {
-    const wrapper = shallow(
-      <Col widths={['base', 'jumbo']} base="4" jumbo="6" />,
+    render(
+      <Col widths={['base', 'jumbo']} base="4" jumbo="6" data-testid="col" />,
     );
 
-    expect(wrapper.hasClass('col-4')).toBe(true);
-    expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(false);
+    expect(screen.getByTestId('col')).toHaveClass('col-4');
+    expect(screen.getByTestId('col')).toHaveClass('col-jumbo-6');
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
   });
 
   it('should allow custom columns to be defined with objects', () => {
-    const wrapper = shallow(
+    render(
       <Col
-        widths={['base', 'jumbo', 'wtf']}
-        wtf={{ size: 1, order: 2, offset: 4 }}
+        widths={['base', 'jumbo', 'spaceship']}
+        spaceship={{ size: 1, order: 2, offset: 4 }}
+        data-testid="col"
       />,
     );
 
-    expect(wrapper.hasClass('col-wtf-1')).toBe(true);
-    expect(wrapper.hasClass('order-wtf-2')).toBe(true);
-    expect(wrapper.hasClass('offset-wtf-4')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(false);
+    expect(screen.getByTestId('col')).toHaveClass('col-spaceship-1');
+    expect(screen.getByTestId('col')).toHaveClass('order-spaceship-2');
+    expect(screen.getByTestId('col')).toHaveClass('offset-spaceship-4');
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
   });
 
   it('should pass col size specific classes as Strings', () => {
-    const wrapper = shallow(<Col sm="6" />);
+    render(<Col sm="6" data-testid="col" />);
 
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(false);
+    expect(screen.getByTestId('col')).toHaveClass('col-sm-6');
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
   });
 
   it('should pass col size specific classes as Numbers', () => {
-    const wrapper = shallow(<Col sm={6} />);
+    render(<Col sm={6} data-testid="col" />);
 
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(false);
+    expect(screen.getByTestId('col')).toHaveClass('col-sm-6');
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
   });
 
   it('should pass col size as flex with values "auto" or without value', () => {
-    const wrapper = shallow(<Col xs="auto" sm />);
+    render(<Col xs="auto" sm data-testid="col" />);
 
-    expect(wrapper.hasClass('col')).toBe(false);
-    expect(wrapper.hasClass('col-auto')).toBe(true);
-    expect(wrapper.hasClass('col-sm')).toBe(true);
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
+    expect(screen.getByTestId('col')).toHaveClass('col-auto');
+    expect(screen.getByTestId('col')).toHaveClass('col-sm');
   });
 
   it('should pass col size specific classes via Objects', () => {
-    const wrapper = shallow(<Col sm={{ size: 6, order: 2, offset: 2 }} />);
+    render(<Col sm={{ size: 6, order: 2, offset: 2 }} data-testid="col" />);
 
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(false);
-    expect(wrapper.hasClass('order-sm-2')).toBe(true);
-    expect(wrapper.hasClass('offset-sm-2')).toBe(true);
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
+    expect(screen.getByTestId('col')).toHaveClass('col-sm-6');
+    expect(screen.getByTestId('col')).toHaveClass('order-sm-2');
+    expect(screen.getByTestId('col')).toHaveClass('offset-sm-2');
   });
 
   it('should pass col size specific classes via Objects including 0', () => {
-    const wrapper = shallow(<Col sm={{ size: 6, order: 0, offset: 0 }} />);
+    render(<Col sm={{ size: 6, order: 0, offset: 0 }} data-testid="col" />);
 
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(false);
-    expect(wrapper.hasClass('order-sm-0')).toBe(true);
-    expect(wrapper.hasClass('offset-sm-0')).toBe(true);
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
+    expect(screen.getByTestId('col')).toHaveClass('col-sm-6');
+    expect(screen.getByTestId('col')).toHaveClass('order-sm-0');
+    expect(screen.getByTestId('col')).toHaveClass('offset-sm-0');
   });
 
   it('should pass col size when passing via object with size "auto"', () => {
-    const wrapper = shallow(<Col sm={{ size: 'auto', offset: 2 }} />);
+    render(<Col sm={{ size: 'auto', offset: 2 }} data-testid="col" />);
 
-    expect(wrapper.hasClass('col')).toBe(false);
-    expect(wrapper.hasClass('col-sm-auto')).toBe(true);
+    expect(screen.getByTestId('col')).toHaveClass('col-sm-auto');
+    expect(screen.getByTestId('col')).not.toHaveClass('col');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Col tag="main">Yo!</Col>);
+    render(<Col tag="main">Yo!</Col>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.type()).toBe('main');
-    expect(wrapper.hasClass('col')).toBe(true);
+    expect(screen.getByText(/yo!/i).tagName.toLowerCase()).toBe('main');
   });
 });
