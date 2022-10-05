@@ -1,68 +1,69 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { Table } from '..';
+import '@testing-library/jest-dom';
 
 describe('Table', () => {
   it('should render with "table" class', () => {
-    const wrapper = shallow(<Table>Yo!</Table>);
+    render(<Table>Yo!</Table>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
+    expect(screen.getByRole('table')).toHaveClass('table');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<Table className="other">Yo!</Table>);
+    render(<Table className="other">Yo!</Table>);
 
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('table')).toBe(true);
+    expect(screen.getByRole('table')).toHaveClass('table');
+    expect(screen.getByRole('table')).toHaveClass('other');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Table tag="div">Yo!</Table>);
+    render(<Table tag="div">Yo!</Table>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
-    expect(wrapper.find('div').length).toBe(1);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
+    expect(screen.getByText('Yo!')).toHaveClass('table');
+    expect(screen.getByText('Yo!')).toBeInstanceOf(HTMLDivElement);
   });
 
   it('should render modifier classes', () => {
-    const wrapper = shallow(
+    render(
       <Table size="sm" bordered striped dark hover>
         Yo!
       </Table>,
     );
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
-    expect(wrapper.hasClass('table-sm')).toBe(true);
-    expect(wrapper.hasClass('table-bordered')).toBe(true);
-    expect(wrapper.hasClass('table-striped')).toBe(true);
-    expect(wrapper.hasClass('table-hover')).toBe(true);
-    expect(wrapper.hasClass('table-dark')).toBe(true);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
+    expect(screen.getByRole('table')).toHaveClass('table');
+    expect(screen.getByRole('table')).toHaveClass('table-sm');
+    expect(screen.getByRole('table')).toHaveClass('table-bordered');
+    expect(screen.getByRole('table')).toHaveClass('table-striped');
+    expect(screen.getByRole('table')).toHaveClass('table-hover');
+    expect(screen.getByRole('table')).toHaveClass('table-dark');
   });
 
   it('should render a borderless table', () => {
-    const wrapper = shallow(<Table borderless>Yo!</Table>);
+    render(<Table borderless>Yo!</Table>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
-    expect(wrapper.hasClass('table-borderless')).toBe(true);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
+    expect(screen.getByRole('table')).toHaveClass('table');
+    expect(screen.getByRole('table')).toHaveClass('table-borderless');
   });
 
   it('should render responsive wrapper class', () => {
-    const wrapper = shallow(<Table responsive>Yo!</Table>);
+    const { container } = render(<Table responsive>Yo!</Table>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table-responsive')).toBe(true);
-    expect(wrapper.find('.table').length).toBe(1);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
+    expect(screen.getByRole('table')).toHaveClass('table');
+    expect(container.querySelector('.table-responsive')).toBeInTheDocument();
   });
 
   it('should render responsive wrapper class for md', () => {
-    const wrapper = shallow(<Table responsive="md">Yo!</Table>);
+    const { container } = render(<Table responsive="md">Yo!</Table>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table-responsive-md')).toBe(true);
-    expect(wrapper.find('.table').length).toBe(1);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
+    expect(screen.getByRole('table')).toHaveClass('table');
+    expect(container.querySelector('.table-responsive-md')).toBeInTheDocument();
   });
 
   it('should render responsive wrapper cssModule', () => {
@@ -70,14 +71,14 @@ describe('Table', () => {
       table: 'scopedTable',
       'table-responsive': 'scopedResponsive',
     };
-    const wrapper = shallow(
+    const { container } = render(
       <Table responsive cssModule={cssModule}>
         Yo!
       </Table>,
     );
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('scopedResponsive')).toBe(true);
-    expect(wrapper.find('.scopedTable').length).toBe(1);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
+    expect(container.querySelector('.scopedResponsive')).toBeInTheDocument();
+    expect(container.querySelector('.scopedTable')).toBeInTheDocument();
   });
 });
