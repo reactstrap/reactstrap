@@ -1,5 +1,10 @@
 import { Form } from '..';
-import { testForChildrenInComponent, testForCustomClass, testForCustomTag, testForDefaultTag } from '../testUtils';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('Form', () => {
   it('should render with "form" tag', () => {
