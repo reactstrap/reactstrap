@@ -3,16 +3,34 @@ import { render, screen } from '@testing-library/react';
 import { Table } from '..';
 import '@testing-library/jest-dom';
 
+function renderTable(props = {}) {
+  const { items = [['Yo!']], ...resetProps } = props;
+
+  return render(
+    <Table {...resetProps}>
+      <tbody>
+        {items.map((row, i) => (
+          <tr key={i}>
+            {row.map((gridCell) => (
+              <td key={gridCell}>{gridCell}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </Table>,
+  );
+}
+
 describe('Table', () => {
   it('should render with "table" class', () => {
-    render(<Table>Yo!</Table>);
+    renderTable();
 
     expect(screen.getByText('Yo!')).toBeInTheDocument();
     expect(screen.getByRole('table')).toHaveClass('table');
   });
 
   it('should render additional classes', () => {
-    render(<Table className="other">Yo!</Table>);
+    renderTable({ className: 'other' });
 
     expect(screen.getByRole('table')).toHaveClass('table');
     expect(screen.getByRole('table')).toHaveClass('other');
@@ -27,11 +45,13 @@ describe('Table', () => {
   });
 
   it('should render modifier classes', () => {
-    render(
-      <Table size="sm" bordered striped dark hover>
-        Yo!
-      </Table>,
-    );
+    renderTable({
+      size: 'sm',
+      bordered: true,
+      striped: true,
+      dark: true,
+      hover: true,
+    });
 
     expect(screen.getByText('Yo!')).toBeInTheDocument();
     expect(screen.getByRole('table')).toHaveClass('table');
@@ -43,7 +63,7 @@ describe('Table', () => {
   });
 
   it('should render a borderless table', () => {
-    render(<Table borderless>Yo!</Table>);
+    renderTable({ borderless: true });
 
     expect(screen.getByText('Yo!')).toBeInTheDocument();
     expect(screen.getByRole('table')).toHaveClass('table');
@@ -51,7 +71,7 @@ describe('Table', () => {
   });
 
   it('should render responsive wrapper class', () => {
-    const { container } = render(<Table responsive>Yo!</Table>);
+    const { container } = renderTable({ responsive: true });
 
     expect(screen.getByText('Yo!')).toBeInTheDocument();
     expect(screen.getByRole('table')).toHaveClass('table');
@@ -59,7 +79,7 @@ describe('Table', () => {
   });
 
   it('should render responsive wrapper class for md', () => {
-    const { container } = render(<Table responsive="md">Yo!</Table>);
+    const { container } = renderTable({ responsive: 'md' });
 
     expect(screen.getByText('Yo!')).toBeInTheDocument();
     expect(screen.getByRole('table')).toHaveClass('table');
@@ -71,11 +91,7 @@ describe('Table', () => {
       table: 'scopedTable',
       'table-responsive': 'scopedResponsive',
     };
-    const { container } = render(
-      <Table responsive cssModule={cssModule}>
-        Yo!
-      </Table>,
-    );
+    const { container } = renderTable({ responsive: true, cssModule });
 
     expect(screen.getByText('Yo!')).toBeInTheDocument();
     expect(container.querySelector('.scopedResponsive')).toBeInTheDocument();
