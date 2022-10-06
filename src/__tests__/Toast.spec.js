@@ -2,24 +2,25 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Toast } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomAttribute,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('Toast', () => {
   it('should render children', () => {
-    render(<Toast>Yo!</Toast>);
-    expect(screen.getByText('Yo!')).toBeVisible();
+    testForChildrenInComponent(Toast);
   });
 
   it('should pass className down', () => {
-    render(<Toast className="test-class-name">Yo!</Toast>);
-    expect(screen.getByText('Yo!')).toHaveClass('test-class-name');
+    testForCustomClass(Toast);
   });
 
   it('should pass other props down', () => {
-    render(<Toast data-testprop="testvalue">Yo!</Toast>);
-    expect(screen.getByText('Yo!')).toHaveAttribute(
-      'data-testprop',
-      'testvalue',
-    );
+    testForCustomAttribute(Toast);
   });
 
   it('should have default transitionTimeouts', () => {
@@ -52,13 +53,11 @@ describe('Toast', () => {
   });
 
   it('should use a div tag by default', () => {
-    render(<Toast>Yo!</Toast>);
-    expect(screen.getByText('Yo!')).toBeInstanceOf(HTMLDivElement);
+    testForDefaultTag(Toast, 'div');
   });
 
   it('should support custom tag', () => {
-    render(<Toast tag="p">Yo!</Toast>);
-    expect(screen.getByText('Yo!')).toBeInstanceOf(HTMLParagraphElement);
+    testForCustomTag(Toast, 'p');
   });
 
   it('should be empty if not isOpen', () => {
