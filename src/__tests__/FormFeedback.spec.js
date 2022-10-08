@@ -1,50 +1,48 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { FormFeedback } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('FormFeedback', () => {
-  it('should render with "form" tag by default', () => {
-    const wrapper = shallow(<FormFeedback>Yo!</FormFeedback>);
-
-    expect(wrapper.type()).toBe('div');
+  it('should render with "div" tag by default', () => {
+    testForDefaultTag(FormFeedback, 'div');
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<FormFeedback>Yo!</FormFeedback>);
-
-    expect(wrapper.text()).toBe('Yo!');
+    testForChildrenInComponent(FormFeedback);
   });
 
   it('should render with "invalid-feedback" class', () => {
-    const wrapper = shallow(<FormFeedback>Yo!</FormFeedback>);
-    expect(wrapper.hasClass('invalid-feedback')).toBe(true);
+    testForDefaultClass(FormFeedback, 'invalid-feedback');
   });
 
   it('should render with "valid-feedback" class', () => {
-    const wrapper = shallow(<FormFeedback valid>Yo!</FormFeedback>);
+    render(<FormFeedback valid>Yo!</FormFeedback>);
 
-    expect(wrapper.hasClass('valid-feedback')).toBe(true);
+    expect(screen.getByText(/yo/i)).toHaveClass('valid-feedback');
   });
 
   it('should render with "valid-tooltip" class', () => {
-    const wrapper = shallow(
+    render(
       <FormFeedback valid tooltip>
         Yo!
       </FormFeedback>,
     );
 
-    expect(wrapper.hasClass('valid-tooltip')).toBe(true);
+    expect(screen.getByText(/yo/i)).toHaveClass('valid-tooltip');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<FormFeedback className="other">Yo!</FormFeedback>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
+    testForCustomClass(FormFeedback);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<FormFeedback tag="main">Yo!</FormFeedback>);
-
-    expect(wrapper.type()).toBe('main');
+    testForCustomTag(FormFeedback);
   });
 });
