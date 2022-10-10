@@ -1,39 +1,39 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Toast } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomAttribute,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('Toast', () => {
   it('should render children', () => {
-    const toast = mount(<Toast>Yo!</Toast>);
-    expect(toast.text()).toBe('Yo!');
+    testForChildrenInComponent(Toast);
   });
 
   it('should pass className down', () => {
-    const toast = mount(<Toast className="test-class-name">Yo!</Toast>);
-    expect(toast.find('.toast').hostNodes().prop('className')).toContain(
-      'test-class-name',
-    );
+    testForCustomClass(Toast);
   });
 
   it('should pass other props down', () => {
-    const toast = mount(<Toast data-testprop="testvalue">Yo!</Toast>);
-    expect(toast.find('.toast').hostNodes().prop('data-testprop')).toContain(
-      'testvalue',
-    );
+    testForCustomAttribute(Toast);
   });
 
   it('should have default transitionTimeouts', () => {
-    const toast = mount(<Toast>Yo!</Toast>);
+    const transitionProps = (<Toast>Yo!</Toast>).props.transition;
 
-    const transition = toast.find('Transition');
-    expect(transition.prop('timeout')).toEqual(150);
-    expect(transition.prop('appear')).toBe(true);
-    expect(transition.prop('enter')).toBe(true);
-    expect(transition.prop('exit')).toBe(true);
+    expect(transitionProps.timeout).toEqual(150);
+    expect(transitionProps.appear).toBe(true);
+    expect(transitionProps.enter).toBe(true);
+    expect(transitionProps.exit).toBe(true);
   });
 
   it('should have support configurable transitionTimeouts', () => {
-    const toast = mount(
+    const transitionProps = (
       <Toast
         transition={{
           timeout: 0,
@@ -43,28 +43,25 @@ describe('Toast', () => {
         }}
       >
         Yo!
-      </Toast>,
-    );
+      </Toast>
+    ).props.transition;
 
-    const transition = toast.find('Transition');
-    expect(transition.prop('timeout')).toEqual(0);
-    expect(transition.prop('appear')).toBe(false);
-    expect(transition.prop('enter')).toBe(false);
-    expect(transition.prop('exit')).toBe(false);
+    expect(transitionProps.timeout).toEqual(0);
+    expect(transitionProps.appear).toBe(false);
+    expect(transitionProps.enter).toBe(false);
+    expect(transitionProps.exit).toBe(false);
   });
 
   it('should use a div tag by default', () => {
-    const toast = mount(<Toast>Yo!</Toast>);
-    expect(toast.find('div').hostNodes().length).toBe(1);
+    testForDefaultTag(Toast, 'div');
   });
 
   it('should support custom tag', () => {
-    const toast = mount(<Toast tag="p">Yo!</Toast>);
-    expect(toast.find('p').hostNodes().length).toBe(1);
+    testForCustomTag(Toast, 'p');
   });
 
   it('should be empty if not isOpen', () => {
-    const toast = shallow(<Toast isOpen={false}>Yo!</Toast>);
-    expect(toast.html()).toBe('');
+    const { container } = render(<Toast isOpen={false}>Yo!</Toast>);
+    expect(container.children).toHaveLength(0);
   });
 });
