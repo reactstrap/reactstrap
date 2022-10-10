@@ -1,33 +1,25 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { CardSubtitle } from '..';
+import {
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('CardSubtitle', () => {
   it('should render with "card-subtitle" class', () => {
-    const wrapper = shallow(<CardSubtitle>Yo!</CardSubtitle>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('card-subtitle')).toBe(true);
+    testForDefaultClass(CardSubtitle, 'card-subtitle');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<CardSubtitle className="other">Yo!</CardSubtitle>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('card-subtitle')).toBe(true);
+    testForCustomClass(CardSubtitle);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<CardSubtitle tag="h3">Yo!</CardSubtitle>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('card-subtitle')).toBe(true);
-    expect(wrapper.find('h3').length).toBe(1);
+    testForCustomTag(CardSubtitle);
   });
 
   it('should render a "div" tag by default', () => {
-    const wrapper = shallow(<CardSubtitle>Yo!</CardSubtitle>);
-
-    expect(wrapper.find('div').length).toBe(1);
+    testForDefaultTag(CardSubtitle, 'div');
   });
 });

@@ -1,230 +1,178 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '..';
-import { keyCodes } from '../utils';
-
-const didMount = (component) => {
-  const wrapper = mount(component);
-  wrapper.setProps({ fakefield: 'fakeToUpdate' });
-  return wrapper;
-};
 
 describe('Modal', () => {
-  let isOpen;
-  let toggle;
-
-  let isOpenNested;
-  let toggleNested;
+  const toggle = () => {};
 
   beforeEach(() => {
-    isOpen = false;
-    toggle = () => {
-      isOpen = !isOpen;
-    };
-
-    isOpenNested = false;
-    toggleNested = () => {
-      isOpenNested = !isOpenNested;
-    };
-
     jest.useFakeTimers();
   });
 
   afterEach(() => {
-    // fast forward time for modal to fade out
-    jest.runTimersToTime(300);
     jest.clearAllTimers();
+    // rtl doesn't clear attributes added to body, so manually clearing them
+    document.body.removeAttribute('style');
+    document.body.removeAttribute('class');
   });
 
   it('should render modal portal into DOM', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    render(
+      <Modal isOpen toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).not.toBe(0);
-    wrapper.unmount();
+    expect(screen.getByText(/yo/i)).toBeInTheDocument();
   });
 
   it('should render with the class "modal-dialog"', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    render(
+      <Modal isOpen toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
-    wrapper.unmount();
+    expect(screen.getByText(/yo/i).parentElement).toHaveClass('modal-dialog');
   });
 
   it('should render external content when present', () => {
-    isOpen = true;
-    const wrapper = didMount(
+    render(
       <Modal
-        isOpen={isOpen}
+        isOpen
         toggle={toggle}
-        external={<button className="cool-close-button">&times;</button>}
+        external={<button className="cool-close-button">crazy button</button>}
       >
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-    expect(document.getElementsByClassName('cool-close-button').length).toBe(1);
+    expect(screen.getByText(/crazy button/i)).toBeInTheDocument();
     expect(
-      document
-        .getElementsByClassName('cool-close-button')[0]
+      screen
+        .getByText(/crazy button/i)
         .nextElementSibling.className.split(' ')
         .indexOf('modal-dialog') > -1,
     ).toBe(true);
-    wrapper.unmount();
   });
 
   it('should render with the backdrop with the class "modal-backdrop" by default', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    render(
+      <Modal isOpen toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render with the backdrop with the class "modal-backdrop" when backdrop is "static"', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+    render(
+      <Modal isOpen toggle={toggle} backdrop="static">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should not render with the backdrop with the class "modal-backdrop" when backdrop is "false"', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop={false}>
+    render(
+      <Modal isOpen toggle={toggle} backdrop={false}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
-    wrapper.unmount();
   });
 
   it('should render with the class "modal-dialog-scrollable" when scrollable is "true"', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} scrollable>
+    render(
+      <Modal isOpen toggle={toggle} scrollable>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(
       document.getElementsByClassName('modal-dialog-scrollable').length,
     ).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render with class "modal-dialog" and have custom class name if provided', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} className="my-custom-modal">
+    render(
+      <Modal isOpen toggle={toggle} className="my-custom-modal">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render with class "modal-dialog" w/o centered class if not provided', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    render(
+      <Modal isOpen toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
+    jest.advanceTimersByTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(
       document.getElementsByClassName('modal-dialog-centered').length,
     ).toBe(0);
-    wrapper.unmount();
   });
 
   it('should render with class "modal-dialog" and centered class if provided', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} centered>
+    render(
+      <Modal isOpen toggle={toggle} centered>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(
       document.getElementsByClassName('modal-dialog-centered').length,
     ).toBe(1);
-    wrapper.unmount();
   });
 
   describe('fullscreen', () => {
     it('should render non fullscreen by default', () => {
-      const wrapper = didMount(
+      render(
         <Modal isOpen toggle={toggle}>
           Yo!
         </Modal>,
       );
-      jest.runTimersToTime(300);
 
       expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
       expect(document.getElementsByClassName('modal-fullscreen').length).toBe(
         0,
       );
-      wrapper.unmount();
     });
 
     it('should always render fullscreen if true', () => {
-      const wrapper = didMount(
+      render(
         <Modal isOpen toggle={toggle} fullscreen>
           Yo!
         </Modal>,
       );
-      jest.runTimersToTime(300);
 
       expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
       expect(document.getElementsByClassName('modal-fullscreen').length).toBe(
         1,
       );
-      wrapper.unmount();
     });
 
     it('should render fullscreen below breakpoint if breakpoint is provided', () => {
-      const wrapper = didMount(
+      render(
         <Modal isOpen toggle={toggle} fullscreen="lg">
           Yo!
         </Modal>,
       );
-      jest.runTimersToTime(300);
 
       expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
       expect(document.getElementsByClassName('modal-fullscreen').length).toBe(
@@ -233,31 +181,26 @@ describe('Modal', () => {
       expect(
         document.getElementsByClassName('modal-fullscreen-lg-down').length,
       ).toBe(1);
-      wrapper.unmount();
     });
   });
 
   it('should render with additional props if provided', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} style={{ maxWidth: '95%' }}>
+    render(
+      <Modal isOpen toggle={toggle} style={{ maxWidth: '95%' }}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(
       document.getElementsByClassName('modal-dialog')[0].style.maxWidth,
     ).toBe('95%');
-    wrapper.unmount();
   });
 
   it('should render without fade transition if provided with fade={false}', () => {
-    isOpen = true;
-    const wrapper = didMount(
+    render(
       <Modal
-        isOpen={isOpen}
+        isOpen
         toggle={toggle}
         fade={false}
         modalClassName="fadeless-modal"
@@ -266,24 +209,18 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    // Modal should appear instantaneously
-    jest.runTimersToTime(1);
-
     const matchedModals = document.getElementsByClassName('fadeless-modal');
     const matchedModal = matchedModals[0];
 
     expect(matchedModals.length).toBe(1);
     // Modal should not have the 'fade' class
     expect(matchedModal.className.split(' ').indexOf('fade') < 0).toBe(true);
-
-    wrapper.unmount();
   });
 
   it('should render when expected when passed modalTransition and backdropTransition props', () => {
-    isOpen = true;
-    const wrapper = didMount(
+    render(
       <Modal
-        isOpen={isOpen}
+        isOpen
         toggle={toggle}
         modalTransition={{ timeout: 2 }}
         backdropTransition={{ timeout: 10 }}
@@ -293,199 +230,152 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    jest.runTimersToTime(20);
-
-    const matchedModals = document.getElementsByClassName(
-      'custom-timeout-modal',
+    expect(document.getElementsByClassName('custom-timeout-modal').length).toBe(
+      1,
     );
-
-    expect(matchedModals.length).toBe(1);
-
-    wrapper.unmount();
   });
 
   it('should render with class "modal" and have custom class name if provided with modalClassName', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} modalClassName="my-custom-modal">
+    render(
+      <Modal isOpen toggle={toggle} modalClassName="my-custom-modal">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.querySelectorAll('.modal.my-custom-modal').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render with custom class name if provided with wrapClassName', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} wrapClassName="my-custom-modal">
+    render(
+      <Modal isOpen toggle={toggle} wrapClassName="my-custom-modal">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('my-custom-modal').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render with class "modal-content" and have custom class name if provided with contentClassName', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} contentClassName="my-custom-modal">
+    render(
+      <Modal isOpen toggle={toggle} contentClassName="my-custom-modal">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(
       document.querySelectorAll('.modal-content.my-custom-modal').length,
     ).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render with class "modal-backdrop" and have custom class name if provided with backdropClassName', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal
-        isOpen={isOpen}
-        toggle={toggle}
-        backdropClassName="my-custom-modal"
-      >
+    render(
+      <Modal isOpen toggle={toggle} backdropClassName="my-custom-modal">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(
       document.querySelectorAll('.modal-backdrop.my-custom-modal').length,
     ).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render with the class "modal-${size}" when size is passed', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} size="crazy">
+    render(
+      <Modal isOpen toggle={toggle} size="crazy">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(1);
     expect(document.getElementsByClassName('modal-crazy').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render modal when isOpen is true', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    render(
+      <Modal isOpen toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should render modal with default role of "dialog"', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    render(
+      <Modal isOpen toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(
       document.getElementsByClassName('modal')[0].getAttribute('role'),
     ).toBe('dialog');
-    wrapper.unmount();
   });
 
   it('should render modal with provided role', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} role="alert">
+    render(
+      <Modal isOpen toggle={toggle} role="alert">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(
       document.getElementsByClassName('modal')[0].getAttribute('role'),
     ).toBe('alert');
-    wrapper.unmount();
   });
 
   it('should render modal with aria-labelledby provided labelledBy', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} labelledBy="myModalTitle">
+    render(
+      <Modal isOpen toggle={toggle} labelledBy="myModalTitle">
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(
       document
         .getElementsByClassName('modal')[0]
         .getAttribute('aria-labelledby'),
     ).toBe('myModalTitle');
-    wrapper.unmount();
   });
 
   it('should not render modal when isOpen is false', () => {
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    render(
+      <Modal isOpenfalse toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
-    wrapper.unmount();
   });
 
   it('should toggle modal', () => {
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    const { rerender } = render(
+      <Modal isOpen={false} toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(false);
-    expect(wrapper.childAt(0).children().length).toBe(0);
     expect(document.getElementsByClassName('modal').length).toBe(0);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(0);
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
+    rerender(
+      <Modal isOpen toggle={toggle}>
+        Yo!
+      </Modal>,
+    );
 
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(true);
     expect(document.getElementsByClassName('modal').length).toBe(1);
     expect(document.getElementsByClassName('modal-backdrop').length).toBe(1);
-    wrapper.unmount();
   });
 
   it('should call onClosed & onOpened', () => {
-    jest.spyOn(Modal.prototype, 'onOpened');
-    jest.spyOn(Modal.prototype, 'onClosed');
     const onOpened = jest.fn();
     const onClosed = jest.fn();
-    const wrapper = didMount(
+    const { rerender } = render(
       <Modal
-        isOpen={isOpen}
+        isOpen={false}
         onOpened={onOpened}
         onClosed={onClosed}
         toggle={toggle}
@@ -494,44 +384,38 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(false);
     expect(onOpened).not.toHaveBeenCalled();
-    expect(Modal.prototype.onOpened).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
-    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
+    rerender(
+      <Modal isOpen onOpened={onOpened} onClosed={onClosed} toggle={toggle}>
+        Yo!
+      </Modal>,
+    );
+    jest.advanceTimersByTime(300);
+    expect(onOpened).toHaveBeenCalledTimes(1);
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
+    rerender(
+      <Modal
+        isOpen={false}
+        onOpened={onOpened}
+        onClosed={onClosed}
+        toggle={toggle}
+      >
+        Yo!
+      </Modal>,
+    );
 
-    expect(isOpen).toBe(true);
-    expect(onOpened).toHaveBeenCalled();
-    expect(Modal.prototype.onOpened).toHaveBeenCalled();
-    expect(onClosed).not.toHaveBeenCalled();
-    expect(Modal.prototype.onClosed).not.toHaveBeenCalled();
-
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-    expect(onClosed).toHaveBeenCalled();
-    expect(Modal.prototype.onClosed).toHaveBeenCalled();
-
-    wrapper.unmount();
+    jest.advanceTimersByTime(300);
+    expect(onOpened).toHaveBeenCalledTimes(1);
+    expect(onClosed).toHaveBeenCalledTimes(1);
   });
 
   it('should call onClosed & onOpened when fade={false}', () => {
     const onOpened = jest.fn();
     const onClosed = jest.fn();
-    const wrapper = didMount(
+    const { rerender } = render(
       <Modal
-        isOpen={isOpen}
+        isOpen={false}
         onOpened={onOpened}
         onClosed={onClosed}
         toggle={toggle}
@@ -541,583 +425,404 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    jest.runTimersToTime(1);
-    expect(isOpen).toBe(false);
     expect(onOpened).not.toHaveBeenCalled();
     expect(onClosed).not.toHaveBeenCalled();
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(1);
+    rerender(
+      <Modal
+        isOpen
+        onOpened={onOpened}
+        onClosed={onClosed}
+        toggle={toggle}
+        fade={false}
+      >
+        Yo!
+      </Modal>,
+    );
+    jest.advanceTimersByTime(1);
 
-    expect(isOpen).toBe(true);
-    expect(onOpened).toHaveBeenCalled();
+    expect(onOpened).toHaveBeenCalledTimes(1);
     expect(onClosed).not.toHaveBeenCalled();
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(1);
+    rerender(
+      <Modal
+        isOpen={false}
+        onOpened={onOpened}
+        onClosed={onClosed}
+        toggle={toggle}
+        fade={false}
+      >
+        Yo!
+      </Modal>,
+    );
+    jest.advanceTimersByTime(1);
 
-    expect(isOpen).toBe(false);
-    expect(onClosed).toHaveBeenCalled();
-
-    wrapper.unmount();
+    expect(onClosed).toHaveBeenCalledTimes(1);
+    expect(onOpened).toHaveBeenCalledTimes(1);
   });
 
-  it('should not call init when isOpen does not change', () => {
-    jest.spyOn(Modal.prototype, 'init');
-    jest.spyOn(Modal.prototype, 'componentDidUpdate');
-    const wrapper = mount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+  it('should call toggle when escape key pressed and not for enter key', () => {
+    const toggle = jest.fn();
+    render(
+      <Modal isOpen toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(false);
-    expect(Modal.prototype.init).not.toHaveBeenCalled();
-    expect(Modal.prototype.componentDidUpdate).not.toHaveBeenCalled();
+    user.keyboard('{enter}');
+    expect(toggle).not.toHaveBeenCalled();
 
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-    expect(Modal.prototype.init).not.toHaveBeenCalled();
-    expect(Modal.prototype.componentDidUpdate).toHaveBeenCalled();
-
-    wrapper.unmount();
+    user.keyboard('{esc}');
+    expect(toggle).toHaveBeenCalled();
   });
 
-  it('should close modal when escape key pressed', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+  it('should not call toggle when escape key pressed when keyboard is false', () => {
+    const toggle = jest.fn();
+    render(
+      <Modal isOpen toggle={toggle} keyboard={false}>
         Yo!
       </Modal>,
     );
-    const instance = wrapper.instance();
 
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    instance.handleEscape({ keyCode: 13 });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    const escapeKeyUpEvent = {
-      keyCode: keyCodes.esc,
-      preventDefault: jest.fn(() => {}),
-      stopPropagation: jest.fn(() => {}),
-    };
-
-    instance.handleEscape(escapeKeyUpEvent);
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-    expect(escapeKeyUpEvent.preventDefault.mock.calls.length).toBe(1);
-    expect(escapeKeyUpEvent.stopPropagation.mock.calls.length).toBe(1);
-
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(document.getElementsByClassName('modal').length).toBe(0);
-
-    wrapper.unmount();
+    user.keyboard('{esc}');
+    expect(toggle).not.toHaveBeenCalled();
   });
 
-  it('should not close modal when escape key pressed when keyboard is false', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} keyboard={false}>
+  it('should call toggle when clicking backdrop', () => {
+    const toggle = jest.fn();
+    render(
+      <Modal isOpen toggle={toggle}>
+        <button id="clicker">Does Nothing</button>
+      </Modal>,
+    );
+
+    user.click(screen.getByText(/does nothing/i));
+    expect(toggle).not.toHaveBeenCalled();
+
+    user.click(document.body.getElementsByClassName('modal')[0]);
+    expect(toggle).toHaveBeenCalled();
+  });
+
+  it('should not call toggle when clicking backdrop and backdrop is "static"', () => {
+    const toggle = jest.fn();
+    render(
+      <Modal isOpen toggle={toggle} backdrop="static">
+        <button id="clicker">Does Nothing</button>
+      </Modal>,
+    );
+
+    user.click(document.getElementsByClassName('modal-backdrop')[0]);
+    expect(toggle).not.toHaveBeenCalled();
+  });
+
+  it('should not call toggle when escape key pressed and backdrop is "static" and keyboard=false', () => {
+    const toggle = jest.fn();
+    const { debug } = render(
+      <Modal isOpen toggle={toggle} backdrop="static" keyboard={false}>
         Yo!
       </Modal>,
     );
-    const instance = wrapper.instance();
 
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    instance.handleEscape({ keyCode: 13 });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    instance.handleEscape({ keyCode: 27 });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    wrapper.unmount();
+    user.keyboard('{esc}');
+    expect(toggle).not.toHaveBeenCalled();
   });
 
-  it('should close modal when clicking backdrop', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+  it('should call toggle when escape key pressed and backdrop is "static" and keyboard=true', () => {
+    const toggle = jest.fn();
+    render(
+      <Modal isOpen toggle={toggle} backdrop="static" keyboard>
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-    //
-    document.getElementById('clicker').click();
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-
-    const modal = document.getElementsByClassName('modal')[0];
-
-    const mouseDownEvent = document.createEvent('MouseEvents');
-    mouseDownEvent.initEvent('mousedown', true, true);
-    modal.dispatchEvent(mouseDownEvent);
-
-    const clickEvent = document.createEvent('MouseEvents');
-    clickEvent.initEvent('click', true, true);
-    modal.dispatchEvent(clickEvent);
-
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-
-    wrapper.unmount();
-  });
-
-  it('should not close modal when clicking backdrop and backdrop is "static"', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
-        <button id="clicker">Does Nothing</button>
-      </Modal>,
-    );
-
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    document.getElementById('clicker').click();
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-
-    document.getElementsByClassName('modal-backdrop')[0].click();
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-
-    wrapper.unmount();
-  });
-
-  it('should not close modal when escape key pressed and backdrop is "static" and keyboard=false', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
-        <button id="clicker">Does Nothing</button>
-      </Modal>,
-    );
-    const instance = wrapper.instance();
-
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    const escapeKeyUpEvent = {
-      keyCode: keyCodes.esc,
-      preventDefault: jest.fn(() => {}),
-      stopPropagation: jest.fn(() => {}),
-    };
-
-    instance.handleEscape(escapeKeyUpEvent);
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-
-    wrapper.unmount();
-  });
-
-  it('should close modal when escape key pressed and backdrop is "static" and keyboard=true', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard>
-        <button id="clicker">Does Nothing</button>
-      </Modal>,
-    );
-    const instance = wrapper.instance();
-
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    const escapeKeyUpEvent = {
-      keyCode: keyCodes.esc,
-      preventDefault: jest.fn(() => {}),
-      stopPropagation: jest.fn(() => {}),
-    };
-
-    instance.handleEscape(escapeKeyUpEvent);
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-
-    wrapper.unmount();
+    user.keyboard('{esc}');
+    expect(toggle).toHaveBeenCalled();
   });
 
   it('should animate when backdrop is "static" and escape key pressed and keyboard=false', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" keyboard={false}>
+    render(
+      <Modal
+        isOpen
+        toggle={toggle}
+        backdrop="static"
+        keyboard={false}
+        data-testid="mandalorian"
+      >
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
-    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
 
-    jest.runTimersToTime(300);
+    user.keyboard('{esc}');
 
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
+    expect(screen.getByTestId('mandalorian').parentElement).toHaveClass(
+      'modal-static',
+    );
 
-    const escapeKeyUpEvent = {
-      keyCode: keyCodes.esc,
-      preventDefault: jest.fn(() => {}),
-      stopPropagation: jest.fn(() => {}),
-    };
+    jest.advanceTimersByTime(300);
 
-    wrapper.instance().handleEscape(escapeKeyUpEvent);
-    expect(spy).toHaveBeenCalled();
-
-    wrapper.unmount();
+    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass(
+      'modal-static',
+    );
   });
 
   it('should animate when backdrop is "static" and backdrop is clicked', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+    render(
+      <Modal isOpen toggle={toggle} backdrop="static" data-testid="mandalorian">
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
 
-    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+    user.click(document.getElementsByClassName('modal')[0]);
 
-    jest.runTimersToTime(300);
+    expect(screen.getByTestId('mandalorian').parentElement).toHaveClass(
+      'modal-static',
+    );
 
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
+    jest.advanceTimersByTime(300);
 
-    const modal = document.getElementsByClassName('modal')[0];
-
-    const mouseDownEvent = document.createEvent('MouseEvents');
-    mouseDownEvent.initEvent('mousedown', true, true);
-    modal.dispatchEvent(mouseDownEvent);
-
-    const clickEvent = document.createEvent('MouseEvents');
-    clickEvent.initEvent('click', true, true);
-    modal.dispatchEvent(clickEvent);
-
-    jest.runTimersToTime(300);
-    expect(spy).toHaveBeenCalled();
-
-    wrapper.unmount();
+    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass(
+      'modal-static',
+    );
   });
 
   it('should not animate when backdrop is "static" and modal is clicked', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static">
+    render(
+      <Modal isOpen toggle={toggle} backdrop="static" data-testid="mandalorian">
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
 
-    const spy = jest.spyOn(wrapper.instance(), 'handleStaticBackdropAnimation');
+    user.click(document.getElementsByClassName('modal-dialog')[0]);
 
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
-    expect(document.getElementsByClassName('modal').length).toBe(1);
-
-    const modalDialog = document.getElementsByClassName('modal-dialog')[0];
-
-    const mouseDownEvent = document.createEvent('MouseEvents');
-    mouseDownEvent.initEvent('mousedown', true, true);
-    modalDialog.dispatchEvent(mouseDownEvent);
-
-    const clickEvent = document.createEvent('MouseEvents');
-    clickEvent.initEvent('click', true, true);
-    modalDialog.dispatchEvent(clickEvent);
-
-    jest.runTimersToTime(300);
-    expect(spy).not.toHaveBeenCalled();
-
-    wrapper.unmount();
+    expect(screen.getByTestId('mandalorian').parentElement).not.toHaveClass(
+      'modal-static',
+    );
   });
 
   it('should destroy this._element', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    const { rerender, debug } = render(
+      <Modal isOpen toggle={toggle} wrapClassName="weird-class">
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
-    const instance = wrapper.instance();
 
-    jest.runTimersToTime(300);
-    expect(instance._element).toBeTruthy();
+    const element =
+      document.getElementsByClassName('weird-class')[0].parentElement;
+    expect(element).toBeInTheDocument();
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-    expect(instance._element).toBe(null);
-
-    wrapper.unmount();
+    rerender(
+      <Modal isOpen={false} toggle={toggle} wrapClassName="weird-class">
+        <button id="clicker">Does Nothing</button>
+      </Modal>,
+    );
+    jest.advanceTimersByTime(300);
+    expect(element).not.toBeInTheDocument();
   });
 
   it('should destroy this._element when unmountOnClose prop set to true', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose>
+    const { rerender, debug } = render(
+      <Modal isOpen toggle={toggle} unmountOnClose wrapClassName="weird-class">
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
-    const instance = wrapper.instance();
 
-    jest.runTimersToTime(300);
-    expect(instance._element).toBeTruthy();
+    const element =
+      document.getElementsByClassName('weird-class')[0].parentElement;
+    expect(element).toBeInTheDocument();
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-    expect(instance._element).toBe(null);
-
-    wrapper.unmount();
+    rerender(
+      <Modal
+        isOpen={false}
+        toggle={toggle}
+        unmountOnClose
+        wrapClassName="weird-class"
+      >
+        <button id="clicker">Does Nothing</button>
+      </Modal>,
+    );
+    jest.advanceTimersByTime(300);
+    expect(element).not.toBeInTheDocument();
   });
 
   it('should not destroy this._element when unmountOnClose prop set to false', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle} unmountOnClose={false}>
+    const { rerender } = render(
+      <Modal
+        isOpen
+        toggle={toggle}
+        unmountOnClose={false}
+        wrapClassName="weird-class"
+      >
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
-    const instance = wrapper.instance();
 
-    jest.runTimersToTime(300);
-    expect(instance._element).toBeTruthy();
+    const element =
+      document.getElementsByClassName('weird-class')[0].parentElement;
+    expect(element).toBeInTheDocument();
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(false);
-    expect(instance._element).toBeTruthy();
-
-    wrapper.unmount();
+    rerender(
+      <Modal
+        isOpen={false}
+        toggle={toggle}
+        unmountOnClose={false}
+        wrapClassName="weird-class"
+      >
+        <button id="clicker">Does Nothing</button>
+      </Modal>,
+    );
+    expect(element).toBeInTheDocument();
   });
 
   it('should destroy this._element on unmount', () => {
-    isOpen = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    const { unmount } = render(
+      <Modal isOpen toggle={toggle} wrapClassName="weird-class">
         <button id="clicker">Does Nothing</button>
       </Modal>,
     );
-    const instance = wrapper.instance();
-
-    jest.runTimersToTime(300);
-    expect(instance._element).toBeTruthy();
-
-    wrapper.unmount();
-    jest.runTimersToTime(300);
-
-    expect(instance._element).toBe(null);
+    unmount();
+    jest.advanceTimersByTime(300);
+    expect(document.getElementsByClassName('modal').length).toBe(0);
   });
 
   it('should render nested modals', () => {
-    isOpen = true;
-    isOpenNested = true;
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    const { unmount } = render(
+      <Modal isOpen toggle={toggle}>
         <ModalBody>
-          <Modal isOpen={isOpenNested} toggle={toggleNested}>
+          <Modal isOpen toggle={() => {}}>
             Yo!
           </Modal>
         </ModalBody>
       </Modal>,
     );
 
-    jest.runTimersToTime(300);
     expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
     expect(document.body.className).toBe('modal-open');
 
-    toggleNested();
-    jest.runTimersToTime(300);
-    expect(isOpenNested).toBe(false);
-    expect(document.getElementsByClassName('modal-dialog').length).toBe(2);
-    expect(document.body.className).toBe('modal-open');
+    unmount();
 
-    wrapper.unmount();
     expect(document.getElementsByClassName('modal-dialog').length).toBe(0);
-    expect(document.body.className).toBe('');
   });
 
   it('should remove exactly modal-open class from body', () => {
     // set a body class which includes modal-open
     document.body.className = 'my-modal-opened';
 
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    const { rerender } = render(
+      <Modal isOpen={false} toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    // assert that the modal is closed and the body class is what was set initially
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(false);
     expect(document.body.className).toBe('my-modal-opened');
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
+    rerender(
+      <Modal isOpen toggle={toggle}>
+        Yo!
+      </Modal>,
+    );
 
-    // assert that the modal is open and the body class is what was set initially + modal-open
-    jest.runTimersToTime(300);
-    expect(isOpen).toBe(true);
     expect(document.body.className).toBe('my-modal-opened modal-open');
 
-    // append another body class which includes modal-open
     // using this to test if replace will leave a space when removing modal-open
     document.body.className += ' modal-opened';
     expect(document.body.className).toBe(
       'my-modal-opened modal-open modal-opened',
     );
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
+    rerender(
+      <Modal isOpen={false} toggle={toggle}>
+        Yo!
+      </Modal>,
+    );
 
-    // assert that the modal is closed and the body class is what was set initially
-    jest.runTimersToTime(301);
-    expect(isOpen).toBe(false);
+    jest.advanceTimersByTime(300);
     expect(document.body.className).toBe('my-modal-opened modal-opened');
-
-    wrapper.unmount();
   });
 
   it('should call onEnter & onExit props if provided', () => {
     const onEnter = jest.fn();
     const onExit = jest.fn();
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} onEnter={onEnter} onExit={onExit} toggle={toggle}>
+    const { rerender, unmount } = render(
+      <Modal isOpen={false} onEnter={onEnter} onExit={onExit} toggle={toggle}>
         Yo!
       </Modal>,
     );
 
-    expect(isOpen).toBe(false);
     expect(onEnter).toHaveBeenCalled();
     expect(onExit).not.toHaveBeenCalled();
 
     onEnter.mockReset();
     onExit.mockReset();
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    expect(isOpen).toBe(true);
+    rerender(
+      <Modal isOpen onEnter={onEnter} onExit={onExit} toggle={toggle}>
+        Yo!
+      </Modal>,
+    );
     expect(onEnter).not.toHaveBeenCalled();
     expect(onExit).not.toHaveBeenCalled();
 
     onEnter.mockReset();
     onExit.mockReset();
 
-    toggle();
-    wrapper.setProps({
-      isOpen: isOpen,
-    });
-    jest.runTimersToTime(300);
-
-    wrapper.unmount();
+    rerender(
+      <Modal isOpen={false} onEnter={onEnter} onExit={onExit} toggle={toggle}>
+        Yo!
+      </Modal>,
+    );
+    unmount();
     expect(onEnter).not.toHaveBeenCalled();
     expect(onExit).toHaveBeenCalled();
   });
 
   it('should update element z index when prop changes', () => {
-    const wrapper = shallow(
-      <Modal isOpen zIndex={0}>
+    const { debug, rerender } = render(
+      <Modal isOpen zIndex={0} wrapClassName="sandman">
         Yo!
       </Modal>,
     );
-    expect(wrapper.instance()._element.style.zIndex).toBe('0');
-    wrapper.setProps({ zIndex: 1 });
-    expect(wrapper.instance()._element.style.zIndex).toBe('1');
+
+    expect(
+      document.getElementsByClassName('sandman')[0].parentElement.style.zIndex,
+    ).toBe('0');
+
+    rerender(
+      <Modal isOpen zIndex={1} wrapClassName="sandman">
+        Yo!
+      </Modal>,
+    );
+
+    expect(
+      document.getElementsByClassName('sandman')[0].parentElement.style.zIndex,
+    ).toBe('1');
   });
 
-  it('should allow focus on only focusable elements', () => {
-    isOpen = true;
-
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+  it('should allow focus on only focusable elements and tab through them', () => {
+    render(
+      <Modal isOpen toggle={toggle}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           <a alt="test" href="/">
-            Test
+            First Test
           </a>
           <map name="test">
             <area alt="test" href="/" coords="200,5,200,30" />
           </map>
-          <input type="text" />
+          <input type="text" aria-label="test text input" />
           <input type="hidden" />
           <input type="text" disabled value="Test" />
           <select name="test" id="select_test">
-            <option>Test item</option>
+            <option>Second item</option>
           </select>
           <select name="test" id="select_test_disabled" disabled>
-            <option>Test item</option>
+            <option>Third item</option>
           </select>
           <textarea
             name="textarea_test"
             id="textarea_test"
             cols="30"
             rows="10"
+            aria-label="test text area"
           />
           <textarea
             name="textarea_test_disabled"
@@ -1140,246 +845,246 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    const instance = wrapper.instance();
-    expect(instance.getFocusableChildren().length).toBe(9);
-    wrapper.unmount();
-  });
-
-  it('should tab through focusable elements', () => {
-    isOpen = true;
-
-    const mock = jest.fn();
-
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
-        <ModalBody>
-          <Button onFocus={mock} color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalBody>
-      </Modal>,
-    );
-
-    const instance = wrapper.instance();
-    expect(instance.getFocusedChild()).not.toBe(
-      instance.getFocusableChildren()[0],
-    );
-    wrapper
-      .find('.modal')
-      .hostNodes()
-      .simulate('keyDown', { which: 9, key: 'Tab', keyCode: 9 });
-    expect(instance.getFocusedChild()).toBe(instance.getFocusableChildren()[0]);
-    expect(mock).toHaveBeenCalled();
-
-    wrapper.unmount();
+    user.tab();
+    expect(screen.getByLabelText(/close/i)).toHaveFocus();
+    user.tab();
+    expect(screen.getByText(/first test/i)).toHaveFocus();
+    user.tab();
+    expect(screen.getByLabelText(/test text input/i)).toHaveFocus();
+    user.tab();
+    expect(screen.getByText(/second item/i).parentElement).toHaveFocus();
+    user.tab();
+    expect(screen.getByLabelText(/test text area/i)).toHaveFocus();
+    user.tab();
+    expect(screen.getByText(/test tab index/i)).toHaveFocus();
+    user.tab();
+    expect(screen.getByText(/cancel/i)).toHaveFocus();
+    user.tab();
+    expect(screen.getByLabelText(/close/i)).toHaveFocus();
   });
 
   it('should return the focus to the last focused element before the modal has opened', () => {
-    function MockComponent({ isOpen = false }) {
-      return (
-        <>
-          <button className="focus">Focused</button>
-          <Modal isOpen={isOpen}>
-            <ModalBody>Whatever</ModalBody>
-          </Modal>
-        </>
-      );
-    }
-    const wrapper = didMount(<MockComponent />);
-    const button = wrapper.find('.focus').hostNodes().getDOMNode();
-    button.focus();
-    wrapper.setProps({ isOpen: true });
-    wrapper.setProps({ isOpen: false });
-    jest.runAllTimers();
+    const { rerender } = render(
+      <>
+        <button className="focus">Focused</button>
+        <Modal isOpen={false}>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
 
-    expect(document.activeElement === button).toEqual(true);
-    wrapper.unmount();
+    user.tab();
+    expect(screen.getByText(/focused/i)).toHaveFocus();
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal isOpen>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal isOpen={false}>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    jest.runAllTimers();
+    expect(screen.getByText(/focused/i)).toHaveFocus();
   });
 
   it('should not return the focus to the last focused element before the modal has opened when "returnFocusAfterClose" is false', () => {
-    function MockComponent({ isOpen = false }) {
-      return (
-        <>
-          <button className="focus">Focused</button>
-          <Modal isOpen={isOpen} returnFocusAfterClose={false}>
-            <ModalBody>Whatever</ModalBody>
-          </Modal>
-        </>
-      );
-    }
-    const wrapper = didMount(<MockComponent />);
-    const button = wrapper.find('.focus').hostNodes().getDOMNode();
-    button.focus();
-    wrapper.setProps({ isOpen: true });
-    wrapper.setProps({ isOpen: false });
-    jest.runAllTimers();
+    const { rerender } = render(
+      <>
+        <button className="focus">Focused</button>
+        <Modal returnFocusAfterClose={false} isOpen={false}>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
 
-    expect(document.activeElement === button).toEqual(false);
-    wrapper.unmount();
+    user.tab();
+    expect(screen.getByText(/focused/i)).toHaveFocus();
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal returnFocusAfterClose={false} isOpen>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal returnFocusAfterClose={false} isOpen={false}>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    jest.runAllTimers();
+    expect(screen.getByText(/focused/i)).not.toHaveFocus();
   });
 
   it('should return the focus to the last focused element before the modal has opened when "unmountOnClose" is false', () => {
-    function MockComponent({ isOpen = false }) {
-      return (
-        <>
-          <button className="focus">Focused</button>
-          <Modal isOpen={isOpen} unmountOnClose={false}>
-            <ModalBody>Whatever</ModalBody>
-          </Modal>
-        </>
-      );
-    }
-    const wrapper = didMount(<MockComponent />);
-    const button = wrapper.find('.focus').hostNodes().getDOMNode();
-    button.focus();
-    wrapper.setProps({ isOpen: true });
-    wrapper.setProps({ isOpen: false });
-    jest.runAllTimers();
+    const { rerender } = render(
+      <>
+        <button className="focus">Focused</button>
+        <Modal unmountOnClose={false} isOpen={false}>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
 
-    expect(document.activeElement === button).toEqual(true);
-    wrapper.unmount();
+    user.tab();
+    expect(screen.getByText(/focused/i)).toHaveFocus();
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal unmountOnClose={false} isOpen>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal unmountOnClose={false} isOpen={false}>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    jest.runAllTimers();
+    expect(screen.getByText(/focused/i)).toHaveFocus();
   });
 
   it('should not return the focus to the last focused element before the modal has opened when "returnFocusAfterClose" is false and "unmountOnClose" is false', () => {
-    function MockComponent({ isOpen = false }) {
-      return (
-        <>
-          <button className="focus" />
-          <Modal
-            isOpen={isOpen}
-            returnFocusAfterClose={false}
-            unmountOnClose={false}
-          >
-            <ModalBody>Whatever</ModalBody>
-          </Modal>
-        </>
-      );
-    }
-    const wrapper = didMount(<MockComponent />);
-    const button = wrapper.find('.focus').hostNodes().getDOMNode();
-    button.focus();
-    wrapper.setProps({ isOpen: true });
-    wrapper.setProps({ isOpen: false });
-    jest.runAllTimers();
+    const { rerender } = render(
+      <>
+        <button className="focus">Focused</button>
+        <Modal
+          unmountOnClose={false}
+          returnFocusAfterClose={false}
+          isOpen={false}
+        >
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
 
-    expect(document.activeElement === button).toEqual(false);
-    wrapper.unmount();
+    user.tab();
+    expect(screen.getByText(/focused/i)).toHaveFocus();
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal unmountOnClose={false} returnFocusAfterClose={false} isOpen>
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    rerender(
+      <>
+        <button className="focus">Focused</button>
+        <Modal
+          unmountOnClose={false}
+          returnFocusAfterClose={false}
+          isOpen={false}
+        >
+          <ModalBody>Whatever</ModalBody>
+        </Modal>
+      </>,
+    );
+
+    jest.runAllTimers();
+    expect(screen.getByText(/focused/i)).not.toHaveFocus();
   });
 
   it('should attach/detach trapFocus for dialogs', () => {
-    const addEventListenerFn = document.addEventListener;
-    const removeEventListenerFn = document.removeEventListener;
-    document.addEventListener = jest.fn();
-    document.removeEventListener = jest.fn();
+    const addEventListener = jest.spyOn(document, 'addEventListener');
+    const removeEventListener = jest.spyOn(document, 'removeEventListener');
 
-    function MockComponent() {
-      return (
-        <Modal isOpen>
-          <ModalBody>
-            <Button className="focus">focusable element</Button>
-          </ModalBody>
-        </Modal>
-      );
-    }
-    const wrapper = didMount(<MockComponent />);
-    const modal_instance = wrapper.find(Modal).instance();
-
-    expect(document.addEventListener.mock.calls.length).toBe(1);
-    expect(document.addEventListener.mock.calls[0]).toEqual([
-      'focus',
-      modal_instance.trapFocus,
-      true,
-    ]);
-
-    wrapper.unmount();
-
-    expect(document.removeEventListener.mock.calls.length).toBe(1);
-    expect(document.removeEventListener.mock.calls[0]).toEqual([
-      'focus',
-      modal_instance.trapFocus,
-      true,
-    ]);
-
-    // restore global document mock
-    document.addEventListener = addEventListenerFn;
-    document.removeEventListener = removeEventListenerFn;
-  });
-
-  it('should trap focus inside the open dialog', () => {
-    function MockComponent() {
-      return (
-        <>
-          <Button className="first">Focused</Button>
-          <Modal isOpen trapFocus>
-            <ModalBody>
-              Something else to see
-              <Button className="focus">focusable element</Button>
-            </ModalBody>
-          </Modal>
-        </>
-      );
-    }
-    const wrapper = didMount(<MockComponent />);
-    const button = wrapper.find('.first').hostNodes().getDOMNode();
-    const button2 = wrapper.find('.focus').hostNodes().getDOMNode();
-    const modal_instance = wrapper.find(Modal).instance();
-    const ev_mock = {
-      target: button,
-      preventDefault: jest.fn(),
-      stopPropagation: jest.fn(),
-    };
-    button.focus();
-    modal_instance.trapFocus(ev_mock);
-    jest.runAllTimers();
-
-    expect(document.activeElement).not.toBe(button);
-    expect(document.activeElement).toBe(button2);
-    expect(ev_mock.preventDefault.mock.calls.length).toBe(1);
-    expect(ev_mock.stopPropagation.mock.calls.length).toBe(1);
-    wrapper.unmount();
-  });
-
-  it('should not trap focus when there is a nested modal', () => {
-    isOpen = true;
-
-    const wrapper = didMount(
-      <Modal isOpen={isOpen} toggle={toggle}>
+    const { unmount } = render(
+      <Modal isOpen>
         <ModalBody>
-          <Button className="b0" onClick={toggle}>
-            Cancel
-          </Button>
-          <Modal isOpen>
-            <ModalBody>
-              <Button className="b1">Click 1</Button>
-              <Button className="b2">Click 2</Button>
-            </ModalBody>
-          </Modal>
+          <Button className="focus">focusable element</Button>
         </ModalBody>
       </Modal>,
     );
 
-    const instance = wrapper.instance();
-    const nested = wrapper.find(Modal).at(1).instance();
-    const button = wrapper.find('.b0').hostNodes().getDOMNode();
-    const button1 = wrapper.find('.b1').hostNodes().getDOMNode();
-    const button2 = wrapper.find('.b2').hostNodes().getDOMNode();
-    const ev_mock = {
-      target: button,
-      preventDefault: jest.fn(),
-      stopPropagation: jest.fn(),
-    };
-    button2.focus();
-    instance.trapFocus(ev_mock);
-    jest.runAllTimers();
+    expect(addEventListener).toHaveBeenCalledTimes(1);
+    expect(addEventListener).toHaveBeenCalledWith(
+      'focus',
+      expect.any(Function),
+      true,
+    );
 
-    expect(document.activeElement).not.toBe(button);
-    expect(document.activeElement).toBe(button2);
+    unmount();
 
-    wrapper.unmount();
+    expect(removeEventListener).toHaveBeenCalledTimes(1);
+    expect(removeEventListener).toHaveBeenCalledWith(
+      'focus',
+      expect.any(Function),
+      true,
+    );
+
+    addEventListener.mockRestore();
+    removeEventListener.mockRestore();
   });
 
-  it('should not handle tab if there is a nested Modal', () => {
-    const wrapper = didMount(
+  it('should trap focus inside the open dialog', () => {
+    const { rerender } = render(
+      <>
+        <Button className="first">Focused</Button>
+        <Modal isOpen={false} trapFocus>
+          <ModalBody>
+            Something else to see
+            <Button className="focus">focusable element</Button>
+          </ModalBody>
+        </Modal>
+      </>,
+    );
+
+    screen.getByText(/focused/i).focus();
+
+    expect(screen.getByText(/focused/i)).toHaveFocus();
+
+    rerender(
+      <>
+        <Button className="first">Focused</Button>
+        <Modal isOpen trapFocus data-testid="modal">
+          <ModalBody>
+            Something else to see
+            <Button className="focus">focusable element</Button>
+          </ModalBody>
+        </Modal>
+      </>,
+    );
+
+    jest.runAllTimers();
+    expect(screen.getByText(/focused/i)).not.toHaveFocus();
+
+    expect(screen.getByTestId('modal').parentElement).toHaveFocus();
+    // pressing tab shouldn't move focus outside the modal
+    user.tab();
+    expect(screen.getByText(/focusable element/i)).toHaveFocus();
+    user.tab();
+    expect(screen.getByText(/focusable element/i)).toHaveFocus();
+  });
+
+  it('tab should focus on inside modal children for nested modal', () => {
+    render(
       <Modal isOpen toggle={toggle}>
         <ModalBody>
           <Button className="b0" onClick={toggle}>
@@ -1394,25 +1099,10 @@ describe('Modal', () => {
       </Modal>,
     );
 
-    const instance = wrapper.instance();
-    const nested = wrapper.find(Modal).at(1).instance();
-    const button = wrapper.find('.b0').hostNodes().getDOMNode();
-    const button1 = wrapper.find('.b1').hostNodes().getDOMNode();
-    const ev_mock = {
-      target: button1,
-      which: 9,
-      shiftKey: true,
-      preventDefault: jest.fn(),
-      stopPropagation: jest.fn(),
-    };
-    button1.focus();
-    instance.getFocusableChildren = jest.fn();
-    instance.getFocusableChildren.mockReturnValue([]);
-    instance.handleTab(ev_mock);
-    jest.runAllTimers();
-
-    expect(instance.getFocusableChildren.mock.calls.length).toBe(0);
-
-    wrapper.unmount();
+    user.tab();
+    expect(screen.getByText(/click 1/i)).toHaveFocus();
+    // pressing tab doesn't take focus out of inside modal
+    user.tab();
+    expect(screen.getByText(/click 1/i)).toHaveFocus();
   });
 });

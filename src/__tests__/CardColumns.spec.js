@@ -1,27 +1,20 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { CardColumns } from '..';
+import {
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('CardColumns', () => {
   it('should render with "card-columns" class', () => {
-    const wrapper = shallow(<CardColumns>Yo!</CardColumns>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('card-columns')).toBe(true);
+    testForDefaultClass(CardColumns, 'card-columns');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<CardColumns className="other">Yo!</CardColumns>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('card-columns')).toBe(true);
+    testForCustomClass(CardColumns);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<CardColumns tag="main">Yo!</CardColumns>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('card-columns')).toBe(true);
-    expect(wrapper.find('main').length).toBe(1);
+    testForCustomTag(CardColumns);
   });
 });
