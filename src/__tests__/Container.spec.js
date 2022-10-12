@@ -1,45 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Container } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+} from '../testUtils';
 
 describe('Container', () => {
   it('should render .container markup', () => {
-    const wrapper = shallow(<Container />);
-
-    expect(wrapper.html()).toBe('<div class="container"></div>');
+    render(<Container data-testid="container" />);
+    expect(screen.getByTestId('container')).toHaveClass('container');
   });
 
   it('should render .container-fluid markup', () => {
-    const wrapper = shallow(<Container fluid />);
-
-    expect(wrapper.html()).toBe('<div class="container-fluid"></div>');
+    render(<Container fluid data-testid="container" />);
+    expect(screen.getByTestId('container')).toHaveClass('container-fluid');
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<Container>Children</Container>);
-
-    expect(wrapper.html()).toBe('<div class="container">Children</div>');
+    testForChildrenInComponent(Container);
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Container className="extra" />);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('container')).toBe(true);
+    testForCustomClass(Container);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Container tag="main">Yo!</Container>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('container')).toBe(true);
-    expect(wrapper.type()).toBe('main');
+    testForCustomTag(Container);
   });
 
   it('should render responsive breakpoints with string fluid props', () => {
-    const wrapper = shallow(<Container fluid="md" />);
-
-    expect(wrapper.hasClass('container')).toBe(false);
-    expect(wrapper.hasClass('container-md')).toBe(true);
+    render(<Container fluid="md" data-testid="container" />);
+    expect(screen.getByTestId('container')).toHaveClass('container-md');
+    expect(screen.getByTestId('container')).not.toHaveClass('container-fluid');
   });
 });

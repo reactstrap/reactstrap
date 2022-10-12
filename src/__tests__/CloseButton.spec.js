@@ -1,41 +1,45 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import CloseButton from '../CloseButton';
 
 describe('CloseButton', () => {
   it('should render a close button', () => {
-    const wrapper = shallow(<CloseButton />);
-    expect(wrapper.hasClass('btn-close')).toBe(true);
+    render(<CloseButton data-testid="close-btn" />);
+    expect(screen.getByTestId('close-btn')).toHaveClass('btn-close');
   });
 
   it('should render white variant', () => {
-    const wrapper = shallow(<CloseButton variant="white" />);
-    expect(wrapper.hasClass('btn-close-white')).toBe(true);
+    render(<CloseButton variant="white" data-testid="close-btn" />);
+    expect(screen.getByTestId('close-btn')).toHaveClass('btn-close-white');
   });
 
   describe('onClick', () => {
     it('calls props.onClick if it exists', () => {
       const onClick = jest.fn();
-      const wrapper = mount(<CloseButton onClick={onClick} />);
+      render(<CloseButton onClick={onClick} data-testid="btn-close" />);
 
-      wrapper.find('button').hostNodes().simulate('click');
+      user.click(screen.getByTestId('btn-close'));
       expect(onClick).toHaveBeenCalled();
     });
 
     it('returns the value returned by props.onClick', () => {
       const onClick = jest.fn(() => 1234);
-      const wrapper = mount(<CloseButton onClick={onClick} />);
+      render(<CloseButton onClick={onClick} data-testid="btn-close" />);
 
-      const result = wrapper.find('button').props().onClick();
-      expect(onClick).toHaveBeenCalled();
-      expect(result).toEqual(1234);
+      user.click(screen.getByTestId('btn-close'));
+
+      expect(onClick.mock.results[0].value).toBe(1234);
     });
 
     it('is not called when disabled', () => {
       const onClick = jest.fn();
-      const wrapper = mount(<CloseButton onClick={onClick} disabled />);
+      render(
+        <CloseButton onClick={onClick} disabled data-testid="btn-close" />,
+      );
+      user.click(screen.getByTestId('btn-close'));
 
-      wrapper.find('button').hostNodes().simulate('click');
       expect(onClick).not.toHaveBeenCalled();
     });
   });
