@@ -1,27 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { ModalBody } from '..';
+import {
+  testForCustomTag
+} from '../testUtils';
 
 describe('ModalBody', () => {
-  it('should render with "modal-body" class', () => {
-    const wrapper = shallow(<ModalBody>Yo!</ModalBody>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('modal-body')).toBe(true);
+  it('should render with "modal-body" class', () => {
+    render(<ModalBody data-testid="modalbody-id">Yo!</ModalBody>);
+    expect(screen.getByTestId('modalbody-id')).toHaveTextContent('Yo!');
+    expect(screen.getByTestId('modalbody-id')).toHaveClass('modal-body');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<ModalBody className="other">Yo!</ModalBody>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('modal-body')).toBe(true);
+    render(<ModalBody className="other" data-testid="modalbody-id">Yo!</ModalBody>);
+    expect(screen.getByTestId('modalbody-id')).toHaveClass('modal-body');
+    expect(screen.getByTestId('modalbody-id')).toHaveClass('other');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<ModalBody tag="main">Yo!</ModalBody>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('modal-body')).toBe(true);
-    expect(wrapper.type()).toBe('main');
+    testForCustomTag(ModalBody);
   });
+
 });
