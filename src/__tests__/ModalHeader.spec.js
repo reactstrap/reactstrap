@@ -1,44 +1,55 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { ModalHeader } from '..';
 
 describe('ModalHeader', () => {
-  it('should render with "modal-header" class', () => {
-    const wrapper = shallow(<ModalHeader>Yo!</ModalHeader>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('modal-header')).toBe(true);
+  it('should render with "modal-header" class', () => {
+    render(
+      <ModalHeader data-testid="modalheader-id">
+        Yo!
+      </ModalHeader>
+    );
+    expect(screen.getByTestId('modalheader-id')).toHaveTextContent('Yo!');
+    expect(screen.getByTestId('modalheader-id')).toHaveClass('modal-header');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<ModalHeader className="other">Yo!</ModalHeader>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('modal-header')).toBe(true);
+      render(
+        <ModalHeader className="other" data-testid="modalheader-id">
+          Yo!
+        </ModalHeader>
+      );
+      expect(screen.getByTestId('modalheader-id')).toHaveClass('modal-header');
+      expect(screen.getByTestId('modalheader-id')).toHaveClass('other');
   });
 
   it('should render close button', () => {
-    const wrapper = shallow(
-      <ModalHeader toggle={() => {}} className="other">
+    const {container} = render(
+      <ModalHeader toggle={() => {}} className="other" data-testid="modalheader-id">
         Yo!
-      </ModalHeader>,
+      </ModalHeader>
     );
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('modal-header')).toBe(true);
-    expect(wrapper.find('button.btn-close').length).toBe(1);
+    expect(container.getElementsByClassName('btn-close')).toHaveLength(1);
+    expect(screen.getByTestId('modalheader-id')).toHaveClass('modal-header');
+    expect(screen.getByTestId('modalheader-id')).toHaveClass('other');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<ModalHeader tag="p">Yo!</ModalHeader>).childAt(0);
+    render(<ModalHeader tag="p" data-testid="modalheader-id">Yo!</ModalHeader>);
+    expect(screen.getByTestId('modalheader-id')).toHaveTextContent('Yo!');
+    expect(screen.getByTestId('modalheader-id').firstChild.tagName.toLowerCase()).toMatch('p');
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.type()).toBe('p');
   });
 
   it('should render custom wrapping tag', () => {
-    const wrapper = shallow(<ModalHeader wrapTag="main">Yo!</ModalHeader>);
-
-    expect(wrapper.type()).toBe('main');
+    render(
+      <ModalHeader wrapTag="main" data-testid="modalheader-id">
+        Yo!
+      </ModalHeader>
+    );
+    expect(screen.getByTestId('modalheader-id').tagName.toLowerCase()).toMatch('main');
   });
+
 });
