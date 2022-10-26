@@ -116,7 +116,6 @@ class Modal extends React.Component {
 
     this._element = null;
     this._originalBodyPadding = null;
-    this._originalBodyOverflow = null;
     this.getFocusableChildren = this.getFocusableChildren.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
@@ -371,9 +370,6 @@ class Modal extends React.Component {
     }
 
     this._originalBodyPadding = getOriginalBodyPadding();
-    this._originalBodyOverflow = window.getComputedStyle(
-      document.body,
-    ).overflow;
     conditionallyUpdateScrollbar();
 
     if (Modal.openCount === 0) {
@@ -419,7 +415,7 @@ class Modal extends React.Component {
       document.body.className = document.body.className
         .replace(modalOpenClassNameRegex, ' ')
         .trim();
-      document.body.style.overflow = this._originalBodyOverflow;
+      document.body.style.removeProperty('overflow');
     }
     this.manageFocusAfterClose();
     Modal.openCount = Math.max(0, Modal.openCount - 1);
