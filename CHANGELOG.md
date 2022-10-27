@@ -137,6 +137,14 @@
 
 
 
+### [9.1.5](https://www.github.com/reactstrap/reactstrap/compare/v9.1.4...v9.1.5) (2022-10-27)
+
+
+### Bug Fixes
+
+* **accordion:** type error of open in uncontrolledAccordionProps ([#2611](https://www.github.com/reactstrap/reactstrap/issues/2611)) ([b46a23c](https://www.github.com/reactstrap/reactstrap/commit/b46a23c897cca1e8c53729c5e222411028be169d))
+* ensure initial overflow status is stored when opening multiple modals ([c0191ec](https://www.github.com/reactstrap/reactstrap/commit/c0191ecbbba96f3652e6359111a258a33771e2c1))
+
 ### [9.1.4](https://www.github.com/reactstrap/reactstrap/compare/v9.1.3...v9.1.4) (2022-08-26)
 
 
