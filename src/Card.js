@@ -58,4 +58,4 @@ function Card(props) {
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
 
-export default Card;
+export default React.forwardRef((props, ref) => <Card innerRef={ref} {...props} />);

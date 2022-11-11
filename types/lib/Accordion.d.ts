@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { CSSModule } from './utils';
-
 export interface AccordionProps extends React.HTMLAttributes<HTMLElement> {
   tag?: React.ElementType;
   cssModule?: CSSModule;
   flush?: boolean;
+  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
   open: string | string[];
 }

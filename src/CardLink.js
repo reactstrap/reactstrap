@@ -31,4 +31,4 @@ function CardLink(props) {
 CardLink.propTypes = propTypes;
 CardLink.defaultProps = defaultProps;
 
-export default CardLink;
+export default React.forwardRef((props, ref) => <CardLink innerRef={ref} {...props} />);

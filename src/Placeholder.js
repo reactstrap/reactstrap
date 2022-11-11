@@ -61,4 +61,4 @@ function Placeholder(props) {
 Placeholder.propTypes = propTypes;
 Placeholder.defaultProps = defaultProps;
 
-export default Placeholder;
+export default React.forwardRef((props, ref) => <Placeholder innerRef={ref} {...props} />);

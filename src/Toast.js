@@ -69,4 +69,4 @@ function Toast(props) {
 Toast.propTypes = propTypes;
 Toast.defaultProps = defaultProps;
 
-export default Toast;
+export default React.forwardRef((props, ref) => <Toast innerRef={ref} {...props} />);

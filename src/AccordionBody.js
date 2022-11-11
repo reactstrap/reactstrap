@@ -32,7 +32,7 @@ function AccordionBody(props) {
     className,
     cssModule,
     tag: Tag,
-    innerRef,
+    innerRef = ref,
     children,
     accordionId,
     ...attributes
@@ -62,4 +62,4 @@ function AccordionBody(props) {
 AccordionBody.propTypes = propTypes;
 AccordionBody.defaultProps = defaultProps;
 
-export default AccordionBody;
+export default React.forwardRef((props, ref) => <AccordionBody innerRef={ref} {...props} />);

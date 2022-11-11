@@ -468,4 +468,4 @@ Offcanvas.propTypes = propTypes;
 Offcanvas.defaultProps = defaultProps;
 Offcanvas.openCount = 0;
 
-export default Offcanvas;
+export default React.forwardRef((props, ref) => <Offcanvas innerRef={ref} {...props} />);

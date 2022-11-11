@@ -60,4 +60,4 @@ function Badge(props) {
 Badge.propTypes = propTypes;
 Badge.defaultProps = defaultProps;
 
-export default Badge;
+export default React.forwardRef((props, ref) => <Badge innerRef={ref} {...props} />);
