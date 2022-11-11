@@ -16,6 +16,7 @@ export interface FadeProps extends React.HTMLAttributes<HTMLElement> {
   transitionLeave?: boolean;
   onLeave?: () => void;
   onEnter?: () => void;
+  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
 }
 

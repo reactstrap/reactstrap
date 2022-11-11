@@ -4,6 +4,7 @@ import { CSSModule } from './utils';
 export interface AccordionHeaderProps extends React.HTMLAttributes<HTMLElement> {
   tag?: React.ElementType;
   cssModule?: CSSModule;
+  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
   targetId: string;
 }

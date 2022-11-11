@@ -34,4 +34,4 @@ function CardBody(props) {
 CardBody.propTypes = propTypes;
 CardBody.defaultProps = defaultProps;
 
-export default CardBody;
+export default React.forwardRef((props, ref) => <CardBody innerRef={ref} {...props} />);

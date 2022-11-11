@@ -109,4 +109,4 @@ function Button(props) {
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 
-export default Button;
+export default React.forwardRef((props, ref) => <Button innerRef={ref} {...props} />);

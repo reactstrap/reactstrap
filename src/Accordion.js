@@ -62,4 +62,4 @@ function Accordion(props) {
 Accordion.propTypes = propTypes;
 Accordion.defaultProps = defaultProps;
 
-export default Accordion;
+export default React.forwardRef((props, ref) => <Accordion innerRef={ref} {...props} />);

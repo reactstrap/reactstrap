@@ -67,4 +67,4 @@ function AccordionHeader(props) {
 AccordionHeader.propTypes = propTypes;
 AccordionHeader.defaultProps = defaultProps;
 
-export default AccordionHeader;
+export default React.forwardRef((props, ref) => <AccordionHeader innerRef={ref} {...props} />);

@@ -40,4 +40,4 @@ function CloseButton(props) {
 CloseButton.propTypes = propTypes;
 CloseButton.defaultProps = defaultProps;
 
-export default CloseButton;
+export default React.forwardRef((props, ref) => <CloseButton innerRef={ref} {...props} />);

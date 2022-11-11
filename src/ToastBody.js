@@ -31,4 +31,4 @@ function ToastBody(props) {
 ToastBody.propTypes = propTypes;
 ToastBody.defaultProps = defaultProps;
 
-export default ToastBody;
+export default React.forwardRef((props, ref) => <ToastBody innerRef={ref} {...props} />);

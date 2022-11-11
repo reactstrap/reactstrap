@@ -43,4 +43,4 @@ function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
 UncontrolledAccordion.propTypes = propTypes;
 UncontrolledAccordion.defaultProps = defaultProps;
 
-export default UncontrolledAccordion;
+export default React.forwardRef((props, ref) => <UncontrolledAccordion innerRef={ref} {...props} />);

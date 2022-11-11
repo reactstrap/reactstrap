@@ -144,4 +144,4 @@ class Input extends React.Component {
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
 
-export default Input;
+export default React.forwardRef((props, ref) => <Input innerRef={ref} {...props} />);

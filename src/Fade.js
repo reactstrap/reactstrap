@@ -77,4 +77,4 @@ function Fade(props) {
 Fade.propTypes = propTypes;
 Fade.defaultProps = defaultProps;
 
-export default Fade;
+export default React.forwardRef((props, ref) => <Fade innerRef={ref} {...props} />);

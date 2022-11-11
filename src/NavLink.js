@@ -82,4 +82,4 @@ class NavLink extends React.Component {
 NavLink.propTypes = propTypes;
 NavLink.defaultProps = defaultProps;
 
-export default NavLink;
+export default React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
