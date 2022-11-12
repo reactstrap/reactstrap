@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { shallow } from 'enzyme';
 import { FormText } from '..';
 import { testForChildrenInComponent, testForCustomClass, testForCustomTag, testForDefaultClass, testForDefaultTag } from '../testUtils';
 
