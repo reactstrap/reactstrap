@@ -2,7 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { FormText } from '..';
-import { testForChildrenInComponent, testForCustomClass, testForCustomTag, testForDefaultClass, testForDefaultTag } from '../testUtils';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('FormText', () => {
   it('should render with "form" tag', () => {

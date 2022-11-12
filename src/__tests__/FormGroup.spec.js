@@ -2,7 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { FormGroup } from '..';
-import { testForChildrenInComponent, testForCustomClass, testForCustomTag, testForDefaultClass, testForDefaultTag } from '../testUtils';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('FormGroup', () => {
   it('should render with "div" tag by default', () => {
@@ -107,7 +113,7 @@ describe('FormGroup', () => {
         Yo!
       </FormGroup>,
     );
-    
+
     expect(screen.getByText('Yo!')).toHaveClass('disabled');
     expect(screen.getByText('Yo!')).toHaveClass('form-check');
   });
