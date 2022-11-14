@@ -151,15 +151,15 @@ describe('Tooltip', () => {
       { attachTo: container },
     );
 
-    jest.runTimersToTime(150);
+    jest.advanceTimersByTime(150);
     expect(document.getElementsByClassName('tooltip').length).toBe(0);
 
     wrapper.setProps({ isOpen: true });
-    jest.runTimersToTime(150);
+    jest.advanceTimersByTime(150);
     expect(document.getElementsByClassName('tooltip').length).toBe(1);
 
     wrapper.setProps({ isOpen: false });
-    jest.runTimersToTime(150);
+    jest.advanceTimersByTime(150);
     expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.detach();
   });
@@ -180,10 +180,10 @@ describe('Tooltip', () => {
 
     expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.setProps({ isOpen: true });
-    jest.runTimersToTime(0); // slight async delay for getDerivedStateFromProps to update isOpen
+    jest.advanceTimersByTime(0); // slight async delay for getDerivedStateFromProps to update isOpen
     expect(document.getElementsByClassName('tooltip').length).toBe(1);
     wrapper.setProps({ isOpen: false });
-    jest.runTimersToTime(0);
+    jest.advanceTimersByTime(0);
     expect(document.getElementsByClassName('tooltip').length).toBe(0);
     wrapper.detach();
   });
@@ -199,10 +199,10 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: target });
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     expect(isOpen).toBe(true);
     instance.handleDocumentClick({ target: target });
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     expect(isOpen).toBe(false);
 
     wrapper.detach();
@@ -219,7 +219,7 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: innerTarget });
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     expect(isOpen).toBe(true);
     wrapper.detach();
   });
@@ -235,7 +235,7 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: innerTarget });
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     expect(isOpen).toBe(true);
     wrapper.setProps({ isOpen: true });
     expect(wrapper.find(PopperContent).props().target.id).toBe('target');
@@ -275,7 +275,7 @@ describe('Tooltip', () => {
     instance.hideWithDelay();
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: target });
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     expect(isOpen).toBe(true);
     wrapper.setProps({ isOpen: isOpen });
     instance.handleDocumentClick({ target: target });
@@ -299,9 +299,9 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(false);
     target.dispatchEvent(new Event('touchstart'));
-    jest.runTimersToTime(20);
+    jest.advanceTimersByTime(20);
     target.dispatchEvent(new Event('click'));
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     expect(isOpen).toBe(true);
 
     wrapper.detach();
@@ -324,9 +324,9 @@ describe('Tooltip', () => {
 
     expect(isOpen).toBe(true);
     target.dispatchEvent(new Event('touchstart'));
-    jest.runTimersToTime(20);
+    jest.advanceTimersByTime(20);
     target.dispatchEvent(new Event('click'));
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     expect(isOpen).toBe(false);
 
     wrapper.detach();
@@ -500,19 +500,19 @@ describe('Tooltip', () => {
       );
 
       targets[0].dispatchEvent(new Event('click'));
-      jest.runTimersToTime(0);
+      jest.advanceTimersByTime(0);
       expect(isOpen).toBe(true);
 
       targets[0].dispatchEvent(new Event('click'));
-      jest.runTimersToTime(0);
+      jest.advanceTimersByTime(0);
       expect(isOpen).toBe(false);
 
       targets[1].dispatchEvent(new Event('click'));
-      jest.runTimersToTime(0);
+      jest.advanceTimersByTime(0);
       expect(isOpen).toBe(true);
 
       targets[1].dispatchEvent(new Event('click'));
-      jest.runTimersToTime(0);
+      jest.advanceTimersByTime(0);
       expect(isOpen).toBe(false);
       wrapper.detach();
     });
@@ -531,7 +531,7 @@ describe('Tooltip', () => {
       );
 
       innerTarget.dispatchEvent(new Event('click'));
-      jest.runTimersToTime(0);
+      jest.advanceTimersByTime(0);
       expect(isOpen).toBe(true);
       wrapper.setProps({ isOpen: true });
       expect(wrapper.find(PopperContent).props().target.className).toBe(
@@ -559,7 +559,7 @@ describe('Tooltip', () => {
 
       instance.hideWithDelay();
       expect(isOpen).toBe(true);
-      jest.runTimersToTime(200);
+      jest.advanceTimersByTime(200);
       expect(isOpen).toBe(false);
     });
 
@@ -580,7 +580,7 @@ describe('Tooltip', () => {
 
       instance.hideWithDelay();
       expect(isOpen).toBe(true);
-      jest.runTimersToTime(200);
+      jest.advanceTimersByTime(200);
       expect(isOpen).toBe(false);
     });
 
@@ -601,7 +601,7 @@ describe('Tooltip', () => {
 
       instance.hideWithDelay();
       expect(isOpen).toBe(true);
-      jest.runTimersToTime(250); // Default hide value: 250
+      jest.advanceTimersByTime(250); // Default hide value: 250
       expect(isOpen).toBe(false);
     });
   });
@@ -711,7 +711,7 @@ describe('Tooltip', () => {
       expect(spy).not.toHaveBeenCalled();
 
       instance.showWithDelay();
-      jest.runTimersToTime(200);
+      jest.advanceTimersByTime(200);
 
       expect(spy).toHaveBeenCalled();
 
@@ -735,7 +735,7 @@ describe('Tooltip', () => {
       const instance = wrapper.instance();
 
       instance.showWithDelay();
-      jest.runTimersToTime(0); // delay: 0 toggle is still async
+      jest.advanceTimersByTime(0); // delay: 0 toggle is still async
 
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
@@ -767,7 +767,7 @@ describe('Tooltip', () => {
       expect(spy).not.toHaveBeenCalled();
 
       instance.hideWithDelay();
-      jest.runTimersToTime(200);
+      jest.advanceTimersByTime(200);
 
       expect(spy).toHaveBeenCalled();
 
@@ -791,7 +791,7 @@ describe('Tooltip', () => {
       const instance = wrapper.instance();
 
       instance.hideWithDelay();
-      jest.runTimersToTime(0); // delay: 0 toggle is still async
+      jest.advanceTimersByTime(0); // delay: 0 toggle is still async
 
       expect(isOpen).toBe(false);
       expect(spy).not.toHaveBeenCalled();
@@ -823,9 +823,9 @@ describe('Tooltip', () => {
       expect(spy).not.toHaveBeenCalled();
 
       instance.onMouseLeaveTooltipContent(synthEvent);
-      jest.runTimersToTime(100);
+      jest.advanceTimersByTime(100);
       expect(spy).not.toHaveBeenCalled();
-      jest.runTimersToTime(200);
+      jest.advanceTimersByTime(200);
       expect(spy).toHaveBeenCalled();
 
       wrapper.detach();
@@ -852,7 +852,7 @@ describe('Tooltip', () => {
       instance.showWithDelay();
       expect(instance._showTimeout).toBeTruthy();
       instance.onMouseLeaveTooltipContent(synthEvent);
-      jest.runTimersToTime(300);
+      jest.advanceTimersByTime(300);
       expect(instance._showTimeout).toBeFalsy();
       wrapper.detach();
     });
@@ -878,7 +878,7 @@ describe('Tooltip', () => {
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
       instance.onMouseLeaveTooltipContent(synthEvent);
-      jest.runTimersToTime(100);
+      jest.advanceTimersByTime(100);
       expect(instance._hideTimeout).toBeTruthy();
       instance.onMouseOverTooltipContent();
       expect(instance._hideTimeout).toBeFalsy();
@@ -906,9 +906,9 @@ describe('Tooltip', () => {
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
       instance.hideWithDelay();
-      jest.runTimersToTime(100);
+      jest.advanceTimersByTime(100);
       instance.onMouseOverTooltipContent();
-      jest.runTimersToTime(200);
+      jest.advanceTimersByTime(200);
       expect(spy).toHaveBeenCalled();
       instance.onMouseLeaveTooltipContent(synthEvent);
       expect(instance._hideTimeout).toBeFalsy();
