@@ -17,6 +17,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "jest --watch",
+    "test:ci": "jest",
     "cover": "jest --coverage",
     "start": "start-storybook -s ./static -p 8080",
     "build:docs": "build-storybook -s ./static -o ./build",
