@@ -17,6 +17,8 @@ const propTypes = {
 const defaultProps = {
   tag: 'form',
 };
+
+// TODO: Simple conversion of functional component "good-first-task"
 class Form extends Component {
   constructor(props) {
     super(props);

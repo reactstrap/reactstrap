@@ -25,8 +25,8 @@ const defaultProps = {
   'aria-label': 'close',
 };
 
-function CloseButton(props) {
-  const { className, cssModule, variant, innerRef, ...attributes } = props;
+const CloseButton = React.forwardRef((props, ref) => {
+  const { className, cssModule, variant, innerRef = ref, ...attributes } = props;
 
   const classes = mapToCssModules(
     classNames(className, 'btn-close', variant && `btn-close-${variant}`),
@@ -35,9 +35,9 @@ function CloseButton(props) {
   return (
     <button ref={innerRef} type="button" className={classes} {...attributes} />
   );
-}
+});
 
 CloseButton.propTypes = propTypes;
 CloseButton.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <CloseButton innerRef={ref} {...props} />);
+export default CloseButton;

@@ -42,7 +42,7 @@ const defaultProps = {
   tag: 'button',
 };
 
-function Button(props) {
+const Button = React.forwardRef((props, ref) => {
   const onClick = useCallback(
     (e) => {
       if (props.disabled) {
@@ -68,7 +68,7 @@ function Button(props) {
     outline,
     size,
     tag: Tag,
-    innerRef,
+    innerRef = ref,
     ...attributes
   } = props;
 
@@ -104,9 +104,9 @@ function Button(props) {
       aria-label={ariaLabel}
     />
   );
-}
+});
 
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <Button innerRef={ref} {...props} />);
+export default Button;

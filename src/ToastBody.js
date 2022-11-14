@@ -18,17 +18,17 @@ const defaultProps = {
   tag: 'div',
 };
 
-function ToastBody(props) {
-  const { className, cssModule, innerRef, tag: Tag, ...attributes } = props;
+const ToastBody = React.forwardRef((props, ref) => {
+  const { className, cssModule, innerRef = ref, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'toast-body'),
     cssModule,
   );
 
   return <Tag {...attributes} className={classes} ref={innerRef} />;
-}
+});
 
 ToastBody.propTypes = propTypes;
 ToastBody.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <ToastBody innerRef={ref} {...props} />);
+export default ToastBody;

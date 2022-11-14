@@ -37,7 +37,7 @@ const defaultProps = {
   responsiveTag: 'div',
 };
 
-function Table(props) {
+const Table = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -84,9 +84,9 @@ function Table(props) {
   }
 
   return table;
-}
+})
 
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <Table innerRef={ref} {...props} />);
+export default Table;
