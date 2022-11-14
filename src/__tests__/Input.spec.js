@@ -10,8 +10,8 @@ describe('Input', () => {
   });
 
   it('should render with "type" tag when type is "select"', () => {
-    render(<Input type="select">Yo!</Input>);
-    expect(screen.getByText(/yo/i).tagName.toLowerCase()).toMatch('select');
+    const { container } = render(<Input type="select">Yo!</Input>);
+    expect(container.querySelector('select')).toBeInTheDocument();
   });
 
   it('should render with "textarea" tag when type is "textarea"', () => {

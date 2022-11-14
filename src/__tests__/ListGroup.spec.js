@@ -16,6 +16,7 @@ describe('ListGroup', () => {
     render(<ListGroup flush>Yo!</ListGroup>);
 
     expect(screen.getByText('Yo!')).toHaveClass('list-group-flush');
+    expect(screen.getByText('Yo!')).toHaveClass('list-group');
   });
 
   it('should render with "horizontal"', () => {
