@@ -22,17 +22,17 @@ const defaultProps = {
   tag: 'div',
 };
 
-function AccordionItem(props) {
-  const { className, cssModule, tag: Tag, innerRef, ...attributes } = props;
+const AccordionItem = React.forwardRef((props, ref) => {
+  const { className, cssModule, tag: Tag, innerRef = ref, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'accordion-item'),
     cssModule,
   );
 
   return <Tag {...attributes} className={classes} ref={innerRef} />;
-}
+})
 
 AccordionItem.propTypes = propTypes;
 AccordionItem.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <AccordionItem innerRef={ref} {...props} />);
+export default AccordionItem;

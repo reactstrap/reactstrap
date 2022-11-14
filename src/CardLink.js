@@ -18,17 +18,17 @@ const defaultProps = {
   tag: 'a',
 };
 
-function CardLink(props) {
-  const { className, cssModule, tag: Tag, innerRef, ...attributes } = props;
+const CardLink = React.forwardRef((props, ref) => {
+  const { className, cssModule, tag: Tag, innerRef = ref, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-link'),
     cssModule,
   );
 
   return <Tag {...attributes} ref={innerRef} className={classes} />;
-}
+})
 
 CardLink.propTypes = propTypes;
 CardLink.defaultProps = defaultProps;
 
-export default React.forwardRef((props, ref) => <CardLink innerRef={ref} {...props} />);
+export default CardLink;
