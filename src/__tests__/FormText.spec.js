@@ -1,60 +1,57 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { FormText } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('FormText', () => {
   it('should render with "form" tag', () => {
-    const wrapper = shallow(<FormText>Yo!</FormText>);
-
-    expect(wrapper.type()).toBe('small');
+    testForDefaultTag(FormText, 'small');
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<FormText>Yo!</FormText>);
-
-    expect(wrapper.text()).toBe('Yo!');
+    testForChildrenInComponent(FormText);
   });
 
   it('should render with "form-text" class when not inline', () => {
-    const wrapper = shallow(<FormText>Yo!</FormText>);
-
-    expect(wrapper.hasClass('form-text')).toBe(true);
+    testForDefaultClass(FormText, 'form-text');
   });
 
   it('should not render with "form-text" class when inline', () => {
-    const wrapper = shallow(<FormText inline>Yo!</FormText>);
+    render(<FormText inline>Yo!</FormText>);
 
-    expect(wrapper.hasClass('form-text')).toBe(false);
+    expect(screen.getByText('Yo!')).not.toHaveClass('form-text');
   });
 
   it('should render with "text-muted" class by default', () => {
-    const wrapper = shallow(<FormText>Yo!</FormText>);
+    render(<FormText>Yo!</FormText>);
 
-    expect(wrapper.hasClass('text-muted')).toBe(true);
+    expect(screen.getByText('Yo!')).toHaveClass('text-muted');
   });
 
   it('should render without "text-*" class when color is and empty string', () => {
-    const wrapper = shallow(<FormText color="">Yo!</FormText>);
+    render(<FormText color="">Yo!</FormText>);
 
-    expect(wrapper.hasClass('text-muted')).toBe(false);
-    expect(wrapper.hasClass('text-')).toBe(false);
+    expect(screen.getByText('Yo!')).not.toHaveClass('text-*');
   });
 
   it('should render with "text-${color}" class when color is provided', () => {
-    const wrapper = shallow(<FormText color="yoyo">Yo!</FormText>);
+    render(<FormText color="yoyo">Yo!</FormText>);
 
-    expect(wrapper.hasClass('text-yoyo')).toBe(true);
+    expect(screen.getByText('Yo!')).toHaveClass('text-yoyo');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<FormText className="other">Yo!</FormText>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
+    testForCustomClass(FormText);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<FormText tag="main">Yo!</FormText>);
-
-    expect(wrapper.type()).toBe('main');
+    testForCustomTag(FormText);
   });
 });

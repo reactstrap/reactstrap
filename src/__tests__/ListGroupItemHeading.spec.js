@@ -1,17 +1,12 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { ListGroupItemHeading } from '..';
+import { testForChildrenInComponent, testForDefaultClass } from '../testUtils';
 
 describe('ListGroupItem', () => {
   it('should render children', () => {
-    const listGroupItem = shallow(
-      <ListGroupItemHeading>Yo!</ListGroupItemHeading>,
-    ).find('h5');
-    expect(listGroupItem.text()).toBe('Yo!');
+    testForChildrenInComponent(ListGroupItemHeading);
   });
 
   it('should render with "list-group-item-heading" class', () => {
-    const wrapper = shallow(<ListGroupItemHeading>Yo!</ListGroupItemHeading>);
-    expect(wrapper.hasClass('list-group-item-heading')).toBe(true);
+    testForDefaultClass(ListGroupItemHeading, 'list-group-item-heading');
   });
 });
