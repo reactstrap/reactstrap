@@ -48,9 +48,7 @@ describe('Fade', () => {
     const { debug } = render(
       <Helper showItem>
         <Fade>Yo!</Fade>
-        <Fade appear={false}>
-          Yo 2!
-        </Fade>
+        <Fade appear={false}>Yo 2!</Fade>
       </Helper>,
     );
 
@@ -118,10 +116,13 @@ describe('Fade', () => {
   it('should pass other props down', () => {
     render(<Fade data-testprop="testvalue">Yo</Fade>);
 
-    expect(screen.getByText(/yo/i)).toHaveAttribute('data-testprop', 'testvalue');
+    expect(screen.getByText(/yo/i)).toHaveAttribute(
+      'data-testprop',
+      'testvalue',
+    );
   });
 
   it('should support custom tag', () => {
-    testForCustomTag(Fade)
+    testForCustomTag(Fade);
   });
 });

@@ -1,73 +1,60 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { ListGroup } from '..';
+import {
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('ListGroup', () => {
   it('should render with "list-group" class', () => {
-    const wrapper = shallow(<ListGroup>Yo!</ListGroup>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('list-group')).toBe(true);
+    testForDefaultClass(ListGroup, 'list-group');
   });
 
   it('should render with "flush"', () => {
-    const wrapper = shallow(<ListGroup flush>Yo!</ListGroup>);
+    render(<ListGroup flush>Yo!</ListGroup>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('list-group')).toBe(true);
-    expect(wrapper.hasClass('list-group-flush')).toBe(true);
+    expect(screen.getByText('Yo!')).toHaveClass('list-group-flush');
+    expect(screen.getByText('Yo!')).toHaveClass('list-group');
   });
 
   it('should render with "horizontal"', () => {
-    const wrapper = shallow(<ListGroup horizontal>Yo!</ListGroup>);
+    render(<ListGroup horizontal>Yo!</ListGroup>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('list-group')).toBe(true);
-    expect(wrapper.hasClass('list-group-horizontal')).toBe(true);
+    expect(screen.getByText('Yo!')).toHaveClass('list-group-horizontal');
   });
 
   it('should not render with "horizontal" if flush is true', () => {
-    const wrapper = shallow(
+    render(
       <ListGroup flush horizontal>
         Yo!
       </ListGroup>,
     );
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('list-group')).toBe(true);
-    expect(wrapper.hasClass('list-group-flush')).toBe(true);
-    expect(wrapper.hasClass('list-group-horizontal')).toBe(false);
+    expect(screen.getByText('Yo!')).toHaveClass('list-group');
+    expect(screen.getByText('Yo!')).toHaveClass('list-group-flush');
+    expect(screen.getByText('Yo!')).not.toHaveClass('list-group-horizontal');
   });
 
   it('should render with "horizontal-{breakpoint}"', () => {
-    const wrapper = shallow(<ListGroup horizontal="lg">Yo!</ListGroup>);
+    render(<ListGroup horizontal="lg">Yo!</ListGroup>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('list-group')).toBe(true);
-    expect(wrapper.hasClass('list-group-horizontal-lg')).toBe(true);
+    expect(screen.getByText('Yo!')).toHaveClass('list-group');
+    expect(screen.getByText('Yo!')).toHaveClass('list-group-horizontal-lg');
   });
 
   it('should render with "numbered"', () => {
-    const wrapper = shallow(<ListGroup numbered>Yo!</ListGroup>);
+    render(<ListGroup numbered>Yo!</ListGroup>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('list-group')).toBe(true);
-    expect(wrapper.hasClass('list-group-numbered')).toBe(true);
+    expect(screen.getByText('Yo!')).toHaveClass('list-group-numbered');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<ListGroup className="other">Yo!</ListGroup>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('list-group')).toBe(true);
+    testForCustomClass(ListGroup);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<ListGroup tag="main">Yo!</ListGroup>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('list-group')).toBe(true);
-    expect(wrapper.find('main').length).toBe(1);
+    testForCustomTag(ListGroup);
   });
 });

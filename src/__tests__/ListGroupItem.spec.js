@@ -1,48 +1,47 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import { ListGroupItem } from '..';
+import { testForChildrenInComponent, testForDefaultClass } from '../testUtils';
 
 describe('ListGroupItem', () => {
   it('should render children', () => {
-    const listGroupItem = shallow(<ListGroupItem>Yo!</ListGroupItem>).find(
-      'li',
-    );
-    expect(listGroupItem.text()).toBe('Yo!');
+    testForChildrenInComponent(ListGroupItem);
   });
 
   it('should render with "list-group-item" class', () => {
-    const wrapper = shallow(<ListGroupItem>Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('list-group-item')).toBe(true);
+    testForDefaultClass(ListGroupItem, 'list-group-item');
   });
 
   it('should render with "active" class when active is passed', () => {
-    const wrapper = shallow(<ListGroupItem active>Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('active')).toBe(true);
+    render(<ListGroupItem active>Yo!</ListGroupItem>);
+    expect(screen.getByText('Yo!')).toHaveClass('active');
   });
 
   it('should render with "disabled" class when disabled is passed', () => {
-    const wrapper = shallow(<ListGroupItem disabled>Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('disabled')).toBe(true);
+    render(<ListGroupItem disabled>Yo!</ListGroupItem>);
+    expect(screen.getByText('Yo!')).toHaveClass('disabled');
   });
 
   it('should render with "list-group-item-action" class when action is passed', () => {
-    const wrapper = shallow(<ListGroupItem action>Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('list-group-item-action')).toBe(true);
+    render(<ListGroupItem action>Yo!</ListGroupItem>);
+    expect(screen.getByText('Yo!')).toHaveClass('list-group-item-action');
   });
 
   it('should render with "list-group-item-${color}" class when color is passed', () => {
-    const wrapper = shallow(<ListGroupItem color="success">Yo!</ListGroupItem>);
-    expect(wrapper.hasClass('list-group-item-success')).toBe(true);
+    render(<ListGroupItem color="success">Yo!</ListGroupItem>);
+    expect(screen.getByText('Yo!')).toHaveClass('list-group-item-success');
   });
 
   it('should prevent click event when disabled is passed', () => {
     const onDisableClick = jest.fn();
-    const wrapper = mount(
+    render(
       <ListGroupItem disabled onClick={onDisableClick}>
         Yo!
       </ListGroupItem>,
     );
-    wrapper.find('li').hostNodes().simulate('click');
+
+    user.click(screen.getByText('Yo!'));
     expect(onDisableClick).not.toHaveBeenCalled();
   });
 });

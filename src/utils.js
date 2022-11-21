@@ -120,10 +120,10 @@ export function DOMElement(props, propName, componentName) {
   if (!(props[propName] instanceof Element)) {
     return new Error(
       'Invalid prop `' +
-      propName +
-      '` supplied to `' +
-      componentName +
-      '`. Expected prop to be an instance of Element. Validation failed.',
+        propName +
+        '` supplied to `' +
+        componentName +
+        '`. Expected prop to be an instance of Element. Validation failed.',
     );
   }
 }
@@ -264,8 +264,8 @@ export function toNumber(value) {
   return isBinary || /^0o[0-7]+$/i.test(value)
     ? parseInt(value.slice(2), isBinary ? 2 : 8)
     : /^[-+]0x[0-9a-f]+$/i.test(value)
-      ? NAN
-      : +value;
+    ? NAN
+    : +value;
 }
 
 export function isFunction(value) {

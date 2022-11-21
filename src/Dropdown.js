@@ -154,13 +154,13 @@ class Dropdown extends React.Component {
         if (!this.props.isOpen) {
           this.toggle(e);
         }
-        setTimeout(() => this.getMenuItems()[0].focus());
+        setTimeout(() => this.getMenuItems()[0]?.focus());
       } else if (this.props.isOpen && isTab) {
         // Focus the first menu item if tabbing from an open menu. We need this
         // for cases where the DropdownMenu sets a custom container, which may
         // not be the natural next item to tab to from the DropdownToggle.
         e.preventDefault();
-        this.getMenuItems()[0].focus();
+        this.getMenuItems()[0]?.focus();
       } else if (this.props.isOpen && e.which === keyCodes.esc) {
         this.toggle(e);
       }
