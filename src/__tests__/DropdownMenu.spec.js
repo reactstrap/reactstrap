@@ -1,17 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { Popper } from 'react-popper';
 import '@testing-library/jest-dom';
-import { DropdownContext } from '../DropdownContext';
 import { DropdownMenu } from '..';
-
-const customRender = (ui, providerProps) => {
-  return render(
-    <DropdownContext.Provider value={providerProps}>
-      {ui}
-    </DropdownContext.Provider>,
-  );
-};
+import { customDropdownRender } from '../testUtils';
 
 describe('DropdownMenu', () => {
   const contextProps = {
@@ -28,26 +20,26 @@ describe('DropdownMenu', () => {
   });
 
   it('should render children', () => {
-    customRender(<DropdownMenu>Content</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Content</DropdownMenu>, contextProps);
 
     expect(screen.getByText(/content/i)).toBeInTheDocument();
   });
 
   it('should not have the class "show" when isOpen context is false', () => {
-    customRender(<DropdownMenu>Content</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Content</DropdownMenu>, contextProps);
 
     expect(screen.getByText(/content/i)).not.toHaveClass('show');
   });
 
   it('should have the class "show" when isOpen context is true', () => {
     contextProps.isOpen = true;
-    customRender(<DropdownMenu>Content</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Content</DropdownMenu>, contextProps);
     expect(screen.getByText(/content/i)).toHaveClass('show');
   });
 
   it('should render left aligned menus by default', () => {
     contextProps.isOpen = true;
-    customRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
 
     expect(screen.getByText(/ello world/i)).not.toHaveClass(
       'dropdown-menu-end',
@@ -56,7 +48,10 @@ describe('DropdownMenu', () => {
 
   it('should render right aligned menus', () => {
     contextProps.isOpen = true;
-    customRender(<DropdownMenu end>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(
+      <DropdownMenu end>Ello world</DropdownMenu>,
+      contextProps,
+    );
 
     expect(screen.getByText(/ello world/i)).toHaveClass('dropdown-menu-end');
   });
@@ -64,7 +59,7 @@ describe('DropdownMenu', () => {
   it('should render down when direction is unknown on the context', () => {
     contextProps.isOpen = true;
     contextProps.direction = 'unknown';
-    customRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
 
     expect(screen.getByText(/ello world/i)).toHaveAttribute(
       'data-popper-placement',
@@ -74,7 +69,7 @@ describe('DropdownMenu', () => {
 
   it('should render down when direction is "down" on the context', () => {
     contextProps.isOpen = true;
-    customRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
 
     expect(screen.getByText(/ello world/i)).toHaveAttribute(
       'data-popper-placement',
@@ -85,7 +80,7 @@ describe('DropdownMenu', () => {
   it('should render up when direction is "up" on the context', () => {
     contextProps.isOpen = true;
     contextProps.direction = 'up';
-    customRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
     expect(screen.getByText(/ello world/i)).toHaveAttribute(
       'data-popper-placement',
       'top-start',
@@ -96,7 +91,7 @@ describe('DropdownMenu', () => {
   it('should render left when direction is "start" on the context', () => {
     contextProps.isOpen = true;
     contextProps.direction = 'start';
-    customRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
     expect(screen.getByText(/ello world/i)).toHaveAttribute(
       'data-popper-placement',
       'left-start',
@@ -107,7 +102,7 @@ describe('DropdownMenu', () => {
   it('should render right when direction is "end" on the context', () => {
     contextProps.isOpen = true;
     contextProps.direction = 'end';
-    customRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
     expect(screen.getByText(/ello world/i)).toHaveAttribute(
       'data-popper-placement',
       'right-start',
@@ -117,7 +112,7 @@ describe('DropdownMenu', () => {
 
   it('should not disable flip modifier by default', () => {
     contextProps.isOpen = true;
-    customRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(<DropdownMenu>Ello world</DropdownMenu>, contextProps);
 
     expect(Popper.mock.calls[0][0].modifiers[0]).toMatchObject({
       name: 'flip',
@@ -127,7 +122,7 @@ describe('DropdownMenu', () => {
 
   it('should disable flip modifier when flip is false', () => {
     contextProps.isOpen = true;
-    customRender(
+    customDropdownRender(
       <DropdownMenu flip={false}>Ello world</DropdownMenu>,
       contextProps,
     );
@@ -141,7 +136,7 @@ describe('DropdownMenu', () => {
 
   it('should position using fixed mode', () => {
     contextProps.isOpen = true;
-    customRender(
+    customDropdownRender(
       <DropdownMenu strategy="fixed">Ello world</DropdownMenu>,
       contextProps,
     );
@@ -149,14 +144,20 @@ describe('DropdownMenu', () => {
   });
 
   it('should not render Popper when isOpen is false', () => {
-    customRender(<DropdownMenu end>Ello world</DropdownMenu>, contextProps);
+    customDropdownRender(
+      <DropdownMenu end>Ello world</DropdownMenu>,
+      contextProps,
+    );
 
     expect(Popper).not.toBeCalled();
   });
 
   it('should render custom tag', () => {
     contextProps.isOpen = true;
-    customRender(<DropdownMenu tag="main">Yo!</DropdownMenu>, contextProps);
+    customDropdownRender(
+      <DropdownMenu tag="main">Yo!</DropdownMenu>,
+      contextProps,
+    );
 
     expect(screen.getByText(/yo/i).tagName).toBe('MAIN');
   });
@@ -177,7 +178,7 @@ describe('DropdownMenu', () => {
     it('should render inside container', () => {
       contextProps.isOpen = true;
       element.innerHTML = '<div id="anotherContainer"></div>';
-      customRender(
+      customDropdownRender(
         <DropdownMenu container="#anotherContainer">My body</DropdownMenu>,
         contextProps,
       );
@@ -190,7 +191,10 @@ describe('DropdownMenu', () => {
 
   it('should not have the class "dropdown-menu-dark" by default', () => {
     contextProps.isOpen = true;
-    customRender(<DropdownMenu>Keep it light</DropdownMenu>, contextProps);
+    customDropdownRender(
+      <DropdownMenu>Keep it light</DropdownMenu>,
+      contextProps,
+    );
 
     expect(screen.getByText(/keep it light/i)).not.toHaveClass(
       'dropdown-menu-dark',
@@ -199,7 +203,7 @@ describe('DropdownMenu', () => {
 
   it('should have the class "dropdown-menu-dark" when dark is true', () => {
     contextProps.isOpen = true;
-    customRender(
+    customDropdownRender(
       <DropdownMenu dark data-testid="dark-menu">
         Let&apos;s go dark
       </DropdownMenu>,

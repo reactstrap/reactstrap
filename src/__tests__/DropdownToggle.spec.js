@@ -1,220 +1,181 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { createEvent, fireEvent, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import { DropdownToggle } from '..';
-import { DropdownContext } from '../DropdownContext';
+import { customDropdownRender } from '../testUtils';
 
 describe('DropdownToggle', () => {
-  const setReferenceNode = jest.fn();
   let isOpen;
   let inNavbar;
   let toggle;
 
+  const contextProps = {
+    isOpen: false,
+    direction: 'down',
+    inNavbar: false,
+    toggle: jest.fn(),
+  };
+
   beforeEach(() => {
-    isOpen = false;
-    inNavbar = false;
-    setReferenceNode.mockClear();
-    toggle = () => {
-      isOpen = !isOpen;
-    };
+    contextProps.isOpen = false;
+    contextProps.direction = 'down';
+    contextProps.inNavbar = false;
+    contextProps.toggle.mockClear();
   });
 
   it('should wrap text', () => {
-    const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-        <DropdownToggle>Ello world</DropdownToggle>
-      </DropdownContext.Provider>,
+    customDropdownRender(
+      <DropdownToggle>Ello world</DropdownToggle>,
+      contextProps,
     );
 
-    expect(wrapper.text()).toBe('Ello world');
+    expect(screen.getByText(/ello world/i)).toBeInTheDocument();
   });
 
   it('should add default visually-hidden content', () => {
-    const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-        <DropdownToggle />
-      </DropdownContext.Provider>,
-    );
+    customDropdownRender(<DropdownToggle />, contextProps);
 
-    expect(wrapper.text()).toBe('Toggle Dropdown');
-    expect(wrapper.find('.visually-hidden').hostNodes().length).toBe(1);
+    expect(screen.getByText(/toggle dropdown/i)).toHaveClass('visually-hidden');
   });
 
   it('should add default visually-hidden content', () => {
-    const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-        <DropdownToggle aria-label="Dropup Toggle" />
-      </DropdownContext.Provider>,
+    customDropdownRender(
+      <DropdownToggle aria-label="Dropup Toggle" />,
+      contextProps,
     );
 
-    expect(wrapper.text()).toBe('Dropup Toggle');
-    expect(wrapper.find('.visually-hidden').hostNodes().length).toBe(1);
+    expect(screen.getByText(/dropup toggle/i)).toHaveClass('visually-hidden');
   });
 
   it('should render elements', () => {
-    const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-        <DropdownToggle>Click Me</DropdownToggle>
-      </DropdownContext.Provider>,
+    customDropdownRender(
+      <DropdownToggle>Click Me</DropdownToggle>,
+      contextProps,
     );
 
-    expect(wrapper.text()).toBe('Click Me');
-    expect(wrapper.find('button').hostNodes().length).toBe(1);
+    expect(screen.getByText(/click me/i).tagName).toBe('BUTTON');
   });
 
   it('should render a caret', () => {
-    const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-        <DropdownToggle caret>Ello world</DropdownToggle>
-      </DropdownContext.Provider>,
+    customDropdownRender(
+      <DropdownToggle caret>Ello world</DropdownToggle>,
+      contextProps,
     );
 
-    expect(wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle')).toBe(
-      true,
-    );
+    expect(screen.getByText(/ello world/i)).toHaveClass('dropdown-toggle');
   });
 
   describe('color', () => {
     it('should render the dropdown as a BUTTON element with default color secondary', () => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle />
-        </DropdownContext.Provider>,
-      );
-
-      expect(wrapper.find('button').hostNodes().length).toBe(1);
-      expect(wrapper.find('button').hostNodes().hasClass('btn-secondary')).toBe(
-        true,
-      );
+      customDropdownRender(<DropdownToggle data-testid="rick" />, contextProps);
+      expect(screen.getByTestId(/rick/i)).toHaveClass('btn-secondary');
     });
 
     it('should render the dropdown as a BUTTON element with explicit color success', () => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle color="success" />
-        </DropdownContext.Provider>,
+      customDropdownRender(
+        <DropdownToggle color="success" data-testid="morty" />,
+        contextProps,
       );
 
-      expect(wrapper.find('button').hostNodes().length).toBe(1);
-      expect(wrapper.find('button').hostNodes().hasClass('btn-success')).toBe(
-        true,
-      );
+      expect(screen.getByTestId(/morty/i)).toHaveClass('btn-success');
     });
 
     it('should render the dropdown as an A element with no color attribute', () => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle tag="a" />
-        </DropdownContext.Provider>,
+      customDropdownRender(
+        <DropdownToggle tag="a" data-testid="pickle-rick" />,
+        contextProps,
       );
 
-      expect(wrapper.find('a').hostNodes().length).toBe(1);
-      expect(wrapper.find('a[color]').hostNodes().length).toBe(0);
+      expect(screen.getByTestId(/pickle-rick/i).tagName).toBe('A');
+      expect(screen.getByTestId(/pickle-rick/i)).not.toHaveAttribute('color');
     });
 
     it('should render the dropdown as a DIV element with no color attribute', () => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle tag="div" color="success" />
-        </DropdownContext.Provider>,
+      customDropdownRender(
+        <DropdownToggle tag="div" color="success" data-testid="tiny-rick" />,
+        contextProps,
       );
 
-      expect(wrapper.find('div').hostNodes().length).toBe(1);
-      expect(wrapper.find('div[color]').hostNodes().length).toBe(0);
+      expect(screen.getByTestId(/tiny-rick/i).tagName).toBe('DIV');
+      expect(screen.getByTestId(/tiny-rick/i)).not.toHaveAttribute('color');
     });
   });
 
   it('should render a split', () => {
-    const wrapper = mount(
-      <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-        <DropdownToggle split>Ello world</DropdownToggle>
-      </DropdownContext.Provider>,
+    customDropdownRender(
+      <DropdownToggle split>Ello world</DropdownToggle>,
+      contextProps,
     );
 
-    expect(
-      wrapper.childAt(0).childAt(0).hasClass('dropdown-toggle-split'),
-    ).toBe(true);
+    expect(screen.getByText(/ello world/i)).toHaveClass(
+      'dropdown-toggle-split',
+    );
   });
 
   describe('onClick', () => {
     it('should call props.onClick if it exists', () => {
       const onClick = jest.fn();
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle onClick={() => onClick()}>Ello world</DropdownToggle>
-        </DropdownContext.Provider>,
+      customDropdownRender(
+        <DropdownToggle onClick={onClick}>Ello world</DropdownToggle>,
+        contextProps,
       );
 
-      const instance = wrapper.instance();
+      user.click(screen.getByText(/ello world/i));
 
-      instance.onClick({});
-      expect(onClick).toHaveBeenCalled();
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     it('should call context.toggle when present ', () => {
-      toggle = jest.fn();
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle>Ello world</DropdownToggle>
-        </DropdownContext.Provider>,
+      contextProps.toggle = jest.fn();
+      const { container } = customDropdownRender(
+        <DropdownToggle>Ello world</DropdownToggle>,
+        contextProps,
       );
 
-      const instance = wrapper.instance();
+      user.click(screen.getByText(/ello world/i));
 
-      instance.onClick({
-        preventDefault: () => {},
-      });
-      expect(toggle).toHaveBeenCalled();
+      expect(contextProps.toggle).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('disabled', () => {
-    it('should preventDefault when disabled', () => {
-      const e = { preventDefault: jest.fn() };
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle disabled>Ello world</DropdownToggle>
-        </DropdownContext.Provider>,
+    it('should not call onClick when disabled', () => {
+      const onClick = jest.fn();
+      customDropdownRender(
+        <DropdownToggle disabled onClick={onClick}>
+          Ello world
+        </DropdownToggle>,
+        contextProps,
       );
-      const instance = wrapper.instance();
 
-      instance.onClick(e);
-      expect(e.preventDefault).toHaveBeenCalled();
+      user.click(screen.getByText(/ello world/i));
+
+      expect(onClick).not.toBeCalled();
     });
   });
 
   describe('nav', () => {
     it('should add .nav-link class', () => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle nav>Ello world</DropdownToggle>
-        </DropdownContext.Provider>,
+      customDropdownRender(
+        <DropdownToggle nav>Ello world</DropdownToggle>,
+        contextProps,
       );
 
-      expect(wrapper.find('a').hostNodes().length).toBe(1);
-      expect(wrapper.find('.nav-link').hostNodes().length).toBe(1);
-    });
-
-    it('should not set the tag prop when the tag is defined', () => {
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle nav>Ello world</DropdownToggle>
-        </DropdownContext.Provider>,
-      );
-
-      expect(wrapper.prop('tag')).toBe(undefined);
+      expect(screen.getByText(/ello world/i)).toHaveClass('nav-link');
+      expect(screen.getByText(/ello world/i).tagName).toBe('A');
     });
 
     it('should preventDefault', () => {
-      const e = { preventDefault: jest.fn() };
-      const wrapper = mount(
-        <DropdownContext.Provider value={{ isOpen, inNavbar, toggle }}>
-          <DropdownToggle nav>Ello world</DropdownToggle>
-        </DropdownContext.Provider>,
+      customDropdownRender(
+        <DropdownToggle nav>Ello world</DropdownToggle>,
+        contextProps,
       );
-      const instance = wrapper.instance();
 
-      instance.onClick(e);
-      expect(e.preventDefault).toHaveBeenCalled();
+      const node = screen.getByText(/ello world/i);
+      const click = createEvent.click(node);
+      fireEvent(node, click);
+
+      expect(click.defaultPrevented).toBeTruthy();
     });
   });
 });

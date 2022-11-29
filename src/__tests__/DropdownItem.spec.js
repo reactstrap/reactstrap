@@ -2,16 +2,11 @@ import React from 'react';
 import user from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { DropdownItem } from '..';
-import { DropdownContext } from '../DropdownContext';
-import { testForChildrenInComponent, testForDefaultTag } from '../testUtils';
-
-const customRender = (ui, providerProps) => {
-  return render(
-    <DropdownContext.Provider value={providerProps}>
-      {ui}
-    </DropdownContext.Provider>,
-  );
-};
+import {
+  testForChildrenInComponent,
+  testForDefaultTag,
+  customDropdownRender,
+} from '../testUtils';
 
 describe('DropdownItem', () => {
   it('should render a single child', () => {
@@ -122,18 +117,24 @@ describe('DropdownItem', () => {
 
     it('should be called when not disabled, heading, or divider', () => {
       const onClick = jest.fn();
-      customRender(<DropdownItem onClick={onClick}>Item</DropdownItem>, {
-        toggle: () => {},
-      });
+      customDropdownRender(
+        <DropdownItem onClick={onClick}>Item</DropdownItem>,
+        {
+          toggle: () => {},
+        },
+      );
       user.click(screen.getByText(/item/i));
       expect(onClick).toBeCalled();
     });
 
     it('should call toggle', () => {
       const toggle = jest.fn();
-      customRender(<DropdownItem onClick={() => {}}>Item</DropdownItem>, {
-        toggle,
-      });
+      customDropdownRender(
+        <DropdownItem onClick={() => {}}>Item</DropdownItem>,
+        {
+          toggle,
+        },
+      );
       user.click(screen.getByText(/item/i));
       expect(toggle).toHaveBeenCalled();
     });
