@@ -1,8 +1,12 @@
 import React from 'react';
-import { screen, render } from "@testing-library/react";
+import { screen, render } from '@testing-library/react';
 import { Label } from '..';
-import { testForDefaultTag, testForCustomClass, testForChildrenInComponent, testForCustomTag } from "../testUtils"
-
+import {
+  testForDefaultTag,
+  testForCustomClass,
+  testForChildrenInComponent,
+  testForCustomTag,
+} from '../testUtils';
 
 describe('Label', () => {
   it('should render a label tag by default', () => {
@@ -18,42 +22,33 @@ describe('Label', () => {
   });
 
   it('should render with "col-form-label" class when a col is provided', () => {
-    render(<Label sm="6">Yo!</Label>)
-    expect(screen.getByText(/yo/i)).toHaveClass('col-form-label')
+    render(<Label sm="6">Yo!</Label>);
+    expect(screen.getByText(/yo/i)).toHaveClass('col-form-label');
   });
 
   it('should not render with "form-label" class when a col is provided', () => {
-
     render(<Label sm="6">Yo!</Label>);
-    expect(screen.getByText(/yo!/i)).not.toHaveClass('form-label')
+    expect(screen.getByText(/yo!/i)).not.toHaveClass('form-label');
   });
 
-
-
-
-
-
-
   it('should render with "form-label" class when a col is not provided', () => {
-    render(<Label >Yo!</Label>);
+    render(<Label>Yo!</Label>);
     expect(screen.getByText(/yo!/i)).toHaveClass('form-label');
   });
 
   it('should render with "form-check-label" class when check is specified', () => {
-
     render(<Label check>Yo!</Label>);
     expect(screen.getByText(/yo!/i)).toHaveClass('form-check-label');
   });
 
-
   it('should not render with "form-label" class when check is specified', () => {
-      render(<Label check>Yo!</Label>);
-      expect(screen.getByText(/yo!/i)).not.toHaveClass('form-label');
+    render(<Label check>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).not.toHaveClass('form-label');
   });
 
   it('should pass col size specific classes as Strings', () => {
-      render(<Label sm="6">Yo!</Label>);
-      expect(screen.getByText(/yo!/i)).toHaveClass('col-sm-6');
+    render(<Label sm="6">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-sm-6');
   });
 
   it('should pass col size specific classes as Strings (auto)', () => {
@@ -108,7 +103,7 @@ describe('Label', () => {
 
   it('should pass col size specific classes as Numbers (xs)', () => {
     render(<Label xs={6}>Yo!</Label>);
-    expect(screen.getByText(/yo!/i)).toHaveClass('col-6')
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-6');
   });
 
   it('should pass col size specific classes via Objects', () => {
@@ -126,13 +121,15 @@ describe('Label', () => {
   });
 
   it('should pass multiple col size specific classes via Objects', () => {
-    render(      <Label
-      xs={{ size: 4, order: 3, offset: 3 }}
-      sm={{ size: 6, order: 2, offset: 2 }}
-      md={{ size: 7, order: 1, offset: 1 }}
-    >
-      Yo!
-      </Label>)
+    render(
+      <Label
+        xs={{ size: 4, order: 3, offset: 3 }}
+        sm={{ size: 6, order: 2, offset: 2 }}
+        md={{ size: 7, order: 1, offset: 1 }}
+      >
+        Yo!
+      </Label>,
+    );
     expect(screen.getByText(/yo/i)).toHaveClass('col-4');
     expect(screen.getByText(/yo/i)).toHaveClass('order-3');
     expect(screen.getByText(/yo/i)).toHaveClass('offset-3');
@@ -146,6 +143,6 @@ describe('Label', () => {
 
   it('should render custom tag', () => {
     render(<Label tag="main">Yo!</Label>);
-    testForCustomTag(Label, {}, 'main')
+    testForCustomTag(Label, {}, 'main');
   });
 });
