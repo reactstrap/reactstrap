@@ -8,6 +8,7 @@ import { Alert } from '..';
 describe('Alert', () => {
   beforeEach(() => {
     jest.resetModules();
+    jest.useFakeTimers();
   });
 
   it('should render children', () => {
@@ -104,36 +105,15 @@ describe('Alert', () => {
   });
 
   it('should have default transitionTimeouts', () => {
-    jest.doMock('react-transition-group', () => ({
-      Transition: jest.fn(() => null),
-    }));
-    // eslint-disable-next-line global-require
-    const { Transition } = require('react-transition-group');
-    // eslint-disable-next-line global-require
-    const { Alert } = require('..');
+    render(<Alert>Hello</Alert>);
 
-    render(<Alert>Yo!</Alert>);
+    expect(screen.getByText(/hello/i)).not.toHaveClass('show');
 
-    expect(Transition).toHaveBeenCalledWith(
-      expect.objectContaining({
-        timeout: 150,
-        appear: true,
-        enter: true,
-        exit: true,
-      }),
-      {},
-    );
+    jest.advanceTimersByTime(150);
+    expect(screen.getByText(/hello/i)).toHaveClass('show');
   });
 
   it('should have support configurable transitionTimeouts', () => {
-    jest.doMock('react-transition-group', () => ({
-      Transition: jest.fn(() => null),
-    }));
-    // eslint-disable-next-line global-require
-    const { Transition } = require('react-transition-group');
-    // eslint-disable-next-line global-require
-    const { Alert } = require('..');
-
     render(
       <Alert
         transition={{
@@ -143,18 +123,20 @@ describe('Alert', () => {
           exit: false,
         }}
       >
-        Yo!
+        Hello
       </Alert>,
     );
 
-    expect(Transition).toHaveBeenCalledWith(
-      expect.objectContaining({
-        timeout: 0,
-        appear: false,
-        enter: false,
-        exit: false,
-      }),
-      {},
+    expect(screen.getByText(/hello/i)).toHaveClass('show');
+  });
+
+  it('works with strict mode', () => {
+    const spy = jest.spyOn(console, 'error');
+    render(
+      <React.StrictMode>
+        <Alert>Hello</Alert>
+      </React.StrictMode>,
     );
+    expect(spy).not.toHaveBeenCalled();
   });
 });

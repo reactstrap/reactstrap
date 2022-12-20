@@ -1105,4 +1105,14 @@ describe('Modal', () => {
     user.tab();
     expect(screen.getByText(/click 1/i)).toHaveFocus();
   });
+
+  it('works with strict mode', () => {
+    const spy = jest.spyOn(console, 'error');
+    render(
+      <React.StrictMode>
+        <Modal isOpen>Hello</Modal>
+      </React.StrictMode>,
+    );
+    expect(spy).not.toHaveBeenCalled();
+  });
 });
