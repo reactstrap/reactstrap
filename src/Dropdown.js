@@ -98,7 +98,7 @@ class Dropdown extends React.Component {
     const menu = this.getMenu();
     const toggle = this.getToggle();
 
-    const targetIsToggle = e.target === toggle;
+    const targetIsToggle = toggle.contains(e.target);
     const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
 
     let clickIsInInput = false;
