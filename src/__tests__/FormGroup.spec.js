@@ -78,6 +78,12 @@ describe('FormGroup', () => {
     expect(screen.getByText('Yo!')).not.toHaveClass('form-check');
   });
 
+  it('should not render with "mb-3" class when noMargin prop is truthy', () => {
+    render(<FormGroup noMargin>Yo!</FormGroup>);
+
+    expect(screen.getByText('Yo!')).not.toHaveClass('mb-3');
+  });
+
   it('should not render with "mb-3" class when check prop is truthy', () => {
     render(<FormGroup check>Yo!</FormGroup>);
 
