@@ -22,7 +22,7 @@ const defaultProps = {
 };
 
 function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
-  const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : undefined));
+  const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : ''));
   const toggle = (id) => {
     if (stayOpen) {
       if (open.includes(id)) {
@@ -31,7 +31,7 @@ function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
         setOpen([...open, id]);
       }
     } else if (open === id) {
-      setOpen(undefined);
+      setOpen('');
     } else {
       setOpen(id);
     }
