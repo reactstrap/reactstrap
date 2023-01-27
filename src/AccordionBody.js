@@ -48,13 +48,12 @@ function AccordionBody(props) {
   return (
     <Collapse
       {...attributes}
-      className={classes}
       ref={innerRef}
       isOpen={
         Array.isArray(open) ? open.includes(accordionId) : open === accordionId
       }
     >
-      <Tag className="accordion-body">{children}</Tag>
+      <Tag className={`accordion-body ${classes}`}>{children}</Tag>
     </Collapse>
   );
 }
