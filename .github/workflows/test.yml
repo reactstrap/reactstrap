@@ -29,4 +29,4 @@ jobs:
     - run: rm -rf node_modules && yarn install --frozen-lockfile
     - run: npm run lint
     - run: npm run build --if-present
-    - run: npm test
+    - run: npm run test:ci
