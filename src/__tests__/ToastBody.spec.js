@@ -1,27 +1,27 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { ToastBody } from '..';
 
 describe('ToastBody', () => {
   it('should render with "toast-body" class', () => {
-    const wrapper = shallow(<ToastBody>Yo!</ToastBody>);
+    render(<ToastBody>Yo!</ToastBody>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('toast-body')).toBe(true);
+    screen.getByText('Yo!');
+    expect(document.querySelector('.toast-body')).toBeTruthy();
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<ToastBody className="other">Yo!</ToastBody>);
+    render(<ToastBody className="other">Yo!</ToastBody>);
 
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('toast-body')).toBe(true);
+    expect(document.querySelector('.other')).toBeTruthy();
+    expect(document.querySelector('.toast-body')).toBeTruthy();
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<ToastBody tag="main">Yo!</ToastBody>);
+    render(<ToastBody tag="main">Yo!</ToastBody>);
 
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('toast-body')).toBe(true);
-    expect(wrapper.type()).toBe('main');
+    screen.getByText('Yo!');
+    expect(document.querySelector('.toast-body')).toBeTruthy();
+    expect(document.querySelector('main')).toBeTruthy();
   });
 });

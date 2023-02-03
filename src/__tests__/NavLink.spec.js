@@ -1,78 +1,83 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import { NavLink } from '..';
 
 describe('NavLink', () => {
   it('should render .nav-link markup', () => {
-    const wrapper = shallow(<NavLink />);
+    const { container } = render(<NavLink />);
 
-    expect(wrapper.html()).toBe('<a class="nav-link"></a>');
+    expect(container.innerHTML).toBe('<a class="nav-link"></a>');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<NavLink tag="div" />);
+    const { container } = render(<NavLink tag="div" />);
 
-    expect(wrapper.html()).toBe('<div class="nav-link"></div>');
+    expect(container.innerHTML).toBe('<div class="nav-link"></div>');
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<NavLink>Children</NavLink>);
+    const { container } = render(<NavLink>Children</NavLink>);
 
-    expect(wrapper.html()).toBe('<a class="nav-link">Children</a>');
+    expect(container.innerHTML).toBe('<a class="nav-link">Children</a>');
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<NavLink className="extra" />);
+    render(<NavLink className="extra" />);
 
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('nav-link')).toBe(true);
+    expect(document.querySelector('.extra')).toBeTruthy();
+    expect(document.querySelector('.nav-link')).toBeTruthy();
   });
 
   it('should render active class', () => {
-    const wrapper = shallow(<NavLink active />);
+    render(<NavLink active />);
 
-    expect(wrapper.hasClass('active')).toBe(true);
+    expect(document.querySelector('.active')).toBeTruthy();
   });
 
   it('should render disabled markup', () => {
-    const wrapper = shallow(<NavLink disabled />);
+    render(<NavLink disabled />);
 
-    expect(wrapper.hasClass('disabled')).toBe(true);
+    expect(document.querySelector('.disabled')).toBeTruthy();
   });
 
   it('handles onClick prop', () => {
     const onClick = jest.fn();
-    const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(<NavLink onClick={onClick} />);
+    render(<NavLink data-testid="link" onClick={onClick} />);
 
-    wrapper.find('a').simulate('click', e);
+    const node = screen.getByTestId('link');
+    const clickEvent = createEvent.click(node)
+    fireEvent(node, clickEvent);
     expect(onClick).toHaveBeenCalled();
-    expect(e.preventDefault).not.toHaveBeenCalled();
+    expect(clickEvent.defaultPrevented).toBe(false);
   });
 
   it('handles onClick events', () => {
-    const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(<NavLink />);
+    render(<NavLink data-testid="link" />);
 
-    wrapper.find('a').simulate('click', e);
-    expect(e.preventDefault).not.toHaveBeenCalled();
+    const node = screen.getByTestId('link');
+    const clickEvent = createEvent.click(node)
+    fireEvent(node, clickEvent);
+    expect(clickEvent.defaultPrevented).toBe(false);
   });
 
-  it('prevents link clicks via onClick for dropdown nav-items', () => {
-    const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(<NavLink href="#" />);
+  it('prevents link clicks via onClick for dropdown nav-items', async () => {
+    render(<NavLink href="#" data-testid="link" />);
 
-    wrapper.find('a').simulate('click', e);
-    expect(e.preventDefault).toHaveBeenCalled();
+    const node = screen.getByTestId('link');
+    const clickEvent = createEvent.click(node)
+    fireEvent(node, clickEvent);
+    expect(clickEvent.defaultPrevented).toBe(true);
   });
 
   it('is not called when disabled', () => {
     const onClick = jest.fn();
-    const e = createSpyObj('e', ['preventDefault']);
-    const wrapper = shallow(<NavLink disabled onClick={onClick} />);
+    render(<NavLink disabled onClick={onClick} data-testid="link" />);
 
-    wrapper.find('a').simulate('click', e);
-    expect(e.preventDefault).toHaveBeenCalled();
+    const node = screen.getByTestId('link');
+    const clickEvent = createEvent.click(node);
+    fireEvent(node, clickEvent);
+
+    expect(clickEvent.defaultPrevented).toBe(true);
     expect(onClick).not.toHaveBeenCalled();
   });
 });
