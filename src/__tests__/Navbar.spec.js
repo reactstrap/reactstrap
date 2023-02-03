@@ -1,101 +1,149 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { screen, render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Navbar } from '..';
 
 describe('Navbar', () => {
   it('should render .navbar markup', () => {
-    const wrapper = shallow(<Navbar />);
-
-    expect(wrapper.html()).toBe(
-      '<nav class="navbar"><div class="container-fluid"></div></nav>',
+    render(
+      <div data-testid="navBar">
+        <Navbar />
+      </div>,
+    );
+    expect(screen.getByTestId('navBar')).toContainHTML(
+      '<nav class="navbar" ><div class="container-fluid" /></nav>',
     );
   });
 
   it('should render default .navbar-expand class', () => {
-    const wrapper = shallow(<Navbar expand />);
-
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBar">
+        <Navbar expand />
+      </div>,
+    );
+    expect(screen.getByTestId('navBar')).toContainHTML(
       '<nav class="navbar navbar-expand"><div class="container-fluid"></div></nav>',
     );
   });
 
   it('should render size based .navbar-expand-* classes', () => {
-    const wrapper = shallow(<Navbar expand="md" />);
-
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBar">
+        <Navbar expand="md" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBar')).toContainHTML(
       '<nav class="navbar navbar-expand-md"><div class="container-fluid"></div></nav>',
     );
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Navbar tag="div" />);
-
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBar">
+        <Navbar tag="div" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBar')).toContainHTML(
       '<div class="navbar"><div class="container-fluid"></div></div>',
     );
   });
 
   it('should render role', () => {
-    const wrapper = shallow(<Navbar role="navigation" />);
-
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBar">
+        <Navbar role="navigation" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBar')).toContainHTML(
       '<nav role="navigation" class="navbar"><div class="container-fluid"></div></nav>',
     );
   });
 
   it('should support container options', () => {
-    let wrapper = shallow(<Navbar container={false} />);
-    expect(wrapper.html()).toBe('<nav class="navbar"></nav>');
+    render(
+      <div data-testid="navBarFalse">
+        <Navbar container={false} />
+      </div>,
+    );
+    expect(screen.getByTestId('navBarFalse')).toContainHTML(
+      '<nav class="navbar"></nav>',
+    );
 
-    wrapper = shallow(<Navbar container />);
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBar">
+        <Navbar container />
+      </div>,
+    );
+    expect(screen.getByTestId('navBar')).toContainHTML(
       '<nav class="navbar"><div class="container"></div></nav>',
     );
 
-    wrapper = shallow(<Navbar container="xs" />);
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBarXs">
+        <Navbar container="xs" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBarXs')).toContainHTML(
       '<nav class="navbar"><div class="container-xs"></div></nav>',
     );
 
-    wrapper = shallow(<Navbar container="sm" />);
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBarSm">
+        <Navbar container="sm" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBarSm')).toContainHTML(
       '<nav class="navbar"><div class="container-sm"></div></nav>',
     );
 
-    wrapper = shallow(<Navbar container="md" />);
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBarMd">
+        <Navbar container="md" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBarMd')).toContainHTML(
       '<nav class="navbar"><div class="container-md"></div></nav>',
     );
 
-    wrapper = shallow(<Navbar container="lg" />);
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBarLg">
+        <Navbar container="lg" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBarLg')).toContainHTML(
       '<nav class="navbar"><div class="container-lg"></div></nav>',
     );
 
-    wrapper = shallow(<Navbar container="xl" />);
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBarXl">
+        <Navbar container="xl" />
+      </div>,
+    );
+    expect(screen.getByTestId('navBarXl')).toContainHTML(
       '<nav class="navbar"><div class="container-xl"></div></nav>',
     );
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<Navbar>Children</Navbar>);
-
-    expect(wrapper.html()).toBe(
+    render(
+      <div data-testid="navBar">
+        <Navbar>Children</Navbar>
+      </div>,
+    );
+    expect(screen.getByTestId('navBar')).toContainHTML(
       '<nav class="navbar"><div class="container-fluid">Children</div></nav>',
     );
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Navbar className="extra" />);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('navbar')).toBe(true);
+    render(<Navbar data-testid="navBar" className="extra" />);
+    expect(screen.getByTestId('navBar')).toHaveClass('extra navbar');
   });
 
   it('should render prop based classes', () => {
-    const wrapper = shallow(
+    render(
       <Navbar
+        data-testid="navBar"
         light
         dark
         expand="sm"
@@ -105,13 +153,13 @@ describe('Navbar', () => {
         fixed="top"
       />,
     );
-
-    expect(wrapper.hasClass('bg-success')).toBe(true);
-    expect(wrapper.hasClass('navbar')).toBe(true);
-    expect(wrapper.hasClass('navbar-expand-sm')).toBe(true);
-    expect(wrapper.hasClass('navbar-light')).toBe(true);
-    expect(wrapper.hasClass('navbar-dark')).toBe(true);
-    expect(wrapper.hasClass('fixed-top')).toBe(true);
-    expect(wrapper.hasClass('sticky-top')).toBe(true);
+    const node = screen.getByTestId('navBar');
+    expect(node).toHaveClass('bg-success');
+    expect(node).toHaveClass('navbar');
+    expect(node).toHaveClass('navbar-expand-sm');
+    expect(node).toHaveClass('navbar-light');
+    expect(node).toHaveClass('navbar-dark');
+    expect(node).toHaveClass('fixed-top');
+    expect(node).toHaveClass('sticky-top');
   });
 });
