@@ -137,6 +137,13 @@
 
 
 
+### [9.1.6](https://www.github.com/reactstrap/reactstrap/compare/v9.1.5...v9.1.6) (2023-02-03)
+
+
+### Bug Fixes
+
+* **Label:** migrate label to rtl ([#2665](https://www.github.com/reactstrap/reactstrap/issues/2665)) ([8c5cc2b](https://www.github.com/reactstrap/reactstrap/commit/8c5cc2bac0c219275896657db21f5c2ea5ecdffe))
+
 ### [9.1.5](https://www.github.com/reactstrap/reactstrap/compare/v9.1.4...v9.1.5) (2022-10-27)
 
 
