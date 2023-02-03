@@ -59,10 +59,7 @@ describe('Table', () => {
       table: 'scopedTable',
       'table-responsive': 'scopedResponsive',
     };
-    const { debug } = render(
-      <Table data-testid="table" responsive cssModule={cssModule} />,
-    );
-    debug();
+    render(<Table data-testid="table" responsive cssModule={cssModule} />);
     expect(screen.getByTestId('table')).toHaveClass('scopedTable');
     expect(screen.getByTestId('table').parentNode).toHaveClass(
       'scopedResponsive',
