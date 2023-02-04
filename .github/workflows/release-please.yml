@@ -1,13 +1,13 @@
 on:
   push:
     branches:
-      - v10
+      - master
 name: Release Bot
 jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v3
+      - uses: GoogleCloudPlatform/release-please-action@v2
         id: release-please
         with:
           token: ${{ secrets.REACTSTRAP_TOKEN }}
@@ -15,21 +15,17 @@ jobs:
           package-name: "reactstrap"
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":true},{"type":"refactor","section":"Miscellaneous","hidden":false}]'
           command: release-pr
-          default-branch: v10
-          prerelease: true
 
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v3
+      - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
           token: ${{ secrets.REACTSTRAP_TOKEN }}
           release-type: node
           package-name: "reactstrap"
           command: github-release
-          default-branch: v10
-          prerelease: true
       - uses: actions/checkout@v2
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions/setup-node@v2
@@ -41,7 +37,7 @@ jobs:
         run: rm -rf node_modules && yarn install --frozen-lockfile
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish package
-        run: npm publish --tag v10
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
