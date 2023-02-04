@@ -26,7 +26,7 @@ const defaultProps = {
   tag: 'a',
 };
 
-function PaginationLink(props) {
+const PaginationLink = React.forwardRef((props, ref) => {
   let {
     className,
     cssModule,
@@ -88,13 +88,14 @@ function PaginationLink(props) {
   }
 
   return (
-    <Tag {...attributes} className={classes} aria-label={ariaLabel}>
+    <Tag {...attributes} className={classes} aria-label={ariaLabel} ref={ref}>
       {children}
     </Tag>
   );
-}
+})
 
 PaginationLink.propTypes = propTypes;
 PaginationLink.defaultProps = defaultProps;
+PaginationLink.displayName = 'PaginationLink';
 
 export default PaginationLink;

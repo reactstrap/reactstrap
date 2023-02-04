@@ -21,7 +21,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-function InputGroup(props) {
+const InputGroup = React.forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, type, size, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'input-group', size ? `input-group-${size}` : null),
@@ -34,12 +34,13 @@ function InputGroup(props) {
 
   return (
     <InputGroupContext.Provider value={{ insideInputGroup: true }}>
-      <Tag {...attributes} className={classes} />
+      <Tag {...attributes} className={classes} ref={ref} />
     </InputGroupContext.Provider>
   );
-}
+})
 
 InputGroup.propTypes = propTypes;
 InputGroup.defaultProps = defaultProps;
+InputGroup.displayName = 'InputGroup';
 
 export default InputGroup;

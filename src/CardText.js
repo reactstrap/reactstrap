@@ -16,17 +16,18 @@ const defaultProps = {
   tag: 'p',
 };
 
-function CardText(props) {
+const CardText = React.forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-text'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref}/>;
+})
 
 CardText.propTypes = propTypes;
 CardText.defaultProps = defaultProps;
+CardText.displayName = 'CardText';
 
 export default CardText;

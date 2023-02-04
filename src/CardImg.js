@@ -20,7 +20,7 @@ const defaultProps = {
   tag: 'img',
 };
 
-function CardImg(props) {
+const CardImg = React.forwardRef((props, ref) => {
   const { className, cssModule, top, bottom, tag: Tag, ...attributes } = props;
 
   let cardImgClassName = 'card-img';
@@ -36,10 +36,11 @@ function CardImg(props) {
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 CardImg.propTypes = propTypes;
 CardImg.defaultProps = defaultProps;
+CardImg.displayName = 'CardImg';
 
 export default CardImg;

@@ -6,9 +6,9 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-function ButtonDropdown(props) {
-  return <Dropdown group {...props} />;
-}
+const ButtonDropdown = React.forwardRef((props, ref) => {
+  return <Dropdown group {...props} ref={ref} />;
+})
 
 ButtonDropdown.propTypes = propTypes;
 

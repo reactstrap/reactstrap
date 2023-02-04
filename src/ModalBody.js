@@ -15,17 +15,18 @@ const defaultProps = {
   tag: 'div',
 };
 
-function ModalBody(props) {
+const ModalBody = React.forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'modal-body'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 ModalBody.propTypes = propTypes;
 ModalBody.defaultProps = defaultProps;
+ModalBody.displayName = 'ModalBody';
 
 export default ModalBody;

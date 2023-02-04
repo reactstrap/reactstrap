@@ -19,7 +19,7 @@ npx create-react-app my-app
 cd my-app/
 npm start
 ```
-or,  if npx (Node >= 6 and npm >= 5.2 ) not available 
+or,  if npx (Node >= 6 and npm >= 5.2 ) not available
 
 ```
 npm install -g create-react-app
@@ -27,7 +27,7 @@ npm install -g create-react-app
 create-react-app my-app
 cd my-app/
 npm start
-``` 
+```
 
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app. The initial structure of your app is setup. Next, let's [add reactstrap and bootstrap](#adding-bootstrap).
 
@@ -162,8 +162,11 @@ Organizations and projects using `reactstrap`
 - [DevExtreme React Grid](https://devexpress.github.io/devextreme-reactive/react/grid/) - It's a stateless data grid built on top of `reactstrap` with paging, sorting, filtering, grouping, selection, editing and virtual scrolling features.
 - [DevExtreme React Chart](https://devexpress.github.io/devextreme-reactive/react/chart/) - A chart built on top of `reactstrap` that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more.
 - [reactstrap-scrollspy](https://github.com/keidrun/reactstrap-scrollspy/) - [demo](https://keidrun.github.io/reactstrap-scrollspy/)
-- [formstrap](https://github.com/pedox/formstrap/) - [demo](https://pedox.github.io/formstrap/) - Let your `reactstrap` input component integrate seamlessly using `Formik` 
+- [formstrap](https://github.com/pedox/formstrap/) - [demo](https://pedox.github.io/formstrap/) - Let your `reactstrap` input component integrate seamlessly using `Formik`
 
 Submit a PR to add to this list!
 
 Looking to build, document and publish reusable components built on top of `reactstrap`? Consider forking https://github.com/reactstrap/component-template to kickstart your project!
+
+To delete!!!!
+grep -rL React.forwardRef ./src

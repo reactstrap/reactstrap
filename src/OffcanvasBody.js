@@ -13,17 +13,18 @@ const defaultProps = {
   tag: 'div',
 };
 
-function OffcanvasBody(props) {
+const OffcanvasBody = React.forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'offcanvas-body'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 OffcanvasBody.propTypes = propTypes;
 OffcanvasBody.defaultProps = defaultProps;
+OffcanvasBody.displayName = 'OffcanvasBody';
 
 export default OffcanvasBody;

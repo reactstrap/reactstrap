@@ -15,7 +15,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-export default function TabPane(props) {
+const TabPane = React.forwardRef((props, ref) => {
   const { className, cssModule, tabId, tag: Tag, ...attributes } = props;
   const getClasses = (activeTabId) =>
     mapToCssModules(
@@ -25,10 +25,14 @@ export default function TabPane(props) {
   return (
     <TabContext.Consumer>
       {({ activeTabId }) => (
-        <Tag {...attributes} className={getClasses(activeTabId)} />
+        <Tag {...attributes} className={getClasses(activeTabId)} ref={ref} />
       )}
     </TabContext.Consumer>
   );
-}
+})
+
 TabPane.propTypes = propTypes;
 TabPane.defaultProps = defaultProps;
+TabPane.displayName = 'TabPane';
+
+export default TabPane;

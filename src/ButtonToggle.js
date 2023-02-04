@@ -17,7 +17,7 @@ const defaultProps = {
   defaultValue: false,
 };
 
-function ButtonToggle(props) {
+const ButtonToggle = React.forwardRef((props, ref) => {
   const [toggled, setToggled] = useState(props.defaultValue);
   const [focus, setFocus] = useState(false);
 
@@ -67,12 +67,14 @@ function ButtonToggle(props) {
       onFocus={onFocus}
       onClick={onClick}
       className={classes}
+      ref={ref}
       {...attributes}
     />
   );
-}
+})
 
 ButtonToggle.propTypes = propTypes;
 ButtonToggle.defaultProps = defaultProps;
+ButtonToggle.displayName = 'ButtonToggle';
 
 export default ButtonToggle;

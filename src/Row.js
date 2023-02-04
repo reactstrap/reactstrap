@@ -31,7 +31,7 @@ const defaultProps = {
   widths: rowColWidths,
 };
 
-function Row(props) {
+const Row = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -63,10 +63,11 @@ function Row(props) {
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 Row.propTypes = propTypes;
 Row.defaultProps = defaultProps;
+Row.displayName = 'Row';
 
 export default Row;

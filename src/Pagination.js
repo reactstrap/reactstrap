@@ -26,7 +26,8 @@ const defaultProps = {
   'aria-label': 'pagination',
 };
 
-function Pagination(props) {
+// TODO: What should we assign ref to here? We can decide later.
+const Pagination = React.forwardRef((props, ref) => {
   const {
     className,
     listClassName,
@@ -52,9 +53,10 @@ function Pagination(props) {
       <ListTag {...attributes} className={listClasses} />
     </Tag>
   );
-}
+});
 
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
+Pagination.displayName = 'Pagination';
 
 export default Pagination;

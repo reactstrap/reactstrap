@@ -14,7 +14,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-function Container(props) {
+const Container = React.forwardRef((props, ref) => {
   const { className, cssModule, fluid, tag: Tag, ...attributes } = props;
 
   let containerClass = 'container';
@@ -29,10 +29,11 @@ function Container(props) {
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 Container.propTypes = propTypes;
 Container.defaultProps = defaultProps;
+Container.displayName = 'Container';
 
 export default Container;

@@ -46,7 +46,7 @@ const getExpandClass = (expand) => {
   return `navbar-expand-${expand}`;
 };
 
-function Navbar(props) {
+const Navbar = React.forwardRef((props, ref) => {
   const {
     expand,
     className,
@@ -77,13 +77,14 @@ function Navbar(props) {
     container && container === true ? 'container' : `container-${container}`;
 
   return (
-    <Tag {...attributes} className={classes}>
+    <Tag {...attributes} className={classes} ref={ref}>
       {container ? <div className={containerClass}>{children}</div> : children}
     </Tag>
   );
-}
+})
 
 Navbar.propTypes = propTypes;
 Navbar.defaultProps = defaultProps;
+Navbar.displayName = 'Navbar';
 
 export default Navbar;

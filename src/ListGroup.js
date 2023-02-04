@@ -34,7 +34,7 @@ const getHorizontalClass = (horizontal) => {
   return `list-group-horizontal-${horizontal}`;
 };
 
-function ListGroup(props) {
+const ListGroup = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -58,10 +58,11 @@ function ListGroup(props) {
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 ListGroup.propTypes = propTypes;
 ListGroup.defaultProps = defaultProps;
+ListGroup.displayName = 'ListGroup';
 
 export default ListGroup;

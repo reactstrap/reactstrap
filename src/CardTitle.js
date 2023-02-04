@@ -16,17 +16,18 @@ const defaultProps = {
   tag: 'div',
 };
 
-function CardTitle(props) {
+const CardTitle = React.forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-title'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 CardTitle.propTypes = propTypes;
 CardTitle.defaultProps = defaultProps;
+CardTitle.displayName = 'CardTitle';
 
 export default CardTitle;

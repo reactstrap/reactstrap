@@ -20,7 +20,7 @@ const defaultProps = {
   type: 'button',
 };
 
-function NavbarToggler(props) {
+const NavbarToggler = React.forwardRef((props, ref) => {
   const { className, cssModule, children, tag: Tag, ...attributes } = props;
 
   const classes = mapToCssModules(
@@ -29,15 +29,16 @@ function NavbarToggler(props) {
   );
 
   return (
-    <Tag aria-label="Toggle navigation" {...attributes} className={classes}>
+    <Tag aria-label="Toggle navigation" {...attributes} className={classes} ref={ref}>
       {children || (
         <span className={mapToCssModules('navbar-toggler-icon', cssModule)} />
       )}
     </Tag>
   );
-}
+})
 
 NavbarToggler.propTypes = propTypes;
 NavbarToggler.defaultProps = defaultProps;
+NavbarToggler.displayName = 'NavbarToggler';
 
 export default NavbarToggler;

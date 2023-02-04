@@ -10,6 +10,7 @@ import {
 
 const omitKeys = ['toggleEvents', 'defaultOpen'];
 
+// innerRef
 const propTypes = {
   /** set if Collapse is open by default */
   defaultOpen: PropTypes.bool,

@@ -5,6 +5,7 @@ import { omit } from './utils';
 
 const omitKeys = ['defaultOpen'];
 
+// innerRef
 export default class UncontrolledPopover extends Component {
   constructor(props) {
     super(props);

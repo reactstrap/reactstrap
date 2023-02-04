@@ -25,7 +25,7 @@ const defaultProps = {
   role: 'group',
 };
 
-function ButtonGroup(props) {
+const ButtonGroup = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -44,10 +44,11 @@ function ButtonGroup(props) {
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 ButtonGroup.propTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;
+ButtonGroup.displayName = 'ButtonGroup';
 
 export default ButtonGroup;

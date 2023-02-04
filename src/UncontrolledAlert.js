@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Alert from './Alert';
 
+// forward ref here
 class UncontrolledAlert extends Component {
   constructor(props) {
     super(props);

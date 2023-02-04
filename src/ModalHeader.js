@@ -25,7 +25,7 @@ const defaultProps = {
   closeAriaLabel: 'Close',
 };
 
-function ModalHeader(props) {
+const ModalHeader = React.forwardRef((props, ref) => {
   let closeButton;
   const {
     className,
@@ -56,14 +56,14 @@ function ModalHeader(props) {
   }
 
   return (
-    <WrapTag {...attributes} className={classes}>
+    <WrapTag {...attributes} className={classes} ref={ref}>
       <Tag className={mapToCssModules('modal-title', cssModule)}>
         {children}
       </Tag>
       {close || closeButton}
     </WrapTag>
   );
-}
+});
 
 ModalHeader.propTypes = propTypes;
 ModalHeader.defaultProps = defaultProps;

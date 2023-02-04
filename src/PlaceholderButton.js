@@ -19,7 +19,7 @@ const defaultProps = {
   tag: Button,
 };
 
-function PlaceholderButton(props) {
+const PlaceholderButton = React.forwardRef((props, ref) => {
   let { cssModule, className, tag: Tag, ...attributes } = props;
 
   let { attributes: modifiedAttributes, colClasses } = getColumnClasses(
@@ -32,10 +32,11 @@ function PlaceholderButton(props) {
     cssModule,
   );
 
-  return <Button {...modifiedAttributes} className={classes} disabled />;
-}
+  return <Button {...modifiedAttributes} className={classes} disabled ref={ref} />;
+})
 
 PlaceholderButton.propTypes = propTypes;
 PlaceholderButton.defaultProps = defaultProps;
+PlaceholderButton.displayName = 'PlaceholderButton';
 
 export default PlaceholderButton;

@@ -17,7 +17,7 @@ const defaultProps = {
   tag: 'span',
 };
 
-function NavbarText(props) {
+const NavbarText = React.forwardRef((props, ref) => {
   const { className, cssModule, active, tag: Tag, ...attributes } = props;
 
   const classes = mapToCssModules(
@@ -25,10 +25,11 @@ function NavbarText(props) {
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+})
 
 NavbarText.propTypes = propTypes;
 NavbarText.defaultProps = defaultProps;
+NavbarText.displayName = 'NavbarText';
 
 export default NavbarText;

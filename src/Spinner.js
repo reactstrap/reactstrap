@@ -35,7 +35,7 @@ const defaultProps = {
   children: 'Loading...',
 };
 
-function Spinner(props) {
+const Spinner = React.forwardRef((props, ref) => {
   const {
     className,
     cssModule,
@@ -58,7 +58,7 @@ function Spinner(props) {
   );
 
   return (
-    <Tag role="status" {...attributes} className={classes}>
+    <Tag role="status" {...attributes} className={classes} ref={ref}>
       {children && (
         <span className={mapToCssModules('visually-hidden', cssModule)}>
           {children}
@@ -66,7 +66,7 @@ function Spinner(props) {
       )}
     </Tag>
   );
-}
+});
 
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;

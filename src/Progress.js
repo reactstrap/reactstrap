@@ -41,7 +41,7 @@ const defaultProps = {
   barStyle: {},
 };
 
-function Progress(props) {
+const Progress = React.forwardRef((props, ref) => {
   const {
     children,
     className,
@@ -98,17 +98,18 @@ function Progress(props) {
   };
 
   if (bar) {
-    return <Tag {...attributes} {...progressBarProps} />;
+    return <Tag {...attributes} {...progressBarProps} ref={ref}/>;
   }
 
   return (
-    <Tag {...attributes} style={style} className={progressClasses}>
+    <Tag {...attributes} style={style} className={progressClasses} ref={ref}>
       {multi ? children : <div {...progressBarProps} />}
     </Tag>
   );
-}
+})
 
 Progress.propTypes = propTypes;
 Progress.defaultProps = defaultProps;
+Progress.displayName = 'Progress';
 
 export default Progress;

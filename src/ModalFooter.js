@@ -16,17 +16,18 @@ const defaultProps = {
   tag: 'div',
 };
 
-function ModalFooter(props) {
+const ModalFooter = React.forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'modal-footer'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+});
 
 ModalFooter.propTypes = propTypes;
 ModalFooter.defaultProps = defaultProps;
+ModalFooter.displayName = 'ModalFooter';
 
 export default ModalFooter;
