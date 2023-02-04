@@ -49,7 +49,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
     );
 
-    expect(wrapper.prop('hideArrow')).toBe(false);
+    expect(wrapper.children().prop('hideArrow')).toBe(false);
   });
 
   it('should render with "hideArrow" true when "hideArrow" prop is truthy', () => {
@@ -62,7 +62,7 @@ describe('Tooltip', () => {
       >
         Tooltip Content
       </TooltipPopoverWrapper>,
-    );
+    ).children();
 
     expect(wrapper.prop('hideArrow')).toBe(true);
   });
@@ -195,7 +195,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container },
     );
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: target });
@@ -215,7 +215,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container },
     );
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: innerTarget });
@@ -231,7 +231,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container },
     );
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: innerTarget });
@@ -249,7 +249,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container },
     );
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
 
     expect(isOpen).toBe(false);
     instance.handleDocumentClick({ target: container });
@@ -270,7 +270,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container },
     );
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
 
     instance.hideWithDelay();
     expect(isOpen).toBe(false);
@@ -420,7 +420,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container },
     );
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
 
     instance.toggle(event);
 
@@ -439,7 +439,7 @@ describe('Tooltip', () => {
       </TooltipPopoverWrapper>,
       { attachTo: container },
     );
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
 
     instance.toggle(event);
 
@@ -458,7 +458,7 @@ describe('Tooltip', () => {
       { attachTo: container },
     );
 
-    const instance = wrapper.instance();
+    const instance = wrapper.children().instance();
     instance.toggle(event);
 
     wrapper.detach();
@@ -555,7 +555,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.hideWithDelay();
       expect(isOpen).toBe(true);
@@ -576,7 +576,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.hideWithDelay();
       expect(isOpen).toBe(true);
@@ -597,7 +597,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.hideWithDelay();
       expect(isOpen).toBe(true);
@@ -616,7 +616,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       expect(spy).not.toHaveBeenCalled();
 
@@ -635,7 +635,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       expect(spy).not.toHaveBeenCalled();
 
@@ -656,7 +656,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       expect(spy).not.toHaveBeenCalled();
 
@@ -676,7 +676,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       expect(spy).not.toHaveBeenCalled();
 
@@ -703,7 +703,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.hideWithDelay();
 
@@ -732,7 +732,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.showWithDelay();
       jest.advanceTimersByTime(0); // delay: 0 toggle is still async
@@ -759,7 +759,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.showWithDelay();
 
@@ -788,7 +788,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.hideWithDelay();
       jest.advanceTimersByTime(0); // delay: 0 toggle is still async
@@ -817,7 +817,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
@@ -847,7 +847,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       instance.showWithDelay();
       expect(instance._showTimeout).toBeTruthy();
@@ -873,7 +873,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
 
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
@@ -902,7 +902,7 @@ describe('Tooltip', () => {
         </TooltipPopoverWrapper>,
         { attachTo: container },
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.children().instance();
       expect(isOpen).toBe(true);
       expect(spy).not.toHaveBeenCalled();
       instance.hideWithDelay();

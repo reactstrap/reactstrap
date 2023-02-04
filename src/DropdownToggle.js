@@ -143,4 +143,4 @@ DropdownToggle.propTypes = propTypes;
 DropdownToggle.defaultProps = defaultProps;
 DropdownToggle.contextType = DropdownContext;
 
-export default DropdownToggle;
+export default React.forwardRef((props, ref) => <DropdownToggle innerRef={ref} {...props} />);

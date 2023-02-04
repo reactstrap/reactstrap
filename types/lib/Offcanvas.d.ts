@@ -14,6 +14,7 @@ export interface OffcanvasProps extends React.HTMLAttributes<HTMLElement> {
   contentClassName?: string;
   cssModule?: CSSModule;
   fade?: boolean;
+  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
   isOpen?: boolean;
   keyboard?: boolean;

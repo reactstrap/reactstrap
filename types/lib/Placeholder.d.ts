@@ -10,6 +10,7 @@ export interface PlaceholderProps extends React.HTMLAttributes<HTMLElement> {
   cssModule?: CSSModule;
   size?: string;
   widths?: string[];
+  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
 }
 

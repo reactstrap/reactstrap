@@ -400,4 +400,4 @@ class TooltipPopoverWrapper extends React.Component {
 TooltipPopoverWrapper.propTypes = propTypes;
 TooltipPopoverWrapper.defaultProps = defaultProps;
 
-export default TooltipPopoverWrapper;
+export default React.forwardRef((props, ref) => <TooltipPopoverWrapper innerRef={ref} {...props} />);
