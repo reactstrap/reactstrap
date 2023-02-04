@@ -7,7 +7,7 @@ jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v2
+      - uses: GoogleCloudPlatform/release-please-action@v3
         id: release-please
         with:
           token: ${{ secrets.REACTSTRAP_TOKEN }}
@@ -21,7 +21,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v2
+      - uses: GoogleCloudPlatform/release-please-action@v3
         id: release
         with:
           token: ${{ secrets.REACTSTRAP_TOKEN }}
@@ -41,7 +41,7 @@ jobs:
         run: rm -rf node_modules && yarn install --frozen-lockfile
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish package
-        run: npm publish
+        run: npm publish --tag v10
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         if: ${{ steps.release.outputs.release_created }}
