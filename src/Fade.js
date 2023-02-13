@@ -42,6 +42,8 @@ const defaultProps = {
 };
 
 function Fade(props) {
+  const ref = useRef(null);
+
   const {
     tag: Tag,
     baseClass,
@@ -49,7 +51,7 @@ function Fade(props) {
     className,
     cssModule,
     children,
-    innerRef = useRef(null),
+    innerRef = ref,
     ...otherProps
   } = props;
 
