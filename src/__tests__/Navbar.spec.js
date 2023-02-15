@@ -2,135 +2,100 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Navbar } from '..';
+import { testForCustomTag } from '../testUtils';
 
 describe('Navbar', () => {
   it('should render .navbar markup', () => {
-    render(
-      <div data-testid="navBar">
+    let {container} = render(
         <Navbar />
-      </div>,
     );
-    expect(screen.getByTestId('navBar')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav class="navbar" ><div class="container-fluid" /></nav>',
     );
   });
 
   it('should render default .navbar-expand class', () => {
-    render(
-      <div data-testid="navBar">
-        <Navbar expand />
-      </div>,
-    );
-    expect(screen.getByTestId('navBar')).toContainHTML(
-      '<nav class="navbar navbar-expand"><div class="container-fluid"></div></nav>',
-    );
+    render(<Navbar data-testid="navBar" expand/>);
+    expect(screen.getByTestId('navBar')).toHaveClass('navbar-expand');
   });
 
   it('should render size based .navbar-expand-* classes', () => {
-    render(
-      <div data-testid="navBar">
-        <Navbar expand="md" />
-      </div>,
-    );
-    expect(screen.getByTestId('navBar')).toContainHTML(
-      '<nav class="navbar navbar-expand-md"><div class="container-fluid"></div></nav>',
-    );
+    render(<Navbar data-testid="navBar" expand = "md"/>);
+    expect(screen.getByTestId('navBar')).toHaveClass('navbar-expand-md');
   });
 
   it('should render custom tag', () => {
-    render(
-      <div data-testid="navBar">
-        <Navbar tag="div" />
-      </div>,
-    );
-    expect(screen.getByTestId('navBar')).toContainHTML(
-      '<div class="navbar"><div class="container-fluid"></div></div>',
-    );
+    testForCustomTag(Navbar, {}, 'div')
   });
 
   it('should render role', () => {
-    render(
-      <div data-testid="navBar">
+    let {container} = render(
         <Navbar role="navigation" />
-      </div>,
     );
-    expect(screen.getByTestId('navBar')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav role="navigation" class="navbar"><div class="container-fluid"></div></nav>',
     );
   });
 
   it('should support container options', () => {
-    render(
-      <div data-testid="navBarFalse">
-        <Navbar container={false} />
-      </div>,
-    );
-    expect(screen.getByTestId('navBarFalse')).toContainHTML(
-      '<nav class="navbar"></nav>',
+    const {rerender, container } = render(
+      <Navbar container={false} />
+  );
+
+    expect(container).toContainHTML(
+      '<nav class="navbar"></nav>', 
     );
 
-    render(
-      <div data-testid="navBar">
-        <Navbar container />
-      </div>,
-    );
-    expect(screen.getByTestId('navBar')).toContainHTML(
+        rerender(
+      <Navbar container />
+  );
+    expect(container).toContainHTML(
       '<nav class="navbar"><div class="container"></div></nav>',
     );
 
-    render(
-      <div data-testid="navBarXs">
+    rerender(
         <Navbar container="xs" />
-      </div>,
     );
-    expect(screen.getByTestId('navBarXs')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav class="navbar"><div class="container-xs"></div></nav>',
     );
 
-    render(
-      <div data-testid="navBarSm">
+    rerender(
         <Navbar container="sm" />
-      </div>,
     );
-    expect(screen.getByTestId('navBarSm')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav class="navbar"><div class="container-sm"></div></nav>',
     );
 
-    render(
-      <div data-testid="navBarMd">
+    rerender(
         <Navbar container="md" />
-      </div>,
     );
-    expect(screen.getByTestId('navBarMd')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav class="navbar"><div class="container-md"></div></nav>',
     );
 
-    render(
+    rerender(
       <div data-testid="navBarLg">
         <Navbar container="lg" />
       </div>,
     );
-    expect(screen.getByTestId('navBarLg')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav class="navbar"><div class="container-lg"></div></nav>',
     );
 
-    render(
-      <div data-testid="navBarXl">
+    rerender(
         <Navbar container="xl" />
-      </div>,
     );
-    expect(screen.getByTestId('navBarXl')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav class="navbar"><div class="container-xl"></div></nav>',
     );
   });
 
   it('should render children', () => {
-    render(
-      <div data-testid="navBar">
+    let { }render(
         <Navbar>Children</Navbar>
-      </div>,
     );
-    expect(screen.getByTestId('navBar')).toContainHTML(
+    expect(container).toContainHTML(
       '<nav class="navbar"><div class="container-fluid">Children</div></nav>',
     );
   });
@@ -148,7 +113,6 @@ describe('Navbar', () => {
         dark
         expand="sm"
         color="success"
-        full
         sticky="top"
         fixed="top"
       />,
