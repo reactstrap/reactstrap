@@ -37,7 +37,7 @@ const defaultProps = {
   responsiveTag: 'div',
 };
 
-const Table = React.forwardRef((props, ref) => {
+function Table(props) {
   const {
     className,
     cssModule,
@@ -50,7 +50,7 @@ const Table = React.forwardRef((props, ref) => {
     responsive,
     tag: Tag,
     responsiveTag: ResponsiveTag,
-    innerRef = ref,
+    innerRef,
     ...attributes
   } = props;
 
@@ -84,7 +84,7 @@ const Table = React.forwardRef((props, ref) => {
   }
 
   return table;
-})
+}
 
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;

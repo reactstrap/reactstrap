@@ -219,7 +219,6 @@ describe('UncontrolledDropdown', () => {
 
       wrapper
         .find(Dropdown)
-        .children()
         .instance()
         .handleDocumentClick({ type: 'keyup', which: keyCodes.tab });
 
@@ -250,7 +249,6 @@ describe('UncontrolledDropdown', () => {
 
       wrapper
         .find(Dropdown)
-        .children()
         .instance()
         .handleDocumentClick('keydown', { which: keyCodes.down });
 

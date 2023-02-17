@@ -5,7 +5,6 @@ export interface NavLinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   [key: string]: any;
   tag?: React.ElementType;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLAnchorElement>;
   disabled?: boolean;
   active?: boolean;

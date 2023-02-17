@@ -6,7 +6,6 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
   color?: string;
   pill?: boolean;
   tag?: React.ElementType;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
   cssModule?: CSSModule;
 }

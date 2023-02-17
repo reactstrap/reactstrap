@@ -4,7 +4,6 @@ import { CSSModule } from './utils';
 export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   [key: string]: any;
   tag?: React.ElementType;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLFormElement>;
   cssModule?: CSSModule;
 }

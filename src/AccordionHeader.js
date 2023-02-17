@@ -25,12 +25,12 @@ const defaultProps = {
   tag: 'h2',
 };
 
-const AccordionHeader = React.forwardRef((props, ref) => {
+function AccordionHeader(props) {
   const {
     className,
     cssModule,
     tag: Tag,
-    innerRef = ref,
+    innerRef,
     children,
     targetId,
     ...attributes
@@ -62,7 +62,7 @@ const AccordionHeader = React.forwardRef((props, ref) => {
       </button>
     </Tag>
   );
-})
+}
 
 AccordionHeader.propTypes = propTypes;
 AccordionHeader.defaultProps = defaultProps;

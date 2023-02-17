@@ -9,7 +9,6 @@ export interface ButtonProps
   block?: boolean;
   color?: string;
   tag?: React.ElementType;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLButtonElement>;
   size?: string;
   cssModule?: CSSModule;

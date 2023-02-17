@@ -21,15 +21,15 @@ const defaultProps = {
   tag: 'div',
 };
 
-const CardBody = React.forwardRef((props, ref) => {
-  const { className, cssModule, innerRef = ref, tag: Tag, ...attributes } = props;
+function CardBody(props) {
+  const { className, cssModule, innerRef, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-body'),
     cssModule,
   );
 
   return <Tag {...attributes} className={classes} ref={innerRef} />;
-});
+}
 
 CardBody.propTypes = propTypes;
 CardBody.defaultProps = defaultProps;

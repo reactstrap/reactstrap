@@ -371,4 +371,4 @@ Dropdown.propTypes = propTypes;
 Dropdown.defaultProps = defaultProps;
 Dropdown.contextType = InputGroupContext;
 
-export default React.forwardRef((props, ref) => <Dropdown innerRef={ref} {...props} />);
+export default Dropdown;

@@ -5,7 +5,6 @@ export interface ToastBodyProps extends React.HTMLAttributes<HTMLElement> {
   [key: string]: any;
   tag?: React.ElementType;
   cssModule?: CSSModule;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
 }
 
