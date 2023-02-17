@@ -27,12 +27,12 @@ const defaultProps = {
   tag: 'div',
 };
 
-const AccordionBody = React.forwardRef((props, ref) => {
+function AccordionBody(props) {
   const {
     className,
     cssModule,
     tag: Tag,
-    innerRef = ref,
+    innerRef,
     children,
     accordionId,
     ...attributes
@@ -57,7 +57,7 @@ const AccordionBody = React.forwardRef((props, ref) => {
       <Tag className="accordion-body">{children}</Tag>
     </Collapse>
   );
-})
+}
 
 AccordionBody.propTypes = propTypes;
 AccordionBody.defaultProps = defaultProps;

@@ -19,7 +19,6 @@ export interface CollapseProps extends React.HTMLAttributes<HTMLElement> {
   onExit?: () => void;
   onExiting?: () => void;
   onExited?: () => void;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
 }
 

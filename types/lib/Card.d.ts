@@ -9,7 +9,6 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
   body?: boolean;
   outline?: boolean;
   cssModule?: CSSModule;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
 }
 

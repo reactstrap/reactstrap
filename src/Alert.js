@@ -46,7 +46,7 @@ const defaultProps = {
   },
 };
 
-const Alert = React.forwardRef((props, ref) => {
+function Alert(props) {
   const {
     className,
     closeClassName,
@@ -59,7 +59,7 @@ const Alert = React.forwardRef((props, ref) => {
     children,
     transition,
     fade,
-    innerRef = ref,
+    innerRef,
     ...attributes
   } = props;
 
@@ -103,7 +103,7 @@ const Alert = React.forwardRef((props, ref) => {
       {children}
     </Fade>
   );
-});
+}
 
 Alert.propTypes = propTypes;
 Alert.defaultProps = defaultProps;

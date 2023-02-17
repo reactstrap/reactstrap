@@ -29,7 +29,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const Accordion = React.forwardRef((props, ref) => {
+function Accordion(props) {
   const {
     flush,
     open,
@@ -37,7 +37,7 @@ const Accordion = React.forwardRef((props, ref) => {
     className,
     cssModule,
     tag: Tag,
-    innerRef = ref,
+    innerRef,
     ...attributes
   } = props;
   const classes = mapToCssModules(
@@ -57,7 +57,7 @@ const Accordion = React.forwardRef((props, ref) => {
       <Tag {...attributes} className={classes} ref={innerRef} />
     </AccordionContext.Provider>
   );
-})
+}
 
 Accordion.propTypes = propTypes;
 Accordion.defaultProps = defaultProps;

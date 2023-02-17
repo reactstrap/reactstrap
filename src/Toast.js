@@ -29,7 +29,7 @@ const defaultProps = {
   },
 };
 
-const Toast = React.forwardRef((props, ref) => {
+function Toast(props) {
   const {
     className,
     cssModule,
@@ -38,7 +38,7 @@ const Toast = React.forwardRef((props, ref) => {
     children,
     transition,
     fade,
-    innerRef = ref,
+    innerRef,
     ...attributes
   } = props;
 
@@ -64,7 +64,7 @@ const Toast = React.forwardRef((props, ref) => {
       {children}
     </Fade>
   );
-})
+}
 
 Toast.propTypes = propTypes;
 Toast.defaultProps = defaultProps;

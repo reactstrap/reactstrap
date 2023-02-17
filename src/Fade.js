@@ -41,7 +41,7 @@ const defaultProps = {
   in: true,
 };
 
-const Fade = React.forwardRef((props, ref) => {
+function Fade(props) {
   const {
     tag: Tag,
     baseClass,
@@ -49,7 +49,7 @@ const Fade = React.forwardRef((props, ref) => {
     className,
     cssModule,
     children,
-    innerRef = ref,
+    innerRef,
     ...otherProps
   } = props;
 
@@ -72,7 +72,7 @@ const Fade = React.forwardRef((props, ref) => {
       }}
     </Transition>
   );
-});
+}
 
 Fade.propTypes = propTypes;
 Fade.defaultProps = defaultProps;

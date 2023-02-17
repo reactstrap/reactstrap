@@ -25,12 +25,12 @@ const defaultProps = {
   tag: 'span',
 };
 
-const Placeholder = React.forwardRef((props, ref) => {
+function Placeholder(props) {
   let {
     className,
     cssModule,
     color,
-    innerRef = ref,
+    innerRef,
     tag: Tag,
     animation,
     size,
@@ -56,7 +56,7 @@ const Placeholder = React.forwardRef((props, ref) => {
   );
 
   return <Tag {...modifiedAttributes} className={classes} ref={innerRef} />;
-})
+}
 
 Placeholder.propTypes = propTypes;
 Placeholder.defaultProps = defaultProps;

@@ -15,7 +15,6 @@ export interface TableProps
   responsive?: boolean | string;
   tag?: React.ElementType;
   responsiveTag?: React.ElementType;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLTableElement>;
 }
 

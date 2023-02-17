@@ -574,4 +574,4 @@ Modal.defaultProps = defaultProps;
 Modal.openCount = 0;
 Modal.originalBodyOverflow = null;
 
-export default React.forwardRef((props, ref) => <Modal innerRef={ref} {...props} />);
+export default Modal;

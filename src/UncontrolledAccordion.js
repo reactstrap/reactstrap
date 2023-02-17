@@ -21,8 +21,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const UncontrolledAccordion = React.forwardRef((props, ref) => {
-  const { defaultOpen, stayOpen, innerRef = ref, ...restProps } = props;
+function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
   const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : undefined));
   const toggle = (id) => {
     if (stayOpen) {
@@ -38,8 +37,8 @@ const UncontrolledAccordion = React.forwardRef((props, ref) => {
     }
   };
 
-  return <Accordion {...restProps} open={open} toggle={toggle} ref={innerRef} />;
-})
+  return <Accordion {...props} open={open} toggle={toggle} />;
+}
 
 UncontrolledAccordion.propTypes = propTypes;
 UncontrolledAccordion.defaultProps = defaultProps;

@@ -12,7 +12,6 @@ export interface UncontrolledAlertProps
   fade?: boolean;
   tag?: React.ElementType;
   transition?: FadeProps;
-  ref?: React.Ref<HTMLElement>;
   innerRef?: React.Ref<HTMLElement>;
 }
 export interface AlertProps extends UncontrolledAlertProps {

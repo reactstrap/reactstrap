@@ -172,4 +172,4 @@ class Collapse extends Component {
 
 Collapse.propTypes = propTypes;
 Collapse.defaultProps = defaultProps;
-export default React.forwardRef((props, ref) => <Collapse innerRef={ref} {...props} />);
+export default Collapse;

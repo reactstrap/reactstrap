@@ -1,68 +1,68 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { shallow } from 'enzyme';
 import { Table } from '..';
 
 describe('Table', () => {
   it('should render with "table" class', () => {
-    render(<Table>Yo!</Table>);
+    const wrapper = shallow(<Table>Yo!</Table>);
 
-    screen.getByText('Yo!');
-    expect(document.querySelector('.table')).toBeTruthy();
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table')).toBe(true);
   });
 
   it('should render additional classes', () => {
-    render(<Table className="other">Yo!</Table>);
+    const wrapper = shallow(<Table className="other">Yo!</Table>);
 
-    expect(document.querySelector('.other')).toBeTruthy();
-    expect(document.querySelector('.table')).toBeTruthy();
+    expect(wrapper.hasClass('other')).toBe(true);
+    expect(wrapper.hasClass('table')).toBe(true);
   });
 
   it('should render custom tag', () => {
-    // RTL adds a div ot the body, so we should query from the container for this test
-    const { container } = render(<Table tag="div">Yo!</Table>);
-    screen.getByText('Yo!');
-    expect(document.querySelector('.table')).toBeTruthy();
-    expect(container.querySelectorAll('div').length).toBe(1);
+    const wrapper = shallow(<Table tag="div">Yo!</Table>);
+
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table')).toBe(true);
+    expect(wrapper.find('div').length).toBe(1);
   });
 
   it('should render modifier classes', () => {
-    render(
+    const wrapper = shallow(
       <Table size="sm" bordered striped dark hover>
         Yo!
       </Table>,
     );
 
-    screen.getByText('Yo!');
-    expect(document.querySelector('.table')).toBeTruthy();
-    expect(document.querySelector('.table-sm')).toBeTruthy();
-    expect(document.querySelector('.table-bordered')).toBeTruthy();
-    expect(document.querySelector('.table-striped')).toBeTruthy();
-    expect(document.querySelector('.table-hover')).toBeTruthy();
-    expect(document.querySelector('.table-dark')).toBeTruthy();
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table')).toBe(true);
+    expect(wrapper.hasClass('table-sm')).toBe(true);
+    expect(wrapper.hasClass('table-bordered')).toBe(true);
+    expect(wrapper.hasClass('table-striped')).toBe(true);
+    expect(wrapper.hasClass('table-hover')).toBe(true);
+    expect(wrapper.hasClass('table-dark')).toBe(true);
   });
 
   it('should render a borderless table', () => {
-    render(<Table borderless>Yo!</Table>);
+    const wrapper = shallow(<Table borderless>Yo!</Table>);
 
-    screen.getByText('Yo!');
-    expect(document.querySelector('.table')).toBeTruthy();
-    expect(document.querySelector('.table-borderless')).toBeTruthy();
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table')).toBe(true);
+    expect(wrapper.hasClass('table-borderless')).toBe(true);
   });
 
   it('should render responsive wrapper class', () => {
-    render(<Table responsive>Yo!</Table>);
+    const wrapper = shallow(<Table responsive>Yo!</Table>);
 
-    screen.getByText('Yo!');
-    expect(document.querySelector('.table-responsive')).toBeTruthy();
-    expect(document.querySelectorAll('.table').length).toBe(1);
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table-responsive')).toBe(true);
+    expect(wrapper.find('.table').length).toBe(1);
   });
 
   it('should render responsive wrapper class for md', () => {
-    render(<Table responsive="md">Yo!</Table>);
+    const wrapper = shallow(<Table responsive="md">Yo!</Table>);
 
-    screen.getByText('Yo!');
-    expect(document.querySelector('.table-responsive-md')).toBeTruthy();
-    expect(document.querySelectorAll('.table').length).toBe(1);
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('table-responsive-md')).toBe(true);
+    expect(wrapper.find('.table').length).toBe(1);
   });
 
   it('should render responsive wrapper cssModule', () => {
@@ -70,14 +70,14 @@ describe('Table', () => {
       table: 'scopedTable',
       'table-responsive': 'scopedResponsive',
     };
-    render(
+    const wrapper = shallow(
       <Table responsive cssModule={cssModule}>
         Yo!
       </Table>,
     );
 
-    screen.getByText('Yo!');
-    expect(document.querySelector('.scopedResponsive')).toBeTruthy();
-    expect(document.querySelectorAll('.scopedTable').length).toBe(1);
+    expect(wrapper.text()).toBe('Yo!');
+    expect(wrapper.hasClass('scopedResponsive')).toBe(true);
+    expect(wrapper.find('.scopedTable').length).toBe(1);
   });
 });

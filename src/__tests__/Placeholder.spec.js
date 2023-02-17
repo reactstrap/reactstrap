@@ -1,58 +1,58 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
 import { Placeholder } from '..';
 
 describe('Placeholder', () => {
   it('should render with "placeholder" class', () => {
-    render(<Placeholder />);
-    expect(document.querySelector('.placeholder')).toBeTruthy();
+    const wrapper = shallow(<Placeholder />);
+    expect(wrapper.hasClass('placeholder')).toBe(true);
   });
 
   it('should render column size', () => {
-    render(<Placeholder xs={7} />);
-    expect(document.querySelector('.col-7')).toBeTruthy();
+    const wrapper = shallow(<Placeholder xs={7} />);
+    expect(wrapper.hasClass('col-7')).toBe(true);
   });
 
   it('should render animation', () => {
-    render(<Placeholder tag="p" animation="glow" />);
-    expect(document.querySelector('.placeholder-glow')).toBeTruthy();
+    const wrapper = shallow(<Placeholder tag="p" animation="glow" />);
+    expect(wrapper.hasClass('placeholder-glow')).toBe(true);
   });
 
   it('should render color', () => {
-    render(<Placeholder xs={12} color="primary" />);
-    expect(document.querySelector('.bg-primary')).toBeTruthy();
+    const wrapper = shallow(<Placeholder xs={12} color="primary" />);
+    expect(wrapper.hasClass('bg-primary')).toBe(true);
   });
 
   it('should render size', () => {
-    render(<Placeholder size="lg" xs={12} />);
-    expect(document.querySelector('.placeholder-lg')).toBeTruthy();
+    const wrapper = shallow(<Placeholder size="lg" xs={12} />);
+    expect(wrapper.hasClass('placeholder-lg')).toBe(true);
   });
 
   it('should render different widths for different breakpoints', () => {
-    render(<Placeholder size="lg" xs={12} lg={8} />);
-    expect(document.querySelector('.col-lg-8')).toBeTruthy();
-    expect(document.querySelector('.col-12')).toBeTruthy();
+    const wrapper = shallow(<Placeholder size="lg" xs={12} lg={8} />);
+    expect(wrapper.hasClass('col-lg-8')).toBe(true);
+    expect(wrapper.hasClass('col-12')).toBe(true);
   });
 
   it('should allow custom columns to be defined', () => {
-    render(
+    const wrapper = shallow(
       <Placeholder widths={['base', 'jumbo']} base="4" jumbo="6" />,
     );
-    expect(document.querySelector('.col-4')).toBeTruthy();
-    expect(document.querySelector('.col-jumbo-6')).toBeTruthy();
+    expect(wrapper.hasClass('col-4')).toBe(true);
+    expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
   });
 
   it('should allow custom columns to be defined with objects', () => {
-    render(
+    const wrapper = shallow(
       <Placeholder
         widths={['base', 'jumbo', 'custom']}
         custom={{ size: 1, order: 2, offset: 4 }}
       />,
     );
 
-    expect(document.querySelector('.col-custom-1')).toBeTruthy();
-    expect(document.querySelector('.order-custom-2')).toBeTruthy();
-    expect(document.querySelector('.offset-custom-4')).toBeTruthy();
-    expect(document.querySelector('.col')).toBeFalsy();
+    expect(wrapper.hasClass('col-custom-1')).toBe(true);
+    expect(wrapper.hasClass('order-custom-2')).toBe(true);
+    expect(wrapper.hasClass('offset-custom-4')).toBe(true);
+    expect(wrapper.hasClass('col')).toBe(false);
   });
 });
