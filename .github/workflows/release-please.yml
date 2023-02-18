@@ -41,6 +41,6 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish Docs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REACTSTRAP_TOKEN }}
         run: ./scripts/docs
         if: ${{ steps.release.outputs.release_created }}
