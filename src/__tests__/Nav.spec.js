@@ -6,10 +6,6 @@ import { testForDefaultClass } from '../testUtils';
 
 describe('Nav', () => {
   it('should render .nav markup', () => {
-    // let { container } = render(<Nav />);
-    // // expect(container).toContainHTML('<ul class="nav"></ul>');
-    // // render(<Nav datatestid="test"/>);
-    // expect(container).toHaveClass('nav')
     testForDefaultClass(Nav, 'nav');
   });
 
