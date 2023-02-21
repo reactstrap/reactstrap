@@ -2,11 +2,15 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Nav } from '..';
+import { testForDefaultClass } from '../testUtils';
 
 describe('Nav', () => {
   it('should render .nav markup', () => {
-    let { container } = render(<Nav />);
-    expect(container).toContainHTML('<ul class="nav"></ul>');
+    // let { container } = render(<Nav />);
+    // // expect(container).toContainHTML('<ul class="nav"></ul>');
+    // // render(<Nav datatestid="test"/>);
+    // expect(container).toHaveClass('nav')
+    testForDefaultClass(Nav, 'nav');
   });
 
   it('should render custom tag', () => {
