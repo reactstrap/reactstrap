@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Alert from './Alert';
 
-// forward ref here
 class UncontrolledAlert extends Component {
   constructor(props) {
     super(props);
@@ -21,4 +20,4 @@ class UncontrolledAlert extends Component {
   }
 }
 
-export default UncontrolledAlert;
+export default React.forwardRef((props, ref) => <UncontrolledAlert {...props} innerRef={ref} />);

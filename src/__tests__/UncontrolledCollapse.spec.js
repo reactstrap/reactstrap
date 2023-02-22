@@ -18,9 +18,9 @@ describe('UncontrolledCollapse', () => {
   });
 
   afterEach(() => {
-    if (jest.isMockFunction(UncontrolledCollapse.prototype.toggle)) {
-      UncontrolledCollapse.prototype.toggle.mockRestore();
-    }
+    // if (jest.isMockFunction(UncontrolledCollapse.prototype.toggle)) {
+    //   UncontrolledCollapse.prototype.toggle.mockRestore();
+    // }
     document.body.innerHTML = '';
     toggler = null;
     togglers = null;
@@ -29,7 +29,7 @@ describe('UncontrolledCollapse', () => {
   it('should be a Collapse', () => {
     const collapse = shallow(
       <UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>,
-    );
+    ).dive();
 
     expect(collapse.type()).toBe(Collapse);
   });
@@ -37,7 +37,7 @@ describe('UncontrolledCollapse', () => {
   it('should have isOpen default to false', () => {
     const collapse = shallow(
       <UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>,
-    );
+    ).dive();
 
     expect(collapse.prop('isOpen')).toBe(false);
   });
@@ -45,7 +45,7 @@ describe('UncontrolledCollapse', () => {
   it('should toggle isOpen when toggle is called', () => {
     const collapse = shallow(
       <UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>,
-    );
+    ).dive();
 
     toggler.click();
     collapse.update();
@@ -53,21 +53,23 @@ describe('UncontrolledCollapse', () => {
     expect(collapse.prop('isOpen')).toBe(true);
   });
 
+  // Come back here!!!!!! Convert to RTL!
   it('should call toggle when toggler is clicked', () => {
-    jest.spyOn(UncontrolledCollapse.prototype, 'toggle');
-    mount(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>);
+    const component = mount(<UncontrolledCollapse toggler="#toggler">Yo!</UncontrolledCollapse>).childAt(0);
+    console.log(component.type());
+    const toggleStub = jest.spyOn(component.instance(), 'toggle');
 
-    expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(0);
+    expect(toggleStub.mock.calls.length).toBe(0);
 
     toggler.click();
 
-    expect(UncontrolledCollapse.prototype.toggle.mock.calls.length).toBe(1);
+    expect(toggleStub.mock.calls.length).toBe(1);
   });
 
   it('should toggle for multiple togglers', () => {
     const collapse = shallow(
       <UncontrolledCollapse toggler=".toggler">Yo!</UncontrolledCollapse>,
-    );
+    ).dive();
 
     expect(collapse.prop('isOpen')).toBe(false);
 

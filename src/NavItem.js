@@ -18,7 +18,7 @@ const defaultProps = {
   tag: 'li',
 };
 
-function NavItem(props) {
+const NavItem = React.forwardRef((props, ref) => {
   const { className, cssModule, active, tag: Tag, ...attributes } = props;
 
   const classes = mapToCssModules(
@@ -26,8 +26,8 @@ function NavItem(props) {
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+});
 
 NavItem.propTypes = propTypes;
 NavItem.defaultProps = defaultProps;

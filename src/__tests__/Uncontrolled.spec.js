@@ -17,26 +17,26 @@ import { keyCodes } from '../utils';
 
 describe('UncontrolledAlert', () => {
   it('should be an Alert', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
+    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>).dive();
     expect(alert.type()).toBe(Alert);
   });
 
   it('should have isOpen default to true', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
+    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>).dive();
     expect(alert.prop('isOpen')).toBe(true);
   });
 
   it('should have toggle function', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
+    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>).dive();
     expect(alert.prop('toggle')).toEqual(expect.any(Function));
   });
 
   it('should toggle isOpen when toggle is called', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
+    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>).dive();
     const instance = alert.instance();
     instance.toggle();
     alert.update();
-    expect(alert.prop('isOpen')).toBe(false);
+    expect(alert.find(Alert).prop('isOpen')).toBe(false);
   });
 });
 

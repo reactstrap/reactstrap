@@ -16,15 +16,15 @@ const defaultProps = {
   tag: 'div',
 };
 
-function CardSubtitle(props) {
+const CardSubtitle = React.forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-subtitle'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+});
 
 CardSubtitle.propTypes = propTypes;
 CardSubtitle.defaultProps = defaultProps;

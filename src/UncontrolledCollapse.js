@@ -67,4 +67,4 @@ class UncontrolledCollapse extends Component {
 UncontrolledCollapse.propTypes = propTypes;
 UncontrolledCollapse.defaultProps = defaultProps;
 
-export default UncontrolledCollapse;
+export default React.forwardRef((props, ref) => <UncontrolledCollapse {...props} innerRef={ref} />);

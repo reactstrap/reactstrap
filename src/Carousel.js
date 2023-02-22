@@ -217,7 +217,7 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { cssModule, slide, className, dark, fade } = this.props;
+    const { cssModule, slide, className, dark, fade, innerRef } = this.props;
     const attributes = omit(this.props, propsToOmit);
     const outerClasses = mapToCssModules(
       classNames(
@@ -247,6 +247,7 @@ class Carousel extends React.Component {
     if (slidesOnly) {
       return (
         <div
+          ref={innerRef}
           {...attributes}
           className={outerClasses}
           onMouseEnter={this.hoverStart}
@@ -320,4 +321,4 @@ class Carousel extends React.Component {
 Carousel.propTypes = propTypes;
 Carousel.defaultProps = defaultProps;
 
-export default Carousel;
+export default React.forwardRef((props, ref) => <Carousel {...props} innerRef={ref} />);
