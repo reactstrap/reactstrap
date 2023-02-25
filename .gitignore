@@ -3,6 +3,7 @@ node_modules
 /dist
 /build
 /lib
+/esm
 /es
 .DS_Store
 .idea
