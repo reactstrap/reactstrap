@@ -137,6 +137,29 @@
 
 
 
+## [9.1.6](https://github.com/reactstrap/reactstrap/compare/v9.1.5...v9.1.6) (2023-02-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* add forwardRef to all components that contain innerRef
+
+### Features
+
+* add forwardRef to all components that contain innerRef ([17a141a](https://github.com/reactstrap/reactstrap/commit/17a141acbe9af558c1c3e7cb34fc051c1b1d8d0e))
+
+
+### Bug Fixes
+
+* convert functional components to be forwardRef components vs redefining them as such ([86578ab](https://github.com/reactstrap/reactstrap/commit/86578ab1f9e06653b03db06ed99263fba5e5e279))
+* **Label:** migrate label to rtl ([#2665](https://github.com/reactstrap/reactstrap/issues/2665)) ([8c5cc2b](https://github.com/reactstrap/reactstrap/commit/8c5cc2bac0c219275896657db21f5c2ea5ecdffe))
+* revert v10 merge ([3392ce9](https://github.com/reactstrap/reactstrap/commit/3392ce924ad304e97cede43ddef013a88ef84a6e))
+
+
+### Miscellaneous
+
+* release 9.1.6 ([f32f3d2](https://github.com/reactstrap/reactstrap/commit/f32f3d247b767592a80091e3f1733946b2f74ada))
+
 ### [9.1.5](https://www.github.com/reactstrap/reactstrap/compare/v9.1.4...v9.1.5) (2022-10-27)
 
 

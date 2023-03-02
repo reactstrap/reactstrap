@@ -1,150 +1,127 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { screen, render } from '@testing-library/react';
 import { Label } from '..';
+import {
+  testForDefaultTag,
+  testForCustomClass,
+  testForChildrenInComponent,
+  testForCustomTag,
+} from '../testUtils';
 
 describe('Label', () => {
   it('should render a label tag by default', () => {
-    const wrapper = shallow(<Label />);
-
-    expect(wrapper.type()).toBe('label');
+    testForDefaultTag(Label, 'label');
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<Label>Yo!</Label>);
-
-    expect(wrapper.text()).toBe('Yo!');
+    testForChildrenInComponent(Label);
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Label className="extra">Yo!</Label>);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
+    testForCustomClass(Label);
   });
 
   it('should render with "col-form-label" class when a col is provided', () => {
-    const wrapper = shallow(<Label sm="6">Yo!</Label>);
-
-    expect(wrapper.hasClass('col-form-label')).toBe(true);
+    render(<Label sm="6">Yo!</Label>);
+    expect(screen.getByText(/yo/i)).toHaveClass('col-form-label');
   });
 
   it('should not render with "form-label" class when a col is provided', () => {
-    const wrapper = shallow(<Label sm="6">Yo!</Label>);
-
-    expect(wrapper.hasClass('form-label')).toBe(false);
+    render(<Label sm="6">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).not.toHaveClass('form-label');
   });
 
   it('should render with "form-label" class when a col is not provided', () => {
-    const wrapper = shallow(<Label>Yo!</Label>);
-
-    expect(wrapper.hasClass('form-label')).toBe(true);
+    render(<Label>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('form-label');
   });
 
   it('should render with "form-check-label" class when check is specified', () => {
-    const wrapper = shallow(<Label check>Yo!</Label>);
-
-    expect(wrapper.hasClass('form-check-label')).toBe(true);
+    render(<Label check>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('form-check-label');
   });
 
   it('should not render with "form-label" class when check is specified', () => {
-    const wrapper = shallow(<Label check>Yo!</Label>);
-
-    expect(wrapper.hasClass('form-label')).toBe(false);
+    render(<Label check>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).not.toHaveClass('form-label');
   });
 
   it('should pass col size specific classes as Strings', () => {
-    const wrapper = shallow(<Label sm="6">Yo!</Label>);
-
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
+    render(<Label sm="6">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-sm-6');
   });
 
   it('should pass col size specific classes as Strings (auto)', () => {
-    const wrapper = shallow(<Label sm="auto">Yo!</Label>);
-
-    expect(wrapper.hasClass('col-sm-auto')).toBe(true);
+    render(<Label sm="auto">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-sm-auto');
   });
 
   it('should pass col size specific classes as Strings ("")', () => {
-    const wrapper = shallow(<Label sm="">Yo!</Label>);
-
-    expect(wrapper.hasClass('col-sm')).toBe(true);
+    render(<Label sm="">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-sm');
   });
 
   it('should pass col size specific classes as Strings (true)', () => {
-    const wrapper = shallow(<Label sm>Yo!</Label>);
-
-    expect(wrapper.hasClass('col-sm')).toBe(true);
+    render(<Label sm>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-sm');
   });
 
   it('should pass col size specific classes as Strings (xs)', () => {
-    const wrapper = shallow(<Label xs="6">Yo!</Label>);
-
-    expect(wrapper.hasClass('col-6')).toBe(true);
+    render(<Label xs="6">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-6');
   });
 
   it('should pass col size specific classes as Strings (xs="")', () => {
-    const wrapper = shallow(<Label xs="">Yo!</Label>);
-
-    expect(wrapper.hasClass('col')).toBe(true);
+    render(<Label xs="">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col');
   });
 
   it('should pass col size specific classes as Strings (xs (true))', () => {
-    const wrapper = shallow(<Label xs>Yo!</Label>);
-
-    expect(wrapper.hasClass('col')).toBe(true);
+    render(<Label xs>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col');
   });
 
   it('should pass col size specific classes as Strings (xs="auto")', () => {
-    const wrapper = shallow(<Label xs="auto">Yo!</Label>);
-
-    expect(wrapper.hasClass('col-auto')).toBe(true);
+    render(<Label xs="auto">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-auto');
   });
 
   it('should render with "visually-hidden" class when hidden prop is truthy', () => {
-    const wrapper = shallow(<Label hidden>Yo!</Label>);
-
-    expect(wrapper.hasClass('visually-hidden')).toBe(true);
+    render(<Label hidden>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('visually-hidden');
   });
 
   it('should render with "col-form-label-${size}" class when size is provided', () => {
-    const wrapper = shallow(<Label size="lg">Yo!</Label>);
-
-    expect(wrapper.hasClass('col-form-label-lg')).toBe(true);
+    render(<Label size="lg">Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-form-label-lg');
   });
 
   it('should pass col size specific classes as Numbers', () => {
-    const wrapper = shallow(<Label sm={6}>Yo!</Label>);
-
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
+    render(<Label sm={6}>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-sm-6');
   });
 
   it('should pass col size specific classes as Numbers (xs)', () => {
-    const wrapper = shallow(<Label xs={6}>Yo!</Label>);
-
-    expect(wrapper.hasClass('col-6')).toBe(true);
+    render(<Label xs={6}>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-6');
   });
 
   it('should pass col size specific classes via Objects', () => {
-    const wrapper = shallow(
-      <Label sm={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>,
-    );
-
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('order-sm-2')).toBe(true);
-    expect(wrapper.hasClass('offset-sm-2')).toBe(true);
+    render(<Label sm={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-sm-6');
+    expect(screen.getByText(/yo!/i)).toHaveClass('order-sm-2');
+    expect(screen.getByText(/yo!/i)).toHaveClass('offset-sm-2');
   });
 
   it('should pass col size specific classes via Objects (xs)', () => {
-    const wrapper = shallow(
-      <Label xs={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>,
-    );
-
-    expect(wrapper.hasClass('col-6')).toBe(true);
-    expect(wrapper.hasClass('order-2')).toBe(true);
-    expect(wrapper.hasClass('offset-2')).toBe(true);
+    render(<Label xs={{ size: 6, order: 2, offset: 2 }}>Yo!</Label>);
+    expect(screen.getByText(/yo!/i)).toHaveClass('col-6');
+    expect(screen.getByText(/yo!/i)).toHaveClass('order-2');
+    expect(screen.getByText(/yo!/i)).toHaveClass('offset-2');
   });
 
   it('should pass multiple col size specific classes via Objects', () => {
-    const wrapper = shallow(
+    render(
       <Label
         xs={{ size: 4, order: 3, offset: 3 }}
         sm={{ size: 6, order: 2, offset: 2 }}
@@ -153,21 +130,19 @@ describe('Label', () => {
         Yo!
       </Label>,
     );
-
-    expect(wrapper.hasClass('col-4')).toBe(true);
-    expect(wrapper.hasClass('order-3')).toBe(true);
-    expect(wrapper.hasClass('offset-3')).toBe(true);
-    expect(wrapper.hasClass('col-sm-6')).toBe(true);
-    expect(wrapper.hasClass('order-sm-2')).toBe(true);
-    expect(wrapper.hasClass('offset-sm-2')).toBe(true);
-    expect(wrapper.hasClass('col-md-7')).toBe(true);
-    expect(wrapper.hasClass('order-md-1')).toBe(true);
-    expect(wrapper.hasClass('offset-md-1')).toBe(true);
+    expect(screen.getByText(/yo/i)).toHaveClass('col-4');
+    expect(screen.getByText(/yo/i)).toHaveClass('order-3');
+    expect(screen.getByText(/yo/i)).toHaveClass('offset-3');
+    expect(screen.getByText(/yo/i)).toHaveClass('col-sm-6');
+    expect(screen.getByText(/yo/i)).toHaveClass('order-sm-2');
+    expect(screen.getByText(/yo/i)).toHaveClass('offset-sm-2');
+    expect(screen.getByText(/yo/i)).toHaveClass('col-md-7');
+    expect(screen.getByText(/yo/i)).toHaveClass('order-md-1');
+    expect(screen.getByText(/yo/i)).toHaveClass('offset-md-1');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Label tag="main">Yo!</Label>);
-
-    expect(wrapper.type()).toBe('main');
+    render(<Label tag="main">Yo!</Label>);
+    testForCustomTag(Label, {}, 'main');
   });
 });
