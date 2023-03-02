@@ -1,5 +1,4 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import { TransitionGroup } from 'react-transition-group';
@@ -45,7 +44,7 @@ describe('Fade', () => {
   });
 
   it('should transition classes from "fade" to "fade show" on appear', () => {
-    const { debug } = render(
+    render(
       <Helper showItem>
         <Fade>Yo!</Fade>
         <Fade appear={false}>Yo 2!</Fade>
