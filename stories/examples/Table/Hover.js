@@ -42,7 +42,7 @@ Example.parameters = {
   docs: {
     description: {
       story:
-        'Add `hover` prop to enable a hover state on table rows within a <tbody>.',
+        'Add `hover` prop to enable a hover state on table rows within a `<tbody>`.',
     },
   },
 };
