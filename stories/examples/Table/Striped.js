@@ -42,7 +42,7 @@ Example.parameters = {
   docs: {
     description: {
       story:
-        'Use `striped` prop to add zebra-striping to any table row within the <tbody>.',
+        'Use `striped` prop to add zebra-striping to any table row within the `<tbody>`.',
     },
   },
 };
