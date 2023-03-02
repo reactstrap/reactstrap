@@ -425,6 +425,9 @@ class Offcanvas extends React.Component {
               classNames('offcanvas-backdrop', 'show', backdropClassName),
               cssModule,
             )}
+            ref={(c) => {
+              this._backdrop = c;
+            }}
             onClick={this.handleBackdropClick}
             onMouseDown={this.handleBackdropMouseDown}
           />

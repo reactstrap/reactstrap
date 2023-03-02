@@ -379,6 +379,23 @@ describe('Offcanvas', () => {
     expect(toggle).toHaveBeenCalled();
   });
 
+  it('should call toggle when clicking backdrop when fade is false', () => {
+    const toggle = jest.fn();
+    render(
+      <Offcanvas isOpen toggle={toggle} fade={false}>
+        <button id="clicker">Does Nothing</button>
+      </Offcanvas>,
+    );
+
+    user.click(screen.getByText(/does nothing/i));
+
+    expect(toggle).not.toHaveBeenCalled();
+
+    user.click(document.getElementsByClassName('offcanvas-backdrop')[0]);
+
+    expect(toggle).toHaveBeenCalled();
+  });
+
   it('should destroy this._element', () => {
     const { rerender } = render(
       <Offcanvas isOpen toggle={toggle}>
