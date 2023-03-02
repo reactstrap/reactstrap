@@ -87,14 +87,14 @@ describe('Collapse', () => {
     expect(callbacks.onEnter).toHaveBeenCalled();
     expect(callbacks.onEntering).toHaveBeenCalled();
     expect(callbacks.onEntered).not.toHaveBeenCalled();
-    jest.runTimersToTime(350);
+    jest.advanceTimersByTime(350);
     expect(callbacks.onEntered).toHaveBeenCalled();
     expect(callbacks.onExit).not.toHaveBeenCalled();
     rerender(<Collapse isOpen={false} {...callbacks} />);
     expect(callbacks.onExit).toHaveBeenCalled();
     expect(callbacks.onExiting).toHaveBeenCalled();
     expect(callbacks.onExited).not.toHaveBeenCalled();
-    jest.runTimersToTime(350);
+    jest.advanceTimersByTime(350);
     expect(callbacks.onExiting).toHaveBeenCalled();
     expect(callbacks.onExited).toHaveBeenCalled();
   });
@@ -105,12 +105,12 @@ describe('Collapse', () => {
     );
     rerender(<Collapse isOpen data-testid="collapse" />);
     expect(screen.getByTestId('collapse')).toHaveClass('collapsing');
-    jest.runTimersToTime(350);
+    jest.advanceTimersByTime(350);
     expect(screen.getByTestId('collapse')).toHaveClass('collapse show');
 
     rerender(<Collapse isOpen={false} data-testid="collapse" />);
     expect(screen.getByTestId('collapse')).toHaveClass('collapsing');
-    jest.runTimersToTime(350);
+    jest.advanceTimersByTime(350);
     expect(screen.getByTestId('collapse')).toHaveClass('collapse');
   });
 
@@ -118,7 +118,7 @@ describe('Collapse', () => {
     const { rerender } = render(<Collapse isOpen data-testid="collapse" />);
     rerender(<Collapse isOpen={false} data-testid="collapse" />);
     expect(screen.getByTestId('collapse').style.height).toBe('0px');
-    jest.runTimersToTime(380);
+    jest.advanceTimersByTime(380);
     expect(screen.getByTestId('collapse').style.height).toBe('');
   });
 });

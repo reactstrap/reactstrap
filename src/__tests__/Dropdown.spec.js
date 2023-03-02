@@ -88,6 +88,38 @@ describe('Dropdown', () => {
     expect(toggle).not.toHaveBeenCalled();
   });
 
+  it('should call toggle when DropdownToggle is clicked ', () => {
+    const toggle = jest.fn();
+    render(
+      <Dropdown isOpen toggle={toggle}>
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>Test</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    user.click(screen.getByText(/toggle/i));
+    expect(toggle).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call toggle when DropdownToggle with non string children is clicked ', () => {
+    const toggle = jest.fn();
+    render(
+      <Dropdown isOpen toggle={toggle}>
+        <DropdownToggle>
+          <div>Toggle</div>
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>Test</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    user.click(screen.getByText(/toggle/i));
+    expect(toggle).toHaveBeenCalledTimes(1);
+  });
+
   describe('handleProps', () => {
     it('should not pass custom props to html attrs', () => {
       const toggle = jest.fn();
@@ -202,6 +234,25 @@ describe('Dropdown', () => {
       render(
         <Dropdown isOpen toggle={toggle} data-testid="dropdown">
           <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+      );
+
+      user.click(screen.getByTestId('dropdown'));
+
+      expect(toggle).toHaveBeenCalled();
+    });
+
+    it('should call toggle on container click', () => {
+      const toggle = jest.fn();
+
+      render(
+        <Dropdown isOpen toggle={toggle} data-testid="dropdown">
+          <DropdownToggle>
+            <div>Toggle</div>
+          </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
