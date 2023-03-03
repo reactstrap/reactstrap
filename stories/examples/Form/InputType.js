@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 function Example(props) {
+  const [value, setValue] = useState('Some plain text/ static value');
   return (
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Plain Text (Static)</Label>
-        <Input plaintext value="Some plain text/ static value" />
+        <Input
+          plaintext
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
       </FormGroup>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
