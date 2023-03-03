@@ -2,7 +2,12 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Nav } from '..';
-import { testForDefaultClass } from '../testUtils';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('Nav', () => {
   it('should render .nav markup', () => {
@@ -10,13 +15,11 @@ describe('Nav', () => {
   });
 
   it('should render custom tag', () => {
-    let { container } = render(<Nav tag="nav" />);
-    expect(container).toContainHTML('<nav class="nav"></nav>');
+    testForCustomTag(Nav);
   });
 
   it('should render children', () => {
-    let { container } = render(<Nav>Children</Nav>);
-    expect(container).toContainHTML('<ul class="nav">Children</ul>');
+    testForChildrenInComponent(Nav);
   });
 
   it('should handle justified prop', () => {
@@ -71,9 +74,7 @@ describe('Nav', () => {
   });
 
   it('should pass additional classNames', () => {
-    render(<Nav data-testid="nav" className="extra" />);
-    expect(screen.getByTestId('nav')).toHaveClass('extra');
-    expect(screen.getByTestId('nav')).toHaveClass('nav');
+    testForCustomClass(Nav);
   });
 
   it('should render .navbar-nav class only', () => {
