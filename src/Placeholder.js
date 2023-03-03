@@ -38,7 +38,7 @@ function Placeholder(props) {
     ...attributes
   } = props;
 
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(
+  let { modifiedAttributes, colClasses } = getColumnClasses(
     attributes,
     cssModule,
     widths,

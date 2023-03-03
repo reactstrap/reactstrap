@@ -373,8 +373,8 @@ class Modal extends React.Component {
     if (Modal.openCount < 1) {
       Modal.originalBodyOverflow = window.getComputedStyle(
         document.body,
-        ).overflow;
-    };
+      ).overflow;
+    }
     conditionallyUpdateScrollbar();
 
     if (Modal.openCount === 0) {
