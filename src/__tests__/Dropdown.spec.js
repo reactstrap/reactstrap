@@ -1,52 +1,67 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { Popper, Reference } from 'react-popper';
+import { createEvent, fireEvent, render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '..';
 import { keyCodes } from '../utils';
+import { testForChildrenInComponent } from '../testUtils';
 
 describe('Dropdown', () => {
-  let isOpen;
-  let toggle;
-  let element;
-
   beforeEach(() => {
-    isOpen = false;
-    toggle = () => {
-      isOpen = !isOpen;
-    };
-    element = document.createElement('div');
-    document.body.appendChild(element);
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
-    if (jest.isMockFunction(Dropdown.prototype.componentDidUpdate))
-      Dropdown.prototype.componentDidUpdate.mockRestore();
-    if (jest.isMockFunction(Dropdown.prototype.handleProps))
-      Dropdown.prototype.handleProps.mockRestore();
-    if (jest.isMockFunction(Dropdown.prototype.toggle))
-      Dropdown.prototype.toggle.mockRestore();
-    if (jest.isMockFunction(Dropdown.prototype.handleDocumentClick))
-      Dropdown.prototype.handleDocumentClick.mockRestore();
-    document.body.removeChild(element);
-    document.body.innerHTML = '';
-    element = null;
+    jest.restoreAllMocks();
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
   });
 
-  it('should render a single child', () => {
-    const wrapper = mount(
-      <Dropdown isOpen={isOpen} toggle={toggle}>
-        Ello world
+  function imitateDropdownFocus(toggle) {
+    // this is needed to make the focus on the correct element
+    // by following the default user behaviour
+    // needed in particular for keyboard based tests
+    // setting focus on the toggle element with code
+    // is causing tab to cycle through elements.
+    const { rerender } = render(
+      <Dropdown isOpen={false} toggle={toggle} data-testid="drpdwn">
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>First item</DropdownItem>
+          <DropdownItem>Second item</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
       </Dropdown>,
     );
 
-    expect(wrapper.text()).toBe('Ello world');
-    expect(wrapper.find('.dropdown').hostNodes().length).toBe(1);
+    user.click(screen.getByText('Toggle'));
+    toggle.mockClear();
+
+    rerender(
+      <Dropdown isOpen toggle={toggle} data-testid="drpdwn">
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>First item</DropdownItem>
+          <DropdownItem>Second item</DropdownItem>
+          <DropdownItem id="divider" divider />
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    return { rerender };
+  }
+
+  it('should render a single child', () => {
+    render(<Dropdown isOpen>Ello world</Dropdown>);
+
+    expect(screen.getByText(/ello world/i)).toHaveClass('dropdown');
   });
 
-  it('should render multiple children when isOpen is true', () => {
-    isOpen = true;
-    const wrapper = mount(
-      <Dropdown isOpen={isOpen} toggle={toggle}>
+  it('should render menu when isOpen is true', () => {
+    render(
+      <Dropdown isOpen>
         <DropdownToggle>Toggle</DropdownToggle>
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
@@ -54,33 +69,62 @@ describe('Dropdown', () => {
       </Dropdown>,
     );
 
-    expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');
-    expect(wrapper.find('.dropdown').hostNodes().length).toBe(1);
-    expect(wrapper.find('.dropdown-item').hostNodes().length).toBe(1);
-    expect(wrapper.childAt(0).childAt(0).children().length).toBe(2);
+    expect(screen.getByText(/toggle/i)).toHaveClass('btn');
+    expect(screen.getByText(/test/i)).toHaveClass('dropdown-item');
   });
 
   it('should not call props.toggle when disabled ', () => {
-    isOpen = true;
-    let props = createSpyObj('props', ['toggle']);
-    const wrapper = mount(
-      <Dropdown isOpen={isOpen} toggle={props.toggle} disabled>
+    const toggle = jest.fn();
+    render(
+      <Dropdown isOpen toggle={toggle} disabled>
         <DropdownToggle>Toggle</DropdownToggle>
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
         </DropdownMenu>
       </Dropdown>,
     );
-    const instance = wrapper.instance();
 
-    instance.toggle({ preventDefault: () => {} });
-    expect(props.toggle).not.toHaveBeenCalled();
+    user.click(screen.getByText(/toggle/i));
+    expect(toggle).not.toHaveBeenCalled();
+  });
+
+  it('should call toggle when DropdownToggle is clicked ', () => {
+    const toggle = jest.fn();
+    render(
+      <Dropdown isOpen toggle={toggle}>
+        <DropdownToggle>Toggle</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>Test</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    user.click(screen.getByText(/toggle/i));
+    expect(toggle).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call toggle when DropdownToggle with non string children is clicked ', () => {
+    const toggle = jest.fn();
+    render(
+      <Dropdown isOpen toggle={toggle}>
+        <DropdownToggle>
+          <div>Toggle</div>
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>Test</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    user.click(screen.getByText(/toggle/i));
+    expect(toggle).toHaveBeenCalledTimes(1);
   });
 
   describe('handleProps', () => {
     it('should not pass custom props to html attrs', () => {
-      const wrapper = mount(
-        <Dropdown inNavbar a11y isOpen={isOpen} toggle={toggle}>
+      const toggle = jest.fn();
+      render(
+        <Dropdown a11y isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
@@ -88,17 +132,17 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      expect(wrapper.find('.dropdown').prop('inNavbar')).toBe(undefined);
-      expect(wrapper.find('.dropdown').prop('toggle')).toBe(undefined);
-      expect(wrapper.find('.dropdown').prop('a11y')).toBe(undefined);
-      expect(wrapper.find('.dropdown').prop('isOpen')).toBe(undefined);
+      const dropdown = document.getElementsByClassName('dropdown')[0];
+      expect(dropdown).not.toHaveAttribute('inNavbar');
+      expect(dropdown).not.toHaveAttribute('toggle');
+      expect(dropdown).not.toHaveAttribute('a11y');
+      expect(dropdown).not.toHaveAttribute('isOpen');
     });
 
-    it('should be called on componentDidUpdate when isOpen changed', () => {
-      jest.spyOn(Dropdown.prototype, 'componentDidUpdate');
-      jest.spyOn(Dropdown.prototype, 'handleProps');
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+    it('should add event listeners when isOpen changed to true', () => {
+      const addEventListener = jest.spyOn(document, 'addEventListener');
+      const { rerender } = render(
+        <Dropdown isOpen={false}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
@@ -106,52 +150,53 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      const instance = wrapper.instance();
+      expect(addEventListener).not.toHaveBeenCalled();
 
-      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(1);
-      expect(instance.props.isOpen).toBe(false);
+      rerender(
+        <Dropdown isOpen>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+      );
 
-      isOpen = true;
-      wrapper.setProps({ isOpen: isOpen });
-
-      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(2);
-      expect(instance.props.isOpen).toBe(true);
+      // called three times because we have click, touchstart and keyup
+      expect(addEventListener).toHaveBeenCalledTimes(3);
     });
 
     it('should not be called on componentDidUpdate when isOpen did not change', () => {
-      jest.spyOn(Dropdown.prototype, 'componentDidUpdate');
-      jest.spyOn(Dropdown.prototype, 'handleProps');
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      const addEventListener = jest.spyOn(document, 'addEventListener');
+      const { rerender } = render(
+        <Dropdown isOpen>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
       );
-      const instance = wrapper.instance();
 
-      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(1);
-      expect(instance.props.isOpen).toBe(false);
+      expect(addEventListener).toHaveBeenCalled();
+      addEventListener.mockClear();
 
-      wrapper.setProps({ 'data-foo': 'bar' });
+      rerender(
+        <Dropdown isOpen size="lg">
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+      );
 
-      expect(Dropdown.prototype.componentDidUpdate.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.handleProps.mock.calls.length).toBe(1);
-      expect(instance.props.isOpen).toBe(false);
+      expect(addEventListener).not.toHaveBeenCalled();
     });
   });
 
   describe('removeEvents', () => {
-    it('should be called on componentWillUnmount', () => {
-      jest.spyOn(Dropdown.prototype, 'componentWillUnmount');
-      jest.spyOn(Dropdown.prototype, 'removeEvents');
-      isOpen = true;
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+    it('should remove event listeners on componentWillUnmount', () => {
+      const removeEventListener = jest.spyOn(document, 'removeEventListener');
+      const { unmount } = render(
+        <Dropdown isOpen>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
@@ -159,230 +204,168 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      expect(Dropdown.prototype.componentWillUnmount.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.removeEvents.mock.calls.length).toBe(0);
+      unmount();
 
-      wrapper.unmount();
-
-      expect(Dropdown.prototype.componentWillUnmount.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.removeEvents.mock.calls.length).toBe(1);
+      expect(removeEventListener).toHaveBeenCalled();
     });
   });
 
   describe('handleDocumentClick', () => {
     it('should call toggle on document click', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn(() => {});
 
-      mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
       );
 
-      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.click(document.body);
 
-      document.body.click();
-
-      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
+      expect(toggle).toHaveBeenCalled();
     });
 
     it('should call toggle on container click', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown id="test" isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle} data-testid="dropdown">
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.click(screen.getByTestId('dropdown'));
 
-      document.getElementById('test').click();
+      expect(toggle).toHaveBeenCalled();
+    });
 
-      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
+    it('should call toggle on container click', () => {
+      const toggle = jest.fn();
 
-      wrapper.detach();
+      render(
+        <Dropdown isOpen toggle={toggle} data-testid="dropdown">
+          <DropdownToggle>
+            <div>Toggle</div>
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+      );
+
+      user.click(screen.getByTestId('dropdown'));
+
+      expect(toggle).toHaveBeenCalled();
     });
 
     it('should not call toggle on inner container click', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'handleDocumentClick');
-      jest.spyOn(Dropdown.prototype, 'toggle');
-
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      const toggle = jest.fn();
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.click(document.getElementById('divider'));
 
-      document.getElementById('divider').click();
-
-      expect(Dropdown.prototype.handleDocumentClick.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper.detach();
+      expect(toggle).not.toHaveBeenCalled();
     });
 
     it('should not call toggle when right-clicked', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle} data-testid="dropdown">
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.click(screen.getByTestId('dropdown'), { button: 2 });
 
-      wrapper.instance().handleDocumentClick({ type: 'click', which: 3 });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      wrapper.detach();
+      expect(toggle).not.toHaveBeenCalled();
     });
 
-    it('should call toggle when key is tab', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+    it('should go through first dropdown item and close when tab is pressed multiple times', async () => {
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
-          <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-          </DropdownMenu>
-        </Dropdown>,
-        { attachTo: element },
-      );
+      imitateDropdownFocus(toggle);
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      expect(screen.getByText(/first item/i)).toHaveFocus();
 
-      wrapper
-        .instance()
-        .handleDocumentClick({ type: 'keyup', which: keyCodes.tab });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-      wrapper.detach();
+      user.tab();
+      expect(toggle).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('keyboard events', () => {
     it('should call toggle on ESC keydown when it isOpen is true', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
-          <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem id="test">Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-          </DropdownMenu>
-        </Dropdown>,
-        { attachTo: element },
-      );
+      imitateDropdownFocus(toggle);
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.keyboard('{esc}');
 
-      wrapper
-        .find('#test')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.esc });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      expect(toggle).toHaveBeenCalledTimes(1);
     });
 
     it('should call toggle on down arrow keydown when it isOpen is false', () => {
-      isOpen = false;
-      jest.spyOn(Dropdown.prototype, 'toggle');
-
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      const toggle = jest.fn();
+      render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      expect(screen.getByText('Toggle')).toHaveFocus();
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      user.keyboard('{arrowdown}');
+      expect(toggle).toHaveBeenCalledTimes(1);
     });
 
     it('should call toggle on up arrow keydown when it isOpen is false', () => {
-      isOpen = false;
-      jest.spyOn(Dropdown.prototype, 'toggle');
-
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      const toggle = jest.fn();
+      render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      expect(screen.getByText('Toggle')).toHaveFocus();
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      user.keyboard('{arrowup}');
+      expect(toggle).toHaveBeenCalledTimes(1);
     });
 
     it('should focus the first menuitem when toggle is triggered by enter keydown', () => {
-      jest.useFakeTimers();
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
       const focus = jest.fn();
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Header</DropdownItem>
@@ -392,30 +375,25 @@ describe('Dropdown', () => {
             <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(focus.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      expect(screen.getByText('Toggle')).toHaveFocus();
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.enter });
+      expect(focus).not.toHaveBeenCalled();
+
+      user.keyboard('{enter}');
+      expect(toggle).toHaveBeenCalled();
+
       jest.runAllTimers();
-
-      expect(focus.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      expect(focus).toHaveBeenCalled();
     });
 
     it('should focus the first menuitem when toggle is triggered by up arrow keydown', () => {
-      jest.useFakeTimers();
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
       const focus = jest.fn();
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Header</DropdownItem>
@@ -425,30 +403,25 @@ describe('Dropdown', () => {
             <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(focus.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      expect(screen.getByText('Toggle')).toHaveFocus();
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
+      expect(focus).not.toHaveBeenCalled();
+
+      user.keyboard('{arrowdown}');
+      expect(toggle).toHaveBeenCalled();
+
       jest.runAllTimers();
-
-      expect(focus.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      expect(focus).toHaveBeenCalled();
     });
 
     it('should focus the first menuitem when toggle is triggered by down arrow keydown', () => {
-      jest.useFakeTimers();
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
       const focus = jest.fn();
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Header</DropdownItem>
@@ -458,109 +431,102 @@ describe('Dropdown', () => {
             <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(focus.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      expect(screen.getByText('Toggle')).toHaveFocus();
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
+      expect(focus).not.toHaveBeenCalled();
+
+      user.keyboard('{arrowup}');
+      expect(toggle).toHaveBeenCalled();
+
       jest.runAllTimers();
-
-      expect(focus.mock.calls.length).toBe(1);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      expect(focus).toHaveBeenCalled();
+      expect(screen.getByText('Test')).toHaveFocus();
     });
 
     it('should focus the next menuitem on down arrow keydown when isOpen is true', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
-      const focus1 = jest.fn();
+      const toggle = jest.fn();
+      const focus = jest.fn();
       const focus2 = jest.fn();
-      const focus3 = jest.fn();
-
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      const { rerender } = render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem onFocus={focus2}>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
+            <DropdownItem onFocus={focus}>Test</DropdownItem>
+            <DropdownItem>i am focused</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      expect(screen.getByText('Toggle')).toHaveFocus();
+      expect(focus).not.toHaveBeenCalled();
 
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
+      user.keyboard('{arrowup}');
+      expect(toggle).toHaveBeenCalled();
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(0);
-      expect(focus2.mock.calls.length).toBe(1);
-      expect(focus3.mock.calls.length).toBe(0);
+      rerender(
+        <Dropdown isOpen toggle={toggle}>
+          <DropdownToggle>Toggle</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Disabled</DropdownItem>
+            <DropdownItem onFocus={focus}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>i am focused</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Test</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+      );
 
-      wrapper.detach();
+      jest.runAllTimers();
+      expect(focus).toHaveBeenCalled();
+      expect(screen.getByText('Test')).toHaveFocus();
+
+      user.keyboard('{arrowdown}');
+      expect(focus2).toHaveBeenCalled();
+      expect(screen.getByText('i am focused')).toHaveFocus();
     });
 
     it('should focus the next menuitem on ctrl + n keydown when isOpen is true', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
-      const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
+              Test1
             </DropdownItem>
-            <DropdownItem onFocus={focus2}>Test</DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.n, ctrlKey: true });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(0);
-      expect(focus2.mock.calls.length).toBe(1);
-      expect(focus3.mock.calls.length).toBe(0);
-
-      wrapper.detach();
+      screen.getByText('Test1').focus();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{ctrl>}N');
+      expect(screen.getByText('Test2')).toHaveFocus();
     });
 
     it('should focus the first menu item matching the character pressed when isOpen is true', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
       const focus3 = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>
               Reactstrap
             </DropdownItem>
@@ -569,467 +535,372 @@ describe('Dropdown', () => {
             <DropdownItem onFocus={focus3}> Lyfe</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Reactstrap')).toHaveFocus();
 
-      wrapper.find('#first').hostNodes().simulate('keydown', { which: 52 });
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      focus1.mockClear();
+
+      user.keyboard('4');
+      expect(screen.getByText('4')).toHaveFocus();
 
       expect(focus1.mock.calls.length).toBe(0);
       expect(focus2.mock.calls.length).toBe(1);
       expect(focus3.mock.calls.length).toBe(0);
-
-      wrapper.detach();
     });
 
     it('should skip non-menu items focus the next menu item on down arrow keydown when it isOpen is true and anther item is focused', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
-      const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#second')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(0);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{arrowdown}');
+      expect(screen.getByText('Test2')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(1);
+      expect(focus2).toBeCalledTimes(1);
     });
 
     it('should focus the previous menu item on up arrow keydown when isOpen is true and another item is focused', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
-      const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#second')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(1);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(0);
-
-      wrapper.detach();
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{arrowdown}');
+      expect(screen.getByText('Test2')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(1);
+      expect(focus2).toBeCalledTimes(1);
+      user.keyboard('{arrowup}');
+      expect(screen.getByText('Test1')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(2);
     });
 
     it('should focus the previous menuitem on ctrl + p keydown when isOpen is true and another item is focused', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
-      const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem onFocus={focus3}>Test</DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#second')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.p, ctrlKey: true });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(1);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(0);
-
-      wrapper.detach();
+      screen.getByText('Test1').focus();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{arrowdown}');
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(1);
+      expect(focus2).toBeCalledTimes(1);
+      expect(screen.getByText('Test2')).toHaveFocus();
+      user.keyboard('{ctrl>}P');
+      expect(screen.getByText('Test1')).toHaveFocus();
     });
 
     it('should wrap focus with down arrow keydown', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
-      const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>
-              Test
-            </DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#third')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(1);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(0);
-
-      wrapper.detach();
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{arrowdown}');
+      expect(screen.getByText('Test2')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(1);
+      expect(focus2).toBeCalledTimes(1);
+      user.keyboard('{arrowdown}');
+      expect(screen.getByText('Test1')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(2);
     });
 
     it('should wrap focus with up arrow keydown', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
-      const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>
-              Test
-            </DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(0);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{arrowup}');
+      expect(screen.getByText('Test2')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(1);
+      expect(focus2).toBeCalledTimes(1);
     });
 
     it('should focus the 1st item on home key keyDown', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
       const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem id="zero" disabled>
-              Test
-            </DropdownItem>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>
-              Test
-            </DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
+            <DropdownItem onFocus={focus3}>Test3</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.home });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(1);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(0);
-
-      wrapper.detach();
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{arrowdown}');
+      user.keyboard('{arrowdown}');
+      expect(screen.getByText('Test3')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(1);
+      expect(focus2).toBeCalledTimes(1);
+      expect(focus3).toBeCalledTimes(1);
+      user.keyboard('{home}');
+      expect(screen.getByText('Test1')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(2);
     });
 
     it('should focus the last item on end key keyDown', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const focus1 = jest.fn();
       const focus2 = jest.fn();
       const focus3 = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem id="zero" disabled>
-              Test
-            </DropdownItem>
+          <DropdownMenu end>
             <DropdownItem id="first" onFocus={focus1}>
-              Test
-            </DropdownItem>
-            <DropdownItem id="second" onFocus={focus2}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="divider" divider />
-            <DropdownItem id="third" onFocus={focus3}>
-              Test
-            </DropdownItem>
+            <DropdownItem onFocus={focus2}>Test2</DropdownItem>
+            <DropdownItem onFocus={focus3}>Test3</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.end });
-
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(focus1.mock.calls.length).toBe(0);
-      expect(focus2.mock.calls.length).toBe(0);
-      expect(focus3.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Test1')).toHaveFocus();
+      user.keyboard('{end}');
+      expect(screen.getByText('Test3')).toHaveFocus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(focus1).toBeCalledTimes(1);
+      expect(focus2).toBeCalledTimes(0);
+      expect(focus3).toBeCalledTimes(1);
     });
 
     it('should trigger a click on links when an item is focused and space[bar] it pressed', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const click = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu end>
             <DropdownItem href="#" id="first" onClick={click}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      user.tab();
+      user.tab();
+      expect(screen.getByText('Test1')).toHaveFocus();
 
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.space });
+      user.keyboard('{space}');
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-      expect(click.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      expect(click).toHaveBeenCalled();
     });
 
     it('should trigger a click on buttons when an item is focused and space[bar] it pressed (override browser defaults for focus management)', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
       const click = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem id="first" onClick={click}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      screen.getByText('Test1').focus();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(screen.getByText('Test1')).toHaveFocus();
 
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.space });
+      user.keyboard('{space}');
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-      expect(click.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      expect(toggle).toHaveBeenCalledTimes(1);
+      expect(click).toHaveBeenCalledTimes(1);
     });
 
     it('should not trigger anything when within an input', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const click = jest.fn();
       const focus = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>
-              <input id="input" />
+              <input id="input" placeholder="name" />
             </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
+      screen.getByPlaceholderText('name').focus();
+      expect(screen.getByPlaceholderText(/name/i)).toHaveFocus();
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      focus.mockClear();
+      click.mockClear();
 
-      wrapper
-        .find('#input')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
-      wrapper
-        .find('#input')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
-      wrapper
-        .find('#input')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.space });
+      user.keyboard('{arrowdown}');
+      user.keyboard('{arrowup}');
+      user.keyboard('{space}');
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(click.mock.calls.length).toBe(0);
-      expect(focus.mock.calls.length).toBe(0);
+      expect(toggle).not.toHaveBeenCalled();
 
-      wrapper.detach();
+      expect(screen.getByPlaceholderText(/name/i)).toHaveFocus();
+
+      expect(focus).not.toHaveBeenCalled();
+      expect(click).not.toHaveBeenCalled();
     });
 
     it('should not trigger anything when within a textarea', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
       const click = jest.fn();
       const focus = jest.fn();
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>
-              <textarea id="input" />
+              <textarea id="input" placeholder="placeholder" />
             </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      screen.getByPlaceholderText(/placeholder/i).focus();
+      expect(screen.getByPlaceholderText(/placeholder/i)).toHaveFocus();
 
-      wrapper
-        .find('#input')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
-      wrapper
-        .find('#input')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
-      wrapper
-        .find('#input')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.space });
+      focus.mockClear();
+      click.mockClear();
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(click.mock.calls.length).toBe(0);
-      expect(focus.mock.calls.length).toBe(0);
+      user.keyboard('{arrowdown}');
+      user.keyboard('{arrowup}');
+      user.keyboard('{space}');
 
-      wrapper.detach();
+      expect(toggle).not.toHaveBeenCalled();
+
+      expect(screen.getByPlaceholderText(/placeholder/i)).toHaveFocus();
+
+      expect(focus).not.toHaveBeenCalled();
+      expect(click).not.toHaveBeenCalled();
     });
 
     it('should toggle when isOpen is true and tab keyDown on menuitem', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
       const focus = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem id="first">First</DropdownItem>
@@ -1038,75 +909,56 @@ describe('Dropdown', () => {
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      screen.getByText(/first/i).focus();
 
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.tab });
+      user.tab();
 
-      expect(focus.mock.calls.length).toBe(0);
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(1);
-
-      wrapper.detach();
+      expect(toggle).toHaveBeenCalledTimes(1);
     });
 
     it('should not trigger anything when disabled', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
       const click = jest.fn();
       const focus = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle} disabled>
+      render(
+        <Dropdown isOpen toggle={toggle} disabled>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem tag="div" id="first" onClick={click} onFocus={focus}>
-              Test
+              Test1
             </DropdownItem>
             <DropdownItem id="second">Test</DropdownItem>
             <DropdownItem id="divider" divider />
             <DropdownItem id="third">Test</DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      screen.getByText(/test1/i).focus();
 
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.space });
+      focus.mockClear();
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(click.mock.calls.length).toBe(0);
-      expect(focus.mock.calls.length).toBe(0);
+      user.keyboard('{arrowdown}');
+      user.keyboard('{arrowup}');
+      user.keyboard('{space}');
 
-      wrapper.detach();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(click).not.toHaveBeenCalled();
+      expect(focus).not.toHaveBeenCalled();
     });
 
     it('should not focus anything when all items disabled', () => {
-      isOpen = true;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
       const click = jest.fn();
       const focus = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem
               disabled
               tag="div"
@@ -1125,139 +977,86 @@ describe('Dropdown', () => {
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
+      screen.getByText(/toggle/i).focus();
 
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.up });
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.down });
-      wrapper
-        .find('#first')
-        .hostNodes()
-        .simulate('keydown', { which: keyCodes.space });
+      user.keyboard('{arrowdown}');
+      user.keyboard('{arrowup}');
+      user.keyboard('{space}');
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      expect(click.mock.calls.length).toBe(0);
-      expect(focus.mock.calls.length).toBe(0);
-
-      wrapper.detach();
+      expect(toggle).not.toHaveBeenCalled();
+      expect(click).not.toHaveBeenCalled();
+      expect(focus).not.toHaveBeenCalled();
     });
 
     it('should not call preventDefault when dropdown has focus and f5 key is pressed', () => {
-      isOpen = false;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      const event = { preventDefault: () => {} };
-      const spy = jest.spyOn(event, 'preventDefault');
+      expect(toggle).not.toHaveBeenCalled();
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: 116 /* f5 key */ });
-      expect(spy).not.toHaveBeenCalled();
+      const button = screen.getByText(/toggle/i);
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: 16 /* shift key */ });
-      expect(spy).not.toHaveBeenCalled();
+      const keyEvent1 = createEvent.keyDown(button, {
+        keyCode: 116,
+      });
+      fireEvent(button, keyEvent1);
+      expect(keyEvent1.defaultPrevented).toBe(false);
 
-      wrapper.detach();
+      const keyEvent2 = createEvent.keyDown(button, {
+        keyCode: 16,
+      });
+      fireEvent(button, keyEvent2);
+      expect(keyEvent2.defaultPrevented).toBe(false);
     });
 
     it('should call preventDefault when dropdown has focus and any key(up, down, esc, enter, home, end or any alphanumeric key) is pressed', () => {
-      isOpen = false;
-      jest.spyOn(Dropdown.prototype, 'toggle');
+      const toggle = jest.fn();
 
-      const wrapper = mount(
-        <Dropdown isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown isOpen={false} toggle={toggle}>
           <DropdownToggle>Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </Dropdown>,
-        { attachTo: element },
       );
 
-      expect(Dropdown.prototype.toggle.mock.calls.length).toBe(0);
-      const event = { preventDefault: () => {} };
-      const spy = jest.spyOn(event, 'preventDefault');
+      expect(toggle).not.toHaveBeenCalled();
 
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: keyCodes.down });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: keyCodes.up });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: keyCodes.esc });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: keyCodes.end });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: keyCodes.home });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: keyCodes.enter });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: 65 /* A key */ });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper
-        .find('[aria-haspopup]')
-        .hostNodes()
-        .simulate('keydown', { ...event, which: 90 /* A key */ });
-      expect(spy).toHaveBeenCalled();
-
-      wrapper.detach();
+      const button = screen.getByText(/toggle/i);
+      [
+        keyCodes.down,
+        keyCodes.up,
+        keyCodes.end,
+        keyCodes.home,
+        keyCodes.enter,
+        90, // for 'a'
+        65, // for 'A'
+      ].forEach((keyCode) => {
+        const keyEvent = createEvent.keyDown(button, {
+          keyCode,
+        });
+        fireEvent(button, keyEvent);
+        expect(keyEvent.defaultPrevented).toBe(true);
+      });
     });
   });
 
   it('should render different size classes', () => {
-    const small = mount(
-      <Dropdown group isOpen={isOpen} size="sm" toggle={toggle}>
+    const { rerender } = render(
+      <Dropdown group isOpen size="sm">
         <DropdownToggle>Toggle</DropdownToggle>
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
@@ -1265,8 +1064,12 @@ describe('Dropdown', () => {
       </Dropdown>,
     );
 
-    const large = mount(
-      <Dropdown group isOpen={isOpen} size="lg" toggle={toggle}>
+    expect(screen.getByText(/toggle/i).parentElement).toHaveClass(
+      'btn-group-sm',
+    );
+
+    rerender(
+      <Dropdown group isOpen size="lg">
         <DropdownToggle>Toggle</DropdownToggle>
         <DropdownMenu>
           <DropdownItem>Test</DropdownItem>
@@ -1274,26 +1077,19 @@ describe('Dropdown', () => {
       </Dropdown>,
     );
 
-    expect(small.find('.btn-group-sm').hostNodes().length).toBe(1);
-    expect(large.find('.btn-group-lg').hostNodes().length).toBe(1);
+    expect(screen.getByText(/toggle/i).parentElement).toHaveClass(
+      'btn-group-lg',
+    );
   });
 
   describe('Dropdown with nav', () => {
     it('should render a single child', () => {
-      const wrapper = mount(
-        <Dropdown nav isOpen={isOpen} toggle={toggle}>
-          Ello world
-        </Dropdown>,
-      );
-
-      expect(wrapper.find('.nav-item').hostNodes().text()).toBe('Ello world');
-      expect(wrapper.find('.nav-item').hostNodes().length).toBe(1);
+      testForChildrenInComponent(Dropdown);
     });
 
     it('should render multiple children when isOpen', () => {
-      isOpen = true;
-      const wrapper = mount(
-        <Dropdown nav isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown nav isOpen>
           <DropdownToggle>Toggle</DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
@@ -1301,18 +1097,15 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      expect(wrapper.find('.btn').hostNodes().text()).toBe('Toggle');
-      expect(wrapper.find('.nav-item').hostNodes().length).toBe(1);
-      expect(wrapper.find('.dropdown-item').hostNodes().length).toBe(1);
-      expect(wrapper.find('.nav-item').hostNodes().children().length).toBe(2);
+      expect(screen.getByText(/test/i)).toBeInTheDocument();
+      expect(screen.getByText(/toggle/i)).toBeInTheDocument();
     });
   });
 
   describe('Dropdown in navbar', () => {
     it('should open without popper with inNavbar prop', () => {
-      isOpen = true;
-      const wrapper = mount(
-        <Dropdown nav inNavbar isOpen={isOpen} toggle={toggle}>
+      render(
+        <Dropdown nav inNavbar>
           <DropdownToggle caret nav>
             Toggle
           </DropdownToggle>
@@ -1322,40 +1115,21 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      expect(wrapper.find('.dropdown-toggle').first().type()).toEqual('a');
-      expect(wrapper.find('.dropdown-menu').first().type()).toEqual('div');
-    });
-
-    it('should open with popper without inNavbar prop', () => {
-      isOpen = true;
-      const wrapper = mount(
-        <Dropdown nav isOpen={isOpen} toggle={toggle}>
-          <DropdownToggle caret nav>
-            Toggle
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem>Test</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>,
-      );
-
-      expect(wrapper.find('.dropdown-toggle').parent().type()).toEqual(
-        Reference,
-      );
-      expect(wrapper.find('.dropdown-menu').parent().type()).toEqual(Popper);
+      expect(screen.getByText(/toggle/i).tagName).toBe('A');
+      expect(screen.getByText(/test/i).parentElement.tagName).toBe('DIV');
     });
   });
 
   describe('active', () => {
     it('should render an active class', () => {
-      const wrapper = shallow(<Dropdown active nav />);
+      render(<Dropdown active nav />);
 
-      expect(wrapper.childAt(0).childAt(0).hasClass('active')).toBe(true);
+      expect(screen.getByRole('listitem')).toHaveClass('active');
     });
 
     it('should render an active class when a child DropdownItem is active IF setActiveFromChild is true', () => {
-      const wrapper = shallow(
-        <Dropdown nav inNavbar setActiveFromChild toggle={toggle}>
+      render(
+        <Dropdown nav inNavbar setActiveFromChild>
           <DropdownToggle nav caret>
             Options
           </DropdownToggle>
@@ -1365,24 +1139,23 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      expect(wrapper.childAt(0).childAt(0).hasClass('active')).toBe(true);
+      expect(screen.getByRole('listitem')).toHaveClass('active');
     });
   });
 
   it('should render with correct class when direction is set', () => {
-    const dropup = shallow(<Dropdown direction="up" />);
-    const dropleft = shallow(<Dropdown direction="start" />);
-    const dropright = shallow(<Dropdown direction="end" />);
-
-    expect(dropup.childAt(0).childAt(0).hasClass('dropup')).toBe(true);
-    expect(dropleft.childAt(0).childAt(0).hasClass('dropstart')).toBe(true);
-    expect(dropright.childAt(0).childAt(0).hasClass('dropend')).toBe(true);
+    const { rerender } = render(<Dropdown direction="up" nav />);
+    expect(screen.getByRole('listitem')).toHaveClass('dropup');
+    rerender(<Dropdown direction="start" nav />);
+    expect(screen.getByRole('listitem')).toHaveClass('dropstart');
+    rerender(<Dropdown direction="end" nav />);
+    expect(screen.getByRole('listitem')).toHaveClass('dropend');
   });
 
   describe('menuRole prop', () => {
     it('should set correct roles for children when menuRole is menu', () => {
-      const wrapper = mount(
-        <Dropdown menuRole="menu" toggle={toggle}>
+      render(
+        <Dropdown menuRole="menu" isOpen>
           <DropdownToggle nav caret>
             Options
           </DropdownToggle>
@@ -1392,15 +1165,17 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      expect(wrapper.props().menuRole).toEqual('menu');
-      expect(wrapper.find('[aria-haspopup="menu"]').length).toEqual(1);
-      expect(wrapper.find('[role="menuitem"]').length).toEqual(1);
-      expect(wrapper.find('[role="menu"]').length).toEqual(1);
+      expect(screen.getByText(/options/i)).toHaveAttribute(
+        'aria-haspopup',
+        'menu',
+      );
+      expect(screen.getByRole('menu')).toBeInTheDocument();
+      expect(screen.getByRole('menuitem')).toBeInTheDocument();
     });
 
     it('should set correct roles for children when menuRole is menu', () => {
-      const wrapper = mount(
-        <Dropdown menuRole="listbox" toggle={toggle}>
+      render(
+        <Dropdown menuRole="listbox" isOpen>
           <DropdownToggle nav caret>
             Options
           </DropdownToggle>
@@ -1410,10 +1185,12 @@ describe('Dropdown', () => {
         </Dropdown>,
       );
 
-      expect(wrapper.props().menuRole).toEqual('listbox');
-      expect(wrapper.find('[aria-haspopup="listbox"]').length).toEqual(1);
-      expect(wrapper.find('[role="option"]').length).toEqual(1);
-      expect(wrapper.find('[role="listbox"]').length).toEqual(1);
+      expect(screen.getByText(/options/i)).toHaveAttribute(
+        'aria-haspopup',
+        'listbox',
+      );
+      expect(screen.getByRole('option')).toBeInTheDocument();
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
     });
   });
 });

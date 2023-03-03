@@ -86,7 +86,7 @@ describe('Carousel', () => {
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item carousel-item-start carousel-item-next',
         );
-        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active',
         );
@@ -94,7 +94,7 @@ describe('Carousel', () => {
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active carousel-item-start',
         );
-        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item',
         );
@@ -115,7 +115,7 @@ describe('Carousel', () => {
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item carousel-item-end carousel-item-prev',
         );
-        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active',
         );
@@ -123,7 +123,7 @@ describe('Carousel', () => {
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item active carousel-item-end',
         );
-        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
         expect(screen.getByText(/the mandalorian/i)).toHaveClass(
           'carousel-item',
         );
@@ -143,7 +143,7 @@ describe('Carousel', () => {
         expect(callbacks.onEnter).toHaveBeenCalled();
         expect(callbacks.onEntering).toHaveBeenCalled();
         expect(callbacks.onEntered).not.toHaveBeenCalled();
-        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
         expect(callbacks.onEntered).toHaveBeenCalled();
         expect(callbacks.onExit).not.toHaveBeenCalled();
 
@@ -151,7 +151,7 @@ describe('Carousel', () => {
         expect(callbacks.onExit).toHaveBeenCalled();
         expect(callbacks.onExiting).toHaveBeenCalled();
         expect(callbacks.onExited).not.toHaveBeenCalled();
-        jest.runTimersToTime(DEFAULT_TIMER_TIME);
+        jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
         expect(callbacks.onExiting).toHaveBeenCalled();
         expect(callbacks.onExited).toHaveBeenCalled();
       });
@@ -420,7 +420,7 @@ describe('Carousel', () => {
       expect(screen.getByText(/boba fett/i)).toHaveClass(
         'carousel-item carousel-item-start carousel-item-next',
       );
-      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
       expect(screen.getByText(/boba fett/i)).toHaveClass(
         'carousel-item active',
       );
@@ -451,7 +451,7 @@ describe('Carousel', () => {
       expect(screen.getByText(/boba fett/i)).toHaveClass(
         'carousel-item carousel-item-start carousel-item-next',
       );
-      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
       expect(screen.getByText(/boba fett/i)).toHaveClass('active');
     });
 
@@ -480,7 +480,7 @@ describe('Carousel', () => {
       expect(screen.getByText(/grogu/i)).toHaveClass(
         'carousel-item carousel-item-prev carousel-item-end',
       );
-      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
       expect(screen.getByText(/grogu/i)).toHaveClass('active');
     });
 
@@ -509,7 +509,7 @@ describe('Carousel', () => {
       expect(screen.getByText(/grogu/i)).toHaveClass(
         'carousel-item carousel-item-start carousel-item-next',
       );
-      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
       expect(screen.getByText(/grogu/i)).toHaveClass('active');
     });
 
@@ -599,7 +599,7 @@ describe('Carousel', () => {
       expect(screen.getByText(/the mandalorian/i)).toHaveClass(
         'carousel-item carousel-item-end carousel-item-prev',
       );
-      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
       expect(screen.getByText(/the mandalorian/i)).toHaveClass('active');
     });
 
@@ -661,7 +661,7 @@ describe('Carousel', () => {
       expect(screen.getByText(/the mandalorian/i)).toHaveClass(
         'carousel-item carousel-item-start carousel-item-next',
       );
-      jest.runTimersToTime(DEFAULT_TIMER_TIME);
+      jest.advanceTimersByTime(DEFAULT_TIMER_TIME);
       expect(screen.getByText(/the mandalorian/i)).toHaveClass('active');
     });
   });
@@ -679,7 +679,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>,
       );
-      jest.runTimersToTime(1000);
+      jest.advanceTimersByTime(1000);
       expect(next).not.toHaveBeenCalled();
     });
 
@@ -696,7 +696,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>,
       );
-      jest.runTimersToTime(1000);
+      jest.advanceTimersByTime(1000);
       expect(next).toHaveBeenCalled();
     });
 
@@ -713,7 +713,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>,
       );
-      jest.runTimersToTime(1000);
+      jest.advanceTimersByTime(1000);
       expect(next).toHaveBeenCalled();
     });
 
@@ -729,7 +729,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>,
       );
-      jest.runTimersToTime(5000);
+      jest.advanceTimersByTime(5000);
       expect(next).not.toHaveBeenCalled();
     });
 
@@ -745,7 +745,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>,
       );
-      jest.runTimersToTime(5000);
+      jest.advanceTimersByTime(5000);
       expect(next).toHaveBeenCalled();
     });
 
@@ -762,7 +762,7 @@ describe('Carousel', () => {
           {slides}
         </Carousel>,
       );
-      jest.runTimersToTime(1000);
+      jest.advanceTimersByTime(1000);
       expect(next).toHaveBeenCalled();
     });
   });

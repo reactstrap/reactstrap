@@ -12,7 +12,11 @@ export default function Example(args) {
   return (
     <div className="d-flex p-5 justify-content-center">
       {directions.map((direction) => (
-        <UncontrolledDropdown direction={direction} className="me-2">
+        <UncontrolledDropdown
+          direction={direction}
+          key={direction}
+          className="me-2"
+        >
           <DropdownToggle caret color="primary">
             {`Drop${direction}`}
           </DropdownToggle>
