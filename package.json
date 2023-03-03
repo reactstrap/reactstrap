@@ -2,7 +2,6 @@
   "name": "reactstrap",
   "version": "9.1.6",
   "description": "React Bootstrap components",
-  "type": "module",
   "source": "src/index.js",
   "main": "lib/index.js",
   "module": "esm/index.js",
