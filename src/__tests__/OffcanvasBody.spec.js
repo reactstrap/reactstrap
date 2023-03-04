@@ -1,29 +1,20 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { OffcanvasBody } from '..';
+import {
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('OffcanvasBody', () => {
   it('should render with "offcanvas-body" class', () => {
-    const wrapper = shallow(<OffcanvasBody>Yo!</OffcanvasBody>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('offcanvas-body')).toBe(true);
+    testForDefaultClass(OffcanvasBody, 'offcanvas-body  ');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(
-      <OffcanvasBody className="other">Yo!</OffcanvasBody>,
-    );
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('offcanvas-body')).toBe(true);
+    testForCustomClass(OffcanvasBody);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<OffcanvasBody tag="main">Yo!</OffcanvasBody>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('offcanvas-body')).toBe(true);
-    expect(wrapper.type()).toBe('main');
+    testForCustomTag(OffcanvasBody);
   });
 });
