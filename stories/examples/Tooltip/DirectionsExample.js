@@ -52,7 +52,7 @@ function TooltipExampleMulti(props) {
         },
       ].map((tooltip, i) => {
         // eslint-disable-next-line react/no-array-index-key
-        return <TooltipItem key={i} item={tooltip} id={i} />;
+        return <TooltipItem key={i} item={tooltip} id={`Tooltip-${i}`} />;
       })}
     </>
   );

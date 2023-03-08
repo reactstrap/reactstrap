@@ -14,7 +14,7 @@ function Example(args) {
       </thead>
       <tbody>
         {colors.map((color) => (
-          <tr className={`table-${color}`}>
+          <tr className={`table-${color}`} key={color}>
             <td>{color}</td>
             <td>Cell</td>
             <td>Cell</td>

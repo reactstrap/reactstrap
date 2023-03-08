@@ -23,7 +23,7 @@ function ModalExample(props) {
 
   return (
     <div>
-      <Form inline onSubmit={(e) => e.preventDefault()}>
+      <Form onSubmit={(e) => e.preventDefault()}>
         <FormGroup>
           <Label for="unmountOnClose">UnmountOnClose value</Label>{' '}
           <Input
