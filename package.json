@@ -2,18 +2,10 @@
   "name": "reactstrap",
   "version": "9.1.6",
   "description": "React Bootstrap components",
-  "type": "module",
   "source": "src/index.js",
-  "exports": {
-    "import": "./dist/reactstrap.modern.js",
-    "require": "./dist/reactstrap.cjs",
-    "default": "./dist/reactstrap.modern.js"
-  },
-  "main": "./dist/reactstrap.cjs",
-  "module": "./dist/reactstrap.module.js",
-  "unpkg": "./dist/reactstrap.umd.js",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
   "types": "types/index.d.ts",
-  "esnext": "src/index.js",
   "sideEffects": false,
   "scripts": {
     "test": "jest --watch",
@@ -21,13 +13,16 @@
     "cover": "jest --coverage",
     "start": "start-storybook -s ./static -p 8080",
     "build:docs": "build-storybook -s ./static -o ./build",
-    "build": "microbundle --generateTypes false --jsx React.createElement --compress false",
-    "version": "node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular && git add -A CHANGELOG.md",
+    "build:esm": "babel src --out-dir esm --config-file ./babel.esm.config.cjs --extensions '.js,.ts,.tsx'",
+    "build:lib": "babel src --out-dir lib --config-file ./babel.build.config.cjs --extensions '.js,.ts,.tsx'",
+    "build": "yarn clean && concurrently \"yarn:build:*(!docs)\"",
+    "clean": "rm -rf esm lib",
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
     "lint": "eslint src stories",
     "dtslint": "dtslint types --expectOnly",
-    "prettier": "prettier --write src stories"
+    "prettier": "prettier --write src stories",
+    "version": "node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular && git add -A CHANGELOG.md"
   },
   "prettier": {
     "singleQuote": true,
@@ -273,6 +268,7 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
     "@babel/core": "^7.20.2",
     "@babel/eslint-parser": "^7.18.2",
     "@babel/plugin-proposal-export-default-from": "^7.12.1",
@@ -294,6 +290,7 @@
     "babel-loader": "^8.2.2",
     "babel-preset-react-app": "^10.0.1",
     "bootstrap": "^5.1.0",
+    "concurrently": "^7.6.0",
     "conventional-changelog-cli": "^2.0.21",
     "conventional-recommended-bump": "^4.1.1",
     "cross-env": "^4.0.0",
