@@ -1,58 +1,68 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Placeholder } from '..';
+import { testForCustomClass, testForDefaultClass } from '../testUtils';
 
 describe('Placeholder', () => {
   it('should render with "placeholder" class', () => {
-    const wrapper = shallow(<Placeholder />);
-    expect(wrapper.hasClass('placeholder')).toBe(true);
+    testForDefaultClass(Placeholder, 'placeholder');
   });
 
   it('should render column size', () => {
-    const wrapper = shallow(<Placeholder xs={7} />);
-    expect(wrapper.hasClass('col-7')).toBe(true);
+    render(<Placeholder data-testid="test" xs={7} />);
+    expect(screen.getByTestId('test')).toHaveClass('col-7');
   });
 
   it('should render animation', () => {
-    const wrapper = shallow(<Placeholder tag="p" animation="glow" />);
-    expect(wrapper.hasClass('placeholder-glow')).toBe(true);
+    render(<Placeholder data-testid="test" tag="p" animation="glow" />);
+    expect(screen.getByTestId('test')).toHaveClass('placeholder-glow');
   });
 
   it('should render color', () => {
-    const wrapper = shallow(<Placeholder xs={12} color="primary" />);
-    expect(wrapper.hasClass('bg-primary')).toBe(true);
+    render(<Placeholder data-testid="test" xs={12} color="primary" />);
+    expect(screen.getByTestId('test')).toHaveClass('bg-primary');
   });
 
   it('should render size', () => {
-    const wrapper = shallow(<Placeholder size="lg" xs={12} />);
-    expect(wrapper.hasClass('placeholder-lg')).toBe(true);
+    render(<Placeholder data-testid="test" size="lg" xs={12} />);
+    expect(screen.getByTestId('test')).toHaveClass('placeholder-lg');
   });
 
   it('should render different widths for different breakpoints', () => {
-    const wrapper = shallow(<Placeholder size="lg" xs={12} lg={8} />);
-    expect(wrapper.hasClass('col-lg-8')).toBe(true);
-    expect(wrapper.hasClass('col-12')).toBe(true);
+    render(<Placeholder data-testid="test" size="lg" xs={12} lg={8} />);
+    const node = screen.getByTestId('test');
+    expect(node).toHaveClass('col-lg-8');
+    expect(node).toHaveClass('col-12');
   });
 
   it('should allow custom columns to be defined', () => {
-    const wrapper = shallow(
-      <Placeholder widths={['base', 'jumbo']} base="4" jumbo="6" />,
+    render(
+      <Placeholder
+        data-testid="test"
+        widths={['base', 'jumbo']}
+        base="4"
+        jumbo="6"
+      />,
     );
-    expect(wrapper.hasClass('col-4')).toBe(true);
-    expect(wrapper.hasClass('col-jumbo-6')).toBe(true);
+    const node = screen.getByTestId('test');
+    expect(node).toHaveClass('col-4');
+    expect(node).toHaveClass('col-jumbo-6');
   });
 
   it('should allow custom columns to be defined with objects', () => {
-    const wrapper = shallow(
+    render(
       <Placeholder
+        data-testid="test"
         widths={['base', 'jumbo', 'custom']}
         custom={{ size: 1, order: 2, offset: 4 }}
       />,
     );
-
-    expect(wrapper.hasClass('col-custom-1')).toBe(true);
-    expect(wrapper.hasClass('order-custom-2')).toBe(true);
-    expect(wrapper.hasClass('offset-custom-4')).toBe(true);
-    expect(wrapper.hasClass('col')).toBe(false);
+    const node = screen.getByTestId('test');
+    expect(node).toHaveClass('col-custom-1');
+    expect(node).toHaveClass('order-custom-2');
+    expect(node).toHaveClass('offset-custom-4');
+    expect(node).not.toHaveClass('col');
   });
 });

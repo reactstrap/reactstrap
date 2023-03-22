@@ -1,94 +1,84 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { screen, render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Nav } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('Nav', () => {
   it('should render .nav markup', () => {
-    const wrapper = shallow(<Nav />);
-
-    expect(wrapper.html()).toBe('<ul class="nav"></ul>');
+    testForDefaultClass(Nav, 'nav');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Nav tag="nav" />);
-
-    expect(wrapper.html()).toBe('<nav class="nav"></nav>');
+    testForCustomTag(Nav);
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<Nav>Children</Nav>);
-
-    expect(wrapper.html()).toBe('<ul class="nav">Children</ul>');
+    testForChildrenInComponent(Nav);
   });
 
   it('should handle justified prop', () => {
-    const wrapper = shallow(<Nav justified />);
-
-    expect(wrapper.html()).toBe('<ul class="nav nav-justified"></ul>');
+    let { container } = render(<Nav justified />);
+    expect(container).toContainHTML('<ul class="nav nav-justified"></ul>');
   });
 
   it('should handle fill prop', () => {
-    const wrapper = shallow(<Nav fill />);
-
-    expect(wrapper.html()).toBe('<ul class="nav nav-fill"></ul>');
+    let { container } = render(<Nav fill />);
+    expect(container).toContainHTML('<ul class="nav nav-fill"></ul>');
   });
 
   it('should handle pills prop', () => {
-    const wrapper = shallow(<Nav pills />);
-
-    expect(wrapper.html()).toBe('<ul class="nav nav-pills"></ul>');
+    let { container } = render(<Nav pills />);
+    expect(container).toContainHTML('<ul class="nav nav-pills"></ul>');
   });
 
   it('should handle pills prop with card prop', () => {
-    const wrapper = shallow(<Nav pills card />);
-
-    expect(wrapper.html()).toBe(
+    let { container } = render(<Nav pills card />);
+    expect(container).toContainHTML(
       '<ul class="nav nav-pills card-header-pills"></ul>',
     );
   });
 
   it('should handle tabs prop', () => {
-    const wrapper = shallow(<Nav tabs />);
-
-    expect(wrapper.html()).toBe('<ul class="nav nav-tabs"></ul>');
+    let { container } = render(<Nav tabs />);
+    expect(container).toContainHTML('<ul class="nav nav-tabs"></ul>');
   });
 
   it('should handle tabs prop with card prop', () => {
-    const wrapper = shallow(<Nav tabs card />);
-
-    expect(wrapper.html()).toBe(
+    let { container } = render(<Nav tabs card />);
+    expect(container).toContainHTML(
       '<ul class="nav nav-tabs card-header-tabs"></ul>',
     );
   });
 
   it('should handle vertical prop', () => {
-    const wrapper = shallow(<Nav vertical />);
-
-    expect(wrapper.html()).toBe('<ul class="nav flex-column"></ul>');
+    let { container } = render(<Nav vertical />);
+    expect(container).toContainHTML('<ul class="nav flex-column"></ul>');
   });
 
   it('should handle vertical prop with string', () => {
-    const wrapper = shallow(<Nav vertical="sm" />);
-
-    expect(wrapper.html()).toBe('<ul class="nav flex-sm-column"></ul>');
+    let { container } = render(<Nav vertical="sm" />);
+    expect(container).toContainHTML('<ul class="nav flex-sm-column"></ul>');
   });
 
   it('should handle horizontal prop with string', () => {
-    const wrapper = shallow(<Nav horizontal="end" />);
-
-    expect(wrapper.html()).toBe('<ul class="nav justify-content-end"></ul>');
+    let { container } = render(<Nav horizontal="end" />);
+    expect(container).toContainHTML(
+      '<ul class="nav justify-content-end"></ul>',
+    );
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Nav className="extra" />);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('nav')).toBe(true);
+    testForCustomClass(Nav);
   });
 
   it('should render .navbar-nav class only', () => {
-    const wrapper = shallow(<Nav navbar>Children</Nav>);
-
-    expect(wrapper.html()).toBe('<ul class="navbar-nav">Children</ul>');
+    let { container } = render(<Nav navbar>Children</Nav>);
+    expect(container).toContainHTML('<ul class="navbar-nav">Children</ul>');
   });
 });

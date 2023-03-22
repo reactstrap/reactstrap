@@ -19,7 +19,6 @@ const propTypes = {
   expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /** Make the navbar fixed at the top */
   fixed: PropTypes.string,
-  full: PropTypes.bool,
   /** Add `.navbar-light` class */
   light: PropTypes.bool,
   role: PropTypes.string,

@@ -16,19 +16,19 @@ function Props({ component, components = [] }) {
     <div>
       {component ? <Info component={component} /> : undefined}
       {components.map((c) => (
-        <Info component={c} />
+        <Info key={c.name} component={c} />
       ))}
     </div>
   );
 }
 
 Info.propTypes = {
-  component: PropTypes.node,
+  component: PropTypes.elementType,
 };
 
 Props.propTypes = {
-  component: PropTypes.node,
-  components: PropTypes.arrayOf(PropTypes.node),
+  component: PropTypes.elementType,
+  components: PropTypes.arrayOf(PropTypes.elementType),
 };
 
 export default Props;
