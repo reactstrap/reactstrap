@@ -1,6 +1,6 @@
 {
   "name": "reactstrap",
-  "version": "9.1.6",
+  "version": "9.1.7",
   "description": "React Bootstrap components",
   "source": "src/index.js",
   "main": "lib/index.js",

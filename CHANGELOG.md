@@ -137,6 +137,18 @@
 
 
 
+## [9.1.7](https://github.com/reactstrap/reactstrap/compare/v9.1.6...v9.1.7) (2023-03-22)
+
+
+### Bug Fixes
+
+* **#1289:** prevent error in Strict Mode ([#2672](https://github.com/reactstrap/reactstrap/issues/2672)) ([2695bfa](https://github.com/reactstrap/reactstrap/commit/2695bfaca471f187abe2464621509d0b09e64b9f))
+* **#2660:** dropdown closes for complex children ([#2673](https://github.com/reactstrap/reactstrap/issues/2673)) ([fa1fcc8](https://github.com/reactstrap/reactstrap/commit/fa1fcc84511582f5e22d42c73c2ff1bb8c805f9b))
+* **#2664:** close offcanvas when fade is false ([#2677](https://github.com/reactstrap/reactstrap/issues/2677)) ([dac3587](https://github.com/reactstrap/reactstrap/commit/dac3587bc16006697008ed6f248be268f49de4e5))
+* **docs:** remove storybook errors ([#2675](https://github.com/reactstrap/reactstrap/issues/2675)) ([d0f188b](https://github.com/reactstrap/reactstrap/commit/d0f188b31bf9ccd5f262a46bb42ea87dd644049d))
+* issue where attributes could not be passed to the element ([19233ae](https://github.com/reactstrap/reactstrap/commit/19233ae45014045a6b103619b2b43fb4f386d02a))
+* treeshaking ([#2708](https://github.com/reactstrap/reactstrap/issues/2708)) ([fa46b94](https://github.com/reactstrap/reactstrap/commit/fa46b941004bfd37eb5bd2fcdce435d1ddac5066))
+
 ## [9.1.6](https://github.com/reactstrap/reactstrap/compare/v9.1.5...v9.1.6) (2023-02-17)
 
 
