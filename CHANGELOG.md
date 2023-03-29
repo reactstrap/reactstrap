@@ -137,6 +137,13 @@
 
 
 
+## [9.1.8](https://github.com/reactstrap/reactstrap/compare/v9.1.7...v9.1.8) (2023-03-29)
+
+
+### Bug Fixes
+
+* esm and lib folder not included in release ([e974d0c](https://github.com/reactstrap/reactstrap/commit/e974d0c180ebece9e35614da595e9cab2d8684b6))
+
 ## [9.1.7](https://github.com/reactstrap/reactstrap/compare/v9.1.6...v9.1.7) (2023-03-22)
 
 
