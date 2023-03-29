@@ -323,6 +323,6 @@
     "react-router": "^3.2.1",
     "react-test-renderer": "^16.3.2",
     "typescript": "^4.0.3",
-    "webpack": "^4.43.0"
+    "webpack": "^5.76.3"
   }
 }
