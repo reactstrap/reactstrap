@@ -38,6 +38,8 @@
     "CHANGELOG.md",
     "dist",
     "src",
+    "lib",
+    "esm",
     "types"
   ],
   "keywords": [
