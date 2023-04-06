@@ -276,6 +276,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.12.1",
     "@babel/plugin-proposal-export-namespace-from": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.12.10",
     "@storybook/addon-actions": "^6.3.7",
