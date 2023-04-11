@@ -137,6 +137,13 @@
 
 
 
+## [9.1.9](https://github.com/reactstrap/reactstrap/compare/v9.1.8...v9.1.9) (2023-04-11)
+
+
+### Bug Fixes
+
+* **#2730:** import error ([#2733](https://github.com/reactstrap/reactstrap/issues/2733)) ([2547f3a](https://github.com/reactstrap/reactstrap/commit/2547f3acfd12299dc0f4e2a5863c5cf82a203ef4))
+
 ## [9.1.8](https://github.com/reactstrap/reactstrap/compare/v9.1.7...v9.1.8) (2023-03-29)
 
 
