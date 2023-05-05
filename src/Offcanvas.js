@@ -98,6 +98,8 @@ class Offcanvas extends React.Component {
     this.clearBackdropAnimationTimeout =
       this.clearBackdropAnimationTimeout.bind(this);
     this.trapFocus = this.trapFocus.bind(this);
+    this._backdrop = React.createRef();
+    this._dialog = React.createRef();
 
     this.state = {
       isOpen: false,
@@ -165,7 +167,7 @@ class Offcanvas extends React.Component {
   handleBackdropClick(e) {
     if (e.target === this._mouseDownElement) {
       e.stopPropagation();
-      const backdrop = this._backdrop;
+      const backdrop = this._backdrop.current;
 
       if (!this.props.isOpen || this.props.backdrop !== true) return;
 
@@ -239,8 +241,8 @@ class Offcanvas extends React.Component {
   }
 
   setFocus() {
-    if (this._dialog && typeof this._dialog.focus === 'function') {
-      this._dialog.focus();
+    if (this._dialog.current && typeof this._dialog.current.focus === 'function') {
+      this._dialog.current.focus();
     }
   }
 
@@ -270,7 +272,7 @@ class Offcanvas extends React.Component {
       return;
     }
 
-    if (this._dialog === ev.target) {
+    if (this._dialog.current === ev.target) {
       // initial focus when the Offcanvas is opened
       return;
     }
@@ -408,9 +410,7 @@ class Offcanvas extends React.Component {
           <Fade
             {...backdropTransition}
             in={isOpen && !!backdrop}
-            innerRef={(c) => {
-              this._backdrop = c;
-            }}
+            innerRef={this._backdrop}
             cssModule={cssModule}
             className={mapToCssModules(
               classNames('offcanvas-backdrop', backdropClassName),
@@ -425,9 +425,7 @@ class Offcanvas extends React.Component {
               classNames('offcanvas-backdrop', 'show', backdropClassName),
               cssModule,
             )}
-            ref={(c) => {
-              this._backdrop = c;
-            }}
+            ref={this._backdrop}
             onClick={this.handleBackdropClick}
             onMouseDown={this.handleBackdropMouseDown}
           />
@@ -449,9 +447,7 @@ class Offcanvas extends React.Component {
               classNames('offcanvas', className, `offcanvas-${direction}`),
               cssModule,
             )}
-            innerRef={(c) => {
-              this._dialog = c;
-            }}
+            innerRef={this._dialog}
             style={{
               ...style,
               visibility: isOpen ? 'visible' : 'hidden',
