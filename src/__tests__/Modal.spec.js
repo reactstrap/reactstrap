@@ -341,7 +341,7 @@ describe('Modal', () => {
 
   it('should not render modal when isOpen is false', () => {
     render(
-      <Modal isOpenfalse toggle={toggle}>
+      <Modal isOpen={false} toggle={toggle}>
         Yo!
       </Modal>,
     );
