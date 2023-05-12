@@ -1,5 +1,5 @@
 module.exports = {
-  extends: './babel.build.config.cjs',
+  extends: './babel.config.cjs',
   presets: [
     // Dont transform modules for the esm build
     ['@babel/preset-env', { modules: false }],
