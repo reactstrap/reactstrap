@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
@@ -16,15 +16,15 @@ const defaultProps = {
   tag: 'div',
 };
 
-function ModalFooter(props) {
+const ModalFooter = forwardRef((props, ref) => {
   const { className, cssModule, tag: Tag, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'modal-footer'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
-}
+  return <Tag {...attributes} className={classes} ref={ref} />;
+});
 
 ModalFooter.propTypes = propTypes;
 ModalFooter.defaultProps = defaultProps;
