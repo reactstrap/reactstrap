@@ -137,6 +137,14 @@
 
 
 
+## [9.1.10](https://github.com/reactstrap/reactstrap/compare/v9.1.9...v9.1.10) (2023-05-13)
+
+
+### Bug Fixes
+
+* **#2427:** error building esm files ([#2748](https://github.com/reactstrap/reactstrap/issues/2748)) ([04d571d](https://github.com/reactstrap/reactstrap/commit/04d571dcaa630ccbc8b8363ad06dad436f11780e))
+* properly pass in `isOpen` in modal test ([#2745](https://github.com/reactstrap/reactstrap/issues/2745)) ([8cb0515](https://github.com/reactstrap/reactstrap/commit/8cb051522ddfad48c08651604744caea25b5e68e))
+
 ## [9.1.9](https://github.com/reactstrap/reactstrap/compare/v9.1.8...v9.1.9) (2023-04-11)
 
 
