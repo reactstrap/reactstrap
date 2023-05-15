@@ -146,6 +146,7 @@ class DropdownMenu extends React.Component {
         aria-hidden={!this.context.isOpen}
         className={classes}
         data-popper-placement={attrs.placement}
+        data-bs-popper="static"
       />
     );
   }
