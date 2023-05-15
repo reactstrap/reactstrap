@@ -31,12 +31,6 @@ const propTypes = {
   right: deprecated(PropTypes.bool, 'Please use "end" instead.'),
 };
 
-const defaultProps = {
-  tag: 'div',
-  flip: true,
-  modifiers: [],
-};
-
 const directionPositionMap = {
   up: 'top',
   left: 'left',
@@ -61,9 +55,9 @@ class DropdownMenu extends React.Component {
       dark,
       end,
       right,
-      tag,
-      flip,
-      modifiers,
+      tag = 'div',
+      flip = true,
+      modifiers = [],
       persist,
       strategy,
       container,
@@ -152,7 +146,6 @@ class DropdownMenu extends React.Component {
 }
 
 DropdownMenu.propTypes = propTypes;
-DropdownMenu.defaultProps = defaultProps;
 DropdownMenu.contextType = DropdownContext;
 
 export default DropdownMenu;

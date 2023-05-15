@@ -16,10 +16,6 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function FormGroup(props) {
   const {
     className,
@@ -29,7 +25,7 @@ function FormGroup(props) {
     check,
     inline,
     floating,
-    tag: Tag,
+    tag: Tag = 'div',
     switch: switchProp,
     ...attributes
   } = props;
@@ -57,6 +53,5 @@ function FormGroup(props) {
 }
 
 FormGroup.propTypes = propTypes;
-FormGroup.defaultProps = defaultProps;
 
 export default FormGroup;

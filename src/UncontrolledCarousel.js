@@ -68,9 +68,9 @@ class UncontrolledCarousel extends Component {
   render() {
     const {
       defaultActiveIndex,
-      autoPlay,
-      indicators,
-      controls,
+      autoPlay = true,
+      indicators = true,
+      controls = true,
       items,
       goToIndex,
       ...props
@@ -130,10 +130,5 @@ class UncontrolledCarousel extends Component {
 }
 
 UncontrolledCarousel.propTypes = propTypes;
-UncontrolledCarousel.defaultProps = {
-  controls: true,
-  indicators: true,
-  autoPlay: true,
-};
 
 export default UncontrolledCarousel;

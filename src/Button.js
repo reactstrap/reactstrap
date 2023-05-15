@@ -37,11 +37,6 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  color: 'secondary',
-  tag: 'button',
-};
-
 function Button(props) {
   const onClick = useCallback(
     (e) => {
@@ -64,10 +59,10 @@ function Button(props) {
     className,
     close,
     cssModule,
-    color,
+    color = 'secondary',
     outline,
     size,
-    tag: Tag,
+    tag: Tag = 'button',
     innerRef,
     ...attributes
   } = props;
@@ -107,6 +102,5 @@ function Button(props) {
 }
 
 Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 
 export default Button;

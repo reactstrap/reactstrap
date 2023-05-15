@@ -32,32 +32,23 @@ const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-const defaultProps = {
-  tag: 'div',
-  value: 0,
-  min: 0,
-  max: 100,
-  style: {},
-  barStyle: {},
-};
-
 function Progress(props) {
   const {
     children,
     className,
     barClassName,
     cssModule,
-    value,
-    min,
-    max,
+    value = 0,
+    min = 0,
+    max = 100,
     animated,
     striped,
     color,
     bar,
     multi,
-    tag: Tag,
-    style,
-    barStyle,
+    tag: Tag = 'div',
+    style = {},
+    barStyle = {},
     barAriaValueText,
     barAriaLabelledBy,
     ...attributes
@@ -109,6 +100,5 @@ function Progress(props) {
 }
 
 Progress.propTypes = propTypes;
-Progress.defaultProps = defaultProps;
 
 export default Progress;

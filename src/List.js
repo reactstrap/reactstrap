@@ -14,12 +14,8 @@ const propTypes = {
   type: PropTypes.string,
 };
 
-const defaultProps = {
-  tag: 'ul',
-};
-
 const List = forwardRef((props, ref) => {
-  const { className, cssModule, tag: Tag, type, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'ul', type, ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, type ? `list-${type}` : false),
     cssModule,
@@ -30,6 +26,5 @@ const List = forwardRef((props, ref) => {
 
 List.name = 'List';
 List.propTypes = propTypes;
-List.defaultProps = defaultProps;
 
 export default List;

@@ -12,12 +12,8 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function CardSubtitle(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'div', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-subtitle'),
     cssModule,
@@ -27,6 +23,5 @@ function CardSubtitle(props) {
 }
 
 CardSubtitle.propTypes = propTypes;
-CardSubtitle.defaultProps = defaultProps;
 
 export default CardSubtitle;

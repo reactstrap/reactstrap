@@ -14,12 +14,14 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  tag: 'a',
-};
-
 function CardLink(props) {
-  const { className, cssModule, tag: Tag, innerRef, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    tag: Tag = 'a',
+    innerRef,
+    ...attributes
+  } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-link'),
     cssModule,
@@ -29,6 +31,5 @@ function CardLink(props) {
 }
 
 CardLink.propTypes = propTypes;
-CardLink.defaultProps = defaultProps;
 
 export default CardLink;

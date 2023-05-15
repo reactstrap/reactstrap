@@ -14,12 +14,14 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'li',
-};
-
 function BreadcrumbItem(props) {
-  const { className, cssModule, active, tag: Tag, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    active,
+    tag: Tag = 'li',
+    ...attributes
+  } = props;
   const classes = mapToCssModules(
     classNames(className, active ? 'active' : false, 'breadcrumb-item'),
     cssModule,
@@ -35,6 +37,5 @@ function BreadcrumbItem(props) {
 }
 
 BreadcrumbItem.propTypes = propTypes;
-BreadcrumbItem.defaultProps = defaultProps;
 
 export default BreadcrumbItem;

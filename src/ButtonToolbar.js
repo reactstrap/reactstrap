@@ -16,23 +16,17 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'div',
-  role: 'toolbar',
-};
-
 function ButtonToolbar(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'div', ...attributes } = props;
 
   const classes = mapToCssModules(
     classNames(className, 'btn-toolbar'),
     cssModule,
   );
 
-  return <Tag {...attributes} className={classes} />;
+  return <Tag {...{ role: 'toolbar', ...attributes }} className={classes} />;
 }
 
 ButtonToolbar.propTypes = propTypes;
-ButtonToolbar.defaultProps = defaultProps;
 
 export default ButtonToolbar;

@@ -17,12 +17,15 @@ const propTypes = {
   type: PropTypes.string,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function InputGroup(props) {
-  const { className, cssModule, tag: Tag, type, size, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    tag: Tag = 'div',
+    type,
+    size,
+    ...attributes
+  } = props;
   const classes = mapToCssModules(
     classNames(className, 'input-group', size ? `input-group-${size}` : null),
     cssModule,
@@ -40,6 +43,5 @@ function InputGroup(props) {
 }
 
 InputGroup.propTypes = propTypes;
-InputGroup.defaultProps = defaultProps;
 
 export default InputGroup;

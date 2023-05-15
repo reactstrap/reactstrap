@@ -12,12 +12,8 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'li',
-};
-
 const ListInlineItem = forwardRef((props, ref) => {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'li', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'list-inline-item'),
     cssModule,
@@ -28,6 +24,5 @@ const ListInlineItem = forwardRef((props, ref) => {
 
 ListInlineItem.name = 'ListInlineItem';
 ListInlineItem.propTypes = propTypes;
-ListInlineItem.defaultProps = defaultProps;
 
 export default ListInlineItem;
