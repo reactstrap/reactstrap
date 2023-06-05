@@ -17,17 +17,13 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'li',
-};
-
 function PaginationItem(props) {
   const {
     active,
     className,
     cssModule,
     disabled,
-    tag: Tag,
+    tag: Tag = 'li',
     ...attributes
   } = props;
 
@@ -43,6 +39,5 @@ function PaginationItem(props) {
 }
 
 PaginationItem.propTypes = propTypes;
-PaginationItem.defaultProps = defaultProps;
 
 export default PaginationItem;

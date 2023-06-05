@@ -18,11 +18,6 @@ const propTypes = {
   text: PropTypes.bool,
 };
 
-const defaultProps = {
-  tag: 'button',
-  toggle: true,
-};
-
 class DropdownItem extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +37,7 @@ class DropdownItem extends React.Component {
       this.props.onClick(e);
     }
 
-    if (this.props.toggle) {
+    if (this.props.toggle ?? true) {
       this.context.toggle(e);
     }
   }
@@ -70,7 +65,7 @@ class DropdownItem extends React.Component {
       className,
       cssModule,
       divider,
-      tag: Tag,
+      tag: Tag = 'button',
       header,
       active,
       text,
@@ -119,7 +114,6 @@ class DropdownItem extends React.Component {
 }
 
 DropdownItem.propTypes = propTypes;
-DropdownItem.defaultProps = defaultProps;
 DropdownItem.contextType = DropdownContext;
 
 export default DropdownItem;

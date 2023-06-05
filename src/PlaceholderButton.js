@@ -14,16 +14,11 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  color: 'primary',
-  tag: Button,
-};
-
 function PlaceholderButton(props) {
-  let { cssModule, className, tag: Tag, ...attributes } = props;
+  let { cssModule, className, tag: Tag = Button, ...attributes } = props;
 
   let { attributes: modifiedAttributes, colClasses } = getColumnClasses(
-    attributes,
+    { color: 'primary', ...attributes },
     cssModule,
   );
 
@@ -32,10 +27,9 @@ function PlaceholderButton(props) {
     cssModule,
   );
 
-  return <Button {...modifiedAttributes} className={classes} disabled />;
+  return <Tag {...modifiedAttributes} className={classes} disabled />;
 }
 
 PlaceholderButton.propTypes = propTypes;
-PlaceholderButton.defaultProps = defaultProps;
 
 export default PlaceholderButton;

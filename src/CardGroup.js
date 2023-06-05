@@ -9,12 +9,8 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function CardGroup(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'div', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-group'),
     cssModule,
@@ -24,6 +20,5 @@ function CardGroup(props) {
 }
 
 CardGroup.propTypes = propTypes;
-CardGroup.defaultProps = defaultProps;
 
 export default CardGroup;

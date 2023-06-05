@@ -24,10 +24,6 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'a',
-};
-
 class NavLink extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +51,7 @@ class NavLink extends React.Component {
       className,
       cssModule,
       active,
-      tag: Tag,
+      tag: Tag = 'a',
       innerRef,
       ...attributes
     } = this.props;
@@ -80,6 +76,5 @@ class NavLink extends React.Component {
 }
 
 NavLink.propTypes = propTypes;
-NavLink.defaultProps = defaultProps;
 
 export default NavLink;

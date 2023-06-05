@@ -17,10 +17,6 @@ const propTypes = {
   stayOpen: PropTypes.bool,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
   const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : undefined));
   const toggle = (id) => {
@@ -37,10 +33,11 @@ function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
     }
   };
 
-  return <Accordion {...props} open={open} toggle={toggle} />;
+  return (
+    <Accordion {...{ tag: 'div', ...props }} open={open} toggle={toggle} />
+  );
 }
 
 UncontrolledAccordion.propTypes = propTypes;
-UncontrolledAccordion.defaultProps = defaultProps;
 
 export default UncontrolledAccordion;

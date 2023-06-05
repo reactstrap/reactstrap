@@ -23,20 +23,14 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  color: 'secondary',
-  pill: false,
-  tag: 'span',
-};
-
 function Badge(props) {
   let {
     className,
     cssModule,
-    color,
+    color = 'secondary',
     innerRef,
-    pill,
-    tag: Tag,
+    pill = false,
+    tag: Tag = 'span',
     ...attributes
   } = props;
 
@@ -58,6 +52,5 @@ function Badge(props) {
 }
 
 Badge.propTypes = propTypes;
-Badge.defaultProps = defaultProps;
 
 export default Badge;

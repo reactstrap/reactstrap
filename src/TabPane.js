@@ -11,12 +11,14 @@ const propTypes = {
   tabId: PropTypes.any,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 export default function TabPane(props) {
-  const { className, cssModule, tabId, tag: Tag, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    tabId,
+    tag: Tag = 'div',
+    ...attributes
+  } = props;
   const getClasses = (activeTabId) =>
     mapToCssModules(
       classNames('tab-pane', className, { active: tabId === activeTabId }),
@@ -31,4 +33,3 @@ export default function TabPane(props) {
   );
 }
 TabPane.propTypes = propTypes;
-TabPane.defaultProps = defaultProps;

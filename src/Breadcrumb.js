@@ -20,21 +20,15 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'nav',
-  listTag: 'ol',
-  'aria-label': 'breadcrumb',
-};
-
 function Breadcrumb(props) {
   const {
     className,
     listClassName,
     cssModule,
     children,
-    tag: Tag,
-    listTag: ListTag,
-    'aria-label': label,
+    tag: Tag = 'nav',
+    listTag: ListTag = 'ol',
+    'aria-label': label = 'breadcrumb',
     ...attributes
   } = props;
 
@@ -53,6 +47,5 @@ function Breadcrumb(props) {
 }
 
 Breadcrumb.propTypes = propTypes;
-Breadcrumb.defaultProps = defaultProps;
 
 export default Breadcrumb;

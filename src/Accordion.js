@@ -25,10 +25,6 @@ const propTypes = {
   toggle: PropTypes.func.isRequired,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function Accordion(props) {
   const {
     flush,
@@ -36,7 +32,7 @@ function Accordion(props) {
     toggle,
     className,
     cssModule,
-    tag: Tag,
+    tag: Tag = 'div',
     innerRef,
     ...attributes
   } = props;
@@ -60,6 +56,5 @@ function Accordion(props) {
 }
 
 Accordion.propTypes = propTypes;
-Accordion.defaultProps = defaultProps;
 
 export default Accordion;

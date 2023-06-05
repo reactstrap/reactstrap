@@ -28,11 +28,6 @@ const propTypes = {
   vertical: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
-const defaultProps = {
-  tag: 'ul',
-  vertical: false,
-};
-
 const getVerticalClass = (vertical) => {
   if (vertical === false) {
     return false;
@@ -50,13 +45,13 @@ function Nav(props) {
     cssModule,
     tabs,
     pills,
-    vertical,
+    vertical = false,
     horizontal,
     justified,
     fill,
     navbar,
     card,
-    tag: Tag,
+    tag: Tag = 'ul',
     ...attributes
   } = props;
 
@@ -82,6 +77,5 @@ function Nav(props) {
 }
 
 Nav.propTypes = propTypes;
-Nav.defaultProps = defaultProps;
 
 export default Nav;

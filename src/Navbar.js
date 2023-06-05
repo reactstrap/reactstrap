@@ -28,12 +28,6 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'nav',
-  expand: false,
-  container: 'fluid',
-};
-
 const getExpandClass = (expand) => {
   if (expand === false) {
     return false;
@@ -47,7 +41,7 @@ const getExpandClass = (expand) => {
 
 function Navbar(props) {
   const {
-    expand,
+    expand = false,
     className,
     cssModule,
     light,
@@ -55,8 +49,8 @@ function Navbar(props) {
     fixed,
     sticky,
     color,
-    container,
-    tag: Tag,
+    container = 'fluid',
+    tag: Tag = 'nav',
     children,
     ...attributes
   } = props;
@@ -83,6 +77,5 @@ function Navbar(props) {
 }
 
 Navbar.propTypes = propTypes;
-Navbar.defaultProps = defaultProps;
 
 export default Navbar;

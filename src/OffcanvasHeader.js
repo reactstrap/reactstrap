@@ -14,23 +14,17 @@ const propTypes = {
   wrapTag: tagPropType,
 };
 
-const defaultProps = {
-  closeAriaLabel: 'Close',
-  tag: 'h5',
-  wrapTag: 'div',
-};
-
 function OffcanvasHeader(props) {
   let closeButton;
   const {
     children,
     className,
     close,
-    closeAriaLabel,
+    closeAriaLabel = 'Close',
     cssModule,
-    tag: Tag,
+    tag: Tag = 'h5',
     toggle,
-    wrapTag: WrapTag,
+    wrapTag: WrapTag = 'div',
     ...attributes
   } = props;
 
@@ -61,6 +55,5 @@ function OffcanvasHeader(props) {
 }
 
 OffcanvasHeader.propTypes = propTypes;
-OffcanvasHeader.defaultProps = defaultProps;
 
 export default OffcanvasHeader;

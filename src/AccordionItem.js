@@ -18,12 +18,14 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function AccordionItem(props) {
-  const { className, cssModule, tag: Tag, innerRef, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    tag: Tag = 'div',
+    innerRef,
+    ...attributes
+  } = props;
   const classes = mapToCssModules(
     classNames(className, 'accordion-item'),
     cssModule,
@@ -33,6 +35,5 @@ function AccordionItem(props) {
 }
 
 AccordionItem.propTypes = propTypes;
-AccordionItem.defaultProps = defaultProps;
 
 export default AccordionItem;

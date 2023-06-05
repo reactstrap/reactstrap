@@ -34,31 +34,22 @@ const propTypes = {
   transition: PropTypes.shape(Fade.propTypes),
 };
 
-const defaultProps = {
-  color: 'success',
-  isOpen: true,
-  tag: 'div',
-  closeAriaLabel: 'Close',
-  fade: true,
-  transition: {
-    ...Fade.defaultProps,
-    unmountOnExit: true,
-  },
-};
-
 function Alert(props) {
   const {
     className,
     closeClassName,
-    closeAriaLabel,
+    closeAriaLabel = 'Close',
     cssModule,
-    tag: Tag,
-    color,
-    isOpen,
+    tag: Tag = 'div',
+    color = 'success',
+    isOpen = true,
     toggle,
     children,
-    transition,
-    fade,
+    transition = {
+      ...Fade.defaultProps,
+      unmountOnExit: true,
+    },
+    fade = true,
     innerRef,
     ...attributes
   } = props;
@@ -106,6 +97,5 @@ function Alert(props) {
 }
 
 Alert.propTypes = propTypes;
-Alert.defaultProps = defaultProps;
 
 export default Alert;

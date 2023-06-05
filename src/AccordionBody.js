@@ -23,15 +23,11 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function AccordionBody(props) {
   const {
     className,
     cssModule,
-    tag: Tag,
+    tag: Tag = 'div',
     innerRef,
     children,
     accordionId,
@@ -60,6 +56,5 @@ function AccordionBody(props) {
 }
 
 AccordionBody.propTypes = propTypes;
-AccordionBody.defaultProps = defaultProps;
 
 export default AccordionBody;

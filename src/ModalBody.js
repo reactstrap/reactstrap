@@ -11,12 +11,9 @@ const propTypes = {
   /** Set a custom element for this component */
   tag: tagPropType,
 };
-const defaultProps = {
-  tag: 'div',
-};
 
 function ModalBody(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'div', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'modal-body'),
     cssModule,
@@ -26,6 +23,5 @@ function ModalBody(props) {
 }
 
 ModalBody.propTypes = propTypes;
-ModalBody.defaultProps = defaultProps;
 
 export default ModalBody;

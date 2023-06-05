@@ -12,12 +12,8 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'p',
-};
-
 function CardText(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'p', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-text'),
     cssModule,
@@ -27,6 +23,5 @@ function CardText(props) {
 }
 
 CardText.propTypes = propTypes;
-CardText.defaultProps = defaultProps;
 
 export default CardText;

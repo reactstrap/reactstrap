@@ -16,12 +16,15 @@ const propTypes = {
   top: PropTypes.bool,
 };
 
-const defaultProps = {
-  tag: 'img',
-};
-
 function CardImg(props) {
-  const { className, cssModule, top, bottom, tag: Tag, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    top,
+    bottom,
+    tag: Tag = 'img',
+    ...attributes
+  } = props;
 
   let cardImgClassName = 'card-img';
   if (top) {
@@ -40,6 +43,5 @@ function CardImg(props) {
 }
 
 CardImg.propTypes = propTypes;
-CardImg.defaultProps = defaultProps;
 
 export default CardImg;

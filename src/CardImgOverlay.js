@@ -9,12 +9,8 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function CardImgOverlay(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'div', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-img-overlay'),
     cssModule,
@@ -24,6 +20,5 @@ function CardImgOverlay(props) {
 }
 
 CardImgOverlay.propTypes = propTypes;
-CardImgOverlay.defaultProps = defaultProps;
 
 export default CardImgOverlay;
