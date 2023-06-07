@@ -498,6 +498,7 @@ class Modal extends React.Component {
         onKeyDown: this.handleTab,
         style: { display: 'block' },
         'aria-labelledby': labelledBy,
+        'aria-modal': true,
         role,
         tabIndex: '-1',
       };
