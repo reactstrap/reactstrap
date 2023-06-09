@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+      - fixReleasePR
 name: Release Bot
 jobs:
   release-pr:
