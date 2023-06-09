@@ -137,6 +137,18 @@
 
 
 
+## [9.2.0](https://github.com/reactstrap/reactstrap/compare/v9.1.10...v9.2.0) (2023-06-09)
+
+
+### Features
+
+* **modal:** add 'aria-modal="true"' to modal ([2a43591](https://github.com/reactstrap/reactstrap/commit/2a43591f6d6f2fd6e1e5f7f3bd65caf9efd7f7ab))
+
+
+### Bug Fixes
+
+* **#2662:** remove many instances of default props ([#2752](https://github.com/reactstrap/reactstrap/issues/2752)) ([b7d571c](https://github.com/reactstrap/reactstrap/commit/b7d571c777de6169de01da5cc14f2eb28988071a))
+
 ## [9.1.10](https://github.com/reactstrap/reactstrap/compare/v9.1.9...v9.1.10) (2023-05-13)
 
 
