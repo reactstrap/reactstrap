@@ -22,10 +22,6 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'a',
-};
-
 function PaginationLink(props) {
   let {
     className,
@@ -34,7 +30,7 @@ function PaginationLink(props) {
     previous,
     first,
     last,
-    tag: Tag,
+    tag: Tag = 'a',
     ...attributes
   } = props;
 
@@ -95,6 +91,5 @@ function PaginationLink(props) {
 }
 
 PaginationLink.propTypes = propTypes;
-PaginationLink.defaultProps = defaultProps;
 
 export default PaginationLink;

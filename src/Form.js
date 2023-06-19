@@ -14,9 +14,6 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  tag: 'form',
-};
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +38,7 @@ class Form extends Component {
     const {
       className,
       cssModule,
-      tag: Tag,
+      tag: Tag = 'form',
       innerRef,
       ...attributes
     } = this.props;
@@ -52,6 +49,5 @@ class Form extends Component {
 }
 
 Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
 
 export default Form;

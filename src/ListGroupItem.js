@@ -20,10 +20,6 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'li',
-};
-
 const handleDisabledOnClick = (e) => {
   e.preventDefault();
 };
@@ -32,7 +28,7 @@ function ListGroupItem(props) {
   const {
     className,
     cssModule,
-    tag: Tag,
+    tag: Tag = 'li',
     active,
     disabled,
     action,
@@ -59,6 +55,5 @@ function ListGroupItem(props) {
 }
 
 ListGroupItem.propTypes = propTypes;
-ListGroupItem.defaultProps = defaultProps;
 
 export default ListGroupItem;

@@ -23,15 +23,6 @@ describe('Toast', () => {
     testForCustomAttribute(Toast);
   });
 
-  it('should have default transitionTimeouts', () => {
-    const transitionProps = (<Toast>Yo!</Toast>).props.transition;
-
-    expect(transitionProps.timeout).toEqual(150);
-    expect(transitionProps.appear).toBe(true);
-    expect(transitionProps.enter).toBe(true);
-    expect(transitionProps.exit).toBe(true);
-  });
-
   it('should have support configurable transitionTimeouts', () => {
     const transitionProps = (
       <Toast

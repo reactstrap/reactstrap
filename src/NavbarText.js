@@ -13,12 +13,14 @@ const propTypes = {
   active: PropTypes.bool,
 };
 
-const defaultProps = {
-  tag: 'span',
-};
-
 function NavbarText(props) {
-  const { className, cssModule, active, tag: Tag, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    active,
+    tag: Tag = 'span',
+    ...attributes
+  } = props;
 
   const classes = mapToCssModules(
     classNames(className, 'navbar-text'),
@@ -29,6 +31,5 @@ function NavbarText(props) {
 }
 
 NavbarText.propTypes = propTypes;
-NavbarText.defaultProps = defaultProps;
 
 export default NavbarText;

@@ -32,11 +32,6 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'table',
-  responsiveTag: 'div',
-};
-
 function Table(props) {
   const {
     className,
@@ -48,8 +43,8 @@ function Table(props) {
     dark,
     hover,
     responsive,
-    tag: Tag,
-    responsiveTag: ResponsiveTag,
+    tag: Tag = 'table',
+    responsiveTag: ResponsiveTag = 'div',
     innerRef,
     ...attributes
   } = props;
@@ -87,6 +82,5 @@ function Table(props) {
 }
 
 Table.propTypes = propTypes;
-Table.defaultProps = defaultProps;
 
 export default Table;

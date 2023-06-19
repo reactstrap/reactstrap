@@ -34,9 +34,6 @@ updates:
   - dependency-name: raw-loader
     versions:
     - ">= 4.a, < 5"
-  - dependency-name: react-app-rewired
-    versions:
-    - ">= 2.a, < 3"
   - dependency-name: react-helmet
     versions:
     - ">= 6.a, < 7"

@@ -17,12 +17,14 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function CardBody(props) {
-  const { className, cssModule, innerRef, tag: Tag, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    innerRef,
+    tag: Tag = 'div',
+    ...attributes
+  } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-body'),
     cssModule,
@@ -32,6 +34,5 @@ function CardBody(props) {
 }
 
 CardBody.propTypes = propTypes;
-CardBody.defaultProps = defaultProps;
 
 export default CardBody;

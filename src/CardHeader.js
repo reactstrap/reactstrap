@@ -12,12 +12,8 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function CardHeader(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'div', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-header'),
     cssModule,
@@ -27,6 +23,5 @@ function CardHeader(props) {
 }
 
 CardHeader.propTypes = propTypes;
-CardHeader.defaultProps = defaultProps;
 
 export default CardHeader;

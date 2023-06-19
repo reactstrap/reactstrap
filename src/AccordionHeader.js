@@ -21,15 +21,11 @@ const propTypes = {
   targetId: PropTypes.string.isRequired,
 };
 
-const defaultProps = {
-  tag: 'h2',
-};
-
 function AccordionHeader(props) {
   const {
     className,
     cssModule,
-    tag: Tag,
+    tag: Tag = 'h2',
     innerRef,
     children,
     targetId,
@@ -65,6 +61,5 @@ function AccordionHeader(props) {
 }
 
 AccordionHeader.propTypes = propTypes;
-AccordionHeader.defaultProps = defaultProps;
 
 export default AccordionHeader;

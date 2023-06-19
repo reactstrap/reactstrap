@@ -13,12 +13,8 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  defaultValue: false,
-};
-
 function ButtonToggle(props) {
-  const [toggled, setToggled] = useState(props.defaultValue);
+  const [toggled, setToggled] = useState(props.defaultValue ?? false);
   const [focus, setFocus] = useState(false);
 
   const onBlur = useCallback(
@@ -73,6 +69,5 @@ function ButtonToggle(props) {
 }
 
 ButtonToggle.propTypes = propTypes;
-ButtonToggle.defaultProps = defaultProps;
 
 export default ButtonToggle;

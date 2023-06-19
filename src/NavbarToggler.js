@@ -15,13 +15,14 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const defaultProps = {
-  tag: 'button',
-  type: 'button',
-};
-
 function NavbarToggler(props) {
-  const { className, cssModule, children, tag: Tag, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    children,
+    tag: Tag = 'button',
+    ...attributes
+  } = props;
 
   const classes = mapToCssModules(
     classNames(className, 'navbar-toggler'),
@@ -29,7 +30,11 @@ function NavbarToggler(props) {
   );
 
   return (
-    <Tag aria-label="Toggle navigation" {...attributes} className={classes}>
+    <Tag
+      aria-label="Toggle navigation"
+      {...{ type: 'button', ...attributes }}
+      className={classes}
+    >
       {children || (
         <span className={mapToCssModules('navbar-toggler-icon', cssModule)} />
       )}
@@ -38,6 +43,5 @@ function NavbarToggler(props) {
 }
 
 NavbarToggler.propTypes = propTypes;
-NavbarToggler.defaultProps = defaultProps;
 
 export default NavbarToggler;

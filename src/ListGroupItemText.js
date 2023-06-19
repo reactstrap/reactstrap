@@ -12,12 +12,8 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'p',
-};
-
 function ListGroupItemText(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'p', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'list-group-item-text'),
     cssModule,
@@ -27,6 +23,5 @@ function ListGroupItemText(props) {
 }
 
 ListGroupItemText.propTypes = propTypes;
-ListGroupItemText.defaultProps = defaultProps;
 
 export default ListGroupItemText;

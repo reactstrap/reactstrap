@@ -12,12 +12,8 @@ const propTypes = {
   tag: tagPropType,
 };
 
-const defaultProps = {
-  tag: 'div',
-};
-
 function CardFooter(props) {
-  const { className, cssModule, tag: Tag, ...attributes } = props;
+  const { className, cssModule, tag: Tag = 'div', ...attributes } = props;
   const classes = mapToCssModules(
     classNames(className, 'card-footer'),
     cssModule,
@@ -27,6 +23,5 @@ function CardFooter(props) {
 }
 
 CardFooter.propTypes = propTypes;
-CardFooter.defaultProps = defaultProps;
 
 export default CardFooter;

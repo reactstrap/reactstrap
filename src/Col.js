@@ -37,11 +37,6 @@ const propTypes = {
   widths: PropTypes.array,
 };
 
-const defaultProps = {
-  tag: 'div',
-  widths: colWidths,
-};
-
 const getColumnSizeClass = (isXs, colWidth, colSize) => {
   if (colSize === true || colSize === '') {
     return isXs ? 'col' : `col-${colWidth}`;
@@ -97,7 +92,13 @@ export const getColumnClasses = (attributes, cssModule, widths = colWidths) => {
 };
 
 function Col(props) {
-  const { className, cssModule, widths, tag: Tag, ...attributes } = props;
+  const {
+    className,
+    cssModule,
+    widths = colWidths,
+    tag: Tag = 'div',
+    ...attributes
+  } = props;
 
   let { modifiedAttributes, colClasses } = getColumnClasses(
     attributes,
@@ -115,6 +116,5 @@ function Col(props) {
 }
 
 Col.propTypes = propTypes;
-Col.defaultProps = defaultProps;
 
 export default Col;

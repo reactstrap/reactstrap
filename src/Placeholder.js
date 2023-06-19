@@ -21,24 +21,20 @@ const propTypes = {
   size: PropTypes.oneOf(['lg', 'sm', 'xs']),
 };
 
-const defaultProps = {
-  tag: 'span',
-};
-
 function Placeholder(props) {
   let {
     className,
     cssModule,
     color,
     innerRef,
-    tag: Tag,
+    tag: Tag = 'span',
     animation,
     size,
     widths,
     ...attributes
   } = props;
 
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(
+  let { modifiedAttributes, colClasses } = getColumnClasses(
     attributes,
     cssModule,
     widths,
@@ -59,6 +55,5 @@ function Placeholder(props) {
 }
 
 Placeholder.propTypes = propTypes;
-Placeholder.defaultProps = defaultProps;
 
 export default Placeholder;

@@ -59,8 +59,8 @@ class CarouselItem extends React.Component {
       in: isIn,
       children,
       cssModule,
-      slide,
-      tag: Tag,
+      slide = true,
+      tag: Tag = 'div',
       className,
       ...transitionProps
     } = this.props;
@@ -124,9 +124,7 @@ CarouselItem.propTypes = {
 
 CarouselItem.defaultProps = {
   ...Transition.defaultProps,
-  tag: 'div',
   timeout: TransitionTimeouts.Carousel,
-  slide: true,
 };
 
 CarouselItem.contextType = CarouselContext;

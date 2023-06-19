@@ -19,7 +19,6 @@ const propTypes = {
   expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /** Make the navbar fixed at the top */
   fixed: PropTypes.string,
-  full: PropTypes.bool,
   /** Add `.navbar-light` class */
   light: PropTypes.bool,
   role: PropTypes.string,
@@ -27,12 +26,6 @@ const propTypes = {
   sticky: PropTypes.string,
   /** Set a custom element for this component */
   tag: tagPropType,
-};
-
-const defaultProps = {
-  tag: 'nav',
-  expand: false,
-  container: 'fluid',
 };
 
 const getExpandClass = (expand) => {
@@ -48,7 +41,7 @@ const getExpandClass = (expand) => {
 
 function Navbar(props) {
   const {
-    expand,
+    expand = false,
     className,
     cssModule,
     light,
@@ -56,8 +49,8 @@ function Navbar(props) {
     fixed,
     sticky,
     color,
-    container,
-    tag: Tag,
+    container = 'fluid',
+    tag: Tag = 'nav',
     children,
     ...attributes
   } = props;
@@ -84,6 +77,5 @@ function Navbar(props) {
 }
 
 Navbar.propTypes = propTypes;
-Navbar.defaultProps = defaultProps;
 
 export default Navbar;

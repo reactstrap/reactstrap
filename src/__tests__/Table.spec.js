@@ -1,68 +1,57 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import '@testing-library/jest-dom';
+import { screen, render } from '@testing-library/react';
 import { Table } from '..';
+import {
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('Table', () => {
   it('should render with "table" class', () => {
-    const wrapper = shallow(<Table>Yo!</Table>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
+    testForDefaultClass(Table, 'table');
   });
 
   it('should render additional classes', () => {
-    const wrapper = shallow(<Table className="other">Yo!</Table>);
-
-    expect(wrapper.hasClass('other')).toBe(true);
-    expect(wrapper.hasClass('table')).toBe(true);
+    testForCustomClass(Table);
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Table tag="div">Yo!</Table>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
-    expect(wrapper.find('div').length).toBe(1);
+    testForCustomTag(Table);
   });
 
   it('should render modifier classes', () => {
-    const wrapper = shallow(
-      <Table size="sm" bordered striped dark hover>
-        Yo!
-      </Table>,
-    );
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
-    expect(wrapper.hasClass('table-sm')).toBe(true);
-    expect(wrapper.hasClass('table-bordered')).toBe(true);
-    expect(wrapper.hasClass('table-striped')).toBe(true);
-    expect(wrapper.hasClass('table-hover')).toBe(true);
-    expect(wrapper.hasClass('table-dark')).toBe(true);
+    render(<Table data-testid="table" size="sm" bordered striped dark hover />);
+    const node = screen.getByTestId('table');
+    expect(node).toHaveClass('table');
+    expect(node).toHaveClass('table-sm');
+    expect(node).toHaveClass('table-bordered');
+    expect(node).toHaveClass('table-striped');
+    expect(node).toHaveClass('table-hover');
+    expect(node).toHaveClass('table-dark');
   });
 
   it('should render a borderless table', () => {
-    const wrapper = shallow(<Table borderless>Yo!</Table>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table')).toBe(true);
-    expect(wrapper.hasClass('table-borderless')).toBe(true);
+    render(<Table data-testid="table" borderless />);
+    expect(screen.getByTestId('table')).toHaveClass('table');
+    expect(screen.getByTestId('table')).toHaveClass('table-borderless');
   });
 
   it('should render responsive wrapper class', () => {
-    const wrapper = shallow(<Table responsive>Yo!</Table>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table-responsive')).toBe(true);
-    expect(wrapper.find('.table').length).toBe(1);
+    render(<Table data-testid="table" responsive />);
+    expect(screen.getByTestId('table')).toHaveClass('table');
+    expect(screen.getByTestId('table').parentNode).toHaveClass(
+      'table-responsive',
+    );
   });
 
   it('should render responsive wrapper class for md', () => {
-    const wrapper = shallow(<Table responsive="md">Yo!</Table>);
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('table-responsive-md')).toBe(true);
-    expect(wrapper.find('.table').length).toBe(1);
+    render(<Table data-testid="table" responsive="md" />);
+    expect(screen.getByTestId('table')).toHaveClass('table');
+    expect(screen.getByTestId('table').parentNode).toHaveClass(
+      'table-responsive-md',
+    );
   });
 
   it('should render responsive wrapper cssModule', () => {
@@ -70,14 +59,10 @@ describe('Table', () => {
       table: 'scopedTable',
       'table-responsive': 'scopedResponsive',
     };
-    const wrapper = shallow(
-      <Table responsive cssModule={cssModule}>
-        Yo!
-      </Table>,
+    render(<Table data-testid="table" responsive cssModule={cssModule} />);
+    expect(screen.getByTestId('table')).toHaveClass('scopedTable');
+    expect(screen.getByTestId('table').parentNode).toHaveClass(
+      'scopedResponsive',
     );
-
-    expect(wrapper.text()).toBe('Yo!');
-    expect(wrapper.hasClass('scopedResponsive')).toBe(true);
-    expect(wrapper.find('.scopedTable').length).toBe(1);
   });
 });

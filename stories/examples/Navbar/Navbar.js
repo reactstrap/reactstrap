@@ -17,7 +17,6 @@ Example.args = {
   color: 'light',
   light: true,
   dark: false,
-  full: false,
   expand: 'md',
   container: 'fluid',
 };

@@ -24,10 +24,6 @@ const propTypes = {
   cssModule: PropTypes.object,
 };
 
-const defaultProps = {
-  type: 'text',
-};
-
 class Input extends React.Component {
   constructor(props) {
     super(props);
@@ -52,7 +48,7 @@ class Input extends React.Component {
     let {
       className,
       cssModule,
-      type,
+      type = 'text',
       bsSize,
       valid,
       invalid,
@@ -142,6 +138,5 @@ class Input extends React.Component {
 }
 
 Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
 
 export default Input;

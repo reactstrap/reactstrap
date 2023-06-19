@@ -137,6 +137,75 @@
 
 
 
+## [9.2.0](https://github.com/reactstrap/reactstrap/compare/v9.1.10...v9.2.0) (2023-06-09)
+
+
+### Features
+
+* **modal:** add 'aria-modal="true"' to modal ([2a43591](https://github.com/reactstrap/reactstrap/commit/2a43591f6d6f2fd6e1e5f7f3bd65caf9efd7f7ab))
+
+
+### Bug Fixes
+
+* **#2662:** remove many instances of default props ([#2752](https://github.com/reactstrap/reactstrap/issues/2752)) ([b7d571c](https://github.com/reactstrap/reactstrap/commit/b7d571c777de6169de01da5cc14f2eb28988071a))
+
+## [9.1.10](https://github.com/reactstrap/reactstrap/compare/v9.1.9...v9.1.10) (2023-05-13)
+
+
+### Bug Fixes
+
+* **#2427:** error building esm files ([#2748](https://github.com/reactstrap/reactstrap/issues/2748)) ([04d571d](https://github.com/reactstrap/reactstrap/commit/04d571dcaa630ccbc8b8363ad06dad436f11780e))
+* properly pass in `isOpen` in modal test ([#2745](https://github.com/reactstrap/reactstrap/issues/2745)) ([8cb0515](https://github.com/reactstrap/reactstrap/commit/8cb051522ddfad48c08651604744caea25b5e68e))
+
+## [9.1.9](https://github.com/reactstrap/reactstrap/compare/v9.1.8...v9.1.9) (2023-04-11)
+
+
+### Bug Fixes
+
+* **#2730:** import error ([#2733](https://github.com/reactstrap/reactstrap/issues/2733)) ([2547f3a](https://github.com/reactstrap/reactstrap/commit/2547f3acfd12299dc0f4e2a5863c5cf82a203ef4))
+
+## [9.1.8](https://github.com/reactstrap/reactstrap/compare/v9.1.7...v9.1.8) (2023-03-29)
+
+
+### Bug Fixes
+
+* esm and lib folder not included in release ([e974d0c](https://github.com/reactstrap/reactstrap/commit/e974d0c180ebece9e35614da595e9cab2d8684b6))
+
+## [9.1.7](https://github.com/reactstrap/reactstrap/compare/v9.1.6...v9.1.7) (2023-03-22)
+
+
+### Bug Fixes
+
+* **#1289:** prevent error in Strict Mode ([#2672](https://github.com/reactstrap/reactstrap/issues/2672)) ([2695bfa](https://github.com/reactstrap/reactstrap/commit/2695bfaca471f187abe2464621509d0b09e64b9f))
+* **#2660:** dropdown closes for complex children ([#2673](https://github.com/reactstrap/reactstrap/issues/2673)) ([fa1fcc8](https://github.com/reactstrap/reactstrap/commit/fa1fcc84511582f5e22d42c73c2ff1bb8c805f9b))
+* **#2664:** close offcanvas when fade is false ([#2677](https://github.com/reactstrap/reactstrap/issues/2677)) ([dac3587](https://github.com/reactstrap/reactstrap/commit/dac3587bc16006697008ed6f248be268f49de4e5))
+* **docs:** remove storybook errors ([#2675](https://github.com/reactstrap/reactstrap/issues/2675)) ([d0f188b](https://github.com/reactstrap/reactstrap/commit/d0f188b31bf9ccd5f262a46bb42ea87dd644049d))
+* issue where attributes could not be passed to the element ([19233ae](https://github.com/reactstrap/reactstrap/commit/19233ae45014045a6b103619b2b43fb4f386d02a))
+* treeshaking ([#2708](https://github.com/reactstrap/reactstrap/issues/2708)) ([fa46b94](https://github.com/reactstrap/reactstrap/commit/fa46b941004bfd37eb5bd2fcdce435d1ddac5066))
+
+## [9.1.6](https://github.com/reactstrap/reactstrap/compare/v9.1.5...v9.1.6) (2023-02-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* add forwardRef to all components that contain innerRef
+
+### Features
+
+* add forwardRef to all components that contain innerRef ([17a141a](https://github.com/reactstrap/reactstrap/commit/17a141acbe9af558c1c3e7cb34fc051c1b1d8d0e))
+
+
+### Bug Fixes
+
+* convert functional components to be forwardRef components vs redefining them as such ([86578ab](https://github.com/reactstrap/reactstrap/commit/86578ab1f9e06653b03db06ed99263fba5e5e279))
+* **Label:** migrate label to rtl ([#2665](https://github.com/reactstrap/reactstrap/issues/2665)) ([8c5cc2b](https://github.com/reactstrap/reactstrap/commit/8c5cc2bac0c219275896657db21f5c2ea5ecdffe))
+* revert v10 merge ([3392ce9](https://github.com/reactstrap/reactstrap/commit/3392ce924ad304e97cede43ddef013a88ef84a6e))
+
+
+### Miscellaneous
+
+* release 9.1.6 ([f32f3d2](https://github.com/reactstrap/reactstrap/commit/f32f3d247b767592a80091e3f1733946b2f74ada))
+
 ### [9.1.5](https://www.github.com/reactstrap/reactstrap/compare/v9.1.4...v9.1.5) (2022-10-27)
 
 

@@ -21,10 +21,6 @@ const propTypes = {
   ]),
 };
 
-const defaultProps = {
-  'aria-label': 'close',
-};
-
 function CloseButton(props) {
   const { className, cssModule, variant, innerRef, ...attributes } = props;
 
@@ -33,11 +29,15 @@ function CloseButton(props) {
   );
 
   return (
-    <button ref={innerRef} type="button" className={classes} {...attributes} />
+    <button
+      ref={innerRef}
+      type="button"
+      className={classes}
+      {...{ 'aria-label': 'close', ...attributes }}
+    />
   );
 }
 
 CloseButton.propTypes = propTypes;
-CloseButton.defaultProps = defaultProps;
 
 export default CloseButton;

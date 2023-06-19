@@ -341,7 +341,7 @@ describe('Modal', () => {
 
   it('should not render modal when isOpen is false', () => {
     render(
-      <Modal isOpenfalse toggle={toggle}>
+      <Modal isOpen={false} toggle={toggle}>
         Yo!
       </Modal>,
     );
@@ -1104,5 +1104,15 @@ describe('Modal', () => {
     // pressing tab doesn't take focus out of inside modal
     user.tab();
     expect(screen.getByText(/click 1/i)).toHaveFocus();
+  });
+
+  it('works with strict mode', () => {
+    const spy = jest.spyOn(console, 'error');
+    render(
+      <React.StrictMode>
+        <Modal isOpen>Hello</Modal>
+      </React.StrictMode>,
+    );
+    expect(spy).not.toHaveBeenCalled();
   });
 });
