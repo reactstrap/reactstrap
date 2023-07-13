@@ -7,6 +7,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLElement> {
   flush?: boolean;
   innerRef?: React.Ref<HTMLElement>;
   open: string | string[];
+  toggle: (targetId: string) => void;
 }
 
 export interface UncontrolledAccordionProps extends Omit<AccordionProps, 'open'> {
