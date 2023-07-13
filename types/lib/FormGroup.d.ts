@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { CSSModule } from './utils';
+import * as React from "react";
+
+import { CSSModule } from "./utils";
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   [key: string]: any;
@@ -7,6 +8,7 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   check?: boolean;
   switch?: boolean;
   inline?: boolean;
+  noMargin?: boolean;
   floating?: boolean;
   disabled?: boolean;
   tag?: React.ElementType;

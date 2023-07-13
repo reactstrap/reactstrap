@@ -10,6 +10,7 @@ const propTypes = {
   switch: PropTypes.bool,
   inline: PropTypes.bool,
   floating: PropTypes.bool,
+  noMargin: PropTypes.bool,
   disabled: PropTypes.bool,
   tag: tagPropType,
   className: PropTypes.string,
@@ -25,6 +26,7 @@ function FormGroup(props) {
     check,
     inline,
     floating,
+    noMargin,
     tag: Tag = 'div',
     switch: switchProp,
     ...attributes
@@ -36,8 +38,9 @@ function FormGroup(props) {
     classNames(
       className,
       row ? 'row' : false,
-      formCheck ? 'form-check' : 'mb-3',
+      formCheck ? 'form-check' : false,
       switchProp ? 'form-switch' : false,
+      formCheck || noMargin ? false : 'mb-3',
       formCheck && inline ? 'form-check-inline' : false,
       formCheck && disabled ? 'disabled' : false,
       floating && 'form-floating',
