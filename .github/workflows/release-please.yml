@@ -3,6 +3,7 @@ on:
     branches:
       - master
       - fixReleasePR
+      - dummy
 name: Release Bot
 jobs:
   release-pr:
