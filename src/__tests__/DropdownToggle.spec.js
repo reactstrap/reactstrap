@@ -5,10 +5,6 @@ import { DropdownToggle } from '..';
 import { customDropdownRender } from '../testUtils';
 
 describe('DropdownToggle', () => {
-  let isOpen;
-  let inNavbar;
-  let toggle;
-
   const contextProps = {
     isOpen: false,
     direction: 'down',

@@ -1,5 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Tooltip from '../Tooltip';
 
 describe('Tooltip', () => {
@@ -8,17 +9,14 @@ describe('Tooltip', () => {
     div.setAttribute('id', 'tooltip-target');
     document.body.appendChild(div);
 
-    const wrapper = mount(
-      <Tooltip target="tooltip-target" popperClassName="boba-was-here">
-        Tooltip Content
+    render(
+      <Tooltip target="tooltip-target" popperClassName="boba-was-here" isOpen>
+        Bo-Katan Kryze
       </Tooltip>,
     );
 
-    const tooltipPopoverWrapper = wrapper.find('TooltipPopoverWrapper');
-    expect(
-      tooltipPopoverWrapper
-        .find({ popperClassName: 'tooltip show boba-was-here' })
-        .exists(),
-    ).toBe(true);
+    expect(screen.queryByText('Bo-Katan Kryze')?.parentElement).toHaveClass(
+      'tooltip show boba-was-here',
+    );
   });
 });

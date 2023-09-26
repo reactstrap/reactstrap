@@ -1,9 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Placeholder } from '..';
-import { testForCustomClass, testForDefaultClass } from '../testUtils';
+import { testForDefaultClass } from '../testUtils';
 
 describe('Placeholder', () => {
   it('should render with "placeholder" class', () => {

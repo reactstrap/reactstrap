@@ -1,30 +1,25 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { NavbarText } from '..';
+import {
+  testForDefaultClass,
+  testForCustomTag,
+  testForChildrenInComponent,
+  testForCustomClass,
+} from '../testUtils';
 
 describe('NavbarText', () => {
   it('should render .navbar-text markup', () => {
-    const wrapper = shallow(<NavbarText />);
-
-    expect(wrapper.html()).toBe('<span class="navbar-text"></span>');
+    testForDefaultClass(NavbarText, 'navbar-text');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<NavbarText tag="div" />);
-
-    expect(wrapper.html()).toBe('<div class="navbar-text"></div>');
+    testForCustomTag(NavbarText);
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<NavbarText>Children</NavbarText>);
-
-    expect(wrapper.html()).toBe('<span class="navbar-text">Children</span>');
+    testForChildrenInComponent(NavbarText);
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<NavbarText className="extra" />);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('navbar-text')).toBe(true);
+    testForCustomClass(NavbarText);
   });
 });
