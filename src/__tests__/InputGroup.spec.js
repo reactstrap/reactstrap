@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import '@testing-library/jest-dom';

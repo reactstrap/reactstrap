@@ -1,6 +1,4 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { Popper, Reference } from 'react-popper';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import '@testing-library/jest-dom';

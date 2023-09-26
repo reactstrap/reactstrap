@@ -1,36 +1,32 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { NavItem } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForCustomTag,
+  testForDefaultClass,
+} from '../testUtils';
 
 describe('NavItem', () => {
-  it('should render .nav-item markup', () => {
-    const wrapper = shallow(<NavItem />);
-
-    expect(wrapper.html()).toBe('<li class="nav-item"></li>');
+  it('should render .nav-item class', () => {
+    testForDefaultClass(NavItem, 'nav-item');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<NavItem tag="div" />);
-
-    expect(wrapper.html()).toBe('<div class="nav-item"></div>');
+    testForCustomTag(NavItem);
   });
 
-  it('sholid render children', () => {
-    const wrapper = shallow(<NavItem>Children</NavItem>);
-
-    expect(wrapper.html()).toBe('<li class="nav-item">Children</li>');
+  it('should render children', () => {
+    testForChildrenInComponent(NavItem);
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<NavItem className="extra" />);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('nav-item')).toBe(true);
+    testForCustomClass(NavItem);
   });
 
   it('should render active class', () => {
-    const wrapper = shallow(<NavItem active />);
-
-    expect(wrapper.hasClass('active')).toBe(true);
+    render(<NavItem active data-testid="test" />);
+    expect(screen.getByTestId('test')).toHaveClass('active');
   });
 });

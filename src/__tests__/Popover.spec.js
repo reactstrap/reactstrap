@@ -1,24 +1,22 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Popover from '../Popover';
 
-describe('Tooltip', () => {
+describe('Popover', () => {
   it('should apply popperClassName to popper component', () => {
     const div = document.createElement('div');
-    div.setAttribute('id', 'tooltip-target');
+    div.setAttribute('id', 'popover-target');
     document.body.appendChild(div);
 
-    const wrapper = mount(
-      <Popover target="tooltip-target" popperClassName="boba-was-here">
-        Tooltip Content
+    render(
+      <Popover target="popover-target" popperClassName="boba-was-here" isOpen>
+        Bo-Katan Kryze
       </Popover>,
     );
 
-    const tooltipPopoverWrapper = wrapper.find('TooltipPopoverWrapper');
-    expect(
-      tooltipPopoverWrapper
-        .find({ popperClassName: 'popover show boba-was-here' })
-        .exists(),
-    ).toBe(true);
+    expect(screen.queryByText('Bo-Katan Kryze')?.parentElement).toHaveClass(
+      'popover show boba-was-here',
+    );
   });
 });
