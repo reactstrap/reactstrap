@@ -13,5 +13,5 @@ export default {
   },
 };
 
-export { default as Offcanvas } from './examples/Offcanvas';
-export { default as Props } from './examples/OffcanvasProps';
+export { default as Offcanvas } from './examples/Offcanvas/Offcanvas';
+export { default as Props } from './examples/Offcanvas/OffcanvasProps';

@@ -25,17 +25,4 @@ function Example(args) {
   );
 }
 
-Example.args = {
-  backdrop: true,
-  fade: true,
-  scrollable: false,
-};
-
-Example.argTypes = {
-  direction: {
-    control: { type: 'select' },
-    options: ['top', 'start', 'end', 'bottom'],
-  },
-};
-
 export default Example;

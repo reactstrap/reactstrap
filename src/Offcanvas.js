@@ -241,7 +241,10 @@ class Offcanvas extends React.Component {
   }
 
   setFocus() {
-    if (this._dialog.current && typeof this._dialog.current.focus === 'function') {
+    if (
+      this._dialog.current &&
+      typeof this._dialog.current.focus === 'function'
+    ) {
       this._dialog.current.focus();
     }
   }
