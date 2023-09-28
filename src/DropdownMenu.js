@@ -89,6 +89,12 @@ class DropdownMenu extends React.Component {
         },
       ];
 
+      const persistStyles = {};
+      if (persist) {
+        persistStyles.display = 'block';
+        persistStyles.visibility = this.context.isOpen ? 'visible' : 'hidden';
+      }
+
       const popper = (
         <Popper
           placement={poperPlacement}
@@ -96,7 +102,7 @@ class DropdownMenu extends React.Component {
           strategy={strategy}
         >
           {({ ref, style, placement, update }) => {
-            let combinedStyle = { ...this.props.style, ...style };
+            let combinedStyle = { ...this.props.style, ...persistStyles, ...style };
 
             const handleRef = (tagRef) => {
               // Send the ref to `react-popper`
