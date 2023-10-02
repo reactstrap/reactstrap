@@ -1,130 +1,120 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { Media } from '..';
+import {
+  testForChildrenInComponent,
+  testForDefaultTag,
+  testForCustomTag
+} from '../testUtils';
 
 describe('Media', () => {
-  it('should render a div tag by default', () => {
-    const wrapper = shallow(<Media />);
 
-    expect(wrapper.type()).toBe('div');
+  it('should render a div tag by default', () => {
+    testForDefaultTag(Media, 'div');
   });
 
   it('should render an h4 tag by default for heading', () => {
-    const wrapper = shallow(<Media heading />);
-
-    expect(wrapper.type()).toBe('h4');
+    render(<Media heading data-testid="media"/>);
+    expect(screen.getByTestId('media').tagName.toLowerCase()).toBe('h4');
   });
 
-  it('should render an a tag by default Media with an href', () => {
-    const wrapper = shallow(<Media href="#" />);
 
-    expect(wrapper.type()).toBe('a');
+  it('should render an a tag by default Media with an href', () => {
+    render(<Media href="#" data-testid="media"/>);
+    expect(screen.getByTestId('media').tagName.toLowerCase()).toBe('a');
   });
 
   it('should render an img tag by default for object', () => {
-    const wrapper = shallow(<Media object />);
-
-    expect(wrapper.type()).toBe('img');
+    render(<Media object data-testid="media"/>);
+    expect(screen.getByTestId('media').tagName.toLowerCase()).toBe('img');
   });
 
   it('should render an img tag by default Media with a src', () => {
-    const wrapper = shallow(<Media src="#" />);
-
-    expect(wrapper.type()).toBe('img');
+    render(<Media src="#" data-testid="media"/>);
+    expect(screen.getByTestId('media').tagName.toLowerCase()).toBe('img');
   });
 
   it('should render a ul tag by default for list', () => {
-    const wrapper = shallow(<Media list />);
-
-    expect(wrapper.type()).toBe('ul');
+    render(<Media list data-testid="media"/>);
+    expect(screen.getByTestId('media').tagName.toLowerCase()).toBe('ul');
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<Media className="extra" />);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
+    render(<Media className="extra" data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('extra');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<Media tag="main" />);
-
-    expect(wrapper.type()).toBe('main');
+    testForCustomTag(Media);
   });
 
   it('should render body', () => {
-    const wrapper = shallow(<Media body />);
-
-    expect(wrapper.hasClass('media-body')).toBe(true);
+    render(<Media body data-testid="media"/>);
+    expect(screen.getByTestId('media')).toHaveClass('media-body');
   });
 
   it('should render heading', () => {
-    const wrapper = shallow(<Media heading />);
-
-    expect(wrapper.hasClass('media-heading')).toBe(true);
+    render(<Media heading data-testid="media"/>);
+    expect(screen.getByTestId('media')).toHaveClass('media-heading');
   });
 
   it('should render left', () => {
-    const wrapper = shallow(<Media left />);
-
-    expect(wrapper.hasClass('media-left')).toBe(true);
+    render(<Media left data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('media-left');
   });
 
   it('should render right', () => {
-    const wrapper = shallow(<Media right />);
-
-    expect(wrapper.hasClass('media-right')).toBe(true);
+    render(<Media right data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('media-right');
   });
 
   it('should render top', () => {
-    const wrapper = shallow(<Media top />);
-
-    expect(wrapper.hasClass('media-top')).toBe(true);
+    render(<Media top data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('media-top');
   });
 
   it('should render bottom', () => {
-    const wrapper = shallow(<Media bottom />);
-
-    expect(wrapper.hasClass('media-bottom')).toBe(true);
+    render(<Media bottom data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('media-bottom');
   });
 
   it('should render middle', () => {
-    const wrapper = shallow(<Media middle />);
-
-    expect(wrapper.hasClass('media-middle')).toBe(true);
+    render(<Media middle data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('media-middle');
   });
 
   it('should render object', () => {
-    const wrapper = shallow(<Media object />);
-
-    expect(wrapper.hasClass('media-object')).toBe(true);
+    render(<Media object data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('media-object');
   });
 
   it('should render media', () => {
-    const wrapper = shallow(<Media />);
-
-    expect(wrapper.hasClass('media')).toBe(true);
+    render(<Media data-testid="media" />);
+    expect(screen.getByTestId('media')).toHaveClass('media');
   });
 
   it('should render list', () => {
-    const wrapper = shallow(
-      <Media list>
-        <Media tag="li" />
-        <Media tag="li" />
-        <Media tag="li" />
+    render(
+      <Media list data-testid="media">
+        <Media tag="li" role="listitem"/>
+        <Media tag="li" role="listitem"/>
+        <Media tag="li" role="listitem"/>
       </Media>,
     );
 
-    expect(wrapper.hasClass('media-list')).toBe(true);
-    expect(wrapper.find({ tag: 'li' }).length).toBe(3);
+    const listItems = screen.getAllByRole('listitem');
+
+    expect(screen.getByTestId('media')).toHaveClass('media-list');
+    expect(listItems).toHaveLength(3);
+  
+    listItems.forEach((element) => {
+      expect(element.tagName.toLowerCase()).toBe("li");
+    });
+
   });
 
   it('should render children', () => {
-    const wrapper = shallow(
-      <Media>
-        <Media body />
-      </Media>,
-    );
-
-    expect(wrapper.find({ body: true }).length).toBe(1);
+    testForChildrenInComponent(Media);
   });
+
 });
