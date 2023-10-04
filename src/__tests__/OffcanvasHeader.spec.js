@@ -21,10 +21,6 @@ describe('OffcanvasHeader', () => {
     const node = screen.getByTestId('test').querySelector('button');
     expect(node.tagName.toLowerCase()).toBe('button');
     expect(node).toHaveClass('btn-close');
-
-    // expect(wrapper.hasClass('other')).toBe(true);
-    // expect(wrapper.hasClass('offcanvas-header')).toBe(true);
-    // expect(wrapper.find('button.btn-close').length).toBe(1);
   });
 
   it('should render custom tag', () => {
