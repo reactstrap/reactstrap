@@ -10,14 +10,14 @@ const defaultProps = {
 };
 
 function Popover(props) {
+  const arrowClasses = classNames('popover-arrow', props.arrowClassName);
   const popperClasses = classNames('popover', 'show', props.popperClassName);
-
   const classes = classNames('popover-inner', props.innerClassName);
 
   return (
     <TooltipPopoverWrapper
       {...props}
-      arrowClassName="popover-arrow"
+      arrowClassName={arrowClasses}
       popperClassName={popperClasses}
       innerClassName={classes}
     />
