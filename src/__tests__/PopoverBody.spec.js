@@ -1,12 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { testForChildrenInComponent } from '../testUtils';
 import { PopoverBody } from '..';
 
 describe('PopoverBody', () => {
   it('should render children', () => {
-    const wrapper = shallow(<PopoverBody>Ello world</PopoverBody>);
-
-    expect(wrapper.text()).toBe('Ello world');
-    expect(wrapper.hasClass('popover-body')).toBe(true);
+    testForChildrenInComponent(PopoverBody);
   });
 });
