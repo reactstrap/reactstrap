@@ -4,11 +4,18 @@ import '@testing-library/jest-dom';
 import Tooltip from '../Tooltip';
 
 describe('Tooltip', () => {
-  it('should apply popperClassName to popper component', () => {
-    const div = document.createElement('div');
-    div.setAttribute('id', 'tooltip-target');
-    document.body.appendChild(div);
+  let element;
+  beforeEach(() => {
+    element = document.createElement('div');
+    element.setAttribute('id', 'tooltip-target');
+    document.body.appendChild(element);
+  });
 
+  afterEach(() => {
+    document.body.removeChild(element);
+  });
+
+  it('should apply popperClassName to popper component', () => {
     render(
       <Tooltip target="tooltip-target" popperClassName="boba-was-here" isOpen>
         Bo-Katan Kryze
@@ -18,5 +25,15 @@ describe('Tooltip', () => {
     expect(screen.queryByText('Bo-Katan Kryze')?.parentElement).toHaveClass(
       'tooltip show boba-was-here',
     );
+  });
+
+  it('should apply arrowClassName to arrow', () => {
+    const { debug } = render(
+      <Tooltip target="tooltip-target" arrowClassName="boba-was-here" isOpen>
+        Bo-Katan Kryze
+      </Tooltip>,
+    );
+    debug();
+    expect(document.querySelector('.arrow')).toHaveClass('boba-was-here');
   });
 });
