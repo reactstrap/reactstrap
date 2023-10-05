@@ -137,6 +137,14 @@
 
 
 
+## [9.2.1](https://github.com/reactstrap/reactstrap/compare/v9.2.0...v9.2.1) (2023-10-05)
+
+
+### Bug Fixes
+
+* **#1680:** arrowClass not applied to arrow ([#2772](https://github.com/reactstrap/reactstrap/issues/2772)) ([aeaf180](https://github.com/reactstrap/reactstrap/commit/aeaf180701511377ab6a00830ccac4fb96e84028))
+* **#2755:** make offcanvas example code readable ([#2768](https://github.com/reactstrap/reactstrap/issues/2768)) ([b932582](https://github.com/reactstrap/reactstrap/commit/b932582798911ebd57ad6735baf9f4fa21d8af7a))
+
 ## [9.2.0](https://github.com/reactstrap/reactstrap/compare/v9.1.10...v9.2.0) (2023-06-09)
 
 
