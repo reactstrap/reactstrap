@@ -18,7 +18,7 @@
     "build": "yarn clean && concurrently \"yarn:build:*(!docs)\"",
     "clean": "rm -rf esm lib",
     "prepublishOnly": "npm run build",
-    "create-release": "npm run cover && sh ./scripts/release",
+    "create-release": "npm run cover && sh ./scripts/tag_release",
     "lint": "eslint src stories",
     "dtslint": "dtslint types --expectOnly",
     "prettier": "prettier --write src stories",
