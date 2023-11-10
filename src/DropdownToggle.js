@@ -105,7 +105,10 @@ class DropdownToggle extends React.Component {
           {...props}
           className={classes}
           onClick={this.onClick}
-          ref={this.context.onToggleRef}
+          {...{
+            [typeof Tag === 'string' ? 'ref' : 'innerRef']:
+              this.context.onToggleRef,
+          }}
           aria-expanded={this.context.isOpen}
           aria-haspopup={this.getRole()}
           children={children}
