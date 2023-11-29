@@ -12,13 +12,11 @@ export interface CollapseProps extends React.HTMLAttributes<HTMLElement> {
     show: number;
     hide: number;
   };
-  onOpened?: () => void;
-  onClosed?: () => void;
-  onEntering?: () => void;
-  onEntered?: () => void;
-  onExit?: () => void;
-  onExiting?: () => void;
-  onExited?: () => void;
+  onEntering?: (node: HTMLElement, isAppearing: boolean) => void;
+  onEntered?: (node: HTMLElement, isAppearing: boolean) => void;
+  onExit?: (node: HTMLElement) => void;
+  onExiting?: (node: HTMLElement) => void;
+  onExited?: (node: HTMLElement) => void;
   innerRef?: React.Ref<HTMLElement>;
 }
 
