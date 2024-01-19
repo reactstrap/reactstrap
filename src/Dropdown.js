@@ -99,7 +99,7 @@ class Dropdown extends React.Component {
     const toggle = this.getToggle();
 
     // Add a conditional check to avoid using toggle 
-    //if there is no toggle component in the dropdown
+    // if there is no toggle component in the dropdown
     if (!toggle) {
       return;
     }

@@ -99,7 +99,7 @@ class DropdownToggle extends React.Component {
       Tag = tag;
     }
 
-    //extracted the rendering of the Tag component
+    // extracted the rendering of the Tag component
     const returnFunction = ({ ref }) => {
       const handleRef = (tagRef) => {
         ref(tagRef);
@@ -120,7 +120,7 @@ class DropdownToggle extends React.Component {
       );
     }
 
-    //No Reference component if the component is in Navbar
+    // No Reference component if the component is in Navbar
     if (this.context.inNavbar) {
       return (
         <>
@@ -129,7 +129,7 @@ class DropdownToggle extends React.Component {
       );
     }
 
-    //Normal rendering if component not in NavBar
+    // Normal rendering if component not in NavBar
     return (
 
       <Reference innerRef={innerRef} >
