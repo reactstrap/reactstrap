@@ -99,13 +99,20 @@ class DropdownToggle extends React.Component {
       Tag = tag;
     }
 
-    if (this.context.inNavbar) {
+    //extracted the rendering of the Tag component
+    const returnFunction = ({ ref }) => {
+      const handleRef = (tagRef) => {
+        ref(tagRef);
+        const { onToggleRef } = this.context;
+        if (onToggleRef) onToggleRef(tagRef);
+      };
+
       return (
         <Tag
           {...props}
+          {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: handleRef }}
           className={classes}
           onClick={this.onClick}
-          ref={this.context.onToggleRef}
           aria-expanded={this.context.isOpen}
           aria-haspopup={this.getRole()}
           children={children}
@@ -113,29 +120,23 @@ class DropdownToggle extends React.Component {
       );
     }
 
-    return (
-      <Reference innerRef={innerRef}>
-        {({ ref }) => {
-          const handleRef = (tagRef) => {
-            ref(tagRef);
-            const { onToggleRef } = this.context;
-            if (onToggleRef) onToggleRef(tagRef);
-          };
+    //No Reference component if the component is in Navbar
+    if (this.context.inNavbar) {
+      return (
+        <>
+          {returnFunction({ ref: this.context.onToggleRef })}
+        </>
+      );
+    }
 
-          return (
-            <Tag
-              {...props}
-              {...{ [typeof Tag === 'string' ? 'ref' : 'innerRef']: handleRef }}
-              className={classes}
-              onClick={this.onClick}
-              aria-expanded={this.context.isOpen}
-              aria-haspopup={this.getRole()}
-              children={children}
-            />
-          );
-        }}
+    //Normal rendering if component not in NavBar
+    return (
+
+      <Reference innerRef={innerRef} >
+        {returnFunction}
       </Reference>
     );
+ 
   }
 }
 

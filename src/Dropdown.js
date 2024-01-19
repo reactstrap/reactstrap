@@ -98,12 +98,19 @@ class Dropdown extends React.Component {
     const menu = this.getMenu();
     const toggle = this.getToggle();
 
+    // Add a conditional check to avoid using toggle 
+    //if there is no toggle component in the dropdown
+    if (!toggle) {
+      return;
+    }
+
     const targetIsToggle = toggle.contains(e.target);
+
     const clickIsInMenu = menu && menu.contains(e.target) && menu !== e.target;
 
     let clickIsInInput = false;
     if (container) {
-      // this is only for InputGroup with type dropdown
+      // This is only for InputGroup with type dropdown
       clickIsInInput =
         container.classList.contains('input-group') &&
         container.classList.contains('dropdown') &&
@@ -119,6 +126,7 @@ class Dropdown extends React.Component {
 
     this.toggle(e);
   }
+
 
   handleKeyDown(e) {
     const isTargetMenuItem =
