@@ -137,6 +137,13 @@
 
 
 
+## [9.2.2](https://github.com/reactstrap/reactstrap/compare/v9.2.1...v9.2.2) (2024-01-19)
+
+
+### Bug Fixes
+
+* dropdown with inNavbar bug ([18cc094](https://github.com/reactstrap/reactstrap/commit/18cc094afa8d4e95785d823eb735e06c28547d19))
+
 ## [9.2.1](https://github.com/reactstrap/reactstrap/compare/v9.2.0...v9.2.1) (2023-10-05)
 
 
