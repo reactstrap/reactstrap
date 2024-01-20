@@ -10,7 +10,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLElement> {
   toggle: (targetId: string) => void;
 }
 
-export interface UncontrolledAccordionProps extends Omit<AccordionProps, 'open'> {
+export interface UncontrolledAccordionProps extends Omit<AccordionProps, 'open' | 'toggle'> {
   defaultOpen?: string | string[];
   stayOpen?: boolean;
 }
