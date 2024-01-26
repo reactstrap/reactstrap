@@ -112,7 +112,12 @@ class Carousel extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.activeIndex === this.state.activeIndex) return;
+    if (
+      prevState.activeIndex === this.state.activeIndex &&
+      (prevProps.interval === this.props.interval ||
+        this.props.interval !== false)
+    )
+      return;
     this.setInterval();
   }
 
