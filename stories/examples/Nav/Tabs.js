@@ -1,6 +1,6 @@
 import Example from './TabsExample';
 // eslint-disable-next-line import/extensions
-import TabsExample from '!!raw-loader!./TabsExample';
+import TabsExample from './TabsExample?raw';
 
 Example.parameters = {
   docs: {

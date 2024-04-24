@@ -1,6 +1,6 @@
 import Example from './EventsExample';
 // eslint-disable-next-line import/extensions
-import CollapseEvents from '!!raw-loader!./EventsExample';
+import CollapseEvents from './EventsExample?raw';
 
 Example.parameters = {
   docs: {

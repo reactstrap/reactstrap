@@ -1,6 +1,6 @@
 import Example from './CarouselExample';
 // eslint-disable-next-line import/extensions
-import CarouselExample from '!!raw-loader!./CarouselExample';
+import CarouselExample from './CarouselExample?raw';
 
 Example.args = {
   dark: false,

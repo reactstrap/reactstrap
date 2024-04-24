@@ -5,8 +5,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-docs',
     '@storybook/addon-mdx-gfm',
-    '@storybook/addon-webpack5-compiler-babel',
-    '@chromatic-com/storybook',
+    '@storybook/addon-webpack5-compiler-babel'
   ],
 
   staticDirs: ['../static'],

@@ -280,7 +280,6 @@
     "@babel/plugin-transform-modules-commonjs": "^7.21.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.12.10",
-    "@chromatic-com/storybook": "^1",
     "@storybook/addon-actions": "^8.0.9",
     "@storybook/addon-essentials": "^8.0.9",
     "@storybook/addon-links": "^8.0.9",

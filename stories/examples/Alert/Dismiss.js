@@ -1,6 +1,6 @@
 import Example from './DismissExample';
 // eslint-disable-next-line import/extensions
-import AlertDismiss from '!!raw-loader!./DismissExample';
+import AlertDismiss from './DismissExample?raw';
 
 export default Example;
 
