@@ -10,7 +10,7 @@ Example.parameters = {
       story: 'Alerts can also be dismissed.',
     },
     source: {
-      code: AlertDismiss,
+      code: Example,
       language: 'jsx',
       type: 'auto',
     },
