@@ -28,12 +28,12 @@ describe('Popover', () => {
   });
 
   it('should apply arrowClassName to arrow', () => {
-    const { debug } = render(
+    render(
       <Popover target="popover-target" arrowClassName="boba-was-here" isOpen>
         Bo-Katan Kryze
       </Popover>,
     );
-    debug();
+
     expect(document.querySelector('.arrow')).toHaveClass('boba-was-here');
   });
 });
