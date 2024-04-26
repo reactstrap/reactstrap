@@ -1,6 +1,6 @@
 import React from 'react';
-import { PlaceholderButton } from '..';
 import { render, screen } from '@testing-library/react';
+import { PlaceholderButton } from '..';
 import '@testing-library/jest-dom';
 
 describe('PlaceholderButton', () => {

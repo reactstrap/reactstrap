@@ -98,7 +98,7 @@ class Dropdown extends React.Component {
     const menu = this.getMenu();
     const toggle = this.getToggle();
 
-    // Add a conditional check to avoid using toggle 
+    // Add a conditional check to avoid using toggle
     // if there is no toggle component in the dropdown
     if (!toggle) {
       return;
@@ -126,7 +126,6 @@ class Dropdown extends React.Component {
 
     this.toggle(e);
   }
-
 
   handleKeyDown(e) {
     const isTargetMenuItem =

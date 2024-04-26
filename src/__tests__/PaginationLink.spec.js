@@ -1,11 +1,11 @@
 import React from 'react';
+import { render, screen } from '@testing-library/react';
 import { PaginationLink } from '..';
 import {
   testForCustomTag,
   testForDefaultClass,
   testForDefaultTag,
 } from '../testUtils';
-import { render, screen } from '@testing-library/react';
 
 describe('PaginationLink', () => {
   it('should render default `a` tag when `href` is present', () => {

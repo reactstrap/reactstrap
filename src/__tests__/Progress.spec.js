@@ -1,12 +1,12 @@
 import React from 'react';
-import { Progress } from '..';
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 import {
   testForCustomTag,
   testForDefaultClass,
   testForDefaultTag,
 } from '../testUtils';
-import { render, screen } from '@testing-library/react';
+import { Progress } from '..';
 
 describe('Progress', () => {
   it('should render with "div" tag by default', () => {

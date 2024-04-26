@@ -1,13 +1,13 @@
 import React from 'react';
-import { TabContent, TabPane } from '..';
 import { screen, render } from '@testing-library/react';
+import { TabContent, TabPane } from '..';
 import '@testing-library/jest-dom';
 
 let activeTab = '1';
 describe('Tabs', () => {
   it('should render', () => {
     render(
-      <TabContent activeTab={'1'}>
+      <TabContent activeTab="1">
         <TabPane tabId="1">Destiny</TabPane>
         <TabPane tabId="2">Death</TabPane>
       </TabContent>,
@@ -18,7 +18,7 @@ describe('Tabs', () => {
 
   it('should have tab1 as active', () => {
     render(
-      <TabContent activeTab={'1'}>
+      <TabContent activeTab="1">
         <TabPane tabId="1">Dream</TabPane>
         <TabPane tabId="2">Destruction</TabPane>
       </TabContent>,
@@ -29,7 +29,7 @@ describe('Tabs', () => {
 
   it('should switch to tab2 as active', () => {
     render(
-      <TabContent activeTab={'2'}>
+      <TabContent activeTab="2">
         <TabPane tabId="1">Desire</TabPane>
         <TabPane tabId="2">Despair</TabPane>
       </TabContent>,
@@ -40,7 +40,7 @@ describe('Tabs', () => {
 
   it('should show no active tabs if active tab id is unknown', () => {
     render(
-      <TabContent activeTab={'3'}>
+      <TabContent activeTab="3">
         <TabPane tabId="1">Delirium</TabPane>
         <TabPane tabId="2">Delight</TabPane>
       </TabContent>,

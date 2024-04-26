@@ -1,7 +1,7 @@
 import React from 'react';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
-import { NavLink } from '..';
 import user from '@testing-library/user-event';
+import { NavLink } from '..';
 import {
   testForChildrenInComponent,
   testForCustomClass,

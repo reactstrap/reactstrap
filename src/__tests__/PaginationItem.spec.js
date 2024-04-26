@@ -1,11 +1,11 @@
 import React from 'react';
+import { render, screen } from '@testing-library/react';
 import { PaginationItem } from '..';
 import {
   testForCustomTag,
   testForDefaultClass,
   testForDefaultTag,
 } from '../testUtils';
-import { render, screen } from '@testing-library/react';
 
 describe('PaginationItem', () => {
   it('should render default tag', () => {

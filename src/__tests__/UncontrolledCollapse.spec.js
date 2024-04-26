@@ -1,8 +1,8 @@
 import React from 'react';
-import { UncontrolledCollapse } from '..';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
+import { UncontrolledCollapse } from '..';
 
 describe('UncontrolledCollapse', () => {
   let toggler;
