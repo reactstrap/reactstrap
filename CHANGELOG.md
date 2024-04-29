@@ -369,7 +369,7 @@
 * **Label:** add `form-label` class for labels of vertical forms ([#2317](https://www.github.com/reactstrap/reactstrap/issues/2317)) ([3bfce12](https://www.github.com/reactstrap/reactstrap/commit/3bfce12c4bdc9615399e8821629328f8a441d9b8))
 * **popover:** add default popper offset for popover ([cef32c6](https://www.github.com/reactstrap/reactstrap/commit/cef32c6a051fdfe532d6e3b1e86b8dcf60087558))
 * **ToastHeader:** Remove charCode default property. ([#2343](https://www.github.com/reactstrap/reactstrap/issues/2343)) ([03bbd15](https://www.github.com/reactstrap/reactstrap/commit/03bbd1508a2262a34a8960e1faa95585689fbaea)), closes [#2338](https://www.github.com/reactstrap/reactstrap/issues/2338)
-* **types:** add 'swtch' to `InputType` ([#2340](https://www.github.com/reactstrap/reactstrap/issues/2340)) ([302d41e](https://www.github.com/reactstrap/reactstrap/commit/302d41eb20054d5bf9c6fd1ddc651dbafcce46f1))
+* **types:** add 'switch' to `InputType` ([#2340](https://www.github.com/reactstrap/reactstrap/issues/2340)) ([302d41e](https://www.github.com/reactstrap/reactstrap/commit/302d41eb20054d5bf9c6fd1ddc651dbafcce46f1))
 * **types:** export AccordionBody types ([#2312](https://www.github.com/reactstrap/reactstrap/issues/2312)) ([d4c184b](https://www.github.com/reactstrap/reactstrap/commit/d4c184bd5c738b0905d02e56a6f2705e2cd9bb70))
 * **types:** export UncontrolledAccordion types ([#2313](https://www.github.com/reactstrap/reactstrap/issues/2313)) ([f7d5cd6](https://www.github.com/reactstrap/reactstrap/commit/f7d5cd664417cbbeb3e17f6ab0097ec024647c64))
 * **types:** import React for UncontrolledAccordion type defs ([#2292](https://www.github.com/reactstrap/reactstrap/issues/2292)) ([54df194](https://www.github.com/reactstrap/reactstrap/commit/54df194dd36205d782ec1985b383a1e18137186b))
@@ -425,7 +425,7 @@
 
 ### Bug Fixes
 
-* **DropdownMenu:** Prevent manual styles from overriding popper styles ([#1984](https://github.com/reactstrap/reactstrap/issues/1984)) ([dc2401b](https://github.com/reactstrap/reactstrap/commit/dc2401b388777b011bc6c75426a86a78013a2b8c))
+* **DropdownMenu:** Prevent manual styles from overriding proper styles ([#1984](https://github.com/reactstrap/reactstrap/issues/1984)) ([dc2401b](https://github.com/reactstrap/reactstrap/commit/dc2401b388777b011bc6c75426a86a78013a2b8c))
 * **Progress:** Fix parent element props being spread to children ([#1970](https://github.com/reactstrap/reactstrap/issues/1970)) ([c6a790c](https://github.com/reactstrap/reactstrap/commit/c6a790c7f4bdbfac0540d53896834638edf9c793))
 * **types:** Add missing innerRef typings ([#1994](https://github.com/reactstrap/reactstrap/issues/1994)) ([fe24f69](https://github.com/reactstrap/reactstrap/commit/fe24f69be2dc9953896c49be73254f7787ad34ff)), closes [#1993](https://github.com/reactstrap/reactstrap/issues/1993)
 
@@ -501,7 +501,7 @@
 
 ### Bug Fixes
 
-* revert breaking change ([#1760](https://github.com/reactstrap/reactstrap/issues/1760)) ([eb37426](https://github.com/reactstrap/reactstrap/commit/eb37426))
+* revert breaking changes ([#1760](https://github.com/reactstrap/reactstrap/issues/1760)) ([eb37426](https://github.com/reactstrap/reactstrap/commit/eb37426))
 
 
 
