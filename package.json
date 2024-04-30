@@ -19,7 +19,7 @@
     "clean": "rm -rf esm lib",
     "prepublishOnly": "npm run build",
     "create-release": "npm run cover && sh ./scripts/release",
-    "lint": "eslint src stories",
+    "lint": "eslint src stories --fix",
     "dtslint": "dtslint types --expectOnly",
     "prettier": "prettier --write src stories",
     "version": "node_modules/.bin/conventional-changelog -i CHANGELOG.md -o CHANGELOG.md -p angular && git add -A CHANGELOG.md"
@@ -301,8 +301,6 @@
     "customize-cra": "^0.9.1",
     "dtslint": "^4.0.4",
     "ejs": "^2.5.9",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^8.17.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",

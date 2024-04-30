@@ -1,116 +1,114 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { PaginationLink } from '..';
+import {
+  testForCustomTag,
+  testForDefaultClass,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('PaginationLink', () => {
   it('should render default `a` tag when `href` is present', () => {
-    const wrapper = mount(<PaginationLink href="#" />);
-
-    expect(wrapper.find('a').hostNodes().length).toBe(1);
+    render(<PaginationLink href="#" data-testid="endless" />);
+    expect(screen.getByTestId('endless').tagName).toBe('A');
   });
 
   it('should render default `button` tag when no `href` is present', () => {
-    const wrapper = mount(<PaginationLink />);
-
-    expect(wrapper.find('button').hostNodes().length).toBe(1);
+    testForDefaultTag(PaginationLink, 'button');
   });
 
   it('should render custom tag', () => {
-    const wrapper = mount(<PaginationLink tag="span" />);
-
-    expect(wrapper.find('span').hostNodes().length).toBe(1);
+    testForCustomTag(PaginationLink, {}, 'span');
   });
 
   it('should render with "page-link" class', () => {
-    const wrapper = shallow(<PaginationLink />);
-
-    expect(wrapper.hasClass('page-link')).toBe(true);
+    testForDefaultClass(PaginationLink, 'page-link');
   });
 
   it('should render previous', () => {
-    const wrapper = shallow(<PaginationLink previous />);
+    render(<PaginationLink previous />);
 
-    expect(wrapper.prop('aria-label')).toBe('Previous');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u2039');
-    expect(wrapper.find('.visually-hidden').text()).toBe('Previous');
+    expect(screen.getByLabelText('Previous')).toBeInTheDocument();
+    expect(screen.getByText('Previous')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u2039')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render next', () => {
-    const wrapper = shallow(<PaginationLink next />);
+    render(<PaginationLink next />);
 
-    expect(wrapper.prop('aria-label')).toBe('Next');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u203A');
-    expect(wrapper.find('.visually-hidden').text()).toBe('Next');
+    expect(screen.getByLabelText('Next')).toBeInTheDocument();
+    expect(screen.getByText('Next')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u203A')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render default previous caret with children as an empty array', () => {
-    const wrapper = shallow(<PaginationLink previous children={[]} />);
+    render(<PaginationLink previous children={[]} />);
 
-    expect(wrapper.prop('aria-label')).toBe('Previous');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u2039');
-    expect(wrapper.find('.visually-hidden').text()).toBe('Previous');
+    expect(screen.getByLabelText('Previous')).toBeInTheDocument();
+    expect(screen.getByText('Previous')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u2039')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render default next caret with children as an empty array', () => {
-    const wrapper = shallow(<PaginationLink next children={[]} />);
+    render(<PaginationLink next children={[]} />);
 
-    expect(wrapper.prop('aria-label')).toBe('Next');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u203A');
-    expect(wrapper.find('.visually-hidden').text()).toBe('Next');
+    expect(screen.getByLabelText('Next')).toBeInTheDocument();
+    expect(screen.getByText('Next')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u203A')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render custom aria label', () => {
-    const wrapper = shallow(<PaginationLink next aria-label="Yo" />);
-
-    expect(wrapper.prop('aria-label')).toBe('Yo');
-    expect(wrapper.find('.visually-hidden').text()).toBe('Yo');
+    render(<PaginationLink next aria-label="Yo" />);
+    expect(screen.getByLabelText('Yo')).toBeInTheDocument();
+    expect(screen.getByText('Yo')).toHaveClass('visually-hidden');
   });
 
   it('should render custom caret specified as a string', () => {
-    const wrapper = shallow(<PaginationLink next>Yo</PaginationLink>);
+    render(<PaginationLink next>Yo</PaginationLink>);
 
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('Yo');
+    expect(screen.getByText('Yo')).toBeInTheDocument();
   });
 
   it('should render custom caret specified as a component', () => {
-    const wrapper = shallow(
+    render(
       <PaginationLink next>
         <span>Yo</span>
       </PaginationLink>,
     );
 
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('Yo');
+    expect(screen.getByText('Yo')).toBeInTheDocument();
+    expect(screen.getByText('Yo').tagName).toBe('SPAN');
   });
 
   it('should render first', () => {
-    const wrapper = shallow(<PaginationLink first />);
+    render(<PaginationLink first />);
 
-    expect(wrapper.prop('aria-label')).toBe('First');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00ab');
-    expect(wrapper.find('.visually-hidden').text()).toBe('First');
+    expect(screen.getByLabelText('First')).toBeInTheDocument();
+    expect(screen.getByText('First')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u00ab')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render last', () => {
-    const wrapper = shallow(<PaginationLink last />);
+    render(<PaginationLink last />);
 
-    expect(wrapper.prop('aria-label')).toBe('Last');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
-    expect(wrapper.find('.visually-hidden').text()).toBe('Last');
+    expect(screen.getByLabelText('Last')).toBeInTheDocument();
+    expect(screen.getByText('Last')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u00bb')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render default first caret with children as an empty array', () => {
-    const wrapper = shallow(<PaginationLink first children={[]} />);
+    render(<PaginationLink first children={[]} />);
 
-    expect(wrapper.prop('aria-label')).toBe('First');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00ab');
-    expect(wrapper.find('.visually-hidden').text()).toBe('First');
+    expect(screen.getByLabelText('First')).toBeInTheDocument();
+    expect(screen.getByText('First')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u00ab')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render default last caret with children as an empty array', () => {
-    const wrapper = shallow(<PaginationLink last children={[]} />);
+    render(<PaginationLink last children={[]} />);
 
-    expect(wrapper.prop('aria-label')).toBe('Last');
-    expect(wrapper.find({ 'aria-hidden': 'true' }).text()).toBe('\u00bb');
-    expect(wrapper.find('.visually-hidden').text()).toBe('Last');
+    expect(screen.getByLabelText('Last')).toBeInTheDocument();
+    expect(screen.getByText('Last')).toHaveClass('visually-hidden');
+    expect(screen.getByText('\u00bb')).toHaveAttribute('aria-hidden', 'true');
   });
 });

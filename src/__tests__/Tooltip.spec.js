@@ -28,12 +28,11 @@ describe('Tooltip', () => {
   });
 
   it('should apply arrowClassName to arrow', () => {
-    const { debug } = render(
+    render(
       <Tooltip target="tooltip-target" arrowClassName="boba-was-here" isOpen>
         Bo-Katan Kryze
       </Tooltip>,
     );
-    debug();
     expect(document.querySelector('.arrow')).toHaveClass('boba-was-here');
   });
 });

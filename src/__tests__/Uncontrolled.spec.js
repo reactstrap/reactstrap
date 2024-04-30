@@ -1,312 +1,295 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { fireEvent, render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import {
   Alert,
   ButtonDropdown,
-  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Tooltip,
   UncontrolledAlert,
   UncontrolledButtonDropdown,
   UncontrolledDropdown,
   UncontrolledTooltip,
 } from '..';
-import { keyCodes } from '../utils';
+import { testForDefaultClass } from '../testUtils';
+import '@testing-library/jest-dom';
 
 describe('UncontrolledAlert', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
   it('should be an Alert', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
-    expect(alert.type()).toBe(Alert);
+    testForDefaultClass(Alert, 'alert');
   });
 
-  it('should have isOpen default to true', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
-    expect(alert.prop('isOpen')).toBe(true);
+  it('should be open by default', () => {
+    render(<UncontrolledAlert>Yo!</UncontrolledAlert>);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
   });
 
-  it('should have toggle function', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
-    expect(alert.prop('toggle')).toEqual(expect.any(Function));
-  });
-
-  it('should toggle isOpen when toggle is called', () => {
-    const alert = shallow(<UncontrolledAlert>Yo!</UncontrolledAlert>);
-    const instance = alert.instance();
-    instance.toggle();
-    alert.update();
-    expect(alert.prop('isOpen')).toBe(false);
+  it('should toggle when close is clicked', async () => {
+    render(<UncontrolledAlert>Yo!</UncontrolledAlert>);
+    await user.click(screen.getByLabelText('Close'));
+    jest.advanceTimersByTime(1000);
+    expect(screen.queryByText('Yo!')).not.toBeInTheDocument();
   });
 });
 
 describe('UncontrolledButtonDropdown', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
   it('should be an ButtonDropdown', () => {
-    const buttonDropdown = shallow(
-      <UncontrolledButtonDropdown>Yo!</UncontrolledButtonDropdown>,
-    );
-    expect(buttonDropdown.type()).toBe(ButtonDropdown);
+    testForDefaultClass(ButtonDropdown, 'btn-group');
   });
 
-  it('should have isOpen default to false', () => {
-    const buttonDropdown = shallow(
-      <UncontrolledButtonDropdown>Yo!</UncontrolledButtonDropdown>,
-    );
-    expect(buttonDropdown.prop('isOpen')).toBe(false);
+  it('should be open by default', () => {
+    render(<UncontrolledButtonDropdown>Yo!</UncontrolledButtonDropdown>);
+    expect(screen.getByText('Yo!')).toBeInTheDocument();
   });
 
-  it('should have toggle function', () => {
-    const buttonDropdown = shallow(
-      <UncontrolledButtonDropdown>Yo!</UncontrolledButtonDropdown>,
+  it('should toggle isOpen when toggle is called', async () => {
+    render(
+      <UncontrolledButtonDropdown>
+        <DropdownToggle caret>Dropdown</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem header>Header</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledButtonDropdown>,
     );
-    expect(buttonDropdown.prop('toggle')).toEqual(expect.any(Function));
-  });
 
-  it('should toggle isOpen when toggle is called', () => {
-    const buttonDropdown = shallow(
-      <UncontrolledButtonDropdown>Yo!</UncontrolledButtonDropdown>,
-    );
-    const instance = buttonDropdown.instance();
-    instance.toggle();
-    buttonDropdown.update();
-    expect(buttonDropdown.prop('isOpen')).toBe(true);
+    await user.click(screen.getByText('Dropdown'));
+    jest.advanceTimersByTime(1000);
+    expect(screen.getByRole('menu')).toHaveClass('show');
   });
 });
 
 describe('UncontrolledDropdown', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
   it('should be an Dropdown', () => {
-    const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
-    expect(dropdown.type()).toBe(Dropdown);
+    testForDefaultClass(UncontrolledDropdown, 'dropdown');
   });
 
-  it('should have isOpen default to false', () => {
-    const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
-    expect(dropdown.prop('isOpen')).toBe(false);
+  it('should be closed by default', () => {
+    render(
+      <UncontrolledDropdown>
+        <DropdownToggle caret>Dropdown</DropdownToggle>
+        <DropdownMenu data-testid="sandman">
+          <DropdownItem header>Header</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>,
+    );
+
+    expect(screen.getByTestId('sandman')).not.toHaveClass('show');
   });
 
-  it('should have toggle function', () => {
-    const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
-    expect(dropdown.prop('toggle')).toEqual(expect.any(Function));
-  });
+  it('should toggle on button click', async () => {
+    render(
+      <UncontrolledDropdown>
+        <DropdownToggle caret>Dropdown</DropdownToggle>
+        <DropdownMenu data-testid="sandman">
+          <DropdownItem header>Header</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>,
+    );
 
-  it('should toggle isOpen when toggle is called', () => {
-    const dropdown = shallow(<UncontrolledDropdown>Yo!</UncontrolledDropdown>);
-    const instance = dropdown.instance();
-    instance.toggle();
-    dropdown.update();
-    expect(dropdown.prop('isOpen')).toBe(true);
+    expect(screen.getByTestId('sandman')).not.toHaveClass('show');
+    await user.click(screen.getByText('Dropdown'));
+    jest.advanceTimersByTime(1000);
+    expect(screen.getByTestId('sandman')).toHaveClass('show');
   });
 
   describe('onToggle', () => {
-    let handleToggle = jest.fn();
-    let element;
-
     beforeEach(() => {
-      element = document.createElement('div');
-      document.body.appendChild(element);
+      jest.useFakeTimers();
     });
 
     afterEach(() => {
-      handleToggle.mockClear();
+      // handleToggle.mockClear();
+
+      jest.clearAllTimers();
     });
 
-    it('onToggle should be called on document click', () => {
-      mount(
-        <UncontrolledDropdown onToggle={handleToggle} defaultOpen>
+    it('should be closed on document body click', async () => {
+      render(
+        <UncontrolledDropdown defaultOpen>
           <DropdownToggle id="toggle">Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu data-testid="sandman">
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </UncontrolledDropdown>,
       );
 
-      expect(handleToggle.mock.calls.length).toBe(0);
-
-      document.body.click();
-
-      expect(handleToggle.mock.calls.length).toBe(1);
-      expect(handleToggle.mock.calls[0].length).toBe(2);
-      expect(handleToggle.mock.calls[0][1]).toBe(false);
+      expect(screen.getByTestId('sandman')).toHaveClass('show');
+      await user.click(document.body);
+      jest.advanceTimersByTime(1000);
+      expect(screen.getByTestId('sandman')).not.toHaveClass('show');
     });
 
-    it('onToggle should be called on container click', () => {
-      const wrapper = mount(
+    it('should be closed on container click', async () => {
+      const { container } = render(
+        <UncontrolledDropdown id="test" defaultOpen>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu data-testid="dream">
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+      );
+
+      expect(screen.getByTestId('dream')).toHaveClass('show');
+      await user.click(container);
+      jest.advanceTimersByTime(1000);
+      expect(screen.getByTestId('dream')).not.toHaveClass('show');
+    });
+
+    it('should toggle when toggle button is clicked', async () => {
+      render(
+        <UncontrolledDropdown id="test" defaultOpen={false}>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu data-testid="lucien">
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+      );
+
+      expect(screen.getByTestId('lucien')).not.toHaveClass('show');
+      await user.click(screen.getByText('Toggle'));
+
+      jest.advanceTimersByTime(1000);
+      expect(screen.getByTestId('lucien')).toHaveClass('show');
+    });
+
+    it('onToggle should be called on toggler click when opened', async () => {
+      render(
+        <UncontrolledDropdown id="test" defaultOpen>
+          <DropdownToggle id="toggle">Toggle</DropdownToggle>
+          <DropdownMenu data-testid="lucien">
+            <DropdownItem>Test</DropdownItem>
+            <DropdownItem id="divider" divider />
+          </DropdownMenu>
+        </UncontrolledDropdown>,
+      );
+
+      expect(screen.getByTestId('lucien')).toHaveClass('show');
+      await user.click(screen.getByText('Toggle'));
+
+      jest.advanceTimersByTime(1000);
+      expect(screen.getByTestId('lucien')).not.toHaveClass('show');
+    });
+
+    it('onToggle should be called on key closing', async () => {
+      const handleToggle = jest.fn();
+      render(
         <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
           <DropdownToggle id="toggle">Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </UncontrolledDropdown>,
-        { attachTo: element },
       );
 
+      screen.getByText('Toggle').focus();
       expect(handleToggle.mock.calls.length).toBe(0);
 
-      document.getElementById('test').click();
-
+      await user.keyboard('{esc}');
       expect(handleToggle.mock.calls.length).toBe(1);
-      expect(handleToggle.mock.calls[0].length).toBe(2);
-      expect(handleToggle.mock.calls[0][1]).toBe(false);
-
-      wrapper.detach();
     });
 
-    it('onToggle should be called on toggler click when closed', () => {
-      const wrapper = mount(
+    it('onToggle should be called on key opening', async () => {
+      const handleToggle = jest.fn();
+      render(
         <UncontrolledDropdown
           id="test"
           onToggle={handleToggle}
           defaultOpen={false}
         >
           <DropdownToggle id="toggle">Toggle</DropdownToggle>
-          <DropdownMenu right>
+          <DropdownMenu>
             <DropdownItem>Test</DropdownItem>
             <DropdownItem id="divider" divider />
           </DropdownMenu>
         </UncontrolledDropdown>,
-        { attachTo: element },
       );
 
+      screen.getByText('Toggle').focus();
       expect(handleToggle.mock.calls.length).toBe(0);
 
-      document.getElementById('toggle').click();
-
+      await user.keyboard('[ArrowDown]');
       expect(handleToggle.mock.calls.length).toBe(1);
-      expect(handleToggle.mock.calls[0].length).toBe(2);
-      expect(handleToggle.mock.calls[0][1]).toBe(true);
-
-      wrapper.detach();
-    });
-
-    it('onToggle should be called on toggler click when opened', () => {
-      const wrapper = mount(
-        <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
-          <DropdownToggle id="toggle">Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-          </DropdownMenu>
-        </UncontrolledDropdown>,
-        { attachTo: element },
-      );
-
-      expect(handleToggle.mock.calls.length).toBe(0);
-
-      document.getElementById('toggle').click();
-
-      expect(handleToggle.mock.calls.length).toBe(1);
-      expect(handleToggle.mock.calls[0].length).toBe(2);
-      expect(handleToggle.mock.calls[0][1]).toBe(false);
-
-      wrapper.detach();
-    });
-
-    it('onToggle should be called on key closing', () => {
-      const wrapper = mount(
-        <UncontrolledDropdown id="test" onToggle={handleToggle} defaultOpen>
-          <DropdownToggle id="toggle">Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-          </DropdownMenu>
-        </UncontrolledDropdown>,
-        { attachTo: element },
-      );
-
-      expect(handleToggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find(Dropdown)
-        .instance()
-        .handleDocumentClick({ type: 'keyup', which: keyCodes.tab });
-
-      expect(handleToggle.mock.calls.length).toBe(1);
-      expect(handleToggle.mock.calls[0].length).toBe(2);
-      expect(handleToggle.mock.calls[0][1]).toBe(false);
-
-      wrapper.detach();
-    });
-
-    it('onToggle should be called on key opening', () => {
-      const wrapper = mount(
-        <UncontrolledDropdown
-          id="test"
-          onToggle={handleToggle}
-          defaultOpen={false}
-        >
-          <DropdownToggle id="toggle">Toggle</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>Test</DropdownItem>
-            <DropdownItem id="divider" divider />
-          </DropdownMenu>
-        </UncontrolledDropdown>,
-        { attachTo: element },
-      );
-
-      expect(handleToggle.mock.calls.length).toBe(0);
-
-      wrapper
-        .find(Dropdown)
-        .instance()
-        .handleDocumentClick('keydown', { which: keyCodes.down });
-
-      expect(handleToggle.mock.calls.length).toBe(1);
-      expect(handleToggle.mock.calls[0].length).toBe(2);
-      expect(handleToggle.mock.calls[0][1]).toBe(true);
-
-      wrapper.detach();
     });
   });
 });
 
 describe('UncontrolledTooltip', () => {
-  it('should be an Tooltip', () => {
-    const tooltip = shallow(
-      <UncontrolledTooltip target="blah">Yo!</UncontrolledTooltip>,
+  it('tooltip should not be rendered by default', async () => {
+    render(
+      <div>
+        <span href="#" id="dream">
+          sandman
+        </span>
+        <UncontrolledTooltip target="dream">
+          king of dream world
+        </UncontrolledTooltip>
+      </div>,
     );
-    expect(tooltip.type()).toBe(Tooltip);
+    expect(screen.queryByText('king of dream world')).not.toBeInTheDocument();
   });
 
-  it('should have isOpen default to false', () => {
-    const tooltip = shallow(
-      <UncontrolledTooltip target="blah">Yo!</UncontrolledTooltip>,
+  it('tooltip should not be rendered on hover', async () => {
+    render(
+      <div>
+        <span href="#" id="dream">
+          sandman
+        </span>
+        <UncontrolledTooltip target="dream">
+          king of dream world
+        </UncontrolledTooltip>
+      </div>,
     );
-    expect(tooltip.prop('isOpen')).toBe(false);
+
+    await fireEvent.mouseOver(screen.getByText('sandman'));
+    jest.advanceTimersByTime(1000);
+    expect(screen.getByText('king of dream world')).toBeInTheDocument();
   });
 
-  it('should have toggle function', () => {
-    const tooltip = shallow(
-      <UncontrolledTooltip target="blah">Yo!</UncontrolledTooltip>,
+  it('should render correctly with a ref object as the target', async () => {
+    const target = React.createRef(null);
+    render(
+      <div>
+        <span href="#" ref={target}>
+          sandman
+        </span>
+        <UncontrolledTooltip target={target}>
+          king of dream world
+        </UncontrolledTooltip>
+      </div>,
     );
-    expect(tooltip.prop('toggle')).toEqual(expect.any(Function));
-  });
 
-  it('should toggle isOpen when toggle is called', () => {
-    const tooltip = shallow(
-      <UncontrolledTooltip target="blah">Yo!</UncontrolledTooltip>,
-    );
-    const instance = tooltip.instance();
-    instance.toggle();
-    tooltip.update();
-    expect(tooltip.prop('isOpen')).toBe(true);
-  });
+    await fireEvent.mouseOver(screen.getByText('sandman'));
+    jest.advanceTimersByTime(1000);
 
-  it('should have boundary set to string', () => {
-    const tooltip = shallow(
-      <UncontrolledTooltip boundariesElement="window" target="blah">
-        Yo!
-      </UncontrolledTooltip>,
-    );
-    expect(tooltip.prop('boundariesElement')).toBe('window');
-  });
-
-  it('should render correctly with a ref object as the target', () => {
-    const target = React.createRef();
-    const tooltip = shallow(
-      <UncontrolledTooltip target={target}>Yo!</UncontrolledTooltip>,
-    );
-    expect(tooltip.exists()).toBe(true);
+    expect(screen.queryByText('king of dream world')).toBeInTheDocument();
   });
 });

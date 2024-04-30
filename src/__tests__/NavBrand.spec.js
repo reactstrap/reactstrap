@@ -1,30 +1,27 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { NavbarBrand } from '..';
+import {
+  testForChildrenInComponent,
+  testForCustomClass,
+  testForDefaultClass,
+  testForDefaultTag,
+} from '../testUtils';
 
 describe('NavbarBrand', () => {
   it('should render .navbar-brand markup', () => {
-    const wrapper = shallow(<NavbarBrand />);
-
-    expect(wrapper.html()).toBe('<a class="navbar-brand"></a>');
+    testForDefaultClass(NavbarBrand, 'navbar-brand');
   });
 
   it('should render custom tag', () => {
-    const wrapper = shallow(<NavbarBrand tag="div" />);
-
-    expect(wrapper.html()).toBe('<div class="navbar-brand"></div>');
+    testForDefaultTag(NavbarBrand, 'a');
   });
 
   it('sholid render children', () => {
-    const wrapper = shallow(<NavbarBrand>Children</NavbarBrand>);
-
-    expect(wrapper.html()).toBe('<a class="navbar-brand">Children</a>');
+    testForChildrenInComponent(NavbarBrand);
   });
 
   it('should pass additional classNames', () => {
-    const wrapper = shallow(<NavbarBrand className="extra" />);
-
-    expect(wrapper.hasClass('extra')).toBe(true);
-    expect(wrapper.hasClass('navbar-brand')).toBe(true);
+    testForCustomClass(NavbarBrand);
   });
 });

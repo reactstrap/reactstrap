@@ -517,7 +517,7 @@ describe('Modal', () => {
 
   it('should not call toggle when escape key pressed and backdrop is "static" and keyboard=false', () => {
     const toggle = jest.fn();
-    const { debug } = render(
+    render(
       <Modal isOpen toggle={toggle} backdrop="static" keyboard={false}>
         Yo!
       </Modal>,
@@ -600,7 +600,7 @@ describe('Modal', () => {
   });
 
   it('should destroy this._element', () => {
-    const { rerender, debug } = render(
+    const { rerender } = render(
       <Modal isOpen toggle={toggle} wrapClassName="weird-class">
         <button id="clicker">Does Nothing</button>
       </Modal>,
@@ -620,7 +620,7 @@ describe('Modal', () => {
   });
 
   it('should destroy this._element when unmountOnClose prop set to true', () => {
-    const { rerender, debug } = render(
+    const { rerender } = render(
       <Modal isOpen toggle={toggle} unmountOnClose wrapClassName="weird-class">
         <button id="clicker">Does Nothing</button>
       </Modal>,
@@ -776,7 +776,7 @@ describe('Modal', () => {
   });
 
   it('should update element z index when prop changes', () => {
-    const { debug, rerender } = render(
+    const { rerender } = render(
       <Modal isOpen zIndex={0} wrapClassName="sandman">
         Yo!
       </Modal>,

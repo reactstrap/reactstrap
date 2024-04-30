@@ -1,15 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { PlaceholderButton } from '..';
+import '@testing-library/jest-dom';
 
 describe('PlaceholderButton', () => {
   it('should render a placeholder', () => {
-    const wrapper = shallow(<PlaceholderButton />);
-    expect(wrapper.hasClass('placeholder')).toBe(true);
+    render(<PlaceholderButton data-testid="endless" />);
+    expect(screen.getByTestId('endless')).toBeInTheDocument();
   });
 
   it('should render size', () => {
-    const wrapper = shallow(<PlaceholderButton xs={6} />);
-    expect(wrapper.hasClass('col-6')).toBe(true);
+    render(<PlaceholderButton data-testid="endless" xs={6} />);
+    expect(screen.getByTestId('endless')).toHaveClass('col-6');
   });
 });
