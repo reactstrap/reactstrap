@@ -1,6 +1,6 @@
 import Example from './TogglerExample';
 // eslint-disable-next-line import/extensions
-import TogglerExample from '!!raw-loader!./TogglerExample';
+import TogglerExample from './TogglerExample?raw';
 
 Example.parameters = {
   docs: {

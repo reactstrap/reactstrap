@@ -30,7 +30,7 @@ TooltipItem.propTypes = {
   id: PropTypes.string,
 };
 
-function TooltipExampleMulti(props) {
+function Example(props) {
   return (
     <>
       {[
@@ -58,4 +58,4 @@ function TooltipExampleMulti(props) {
   );
 }
 
-export default TooltipExampleMulti;
+export default Example;

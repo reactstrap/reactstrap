@@ -1,6 +1,6 @@
 import Example from './DismissExample';
 // eslint-disable-next-line import/extensions
-import AlertDismiss from '!!raw-loader!./DismissExample';
+import AlertDismiss from './DismissExample?raw';
 
 export default Example;
 
@@ -10,7 +10,7 @@ Example.parameters = {
       story: 'Alerts can also be dismissed.',
     },
     source: {
-      code: AlertDismiss,
+      code: Example,
       language: 'jsx',
       type: 'auto',
     },

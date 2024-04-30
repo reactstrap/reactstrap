@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-function ModalFullscreenExample(props) {
+function Example(props) {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -35,4 +35,4 @@ function ModalFullscreenExample(props) {
   );
 }
 
-export default ModalFullscreenExample;
+export default Example;

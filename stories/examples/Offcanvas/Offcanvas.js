@@ -1,6 +1,6 @@
 import Example from './OffcanvasExample';
 // eslint-disable-next-line import/extensions
-import OffcanvasExample from '!!raw-loader!./OffcanvasExample';
+import OffcanvasExample from './OffcanvasExample?raw';
 
 Example.parameters = {
   docs: {
