@@ -102,7 +102,11 @@ class DropdownMenu extends React.Component {
           strategy={strategy}
         >
           {({ ref, style, placement, update }) => {
-            let combinedStyle = { ...this.props.style, ...persistStyles, ...style };
+            let combinedStyle = {
+              ...this.props.style,
+              ...persistStyles,
+              ...style,
+            };
 
             const handleRef = (tagRef) => {
               // Send the ref to `react-popper`

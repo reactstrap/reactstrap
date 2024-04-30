@@ -118,25 +118,15 @@ class DropdownToggle extends React.Component {
           children={children}
         />
       );
-    }
+    };
 
     // No Reference component if the component is in Navbar
     if (this.context.inNavbar) {
-      return (
-        <>
-          {returnFunction({ ref: this.context.onToggleRef })}
-        </>
-      );
+      return <>{returnFunction({ ref: this.context.onToggleRef })}</>;
     }
 
     // Normal rendering if component not in NavBar
-    return (
-
-      <Reference innerRef={innerRef} >
-        {returnFunction}
-      </Reference>
-    );
- 
+    return <Reference innerRef={innerRef}>{returnFunction}</Reference>;
   }
 }
 

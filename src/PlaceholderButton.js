@@ -17,7 +17,7 @@ const propTypes = {
 function PlaceholderButton(props) {
   let { cssModule, className, tag: Tag = Button, ...attributes } = props;
 
-  let { attributes: modifiedAttributes, colClasses } = getColumnClasses(
+  let { modifiedAttributes, colClasses } = getColumnClasses(
     { color: 'primary', ...attributes },
     cssModule,
   );
