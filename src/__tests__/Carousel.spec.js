@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
+import { shallow } from 'enzyme';
 import { Carousel } from '..';
 import CarouselItem from '../CarouselItem';
 import CarouselIndicators from '../CarouselIndicators';
@@ -761,6 +762,64 @@ describe('Carousel', () => {
         >
           {slides}
         </Carousel>,
+      );
+      jest.advanceTimersByTime(1000);
+      expect(next).toHaveBeenCalled();
+    });
+
+    it('it should stop immediately when interval is set to false', () => {
+      const next = jest.fn();
+      const { rerender } = render(
+        <Carousel
+          next={next}
+          previous={() => {}}
+          interval="1000"
+          activeIndex={0}
+          ride="carousel"
+        >
+          {slides}
+        </Carousel>,
+      );
+
+      rerender(
+        <Carousel
+          next={next}
+          previous={() => {}}
+          interval={false}
+          activeIndex={0}
+          ride="carousel"
+        >
+          {slides}
+        </Carousel>,
+      );
+      jest.advanceTimersByTime(1000);
+      expect(next).not.toHaveBeenCalled();
+    });
+
+    it('it should restart when interval is set again', () => {
+      const next = jest.fn();
+      const { rerender } = render(
+          <Carousel
+              next={next}
+              previous={() => {}}
+              interval={false}
+              activeIndex={0}
+              ride="carousel"
+          >
+            {slides}
+          </Carousel>,
+      );
+
+      rerender(
+          <Carousel
+              next={next}
+              previous={() => {}}
+              interval="1000"
+              activeIndex={0}
+              ride="carousel"
+          >
+            {slides}
+          </Carousel>,
       );
       jest.advanceTimersByTime(1000);
       expect(next).toHaveBeenCalled();
