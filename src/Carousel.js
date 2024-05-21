@@ -173,9 +173,12 @@ class Carousel extends React.Component {
     // make sure not to have multiple intervals going...
     this.clearInterval();
     if (this.props.interval) {
-      this.cycleInterval = setInterval(() => {
-        this.props.next();
-      }, parseInt(this.props.interval, 10));
+      this.cycleInterval = setInterval(
+        () => {
+          this.props.next();
+        },
+        parseInt(this.props.interval, 10),
+      );
     }
   }
 
