@@ -35,7 +35,10 @@ function Toast(props) {
     ...attributes
   } = props;
 
-  const classes = mapToCssModules(classNames(className, 'toast'), cssModule);
+  const classes = mapToCssModules(
+    classNames(className, 'toast d-block'),
+    cssModule,
+  );
 
   const toastTransition = {
     ...Fade.defaultProps,
