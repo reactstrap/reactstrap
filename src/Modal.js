@@ -195,8 +195,8 @@ class Modal extends React.Component {
 
   // not mouseUp because scrollbar fires it, shouldn't close when user scrolls
   handleBackdropClick(e) {
+    e.stopPropagation();
     if (e.target === this._mouseDownElement) {
-      e.stopPropagation();
 
       const backdrop = this._dialog ? this._dialog.parentNode : null;
 
