@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
-import Fade from './Fade';
+import Fade, { fadeDefaultProps } from './Fade';
 
 const propTypes = {
   children: PropTypes.node,
@@ -27,7 +27,7 @@ function Toast(props) {
     isOpen = true,
     children,
     transition = {
-      ...Fade.defaultProps,
+      ...fadeDefaultProps,
       unmountOnExit: true,
     },
     fade = true,
@@ -38,7 +38,7 @@ function Toast(props) {
   const classes = mapToCssModules(classNames(className, 'toast'), cssModule);
 
   const toastTransition = {
-    ...Fade.defaultProps,
+    ...fadeDefaultProps,
     ...transition,
     baseClass: fade ? transition.baseClass : '',
     timeout: fade ? transition.timeout : 0,
