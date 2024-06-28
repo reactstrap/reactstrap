@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 import {
+  addDefaultProps,
   mapToCssModules,
   omit,
   pick,
+  tagPropType,
   TransitionPropTypeKeys,
   TransitionTimeouts,
-  tagPropType,
 } from './utils';
 
 const propTypes = {
@@ -29,7 +30,7 @@ const propTypes = {
   ]),
 };
 
-const defaultProps = {
+export const fadeDefaultProps = {
   ...Transition.defaultProps,
   timeout: TransitionTimeouts.Fade,
   appear: true,
@@ -50,12 +51,12 @@ function Fade(props) {
     children,
     innerRef = ref,
     ...otherProps
-  } = props;
+  } = addDefaultProps(fadeDefaultProps, props);
 
-  const transitionProps = pick(
-    { defaultProps, ...otherProps },
+  const transitionProps = pick(otherProps,
     TransitionPropTypeKeys,
   );
+
   const childProps = omit(otherProps, TransitionPropTypeKeys);
 
   return (
@@ -77,6 +78,5 @@ function Fade(props) {
 }
 
 Fade.propTypes = propTypes;
-Fade.defaultProps = defaultProps;
 
 export default Fade;

@@ -234,12 +234,14 @@ describe('Utils', () => {
   describe('isFunction', () => {
     it('should return `true` for functions', () => {
       function test() {}
+
       expect(Utils.isFunction(test)).toBe(true);
       expect(Utils.isFunction(Array.prototype.slice)).toBe(true);
     });
 
     it('should return `true` for async functions', () => {
       async function asyncFunc() {}
+
       expect(Utils.isFunction(asyncFunc)).toEqual(
         typeof asyncFunc === 'function',
       );
@@ -247,6 +249,7 @@ describe('Utils', () => {
 
     it('should return `true` for generator functions', () => {
       function* genFunc() {}
+
       expect(Utils.isFunction(genFunc)).toEqual(typeof genFunc === 'function');
     });
 
@@ -256,6 +259,7 @@ describe('Utils', () => {
           return arguments;
         }.apply(undefined, array);
       }
+
       expect(Utils.isFunction(toArgs([1, 2, 3]))).toBe(false);
       expect(Utils.isFunction([1, 2, 3])).toBe(false);
       expect(Utils.isFunction(true)).toBe(false);
@@ -306,6 +310,52 @@ describe('Utils', () => {
       expect(Utils.toNumber('-1.1')).toEqual(-1.1);
       expect(Utils.toNumber(0 / 0)).toEqual(NaN);
       expect(Utils.toNumber(0)).toEqual(0);
+    });
+  });
+
+  describe('addDefaultProps', () => {
+    it('should return an object', () => {
+      const defaultProps = {
+        a: 1,
+        b: 2,
+        c: 3,
+      };
+      const props = {
+        a: 4,
+        b: 5,
+      };
+      expect(Utils.addDefaultProps(defaultProps, props)).toEqual(
+        expect.any(Object),
+      );
+    });
+
+    it('should return an object with default props', () => {
+      const defaultProps = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: {
+          e: 4,
+          f: 5,
+        },
+      };
+      const props = {
+        a: 4,
+        b: 5,
+        d: {
+          e: 6,
+          f: 5,
+        },
+      };
+      expect(Utils.addDefaultProps(defaultProps, props)).toEqual({
+        a: 4,
+        b: 5,
+        c: 3,
+        d: {
+          e: 6,
+          f: 5,
+        },
+      });
     });
   });
 
