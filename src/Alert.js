@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mapToCssModules, tagPropType } from './utils';
-import Fade from './Fade';
+import Fade, { fadeDefaultProps } from './Fade';
 
 const propTypes = {
   /** Pass children so this component can wrap the child elements */
@@ -46,7 +46,7 @@ function Alert(props) {
     toggle,
     children,
     transition = {
-      ...Fade.defaultProps,
+      ...fadeDefaultProps,
       unmountOnExit: true,
     },
     fade = true,
@@ -67,7 +67,7 @@ function Alert(props) {
   );
 
   const alertTransition = {
-    ...Fade.defaultProps,
+    ...fadeDefaultProps,
     ...transition,
     baseClass: fade ? transition.baseClass : '',
     timeout: fade ? transition.timeout : 0,

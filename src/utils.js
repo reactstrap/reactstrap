@@ -264,8 +264,8 @@ export function toNumber(value) {
   return isBinary || /^0o[0-7]+$/i.test(value)
     ? parseInt(value.slice(2), isBinary ? 2 : 8)
     : /^[-+]0x[0-9a-f]+$/i.test(value)
-      ? NAN
-      : +value;
+    ? NAN
+    : +value;
 }
 
 export function isFunction(value) {
@@ -390,12 +390,6 @@ export function addDefaultProps(defaultProps, props) {
   Object.keys(defaultProps).forEach((key) => {
     if (result[key] === undefined) {
       result[key] = defaultProps[key];
-    }
-    if (
-      Object.keys(defaultProps[key] || {}).length > 0 &&
-      typeof defaultProps[key] === 'object'
-    ) {
-      addDefaultProps(defaultProps[key], result);
     }
   });
 

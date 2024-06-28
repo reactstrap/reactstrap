@@ -30,7 +30,7 @@ const propTypes = {
   ]),
 };
 
-const defaultProps = {
+export const fadeDefaultProps = {
   ...Transition.defaultProps,
   timeout: TransitionTimeouts.Fade,
   appear: true,
@@ -51,12 +51,9 @@ function Fade(props) {
     children,
     innerRef = ref,
     ...otherProps
-  } = addDefaultProps(defaultProps, props);
+  } = props;
 
-  const transitionProps = pick(
-    { defaultProps, ...otherProps },
-    TransitionPropTypeKeys,
-  );
+  const transitionProps = pick(otherProps, TransitionPropTypeKeys);
 
   const childProps = omit(otherProps, TransitionPropTypeKeys);
 
@@ -80,4 +77,9 @@ function Fade(props) {
 
 Fade.propTypes = propTypes;
 
-export default Fade;
+// PropTypes did not account for default props
+function FadeWrapper(props) {
+  return <Fade {...addDefaultProps(fadeDefaultProps, props)} />;
+}
+
+export default FadeWrapper;
