@@ -391,12 +391,6 @@ export function addDefaultProps(defaultProps, props) {
     if (result[key] === undefined) {
       result[key] = defaultProps[key];
     }
-    if (
-      Object.keys(defaultProps[key] || {}).length > 0 &&
-      typeof defaultProps[key] === 'object'
-    ) {
-      addDefaultProps(defaultProps[key], result);
-    }
   });
 
   return result;
