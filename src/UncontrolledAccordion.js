@@ -27,7 +27,7 @@ function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
         setOpen([...open, id]);
       }
     } else if (open === id) {
-      setOpen(undefined);
+      setOpen('');
     } else {
       setOpen(id);
     }
