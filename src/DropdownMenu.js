@@ -147,7 +147,6 @@ class DropdownMenu extends React.Component {
         role={this.getRole()}
         {...attrs}
         ref={onMenuRef}
-        aria-hidden={!this.context.isOpen}
         className={classes}
         data-popper-placement={attrs.placement}
         data-bs-popper="static"
