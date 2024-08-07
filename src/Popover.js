@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import TooltipPopoverWrapper, { propTypes } from './TooltipPopoverWrapper';
+import { addDefaultProps } from './utils';
 
 const defaultProps = {
   placement: 'right',
@@ -16,7 +17,7 @@ function Popover(props) {
 
   return (
     <TooltipPopoverWrapper
-      {...props}
+      {...addDefaultProps(defaultProps, props)}
       arrowClassName={arrowClasses}
       popperClassName={popperClasses}
       innerClassName={classes}
@@ -25,6 +26,5 @@ function Popover(props) {
 }
 
 Popover.propTypes = propTypes;
-Popover.defaultProps = defaultProps;
 
 export default Popover;

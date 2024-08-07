@@ -381,3 +381,17 @@ export const focusableElements = [
   'video[controls]',
   '[contenteditable]:not([contenteditable="false"])',
 ];
+
+export function addDefaultProps(defaultProps, props) {
+  if (!defaultProps || !props) return props;
+
+  let result = { ...props };
+
+  Object.keys(defaultProps).forEach((key) => {
+    if (result[key] === undefined) {
+      result[key] = defaultProps[key];
+    }
+  });
+
+  return result;
+}
