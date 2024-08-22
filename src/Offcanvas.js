@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Portal from './Portal';
-import Fade from './Fade';
+import Fade, { fadeDefaultProps } from './Fade';
 import {
   TransitionTimeouts,
   conditionallyUpdateScrollbar,
@@ -393,7 +393,7 @@ class Offcanvas extends React.Component {
 
       const hasTransition = this.props.fade;
       const offcanvasTransition = {
-        ...Fade.defaultProps,
+        ...fadeDefaultProps,
         ...this.props.offcanvasTransition,
         baseClass: hasTransition
           ? this.props.offcanvasTransition.baseClass
@@ -401,7 +401,7 @@ class Offcanvas extends React.Component {
         timeout: hasTransition ? this.props.offcanvasTransition.timeout : 0,
       };
       const backdropTransition = {
-        ...Fade.defaultProps,
+        ...fadeDefaultProps,
         ...this.props.backdropTransition,
         baseClass: hasTransition ? this.props.backdropTransition.baseClass : '',
         timeout: hasTransition ? this.props.backdropTransition.timeout : 0,

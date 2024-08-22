@@ -2,21 +2,24 @@ import React from 'react';
 import classNames from 'classnames';
 import TooltipPopoverWrapper, { propTypes } from './TooltipPopoverWrapper';
 
-const defaultProps = {
-  placement: 'right',
-  placementPrefix: 'bs-popover',
-  trigger: 'click',
-  offset: [0, 8],
-};
-
-function Popover(props) {
-  const arrowClasses = classNames('popover-arrow', props.arrowClassName);
-  const popperClasses = classNames('popover', 'show', props.popperClassName);
-  const classes = classNames('popover-inner', props.innerClassName);
+function Popover({
+  placement = 'right',
+  placementPrefix = 'bs-popover',
+  trigger = 'click',
+  offset = [0, 8],
+  ...rest
+}) {
+  const arrowClasses = classNames('popover-arrow', rest.arrowClassName);
+  const popperClasses = classNames('popover', 'show', rest.popperClassName);
+  const classes = classNames('popover-inner', rest.innerClassName);
 
   return (
     <TooltipPopoverWrapper
-      {...props}
+      {...rest}
+      placement={placement}
+      placementPrefix={placementPrefix}
+      trigger={trigger}
+      offset={offset}
       arrowClassName={arrowClasses}
       popperClassName={popperClasses}
       innerClassName={classes}
@@ -25,6 +28,5 @@ function Popover(props) {
 }
 
 Popover.propTypes = propTypes;
-Popover.defaultProps = defaultProps;
 
 export default Popover;

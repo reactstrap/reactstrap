@@ -2,21 +2,24 @@ import React from 'react';
 import classNames from 'classnames';
 import TooltipPopoverWrapper, { propTypes } from './TooltipPopoverWrapper';
 
-const defaultProps = {
-  placement: 'top',
-  autohide: true,
-  placementPrefix: 'bs-tooltip',
-  trigger: 'hover focus',
-};
-
-function Tooltip(props) {
-  const arrowClasses = classNames('tooltip-arrow', props.arrowClassName);
-  const popperClasses = classNames('tooltip', 'show', props.popperClassName);
-  const classes = classNames('tooltip-inner', props.innerClassName);
+function Tooltip({
+  placement = 'top',
+  autohide = true,
+  placementPrefix = 'bs-tooltip',
+  trigger = 'hover focus',
+  ...rest
+}) {
+  const arrowClasses = classNames('tooltip-arrow', rest.arrowClassName);
+  const popperClasses = classNames('tooltip', 'show', rest.popperClassName);
+  const classes = classNames('tooltip-inner', rest.innerClassName);
 
   return (
     <TooltipPopoverWrapper
-      {...props}
+      {...rest}
+      placement={placement}
+      autohide={autohide}
+      placementPrefix={placementPrefix}
+      trigger={trigger}
       arrowClassName={arrowClasses}
       popperClassName={popperClasses}
       innerClassName={classes}
@@ -25,6 +28,5 @@ function Tooltip(props) {
 }
 
 Tooltip.propTypes = propTypes;
-Tooltip.defaultProps = defaultProps;
 
 export default Tooltip;

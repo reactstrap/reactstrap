@@ -9,6 +9,7 @@ import {
   TransitionPropTypeKeys,
   TransitionTimeouts,
   tagPropType,
+  isObject,
 } from './utils';
 
 const propTypes = {
@@ -29,7 +30,23 @@ const propTypes = {
   ]),
 };
 
-const defaultProps = {
+function setDefaultProps(defaultProps, props) {
+  if (!defaultProps || !isObject(defaultProps) || !props) {
+    return props;
+  }
+
+  const missingProps =  Object.keys(defaultProps).reduce((acc, curr) => {
+    if (props[curr] === undefined) {
+      acc[curr] = defaultProps[curr];
+    }
+
+    return acc;
+  }, {});
+
+  return {...props, ...missingProps};
+}
+
+export const fadeDefaultProps = {
   ...Transition.defaultProps,
   timeout: TransitionTimeouts.Fade,
   appear: true,
@@ -50,10 +67,10 @@ function Fade(props) {
     children,
     innerRef = ref,
     ...otherProps
-  } = props;
+  } = setDefaultProps(fadeDefaultProps, props);
 
   const transitionProps = pick(
-    { defaultProps, ...otherProps },
+    { defaultProps: fadeDefaultProps, ...otherProps },
     TransitionPropTypeKeys,
   );
   const childProps = omit(otherProps, TransitionPropTypeKeys);
@@ -77,6 +94,5 @@ function Fade(props) {
 }
 
 Fade.propTypes = propTypes;
-Fade.defaultProps = defaultProps;
 
 export default Fade;

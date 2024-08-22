@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Portal from './Portal';
-import Fade from './Fade';
+import Fade, { fadeDefaultProps } from './Fade';
 import {
   getOriginalBodyPadding,
   conditionallyUpdateScrollbar,
@@ -505,13 +505,13 @@ class Modal extends React.Component {
 
       const hasTransition = this.props.fade;
       const modalTransition = {
-        ...Fade.defaultProps,
+        ...fadeDefaultProps,
         ...this.props.modalTransition,
         baseClass: hasTransition ? this.props.modalTransition.baseClass : '',
         timeout: hasTransition ? this.props.modalTransition.timeout : 0,
       };
       const backdropTransition = {
-        ...Fade.defaultProps,
+        ...fadeDefaultProps,
         ...this.props.backdropTransition,
         baseClass: hasTransition ? this.props.backdropTransition.baseClass : '',
         timeout: hasTransition ? this.props.backdropTransition.timeout : 0,
