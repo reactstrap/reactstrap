@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 function UncontrolledAccordion({ defaultOpen, stayOpen, ...props }) {
-  const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : undefined));
+  const [open, setOpen] = useState(defaultOpen || (stayOpen ? [] : ''));
   const toggle = (id) => {
     if (stayOpen) {
       if (open.includes(id)) {
