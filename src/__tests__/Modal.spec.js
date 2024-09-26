@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from '..';
+import * as Utils from '../utils';
 
 describe('Modal', () => {
   const toggle = () => {};
@@ -1114,5 +1115,66 @@ describe('Modal', () => {
       </React.StrictMode>,
     );
     expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should restore the original body overflow and padding when multiple modals are opened and closed', () => {
+    const spyConditionallyUpdateScrollbar = jest.spyOn(
+      Utils,
+      'conditionallyUpdateScrollbar',
+    );
+    spyConditionallyUpdateScrollbar.mockImplementation(() => {
+      Utils.setScrollbarWidth(15);
+    });
+
+    const spySetScrollbarWidth = jest.spyOn(Utils, 'setScrollbarWidth');
+
+    const { rerender } = render(
+      <>
+        <Modal isOpen toggle={toggle}>
+          a
+        </Modal>
+        <Modal isOpen={false} toggle={toggle}>
+          b
+        </Modal>
+      </>,
+    );
+
+    expect(document.body).toHaveClass('modal-open');
+    expect(document.body.style.paddingRight).toBe('15px');
+    expect(document.body.style.overflow).toBe('hidden');
+    expect(spyConditionallyUpdateScrollbar).toHaveBeenCalled();
+
+    spyConditionallyUpdateScrollbar.mockClear();
+
+    rerender(
+      <>
+        <Modal isOpen={false} toggle={toggle}>
+          a
+        </Modal>
+        <Modal isOpen toggle={toggle}>
+          b
+        </Modal>
+      </>,
+    );
+    jest.advanceTimersByTime(300);
+    expect(document.body).toHaveClass('modal-open');
+    expect(document.body.style.paddingRight).toBe('15px');
+    expect(document.body.style.overflow).toBe('hidden');
+    expect(spyConditionallyUpdateScrollbar).not.toHaveBeenCalled();
+
+    rerender(
+      <>
+        <Modal isOpen={false} toggle={toggle}>
+          a
+        </Modal>
+        <Modal isOpen={false} toggle={toggle}>
+          b
+        </Modal>
+      </>,
+    );
+    jest.advanceTimersByTime(300);
+    expect(document.body).not.toHaveClass('modal-open');
+    expect(spySetScrollbarWidth).toHaveBeenCalledWith(0);
+    expect(document.body.style.overflow).toBe('');
   });
 });

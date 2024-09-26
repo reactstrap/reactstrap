@@ -115,7 +115,6 @@ class Modal extends React.Component {
     super(props);
 
     this._element = null;
-    this._originalBodyPadding = null;
     this.getFocusableChildren = this.getFocusableChildren.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleBackdropMouseDown = this.handleBackdropMouseDown.bind(this);
@@ -369,13 +368,13 @@ class Modal extends React.Component {
       this._mountContainer.appendChild(this._element);
     }
 
-    this._originalBodyPadding = getOriginalBodyPadding();
     if (Modal.openCount < 1) {
       Modal.originalBodyOverflow = window.getComputedStyle(
         document.body,
       ).overflow;
+      Modal.originalBodyPadding = getOriginalBodyPadding();
+      conditionallyUpdateScrollbar();
     }
-    conditionallyUpdateScrollbar();
 
     if (Modal.openCount === 0) {
       document.body.className = classNames(
@@ -421,11 +420,10 @@ class Modal extends React.Component {
         .replace(modalOpenClassNameRegex, ' ')
         .trim();
       document.body.style.overflow = Modal.originalBodyOverflow;
+      setScrollbarWidth(Modal.originalBodyPadding);
     }
     this.manageFocusAfterClose();
     Modal.openCount = Math.max(0, Modal.openCount - 1);
-
-    setScrollbarWidth(this._originalBodyPadding);
   }
 
   clearBackdropAnimationTimeout() {
@@ -574,5 +572,6 @@ Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
 Modal.openCount = 0;
 Modal.originalBodyOverflow = null;
+Modal.originalBodyPadding = null;
 
 export default Modal;
