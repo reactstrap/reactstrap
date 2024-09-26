@@ -10,7 +10,7 @@ import {
   Form,
 } from 'reactstrap';
 
-function ModalFocusAfterClose(props) {
+function Example(props) {
   const [open, setOpen] = useState(false);
   const [focusAfterClose, setFocusAfterClose] = useState(true);
 
@@ -54,4 +54,4 @@ function ModalFocusAfterClose(props) {
   );
 }
 
-export default ModalFocusAfterClose;
+export default Example;

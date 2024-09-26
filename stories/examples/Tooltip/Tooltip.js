@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import Example from './TooltipExample';
 // eslint-disable-next-line import/extensions
-import TooltipExample from '!!raw-loader!./TooltipExample';
+import TooltipExample from './TooltipExample?raw';
 
 Example.parameters = {
   docs: {

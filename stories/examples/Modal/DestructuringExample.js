@@ -11,7 +11,7 @@ import {
   FormGroup,
 } from 'reactstrap';
 
-function ModalExample(props) {
+function Example(props) {
   const [modal, setModal] = useState(false);
   const [unmountOnClose, setUnmountOnClose] = useState(true);
 
@@ -62,4 +62,4 @@ function ModalExample(props) {
   );
 }
 
-export default ModalExample;
+export default Example;

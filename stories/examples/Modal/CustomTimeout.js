@@ -1,6 +1,6 @@
 import Example from './CustomTimeoutExample';
 // eslint-disable-next-line import/extensions
-import CustomTimeout from '!!raw-loader!./CustomTimeoutExample';
+import CustomTimeout from './CustomTimeoutExample?raw';
 
 Example.parameters = {
   docs: {

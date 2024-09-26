@@ -1,6 +1,6 @@
 import Example from './DirectionsExample';
 // eslint-disable-next-line import/extensions
-import Directions from '!!raw-loader!./DirectionsExample';
+import Directions from './DirectionsExample?raw';
 
 Example.parameters = {
   docs: {

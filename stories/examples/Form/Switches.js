@@ -1,6 +1,6 @@
 import Example from './SwitchesExample';
 // eslint-disable-next-line import/extensions
-import SwitchesExample from '!!raw-loader!./SwitchesExample';
+import SwitchesExample from './SwitchesExample?raw';
 
 Example.parameters = {
   docs: {

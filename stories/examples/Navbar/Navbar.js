@@ -1,6 +1,6 @@
 import Example from './NavbarExample';
 // eslint-disable-next-line import/extensions
-import NavbarExample from '!!raw-loader!./NavbarExample';
+import NavbarExample from './NavbarExample?raw';
 import { colors } from '../options';
 
 Example.parameters = {

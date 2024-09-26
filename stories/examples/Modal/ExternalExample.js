@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-function ModalExample(props) {
+function Example(props) {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -47,4 +47,4 @@ function ModalExample(props) {
   );
 }
 
-export default ModalExample;
+export default Example;

@@ -1,6 +1,6 @@
 import Example from './DropdownExample';
 // eslint-disable-next-line import/extensions
-import Dropdown from '!!raw-loader!./DropdownExample';
+import Dropdown from './DropdownExample?raw';
 
 export default Example;
 

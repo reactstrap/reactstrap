@@ -1,18 +1,18 @@
-export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+module.exports = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     hideNoControlsWarning: true,
     matchers: {
-      date: /Date$/
+      date: /Date$/,
     },
   },
   options: {
     storySort: {
-      order: ['Home', ['Installation', 'GitHub', 'Upgrading', 'Themes'], '*']
-    }
+      order: ['Home', ['Installation', 'GitHub', 'Upgrading', 'Themes'], '*'],
+    },
   },
   viewMode: 'docs',
   previewTabs: {
     canvas: { hidden: true },
   },
-}
+};

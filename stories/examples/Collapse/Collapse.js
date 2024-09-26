@@ -1,6 +1,6 @@
 import Example from './CollapseExample';
 // eslint-disable-next-line import/extensions
-import CollapseExample from '!!raw-loader!./CollapseExample';
+import CollapseExample from './CollapseExample?raw';
 
 Example.parameters = {
   docs: {

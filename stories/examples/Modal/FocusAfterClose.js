@@ -1,6 +1,6 @@
 import Example from './FocusAfterCloseExample';
 // eslint-disable-next-line import/extensions
-import FocusAfterClose from '!!raw-loader!./FocusAfterCloseExample';
+import FocusAfterClose from './FocusAfterCloseExample?raw';
 
 Example.parameters = {
   docs: {

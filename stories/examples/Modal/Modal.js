@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import Example from './ModalExample';
 // eslint-disable-next-line import/extensions
-import ModalExample from '!!raw-loader!./ModalExample';
+import ModalExample from './ModalExample?raw';
 
 Example.parameters = {
   docs: {
