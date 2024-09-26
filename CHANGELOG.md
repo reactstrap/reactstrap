@@ -137,6 +137,13 @@
 
 
 
+## [9.2.3](https://github.com/reactstrap/reactstrap/compare/v9.2.2...v9.2.3) (2024-09-26)
+
+
+### Bug Fixes
+
+* **UncontrolledAccordion:** prevent setOpen to set undefined value for open ([#2814](https://github.com/reactstrap/reactstrap/issues/2814)) ([717a5e8](https://github.com/reactstrap/reactstrap/commit/717a5e84263da39eccbd18e88530395afe374d66))
+
 ## [9.2.2](https://github.com/reactstrap/reactstrap/compare/v9.2.1...v9.2.2) (2024-01-19)
 
 
