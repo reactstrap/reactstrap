@@ -306,12 +306,26 @@ class Modal extends React.Component {
     return this._element.querySelectorAll(focusableElements.join(', '));
   }
 
+  getActiveElement(elem) {
+    const activeEl = elem.activeElement;
+
+    if (!activeEl) {
+      return null;
+    }
+
+    if (activeEl.shadowRoot) {
+      return this.getActiveElement(activeEl.shadowRoot);
+    } else {
+      return activeEl;
+    }
+  }
+
   getFocusedChild() {
     let currentFocus;
     const focusableChildren = this.getFocusableChildren();
 
     try {
-      currentFocus = document.activeElement;
+      currentFocus = this.getActiveElement(document);
     } catch (err) {
       currentFocus = focusableChildren[0];
     }
