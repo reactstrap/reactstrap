@@ -23,6 +23,8 @@ class CarouselItem extends React.Component {
     this.onExit = this.onExit.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
+
+    this.nodeRef = React.createRef();
   }
 
   onEnter(node, isAppearing) {
@@ -32,7 +34,7 @@ class CarouselItem extends React.Component {
 
   onEntering(node, isAppearing) {
     // getting this variable triggers a reflow
-    const { offsetHeight } = node;
+    const { offsetHeight } = this.nodeRef.current;
     this.setState({ startAnimation: true });
     this.props.onEntering(node, isAppearing);
     return offsetHeight;
@@ -45,12 +47,12 @@ class CarouselItem extends React.Component {
 
   onExiting(node) {
     this.setState({ startAnimation: true });
-    node.dispatchEvent(new CustomEvent('slide.bs.carousel'));
+    this.nodeRef.current.dispatchEvent(new CustomEvent('slide.bs.carousel'));
     this.props.onExiting(node);
   }
 
   onExited(node) {
-    node.dispatchEvent(new CustomEvent('slid.bs.carousel'));
+    this.nodeRef.current.dispatchEvent(new CustomEvent('slid.bs.carousel'));
     this.props.onExited(node);
   }
 
@@ -68,6 +70,7 @@ class CarouselItem extends React.Component {
     return (
       <Transition
         {...transitionProps}
+        nodeRef={this.nodeRef}
         enter={slide}
         exit={slide}
         in={isIn}
@@ -101,7 +104,7 @@ class CarouselItem extends React.Component {
             cssModule,
           );
 
-          return <Tag className={itemClasses}>{children}</Tag>;
+          return <Tag className={itemClasses} ref={this.nodeRef}>{children}</Tag>;
         }}
       </Transition>
     );

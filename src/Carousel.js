@@ -73,6 +73,7 @@ class Carousel extends React.Component {
       direction: 'end',
       indicatorClicked: false,
     };
+    this.carouselRef = React.createRef();
   }
 
   componentDidMount() {
@@ -251,6 +252,7 @@ class Carousel extends React.Component {
           className={outerClasses}
           onMouseEnter={this.hoverStart}
           onMouseLeave={this.hoverEnd}
+          ref={this.carouselRef}
         >
           <CarouselContext.Provider value={this.getContextValue()}>
             {this.renderItems(children, innerClasses)}
@@ -271,6 +273,7 @@ class Carousel extends React.Component {
           className={outerClasses}
           onMouseEnter={this.hoverStart}
           onMouseLeave={this.hoverEnd}
+          ref={this.carouselRef}
         >
           <CarouselContext.Provider value={this.getContextValue()}>
             {this.renderItems(carouselItems, innerClasses)}
@@ -305,6 +308,7 @@ class Carousel extends React.Component {
         onMouseLeave={this.hoverEnd}
         onTouchStart={this.handleTouchStart}
         onTouchEnd={this.handleTouchEnd}
+        ref={this.carouselRef}
       >
         <CarouselContext.Provider value={this.getContextValue()}>
           {wrappedIndicators}
