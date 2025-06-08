@@ -23,14 +23,17 @@ class CarouselItem extends React.Component {
     this.onExit = this.onExit.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
+    this.nodeRef = props.innerRef || React.createRef();
   }
 
-  onEnter(node, isAppearing) {
+  onEnter(_, isAppearing) {
+    const node = this.getNode();
     this.setState({ startAnimation: false });
     this.props.onEnter(node, isAppearing);
   }
 
-  onEntering(node, isAppearing) {
+  onEntering(_, isAppearing) {
+    const node = this.getNode();
     // getting this variable triggers a reflow
     const { offsetHeight } = node;
     this.setState({ startAnimation: true });
@@ -38,20 +41,27 @@ class CarouselItem extends React.Component {
     return offsetHeight;
   }
 
-  onExit(node) {
+  onExit(_) {
+    const node = this.getNode();
     this.setState({ startAnimation: false });
     this.props.onExit(node);
   }
 
-  onExiting(node) {
+  onExiting(_) {
+    const node = this.getNode();
     this.setState({ startAnimation: true });
     node.dispatchEvent(new CustomEvent('slide.bs.carousel'));
     this.props.onExiting(node);
   }
 
-  onExited(node) {
+  onExited(_) {
+    const node = this.getNode();
     node.dispatchEvent(new CustomEvent('slid.bs.carousel'));
     this.props.onExited(node);
+  }
+
+  getNode() {
+    return this.nodeRef.current;
   }
 
   render() {
@@ -68,6 +78,7 @@ class CarouselItem extends React.Component {
     return (
       <Transition
         {...transitionProps}
+        nodeRef={this.nodeRef}
         enter={slide}
         exit={slide}
         in={isIn}
@@ -101,7 +112,7 @@ class CarouselItem extends React.Component {
             cssModule,
           );
 
-          return <Tag className={itemClasses}>{children}</Tag>;
+          return <Tag ref={this.nodeRef} className={itemClasses}>{children}</Tag>;
         }}
       </Transition>
     );
@@ -120,6 +131,7 @@ CarouselItem.propTypes = {
   slide: PropTypes.bool,
   /** Add custom class */
   className: PropTypes.string,
+  innerRef: PropTypes.shape({ current: PropTypes.object }),
 };
 
 CarouselItem.defaultProps = {
