@@ -31,7 +31,7 @@ describe('Badge', () => {
   });
 
   it('should render badges with secondary color', () => {
-    testForDefaultClass(Badge, 'bg-secondary');
+    testForDefaultClass(Badge, 'text-bg-secondary');
   });
 
   it('should render Badges with other colors', () => {
@@ -40,7 +40,7 @@ describe('Badge', () => {
         Danger Badge
       </Badge>,
     );
-    expect(screen.getByTestId('badge')).toHaveClass('bg-danger');
+    expect(screen.getByTestId('badge')).toHaveClass('text-bg-danger');
   });
 
   it('should render Badges as pills', () => {
