@@ -38,7 +38,7 @@ function Badge(props) {
     classNames(
       className,
       'badge',
-      'bg-' + color,
+      'text-bg-' + color,
       pill ? 'rounded-pill' : false,
     ),
     cssModule,
