@@ -79,5 +79,6 @@ function Fade(props) {
 }
 
 Fade.propTypes = propTypes;
+Fade.defaultProps = defaultProps;
 
 export default Fade;
