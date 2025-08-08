@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PopperContent from './PopperContent';
+import Fade from './Fade';
 import {
   getTarget,
   targetPropType,
@@ -8,6 +9,7 @@ import {
   PopperPlacements,
   mapToCssModules,
   DOMElement,
+  TransitionTimeouts,
 } from './utils';
 
 export const propTypes = {
@@ -42,6 +44,12 @@ export const propTypes = {
   trigger: PropTypes.string,
   fade: PropTypes.bool,
   flip: PropTypes.bool,
+
+  transition: PropTypes.shape({
+    timeout: PropTypes.number,
+    baseClass: PropTypes.string,
+    baseClassActive: PropTypes.string,
+  }),
 };
 
 const DEFAULT_DELAYS = {
@@ -352,13 +360,27 @@ class TooltipPopoverWrapper extends React.Component {
       fade,
       flip,
       children,
+      transition: transitionProp,
     } = this.props;
 
     const attributes = omit(this.props, Object.keys(propTypes));
 
     const popperClasses = mapToCssModules(popperClassName, cssModule);
-
     const classes = mapToCssModules(innerClassName, cssModule);
+
+    const hasTransition = fade !== false;
+
+    const fadeDefaults = (Fade && Fade.defaultProps) || {
+      baseClass: 'fade',
+      baseClassActive: 'show',
+      timeout: TransitionTimeouts.Fade,
+    };
+
+    const baseTransition = hasTransition
+      ? fadeDefaults
+      : { baseClass: '', baseClassActive: '', timeout: 0 };
+
+    const transition = { ...baseTransition, ...(transitionProp || {}) };
 
     return (
       <PopperContent
@@ -376,8 +398,9 @@ class TooltipPopoverWrapper extends React.Component {
         strategy={strategy}
         offset={offset}
         cssModule={cssModule}
-        fade={fade}
+        fade={hasTransition}
         flip={flip}
+        transition={transition}
       >
         {({ update }) => (
           <div
