@@ -266,6 +266,29 @@ describe('Tooltip', () => {
     );
   });
 
+  // Ensure no PropTypes warning about transition.timeout with the real PopperContent
+  it('does not warn about missing transition.timeout', () => {
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <TooltipPopoverWrapper isOpen target="target">
+        Tooltip Content
+      </TooltipPopoverWrapper>,
+    );
+
+    // Collect all console.error messages
+    const messages = errorSpy.mock.calls
+      .map((args) =>
+        args.map((a) => (a instanceof Error ? a.message : String(a))).join(' '),
+      )
+      .join('\n');
+
+    expect(messages).not.toMatch(/Failed prop type/i);
+    expect(messages).not.toMatch(/transition\.timeout/i);
+
+    errorSpy.mockRestore();
+  });
+
   describe('PopperContent', () => {
     beforeEach(() => {
       jest.doMock('../PopperContent', () => {
@@ -341,6 +364,59 @@ describe('Tooltip', () => {
 
       expect(PopperContent).toBeCalledTimes(1);
       expect(PopperContent.mock.calls[0][0].flip).toBe(false);
+    });
+
+    // Verify transition prop defaults (fade true)
+    it('provides a transition with timeout when fade is default (true)', () => {
+      // eslint-disable-next-line global-require
+      const PopperContent = require('../PopperContent');
+      // eslint-disable-next-line global-require
+      const TooltipPopoverWrapper = require('../TooltipPopoverWrapper').default;
+
+      render(
+        <TooltipPopoverWrapper isOpen target="target">
+          Tooltip Content
+        </TooltipPopoverWrapper>,
+      );
+
+      expect(PopperContent).toBeCalledTimes(1);
+      const pcProps = PopperContent.mock.calls[0][0];
+
+      expect(pcProps.fade).toBe(true);
+      expect(pcProps.transition).toEqual(
+        expect.objectContaining({
+          timeout: expect.any(Number),
+          baseClass: expect.any(String),
+          baseClassActive: expect.any(String),
+        }),
+      );
+      expect(pcProps.transition.timeout).toBeGreaterThan(0);
+    });
+
+    // Verify no-op transition when fade is false
+    it('provides a no-op transition when fade is false', () => {
+      // eslint-disable-next-line global-require
+      const PopperContent = require('../PopperContent');
+      // eslint-disable-next-line global-require
+      const TooltipPopoverWrapper = require('../TooltipPopoverWrapper').default;
+
+      render(
+        <TooltipPopoverWrapper isOpen target="target" fade={false}>
+          Tooltip Content
+        </TooltipPopoverWrapper>,
+      );
+
+      expect(PopperContent).toBeCalledTimes(1);
+      const pcProps = PopperContent.mock.calls[0][0];
+
+      expect(pcProps.fade).toBe(false);
+      expect(pcProps.transition).toEqual(
+        expect.objectContaining({
+          timeout: 0,
+          baseClass: '',
+          baseClassActive: '',
+        }),
+      );
     });
 
     it('should handle inner target click and correct placement', () => {
