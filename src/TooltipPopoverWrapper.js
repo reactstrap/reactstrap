@@ -44,7 +44,6 @@ export const propTypes = {
   trigger: PropTypes.string,
   fade: PropTypes.bool,
   flip: PropTypes.bool,
-
   transition: PropTypes.shape({
     timeout: PropTypes.number,
     baseClass: PropTypes.string,
