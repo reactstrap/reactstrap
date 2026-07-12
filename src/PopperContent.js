@@ -167,13 +167,19 @@ class PopperContent extends React.Component {
       ...Fade.defaultProps,
       ...transition,
       baseClass: fade ? transition.baseClass : '',
-      timeout: fade ? transition.timeout : 0,
     };
+
+    if (!fade) {
+      popperTransition.timeout = 0;
+    }
+
+    const fadeStyle = { position: 'relative', zIndex: 1070, ...attrs.style };
 
     return (
       <Fade
         {...popperTransition}
         {...attrs}
+        style={fadeStyle}
         in={isOpen}
         onExited={this.onClosed}
         tag={tag}
