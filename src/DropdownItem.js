@@ -28,7 +28,7 @@ class DropdownItem extends React.Component {
 
   onClick(e) {
     const { disabled, header, divider, text } = this.props;
-    if (disabled || header || divider || text) {
+    if (disabled || this.context.disabled || header || divider || text) {
       e.preventDefault();
       return;
     }
@@ -51,7 +51,7 @@ class DropdownItem extends React.Component {
 
   getTabIndex() {
     const { disabled, header, divider, text } = this.props;
-    if (disabled || header || divider || text) {
+    if (disabled || this.context.disabled || header || divider || text) {
       return '-1';
     }
 
@@ -72,9 +72,10 @@ class DropdownItem extends React.Component {
       ...props
     } = omit(this.props, ['toggle']);
 
+    const disabled = props.disabled || this.context.disabled;
     const classes = mapToCssModules(
       classNames(className, {
-        disabled: props.disabled,
+        disabled,
         'dropdown-item': !divider && !header && !text,
         active: active,
         'dropdown-header': header,
@@ -104,6 +105,7 @@ class DropdownItem extends React.Component {
             : undefined
         }
         {...props}
+        disabled={Tag === 'button' ? disabled : props.disabled}
         tabIndex={tabIndex}
         role={role}
         className={classes}
