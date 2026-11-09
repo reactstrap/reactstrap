@@ -1,7 +1,7 @@
 import React from 'react';
 import user from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { DropdownItem } from '..';
+import { Dropdown, DropdownItem, DropdownMenu } from '..';
 import {
   testForChildrenInComponent,
   testForDefaultTag,
@@ -79,6 +79,27 @@ describe('DropdownItem', () => {
       expect(screen.getByText('GO!')).toHaveClass('dropdown-item');
       expect(screen.getByText('GO!').tagName.toLowerCase()).toMatch('a');
     });
+  });
+
+  it('does not activate an existing item after its open dropdown becomes disabled', () => {
+    const onClick = jest.fn();
+    const menu = (disabled) => (
+      <Dropdown isOpen disabled={disabled} toggle={() => {}}>
+        <DropdownMenu>
+          <DropdownItem toggle={false} onClick={onClick}>
+            Orange
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+    const { rerender } = render(menu(false));
+    const item = screen.getByText('Orange');
+    user.click(item);
+    expect(onClick).toHaveBeenCalledTimes(1);
+
+    rerender(menu(true));
+    user.click(item);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   describe('onClick', () => {
